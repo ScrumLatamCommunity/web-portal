@@ -2,8 +2,8 @@
 
 ## Create Setup Project
 
-[] - Empezar projecto con NextJs
-[] - Configurar Eslint
-[] - Configurar Prettier
-[] - Configurar TailwindCSS
-[] - Crear rutas principales
+- [ ] Empezar proyecto con Next.js
+- [ ] Configurar ESLint
+- [ ] Configurar Prettier
+- [ ] Configurar TailwindCSS
+- [ ] Crear rutas principales
