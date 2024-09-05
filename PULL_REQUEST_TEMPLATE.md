@@ -8,11 +8,11 @@ Breve descripción: Implementación de la funcionalidad para [describir la tarea
 
 Detalles:
 
-  - Se añadió un nuevo componente NombreDelComponente para [descripción de lo que hace el componente].
-  - Se actualizaron los estilos utilizando [framework o librería de estilos] para mejorar la UI/UX.
-  - Integración con el backend para [descripción de la integración].
-  - Validaciones añadidas para [explicar cualquier validación nueva].
-  - Refactorización de [cualquier código relevante] para [motivo del refactor].
+- Se añadió un nuevo componente NombreDelComponente para [descripción de lo que hace el componente].
+- Se actualizaron los estilos utilizando [framework o librería de estilos] para mejorar la UI/UX.
+- Integración con el backend para [descripción de la integración].
+- Validaciones añadidas para [explicar cualquier validación nueva].
+- Refactorización de [cualquier código relevante] para [motivo del refactor].
 
 ## ¿Cómo se ha probado esto?
 
