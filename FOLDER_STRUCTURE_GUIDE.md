@@ -6,13 +6,14 @@ Este es un proyecto de Next.js desarrollado con TypeScript. A continuación, se 
 
 - **/src**
   - **/app**
-  - **/config**
   - **/core**
+    - **/config**
+    - **/interfaces**
+    - **/services**
+    - **/utils**
   - **/fonts**
   - **/hooks**
   - **/store**
-  - **/types**
-  - **/utils**
 
 ## Descripción de Carpetas
 
