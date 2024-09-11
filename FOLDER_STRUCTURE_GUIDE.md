@@ -7,10 +7,10 @@ Este es un proyecto de Next.js desarrollado con TypeScript. A continuación, se 
 - **/src**
   - **/app**
   - **/core**
-    - **/config**
-    - **/interfaces**
-    - **/services**
-    - **/utils**
+  - **/config**
+  - **/interfaces**
+  - **/services**
+  - **/utils**
   - **/fonts**
   - **/hooks**
   - **/store**
@@ -23,15 +23,15 @@ Este es un proyecto de Next.js desarrollado con TypeScript. A continuación, se 
     - **/home**: Esta es la carpeta de la vista "/home".
       - **/components**: Contiene todos los componentes de la vista (importar y exportar los componentes en un archivo index.ts).
       - **/hooks**: Contiene los hooks específicos de la vista.
-  - **/core**: Contiene las configuraciones generales de la aplicación.
+  - **/core**: Contiene los componentes reutilizables a nivel global.
 
-    - **/config**: Contiene las configuraciones del proyecto en general.
+  - **/config**: Contiene las configuraciones del proyecto en general.
 
-    - **/interfaces**: Aquí se encuentran las interfaces a nivel global de la aplicación.
+  - **/interfaces**: Aquí se encuentran las interfaces a nivel global de la aplicación.
 
-    - **/services**: Servicios para manejar la lógica de negocio.
+  - **/services**: Servicios para manejar la lógica de negocio.
 
-    - **/utils**: Funciones utilitarias.
+  - **/utils**: Funciones utilitarias.
 
   - **/fonts**: Contiene archivos de fuentes tipográficas que se utilizan en el proyecto.
 
@@ -45,6 +45,12 @@ Para instalar las dependencias, ejecuta:
 
 ```bash
 npm install
+```
+
+Para la libreria husky ( control de commits ) ejecutar el siguiente script:
+
+```bash
+npm run prepare
 ```
 
 Para iniciar el servidor de desarrollo, ejecuta:
