@@ -1,34 +1,88 @@
-## Getting Started
+# Portal-web Scrum Latam
 
-First, run the development server:
+Este es un proyecto de Next.js desarrollado con TypeScript. A continuación, se describe la estructura de carpetas y el propósito de cada una.
+
+## Estructura de Carpetas
+
+- **/src**
+  - **/app**
+  - **/core**
+  - **/config**
+  - **/interfaces**
+  - **/services**
+  - **/utils**
+  - **/fonts**
+  - **/hooks**
+  - **/store**
+
+### Descripción de Carpetas
+
+- **/src**: Carpeta principal para todo el código fuente del proyecto.
+
+  - **/app**: Aquí se encuentran las vistas de la página (ej: /home, /community, /login, etc.).
+    - **/home**: Esta es la carpeta de la vista "/home".
+      - **/components**: Contiene todos los componentes de la vista (importar y exportar los componentes en un archivo `index.ts`).
+      - **/hooks**: Contiene los hooks específicos de la vista.
+  - **/core**: Contiene los componentes reutilizables a nivel global.
+
+  - **/config**: Contiene las configuraciones generales del proyecto.
+
+  - **/interfaces**: Aquí se encuentran las interfaces a nivel global de la aplicación.
+
+  - **/services**: Servicios para manejar la lógica de negocio.
+
+  - **/utils**: Funciones utilitarias.
+
+  - **/fonts**: Contiene archivos de fuentes tipográficas que se utilizan en el proyecto.
+
+  - **/hooks**: Contiene los hooks a nivel global de la aplicación.
+
+  - **/store**: Gestión de estados globales de la aplicación.
+
+## Configuración del Proyecto
+
+Para instalar las dependencias, ejecuta:
+
+```bash
+npm install
+```
+
+Para la librería **`husky`** ( control de commits ) ejecutar el siguiente script:
+
+```bash
+npm run prepare
+```
+
+Para iniciar el servidor de desarrollo, ejecuta:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Conventional Commits admitidos en este proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A continuación se describe como deberían ser los commits:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git commit -m "<type>[(optional scope)]: <description>
 
-## Learn More
+[optional body]
 
-To learn more about Next.js, take a look at the following resources:
+[optional footer(s)]"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Documentación completa de **[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Nombramientos de ramas
 
-## Deploy on Vercel
+El nombramiento de las ramas van a ser en definición de la tarjeta generada en Jira/Trello.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+También debe ser descriptivo en relación con la tarea que se esté realizando.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ejemplo de `Jira`:
+
+Nombre de la tarjeta: `PWS1-12 Carrusel desplazable con novedades / Próximos eventos`
+
+Nombre de la rama: `PWS1-12-<type>/<component-name-or-task>`
+
+# Todo código, rama o commit se deberan crear en inglés.
