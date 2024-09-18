@@ -1,0 +1,1200 @@
+{
+  "global": {
+    "Red": {
+      "red-50": {
+        "value": "#ffeae6",
+        "type": "color"
+      },
+      "red-100": {
+        "value": "#ffbeb0",
+        "type": "color"
+      },
+      "red-200": {
+        "value": "#ff9f8a",
+        "type": "color"
+      },
+      "red-300": {
+        "value": "#fe7354",
+        "type": "color"
+      },
+      "red-400": {
+        "value": "#fe5833",
+        "type": "color"
+      },
+      "red-500": {
+        "value": "#fe2e00",
+        "type": "color"
+      },
+      "red-600": {
+        "value": "#e72a00",
+        "type": "color"
+      },
+      "red-700": {
+        "value": "#b42100",
+        "type": "color"
+      },
+      "red-800": {
+        "value": "#8c1900",
+        "type": "color"
+      },
+      "red-900": {
+        "value": "#6b1300",
+        "type": "color"
+      }
+    },
+    "Blue": {
+      "blue-1": {
+        "value": "#e6eaf0",
+        "type": "color"
+      },
+      "blue-2": {
+        "value": "#c4ccda",
+        "type": "color"
+      },
+      "blue-3": {
+        "value": "#95a3bd",
+        "type": "color"
+      },
+      "blue-4": {
+        "value": "#63789e",
+        "type": "color"
+      },
+      "blue-5": {
+        "value": "#345081",
+        "type": "color"
+      },
+      "blue-6": {
+        "value": "#082965",
+        "type": "color"
+      },
+      "blue-7": {
+        "value": "#072356",
+        "type": "color"
+      },
+      "blue-8": {
+        "value": "#061d48",
+        "type": "color"
+      },
+      "blue-9": {
+        "value": "#05173a",
+        "type": "color"
+      },
+      "blue-10": {
+        "value": "#04122d",
+        "type": "color"
+      }
+    },
+    "Black": {
+      "black-1": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "black-2": {
+        "value": "#fcfcfc",
+        "type": "color"
+      },
+      "black-3": {
+        "value": "#f5f5f5",
+        "type": "color"
+      },
+      "black-4": {
+        "value": "#f0f0f0",
+        "type": "color"
+      },
+      "black-5": {
+        "value": "#d9d9d9",
+        "type": "color"
+      },
+      "black-6": {
+        "value": "#bfbfbf",
+        "type": "color"
+      },
+      "black-7": {
+        "value": "#8c8c8c",
+        "type": "color"
+      },
+      "black-8": {
+        "value": "#595959",
+        "type": "color"
+      },
+      "black-9": {
+        "value": "#454545",
+        "type": "color"
+      },
+      "black-10": {
+        "value": "#262626",
+        "type": "color"
+      },
+      "black-11": {
+        "value": "#1f1f1f",
+        "type": "color"
+      },
+      "black-12": {
+        "value": "#141414",
+        "type": "color"
+      },
+      "black-13": {
+        "value": "#000000",
+        "type": "color"
+      }
+    },
+    "fontFamilies": {
+      "darker-grotesque": {
+        "value": "Darker Grotesque",
+        "type": "fontFamilies"
+      },
+      "roboto": {
+        "value": "Roboto",
+        "type": "fontFamilies"
+      },
+      "karla": {
+        "value": "Karla",
+        "type": "fontFamilies"
+      }
+    },
+    "lineHeights": {
+      "0": {
+        "value": "AUTO",
+        "type": "lineHeights"
+      },
+      "1": {
+        "value": "50",
+        "type": "lineHeights"
+      },
+      "2": {
+        "value": "55.1",
+        "type": "lineHeights"
+      },
+      "3": {
+        "value": "18.3",
+        "type": "lineHeights"
+      },
+      "4": {
+        "value": "27.9",
+        "type": "lineHeights"
+      },
+      "5": {
+        "value": "23",
+        "type": "lineHeights"
+      }
+    },
+    "fontWeights": {
+      "darker-grotesque-0": {
+        "value": "Medium",
+        "type": "fontWeights"
+      },
+      "darker-grotesque-1": {
+        "value": "Black",
+        "type": "fontWeights"
+      },
+      "roboto-2": {
+        "value": "Regular",
+        "type": "fontWeights"
+      },
+      "darker-grotesque-3": {
+        "value": "ExtraBold",
+        "type": "fontWeights"
+      },
+      "darker-grotesque-4": {
+        "value": "Bold",
+        "type": "fontWeights"
+      },
+      "karla-5": {
+        "value": "Regular",
+        "type": "fontWeights"
+      },
+      "darker-grotesque-6": {
+        "value": "Regular",
+        "type": "fontWeights"
+      },
+      "darker-grotesque-7": {
+        "value": "SemiBold",
+        "type": "fontWeights"
+      },
+      "karla-8": {
+        "value": "Medium",
+        "type": "fontWeights"
+      },
+      "karla-9": {
+        "value": "Light",
+        "type": "fontWeights"
+      },
+      "karla-10": {
+        "value": "Bold",
+        "type": "fontWeights"
+      },
+      "darker-grotesque-11": {
+        "value": "Semi Bold",
+        "type": "fontWeights"
+      }
+    },
+    "fontSize": {
+      "0": {
+        "value": "12",
+        "type": "fontSizes"
+      },
+      "1": {
+        "value": "13",
+        "type": "fontSizes"
+      },
+      "2": {
+        "value": "15",
+        "type": "fontSizes"
+      },
+      "3": {
+        "value": "16",
+        "type": "fontSizes"
+      },
+      "4": {
+        "value": "17",
+        "type": "fontSizes"
+      },
+      "5": {
+        "value": "18",
+        "type": "fontSizes"
+      },
+      "6": {
+        "value": "20",
+        "type": "fontSizes"
+      },
+      "7": {
+        "value": "21",
+        "type": "fontSizes"
+      },
+      "8": {
+        "value": "22",
+        "type": "fontSizes"
+      },
+      "9": {
+        "value": "23",
+        "type": "fontSizes"
+      },
+      "10": {
+        "value": "25",
+        "type": "fontSizes"
+      },
+      "11": {
+        "value": "30",
+        "type": "fontSizes"
+      },
+      "12": {
+        "value": "32",
+        "type": "fontSizes"
+      },
+      "13": {
+        "value": "38",
+        "type": "fontSizes"
+      },
+      "14": {
+        "value": "40",
+        "type": "fontSizes"
+      },
+      "15": {
+        "value": "42",
+        "type": "fontSizes"
+      },
+      "16": {
+        "value": "45",
+        "type": "fontSizes"
+      },
+      "17": {
+        "value": "48",
+        "type": "fontSizes"
+      },
+      "18": {
+        "value": "57",
+        "type": "fontSizes"
+      },
+      "19": {
+        "value": "60",
+        "type": "fontSizes"
+      },
+      "20": {
+        "value": "80",
+        "type": "fontSizes"
+      }
+    },
+    "letterSpacing": {
+      "0": {
+        "value": "0%",
+        "type": "letterSpacing"
+      }
+    },
+    "paragraphSpacing": {
+      "0": {
+        "value": "0",
+        "type": "paragraphSpacing"
+      }
+    },
+    "Desktop": {
+      "footer nav": {
+        "value": {
+          "fontFamily": "{fontFamilies.darker-grotesque}",
+          "fontWeight": "{fontWeights.darker-grotesque-0}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.6}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "navegación del footer"
+      },
+      "derechos reservados pie pagina": {
+        "value": {
+          "fontFamily": "{fontFamilies.roboto}",
+          "fontWeight": "{fontWeights.roboto-2}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.6}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "derechos, politica de privacidad y terminos de servicio al pie de página"
+      },
+      "números contador": {
+        "value": {
+          "fontFamily": "{fontFamilies.darker-grotesque}",
+          "fontWeight": "{fontWeights.darker-grotesque-3}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.20}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "contador numérico automático"
+      },
+      "números linea tiempo": {
+        "value": {
+          "fontFamily": "{fontFamilies.darker-grotesque}",
+          "fontWeight": "{fontWeights.darker-grotesque-4}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.18}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "números de años linea del tiempo"
+      },
+      "placeholder": {
+        "value": {
+          "fontFamily": "{fontFamilies.karla}",
+          "fontWeight": "{fontWeights.karla-5}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.2}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "texto para placeholder"
+      },
+      "TITULOS": {
+        "card": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.3}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "para titulos en cards"
+        },
+        "dentro seccion": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.11}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para dentro de una sección que ye tiene titulo principal, epigrafes"
+        },
+        "pie página": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.13}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo pie de página"
+        },
+        "cards o carrousel": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.12}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulos para cards o para carrousel"
+        },
+        "página inicio": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.1}",
+            "fontSize": "{fontSize.19}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para abrir página de inicio"
+        },
+        "secciones": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-1}",
+            "lineHeight": "{lineHeights.2}",
+            "fontSize": "{fontSize.17}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "para división de secciones"
+        },
+        "opción I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-3}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.15}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo"
+        },
+        "opción II": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-3}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.17}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo"
+        }
+      },
+      "SUBTITULOS": {
+        "card": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-6}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.0}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "subtitulos para cards"
+        },
+        "subtitulos": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-0}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.11}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "para subtitulos"
+        },
+        "página inicio": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.1}",
+            "fontSize": "{fontSize.17}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "aubtitulo para abrir página de inicio y carrousel"
+        },
+        "subtitulo I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-6}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.6}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "subtitulo"
+        }
+      },
+      "BOTÓN - CTA - LINKS": {
+        "boton I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-7}",
+            "lineHeight": "{lineHeights.3}",
+            "fontSize": "{fontSize.2}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "botón, link"
+        },
+        "botón II": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-7}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.6}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "nav bar, botón"
+        },
+        "botón III": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-7}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.5}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto botón"
+        },
+        "acordeón": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-8}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.14}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto botón link dentro de un acordeón"
+        }
+      },
+      "CUERPO DE TEXTO": {
+        "card o carrousel I": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.4}",
+            "fontSize": "{fontSize.9}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto para card o carrousel"
+        },
+        "card o carrousel II": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-8}",
+            "lineHeight": "{lineHeights.5}",
+            "fontSize": "{fontSize.5}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto dentro de card o carrousel"
+        },
+        "card I": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-9}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.3}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "cuerpo de texto cards"
+        },
+        "card II": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.5}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "cuerpo de texto para cards, textos en acordeones"
+        },
+        "card III": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.7}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "cuerpo de texto cards"
+        },
+        "card IV": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-10}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.7}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "cuerpo de texto para cards"
+        },
+        "cuerpo inicio": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-8}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.10}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto que abre pñagina de inicio"
+        },
+        "palabra": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-10}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.6}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "palabra anterior a un titulo"
+        },
+        "texto": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.10}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto descriptivo"
+        }
+      }
+    },
+    "Mobile": {
+      "footer nav": {
+        "value": {
+          "fontFamily": "{fontFamilies.darker-grotesque}",
+          "fontWeight": "{fontWeights.darker-grotesque-0}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.8}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "navegacion footer"
+      },
+      "placeholder": {
+        "value": {
+          "fontFamily": "{fontFamilies.karla}",
+          "fontWeight": "{fontWeights.karla-5}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.2}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "texto para placeholder"
+      },
+      "derechos reservados": {
+        "value": {
+          "fontFamily": "{fontFamilies.roboto}",
+          "fontWeight": "{fontWeights.roboto-2}",
+          "lineHeight": "{lineHeights.0}",
+          "fontSize": "{fontSize.6}",
+          "letterSpacing": "{letterSpacing.0}",
+          "paragraphSpacing": "{paragraphSpacing.0}",
+          "paragraphIndent": "{paragraphIndent.0}",
+          "textCase": "{textCase.none}",
+          "textDecoration": "{textDecoration.none}"
+        },
+        "type": "typography",
+        "description": "texto para derechos de autor, politica de privacidad, etc"
+      },
+      "TITULOS": {
+        "titulos I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-3}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.11}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "PARA TITULOS"
+        },
+        "cards I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.3}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para cards"
+        },
+        "card o carrousel I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-11}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.10}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para cards o carrousel"
+        },
+        "sección I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.6}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para dentro de una sección"
+        },
+        "sección II": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-1}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.6}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para división de secciones"
+        },
+        "abre página": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.14}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para abrir página de inicio"
+        },
+        "pie página": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.8}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "titulo para pie de página"
+        }
+      },
+      "SUBTITULOS": {
+        "cards I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-6}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.0}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "subtitulo para cards"
+        },
+        "cards II": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.10}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "subtitulo para cards"
+        },
+        "abre página I": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.11}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "subtítulo para abrir página de inicio y carrousel"
+        },
+        "abre página II": {
+          "value": {
+            "fontFamily": "{fontFamilies.darker-grotesque}",
+            "fontWeight": "{fontWeights.darker-grotesque-4}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.10}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "subtitulo abre página de inicio"
+        }
+      },
+      "CUERPO DE TEXTO": {
+        "card I": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-9}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.3}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "cuerpo de texto card"
+        },
+        "card II": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.3}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto cards"
+        },
+        "card III": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.4}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto para cards"
+        },
+        "card IV": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-8}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.1}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto cards"
+        },
+        "card o carrousel I": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-5}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.1}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto para card o carrousel"
+        },
+        "inicio página": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-8}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.5}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto que abre inicio de página"
+        },
+        "palabra": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-8}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.0}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "palabra anterior a un titulo"
+        },
+        "card VI": {
+          "value": {
+            "fontFamily": "{fontFamilies.karla}",
+            "fontWeight": "{fontWeights.karla-10}",
+            "lineHeight": "{lineHeights.0}",
+            "fontSize": "{fontSize.4}",
+            "letterSpacing": "{letterSpacing.0}",
+            "paragraphSpacing": "{paragraphSpacing.0}",
+            "paragraphIndent": "{paragraphIndent.0}",
+            "textCase": "{textCase.none}",
+            "textDecoration": "{textDecoration.none}"
+          },
+          "type": "typography",
+          "description": "texto para cards"
+        }
+      }
+    },
+    "textCase": {
+      "none": {
+        "value": "none",
+        "type": "textCase"
+      }
+    },
+    "textDecoration": {
+      "none": {
+        "value": "none",
+        "type": "textDecoration"
+      }
+    },
+    "paragraphIndent": {
+      "0": {
+        "value": "0px",
+        "type": "dimension"
+      }
+    },
+    "linea de tiempo": {
+      "value": {
+        "color": "#00000040",
+        "type": "dropShadow",
+        "x": -20,
+        "y": 0,
+        "blur": 32,
+        "spread": 2
+      },
+      "type": "boxShadow",
+      "description": "sombra lateral para carrousel linea de tiempo"
+    },
+    "zócalo y tarjeta footer": {
+      "value": {
+        "color": "#00000040",
+        "type": "dropShadow",
+        "x": -1,
+        "y": -1,
+        "blur": 24,
+        "spread": 2
+      },
+      "type": "boxShadow",
+      "description": "sombra para zócalo banderas y tajeta para footer"
+    },
+    "cards testimonios": {
+      "value": {
+        "color": "#0000001a",
+        "type": "dropShadow",
+        "x": 0,
+        "y": 4,
+        "blur": 30,
+        "spread": 0
+      },
+      "type": "boxShadow",
+      "description": "sombra para cards de testimonios"
+    },
+    "cards formación": {
+      "value": {
+        "color": "#00000040",
+        "type": "dropShadow",
+        "x": 0,
+        "y": 4,
+        "blur": 4,
+        "spread": 0
+      },
+      "type": "boxShadow",
+      "description": "sombra para las cards de la sección entrenamiento"
+    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "global"
+    ]
+  }
+}
