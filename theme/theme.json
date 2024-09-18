@@ -1189,10 +1189,6 @@
       },
       "type": "boxShadow",
       "description": "sombra para las cards de la sección entrenamiento"
-    },
-    "coloram": {
-      "value": "#eeff2f",
-      "type": "color"
     }
   },
   "$themes": [],
