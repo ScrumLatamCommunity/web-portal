@@ -20,7 +20,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "./"
+    "tsconfigRootDir": "./",
+    "extraFileExtensions": [".css"]
   },
   "settings": {
     "react": {
