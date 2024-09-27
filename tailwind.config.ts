@@ -4,7 +4,6 @@ import path from 'path'
 
 const themePath = path.resolve(__dirname, './theme/theme.json')
 const { global } = JSON.parse(fs.readFileSync(themePath, 'utf-8'))
-console.log(global.lineHeights)
 
 const config: Config = {
   content: [
