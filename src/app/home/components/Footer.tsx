@@ -1,5 +1,8 @@
 'use client'
 
+import 'tailwindcss/tailwind.css'
+import useIsLargeScreen from '@/hooks'
+import { useState } from 'react'
 import {
   Linkedin,
   Facebook,
@@ -7,70 +10,53 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'react-feather'
-import { useState, useEffect } from 'react'
-/* import Image from 'next/image' */
-import 'tailwindcss/tailwind.css'
 
 export const Footer = () => {
-  const [community, setCommunity] = useState<boolean>(false)
-  const [training, setTraining] = useState<boolean>(false)
-  const [documentation, setDocumentation] = useState<boolean>(false)
-  const [news, setNews] = useState<boolean>(false)
-  const [isLargeScreen, setIsLargeScreen] = useState<boolean>(false)
+  const isLargeScreen = useIsLargeScreen(480)
 
-  useEffect(() => {
-    const handleResize = () => setIsLargeScreen(window.innerWidth > 480)
+  const [sections, setSections] = useState({
+    community: false,
+    training: false,
+    documentation: false,
+    news: false,
+  })
 
-    // chequeo para que se ejecute solo en el cliente
-    if (typeof window !== 'undefined') {
-      setIsLargeScreen(window.innerWidth > 480)
-      window.addEventListener('resize', handleResize)
+  const toggleSection = (section: keyof typeof sections) => {
+    if (!isLargeScreen) {
+      setSections((prevSections) => ({
+        ...prevSections,
+        [section]: !prevSections[section],
+      }))
     }
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const toggleCommunity = () => {
-    if (!isLargeScreen) setCommunity(!community)
-  }
-  const toggleTraining = () => {
-    if (!isLargeScreen) setTraining(!training)
-  }
-  const toggleDocumentation = () => {
-    if (!isLargeScreen) setDocumentation(!documentation)
-  }
-  const toggleNews = () => {
-    if (!isLargeScreen) setNews(!news)
   }
 
   return (
     <div className='flex flex-col'>
-      <div className='flex flex-col items-center py-6 px-4 bg-black-10 text-white'>
-        <div className='max-w-[960px] w-full flex flex-col gap-4'>
-          <div className='flex flex-col w-full'>
+      <div className='flex flex-col items-center bg-black-10 px-4 py-6 text-white'>
+        <div className='flex w-full max-w-[960px] flex-col gap-4'>
+          <div className='flex w-full flex-col'>
             <img
-              /* se colocó de Image a img porque está activo dangerouslyAllowSVG y las imágenes de Firebase son image/svg+xml */
               src={
                 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Logos%20comunidad%2Flogo_footer_orange.svg?alt=media&token=ddfda43a-c5e1-4fc3-b47f-df419d556597'
               }
               alt='logo'
-              /*                          width={312}
-                                                        height={63} */
-              className='w-40 h-12 sm:w-80 sm:h-16'
+              className='h-12 w-40 sm:h-16 sm:w-80'
             />
           </div>
 
-          <div className='flex flex-wrap text-lg text-black justify-start sm:justify-end flex-col sm:flex-row gap-10'>
+          <div className='text-black flex flex-col flex-wrap justify-start gap-10 text-lg sm:flex-row sm:justify-end'>
             <div className='flex flex-col gap-4'>
               <div
-                className=' flex text-black-1 font-bold cursor-pointer sm:flex-row gap-2'
-                onClick={toggleCommunity}
+                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
+                onClick={() => {
+                  toggleSection('community')
+                }}
               >
                 Comunidad
                 {!isLargeScreen &&
-                  (community ? <ChevronUp /> : <ChevronDown />)}
+                  (sections.community ? <ChevronUp /> : <ChevronDown />)}
               </div>
-              {(isLargeScreen || community) && (
+              {(isLargeScreen || sections.community) && (
                 <>
                   <span className='font-light'>Conócenos</span>
                   <span className='font-light'>¿Quiénes somos?</span>
@@ -80,13 +66,16 @@ export const Footer = () => {
 
             <div className='flex flex-col gap-4'>
               <div
-                className='flex text-black-1 font-bold cursor-pointer sm:flex-row gap-2'
-                onClick={toggleTraining}
+                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
+                onClick={() => {
+                  toggleSection('training')
+                }}
               >
                 Entrenamiento
-                {!isLargeScreen && (training ? <ChevronUp /> : <ChevronDown />)}
+                {!isLargeScreen &&
+                  (sections.training ? <ChevronUp /> : <ChevronDown />)}
               </div>
-              {(isLargeScreen || training) && (
+              {(isLargeScreen || sections.training) && (
                 <>
                   <span className='font-light'>Eventos</span>
                   <span className='font-light'>Webinars</span>
@@ -97,28 +86,35 @@ export const Footer = () => {
 
             <div className='flex flex-col gap-4'>
               <div
-                className='flex text-black-1 font-bold cursor-pointer sm:flex-row gap-2'
-                onClick={toggleDocumentation}
+                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
+                onClick={() => {
+                  toggleSection('documentation')
+                }}
               >
                 Documentación
                 {!isLargeScreen &&
-                  (documentation ? <ChevronUp /> : <ChevronDown />)}
+                  (sections.documentation ? <ChevronUp /> : <ChevronDown />)}
               </div>
+              {(isLargeScreen || sections.documentation) && <></>}
             </div>
 
             <div className='flex flex-col gap-4'>
               <div
-                className='flex text-black-1 font-bold cursor-pointer sm:flex-row gap-2'
-                onClick={toggleNews}
+                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
+                onClick={() => {
+                  toggleSection('news')
+                }}
               >
                 Novedades
-                {!isLargeScreen && (news ? <ChevronUp /> : <ChevronDown />)}
+                {!isLargeScreen &&
+                  (sections.news ? <ChevronUp /> : <ChevronDown />)}
               </div>
+              {(isLargeScreen || sections.news) && <></>}
             </div>
           </div>
 
-          <div className='flex flex-col gap-3 mt-6'>
-            <span className='sm:text-lg text-black'>
+          <div className='mt-6 flex flex-col gap-3'>
+            <span className='text-black sm:text-lg'>
               Síguenos en nuestras redes
             </span>
             <div className='flex gap-4'>
@@ -148,7 +144,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className='flex flex-col sm:flex-row place-content-center py-5 text-center gap-8 sm:gap-12 text-black font-semibold '>
+      <div className='text-black flex flex-col place-content-center gap-8 py-5 text-center font-semibold sm:flex-row sm:gap-12'>
         <span>© 2024 Scrumlatam. All rights reserved.</span>
         <span>Privacy Policy</span>
         <span>Terms of Service</span>
