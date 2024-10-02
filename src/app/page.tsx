@@ -1,4 +1,4 @@
-import { Navbar, WelcomeToCommunity } from './home/components/index'
+import { Navbar, WelcomeToCommunity, Footer } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
       <h1>Hola</h1>
       <Navbar />
       <WelcomeToCommunity />
+      <Footer />
     </main>
   )
 }
