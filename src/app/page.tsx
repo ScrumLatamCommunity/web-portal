@@ -5,7 +5,6 @@ export default function Home() {
     <main
       className={`${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
     >
-      <h1>Hola</h1>
       <Navbar />
       <WelcomeToCommunity />
       <Footer />
