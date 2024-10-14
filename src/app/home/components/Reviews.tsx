@@ -18,10 +18,10 @@ interface Review {
 
 export const Reviews: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const [itemsPerPage, setItemsPerPage] = useState<number>(3)
-  const [isMobile, setIsMobile] = useState<boolean>(false)
   const [fullReviews, setFullReviews] = useState<boolean>(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+  const [itemsPerPage, setItemsPerPage] = useState<number>(3)
 
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -73,8 +73,8 @@ export const Reviews: React.FC = () => {
         className={`flex flex-wrap items-center justify-center ${!isMobile ? 'flex flex-row flex-wrap' : ''}`}
       >
         <ChevronLeft
-          onClick={prevReviews}
           className={`ml-5 h-10 w-10 text-red-400 ${fullReviews && !isMobile ? 'translate-y-[-48px]' : ''}`}
+          onClick={prevReviews}
         />
         <div
           className={`flex flex-wrap gap-12 place-content-center  ${fullReviews ? 'flex flex-wrap gap-5' : ''} `}

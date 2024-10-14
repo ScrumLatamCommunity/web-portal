@@ -3,15 +3,15 @@ import React from 'react'
 interface PaginationProps {
   currentIndex: number
   itemsPerPage: number
-  totalItems: number
   onPageChange: (index: number) => void
+  totalItems: number
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
   currentIndex,
   itemsPerPage,
-  totalItems,
   onPageChange,
+  totalItems,
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
