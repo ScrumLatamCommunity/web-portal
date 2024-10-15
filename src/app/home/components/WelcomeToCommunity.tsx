@@ -1,24 +1,16 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { PrimaryButton } from '../../../core/PrimaryButton'
+import { image_url_mobile, image_url_desktop } from '@/data/data'
+import useIsLargeScreen from '@/hooks/index'
 
-const image_url_mobile =
-  'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20scrum%20latam%20MOBILE.svg?alt=media&token=9341b402-afa4-481c-90a4-1c12b8a121ab'
-const image_url_desktop =
-  'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20DESTOK.svg?alt=media&token=abfb73e3-b1d4-4a92-a924-a86e3df53fb1'
 export const WelcomeToCommunity = () => {
+  const isLargeScreen = useIsLargeScreen(468)
   const [image, setImage] = useState(image_url_mobile)
-  const updateImage = () => {
-    return window.innerWidth > 468
-      ? setImage(image_url_desktop)
-      : setImage(image_url_mobile)
-  }
 
   useEffect(() => {
-    updateImage()
-    window.addEventListener('resize', updateImage)
-    return () => window.removeEventListener('resize', updateImage)
-  }, [])
+    setImage(isLargeScreen ? image_url_desktop : image_url_mobile)
+  }, [isLargeScreen])
 
   return (
     <section className='flex flex-col pl-4 md:items-center md:bg-gradient-to-tr md:from-red-300 md:to-transparent md:pl-0 xl:m-auto'>
@@ -41,7 +33,7 @@ export const WelcomeToCommunity = () => {
             <PrimaryButton label='Únete a nosotros' />
           </div>
         </div>
-        <img src={image} alt='Landscape picture' />
+        <img alt='Landscape picture' src={image} />
       </div>
     </section>
   )
