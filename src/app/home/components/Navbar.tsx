@@ -39,7 +39,7 @@ export const Navbar = () => {
           }`}
         >
           <a
-            href='#'
+            href='#Home'
             className='flex flex-grow items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
           >
             Inicio
