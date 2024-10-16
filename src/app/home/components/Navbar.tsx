@@ -16,9 +16,9 @@ export const Navbar = () => {
       <div className='container mx-auto flex items-center justify-between'>
         <div className='text-xl font-bold text-white'>
           <img
-            src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
             alt='logo'
             className='h-10'
+            src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
           />
         </div>
 
@@ -39,8 +39,8 @@ export const Navbar = () => {
           }`}
         >
           <a
-            href='#Home'
             className='flex flex-grow items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
+            href='#'
           >
             Inicio
           </a>
@@ -48,16 +48,16 @@ export const Navbar = () => {
           {/* Menú Comunidad con opciones desplegables */}
           <div className='relative flex-grow'>
             <a
+              className='flex cursor-pointer items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
               href='#'
               onClick={() => toggleMenu('comunidad')}
-              className='flex cursor-pointer items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
             >
               Comunidad
               <ChevronDown
-                strokeWidth={2.5}
                 className={`h-3 w-3 transition-transform lg:block ${
                   activeMenu === 'comunidad' ? 'rotate-180' : ''
                 }`}
+                strokeWidth={2.5}
               />
             </a>
 
@@ -68,9 +68,9 @@ export const Navbar = () => {
                     <h3 className='font-bold'>Historia</h3>
                     <div className='flex items-start'>
                       <img
-                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_pencil_orange.svg?alt=media&token=f1261db1-c7d1-407e-8c41-153761031e0f'
                         alt='Opción 1'
                         className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_pencil_orange.svg?alt=media&token=f1261db1-c7d1-407e-8c41-153761031e0f'
                       />
                       <div className='ml-3'>
                         <p className='font-bold'>Nuestros inicios</p>
@@ -85,9 +85,9 @@ export const Navbar = () => {
                     <h3 className='font-bold'>¿Quienes somos?</h3>
                     <div className='flex items-start'>
                       <img
-                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
                         alt='Opción 1'
                         className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
                       />
                       <div className='ml-3'>
                         <p className='font-bold'>Los Squads</p>
@@ -105,16 +105,16 @@ export const Navbar = () => {
 
           <div className='relative flex-grow'>
             <a
+              className='flex cursor-pointer items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
               href='#'
               onClick={() => toggleMenu('entrenamiento')}
-              className='flex cursor-pointer items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
             >
               Entrenamiento
               <ChevronDown
-                strokeWidth={2.5}
                 className={`h-3 w-3 transition-transform lg:block ${
                   activeMenu === 'entrenamiento' ? 'rotate-180' : ''
                 }`}
+                strokeWidth={2.5}
               />
             </a>
 
@@ -125,9 +125,9 @@ export const Navbar = () => {
                     <h3 className='font-bold'>Eventos</h3>
                     <div className='flex items-start'>
                       <img
-                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
                         alt='Opción 1'
                         className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
                       />
                       <div className='ml-3'>
                         <p className='font-bold'>Lorem ipsum dolor</p>
@@ -142,9 +142,9 @@ export const Navbar = () => {
                     <h3 className='font-bold'>Webinars</h3>
                     <div className='flex items-start'>
                       <img
-                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
                         alt='Opción 1'
                         className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
                       />
                       <div className='ml-3'>
                         <p className='font-bold'>Lorem ipsum dolor</p>
@@ -159,9 +159,9 @@ export const Navbar = () => {
                     <h3 className='font-bold'>Talleres</h3>
                     <div className='flex items-start'>
                       <img
-                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
                         alt='Opción 1'
                         className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
                       />
                       <div className='ml-3'>
                         <p className='font-bold'>Lorem ipsum dolor</p>
@@ -178,27 +178,27 @@ export const Navbar = () => {
           </div>
 
           <a
-            href='#'
             className='flex flex-grow items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
+            href='#'
           >
             Documentación
           </a>
 
           <a
-            href='#'
             className='flex flex-grow items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
+            href='#'
           >
             Novedades
           </a>
         </div>
 
         <div className='hidden items-center space-x-4 lg:flex'>
-          <a href='#' className='text-blue-7 hover:text-red-400'>
+          <a className='text-blue-7 hover:text-red-400' href='#'>
             Iniciar sesión
           </a>
           <a
+            className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
             href='#'
-            className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
           >
             Registrarse
           </a>
