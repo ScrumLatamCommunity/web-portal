@@ -49,28 +49,83 @@ export const flags: Flag[] = [
   },
   {
     id: 4,
-    name: 'Mexico',
-    flag: 'https://flagcdn.com/mx.svg',
-  },
-  {
-    id: 5,
     name: 'España',
     flag: 'https://flagcdn.com/es.svg',
   },
   {
-    id: 6,
+    id: 5,
     name: 'Peru',
     flag: 'https://flagcdn.com/pe.svg',
   },
   {
-    id: 7,
+    id: 6,
     name: 'Ecuador',
     flag: 'https://flagcdn.com/ec.svg',
   },
   {
-    id: 8,
+    id: 7,
     name: 'Guatemala',
     flag: 'https://flagcdn.com/gt.svg',
+  },
+  {
+    id: 8,
+    name: 'Panama',
+    flag: 'https://flagcdn.com/pa.svg',
+  },
+  {
+    id: 9,
+    name: 'Costa Rica',
+    flag: 'https://flagcdn.com/cr.svg',
+  },
+  {
+    id: 10,
+    name: 'Nicaragua',
+    flag: 'https://flagcdn.com/ni.svg',
+  },
+  {
+    id: 11,
+    name: 'El Salvador',
+    flag: 'https://flagcdn.com/sv.svg',
+  },
+  {
+    id: 12,
+    name: 'Honduras',
+    flag: 'https://flagcdn.com/hn.svg',
+  },
+  {
+    id: 13,
+    name: 'México',
+    flag: 'https://flagcdn.com/mx.svg',
+  },
+  {
+    id: 14,
+    name: 'Venezuela',
+    flag: 'https://flagcdn.com/ve.svg',
+  },
+  {
+    id: 15,
+    name: 'Bolivia',
+    flag: 'https://flagcdn.com/bo.svg',
+  },
+  {
+    id: 16,
+    name: 'Paraguay',
+    flag: 'https://flagcdn.com/py.svg',
+  },
+  {
+    id: 17,
+    name: 'Brasil',
+    flag: 'https://flagcdn.com/br.svg',
+  },
+  {
+    id: 18,
+    name: 'Canada',
+    flag: 'https://flagcdn.com/ca.svg',
+  },
+  {
+    id: 19,
+    name: 'Estados Unidos',
+    flag: 'https://flagcdn.com/us.svg',
   },
 ]
 
