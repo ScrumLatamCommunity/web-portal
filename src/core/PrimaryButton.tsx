@@ -3,7 +3,7 @@ interface PrimaryButtonProps {
 }
 
 export const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label }) => (
-  <button className='bg-red-400 rounded-[20px] h-[49px] w-[185px] font-darker-grotesque'>
-    <span className='text-black-1 font-darker-grotesque-3 text-6'>{label}</span>
+  <button className='h-[49px] w-[185px] rounded-[20px] bg-red-400 font-darker-grotesque'>
+    <span className='text-6 font-darker-grotesque-3 text-black-1'>{label}</span>
   </button>
 )
