@@ -1,4 +1,8 @@
-import { WelcomeToCommunity, Reviews } from './home/components/index'
+import {
+  WelcomeToCommunity,
+  Reviews,
+  DiscoverCommunity,
+} from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 export default function Home() {
   return (
@@ -6,6 +10,7 @@ export default function Home() {
       className={`${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
     >
       <WelcomeToCommunity />
+      <DiscoverCommunity />
       <Reviews />
     </main>
   )
