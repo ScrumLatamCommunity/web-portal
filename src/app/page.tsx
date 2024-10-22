@@ -10,8 +10,8 @@ export default function Home() {
       className={`${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
     >
       <WelcomeToCommunity />
-      <DiscoverCommunity />
       <Reviews />
+      <DiscoverCommunity />
     </main>
   )
 }

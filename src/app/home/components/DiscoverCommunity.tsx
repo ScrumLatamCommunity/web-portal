@@ -4,21 +4,22 @@ import 'tailwindcss/tailwind.css'
 import React from 'react'
 
 export const DiscoverCommunity: React.FC = () => (
-  <div className='relative flex flex-col items-center gap-16 mb-[152px]'>
+  <div className='relative flex flex-col items-center gap-16 mb-[152px] mt-[72px]'>
     <div className='absolute top-[-16rem] left-[-4rem] w-[473px] h-[473px] hidden sm:flow-root'>
       <img
         alt='ellipse'
         src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2010.svg?alt=media&token=ba52aa7c-1cd0-433f-8ced-93442b38c647'
       />
     </div>
-    <div className='absolute bottom-[-18rem] right-[-5rem] w-[516px] h-[516px] hidden sm:flow-root'>
+    <div className='absolute bottom-[-18rem] left-[880px] hidden sm:flow-root'>
       <img
         alt='ellipse2'
+        className='w-[600px] h-[516px]'
         src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2011.svg?alt=media&token=9a4c6557-3de7-4595-95fb-153d5877ee04'
       />
     </div>
 
-    <div className='flex flex-col items-center gap-3'>
+    <div className='flex flex-col items-center gap-5'>
       <span className='sm:text-4xl text-xl font-extrabold font-darker-grotesque text-[#082965]'>
         Descubra más de la comunidad
       </span>
