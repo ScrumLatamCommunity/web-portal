@@ -3,6 +3,7 @@ import {
   Reviews,
   DiscoverCommunity,
   FlagsCommunity,
+  CounterToCommunity,
 } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
     >
       <WelcomeToCommunity />
       <FlagsCommunity />
+      <CounterToCommunity />
       <Reviews />
       <DiscoverCommunity />
     </main>
