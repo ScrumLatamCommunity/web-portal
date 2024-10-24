@@ -8,8 +8,8 @@ export const CounterToCommunity = () => {
   useCounter(counters)
   return (
     <section className='relative m-auto mt-8 max-w-screen-2xl font-darker-grotesque'>
-      <div className='absolute right-44 top-0 z-10 hidden h-[19dvw] w-[19dvw] rounded-full bg-red-300 opacity-30 blur-3xl md:block'></div>
-      <div className='absolute bottom-1/4 left-40 z-10 hidden h-[19dvw] w-[19dvw] rounded-full bg-blue-5 opacity-30 blur-3xl md:block'></div>
+      <div className='absolute right-44 top-0 z-10 hidden h-[19dvw] w-[19dvw] rounded-full bg-red-300 opacity-15 blur-3xl md:block'></div>
+      <div className='absolute bottom-1/4 left-40 z-10 hidden h-[19dvw] w-[19dvw] rounded-full bg-blue-5 opacity-15 blur-3xl md:block'></div>
       <div className='mt-8 flex flex-wrap items-center justify-center gap-4 pt-12'>
         <img className='w-8 md:w-10 xl:w-auto' src={gea_icon} alt='gea_icon' />
         <h3 className='m-0 text-6 font-black text-red-400 md:text-4xl xl:text-17'>
