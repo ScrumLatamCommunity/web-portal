@@ -77,13 +77,13 @@ export const Reviews: React.FC = () => {
           onClick={prevReviews}
         />
         <div
-          className={`flex flex-wrap gap-12 place-content-center  ${fullReviews ? 'flex flex-wrap gap-5' : ''} `}
+          className={`flex flex-wrap place-content-center gap-12 ${fullReviews ? 'flex flex-wrap gap-5' : ''} `}
         >
           {reviews
             .slice(currentIndex, currentIndex + itemsPerPage)
             .map((review: Review) => (
               <div
-                className={`flex w-[300px] flex-col gap-4 rounded-[5%] bg-black-2 py-8 pl-6 text-blue-600 shadow-lg ${fullReviews && !isMobile ? 'bg-black-1 h-auto gap-5 py-6 pl-8 pr-4 text-blue-100 opacity-50 transition-transform duration-300 hover:scale-[1.3] hover:opacity-100' : 'w-56 opacity-100'} ${hoveredCard === review.id && fullReviews ? 'z-10 opacity-100 transition-transform duration-300' : ''} ${fullReviews && isMobile ? 'h-auto gap-5 py-6 pl-8 pr-4 text-blue-100' : ''} `}
+                className={`flex w-[300px] flex-col gap-4 rounded-[5%] bg-black-2 py-8 pl-6 text-blue-600 shadow-lg ${fullReviews && !isMobile ? 'h-auto gap-5 bg-black-1 py-6 pl-8 pr-4 text-blue-100 opacity-50 transition-transform duration-300 hover:scale-[1.3] hover:opacity-100' : 'w-56 opacity-100'} ${hoveredCard === review.id && fullReviews ? 'z-10 opacity-100 transition-transform duration-300' : ''} ${fullReviews && isMobile ? 'h-auto gap-5 py-6 pl-8 pr-4 text-blue-100' : ''} `}
                 key={review.id}
                 onMouseEnter={() => setHoveredCard(review.id)}
                 onMouseLeave={() => setHoveredCard(null)}
