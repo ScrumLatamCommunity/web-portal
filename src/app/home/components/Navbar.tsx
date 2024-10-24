@@ -190,6 +190,12 @@ export const Navbar = () => {
           >
             Novedades
           </a>
+          <a
+            className='flex flex-grow items-center justify-center gap-2 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline'
+            href='onboarding'
+          >
+            Onboarding
+          </a>
         </div>
 
         <div className='hidden items-center space-x-4 lg:flex'>
