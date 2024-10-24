@@ -12,7 +12,6 @@ export default function Home() {
       className={`${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
     >
       <WelcomeToCommunity />
-      <Reviews />
       <FlagsCommunity />
       <CounterToCommunity />
       <Reviews />
