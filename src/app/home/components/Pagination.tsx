@@ -16,11 +16,11 @@ export const Pagination: React.FC<PaginationProps> = ({
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   return (
-    <div className='mt-6 flex justify-center gap-2'>
+    <div className='mb-10 mt-5 flex justify-center gap-2'>
       {Array.from({ length: totalPages }).map((_, pageIndex) => (
         <div
           key={pageIndex}
-          className={`h-4 w-4 cursor-pointer rounded-full ${pageIndex === Math.floor(currentIndex / itemsPerPage) ? 'bg-red-400' : 'bg-gray-300'}`}
+          className={`h-3 w-3 cursor-pointer rounded-full ${pageIndex === Math.floor(currentIndex / itemsPerPage) ? 'bg-red-400' : 'bg-gray-300'}`}
           onClick={() => onPageChange(pageIndex * itemsPerPage)}
         />
       ))}
