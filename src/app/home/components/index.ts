@@ -5,6 +5,7 @@ import { Reviews } from './Reviews'
 import { DiscoverCommunity } from './DiscoverCommunity'
 import { FlagsCommunity } from './FlagsCommunity'
 import { CounterToCommunity } from './CounterToCommunity'
+import { DataComunity } from './DataCommunity'
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   DiscoverCommunity,
   FlagsCommunity,
   CounterToCommunity,
+  DataComunity,
 }
