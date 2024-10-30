@@ -1,39 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Menu, X, User } from 'react-feather'
 import { Navlist } from './Navlist'
+import { useTypeScreen } from '@/hooks'
 
 export const Navbar: React.FC = () => {
   const [openNav, setOpenNav] = useState<boolean>(false)
-  const [screen, setScreen] = useState<string>('')
-
-  const handleResize = () => {
-    const width = window.innerWidth
-
-    if (width < 768) {
-      setScreen('sm')
-    } else if (width >= 768 && width < 1024) {
-      setScreen('md')
-    } else if (width >= 1024 && width < 1280) {
-      setScreen('lg')
-    } else {
-      setScreen('xl')
-    }
-  }
-
-  useEffect(() => {
-    // Escuchar el evento de cambio de tamaño de la pantalla
-    window.addEventListener('resize', handleResize)
-
-    // Ejecutar una vez para establecer el tamaño inicial
-    handleResize()
-
-    // Limpiar el evento cuando el componente se desmonte
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  const screen = useTypeScreen()
 
   const toggleNav = (): void => {
     setOpenNav(!openNav)

@@ -18,4 +18,37 @@ const useIsLargeScreen = (widthThreshold: number = 480) => {
   return isLargeScreen
 }
 
+export const useTypeScreen = () => {
+  const [screen, setScreen] = useState<string>('')
+
+  const handleResize = () => {
+    const width = window.innerWidth
+
+    if (width < 768) {
+      setScreen('sm')
+    } else if (width >= 768 && width < 1024) {
+      setScreen('md')
+    } else if (width >= 1024 && width < 1280) {
+      setScreen('lg')
+    } else {
+      setScreen('xl')
+    }
+  }
+
+  useEffect(() => {
+    // Escuchar el evento de cambio de tamaño de la pantalla
+    window.addEventListener('resize', handleResize)
+
+    // Ejecutar una vez para establecer el tamaño inicial
+    handleResize()
+
+    // Limpiar el evento cuando el componente se desmonte
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  return screen
+}
+
 export default useIsLargeScreen
