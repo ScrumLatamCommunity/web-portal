@@ -64,26 +64,26 @@ export const Reviews: React.FC = () => {
 
   return (
     <div
-      className={`flex flex-col gap-20 ${fullReviews ? 'bg-gray-200' : ''} ${fullReviews && isMobile ? 'bg-black-1' : ''}`}
+      className={`flex flex-col gap-7 ${fullReviews ? 'bg-gray-200' : ''} ${fullReviews && isMobile ? 'bg-black-1' : ''}`}
     >
-      <span className='text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-lg'>
+      <span className='text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
         ¿Qué opina nuestra comunidad?
       </span>
       <div
-        className={`flex flex-wrap items-center justify-center ${!isMobile ? 'flex flex-row flex-wrap' : ''}`}
+        className={`flex flex-wrap items-center justify-center gap-[14px] ${!isMobile ? 'flex flex-row flex-wrap' : ''}`}
       >
         <ChevronLeft
-          className={`ml-5 h-10 w-10 text-red-400 ${fullReviews && !isMobile ? 'translate-y-[-48px]' : ''}`}
+          className={`h-6 w-6 text-red-400 ${fullReviews && !isMobile ? 'translate-y-[-48px]' : ''}`}
           onClick={prevReviews}
         />
         <div
-          className={`flex flex-wrap gap-12 place-content-center  ${fullReviews ? 'flex flex-wrap gap-5' : ''} `}
+          className={`flex flex-wrap place-content-center gap-12 ${fullReviews ? 'flex flex-wrap gap-5' : ''} `}
         >
           {reviews
             .slice(currentIndex, currentIndex + itemsPerPage)
             .map((review: Review) => (
               <div
-                className={`flex w-[300px] flex-col gap-4 rounded-[5%] bg-black-2 py-8 pl-6 text-blue-600 shadow-lg ${fullReviews && !isMobile ? 'bg-black-1 h-auto gap-5 py-6 pl-8 pr-4 text-blue-100 opacity-50 transition-transform duration-300 hover:scale-[1.3] hover:opacity-100' : 'w-56 opacity-100'} ${hoveredCard === review.id && fullReviews ? 'z-10 opacity-100 transition-transform duration-300' : ''} ${fullReviews && isMobile ? 'h-auto gap-5 py-6 pl-8 pr-4 text-blue-100' : ''} `}
+                className={`flex w-[300px] flex-col gap-4 rounded-[5%] bg-black-2 py-8 pl-6 text-blue-600 shadow-lg ${fullReviews && !isMobile ? 'h-auto gap-5 bg-black-1 py-6 pl-8 pr-4 text-blue-100 opacity-50 transition-transform duration-300 hover:scale-[1.3] hover:opacity-100' : 'w-56 opacity-100'} ${hoveredCard === review.id && fullReviews ? 'z-10 opacity-100 transition-transform duration-300' : ''} ${fullReviews && isMobile ? 'h-auto gap-5 py-6 pl-8 pr-4 text-blue-100' : ''} `}
                 key={review.id}
                 onMouseEnter={() => setHoveredCard(review.id)}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -96,20 +96,18 @@ export const Reviews: React.FC = () => {
                       src={review.profile}
                     />
                   </div>
-                  <div>
-                    <div className='flex flex-col place-content-center'>
-                      <div className='font-darker-grotesque font-bold text-blue-6'>
-                        {review.name}
-                      </div>
-                      <div className='mt-[-8px] flex font-darker-grotesque text-sm font-medium text-blue-6'>
-                        {review.position}
-                      </div>
-                      <img
-                        alt='Nacionalidad'
-                        className='mt-1 flex w-5'
-                        src={review.flag}
-                      />
+                  <div className='flex flex-col place-content-center gap-1'>
+                    <div className='font-darker-grotesque font-bold text-blue-6'>
+                      {review.name}
                     </div>
+                    <div className='mt-[-8px] flex font-darker-grotesque text-2 font-medium text-blue-6'>
+                      {review.position}
+                    </div>
+                    <img
+                      alt='Nacionalidad'
+                      className='mt-1 flex h-4 w-5'
+                      src={review.flag}
+                    />
                   </div>
                   {hoveredCard === review.id && (
                     <button
@@ -119,7 +117,7 @@ export const Reviews: React.FC = () => {
                       {fullReviews ? (
                         <img
                           alt='Cerrar'
-                          className='w-6'
+                          className='w-6 gap-1'
                           src={
                             'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20icons%2Fx.svg?alt=media&token=3fca622b-ce3c-436b-9372-0208bf399ba4'
                           }
@@ -144,7 +142,7 @@ export const Reviews: React.FC = () => {
                 </div>
                 {!fullReviews && (
                   <button
-                    className='mt-auto flex justify-end self-end border-none font-darker-grotesque text-xs font-medium text-red-400'
+                    className='mt-auto self-end border-none pr-8 font-darker-grotesque text-sm font-semibold text-red-400'
                     onClick={toggleReadMore}
                   >
                     Seguir leyendo
@@ -154,7 +152,7 @@ export const Reviews: React.FC = () => {
             ))}
         </div>
         <ChevronRight
-          className={`ml-5 h-10 w-10 text-red-400 ${fullReviews && !isMobile ? 'translate-y-12' : ''} `}
+          className={`h-6 w-6 text-red-400 ${fullReviews && !isMobile ? 'translate-y-12' : ''} `}
           onClick={nextReviews}
         />
       </div>

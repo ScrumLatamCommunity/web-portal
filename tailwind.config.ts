@@ -111,18 +111,23 @@ const config: Config = {
         xl: '1280px',
         '2xl': '1536px',
       },
+      animation: {
+        scrollLeft: 'scroll-left 20s linear infinite',
+      },
+      keyframes: {
+        'scroll-left': {
+          'from%': { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
+      },
+      boxShadow: {
+        shadowFlags: '0 -5px 10px rgba(0, 0, 0, 0.16)',
+        shadowFlagsDesktop: '0 0 30px rgba(0, 0, 0, 0.16)',
+      },
+      width: {
+        widthFlags: 'clamp(47px, 15vw, 72px)',
+      },
     },
-    // screens: {
-    //   sm: '480px',
-
-    //   md: '768px',
-
-    //   lg: '1024px',
-
-    //   xl: '1280px',
-
-    //   '2xl': '1536px',
-    // },
   },
   plugins: [],
 }
