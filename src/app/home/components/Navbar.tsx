@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className='font-DM sticky top-0 z-50 border-b-2 border-gray-200 bg-black-3'>
-      <div className='mx-auto px-4 py-2 lg:flex lg:items-center justify-between'>
+      <div className='mx-auto justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='scroll flex justify-between lg:justify-start'>
           <a href='#' className='flex flex-row justify-start'>
             <img
@@ -55,7 +55,7 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Enlace de navegación visible en pantallas medianas y grandes */}
-        <nav className='space-x-10 z-10 hidden lg:flex lg:w-auto'>
+        <nav className='z-10 hidden space-x-10 lg:flex lg:w-auto'>
           <Navlist />
         </nav>
 
