@@ -1,6 +1,7 @@
 'use client'
 
 import { useTypeScreen } from '@/hooks'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { ChevronDown, ChevronRight } from 'react-feather'
 
@@ -14,13 +15,12 @@ export const Navlist: React.FC = () => {
 
   return (
     <>
-      <a
+      <Link
+        href='/'
         className='md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline lg:justify-center lg:border-b-0'
-        href='#'
       >
         Inicio
-      </a>
-
+      </Link>
       <a
         className='flex-grow border-b-2 border-gray-200 lg:border-b-0'
         onClick={() => toggleMenu('comunidad')}
@@ -173,14 +173,12 @@ export const Navlist: React.FC = () => {
           </div>
         )}
       </div>
-
       <a
         className='md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline lg:justify-center lg:border-b-0'
         href='#'
       >
         Documentación
       </a>
-
       <a
         className='md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline lg:justify-center lg:border-b-0'
         href='#'
