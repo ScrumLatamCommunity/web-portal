@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className='font-DM sticky top-0 z-50 border-b-2 border-gray-200 bg-black-3'>
-      <div className='mx-auto justify-between px-4 py-2 lg:flex lg:items-center'>
+      <div className='mx-auto max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='scroll flex justify-between lg:justify-start'>
           <a href='#' className='flex flex-row justify-start'>
             <img
@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
             <div className='mt-4 flex flex-row items-center'>
               <div className='flex items-center space-x-6 whitespace-nowrap'>
                 <a
-                  className='flex items-center p-2 text-blue-7 hover:text-red-400'
+                  className='flex items-center p-2 text-red-400 hover:text-red-200'
                   href='#'
                 >
                   <User className='mr-2 h-4' />
@@ -55,7 +55,7 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Enlace de navegación visible en pantallas medianas y grandes */}
-        <nav className='z-10 hidden space-x-10 lg:flex lg:w-auto'>
+        <nav className='py-full z-10 hidden h-full space-x-10 lg:flex lg:w-auto'>
           <Navlist />
         </nav>
 
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
           <div className='mt-2 hidden flex-row items-center lg:flex'>
             <div className='flex items-center'>
               <a
-                className='flex items-center p-2 text-blue-7 hover:text-red-400'
+                className='mr-5 flex items-center whitespace-nowrap p-2 text-red-400 hover:text-red-200'
                 href='#'
               >
                 <User className='h-4' />
