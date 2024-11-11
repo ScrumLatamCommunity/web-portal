@@ -5,6 +5,7 @@ import {
   FlagsCommunity,
   CounterToCommunity,
   DataComunity,
+  JoinOurCommunity,
 } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <CounterToCommunity />
       <Reviews />
       <DiscoverCommunity />
+      <JoinOurCommunity />
     </main>
   )
 }
