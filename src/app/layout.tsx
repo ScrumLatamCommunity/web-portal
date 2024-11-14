@@ -2,6 +2,9 @@ import { ReactNode } from 'react'
 import { Footer } from './home/components/Footer'
 import { Navbar } from './home/components'
 import '../app/globals.css'
+import 'swiper/css'
+import 'swiper/css/navigation'
+
 import type { Metadata } from 'next'
 interface RootLayoutProps {
   children: ReactNode

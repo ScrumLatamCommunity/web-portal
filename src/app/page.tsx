@@ -8,6 +8,7 @@ import {
   JoinOurCommunity,
 } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
+
 export default function Home() {
   return (
     <main
