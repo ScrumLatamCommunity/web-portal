@@ -27,7 +27,7 @@ export const Navbar: React.FC = () => {
 
           {/* Enlace de navegación visible en pantallas pequeñas */}
           {(screen === 'sm' || screen === 'md') && (
-            <div className='mt-4 flex flex-row items-center'>
+            <div className='flex flex-row items-center'>
               <div className='flex items-center space-x-6 whitespace-nowrap'>
                 <a
                   className='flex items-center p-2 text-red-400 hover:text-red-200'
