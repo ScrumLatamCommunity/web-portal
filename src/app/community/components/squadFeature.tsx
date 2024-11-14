@@ -26,7 +26,7 @@ export default function SquadFeature({
         {image}
       </div>
       <div className='relative mx-6 flex h-full flex-col'>
-        <DottedOrange className='absolute right-0' height={400} width={400} />
+        <DottedOrange className='absolute right-0' height={200} width={200} />
         <p className='text-lg leading-7'>{descriptionMiddle}</p>
         <h1 className='mt-4 text-10 font-semibold tracking-wide text-[#FE2E00]'>
           {title}

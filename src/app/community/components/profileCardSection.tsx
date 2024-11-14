@@ -4,13 +4,13 @@ import BehanceIcon from '@/assets/behanceIcon'
 import InstagramIcon from '@/assets/instagramIcon'
 
 export default function ProfileCard({
+  behanceUrl,
+  description,
+  githubUrl,
+  image,
+  instagramUrl,
   name,
   title,
-  description,
-  image,
-  githubUrl,
-  behanceUrl,
-  instagramUrl,
 }: ProfileCardProps) {
   return (
     <div className='mx-auto flex min-h-[500px] max-w-[250px] flex-col items-center justify-center rounded-lg p-5 text-center font-sans'>
@@ -23,10 +23,10 @@ export default function ProfileCard({
       <div className='flex justify-center space-x-4'>
         {githubUrl && (
           <a
-            href={githubUrl}
-            target='_blank'
-            rel='noopener noreferrer'
             className='text-red-600 transition-colors hover:text-red-800'
+            href={githubUrl}
+            rel='noopener noreferrer'
+            target='_blank'
           >
             <GithubIcon height={20} width={20} />
             <span className='sr-only'>GitHub</span>
@@ -34,10 +34,10 @@ export default function ProfileCard({
         )}
         {behanceUrl && (
           <a
-            href={behanceUrl}
-            target='_blank'
-            rel='noopener noreferrer'
             className='text-red-600 transition-colors hover:text-red-800'
+            href={behanceUrl}
+            rel='noopener noreferrer'
+            target='_blank'
           >
             <BehanceIcon height={20} width={20} />
             <span className='sr-only'>Behance</span>
@@ -45,10 +45,10 @@ export default function ProfileCard({
         )}
         {instagramUrl && (
           <a
-            href={instagramUrl}
-            target='_blank'
-            rel='noopener noreferrer'
             className='text-red-600 transition-colors hover:text-red-800'
+            href={instagramUrl}
+            rel='noopener noreferrer'
+            target='_blank'
           >
             <InstagramIcon height={20} width={20} />
             <span className='sr-only'>Instagram</span>
