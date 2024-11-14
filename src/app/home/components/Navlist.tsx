@@ -87,6 +87,9 @@ export const Navlist: React.FC = () => {
                   </div>
                 </div>
               </li>
+              <div>
+                <a href='/onboarding'>Onboarding</a>
+              </div>
             </ul>
           </div>
         )}
