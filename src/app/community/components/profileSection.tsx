@@ -51,6 +51,147 @@ const profiles = [
     behanceUrl: 'https://behance.net/pedroRamirez',
     instagramUrl: 'https://instagram.com/pedroRamirez',
   },
+  {
+    name: 'Sergio Gonzalez',
+    title: 'CEO',
+    description: 'Creador y fundador de la comunidad SCRUM',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/sergioGonzalez',
+    behanceUrl: 'https://behance.net/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez',
+  },
+  {
+    name: 'Ana Martínez',
+    title: 'CTO',
+    description: 'Experta en desarrollo de software y transformación digital',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/anaMartinez',
+    behanceUrl: 'https://behance.net/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez',
+  },
+  {
+    name: 'Carlos Reyes',
+    title: 'Product Manager',
+    description: 'Líder en gestión de productos digitales e innovación',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/carlosReyes',
+    behanceUrl: 'https://behance.net/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes',
+  },
+  {
+    name: 'Laura Ortega',
+    title: 'UX/UI Designer',
+    description:
+      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/lauraOrtega',
+    behanceUrl: 'https://behance.net/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega',
+  },
+  {
+    name: 'Pedro Ramírez',
+    title: 'Frontend Developer',
+    description:
+      'Desarrollador frontend apasionado por las tecnologías web modernas',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/pedroRamirez',
+    behanceUrl: 'https://behance.net/pedroRamirez',
+    instagramUrl: 'https://instagram.com/pedroRamirez',
+  },
+  {
+    name: 'Sergio Gonzalez',
+    title: 'CEO',
+    description: 'Creador y fundador de la comunidad SCRUM',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/sergioGonzalez',
+    behanceUrl: 'https://behance.net/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez',
+  },
+  {
+    name: 'Ana Martínez',
+    title: 'CTO',
+    description: 'Experta en desarrollo de software y transformación digital',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/anaMartinez',
+    behanceUrl: 'https://behance.net/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez',
+  },
+  {
+    name: 'Carlos Reyes',
+    title: 'Product Manager',
+    description: 'Líder en gestión de productos digitales e innovación',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/carlosReyes',
+    behanceUrl: 'https://behance.net/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes',
+  },
+  {
+    name: 'Laura Ortega',
+    title: 'UX/UI Designer',
+    description:
+      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/lauraOrtega',
+    behanceUrl: 'https://behance.net/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega',
+  },
+  {
+    name: 'Pedro Ramírez',
+    title: 'Frontend Developer',
+    description:
+      'Desarrollador frontend apasionado por las tecnologías web modernas',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/pedroRamirez',
+    behanceUrl: 'https://behance.net/pedroRamirez',
+    instagramUrl: 'https://instagram.com/pedroRamirez',
+  },
+  {
+    name: 'Sergio Gonzalez',
+    title: 'CEO',
+    description: 'Creador y fundador de la comunidad SCRUM',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/sergioGonzalez',
+    behanceUrl: 'https://behance.net/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez',
+  },
+  {
+    name: 'Ana Martínez',
+    title: 'CTO',
+    description: 'Experta en desarrollo de software y transformación digital',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/anaMartinez',
+    behanceUrl: 'https://behance.net/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez',
+  },
+  {
+    name: 'Carlos Reyes',
+    title: 'Product Manager',
+    description: 'Líder en gestión de productos digitales e innovación',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/carlosReyes',
+    behanceUrl: 'https://behance.net/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes',
+  },
+  {
+    name: 'Laura Ortega',
+    title: 'UX/UI Designer',
+    description:
+      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/lauraOrtega',
+    behanceUrl: 'https://behance.net/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega',
+  },
+  {
+    name: 'Pedro Ramírez',
+    title: 'Frontend Developer',
+    description:
+      'Desarrollador frontend apasionado por las tecnologías web modernas',
+    image: <ProfileImage />,
+    githubUrl: 'https://github.com/pedroRamirez',
+    behanceUrl: 'https://behance.net/pedroRamirez',
+    instagramUrl: 'https://instagram.com/pedroRamirez',
+  },
 ]
 
 export default function ProfileSection() {
@@ -60,13 +201,20 @@ export default function ProfileSection() {
       spaceBetween={10}
       slidesPerView={1}
       modules={[Navigation]}
+      autoplay={{
+        delay: 500,
+      }}
       breakpoints={{
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
         1024: {
           slidesPerView: 3,
-          spaceBetween: 50,
+          spaceBetween: 20,
         },
       }}
-      className='max-w-screen-2xl'
+      className='w-[275px] md:w-full md:max-w-screen-2xl'
     >
       {profiles.map((profile, index) => (
         <SwiperSlide key={index}>
