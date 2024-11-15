@@ -51,7 +51,7 @@ export const Navlist: React.FC = () => {
           )}
         </div>
         {activeMenu === 'comunidad' && (
-          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-4 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
+          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
                 <h3>Historia</h3>
@@ -70,23 +70,25 @@ export const Navlist: React.FC = () => {
                   </div>
                 </div>
               </li>
-              <li className='space-y-4'>
-                <h3>¿Quienes somos?</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Los Squads</p>
-                    <p className='text-sm text-gray-500'>
-                      Conoce a todos nuestros squads, los roles de cada uno y
-                      que rol cumplen dentro de la comunidad
-                    </p>
+              <Link href='/community/squads'>
+                <li className='space-y-4'>
+                  <h3>¿Quienes somos?</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Los Squads</p>
+                      <p className='text-sm text-gray-500'>
+                        Conoce a todos nuestros squads, los roles de cada uno y
+                        que rol cumplen dentro de la comunidad
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+              </Link>
               <div>
                 <a href='/onboarding'>Onboarding</a>
               </div>
@@ -125,7 +127,7 @@ export const Navlist: React.FC = () => {
         </a>
 
         {activeMenu === 'entrenamiento' && (
-          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-4 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
+          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
                 <h3>Eventos</h3>
@@ -213,7 +215,7 @@ export const Navlist: React.FC = () => {
         </a>
 
         {activeMenu === 'Novedades' && (
-          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-4 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
+          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
                 <h3>Noticias</h3>

@@ -1,19 +1,9 @@
-export default function SquadsImage({
-  className,
-  height,
-  width,
-}: {
-  className?: string
-  height: number
-  width: number
-}) {
+export default function SquadsImage({ className }: { className?: string }) {
   return (
     <svg
       className={className}
       fill='none'
-      height={height}
       viewBox='0 0 281 203'
-      width={width}
       xmlnsXlink='http://www.w3.org/1999/xlink'
       xmlns='http://www.w3.org/2000/svg'
     >

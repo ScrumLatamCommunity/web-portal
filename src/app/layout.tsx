@@ -20,7 +20,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='es'>
       <body>
         <Navbar />
-        <div>{children}</div>
+        <div className='flex flex-col items-center justify-center'>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
