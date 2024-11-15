@@ -9,7 +9,7 @@ export default function JoinCommunity({
   title,
 }: JoinCommunityProps) {
   return (
-    <div className='flex min-h-dvh flex-col items-center justify-center bg-[#F15A2B] p-4 text-center md:h-[467px] md:min-h-0'>
+    <div className='flex min-h-dvh w-full max-w-screen-2xl flex-col items-center justify-center bg-[#F15A2B] p-4 text-center md:h-[467px] md:min-h-0'>
       <div className='mb-6 md:relative'>
         <GearIcon className='h-8 w-8 md:absolute md:left-[-400px] md:h-16 md:w-16' />
       </div>

@@ -9,7 +9,7 @@ export default function HeroSection({
   title,
 }: HeroInterface) {
   return (
-    <section className='flex flex-col items-center justify-center md:h-dvh md:justify-between'>
+    <section className='flex max-w-screen-2xl flex-col items-center justify-center md:mt-24 md:h-dvh md:justify-between'>
       <div className='mx-52 flex flex-col gap-8 md:flex-row md:items-center md:justify-center'>
         <div className='relative m-6 flex h-full flex-col justify-center md:w-[626px]'>
           <DottedOrange className='absolute h-[300px] w-[300px] md:hidden' />

@@ -10,7 +10,7 @@ export default function SquadFeature({
   title,
 }: SquadFeatureInterface) {
   return (
-    <section className='flex h-dvh flex-1 flex-col justify-around bg-[#FFEAE6] md:h-[467px] md:flex-row'>
+    <section className='flex h-dvh max-w-screen-2xl flex-1 flex-col justify-around bg-[#FFEAE6] md:h-[467px] md:flex-row'>
       <div className='relative flex h-full flex-col items-center justify-around md:mx-14 md:justify-center'>
         <a
           href='#SQUAD'

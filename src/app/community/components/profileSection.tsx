@@ -66,6 +66,7 @@ export default function ProfileSection() {
           spaceBetween: 50,
         },
       }}
+      className='max-w-screen-2xl'
     >
       {profiles.map((profile, index) => (
         <SwiperSlide key={index}>
