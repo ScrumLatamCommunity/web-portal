@@ -60,6 +60,12 @@ export default function ProfileSection() {
       spaceBetween={10}
       slidesPerView={1}
       modules={[Navigation]}
+      breakpoints={{
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      }}
     >
       {profiles.map((profile, index) => (
         <SwiperSlide key={index}>
