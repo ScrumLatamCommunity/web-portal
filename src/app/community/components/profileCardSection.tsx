@@ -13,7 +13,7 @@ export default function ProfileCard({
   title,
 }: ProfileCardProps) {
   return (
-    <div className='mx-auto flex min-h-[500px] max-w-[250px] flex-col items-center justify-center rounded-lg p-5 text-center font-sans'>
+    <div className='mx-auto flex min-h-[500px] w-fit max-w-[250px] flex-col items-center justify-center rounded-lg p-5 text-center font-sans'>
       <div className='mx-auto mb-5 h-36 w-36 overflow-hidden rounded-full'>
         {image}
       </div>
