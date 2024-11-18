@@ -147,7 +147,13 @@ export const Footer = () => {
       <div className='text-black flex flex-col place-content-center gap-8 py-5 text-center font-semibold sm:flex-row sm:gap-12'>
         <span>© 2024 Scrumlatam. All rights reserved.</span>
         <span>Privacy Policy</span>
-        <span>Terms of Service</span>
+        <a
+          href='https://docs.google.com/document/d/1rkWoxrmMUKVAyn0fpH09cxcqbaL3HJFo/edit?usp=drive_link&ouid=104406933761192224205&rtpof=true&sd=true'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Terms of Service
+        </a>
       </div>
     </div>
   )
