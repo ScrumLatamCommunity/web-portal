@@ -1,18 +1,18 @@
 'use client'
 import { BorderLinearProgress } from '@/app/home/components/progressBar'
-import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
+import { useState } from 'react'
 
 interface ListaItem {
-  label: string
   isActive: boolean
+  label: string
 }
 
 const Lista = () => {
   const [expanded, setExpanded] = useState(true)
   const listaItems: ListaItem[] = [
     { label: 'Bienvenida', isActive: true },
-    { label: 'Términos y condiciones', isActive: false },
+    { label: 'Términos y condiciones', isActive: true },
   ]
 
   const handleToggleExpanded = () => {
@@ -145,18 +145,18 @@ export default function Travel() {
           <div className='mt-4'>
             <label>
               <input
-                type='checkbox'
                 checked={checkedA}
                 onChange={(e) => setCheckedA(e.target.checked)}
+                type='checkbox'
               />
               Acepto los términos y condiciones
             </label>
             <br />
             <label>
               <input
-                type='checkbox'
                 checked={checkedB}
                 onChange={(e) => setCheckedB(e.target.checked)}
+                type='checkbox'
               />
               Estoy de acuerdo con la política de privacidad
             </label>

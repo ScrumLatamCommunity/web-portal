@@ -1,12 +1,12 @@
 'use client'
 import { BorderLinearProgress } from '@/app/home/components/progressBar'
-import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
+import { useState } from 'react'
 import YouTube from 'react-youtube'
 
 interface ListaItem {
-  label: string
   isActive: boolean
+  label: string
 }
 
 const Lista = () => {
@@ -75,7 +75,7 @@ export default function Travel() {
       </div>
       <div className='relative ml-6 mt-10 h-[95%] w-4/6'>
         <YouTube
-          videoId='LZJoRGuqb7o'
+          onEnd={() => setShowNextModuleButton(true)}
           opts={{
             playerVars: {
               autoplay: 1,
@@ -84,7 +84,7 @@ export default function Travel() {
               showinfo: 0,
             },
           }}
-          onEnd={() => setShowNextModuleButton(true)}
+          videoId='LZJoRGuqb7o'
         />
       </div>
     </div>
