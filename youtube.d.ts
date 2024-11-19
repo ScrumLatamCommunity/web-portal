@@ -9,6 +9,9 @@ declare global {
       OnStateChangeEvent: {
         data: number
       }
+      OnErrorEvent: {
+        data: number
+      }
     }
   }
 }

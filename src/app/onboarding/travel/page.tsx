@@ -1,8 +1,8 @@
 'use client'
-
 import { BorderLinearProgress } from '@/app/home/components/progressBar'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
+import YouTube from 'react-youtube'
 
 interface ListaItem {
   label: string
@@ -13,7 +13,6 @@ const Lista = () => {
   const [expanded, setExpanded] = useState(true)
   const listaItems: ListaItem[] = [
     { label: 'Bienvenida', isActive: true },
-    { label: 'Visión y misión', isActive: true },
     { label: 'Términos y condiciones', isActive: false },
   ]
 
@@ -22,7 +21,7 @@ const Lista = () => {
   }
 
   return (
-    <div className='mx-6 h-3/6'>
+    <div className='mx-6 h-3/6 max-h-[450px]'>
       <div className='flex items-center justify-between bg-[#FFBEB0] p-4'>
         <div className='h-6 min-h-[24px] w-6 min-w-[24px] rounded-full border border-gray-300 bg-white' />
         <h2 className='text-xl font-medium'>Conociendo a la comunidad</h2>
@@ -51,55 +50,15 @@ const Lista = () => {
 }
 
 export default function Travel() {
-  const value = 15
   const [showNextModuleButton, setShowNextModuleButton] = useState(false)
-  const videoRef: React.RefObject<HTMLDivElement> = useRef(null)
-
-  useEffect(() => {
-    const loadVideo = () => {
-      const tag: HTMLScriptElement = document.createElement('script')
-      tag.src = 'https://www.youtube.com/iframe_api'
-      document.body.appendChild(tag)
-
-      const videoId: string = 'FnwD5naSJFI'
-
-      ;(window as Window).YT.onYouTubeIframeAPIReady = () => {
-        const player = new window.YT.Player(videoRef.current!, {
-          videoId,
-          playerVars: {
-            controls: 0,
-            showinfo: 0,
-            modestbranding: 0,
-            rel: 0,
-            autoplay: 1,
-          },
-          events: {
-            onStateChange: (event: { data: number }) => {
-              if (event.data === 0) {
-                setShowNextModuleButton(true)
-              }
-            },
-          },
-        })
-        return player
-      }
-    }
-
-    loadVideo()
-
-    return () => {
-      if (videoRef.current) {
-        videoRef.current.innerHTML = ''
-      }
-    }
-  }, [])
+  const value = 15
 
   return (
-    <div className='relative flex h-[70vh] w-screen'>
+    <div className='relative flex h-[70vh] max-h-[450px] w-screen'>
       <div className='h-full max-h-[400px] w-2/6 min-w-[240px]'>
-        <div className='h-1.5/6 mx-6 mb-6 mt-20 bg-[#FFBEB0]'>
+        <div className='h-1.5/6 mx-6 mb-6 mt-10 bg-[#FFBEB0]'>
           <h1 className='p-4 text-3xl font-medium'>Onboarding</h1>
-          <div className='px-5 py-2'>
+          <div className='px-5 py-1'>
             <BorderLinearProgress variant='determinate' value={value} />
             <p>{value}%&nbsp;&nbsp;Completado</p>
           </div>
@@ -107,15 +66,26 @@ export default function Travel() {
         <Lista />
         {showNextModuleButton && (
           <a
-            className='mx-6 mb-4 rounded-md bg-[#FD3600] p-2 font-bold text-white'
+            className='mx-6 mb-6 rounded-md bg-[#FD3600] p-2 font-bold text-white'
             href='terms'
           >
             Siguiente módulo
           </a>
         )}
       </div>
-      <div className='h-full w-4/6 pt-20'>
-        <div ref={videoRef} className='relative aspect-video h-[95%] w-[95%]' />
+      <div className='relative ml-6 mt-10 h-[95%] w-4/6'>
+        <YouTube
+          videoId='LZJoRGuqb7o'
+          opts={{
+            playerVars: {
+              autoplay: 1,
+              modestbranding: 1,
+              rel: 0,
+              showinfo: 0,
+            },
+          }}
+          onEnd={() => setShowNextModuleButton(true)}
+        />
       </div>
     </div>
   )
