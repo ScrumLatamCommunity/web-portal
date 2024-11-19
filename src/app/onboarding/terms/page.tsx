@@ -50,8 +50,8 @@ const Lista = () => {
 
 export default function Travel() {
   const [showNextModuleButton] = useState(false)
-  const [checked1, setChecked1] = useState(false)
-  const [checked2, setChecked2] = useState(false)
+  const [checkedA, setCheckedA] = useState(false)
+  const [checkedB, setCheckedB] = useState(false)
   const value = 15
 
   return (
@@ -134,7 +134,7 @@ export default function Travel() {
           tenetur? Eius, quo ut. Earum, maiores voluptatum officiis dolores in
           consectetur.
         </p>
-        {checked1 && checked2 ? (
+        {checkedA && checkedB ? (
           <a
             className='mb-4 rounded-md bg-[#FD3600] p-2 font-bold text-white'
             href='/'
@@ -146,8 +146,8 @@ export default function Travel() {
             <label>
               <input
                 type='checkbox'
-                checked={checked1}
-                onChange={(e) => setChecked1(e.target.checked)}
+                checked={checkedA}
+                onChange={(e) => setCheckedA(e.target.checked)}
               />
               Acepto los términos y condiciones
             </label>
@@ -155,8 +155,8 @@ export default function Travel() {
             <label>
               <input
                 type='checkbox'
-                checked={checked2}
-                onChange={(e) => setChecked2(e.target.checked)}
+                checked={checkedB}
+                onChange={(e) => setCheckedB(e.target.checked)}
               />
               Estoy de acuerdo con la política de privacidad
             </label>
