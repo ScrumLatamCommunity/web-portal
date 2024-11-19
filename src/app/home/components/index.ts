@@ -7,6 +7,7 @@ import { FlagsCommunity } from './FlagsCommunity'
 import { CounterToCommunity } from './CounterToCommunity'
 import { DataComunity } from './DataCommunity'
 import { JoinOurCommunity } from './JoinOurCommunity'
+import { Sponsors } from './Sponsors'
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   CounterToCommunity,
   DataComunity,
   JoinOurCommunity,
+  Sponsors,
 }

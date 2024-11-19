@@ -1,3 +1,10 @@
+export interface Sponsor {
+  id: number
+  name: string
+  image: string
+  alt: string
+}
+
 export interface Flag {
   id: number
   name: string
@@ -30,6 +37,93 @@ export interface Review {
   rating: number
   description: string
 }
+
+export const sponsors: Sponsor[] = [
+  {
+    id: 1,
+    name: 'Agile heroes league',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FAgile%20heroes%20league.png?alt=media&token=869a911c-250b-439b-a994-263454d9dded',
+    alt: 'Agile_heroes_league',
+  },
+  {
+    id: 2,
+    name: 'Agile quest',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FAgile%20quest.png?alt=media&token=7e1d4fa8-8c2b-4fa1-acdd-8307051ac0e6',
+    alt: 'Agile_quest',
+  },
+  {
+    id: 3,
+    name: 'Caroli',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FCaroli.png?alt=media&token=82894ec2-8911-47ab-b2de-e87c8029ffee',
+    alt: 'Caroli',
+  },
+  {
+    id: 4,
+    name: 'Agile heroes',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FCopia%20de%20Minimal%20We%20Are%20Open%20Store%20Instagram%20Story.png?alt=media&token=85a97e28-606a-467e-a53e-f98bdd98940f',
+    alt: 'Agile_heroes',
+  },
+  {
+    id: 5,
+    name: 'Go productivity',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FGo%20productivity.png?alt=media&token=6fec46bd-c6e5-42a7-9b23-ff7d95f2d422',
+    alt: 'Go_productivity',
+  },
+  {
+    id: 6,
+    name: 'Hidekel',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FHidekel.png?alt=media&token=5b48187c-803b-4a0b-817c-540412b2fd26',
+    alt: 'Hidekel',
+  },
+  {
+    id: 7,
+    name: 'ITcert',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FITcert.png?alt=media&token=b91a4efa-26f9-4aa1-8efd-1b0be7d6a80b',
+    alt: 'ITcert',
+  },
+  {
+    id: 8,
+    name: 'Taurus Galaxy',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FTaurus%20Galaxy.png?alt=media&token=af85f62f-bf72-4f2b-8d3a-97eb92c72872',
+    alt: 'Taurus_Galaxy',
+  },
+  {
+    id: 9,
+    name: 'Ya abtal',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FYa%20abtal.png?alt=media&token=8350404d-8515-4905-a931-918eab8fb655',
+    alt: 'Ya_abtal',
+  },
+  {
+    id: 10,
+    name: 'flowie',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2Fflowie.png?alt=media&token=02726fb1-065d-4c10-b891-84281c9f9d24',
+    alt: 'flowie',
+  },
+  {
+    id: 11,
+    name: 'kyooreas',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2Fkyooreas.png?alt=media&token=85aecd68-af32-4d1d-a194-5f1dcaad7d01',
+    alt: 'kyooreas',
+  },
+  {
+    id: 12,
+    name: 'meta Agility',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2Fmeta%20Agility.png?alt=media&token=8f879dc9-2d39-4bd2-8a61-50e74492e00e',
+    alt: 'meta_Agility',
+  },
+]
 
 export const flags: Flag[] = [
   {
