@@ -6,6 +6,7 @@ import {
   CounterToCommunity,
   DataComunity,
   JoinOurCommunity,
+  Sponsors,
 } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 
@@ -19,6 +20,7 @@ export default function Home() {
       <DataComunity />
       <CounterToCommunity />
       <Reviews />
+      <Sponsors />
       <DiscoverCommunity />
       <JoinOurCommunity />
     </main>
