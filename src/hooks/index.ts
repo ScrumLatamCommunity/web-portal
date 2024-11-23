@@ -42,7 +42,6 @@ export const useTypeScreen = () => {
     // Ejecutar una vez para establecer el tamaño inicial
     handleResize()
 
-    // Limpiar el evento cuando el componente se desmonte
     return () => {
       window.removeEventListener('resize', handleResize)
     }
