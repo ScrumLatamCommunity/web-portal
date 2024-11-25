@@ -66,7 +66,7 @@ export const Reviews: React.FC = () => {
     <div
       className={`flex flex-col gap-7 ${fullReviews ? 'bg-gray-200' : ''} ${fullReviews && isMobile ? 'bg-black-1' : ''}`}
     >
-      <span className='pb-10 pt-14 text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
+      <span className='pb-10 pt-10 text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
         ¿Qué opina nuestra comunidad?
       </span>
       <div
