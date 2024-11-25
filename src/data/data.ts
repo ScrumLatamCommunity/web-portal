@@ -232,13 +232,13 @@ export const counters: Counter[] = [
   },
   {
     id: 2,
-    number: 20,
+    number: 19,
     text: 'Países',
     icon: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Counters%20icons%2FPaises%20icon.svg?alt=media&token=5768415a-6508-411c-849c-6ce59b0eccf7',
   },
   {
     id: 3,
-    number: 162,
+    number: 165,
     text: 'Webinars',
     icon: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Counters%20icons%2FWebinar%20icon.svg?alt=media&token=2ed101e1-382c-49d8-8f43-fd00fe3492b8',
   },
