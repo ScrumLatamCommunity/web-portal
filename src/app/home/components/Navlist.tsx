@@ -25,7 +25,7 @@ export const Navlist: React.FC = () => {
         className={`py-full h-full flex-grow border-b-2 border-gray-200 lg:border-b-0`}
         onMouseEnter={() => toggleMenu('comunidad')}
         onMouseLeave={() => toggleMenu('')}
-        onClick={() => toggleMenu('entrenamiento')}
+        onClick={() => toggleMenu('comunidad')}
       >
         <div
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} hover:text-red-500 hover:underline`}
