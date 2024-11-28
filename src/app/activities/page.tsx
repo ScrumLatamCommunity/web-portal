@@ -2,6 +2,7 @@
 
 import HeroSection from '@/app/activities/components/heroSection'
 import WorkshopFeature from '@/app/activities/components/workshopFeature'
+import JoinCommunity from '@/app/community/components/joinSection'
 import { workshopsData } from '@/utils/workshopsData'
 import { eventsData } from '@/utils/eventsData'
 import ActivitiesImage from '@/assets/activitiesImg'
@@ -36,6 +37,13 @@ export default function Activities() {
 
       {/* Espaciado antes del footer */}
       <div className='mt-20'></div>
+
+      <JoinCommunity
+        buttonText='Regístrate Ahora'
+        callToAction='¡Regístrate hoy y sé parte de nuestra transformación ágil!'
+        description='Conéctate con profesionales ágiles de toda Latinoamérica, accede a recursos exclusivos, y participa en eventos y webinars que impulsarán tu crecimiento.'
+        title='¡Únete a Nuestra Comunidad!'
+      />
     </>
   )
 }
