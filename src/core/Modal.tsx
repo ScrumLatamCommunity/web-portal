@@ -29,7 +29,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <div className='fixed inset-0 z-50 flex items-center justify-center bg-black-10 bg-opacity-50'>
-        <div className='relative max-h-[80vh] w-[1008px] overflow-y-auto rounded-lg bg-white px-24 py-16 shadow-lg scrollbar scrollbar-thumb-black-8 scrollbar-thumb-rounded-full'>
+        <div className='relative max-h-[80vh] w-[1008px] overflow-y-auto rounded-lg bg-white shadow-lg scrollbar scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:px-24 sm:py-16'>
           <div className='flex items-center justify-between p-4'>
             {title && (
               <h2 className='flex font-karla text-3xl font-bold text-red-500'>
@@ -39,7 +39,7 @@ export const Modal: React.FC<ModalProps> = ({
             <button className='mb-8' onClick={onClose}>
               <img
                 alt='cerrar'
-                className='h-[50px] w-[50px] gap-1'
+                className='h-6 w-6 gap-1 sm:h-[50px] sm:w-[50px]'
                 src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20icons%2Fx.svg?alt=media&token=3fca622b-ce3c-436b-9372-0208bf399ba4'
               />
             </button>
