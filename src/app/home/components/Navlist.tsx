@@ -25,7 +25,7 @@ export const Navlist: React.FC = () => {
         className={`py-full h-full flex-grow border-b-2 border-gray-200 lg:border-b-0`}
         onMouseEnter={() => toggleMenu('comunidad')}
         onMouseLeave={() => toggleMenu('')}
-        onClick={() => toggleMenu('entrenamiento')}
+        onClick={() => toggleMenu('comunidad')}
       >
         <div
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} hover:text-red-500 hover:underline`}
@@ -89,9 +89,23 @@ export const Navlist: React.FC = () => {
                   </div>
                 </li>
               </Link>
-              <div>
-                <a href='/onboarding'>Onboarding</a>
-              </div>
+              <Link href='/onboarding'>
+                <li className='space-y-4'>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 2'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Onboarding</p>
+                      <p className='text-sm text-gray-500'>
+                        Conoce más sobre nuestra comunidad y sus objetivos.
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </Link>
             </ul>
           </div>
         )}
