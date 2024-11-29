@@ -1,2 +1,3 @@
 import { Intro } from './Intro'
-export { Intro }
+import { MisionVision } from './MisionVision'
+export { Intro, MisionVision }
