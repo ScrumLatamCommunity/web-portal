@@ -17,8 +17,8 @@ export default function Activities() {
         image={
           <ActivitiesImage className='h-auto max-w-full md:h-[456px] md:max-w-[580px]' />
         }
-        title='Formación de la Comunidad'
         linkTitle='Talleres'
+        title='Formación de la Comunidad'
       />
 
       {/* Workshops Section */}

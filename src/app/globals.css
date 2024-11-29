@@ -17,9 +17,9 @@ body {
   .workshop-swiper-container .swiper-button-prev,
   .workshop-swiper-container .swiper-button-next {
     color: #fe2e00;
+    height: 2rem;
     opacity: 1;
     width: 2rem;
-    height: 2rem;
   }
 
   .workshop-swiper-container .swiper-button-prev {
@@ -38,9 +38,9 @@ body {
   /* Estilos específicos para las flechas de navegación en EventFeature */
   .event-swiper-container .swiper-button-prev,
   .event-swiper-container .swiper-button-next {
+    height: 2rem;
     opacity: 1;
     width: 2rem;
-    height: 2rem;
   }
 
   .event-swiper-container .swiper-button-prev {

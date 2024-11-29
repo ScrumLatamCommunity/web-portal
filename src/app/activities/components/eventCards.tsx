@@ -5,13 +5,13 @@ export default function EventCards({ events }: { events: Array<Event> }) {
     <div className='px-6'>
       {events.map((event) => (
         <div
-          key={event.id}
           className='mx-auto flex w-[300px] flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-[1.05] md:w-[400px]'
+          key={event.id}
         >
           <img
-            src={event.image}
             alt={event.title}
             className='h-[250px] w-full object-cover'
+            src={event.image}
           />
           <div className='flex flex-1 flex-col justify-between p-4'>
             <div>
@@ -34,14 +34,14 @@ export default function EventCards({ events }: { events: Array<Event> }) {
             </div>
             <div className='mt-4 flex items-center justify-between'>
               <a
-                href={event.link}
                 className='rounded-full bg-red-400 px-7 py-1 font-darker-grotesque text-white hover:bg-red-300'
+                href={event.link}
               >
                 Inscribirse
               </a>
               <a
-                href={event.details}
                 className='text-[#FE2E00] hover:underline'
+                href={event.details}
               >
                 Conocer más →
               </a>

@@ -6,9 +6,9 @@ export default function WorkshopCards({ workshop }: { workshop: Workshop }) {
       {/* Padding horizontal entre las tarjetas y el contenedor */}
       <div className='mx-auto flex w-[300px] flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-[1.05] md:w-[400px]'>
         <img
-          src={workshop.image}
           alt={workshop.title}
           className='h-[250px] w-full object-cover'
+          src={workshop.image}
         />
         <div className='flex flex-1 flex-col justify-between p-4'>
           <div>
@@ -24,9 +24,9 @@ export default function WorkshopCards({ workshop }: { workshop: Workshop }) {
             <p className='mt-1 flex items-center font-karla text-sm font-bold text-blue-6'>
               <span>{workshop.country}</span>
               <img
-                src={workshop.flag}
                 alt={`${workshop.country} flag`}
                 className='ml-2 h-4 w-6 object-cover'
+                src={workshop.flag}
               />
             </p>
             {/* Ajuste para garantizar que no se corte la cuarta línea */}
@@ -36,14 +36,14 @@ export default function WorkshopCards({ workshop }: { workshop: Workshop }) {
           </div>
           <div className='mt-4 flex items-center justify-between'>
             <a
-              href={workshop.link}
               className='rounded-full bg-red-400 px-7 py-1 font-darker-grotesque text-white hover:bg-red-300'
+              href={workshop.link}
             >
               Inscribirse
             </a>
             <a
-              href={workshop.details}
               className='text-[#FE2E00] hover:underline'
+              href={workshop.details}
             >
               Conocer más →
             </a>
