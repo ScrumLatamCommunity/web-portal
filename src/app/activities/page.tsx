@@ -28,7 +28,7 @@ export default function Activities() {
 
       {/* Próximos Eventos Section */}
       <div id='eventos' className='scroll-mt-20'>
-        <h3 className='mt-4 text-center text-lg font-bold text-[#082965] md:m-12 md:text-4xl md:font-semibold'>
+        <h3 className='mt-4 pb-4 text-center font-darker-grotesque text-lg font-bold text-[#082965] md:mb-0 md:mt-12 md:text-4xl md:font-semibold'>
           Próximos eventos
         </h3>
 

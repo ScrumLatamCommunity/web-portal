@@ -9,7 +9,7 @@ import { Navigation } from 'swiper/modules'
 
 export default function EventFeature({ events }: { events: Array<Event> }) {
   return (
-    <section className='flex flex-col items-center justify-center bg-[#E6EAF0] py-12 md:mt-24 md:max-w-screen-2xl md:justify-between'>
+    <section className='flex flex-col items-center justify-center bg-[#E6EAF0] py-12 md:mt-12 md:max-w-screen-2xl md:justify-between'>
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
@@ -30,10 +30,10 @@ export default function EventFeature({ events }: { events: Array<Event> }) {
             },
           }}
           className='event-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-screen-2xl'
-          slidesPerView={1}
-          spaceBetween={0}
           modules={[Navigation]}
           navigation={true}
+          slidesPerView={1}
+          spaceBetween={0}
         >
           {events.map((event) => (
             <SwiperSlide key={event.id} className='px-4'>

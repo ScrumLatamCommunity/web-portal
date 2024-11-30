@@ -18,21 +18,21 @@ export default function EventCards({ events }: { events: Array<Event> }) {
               <h2 className='font-darker-grotesque text-xl font-bold text-[#FE2E00]'>
                 {event.title}
               </h2>
-              <p className='font-karla text-sm font-normal text-blue-6'>
+              <p className='font-darker-grotesque text-sm font-normal text-[#072356]'>
                 {event.leader}
               </p>
-              <p className='mt-1 font-karla text-sm font-bold text-blue-6'>
+              <p className='mt-1 font-darker-grotesque text-sm font-bold text-[#072356]'>
                 {event.time}
               </p>
-              <p className='mt-1 flex items-center font-karla text-sm font-bold text-blue-6'>
+              <p className='mt-1 flex items-center font-darker-grotesque text-sm font-bold text-[#082965]'>
                 <span>{event.date}</span>
               </p>
               {/* Descripción truncada a 4 líneas */}
-              <p className='mt-2 h-[6rem] overflow-hidden font-karla text-[13px] leading-6 text-[#555]'>
+              <p className='mt-2 h-[6rem] overflow-hidden font-karla text-[13px] leading-6 text-[#000000]'>
                 {event.description}
               </p>
             </div>
-            <div className='mt-4 flex items-center justify-between'>
+            <div className='mt-4 flex items-center justify-between pb-[0.25rem] md:pb-6'>
               <a
                 className='rounded-full bg-red-400 px-7 py-1 font-darker-grotesque text-white hover:bg-red-300'
                 href={event.link}
@@ -40,7 +40,7 @@ export default function EventCards({ events }: { events: Array<Event> }) {
                 Inscribirse
               </a>
               <a
-                className='text-[#FE2E00] hover:underline'
+                className='font-darker-grotesque text-[#FE5833] hover:underline'
                 href={event.details}
               >
                 Conocer más →
