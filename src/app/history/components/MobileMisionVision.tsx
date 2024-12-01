@@ -16,8 +16,8 @@ export const MobileMisionVision = () => {
       {history.map((item) => (
         <div key={item.id}>
           <div
-            onClick={() => toggleAccordion(item.id)}
             className='flex w-full items-center justify-between rounded-3xl border border-gray-200 px-4 py-3 shadow-md'
+            onClick={() => toggleAccordion(item.id)}
           >
             <div className='flex items-center gap-5'>
               <img alt={item.title} src={item.image} />
