@@ -53,23 +53,25 @@ export const Navlist: React.FC = () => {
         {activeMenu === 'comunidad' && (
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
-              <li className='space-y-4'>
-                <h3>Historia</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_pencil_orange.svg?alt=media&token=f1261db1-c7d1-407e-8c41-153761031e0f'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Nuestros inicios</p>
-                    <p className='text-sm text-gray-500'>
-                      Descubre como se fundo nuestra comunidad y como empezo el
-                      camino de Scrum Latam
-                    </p>
+              <Link href='/history'>
+                <li className='space-y-4'>
+                  <h3>Historia</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_pencil_orange.svg?alt=media&token=f1261db1-c7d1-407e-8c41-153761031e0f'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Nuestros inicios</p>
+                      <p className='text-sm text-gray-500'>
+                        Descubre como se fundo nuestra comunidad y como empezo
+                        el camino de Scrum Latam
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+              </Link>
               <Link href='/community/squads'>
                 <li className='space-y-4'>
                   <h3>¿Quienes somos?</h3>
