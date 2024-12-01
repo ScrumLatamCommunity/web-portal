@@ -11,8 +11,11 @@ import {
   ChevronUp,
 } from 'react-feather'
 import Link from 'next/link'
+import { TermsAndConditions } from '@/app/history/components/TermsAndConditions'
+import { Modal } from '@/core/Modal'
 
 export const Footer = () => {
+  const [openModal, setOpenModal] = useState(false)
   const isLargeScreen = useIsLargeScreen(480)
 
   const [sections, setSections] = useState({
@@ -29,6 +32,10 @@ export const Footer = () => {
         [section]: !prevSections[section],
       }))
     }
+  }
+
+  const handleModal = () => {
+    setOpenModal(!openModal)
   }
 
   return (
@@ -150,13 +157,14 @@ export const Footer = () => {
       <div className='text-black flex flex-col place-content-center gap-8 py-5 text-center font-semibold sm:flex-row sm:gap-12'>
         <span>© 2024 Scrumlatam. All rights reserved.</span>
         <span>Privacy Policy</span>
-        <a
-          href='https://docs.google.com/document/d/1rkWoxrmMUKVAyn0fpH09cxcqbaL3HJFo/edit?usp=drive_link&ouid=104406933761192224205&rtpof=true&sd=true'
-          target='_blank'
-          rel='noopener noreferrer'
+        <button onClick={handleModal}>Terms of Service</button>
+        <Modal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+          title='Términos y Condiciones Scrum Latam'
         >
-          Terms of Service
-        </a>
+          <TermsAndConditions />
+        </Modal>
       </div>
     </div>
   )

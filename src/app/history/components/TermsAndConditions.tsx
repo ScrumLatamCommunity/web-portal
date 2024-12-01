@@ -1,0 +1,33 @@
+import React from 'react'
+
+export const TermsAndConditions = () => {
+  return (
+    <div className='flex flex-col'>
+      <p className='font-karla text-xl text-blue-8'>
+        <strong>1. Participación Activa y Respeto:</strong>
+        <br />
+        Los miembros de la comunidad Scrum Latam se comprometen a participar de
+        manera activa y respetuosa en todas las actividades, discusiones y
+        eventos. Se espera que los participantes contribuyan con sus
+        conocimientos y experiencias de manera constructiva, y que respeten las
+        opiniones y perspectivas de los demás miembros. Cualquier comportamiento
+        irrespetuoso, ofensivo o que no esté alineado con los valores de la
+        comunidad podrá resultar en la exclusión de las actividades y la
+        comunidad.
+      </p>
+      <br />
+      <p className='font-karla text-xl text-blue-8'>
+        <strong>2. Confidencialidad y Uso de Información:</strong>
+        <br />
+        Los miembros de Scrum Latam acuerdan mantener la confidencialidad de
+        cualquier información sensible o privada compartida dentro de la
+        comunidad.Esto incluye, pero no se limita a, estrategias empresariales,
+        desafíos específicos de proyectos y cualquier otro contenido que los
+        miembros decidan compartir de manera confidencial.La información
+        obtenida a través de la comunidad no debe ser utilizada para fines
+        comerciales o de competencia sin el consentimiento explícito de las
+        partes involucradas.
+      </p>
+    </div>
+  )
+}
