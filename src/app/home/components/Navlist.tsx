@@ -28,7 +28,7 @@ export const Navlist: React.FC = () => {
         onClick={() => toggleMenu('comunidad')}
       >
         <div
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} hover:text-red-500 hover:underline`}
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'comunidad' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
         >
           Comunidad
           {screen === 'lg' || screen === 'xl' ? (
@@ -54,21 +54,23 @@ export const Navlist: React.FC = () => {
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
-                <h3>Historia</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_pencil_orange.svg?alt=media&token=f1261db1-c7d1-407e-8c41-153761031e0f'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Nuestros inicios</p>
-                    <p className='text-sm text-gray-500'>
-                      Descubre como se fundo nuestra comunidad y como empezo el
-                      camino de Scrum Latam
-                    </p>
+                <Link href='/historia'>
+                  <h3>Historia</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_pencil_orange.svg?alt=media&token=f1261db1-c7d1-407e-8c41-153761031e0f'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Nuestros inicios</p>
+                      <p className='text-sm text-gray-500'>
+                        Descubre como se fundo nuestra comunidad y como empezo
+                        el camino de Scrum Latam
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
               <Link href='/community/squads'>
                 <li className='space-y-4'>
@@ -117,7 +119,7 @@ export const Navlist: React.FC = () => {
         onClick={() => toggleMenu('entrenamiento')}
       >
         <a
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} hover:text-red-500 hover:underline`}
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'entrenamiento' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
         >
           Entrenamiento
           {screen === 'lg' || screen === 'xl' ? (
@@ -144,55 +146,61 @@ export const Navlist: React.FC = () => {
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
-                <h3>Eventos</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Lorem ipsum dolor</p>
-                    <p className='text-sm text-gray-500'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel egestas dolor, nec dignissim metus.
-                    </p>
+                <Link href='/eventos'>
+                  <h3>Eventos</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Lorem ipsum dolor</p>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec vel egestas dolor, nec dignissim metus.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
               <li className='space-y-4'>
-                <h3>Webinars</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10 overflow-visible'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Lorem ipsum dolor</p>
-                    <p className='text-sm text-gray-500'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel egestas dolor, nec dignissim metus.
-                    </p>
+                <Link href='/eventos'>
+                  <h3>Webinars</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10 overflow-visible'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Lorem ipsum dolor</p>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec vel egestas dolor, nec dignissim metus.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
               <li className='space-y-4'>
-                <h3>Talleres</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Lorem ipsum dolor</p>
-                    <p className='text-sm text-gray-500'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel egestas dolor, nec dignissim metus.
-                    </p>
+                <Link href='/talleres'>
+                  <h3>Talleres</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Lorem ipsum dolor</p>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec vel egestas dolor, nec dignissim metus.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
             </ul>
           </div>
@@ -205,7 +213,7 @@ export const Navlist: React.FC = () => {
         onClick={() => toggleMenu('entrenamiento')}
       >
         <a
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} hover:text-red-500 hover:underline`}
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'Novedades' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
         >
           Novedades
           {screen === 'lg' || screen === 'xl' ? (
@@ -232,66 +240,72 @@ export const Navlist: React.FC = () => {
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
-                <h3>Noticias</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Lorem ipsum dolor</p>
-                    <p className='text-sm text-gray-500'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel egestas dolor, nec dignissim metus.
-                    </p>
+                <Link href='/noticias'>
+                  <h3>Noticias</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Lorem ipsum dolor</p>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec vel egestas dolor, nec dignissim metus.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
               <li className='space-y-4'>
-                <h3>Blog</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10 overflow-visible'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Lorem ipsum dolor</p>
-                    <p className='text-sm text-gray-500'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel egestas dolor, nec dignissim metus.
-                    </p>
+                <Link href='/blog'>
+                  <h3>Blog</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10 overflow-visible'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Lorem ipsum dolor</p>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec vel egestas dolor, nec dignissim metus.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
               <li className='space-y-4'>
-                <h3>Artículos</h3>
-                <div className='flex items-start'>
-                  <img
-                    alt='Opción 1'
-                    className='h-10 w-10'
-                    src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
-                  />
-                  <div className='ml-3'>
-                    <p className='lg:font-bold'>Lorem ipsum dolor</p>
-                    <p className='text-sm text-gray-500'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel egestas dolor, nec dignissim metus.
-                    </p>
+                <Link href='/artículos'>
+                  <h3>Artículos</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Lorem ipsum dolor</p>
+                      <p className='text-sm text-gray-500'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec vel egestas dolor, nec dignissim metus.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
             </ul>
           </div>
         )}
       </div>
-      <a
+      <Link
         className='md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline lg:justify-center lg:border-b-0'
-        href='#'
+        href='/documentacion'
       >
         Documentación
-      </a>
+      </Link>
     </>
   )
 }
