@@ -350,6 +350,127 @@ export const reviews: Review[] = [
   },
 ]
 
+export const memberships = [
+  {
+    id: 1,
+    title: 'Flex',
+    price: '$50',
+    description1: 'Acceso a Cursos Avanzados',
+    description2: 'Talleres Prácticos Mensuales',
+    description3: 'Certificado Profesional',
+  },
+  {
+    id: 2,
+    title: 'Gratuito',
+    price: '$0.00',
+    description1: 'Acceso a cursos introductorios',
+    description2: 'Webinars Mensuales',
+    description3: 'Certificado de participación',
+  },
+  {
+    id: 3,
+    title: 'Premium',
+    price: '$150',
+    description1: 'Asesorías Personalizadas Mensuales',
+    description2: 'Invitación a Eventos Exclusivos',
+    description3: 'Certificación Especializada',
+  },
+]
+
+export const benefits = [
+  {
+    id: 1,
+    text: 'Acceso a webinars , talleres y charlas virtuales sobre agilidad y similares',
+    checkFree: true,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 2,
+    text: 'Oportunidad participar de los sorteos que realiza la comunidad',
+    checkFree: true,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 3,
+    text: 'Preparación para CV  y entrevistas (Rol Scrum Master)',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 4,
+    text: 'Acceso a Simuladores. Preparación con certificación',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 5,
+    text: 'Certificados de participación de Talleres',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 6,
+    text: 'Descuentos en cursos y certificaciones por parte de los aliados',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 7,
+    text: 'Coach o mentoring personalizado (one to one)',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 8,
+    text: 'Acceso a grupos de discusión con otros miembros',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 9,
+    text: 'Acceso a recursos básicos sobre metodologías ágiles',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 10,
+    text: 'Cupo asegurado en nuestro Aniversarios  formato (Open Space)',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 11,
+    text: 'Membresía bonificada por 6 meses a miembros activos',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: false,
+  },
+  {
+    id: 12,
+    text: 'Posibilidad de hacer una certificación y un taller bonificados cada año',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: false,
+  },
+  {
+    id: 13,
+    text: 'Prioridad estar en todos los canales comunicación de Scrum Latam',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: false,
+  },
+]
+
 export const image_url_mobile =
   'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20scrum%20latam%20MOBILE.svg?alt=media&token=9341b402-afa4-481c-90a4-1c12b8a121ab'
 export const image_url_desktop =
