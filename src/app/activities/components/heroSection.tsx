@@ -13,7 +13,7 @@ export default function HeroSection({
       {/* Dotted Blue: Inferior izquierda */}
       <DottedBlue className='absolute bottom-0 left-0 h-[600px] w-[400px] md:h-[349px] md:w-[333px]' />
       {/* Dotted Orange: Superior derecha */}
-      <DottedOrange className='absolute right-[-5rem] top-[-5rem] h-[500px] w-[500px] md:right-[-5rem] md:top-[-10rem] md:h-[500px] md:w-[700px]' />
+      <DottedOrange className='absolute right-[0rem] top-[-5rem] h-[500px] w-[400px] md:right-[-5rem] md:top-[-10rem] md:h-[500px] md:w-[700px]' />
       <div className='flex flex-col gap-8 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <div className='relative m-6 flex h-full flex-col justify-center md:w-[626px]'>
           <h1 className='m-6 font-darker-grotesque text-12 text-[#FE2E00] md:text-16'>
