@@ -40,7 +40,7 @@ export const Modal: React.FC<ModalProps> = ({
         className='fixed inset-0 z-50 flex items-center justify-center bg-black-10 bg-opacity-50'
         onClick={handleBackdropClick}
       >
-        <div className='relative flex max-h-[80vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:w-5/6 sm:scrollbar'>
+        <div className='relative flex max-h-[85vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:w-3/5 sm:scrollbar'>
           <div className='sm:10 flex w-full flex-col items-start gap-3 p-8 md:px-24'>
             {title && (
               <h2 className='flex font-karla text-3xl font-bold text-red-500'>
@@ -50,7 +50,7 @@ export const Modal: React.FC<ModalProps> = ({
             <div className='pr-7'>{children}</div>
           </div>
           <button
-            className='fixed right-[7%] top-20 mb-8 flex w-auto sm:right-[13%] sm:h-6'
+            className='fixed right-[15%] top-20 mb-8 flex w-auto sm:right-[22%] sm:h-6'
             onClick={onClose}
           >
             <img
