@@ -40,7 +40,7 @@ export default function WorkshopFeature({
           spaceBetween={0}
         >
           {workshops.map((workshop) => (
-            <SwiperSlide key={workshop.id} className='px-4'>
+            <SwiperSlide key={workshop.id} className='mb-1 px-4 md:mb-0'>
               <WorkshopCard workshop={workshop} />
             </SwiperSlide>
           ))}

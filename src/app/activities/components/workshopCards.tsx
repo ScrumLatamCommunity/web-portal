@@ -4,7 +4,7 @@ export default function WorkshopCards({ workshop }: { workshop: Workshop }) {
   return (
     <div className='px-6'>
       {/* Padding horizontal entre las tarjetas y el contenedor */}
-      <div className='mx-auto flex w-[300px] flex-col overflow-hidden rounded-2xl bg-white shadow-lg md:w-[400px]'>
+      <div className='md-4 mx-auto flex w-[300px] flex-col overflow-hidden rounded-2xl bg-white shadow-md md:mb-2 md:w-[400px]'>
         <img
           alt={workshop.title}
           className='h-[250px] w-full object-cover'

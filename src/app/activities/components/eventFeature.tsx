@@ -36,7 +36,7 @@ export default function EventFeature({ events }: { events: Array<Event> }) {
           spaceBetween={0}
         >
           {events.map((event) => (
-            <SwiperSlide key={event.id} className='px-4'>
+            <SwiperSlide key={event.id} className='mb-1 px-4 md:mb-0'>
               <EventCards events={[event]} />
             </SwiperSlide>
           ))}

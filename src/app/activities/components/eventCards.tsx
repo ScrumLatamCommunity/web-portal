@@ -5,7 +5,7 @@ export default function EventCards({ events }: { events: Array<Event> }) {
     <div className='px-6'>
       {events.map((event) => (
         <div
-          className='mx-auto flex w-[300px] flex-col overflow-hidden rounded-2xl bg-white shadow-lg md:w-[400px]'
+          className='md-4 mx-auto flex w-[300px] flex-col overflow-hidden rounded-2xl bg-white shadow-lg md:mb-2 md:w-[400px]'
           key={event.id}
         >
           <img
