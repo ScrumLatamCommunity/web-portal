@@ -16,7 +16,7 @@ export default function HeroSection({
       <DottedOrange className='absolute right-[0rem] top-[-5rem] h-[500px] w-[400px] md:right-[-5rem] md:top-[-10rem] md:h-[500px] md:w-[700px]' />
       <div className='flex flex-col gap-8 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <div className='relative m-6 flex h-full flex-col justify-center md:w-[626px]'>
-          <h1 className='m-6 font-darker-grotesque text-12 text-[#FE2E00] md:text-16'>
+          <h1 className='pb-2 font-darker-grotesque text-3xl font-semibold text-[#FE2E00] md:pb-3 md:text-4xl'>
             {title}
           </h1>
           <p className='font-karla text-[#061D48] md:text-10'>{description}</p>
