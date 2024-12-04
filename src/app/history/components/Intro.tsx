@@ -33,7 +33,7 @@ export const Intro = () => {
         <h1 className='flex font-karla text-3xl font-bold text-red-500'>
           Historia
         </h1>
-        <div className='flex flex-col sm:flex-row'>
+        <div className='flex flex-col md:flex-row'>
           <div className='inline-flex w-full items-baseline sm:w-3/5'>
             <p className='font-karla text-xl text-blue-8'>
               En enero de 2020, <strong>Rubén Darío Romero Chica</strong>, junto
