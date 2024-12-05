@@ -395,15 +395,15 @@ export const benefits = [
   {
     id: 3,
     text: 'Preparación para CV  y entrevistas (Rol Scrum Master)',
-    checkFree: false,
-    checkFlex: true,
+    checkFree: true,
+    checkFlex: false,
     checkPremium: true,
   },
   {
     id: 4,
     text: 'Acceso a Simuladores. Preparación con certificación',
     checkFree: false,
-    checkFlex: true,
+    checkFlex: false,
     checkPremium: true,
   },
   {
@@ -453,21 +453,21 @@ export const benefits = [
     text: 'Membresía bonificada por 6 meses a miembros activos',
     checkFree: false,
     checkFlex: false,
-    checkPremium: false,
+    checkPremium: true,
   },
   {
     id: 12,
     text: 'Posibilidad de hacer una certificación y un taller bonificados cada año',
     checkFree: false,
     checkFlex: false,
-    checkPremium: false,
+    checkPremium: true,
   },
   {
     id: 13,
     text: 'Prioridad estar en todos los canales comunicación de Scrum Latam',
     checkFree: false,
     checkFlex: false,
-    checkPremium: false,
+    checkPremium: true,
   },
 ]
 

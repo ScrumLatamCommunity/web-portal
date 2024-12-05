@@ -22,20 +22,18 @@ export default function Plans({
   return (
     <div
       style={{
-        width: '420px',
         height: '553.03px',
         borderRadius: '1rem',
         background: 'linear-gradient(180deg, #FD3600, #FFFFFF)',
-        padding: '3px',
+        padding: '2px',
         boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
       }}
-      className='items-left mx-10 mb-10 flex flex-col'
+      className='items-left mx-10 flex w-[340px] flex-col md:mb-10 md:w-[380px]'
     >
       <div
         style={{
-          width: '100%',
           height: '100%',
-          borderRadius: '0.8rem',
+          borderRadius: '0.9rem',
           backgroundColor: '#FFFFFF',
         }}
         className='pl-12 pt-6'

@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import { CheckBox } from '@mui/icons-material'
 
 interface BenefitsInterface {
@@ -16,58 +15,37 @@ export default function Benefits({
   checkPremium,
 }: BenefitsInterface) {
   return (
-    <div
-      style={{
-        width: '1326px',
-      }}
-      className='flex flex-col'
-    >
-      <div className='my-2 w-full border-t-2 border-gray-600'></div>
+    <div className='flex w-[335px] flex-col md:w-[1326px]'>
+      <div className='w-full border-t-2 border-gray-600 md:my-2'></div>
       <div className='flex-fil flex'>
-        <p
-          style={{
-            width: '304px',
-            height: '48px',
-            marginRight: '248px',
-            fontSize: '18px',
-          }}
-          className='font-darker-grotesque-2 my-3 ml-8'
-        >
+        <p className='font-darker-grotesque-2 pd:ml-8 my-3 w-[180px] min-w-[158px] text-[10px] md:mr-[258px] md:h-[48px] md:w-[304px] md:text-[18px]'>
           {text}
         </p>
-        <div className='flex flex-row pt-5'>
-          <CheckBox
-            sx={{
-              transform: 'scale(1.1)',
-              '& .MuiSvgIcon-root': {
-                fontSize: '0.8rem',
-              },
-              color: '#B299FF',
-              visibility: checkFree ? 'visible' : 'hidden',
-            }}
-          />
-          <CheckBox
-            style={{ marginLeft: '288px' }}
-            sx={{
-              transform: 'scale(1.1)',
-              '& .MuiSvgIcon-root': {
-                fontSize: '0.8rem',
-              },
-              color: '#B299FF',
-              visibility: checkFlex ? 'visible' : 'hidden',
-            }}
-          />
-          <CheckBox
-            style={{ marginLeft: '298px' }}
-            sx={{
-              transform: 'scale(1.1)',
-              '& .MuiSvgIcon-root': {
-                fontSize: '0.8rem',
-              },
-              color: '#B299FF',
-              visibility: checkPremium ? 'visible' : 'hidden',
-            }}
-          />
+        <div className='mb-4 flex flex-row pt-3 md:pt-5'>
+          <div className='scale-75 md:scale-110'>
+            <CheckBox
+              sx={{
+                color: '#FD3600',
+                visibility: checkFree ? 'visible' : 'hidden',
+              }}
+            />
+          </div>
+          <div className='ml-8 scale-75 md:ml-[288px] md:scale-110'>
+            <CheckBox
+              sx={{
+                color: '#FD3600',
+                visibility: checkFlex ? 'visible' : 'hidden',
+              }}
+            />
+          </div>
+          <div className='ml-8 mr-5 scale-75 md:ml-[298px] md:mr-0 md:scale-110'>
+            <CheckBox
+              sx={{
+                color: '#FD3600',
+                visibility: checkPremium ? 'visible' : 'hidden',
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
