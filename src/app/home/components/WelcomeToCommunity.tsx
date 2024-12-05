@@ -38,7 +38,7 @@ export const WelcomeToCommunity = () => {
         </div>
         <img
           alt='Landscape picture'
-          className={`-mt-4 aspect-[693/662] ${
+          className={`-mt-2 aspect-[693/662] ${
             isLargeScreen ? 'w-[45%] -translate-x-10' : 'w-[85%] -translate-x-1'
           } -translate-y-8`}
           src={image}
