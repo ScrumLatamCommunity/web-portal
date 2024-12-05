@@ -116,10 +116,10 @@ export default function Memberships() {
         ></div>
         <div className='flex flex-col items-center md:flex-row'>
           <div className='flex-1 md:order-last md:mr-10'>
-            <h1 className='mx-auto ml-16 mt-40 w-full max-w-[283px] pb-6 text-center text-[32px] font-darker-grotesque-4 md:ml-0 md:mt-96 md:max-w-[620.02px] md:text-[48px]'>
+            <h1 className='mx-auto mt-40 w-full max-w-[283px] pb-6 text-center text-[32px] font-darker-grotesque-4 md:ml-0 md:mt-96 md:max-w-[620.02px] md:text-[48px]'>
               ¿Por qué unirse a nosotros?
             </h1>
-            <p className='font-darker-grotesque-2 mx-auto ml-10 w-[330px] text-center text-[16px] md:ml-0 md:w-[623px] md:max-w-[623px] md:text-[29px]'>
+            <p className='font-darker-grotesque-2 mx-auto w-[330px] text-center text-[16px] md:ml-0 md:w-[623px] md:max-w-[623px] md:text-[29px]'>
               Únete a Scrum Latam y transforma tu carrera junto a una comunidad
               que impulsa el cambio ágil en toda Latinoamérica. Aquí no solo
               aprendes frameworks; creces como líder, inspiras a otros, y eres
@@ -145,14 +145,14 @@ export default function Memberships() {
         <h1 className='mx-auto mb-10 w-full max-w-[300px] pb-6 text-center text-[24px] font-darker-grotesque-4 md:max-w-[620.02px] md:text-[48px]'>
           Nuestros Beneficios
         </h1>
-        <div className='flex-fil flex items-center gap-5 md:self-end'>
-          <p className='font-darker-grotesque-2 ml-40 text-[14px] md:text-[29px]'>
+        <div className='flex-fil mb-1 flex items-center gap-5 md:self-end'>
+          <p className='ml-40 text-[14px] font-darker-grotesque-4 md:text-[29px]'>
             Gratuito
           </p>
-          <p className='font-darker-grotesque-2 text-[14px] md:ml-52 md:text-[29px]'>
+          <p className='text-[14px] font-darker-grotesque-4 md:ml-52 md:text-[29px]'>
             Flex
           </p>
-          <p className='font-darker-grotesque-2 text-[14px] md:ml-56 md:mr-32 md:text-[29px]'>
+          <p className='text-[14px] font-darker-grotesque-4 md:ml-52 md:mr-16 md:text-[29px]'>
             Premium
           </p>
         </div>
