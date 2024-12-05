@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import fs from 'fs'
 import path from 'path'
+import tailwindScrollbar from 'tailwind-scrollbar'
 
 const themePath = path.resolve(__dirname, './theme/theme.json')
 const { global } = JSON.parse(fs.readFileSync(themePath, 'utf-8'))
@@ -129,6 +130,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindScrollbar({ nocompatible: true })],
 }
 export default config
