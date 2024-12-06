@@ -18,11 +18,25 @@ export const DesktopMisionVision = () => {
           >
             {item.title}
           </h1>
-          {item.description.map((i, index) => (
-            <li key={index} className='font-medium text-blue-8'>
-              {i}
-            </li>
-          ))}
+          {item.id === 1 ? (
+            <ul className='list-disc'>
+              {item.description.map((i, index) => {
+                const [boldPart, rest] = i.split(':')
+                return (
+                  <li key={index} className='font-medium text-blue-8'>
+                    <strong>{boldPart}:</strong>
+                    {rest}
+                  </li>
+                )
+              })}
+            </ul>
+          ) : (
+            item.description.map((i, index) => (
+              <span key={index} className='font-medium text-blue-8'>
+                {i}
+              </span>
+            ))
+          )}
         </div>
       ))}
     </div>

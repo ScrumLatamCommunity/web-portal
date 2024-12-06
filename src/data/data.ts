@@ -374,9 +374,7 @@ export const history: History[] = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633229.svg?alt=media&token=885ec74a-0057-4779-af1d-d18fe6fb4488',
     description: [
-      'Convertirnos en una comunidad referente para el conocimiento y las prácticas ágiles.',
-      'Consolidar una comunidad vibrante y diversa, donde los profesionales ágilespuedan aprender, colaborar y compartir experiencias.',
-      'Ser clave en la transformación de las organizaciones de la región, impulsando la adopción de buenas prácticas que les permitan alcanzar sus objetivos estratégicos.',
+      'Ser la comunidad líder en Agilidad en América Latina, reconocida por su impacto transformador, generación de valor y creación de conexiones significativas entre sus miembros, impulsando la innovación y el crecimiento en las organizaviones de la región.',
     ],
   },
   {
@@ -385,7 +383,7 @@ export const history: History[] = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633230.svg?alt=media&token=59985452-bfb7-4c69-b9f9-b841fdf553bd',
     description: [
-      'Ser la comunidad líder en Latinoamérica para el aprendizaje, la colaboración y la adopción de agilidad, impulsando la transformación ágil de las organizaciones y el desarrollo profesional de sus miembros dentro de la comunidad.',
+      'Inspirar y empoderar a personas y organizaciones para alcanzar su máximo potencial a través de la Agilidad, promoviendo una cultura de aprendizaje continuo, colaboración y transformación sostenible en América Latina. Además, impactamos en el ser, fomentando el crecimiento personal y profesional.',
     ],
   },
 ]

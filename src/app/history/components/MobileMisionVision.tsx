@@ -42,7 +42,7 @@ export const MobileMisionVision = () => {
           >
             <div className='overflow-hidden rounded-xl px-4 py-3 transition-all duration-500 ease-in-out'>
               <ul
-                className={`${item.id === 3 ? '' : 'list-disc'} space-y-2 pl-5`}
+                className={`${item.id === 1 ? 'list-disc' : ''} space-y-2 pl-5`}
               >
                 {item.description.map((point, index) => (
                   <li key={index} className='font-medium text-blue-8'>

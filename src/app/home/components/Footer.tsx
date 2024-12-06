@@ -69,6 +69,9 @@ export const Footer = () => {
                   <Link href='/history'>
                     <span className='font-light'>Conócenos</span>
                   </Link>
+                  <Link href='/history'>
+                    <span className='font-light'>Conócenos</span>
+                  </Link>
                   <span className='font-light'>¿Quiénes somos?</span>
                 </>
               )}
