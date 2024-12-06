@@ -17,22 +17,11 @@ export default function Memberships() {
         <h1 className='pb-3 text-center text-16 text-3xl font-darker-grotesque-4 md:pb-6 md:text-4xl lg:text-5xl'>
           Nuestras Membresías
         </h1>
-        <div
-          style={{
-            zIndex: '-1',
-          }}
-          className='absolute right-6 top-40 z-10 hidden h-[40dvw] w-[50dvw] rounded-full bg-red-300 opacity-20 blur-3xl md:block'
-        ></div>
+        <div className='absolute right-6 top-40 -z-[1] hidden h-[40dvw] w-[50dvw] rounded-full bg-red-300 opacity-20 blur-3xl md:block'></div>
         <h2 className='font-darker-grotesque-2 mx-auto mb-12 h-[41px] w-[290px] text-center text-3 md:mb-40 md:h-auto md:w-auto md:text-3xl'>
           Únete a una comunidad especial y goza de multiples beneficios
         </h2>
-        <div
-          style={{
-            zIndex: '-1',
-            bottom: '-300px',
-          }}
-          className='absolute -bottom-0 left-8 z-20 hidden h-[30dvw] w-[20dvw] rounded-full bg-red-300 opacity-20 blur-3xl md:block'
-        ></div>
+        <div className='absolute -bottom-[300px] left-8 -z-[1] hidden h-[30dvw] w-[20dvw] rounded-full bg-red-300 opacity-20 blur-3xl md:block'></div>
         <div className='flex flex-col justify-center gap-6 md:flex-row md:flex-wrap'>
           {memberships.map((membership, index) => {
             const isLeft = index === 0
@@ -65,9 +54,9 @@ export default function Memberships() {
         <div className='mt-20 flex flex-col items-center gap-6 md:mt-96 md:flex-row'>
           <div className='flex-fil mb-12 flex items-center gap-6 md:mx-20 md:flex-col'>
             <Image
+              alt='ideas'
               className='h-[87px] w-[87px] md:mb-2 md:mt-8 md:h-[169px] md:w-[169px]'
               src={ideas}
-              alt='ideas'
             />
             <p className='font-darker-grotesque-2 w-[184px] text-[12px] md:w-[310px] md:text-[18px]'>
               Contribuye en proyectos colaborativos y ayúdanos a crecer, ya sea
@@ -77,9 +66,9 @@ export default function Memberships() {
           </div>
           <div className='flex-fil font-darker-grotesque-2 mb-12 flex items-center gap-6 md:mx-20 md:flex-col'>
             <Image
+              alt='sobre'
               className='h-[87px] w-[87px] md:h-[169px] md:w-[169px]'
               src={sobre}
-              alt='sobre'
             />
             <p className='w-[184px] text-[12px] md:w-[310px] md:text-[18px]'>
               Obtén un distintivo digital que demuestra tu pertenencia a la
@@ -89,9 +78,9 @@ export default function Memberships() {
           </div>
           <div className='flex-fil font-darker-grotesque-2 mb-12 flex items-center gap-6 md:mx-20 md:flex-col'>
             <Image
+              alt='chat'
               className='h-[87px] w-[87px] md:h-[169px] md:w-[169px]'
               src={chat}
-              alt='chat'
             />
             <p className='w-[184px] text-[12px] md:w-[310px] md:text-[18px]'>
               Asiste a reuniones virtuales, foros y sesiones de preguntas y
@@ -102,18 +91,7 @@ export default function Memberships() {
         </div>
       </section>
       <section className='flex-fil flex'>
-        <div
-          style={{
-            background: 'linear-gradient(180deg, #FE2E00, #FCFCFC)',
-            opacity: '0.8',
-            transform: 'skewY(-4.52deg)',
-            position: 'absolute',
-            left: 0,
-            height: '505.44px',
-            zIndex: -1,
-          }}
-          className='top-[2300px] mt-72 flex w-screen flex-col items-center pt-44 md:top-[1800px]'
-        ></div>
+        <div className='absolute left-0 top-[2300px] -z-10 mt-72 flex h-[505.44px] w-screen skew-y-[-4.52deg] flex-col items-center bg-gradient-to-b from-[#FE2E00] to-[#FCFCFC] pt-44 opacity-80 md:top-[1800px]'></div>
         <div className='flex flex-col items-center md:flex-row'>
           <div className='flex-1 md:order-last md:mr-10'>
             <h1 className='mx-auto mt-40 w-full max-w-[283px] pb-6 text-center text-[32px] font-darker-grotesque-4 md:ml-0 md:mt-96 md:max-w-[620.02px] md:text-[48px]'>
@@ -131,12 +109,9 @@ export default function Memberships() {
           </div>
           <div className='md:order-first md:ml-10 md:mr-40'>
             <Image
-              className='mx-auto mt-8 w-full max-w-[280.49px] md:ml-0 md:mt-96 md:h-[422.37px] md:w-[564.23px] md:max-w-[564.23px]'
-              style={{
-                transform: 'rotate(1.21deg)',
-              }}
-              src={meeting}
               alt='meeting'
+              className='mx-auto mt-8 w-full max-w-[280.49px] rotate-[1.21deg] md:ml-0 md:mt-96 md:h-[422.37px] md:w-[564.23px] md:max-w-[564.23px]'
+              src={meeting}
             />
           </div>
         </div>

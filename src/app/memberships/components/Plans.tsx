@@ -20,113 +20,64 @@ export default function Plans({
   description3,
 }: PlansProps) {
   return (
-    <div
-      style={{
-        height: '553.03px',
-        borderRadius: '1rem',
-        background: 'linear-gradient(180deg, #FD3600, #FFFFFF)',
-        padding: '2px',
-        boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
-      }}
-      className='items-left mx-10 flex w-[340px] flex-col md:mb-10 md:w-[380px]'
-    >
-      <div
-        style={{
-          height: '100%',
-          borderRadius: '0.9rem',
-          backgroundColor: '#FFFFFF',
-        }}
-        className='pl-12 pt-6'
-      >
-        <h1
-          style={{ fontSize: '32px' }}
-          className='mb-2 flex items-center font-darker-grotesque-4'
-        >
+    <div className='items-left mx-10 flex h-[553.03px] w-[340px] flex-col rounded-lg bg-gradient-to-b from-[#FD3600] to-[#FFFFFF] p-[2px] shadow-[0px_8px_15px_rgba(0,0,0,0.2)] md:mb-10 md:w-[380px]'>
+      <div className='h-full rounded-[0.4rem] bg-white pl-12 pt-6'>
+        <h1 className='mb-2 flex items-center text-[32px] font-darker-grotesque-4'>
           {title}
           {title.toLowerCase() === 'premium' && (
             <Image
-              src={crown}
               alt='Crown Icon'
-              width={24}
+              className='ml-2'
               height={24}
-              style={{
-                marginLeft: '8px',
-              }}
+              src={crown}
+              width={24}
             />
           )}
         </h1>
-        <h1
-          style={{ fontSize: '50px' }}
-          className='mb-4 font-darker-grotesque-1'
-        >
-          {price}
-        </h1>
-        <button
-          style={{
-            width: '183px',
-            height: '43px',
-            fontSize: '18px',
-            backgroundColor: '#FE5833',
-          }}
-          className='mb-6 rounded px-4 py-2 text-white'
-        >
+        <h1 className='mb-4 text-[50px] font-darker-grotesque-1'>{price}</h1>
+        <button className='mb-6 h-[43px] w-[183px] rounded bg-[#FE5833] px-4 py-2 text-[18px] text-white'>
           Empezar
         </button>
         <div className='my-2 w-10/12 border-t-2 border-gray-300'></div>
         <div className='mb-10 mt-6 flex flex-row'>
           <CheckBox
             sx={{
+              color: '#B299FF',
               transform: 'scale(1.3)',
               '& .MuiSvgIcon-root': {
                 fontSize: '0.8rem',
               },
-              color: '#B299FF',
             }}
           />
-          <p
-            style={{
-              fontSize: '18px',
-            }}
-            className='ml-2 pl-4 font-darker-grotesque-1'
-          >
+          <p className='ml-2 pl-4 text-[18px] font-darker-grotesque-1'>
             {description1}
           </p>
         </div>
         <div className='mb-10 mt-6 flex flex-row'>
           <CheckBox
             sx={{
+              color: '#B299FF',
               transform: 'scale(1.3)',
               '& .MuiSvgIcon-root': {
                 fontSize: '0.8rem',
               },
-              color: '#B299FF',
             }}
           />
-          <p
-            style={{
-              fontSize: '18px',
-            }}
-            className='ml-2 pl-4 font-darker-grotesque-1'
-          >
+          <p className='ml-2 pl-4 text-[18px] font-darker-grotesque-1'>
             {description2}
           </p>
         </div>
         <div className='mb-10 mt-6 flex flex-row'>
           <CheckBox
             sx={{
+              color: '#B299FF',
               transform: 'scale(1.3)',
               '& .MuiSvgIcon-root': {
                 fontSize: '0.8rem',
               },
-              color: '#B299FF',
             }}
           />
-          <p
-            style={{
-              fontSize: '18px',
-            }}
-            className='ml-2 pl-4 font-darker-grotesque-1'
-          >
+          <p className='ml-2 pl-4 text-[18px] font-darker-grotesque-1'>
             {description3}
           </p>
         </div>
