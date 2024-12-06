@@ -45,7 +45,7 @@ export default function Memberships() {
                   isMiddle
                     ? 'md:-translate-y-12'
                     : isLeft
-                      ? 'md:translate-y-10'
+                      ? 'md:translate-y-0'
                       : isRight
                         ? 'md:translate-y-0'
                         : ''
@@ -65,7 +65,7 @@ export default function Memberships() {
         <div className='mt-20 flex flex-col items-center gap-6 md:mt-96 md:flex-row'>
           <div className='flex-fil mb-12 flex items-center gap-6 md:mx-20 md:flex-col'>
             <Image
-              className='h-[87px] w-[87px] md:h-[169px] md:w-[169px]'
+              className='h-[87px] w-[87px] md:mb-2 md:mt-8 md:h-[169px] md:w-[169px]'
               src={ideas}
               alt='ideas'
             />
@@ -131,7 +131,7 @@ export default function Memberships() {
           </div>
           <div className='md:order-first md:ml-10 md:mr-40'>
             <Image
-              className='mx-auto ml-12 mt-8 w-full max-w-[280.49px] md:ml-0 md:mt-96 md:h-[422.37px] md:w-[564.23px] md:max-w-[564.23px]'
+              className='mx-auto mt-8 w-full max-w-[280.49px] md:ml-0 md:mt-96 md:h-[422.37px] md:w-[564.23px] md:max-w-[564.23px]'
               style={{
                 transform: 'rotate(1.21deg)',
               }}
