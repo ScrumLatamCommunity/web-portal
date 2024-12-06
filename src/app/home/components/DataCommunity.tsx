@@ -28,7 +28,7 @@ export const DataComunity = () => {
       ))}
       <div
         className={
-          'relative flex flex-col items-center justify-center bg-black-8 bg-[url(https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2FAbstract%20textured%20backgound.png?alt=media&token=296561ab-a517-4fbf-873d-b3bde1a2feb8)] bg-cover bg-center text-blue-9 bg-blend-color-dodge md:items-start md:pl-[6dvw] md:text-black-1 md:bg-blend-normal'
+          'relative flex flex-col items-center justify-center bg-black-8 bg-[url(https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2FAbstract%20textured%20backgound.png?alt=media&token=296561ab-a517-4fbf-873d-b3bde1a2feb8)] bg-cover bg-center text-[#FCFCFC] bg-blend-color-dodge md:items-start md:pl-[6dvw] md:text-blue-9 md:bg-blend-normal'
         }
       >
         <h3 className='mb-0 text-[5.5dvw] font-bold md:pb-7 md:text-start md:text-[2dvw] md:font-medium 2xl:text-[30px]'>
