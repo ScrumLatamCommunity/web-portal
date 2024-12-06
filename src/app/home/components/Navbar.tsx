@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
                 </a>
                 <a
                   className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
-                  href='#'
+                  href='/register'
                 >
                   Registrarse
                 </a>
@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
               </a>
               <a
                 className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
-                href='#'
+                href='/register'
               >
                 Registrarse
               </a>
