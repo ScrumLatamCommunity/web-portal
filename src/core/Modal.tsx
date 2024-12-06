@@ -5,6 +5,9 @@ interface ModalProps {
   onClose: () => void
   children: ReactNode
   title?: string
+  modalClassName?: string
+  contentClassName?: string
+  backdropClassName?: string
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -12,6 +15,9 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
   title,
+  modalClassName = '',
+  contentClassName = '',
+  backdropClassName = '',
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -37,11 +43,15 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <div
-        className='fixed inset-0 z-50 flex items-center justify-center bg-black-10 bg-opacity-50'
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black-10 bg-opacity-50 ${backdropClassName}`}
         onClick={handleBackdropClick}
       >
-        <div className='relative flex max-h-[85vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:w-4/5 lg:w-3/5'>
-          <div className='flex w-full flex-col items-start gap-3 p-8 md:px-24'>
+        <div
+          className={`relative flex max-h-[85vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:w-4/5 lg:w-3/5 ${modalClassName}`}
+        >
+          <div
+            className={`flex w-full flex-col items-start gap-3 p-8 md:px-24 ${contentClassName}`}
+          >
             {title && (
               <h2 className='flex font-karla text-3xl font-bold text-red-500'>
                 {title}
