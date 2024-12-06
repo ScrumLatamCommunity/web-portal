@@ -29,7 +29,7 @@ export const WelcomeToCommunity = () => {
             metodologías ágiles. ¡Bienvenidos a un entorno donde la cooperación
             y la agilidad impulsan nuestro crecimiento y éxito!
           </p>
-          <div className='hidden md:block md:pt-4 xl:pt-10'>
+          <div className='pt-6 md:block md:pt-4 xl:pt-10'>
             <PrimaryButton label='Únete a nosotros' />
           </div>
         </div>
