@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
           <a href='#' className='flex flex-row justify-start'>
             <img
               alt='logo'
-              className='h-12 w-auto'
+              className='h-12 w-auto min-w-[96px]'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
             />
           </a>
