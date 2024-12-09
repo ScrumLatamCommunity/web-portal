@@ -157,10 +157,11 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className='text-black flex flex-col place-content-center gap-8 py-5 text-center font-semibold sm:flex-row sm:gap-12'>
-        <span>© 2024 Scrumlatam. All rights reserved.</span>
-        <span>Privacy Policy</span>
-        <button onClick={handleModal}>Terms of Service</button>
+      <div className='text-black flex flex-col place-content-end gap-8 py-5 text-center font-semibold sm:flex-row sm:justify-evenly'>
+        <span>© 2024 Scrumlatam. Todos los derechos reservados.</span>
+        <button className='font-bold text-red-500' onClick={handleModal}>
+          Términos y condiciones
+        </button>
         <Modal
           isOpen={openModal}
           onClose={() => setOpenModal(false)}
