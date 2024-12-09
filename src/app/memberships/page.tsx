@@ -134,15 +134,15 @@ export default function Memberships() {
             Nuestros Beneficios
           </h1>
         </div>
-        <div className='mx-auto items-center'>
+        <div className='mx-auto items-center font-darker-grotesque'>
           <div className='flex-fil mb-1 flex items-center gap-5 md:self-end'>
-            <p className='ml-[172px] text-[13px] font-darker-grotesque-600 md:ml-[505px] md:text-[32px] md:font-darker-grotesque-700'>
+            <p className='ml-[172px] text-[15px] font-darker-grotesque-700 md:ml-[515px] md:text-[32px] md:font-darker-grotesque-700'>
               Gratuito
             </p>
-            <p className='text-[13px] font-darker-grotesque-600 md:ml-[200px] md:text-[32px] md:font-darker-grotesque-700'>
+            <p className='text-[15px] font-darker-grotesque-700 md:ml-[220px] md:text-[32px] md:font-darker-grotesque-700'>
               Flex
             </p>
-            <p className='text-[13px] font-darker-grotesque-600 md:ml-[200px] md:mr-2 md:text-[32px] md:font-darker-grotesque-700'>
+            <p className='text-[15px] font-darker-grotesque-700 md:ml-[220px] md:mr-2 md:text-[32px] md:font-darker-grotesque-700'>
               Premium
             </p>
           </div>
