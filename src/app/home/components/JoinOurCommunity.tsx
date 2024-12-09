@@ -23,7 +23,7 @@ export const JoinOurCommunity = () => {
             width={600}
           />
         </div>
-        <div className='m-0 flex flex-col items-center gap-[2vw] bg-transparent pb-10 pt-[2rem] sm:w-1/2 md:items-start md:pb-0 md:pl-14 md:pt-0 lg:justify-center lg:gap-2 lg:py-14'>
+        <div className='m-0 flex flex-col items-center gap-[2vw] bg-transparent pb-10 pt-[2rem] sm:w-1/2 md:items-start md:pb-0 md:pl-14 md:pt-0 lg:justify-center lg:gap-2 lg:py-8'>
           <p className='m-0 text-center font-darker-grotesque text-[5dvw] font-extrabold leading-8 text-blue-6 md:flex md:flex-col md:text-start lg:text-15'>
             ¿POR QUÉ UNIRSE
           </p>
