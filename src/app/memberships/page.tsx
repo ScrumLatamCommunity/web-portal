@@ -26,7 +26,7 @@ export default function Memberships() {
         >
           Únete a una comunidad especial y goza de multiples beneficios
         </h2>
-        <div className='absolute -z-[1] hidden rounded-full bg-red-300 opacity-100 blur-3xl md:-bottom-[300px] md:left-8 md:block md:h-[30dvw] md:w-[20dvw]'></div>
+        <div className='absolute -z-[1] hidden rounded-full bg-red-300 opacity-20 blur-3xl md:-bottom-[300px] md:left-8 md:block md:h-[30dvw] md:w-[20dvw]'></div>
         <div className='flex flex-col items-center gap-6 md:flex-row md:flex-wrap'>
           {memberships.map((membership, index) => {
             const isLeft = index === 0
