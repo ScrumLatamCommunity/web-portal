@@ -28,6 +28,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "next": "14.2.8",
     "react": "^18",
     "react-dom": "^18",
@@ -50,6 +51,7 @@
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.3"
   }

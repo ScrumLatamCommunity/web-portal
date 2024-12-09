@@ -35,7 +35,7 @@ export const WelcomeToCommunity = () => {
         </div>
         <img
           alt='Landscape picture'
-          className='aspect-[693/662] w-1/2'
+          className='-mt-8 aspect-[693/662]'
           src={image}
         />
       </div>
