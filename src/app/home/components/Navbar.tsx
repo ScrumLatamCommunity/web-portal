@@ -73,7 +73,7 @@ export const Navbar: React.FC = () => {
             <div className='flex items-center'>
               <a
                 className='mr-5 flex items-center whitespace-nowrap p-2 text-red-400 hover:text-red-200'
-                href='#'
+                href='/login'
               >
                 <User className='h-4' />
                 <h2 className='block'>Iniciar sesión</h2>
