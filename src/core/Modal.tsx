@@ -8,6 +8,7 @@ interface ModalProps {
   modalClassName?: string
   contentClassName?: string
   backdropClassName?: string
+  closeButtonClassName?: string
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -18,6 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
   modalClassName = '',
   contentClassName = '',
   backdropClassName = '',
+  closeButtonClassName = '',
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -60,7 +62,7 @@ export const Modal: React.FC<ModalProps> = ({
             <div className='pb-10 pr-7'>{children}</div>
           </div>
           <button
-            className='fixed right-[8%] top-20 mb-8 flex w-auto sm:right-[15%] sm:h-6 lg:right-[22%]'
+            className={`fixed right-[8%] top-20 mb-8 flex w-auto sm:right-[15%] sm:h-6 lg:right-[22%] ${closeButtonClassName}`}
             onClick={onClose}
           >
             <img
