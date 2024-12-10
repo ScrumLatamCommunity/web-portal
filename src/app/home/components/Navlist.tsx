@@ -140,7 +140,7 @@ export const Navlist: React.FC = () => {
               strokeWidth={2.5}
             />
           )}
-        </Link>
+        </a>
 
         {activeMenu === 'actividades' && (
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
@@ -196,7 +196,6 @@ export const Navlist: React.FC = () => {
                       <p className='lg:font-bold'>Lorem ipsum dolor</p>
                       <p className='text-sm text-gray-500'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
                         Donec vel egestas dolor, nec dignissim metus.
                       </p>
                     </div>
