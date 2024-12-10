@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Menu, X, User } from 'react-feather'
 import { Navlist } from './Navlist'
 import { useTypeScreen } from '@/hooks'
@@ -29,19 +30,19 @@ export const Navbar: React.FC = () => {
           {(screen === 'sm' || screen === 'md') && (
             <div className='flex flex-row items-center'>
               <div className='flex items-center space-x-6 whitespace-nowrap'>
-                <a
+                <Link
                   className='flex items-center p-2 text-red-400 hover:text-red-200'
-                  href='#'
+                  href='/login'
                 >
                   <User className='mr-2 h-4' />
                   <h2 className='block'>Iniciar sesión</h2>
-                </a>
-                <a
+                </Link>
+                <Link
                   className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
-                  href='#'
+                  href='/register'
                 >
                   Registrarse
-                </a>
+                </Link>
               </div>
             </div>
           )}
@@ -71,19 +72,19 @@ export const Navbar: React.FC = () => {
         {(screen === 'lg' || screen === 'xl') && (
           <div className='mt-2 hidden flex-row items-center lg:flex'>
             <div className='flex items-center'>
-              <a
+              <Link
                 className='mr-5 flex items-center whitespace-nowrap p-2 text-red-400 hover:text-red-200'
-                href='#'
+                href='/login'
               >
                 <User className='h-4' />
                 <h2 className='block'>Iniciar sesión</h2>
-              </a>
-              <a
+              </Link>
+              <Link
                 className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
-                href='#'
+                href='/register'
               >
                 Registrarse
-              </a>
+              </Link>
             </div>
           </div>
         )}
