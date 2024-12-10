@@ -13,7 +13,9 @@ export default function HeroSection({
       <div className='flex flex-col gap-8 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <div className='relative m-6 flex h-full flex-col justify-center md:w-[626px]'>
           <DottedOrange className='absolute h-[300px] w-[300px] md:hidden' />
-          <h1 className='m-6 text-12 text-[#FE2E00] md:text-16'>{title}</h1>
+          <h1 className='pb-4 font-darker-grotesque text-3xl font-semibold text-[#FE2E00] md:pb-6 md:text-4xl'>
+            {title}
+          </h1>
           <p className='md:text-10'>{description}</p>
         </div>
         <div className='relative flex min-h-[550px] flex-col items-center justify-around'>

@@ -114,22 +114,22 @@ export const Navlist: React.FC = () => {
       </a>
       <div
         className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
-        onMouseEnter={() => toggleMenu('entrenamiento')}
+        onMouseEnter={() => toggleMenu('actividades')}
         onMouseLeave={() => toggleMenu('')}
-        onClick={() => toggleMenu('entrenamiento')}
+        onClick={() => toggleMenu('actividades')}
       >
         <a
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'entrenamiento' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
         >
-          Entrenamiento
+          Actividades
           {screen === 'lg' || screen === 'xl' ? (
             <ChevronDown
               className={`h-4 w-4 transition-transform lg:block ${
-                activeMenu === 'entrenamiento' ? 'rotate-180' : ''
+                activeMenu === 'actividades' ? 'rotate-180' : ''
               }`}
               strokeWidth={2.5}
             />
-          ) : activeMenu === 'entrenamiento' ? (
+          ) : activeMenu === 'actividades' ? (
             <ChevronDown
               className='h-6 w-6 transition-transform lg:block'
               strokeWidth={2.5}
@@ -140,9 +140,9 @@ export const Navlist: React.FC = () => {
               strokeWidth={2.5}
             />
           )}
-        </a>
+        </Link>
 
-        {activeMenu === 'entrenamiento' && (
+        {activeMenu === 'actividades' && (
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
@@ -196,6 +196,7 @@ export const Navlist: React.FC = () => {
                       <p className='lg:font-bold'>Lorem ipsum dolor</p>
                       <p className='text-sm text-gray-500'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
                         Donec vel egestas dolor, nec dignissim metus.
                       </p>
                     </div>
@@ -210,7 +211,7 @@ export const Navlist: React.FC = () => {
         className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
         onMouseEnter={() => toggleMenu('Novedades')}
         onMouseLeave={() => toggleMenu('')}
-        onClick={() => toggleMenu('entrenamiento')}
+        onClick={() => toggleMenu('actividades')}
       >
         <a
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'Novedades' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
