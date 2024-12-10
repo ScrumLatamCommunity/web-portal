@@ -52,25 +52,25 @@ export const Modal: React.FC<ModalProps> = ({
           className={`relative flex max-h-[85vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:w-4/5 lg:w-3/5 ${modalClassName}`}
         >
           <div
-            className={`flex w-full flex-col items-start gap-3 p-8 md:px-24 ${contentClassName}`}
+            className={`flex w-full flex-col items-start gap-3 p-8 ${contentClassName}`}
           >
+            <button
+              className={`flex items-center justify-center self-end py-2 ${closeButtonClassName}`}
+              onClick={onClose}
+            >
+              <img
+                alt='cerrar'
+                className='fixed h-6 w-6 gap-1 md:h-[50px] md:w-[50px]'
+                src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20icons%2Fx.svg?alt=media&token=3fca622b-ce3c-436b-9372-0208bf399ba4'
+              />
+            </button>
             {title && (
-              <h2 className='flex font-karla text-3xl font-bold text-red-500'>
+              <h2 className='flex font-karla text-3xl font-bold text-red-500 md:px-24'>
                 {title}
               </h2>
             )}
-            <div className='pb-10 pr-7'>{children}</div>
+            <div className='pb-10 pr-7 md:px-24'>{children}</div>
           </div>
-          <button
-            className={`fixed right-[8%] top-20 mb-8 flex w-auto sm:right-[15%] sm:h-6 lg:right-[22%] ${closeButtonClassName}`}
-            onClick={onClose}
-          >
-            <img
-              alt='cerrar'
-              className='h-6 w-6 gap-1 md:h-[50px] md:w-[50px]'
-              src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20icons%2Fx.svg?alt=media&token=3fca622b-ce3c-436b-9372-0208bf399ba4'
-            />
-          </button>
         </div>
       </div>
     </>
