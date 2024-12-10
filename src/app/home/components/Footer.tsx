@@ -10,6 +10,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'react-feather'
+import Link from 'next/link'
 
 export const Footer = () => {
   const isLargeScreen = useIsLargeScreen(480)
@@ -58,7 +59,9 @@ export const Footer = () => {
               </div>
               {(isLargeScreen || sections.community) && (
                 <>
-                  <span className='font-light'>Conócenos</span>
+                  <Link href='/history'>
+                    <span className='font-light'>Conócenos</span>
+                  </Link>
                   <span className='font-light'>¿Quiénes somos?</span>
                 </>
               )}
