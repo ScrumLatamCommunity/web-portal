@@ -386,7 +386,7 @@ export const history: History[] = [
       'Inspirar y empoderar a personas y organizaciones para alcanzar su máximo potencial a través de la Agilidad, promoviendo una cultura de aprendizaje continuo, colaboración y transformación sostenible en América Latina. Además, impactamos en el ser, fomentando el crecimiento personal y profesional.',
     ],
   },
- ]
+]
 
 export const memberships = [
   {
