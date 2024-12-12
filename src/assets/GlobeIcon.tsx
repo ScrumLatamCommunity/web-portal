@@ -1,25 +1,22 @@
 import React from 'react'
 
-type IconProps = {
-  className?: string // Optional class for custom styles
-  style?: React.CSSProperties // Optional inline styles
-}
-
-const GlobeIcon: React.FC<IconProps> = ({ className, style }) => (
+const GlobeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
-    className={className}
+    {...props}
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
     fill='none'
     stroke='#345081'
-    strokeWidth={2}
-    style={style}
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
+    stroke-width='2'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+    className='feather feather-globe'
   >
-    <path
-      d='M12 2a10 10 0 100 20 10 10 0 000-20zm0 0v20m0-20a10 10 0 110 20M2 12h20M12 2c-1.96 0-3.845.9-5.162 2.5A9.958 9.958 0 014 12c0 2.7 1.08 5.17 2.838 6.85C8.155 21.1 10.04 22 12 22M12 2c1.96 0 3.845.9 5.162 2.5A9.958 9.958 0 0120 12c0 2.7-1.08 5.17-2.838 6.85C15.845 21.1 13.96 22 12 22'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='2' y1='12' x2='22' y2='12'></line>
+    <path d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'></path>
   </svg>
 )
 

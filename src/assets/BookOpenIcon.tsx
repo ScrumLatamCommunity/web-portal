@@ -1,25 +1,21 @@
 import React from 'react'
 
-type IconProps = {
-  className?: string // Optional class for custom styles
-  style?: React.CSSProperties // Optional inline styles
-}
-
-const BookOpenIcon: React.FC<IconProps> = ({ className, style }) => (
+const BookOpenIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
-    className={className}
+    {...props}
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
     fill='none'
     stroke='#345081'
-    strokeWidth={2}
-    style={style}
-    viewBox='0 0 24 24'
-    xmlns='http://www.w3.org/2000/svg'
+    stroke-width='2'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+    className='feather feather-book-open'
   >
-    <path
-      d='M12 6v13M19 6c1.657 0 3 1.343 3 3v9c0 1.657-1.343 3-3 3-2.21 0-4.209-.894-6-2.344C11.209 20.106 9.21 21 7 21c-1.657 0-3-1.343-3-3V9c0-1.657 1.343-3 3-3 2.21 0 4.209.894 6 2.344C14.791 6.894 16.79 6 19 6z'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
+    <path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'></path>
+    <path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'></path>
   </svg>
 )
 
