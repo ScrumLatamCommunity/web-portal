@@ -48,7 +48,7 @@ export const News = () => {
   const IconComponent = iconMap[currentNews.iconName] // Obtener el componente del icono dinámicamente
 
   return (
-    <div className='relative flex max-w-screen-2xl flex-col items-center px-4 pb-9'>
+    <div className='relative flex max-w-screen-2xl flex-col items-center pb-9'>
       <div className='mt-8 flex flex-wrap items-center justify-center gap-4 pt-12'>
         <TargetIcon2 className='h-20 w-20' />
         <h3 className='pb-10 pt-10 text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
@@ -56,7 +56,7 @@ export const News = () => {
         </h3>
       </div>
       {/* Contenedor principal */}
-      <div className='relative z-0 flex flex-col overflow-hidden rounded-xl bg-black-4 shadow-xl md:flex-row-reverse'>
+      <div className='relative z-0 flex flex-col overflow-hidden bg-black-4 shadow-xl md:flex-row-reverse'>
         <div className='relative h-[460px] w-full md:w-[45%]'>
           {/* Línea roja inclinada */}
           <div
@@ -89,7 +89,7 @@ export const News = () => {
           />
         </div>
         <div className='m-0 flex w-full flex-col items-start bg-transparent pb-10 pt-[2rem] md:w-[39%]'>
-          <div className='flex items-center gap-2 bg-[#E6EAF0] md:mb-6 md:mt-8 md:px-2'>
+          <div className='flex items-center gap-2 rounded-xl bg-[#E6EAF0] md:mb-6 md:mt-8 md:px-2'>
             {IconComponent && (
               <IconComponent className='h-6 w-6 text-[#345081]' />
             )}
