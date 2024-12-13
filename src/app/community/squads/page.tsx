@@ -8,10 +8,12 @@ import BooknoteImg from '@/assets/booknoteImg'
 import MountainImg from '@/assets/mountainImg'
 import ProfileSection from '@/app/community/components/profileSection'
 import JoinCommunity from '@/app/community/components/joinSection'
+import Breadcrumbs from '@/app/community/components/breadcrumbs'
 
 export default function Squads() {
   return (
     <>
+      <Breadcrumbs rootName='Comunidad' />
       <HeroSection
         description='Somos una organización sin fines de lucro de la agilidad. Nuestro equipo multidisciplinario conformado por principiantes profesionales y expertos ágiles, donde fortalecemos y potenciamos conocimientos, experiencias, proyectos e iniciativas en todos los campos, a través de un proceso de transformación organizacional.'
         image={
