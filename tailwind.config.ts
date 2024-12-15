@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss'
 import fs from 'fs'
 import path from 'path'
-import tailwindScrollbar from 'tailwind-scrollbar'
 
 const themePath = path.resolve(__dirname, './theme/theme.json')
 const { global } = JSON.parse(fs.readFileSync(themePath, 'utf-8'))
@@ -103,7 +102,22 @@ const config: Config = {
         'karla-8': global.fontWeights['karla-8'].value, // Medium
         'karla-9': global.fontWeights['karla-9'].value, // Light
         'karla-10': global.fontWeights['karla-10'].value, // Bold
-        'darker-grotesque-11': global.fontWeights['darker-grotesque-11'].value, // Semi Bold
+        'darker-grotesque-11': global.fontWeights['darker-grotesque-11'].value,
+        'darker-grotesque-300': '300', // Peso Medium
+        'darker-grotesque-400': '400', // Peso Regular
+        'darker-grotesque-500': '500', // Peso Medium
+        'darker-grotesque-600': '600', // Peso SemiBold
+        'darker-grotesque-700': '700', // Peso Bold // Semi Bold
+        'karla-300': '300', // Peso Medium
+        'karla-400': '400', // Peso Regular
+        'karla-500': '500', // Peso Medium
+        'karla-600': '600', // Peso SemiBold
+        'karla-700': '700', // Peso Bold // Semi Bold
+        'inter-300': '300', // Peso Medium
+        'inter-400': '400', // Peso Regular
+        'inter-500': '500', // Peso Medium
+        'inter-600': '600', // Peso SemiBold
+        'inter-700': '700', // Peso Bold // Semi Bold
       },
       screens: {
         sm: '480px',
@@ -130,6 +144,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindScrollbar({ nocompatible: true })],
+  plugins: [],
 }
 export default config

@@ -34,7 +34,6 @@ export const images: {
   joinSectionMobile: string
   joinSectionDesktop: string
   backgroundDataCommunity: string
-  history: string
 } = {
   imagesData: [
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%201%20community.png?alt=media&token=7d827f23-b33c-4328-af08-df2959d08940',
@@ -52,6 +51,4 @@ export const images: {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FMask%20group%20C.png?alt=media&token=8d0b320e-948f-4dc1-864e-4dcde5fcf3a2',
   backgroundDataCommunity:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2FAbstract%20textured%20backgound.png?alt=media&token=296561ab-a517-4fbf-873d-b3bde1a2feb8',
-  history:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FIntro%2FIlustracion%20-%20historia%20desktop.svg?alt=media&token=08693768-2e73-499c-85bf-3a2c8614c4ac',
 }

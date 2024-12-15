@@ -37,12 +37,6 @@ export interface Review {
   rating: number
   description: string
 }
-export interface History {
-  id: number
-  title: string
-  image: string
-  description: string[]
-}
 
 export const sponsors: Sponsor[] = [
   {
@@ -356,35 +350,124 @@ export const reviews: Review[] = [
   },
 ]
 
-export const history: History[] = [
+export const memberships = [
   {
     id: 1,
-    title: 'Misión',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633297.svg?alt=media&token=e34f1b6b-0723-4bff-8640-7202192e1475',
-    description: [
-      'Difundir el conocimiento de agilidad: A través de eventos, talleres, webinars, publicaciones y otros recursos.',
-      'Fomentar la colaboración y el intercambio: A través de experiencias entre profesionales ágiles de Latinoamérica.',
-      'Promover la adopción de buenas prácticas de agilidad: Desde la experiencia generando una transformación cultural ágil en las organizaciones.',
-    ],
+    title: 'Flex',
+    price: '$50',
+    description1: 'Acceso a Cursos Avanzados',
+    description2: 'Talleres Prácticos Mensuales',
+    description3: 'Certificado Profesional',
   },
   {
     id: 2,
-    title: 'Visión',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633229.svg?alt=media&token=885ec74a-0057-4779-af1d-d18fe6fb4488',
-    description: [
-      'Ser la comunidad líder en Agilidad en América Latina, reconocida por su impacto transformador, generación de valor y creación de conexiones significativas entre sus miembros, impulsando la innovación y el crecimiento en las organizaviones de la región.',
-    ],
+    title: 'Gratuito',
+    price: '$0.00',
+    description1: 'Acceso a cursos introductorios',
+    description2: 'Webinars Mensuales',
+    description3: 'Certificado de participación',
   },
   {
     id: 3,
-    title: 'Propósito',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633230.svg?alt=media&token=59985452-bfb7-4c69-b9f9-b841fdf553bd',
-    description: [
-      'Inspirar y empoderar a personas y organizaciones para alcanzar su máximo potencial a través de la Agilidad, promoviendo una cultura de aprendizaje continuo, colaboración y transformación sostenible en América Latina. Además, impactamos en el ser, fomentando el crecimiento personal y profesional.',
-    ],
+    title: 'Premium',
+    price: '$150',
+    description1: 'Asesorías Personalizadas Mensuales',
+    description2: 'Invitación a Eventos Exclusivos',
+    description3: 'Certificación Especializada',
+  },
+]
+
+export const benefits = [
+  {
+    id: 1,
+    text: 'Acceso a webinars , talleres y charlas virtuales sobre agilidad y similares',
+    checkFree: true,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 2,
+    text: 'Oportunidad participar de los sorteos que realiza la comunidad',
+    checkFree: true,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 3,
+    text: 'Preparación para CV  y entrevistas (Rol Scrum Master)',
+    checkFree: true,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 4,
+    text: 'Acceso a Simuladores. Preparación con certificación',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 5,
+    text: 'Certificados de participación de Talleres',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 6,
+    text: 'Descuentos en cursos y certificaciones por parte de los aliados',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 7,
+    text: 'Coach o mentoring personalizado (one to one)',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 8,
+    text: 'Acceso a grupos de discusión con otros miembros',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 9,
+    text: 'Acceso a recursos básicos sobre metodologías ágiles',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 10,
+    text: 'Cupo asegurado en nuestro Aniversarios  formato (Open Space)',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 11,
+    text: 'Membresía bonificada por 6 meses a miembros activos',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 12,
+    text: 'Posibilidad de hacer una certificación y un taller bonificados cada año',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 13,
+    text: 'Prioridad estar en todos los canales comunicación de Scrum Latam',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
   },
 ]
 
