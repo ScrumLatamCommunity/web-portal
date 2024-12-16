@@ -162,10 +162,10 @@ export const Footer = () => {
         <span>Privacy Policy</span>
         <button onClick={handleModal}>Terms of Service</button>
         <Modal
+          contentClassName='justify-start gap-[10px]'
           isOpen={openModal}
           onClose={() => setOpenModal(false)}
           title='Términos y Condiciones'
-          contentClassName='justify-start gap-[10px]'
         >
           <TermsAndConditions />
         </Modal>
