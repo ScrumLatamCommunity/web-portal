@@ -106,7 +106,6 @@ const config: Config = {
         'darker-grotesque-11': global.fontWeights['darker-grotesque-11'].value, // Semi Bold
       },
       screens: {
-        xs: '320px',
         sm: '480px',
         md: '768px',
         lg: '1024px',
