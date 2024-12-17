@@ -22,7 +22,7 @@ export const Sponsors: React.FC = () => {
         <span className='text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
           Junto a nuestros aliados
         </span>
-        <div className='flex w-full animate-scrollLeft items-center justify-center py-6 xs:gap-4 sm:gap-4 lg:gap-20'>
+        <div className='flex w-full animate-scrollLeft items-center justify-center py-6 sm:gap-4 lg:gap-20'>
           {duplicateSponsors.map((sponsors, index) => (
             <img
               alt={sponsors.name}
