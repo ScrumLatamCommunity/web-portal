@@ -490,7 +490,7 @@ export const news = [
   },
   {
     id: 3,
-    title: 'Scrum: Clave en equipos tecnológicos',
+    title: 'Agile Impulsa la Satisfacción del Cliente',
     date: '06/SEP/2024',
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo. ',
@@ -541,10 +541,10 @@ export const articles = [
   },
   {
     id: 3,
-    title: 'Scrum: Clave en equipos tecnológicos',
+    title: 'Colaboración en Vivo Para Proyectos',
     date: '06/SEP/2024',
     description:
-      'La plataforma incluirá una nueva sección de colaboración en tiempo real, donde los participantes podrán trabajar de forma conjunta en proyectos ágiles.',
+      ' La empresa busca fomentar una cultura de innovación y adaptación rápida a las necesidades del mercado, y Agile ha sido clave en este cambio.',
     img: 'https://s3-alpha-sig.figma.com/img/4a60/725a/a4c7eea5688479b8acd8dd5e64ad7f7e?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VYP8vh9GaKb0sj0lXtCYvTbze7Vx3WQ6tR9yQEcsXfuZU0sfKqFBhOeCKlQeqDgDMMAJrJro0MFixhLd5QkXyI-oD43eKoTjX1EQOB4TPotx5a7h7Eg0qYlWojWTvFZ9U4TEotMe8KUu-FRlh9Bs795L1q0enmzVBg4KKBfPjKNcYxPfhl7oBeDSt~pSBVsDTmKViESI5O7FfZpHGaFfRa3vNhHeAkZfcVzWeSOjLn4A62J2IVckK9vmk-9ffTBF2-nWqLj4aLEQEnBdl73qQ9eDYARTq1hdUReqi92ezAdDpGy-iC-kqs3nwFkzEFlYNtKVQL9n8x2le6Ct3s15YA__',
   },
   {

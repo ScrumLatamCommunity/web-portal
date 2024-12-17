@@ -8,21 +8,24 @@ import { news } from '@/data/data'
 export default function News() {
   return (
     <main
-      className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-screen pb-12`}
+      className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-full pb-12`}
     >
-      <div className='absolute -right-20 top-20 -z-[10] h-[400px] w-[400px] rounded-full bg-red-300 opacity-20 blur-3xl md:block'></div>
-      <div className='absolute -left-20 top-96 -z-[10] h-[400px] w-[400px] rounded-full bg-blue-300 opacity-30 blur-3xl md:block'></div>
-      <div className='absolute -right-20 bottom-[1000px] -z-[10] h-[400px] w-[400px] rounded-full bg-red-300 opacity-20 blur-3xl md:block'></div>
-      <div className='absolute -left-20 bottom-[500px] -z-[10] h-[400px] w-[400px] rounded-full bg-blue-300 opacity-30 blur-3xl md:block'></div>
-      <div className='flex w-full flex-col items-center font-darker-grotesque'>
-        <h1 className='-mb-1 mr-44 mt-4 text-[38px] font-darker-grotesque-700 text-[#FE2E00]'>
+      <div className='absolute -right-20 top-20 -z-[10] h-[400px] w-[400px] rounded-full bg-red-300 opacity-20 blur-3xl md:-top-20 md:left-4'></div>
+      <div className='absolute -left-20 top-96 -z-[10] h-[400px] w-[400px] rounded-full bg-blue-300 opacity-30 blur-3xl md:-top-16 md:left-[1500px]'></div>
+      <div className='absolute -right-20 bottom-[250px] -z-[10] h-[400px] w-[400px] rounded-full bg-red-300 opacity-20 blur-3xl md:left-4'></div>
+      <div className='absolute -left-20 bottom-[250px] -z-[10] h-[400px] w-[400px] rounded-full bg-blue-300 opacity-30 blur-3xl md:left-[1500px]'></div>
+
+      <header className='flex w-full flex-col font-darker-grotesque'>
+        <h1 className='ml-5 mt-4 text-[38px] font-bold text-[#FE2E00] md:ml-16 md:mt-16 md:text-[48px]'>
           Noticias
         </h1>
-      </div>
-      <div className='w-screen'>
+      </header>
+
+      <section className='my-4 w-full md:mb-12'>
         <SearchBar />
-      </div>
-      <div className='z-[1] flex flex-col items-center'>
+      </section>
+
+      <section className='z-[1] mx-auto grid grid-cols-1 place-items-center gap-3 md:grid-cols-3'>
         {news.map((news) => (
           <NewsCard
             key={news.id}
@@ -32,7 +35,7 @@ export default function News() {
             img={news.img}
           />
         ))}
-      </div>
+      </section>
     </main>
   )
 }
