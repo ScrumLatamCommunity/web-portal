@@ -15,11 +15,11 @@ export default function Blogs() {
       <div className='absolute -right-20 bottom-[250px] -z-[10] h-[400px] w-[400px] rounded-full bg-red-300 opacity-20 blur-3xl md:left-4'></div>
       <div className='absolute -left-20 bottom-[250px] -z-[10] h-[400px] w-[400px] rounded-full bg-blue-300 opacity-30 blur-3xl md:left-[1500px]'></div>
       <div className='flex w-full flex-col font-darker-grotesque'>
-        <h1 className='ml-5 mt-4 text-[38px] font-bold text-[#FE2E00] md:ml-32 md:mt-16 md:text-[48px]'>
+        <h1 className='ml-5 mt-4 text-[40px] font-bold text-[#FE2E00] md:mb-6 md:ml-16 md:mt-8 md:text-[50px]'>
           Blog
         </h1>
       </div>
-      <div className='my-4 w-full md:my-12'>
+      <div className='my-4 w-full px-3 md:mb-12'>
         <SearchBar />
       </div>
       <div className='z-[1] flex flex-col items-center'>

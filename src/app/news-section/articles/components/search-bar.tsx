@@ -1,25 +1,55 @@
-'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { darkerGrotesque } from '@/fonts'
-import { news } from '@/data/data'
+import { articles } from '@/data/data'
+
+interface Article {
+  id: number
+  title: string
+  date: string
+  description: string
+  img: string
+}
 
 export default function SearchBar() {
-  const [query, setQuery] = useState('')
-  const [filteredNews, setFilteredNews] = useState([])
+  const [query, setQuery] = useState<string>('')
+  const [filteredNews, setFilteredNews] = useState<Article[]>([])
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   const handleSearch = () => {
-    const results = news.filter((newsItem) =>
-      newsItem.title.toLowerCase().includes(query.toLowerCase()),
+    const results = articles.filter((articlesItem) =>
+      articlesItem.title.toLowerCase().includes(query.toLowerCase()),
     )
     setFilteredNews(results)
   }
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setFilteredNews([])
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  const highlightMatch = (text: string, query: string): string => {
+    if (!query) return text
+    const regex = new RegExp(`(${query})`, 'gi')
+    return text.replace(regex, '<strong>$1</strong>')
+  }
+
   return (
     <div
-      className={`flex items-center justify-center p-3 ${darkerGrotesque.variable}`}
+      className={`relative flex w-full flex-col items-center ${darkerGrotesque.variable}`}
     >
-      <div className='relative z-20 w-full rounded-[15px] bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.1)] md:w-[95%]'>
+      <div className='relative z-20 w-full rounded-[15px] bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.1)] md:max-w-[1800px]'>
         <input
           type='text'
           value={query}
@@ -28,7 +58,7 @@ export default function SearchBar() {
             handleSearch()
           }}
           placeholder='Busca un artículo...'
-          className='w-full rounded-lg border border-white px-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-blue-500 md:text-[22px]'
+          className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#9878c8] md:text-[22px]'
         />
         <button
           onClick={handleSearch}
@@ -37,14 +67,25 @@ export default function SearchBar() {
           <FiSearch size={20} />
         </button>
       </div>
-      {/* Desplegable de resultados */}
+
       {filteredNews.length > 0 && (
-        <div className='absolute z-10 mt-52 max-h-40 w-[94%] overflow-y-hidden rounded-lg bg-white shadow-md'>
-          {filteredNews.map((newsItem) => (
-            <div key={newsItem.id} className='border-b border-gray-200 p-2'>
-              <p className='text-sm font-darker-grotesque-600 text-[#63789E]'>
-                {newsItem.title}
-              </p>
+        <div
+          ref={dropdownRef}
+          className='absolute top-full z-10 w-full overflow-y-auto rounded-b-xl bg-white shadow-md md:max-w-[1800px]'
+        >
+          {filteredNews.map((articlesItem) => (
+            <div
+              key={articlesItem.id}
+              className='group relative flex items-center border-gray-200 p-2 hover:bg-[#FFEAE6]'
+            >
+              <div className='absolute left-0 top-0 h-full w-1 bg-[#FE5833] opacity-0 group-hover:opacity-100'></div>
+
+              <p
+                className='z-10 ml-2 text-sm font-darker-grotesque-600 text-[#63789E]'
+                dangerouslySetInnerHTML={{
+                  __html: highlightMatch(articlesItem.title, query),
+                }}
+              />
             </div>
           ))}
         </div>
