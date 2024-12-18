@@ -37,6 +37,12 @@ export interface Review {
   rating: number
   description: string
 }
+export interface History {
+  id: number
+  title: string
+  image: string
+  description: string[]
+}
 
 export const sponsors: Sponsor[] = [
   {
@@ -347,6 +353,38 @@ export const reviews: Review[] = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, explicabo eveniet enim illum nisi quis ad assumenda. Deserunt, itaque. Necessitatibus amet sapiente',
     profile: 'https://i.pravatar.cc/200',
     flag: 'https://flagcdn.com/cl.svg',
+  },
+]
+
+export const history: History[] = [
+  {
+    id: 1,
+    title: 'Misión',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633297.svg?alt=media&token=e34f1b6b-0723-4bff-8640-7202192e1475',
+    description: [
+      'Difundir el conocimiento de agilidad: A través de eventos, talleres, webinars, publicaciones y otros recursos.',
+      'Fomentar la colaboración y el intercambio: A través de experiencias entre profesionales ágiles de Latinoamérica.',
+      'Promover la adopción de buenas prácticas de agilidad: Desde la experiencia generando una transformación cultural ágil en las organizaciones.',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Visión',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633229.svg?alt=media&token=885ec74a-0057-4779-af1d-d18fe6fb4488',
+    description: [
+      'Ser la comunidad líder en Agilidad en América Latina, reconocida por su impacto transformador, generación de valor y creación de conexiones significativas entre sus miembros, impulsando la innovación y el crecimiento en las organizaviones de la región.',
+    ],
+  },
+  {
+    id: 3,
+    title: 'Propósito',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633230.svg?alt=media&token=59985452-bfb7-4c69-b9f9-b841fdf553bd',
+    description: [
+      'Inspirar y empoderar a personas y organizaciones para alcanzar su máximo potencial a través de la Agilidad, promoviendo una cultura de aprendizaje continuo, colaboración y transformación sostenible en América Latina. Además, impactamos en el ser, fomentando el crecimiento personal y profesional.',
+    ],
   },
 ]
 

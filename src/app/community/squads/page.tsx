@@ -8,10 +8,12 @@ import BooknoteImg from '@/assets/booknoteImg'
 import MountainImg from '@/assets/mountainImg'
 import ProfileSection from '@/app/community/components/profileSection'
 import JoinCommunity from '@/app/community/components/joinSection'
+import Breadcrumbs from '@/app/community/components/breadcrumbs'
 
 export default function Squads() {
   return (
     <>
+      <Breadcrumbs rootName='Comunidad' />
       <HeroSection
         description='Somos una organización sin fines de lucro de la agilidad. Nuestro equipo multidisciplinario conformado por principiantes profesionales y expertos ágiles, donde fortalecemos y potenciamos conocimientos, experiencias, proyectos e iniciativas en todos los campos, a través de un proceso de transformación organizacional.'
         image={
@@ -32,7 +34,7 @@ export default function Squads() {
         description='Diseñar y desarrollar cursos, talleres, promover la formación de líderes ágiles y Fomentar el aprendizaje continuo.'
         descriptionMiddle='Ser el líder en la generación de experiencias en formación y capacitación de alta calidad para la comunidad en Latinoamérica, impulsando el conocimiento y la adopción de prácticas ágiles.'
         image={<BooknoteImg className='h-[268px] w-[393px]' />}
-        linkTitle='Squad Tecnología'
+        linkTitle='Squad Educación'
         title='¿Qué hacemos?'
       />
       <ProfileSection />
@@ -40,7 +42,7 @@ export default function Squads() {
         description='Organizar eventos de alta calidad. Desarrollar estrategias de comunicación efectivas, atraer nuevos miembros y fortalecer la marca.'
         descriptionMiddle='Ser el motor que impulsa la  visibilidad, el crecimiento y el compromiso de la comunidad a través de la organización de eventos y estrategias de comunicación efectivas.'
         image={<MountainImg className='h-[268px] w-[393px]' />}
-        linkTitle='Squad Tecnología'
+        linkTitle='Squad Eventos'
         title='¿Qué hacemos?'
       />
       <ProfileSection />
