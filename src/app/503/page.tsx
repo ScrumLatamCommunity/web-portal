@@ -27,7 +27,7 @@ const ErrorPage503: React.FC = () => {
   const { image, title, description, message } = errorEvent
 
   return (
-    <section className='flex w-[90%] flex-col items-center bg-gradient-to-tr from-red-300 to-transparent pb-0 pl-14 pr-12 pt-10 md:max-w-screen-2xl md:pr-0 md:pt-24'>
+    <section className='flex flex-col items-center bg-gradient-to-tr from-red-300 to-transparent pb-0 pl-14 pr-12 pt-10 md:w-full md:max-w-screen-2xl md:pr-0 md:pt-24'>
       <div className='relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center md:flex-row'>
         <div className='flex flex-col items-start justify-center md:w-1/2 md:pl-20 md:pr-0'>
           <div className='max-w-[500px] md:pr-2'>
