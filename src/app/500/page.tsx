@@ -29,11 +29,11 @@ const ErrorPage500: React.FC = () => {
   const { image, title, description, message } = errorEvent
 
   return (
-    <section className='flex min-h-screen flex-col items-center bg-gradient-to-tr from-red-300 to-transparent pb-0 pl-14 pr-12 pt-10 md:pt-24'>
+    <section className='flex w-[90%] flex-col items-center bg-gradient-to-tr from-red-300 to-transparent pb-0 pl-14 pr-12 pt-10 md:max-w-screen-2xl md:pr-0 md:pt-24'>
       <div className='relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center md:flex-row'>
-        <div className='flex flex-col items-start justify-center md:w-1/2 md:pl-20 md:pr-0'>
+        <div className='flex flex-col items-start justify-center md:w-1/2 md:pr-0'>
           <div className='max-w-[500px] md:pr-2'>
-            <h1 className='md:text-64px font-darker-grotesque text-10 font-bold text-[#082965] xl:text-19'>
+            <h1 className='md:text-64px font-darker-grotesque text-10 font-bold text-[#082965] md:pb-4 md:leading-tight xl:text-19'>
               {Array.isArray(title) &&
                 title.map((line, index) => (
                   <span key={index}>
@@ -59,7 +59,7 @@ const ErrorPage500: React.FC = () => {
           </div>
         </div>
         <img
-          className='aspect-[693/662] w-[100%] translate-x-0 translate-y-0 pb-0 md:mt-20 md:w-[50%] md:-translate-x-10 md:-translate-y-8'
+          className='aspect-[693/662] w-[100%] translate-x-0 translate-y-0 pb-0 md:ml-12 md:mt-20 md:w-[50%] md:-translate-x-10 md:-translate-y-8'
           src={image}
           alt='Error 500'
         />
