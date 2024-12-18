@@ -4,6 +4,7 @@ import {
   DiscoverCommunity,
   FlagsCommunity,
   CounterToCommunity,
+  News,
   DataComunity,
   JoinOurCommunity,
   Sponsors,
@@ -19,6 +20,7 @@ export default function Home() {
       <FlagsCommunity />
       <DataComunity />
       <CounterToCommunity />
+      <News />
       <Reviews />
       <Sponsors />
       <DiscoverCommunity />

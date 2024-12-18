@@ -1,4 +1,6 @@
 'use client'
+
+import Link from 'next/link'
 import { BorderLinearProgress } from '@/app/home/components/progressBar'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import { useState } from 'react'
@@ -135,12 +137,12 @@ export default function Travel() {
           consectetur.
         </p>
         {checkedA && checkedB ? (
-          <a
+          <Link
             className='mb-4 rounded-md bg-[#FD3600] p-2 font-bold text-white'
             href='/'
           >
             Siguiente módulo
-          </a>
+          </Link>
         ) : (
           <div className='mt-4'>
             <label>
