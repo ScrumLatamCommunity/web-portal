@@ -8,7 +8,7 @@ import BlogCard from './components/blog-card'
 export default function Blogs() {
   return (
     <main
-      className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-screen pb-12`}
+      className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-screen overflow-hidden pb-12`}
     >
       <div className='absolute -right-20 top-20 -z-[10] h-[400px] w-[400px] rounded-full bg-red-300 opacity-20 blur-3xl md:-top-20 md:left-4'></div>
       <div className='absolute -left-20 top-96 -z-[10] h-[400px] w-[400px] rounded-full bg-blue-300 opacity-30 blur-3xl md:-top-16 md:left-[1500px]'></div>

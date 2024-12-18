@@ -35,7 +35,7 @@ export default function BlogCard({ title, date, description, img }: BlogI) {
           <div
             className={`${darkerGrotesque.variable} ${karla.variable} font-darker-grotesque`}
           >
-            <button className='mb-6 ml-5 mt-6 h-[38px] w-[40%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white md:w-[15%]'>
+            <button className='mb-6 ml-5 mt-6 h-[38px] w-[60%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white md:w-[15%]'>
               Seguí leyendo
             </button>
           </div>

@@ -32,7 +32,7 @@ export default function ArticlesCard({
           <p className='w-full pr-4 pt-3 text-right text-[14px] font-darker-grotesque-400 text-[#061D48]'>
             {date}
           </p>
-          <h1 className='w-[80%] pl-5 pt-1 text-left text-[23px] font-darker-grotesque-700 leading-[27.2px] text-[#FE2E00] md:text-[28px]'>
+          <h1 className='w-[80%] pl-5 pt-1 text-left text-[21px] font-darker-grotesque-700 leading-[27.2px] text-[#FE2E00] md:text-[28px]'>
             {title}
           </h1>
         </div>
@@ -43,7 +43,7 @@ export default function ArticlesCard({
           </p>
         </div>
         <div className='font-darker-grotesque'>
-          <button className='mb-6 ml-5 mt-2 h-[38px] w-[40%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'>
+          <button className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'>
             Seguí leyendo
           </button>
         </div>

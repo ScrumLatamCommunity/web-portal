@@ -38,7 +38,7 @@ export default function NewsCard({ title, date, description, img }: NewsI) {
           </p>
         </div>
         <div className='font-darker-grotesque'>
-          <button className='mb-6 ml-5 mt-2 h-[38px] w-[40%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'>
+          <button className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'>
             Seguí leyendo
           </button>
         </div>
