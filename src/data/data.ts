@@ -44,6 +44,13 @@ export interface History {
   description: string[]
 }
 
+export interface ValuesCulture {
+  id: number
+  title: string
+  image: string
+  description: string[]
+}
+
 export const sponsors: Sponsor[] = [
   {
     id: 1,
@@ -384,6 +391,37 @@ export const history: History[] = [
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FGroup%20633230.svg?alt=media&token=59985452-bfb7-4c69-b9f9-b841fdf553bd',
     description: [
       'Inspirar y empoderar a personas y organizaciones para alcanzar su máximo potencial a través de la Agilidad, promoviendo una cultura de aprendizaje continuo, colaboración y transformación sostenible en América Latina. Además, impactamos en el ser, fomentando el crecimiento personal y profesional.',
+    ],
+  },
+]
+
+export const valuesCulture: ValuesCulture[] = [
+  {
+    id: 1,
+    title: 'Nuestros Valores',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FValuesCulture%2FGroup%20633723.svg?alt=media&token=eee11f6f-091c-462a-bd95-9652caed035e',
+    description: [
+      'Colaboración: Fomentar un entorno donde la comunidad trabaje junta hacia metas compartidas.',
+      'Innovación: Adoptar nuevas ideas y prácticas que impulsen la evolución ágil.',
+      'Inclusión: Crear un espacio donde todas las voces sean escuchadas y respetadas.',
+      'Aprendizaje Contínuo: Promover el crecimiento profesional y personal de los miembros.',
+      'Transparencia: Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Compromiso: Demostramos dedicación, perseverancia hacia los objetivos como comunidad.',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Nuestra Cultura',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FValuesCulture%2FEstrella%20con%20fondo.png?alt=media&token=a3396805-0b3b-4bf2-849a-0a32de2973ea',
+    description: [
+      'Diversidad y Apertura: Atraer a personas de diferentes culturas y disciplinas, y valorar sus perspectivas únicas.',
+      'Empoderamiento: Proveer herramientas y apoyo para que los miembros alcancen su máximo potencial.',
+      'Sostenibilidad: Diseñar prácticas y eventos que sean sostenibles a largo plazo.',
+      'Comunicación Activa: Usar canales efectivos para que todos estén informados y comprometidos.',
+      'Celebración de Logros: Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Innovación: Fomentar un entorno donde la innovación y la creatividad sean incentivadas y valoradas.',
     ],
   },
 ]

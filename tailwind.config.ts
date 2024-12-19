@@ -128,8 +128,20 @@ const config: Config = {
       width: {
         widthFlags: 'clamp(47px, 15vw, 72px)',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            'ul > li::marker': {
+              color: '#FE5833',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [tailwindScrollbar({ nocompatible: true })],
+  plugins: [
+    tailwindScrollbar({ nocompatible: true }),
+    require('@tailwindcss/typography'),
+  ],
 }
 export default config
