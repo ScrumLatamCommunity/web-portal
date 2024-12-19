@@ -64,7 +64,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
           }}
           onFocus={() => setIsDropdownVisible(localQuery.length > 0)}
           placeholder='Busca un blog...'
-          className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#9878c8] md:text-[22px]'
+          className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#FE5833] md:text-[22px]'
         />
         <button className='absolute right-3 top-1/2 -translate-y-1/2 text-[#FE2E00] hover:text-blue-500 md:scale-150 md:pr-1'>
           <FiSearch size={20} />
