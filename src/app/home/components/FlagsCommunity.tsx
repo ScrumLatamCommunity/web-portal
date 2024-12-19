@@ -18,13 +18,13 @@ export const FlagsCommunity = () => {
 
   return (
     <div className='relative w-screen bg-black-5 py-6 shadow-shadowFlags md:m-auto md:max-w-screen-2xl md:py-[2.5%] md:shadow-shadowFlagsDesktop'>
-      <div className='flex min-h-[5vh] overflow-hidden sm:h-12 md:bg-inherit'>
-        <div className='flex w-full animate-scrollLeft items-center justify-center gap-5 lg:gap-20'>
+      <div className='flex overflow-hidden sm:h-12 md:min-h-[5vh] md:bg-inherit'>
+        <div className='flex w-full animate-scrollLeft items-center justify-center gap-6 lg:gap-20'>
           {duplicateFlags.map((flag, index) => (
             <img
               alt={flag.name}
               aria-hidden='true'
-              className='h-full w-widthFlags border border-black-13 object-cover'
+              className='h-[34px] w-[54px] border border-black-13 object-cover md:h-full md:w-widthFlags'
               key={index}
               src={flag.flag}
             />
