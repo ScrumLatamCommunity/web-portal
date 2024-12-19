@@ -6,6 +6,14 @@ import ArticlesCard from './components/article-card'
 import { articles } from '@/data/data'
 
 export default function Articles() {
+  const [query, setQuery] = React.useState<string>('')
+
+  const filteredArticles = query
+    ? articles.filter((article) =>
+        article.title.toLowerCase().includes(query.toLowerCase()),
+      )
+    : articles
+
   return (
     <main
       className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-full overflow-hidden pb-12`}
@@ -22,17 +30,17 @@ export default function Articles() {
       </header>
 
       <section className='my-4 w-full px-3 md:mb-12'>
-        <SearchBar />
+        <SearchBar setQuery={setQuery} />
       </section>
 
       <section className='z-[1] mx-auto grid max-w-screen-2xl grid-cols-1 place-items-center gap-1 md:grid-cols-3'>
-        {articles.map((articles) => (
+        {filteredArticles.map((article) => (
           <ArticlesCard
-            key={articles.id}
-            title={articles.title}
-            date={articles.date}
-            description={articles.description}
-            img={articles.img}
+            key={article.id}
+            title={article.title}
+            date={article.date}
+            description={article.description}
+            img={article.img}
           />
         ))}
       </section>

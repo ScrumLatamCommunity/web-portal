@@ -6,6 +6,13 @@ import { blogs } from '@/data/data'
 import BlogCard from './components/blog-card'
 
 export default function Blogs() {
+  const [query, setQuery] = React.useState<string>('')
+
+  const filteredBlogs = query
+    ? blogs.filter((blogs) =>
+        blogs.title.toLowerCase().includes(query.toLowerCase()),
+      )
+    : blogs
   return (
     <main
       className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-screen overflow-hidden pb-12`}
@@ -20,10 +27,10 @@ export default function Blogs() {
         </h1>
       </div>
       <div className='my-4 w-full px-3 md:mb-12'>
-        <SearchBar />
+        <SearchBar setQuery={setQuery} />
       </div>
       <div className='z-[1] flex flex-col items-center'>
-        {blogs.map((blog) => (
+        {filteredBlogs.map((blog) => (
           <BlogCard
             key={blog.id}
             title={blog.title}

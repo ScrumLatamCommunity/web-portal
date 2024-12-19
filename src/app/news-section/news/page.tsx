@@ -6,6 +6,13 @@ import NewsCard from './components/news-card'
 import { news } from '@/data/data'
 
 export default function News() {
+  const [query, setQuery] = React.useState<string>('')
+
+  const filteredNews = query
+    ? news.filter((news) =>
+        news.title.toLowerCase().includes(query.toLowerCase()),
+      )
+    : news
   return (
     <main
       className={`${darkerGrotesque.variable} ${karla.variable} relative z-10 w-full items-center overflow-hidden pb-12`}
@@ -22,11 +29,11 @@ export default function News() {
       </header>
 
       <section className='my-4 w-full px-3 md:mb-12'>
-        <SearchBar />
+        <SearchBar setQuery={setQuery} />
       </section>
 
       <section className='z-[1] mx-auto grid max-w-screen-2xl grid-cols-1 place-items-center gap-1 md:grid-cols-3'>
-        {news.map((news) => (
+        {filteredNews.map((news) => (
           <NewsCard
             key={news.id}
             title={news.title}
