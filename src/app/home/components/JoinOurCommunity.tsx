@@ -22,11 +22,12 @@ export const JoinOurCommunity = () => {
             width={550}
           />
         </div>
+
         <div className='m-0 flex flex-col items-center gap-[2vw] bg-transparent pb-10 pt-[2rem] md:items-start md:pl-[4rem]'>
-          <h3 className='m-0 text-center font-darker-grotesque text-[6dvw] font-extrabold leading-8 text-blue-6 md:flex md:flex-col md:text-start lg:text-[5dvw]'>
+          <h3 className='m-0 -mb-4 text-center font-darker-grotesque text-[6dvw] font-extrabold text-blue-6 md:mb-0 md:flex md:flex-col md:text-start md:leading-[65px] lg:text-[82px]'>
             ¿POR QUÉ UNIRSE
           </h3>
-          <p className='m-0 text-center font-darker-grotesque text-[6dvw] font-extrabold leading-8 text-red-400 md:flex md:flex-col md:text-start lg:text-[5dvw]'>
+          <p className='m-0 text-center font-darker-grotesque text-[6dvw] font-extrabold text-red-400 md:flex md:flex-col md:text-start md:leading-8 lg:text-[5dvw]'>
             A NOSOTROS?
           </p>
           <p className='w-[80%] text-center font-karla text-[3.5dvw] font-medium leading-3 text-blue-6 md:flex md:text-start md:text-12 md:leading-9 lg:pt-10'>
