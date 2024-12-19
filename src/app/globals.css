@@ -55,4 +55,31 @@ body {
   .event-swiper-container .swiper-button-next::after {
     font-size: 1.5rem;
   }
+
+  /* Estilos específicos para las flechas de navegación en ProfileSection */
+  .profile-swiper-container .swiper-button-prev,
+  .profile-swiper-container .swiper-button-next {
+    background-color: #f0f0f0; /* Fondo blanco */
+    color: #345081; /* Color de la flecha */
+    height: 3rem; /* Ajusta el tamaño del botón */
+    width: 3rem; /* Ajusta el tamaño del botón */
+    opacity: 1; /* Visibilidad completa */
+    border-radius: 50%; /* Hace el botón circular */
+    display: flex; /* Centra el contenido dentro del círculo */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+    transition: transform 0.3s ease; /* Animación suave */
+  }
+
+  .profile-swiper-container .swiper-button-prev:hover,
+  .profile-swiper-container .swiper-button-next:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+  }
+
+  .profile-swiper-container .swiper-button-prev::after,
+  .profile-swiper-container .swiper-button-next::after {
+    font-size: 1.5rem; /* Tamaño del ícono de flecha */
+    color: #345081; /* Asegura el color del ícono */
+  }
 }
