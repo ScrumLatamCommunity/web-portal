@@ -15,8 +15,9 @@ export const DesktopTimeline = () => {
       })
     }
   }
+
   return (
-    <div className='relative flex h-[770px] w-full items-center justify-center overflow-hidden bg-[#F0F0F0]'>
+    <div className='mx-auto flex h-auto max-w-screen-2xl items-center justify-start overflow-hidden bg-[#F0F0F0]'>
       <div className='relative z-10 flex w-[3%] items-center justify-center'>
         <button
           onClick={() => scrollTimeline('left')}
@@ -25,27 +26,37 @@ export const DesktopTimeline = () => {
           <ChevronLeft className='cursor-pointer' />
         </button>
       </div>
-      <div className='relative flex w-[94%] flex-col overflow-hidden bg-[#F0F0F0]'>
-        <div className='flex justify-center'>
-          <h1 className='font-darker-grotesque text-6 font-black text-blue-6'>
+      <div className='relative flex flex-1 flex-col overflow-hidden bg-[#F0F0F0]'>
+        <div className='mb-14 flex justify-center'>
+          <h1 className='font-darker-grotesque text-17 font-black text-[#082965]'>
             Logros de la comunidad
           </h1>
         </div>
         <div
-          className='scrollbar-hide relative flex flex-col overflow-x-scroll whitespace-nowrap'
+          className='scrollbar-hide relative flex overflow-x-hidden whitespace-nowrap'
           ref={timelineRef}
         >
-          {/* <div className="flex relative object-left h-16">
-                        <h2 className='text-18 font-bold text-[#061D48] absolute bottom-1 left-[100px]'>2020</h2>
-                        <h2 className='text-18 font-bold text-[#061D48] absolute bottom-1 left-[430px]'>2021</h2>
-                        <h2 className='text-18 font-bold text-[#061D48] absolute bottom-1 left-[750px]'>2022</h2>
-                        <h2 className='text-18 font-bold text-[#061D48] absolute bottom-1 left-[1050px]'>2023</h2>
-                        <h2 className='text-18 font-bold text-[#061D48] absolute bottom-1 left-[1330px]'>2024</h2>
-                    </div> */}
-          <div className='flex'>
+          <div className='relative mb-10 flex h-16'>
+            <h2 className='absolute bottom-1 left-[110px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+              2020
+            </h2>
+            <h2 className='absolute bottom-1 left-[480px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+              2021
+            </h2>
+            <h2 className='absolute bottom-1 left-[830px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+              2022
+            </h2>
+            <h2 className='absolute bottom-1 left-[1160px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+              2023
+            </h2>
+            <h2 className='absolute bottom-1 left-[1470px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+              2024
+            </h2>
+          </div>
+          <div className='mb-20 flex'>
             <img
               alt='timeline'
-              className='flex h-[131px] w-[2000px] object-cover object-left'
+              className='mt-14 h-[131px] min-w-[1700px] object-left'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FTimeline%2FLinea%20de%20tiempo%20desktop.png?alt=media&token=fec439d7-d9c1-40d8-be90-df27a3626dd7'
             />
           </div>
