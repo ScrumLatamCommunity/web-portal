@@ -1,3 +1,4 @@
+import Founder from './components/Founder'
 import {
   Intro,
   MisionVision,
@@ -12,6 +13,7 @@ export default function History() {
       <MisionVision />
       <MobileValuesCulture />
       <Timeline />
+      <Founder />
     </main>
   )
 }
