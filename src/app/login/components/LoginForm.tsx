@@ -19,41 +19,41 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
     <form onSubmit={handleSubmit} className='space-y-4'>
       <div>
         <label
-          htmlFor='email'
           className='block text-sm font-medium text-gray-700'
+          htmlFor='email'
         >
           Correo Electrónico
         </label>
         <input
-          type='email'
+          className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
           id='email'
-          value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder='tucorreo@ejemplo.com'
           required
-          className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
+          type='email'
+          value={email}
         />
       </div>
       <div>
         <label
-          htmlFor='password'
           className='block text-sm font-medium text-gray-700'
+          htmlFor='password'
         >
           Contraseña
         </label>
         <input
-          type='password'
+          className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
           id='password'
-          value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='••••••••'
           required
-          className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
+          type='password'
+          value={password}
         />
       </div>
       <button
-        type='submit'
         className='w-full rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200'
+        type='submit'
       >
         Iniciar Sesión
       </button>

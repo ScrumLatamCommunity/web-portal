@@ -18,13 +18,13 @@ export const Navbar: React.FC = () => {
     <header className='font-DM sticky top-0 z-50 min-w-[370px] border-b-2 border-gray-200 bg-black-3'>
       <div className='mx-auto min-w-[360px] max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='scroll flex justify-between lg:justify-start'>
-          <a href='#' className='flex flex-row justify-start'>
+          <Link href='/' className='flex flex-row justify-start'>
             <img
               alt='logo'
               className='h-12 w-auto min-w-[90px]'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
             />
-          </a>
+          </Link>
 
           {/* Enlace de navegación visible en pantallas pequeñas */}
           {(screen === 'sm' || screen === 'md') && (
