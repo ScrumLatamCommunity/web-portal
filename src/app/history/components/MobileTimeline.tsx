@@ -10,13 +10,13 @@ export const MobileTimeline = () => {
       <div className='hidden lg:flex'>
         <DesktopTimeline />
       </div>
-      <div className='relative flex h-[1485px] flex-col lg:hidden'>
+      <div className='relative flex h-[1485px] w-full flex-col lg:hidden'>
         <div className='flex justify-center bg-[#F0F0F0] pt-4'>
           <h1 className='font-darker-grotesque text-6 font-black text-blue-6'>
             Logros de la comunidad
           </h1>
         </div>
-        <div className='flex flex-col bg-[#F0F0F0] p-6'>
+        <div className='flex bg-[#F0F0F0] p-6'>
           <img
             alt='timeline'
             src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FTimeline%2FLinea%20de%20tiempo%20mobile.png?alt=media&token=d2a599dc-3a7e-4cd7-b3a4-e3f5535e1a7e'
