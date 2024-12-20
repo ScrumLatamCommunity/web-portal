@@ -82,8 +82,8 @@ export const Reviews: React.FC = () => {
                 <div
                   className={`flex flex-col gap-4 rounded-[5%] bg-black-2 px-6 py-8 text-blue-600 shadow-lg transition-all duration-300 ${
                     expandedReviewId === review.id
-                      ? 'z-10 h-[450px] w-[350px] scale-105 gap-5 bg-black-1 text-blue-100'
-                      : 'w-[300px]'
+                      ? 'z-10 h-auto w-[350px] scale-105 gap-5 bg-black-1 text-blue-100'
+                      : 'h-[300px] w-[300px]'
                   } ${expandedReviewId !== null && expandedReviewId !== review.id ? 'opacity-50' : 'opacity-100'} ${isMobile ? 'w-full' : ''}`}
                   key={review.id}
                   onMouseEnter={() => setHoveredCard(review.id)}
@@ -124,7 +124,7 @@ export const Reviews: React.FC = () => {
                         </button>
                       )}
                   </div>
-                  <div className='flex justify-center gap-1 text-red-400'>
+                  <div className='flex justify-start gap-1 text-red-400'>
                     {[...Array(review.rating ?? 0)].map((_, index) => (
                       <Star key={index} className='fill-current' />
                     ))}
