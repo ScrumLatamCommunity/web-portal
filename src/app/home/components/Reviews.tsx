@@ -45,17 +45,20 @@ export const Reviews: React.FC = () => {
   const nextReviews = () => {
     if (currentIndex + itemsPerPage < reviews.length) {
       setCurrentIndex(currentIndex + itemsPerPage)
+      setExpandedReviewId(null) // Cerrar el comentario extendido
     }
   }
 
   const prevReviews = () => {
     if (currentIndex - itemsPerPage >= 0) {
       setCurrentIndex(currentIndex - itemsPerPage)
+      setExpandedReviewId(null) // Cerrar el comentario extendido
     }
   }
 
   const handlePageChange = (index: number) => {
     setCurrentIndex(index)
+    setExpandedReviewId(null) // Cerrar el comentario extendido al cambiar de página
   }
 
   const toggleReadMore = (reviewId: number) => {
@@ -66,24 +69,24 @@ export const Reviews: React.FC = () => {
     <div
       className={`flex flex-col gap-7 ${expandedReviewId !== null ? 'bg-gray-200' : ''} ${expandedReviewId !== null && isMobile ? 'bg-black-1' : ''}`}
     >
-      <span className='pb-10 pt-10 text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
+      <span className='pb:5 pt-5 text-center font-darker-grotesque text-[24px] font-extrabold text-blue-6 sm:text-3xl md:pb-10 md:pt-10 md:text-5xl'>
         ¿Qué opina nuestra comunidad?
       </span>
       <div className='flex w-full items-center justify-center'>
-        <div className='flex items-center justify-center gap-4'>
+        <div className='flex items-center justify-center md:gap-6'>
           <ChevronLeft
-            className='h-6 w-6 cursor-pointer text-red-400'
+            className='h-8 w-8 cursor-pointer text-red-400'
             onClick={prevReviews}
           />
-          <div className='flex min-w-[300px] flex-wrap justify-center gap-8'>
+          <div className='flex w-full min-w-[300px] flex-wrap justify-center gap-8 md:min-w-[320px]'>
             {reviews
               .slice(currentIndex, currentIndex + itemsPerPage)
               .map((review: Review) => (
                 <div
-                  className={`flex flex-col gap-4 rounded-[5%] bg-black-2 px-6 py-8 text-blue-600 shadow-lg transition-all duration-300 ${
+                  className={`flex flex-col gap-4 rounded-[5%] bg-black-2 px-4 py-8 text-blue-600 shadow-lg transition-all duration-300 md:px-6 ${
                     expandedReviewId === review.id
-                      ? 'z-10 h-auto w-[350px] scale-105 gap-5 bg-black-1 text-blue-100'
-                      : 'h-[300px] w-[300px]'
+                      ? 'z-10 h-auto scale-105 gap-5 bg-black-1 text-blue-100 md:w-[350px]'
+                      : 'md:h-[320px] md:w-[320px]'
                   } ${expandedReviewId !== null && expandedReviewId !== review.id ? 'opacity-50' : 'opacity-100'} ${isMobile ? 'w-full' : ''}`}
                   key={review.id}
                   onMouseEnter={() => setHoveredCard(review.id)}
@@ -148,7 +151,7 @@ export const Reviews: React.FC = () => {
               ))}
           </div>
           <ChevronRight
-            className='h-6 w-6 cursor-pointer text-red-400'
+            className='h-8 w-8 cursor-pointer text-red-400'
             onClick={nextReviews}
           />
         </div>
