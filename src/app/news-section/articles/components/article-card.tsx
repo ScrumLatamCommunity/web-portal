@@ -8,6 +8,7 @@ interface ArticlesI {
   date: string
   description: string
   img: string
+  onReadMore: () => void
 }
 
 export default function ArticlesCard({
@@ -15,6 +16,7 @@ export default function ArticlesCard({
   date,
   description,
   img,
+  onReadMore,
 }: ArticlesI) {
   return (
     <div
@@ -43,7 +45,10 @@ export default function ArticlesCard({
           </p>
         </div>
         <div className='font-darker-grotesque'>
-          <button className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'>
+          <button
+            className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'
+            onClick={onReadMore}
+          >
             Seguí leyendo
           </button>
         </div>

@@ -8,9 +8,16 @@ interface BlogI {
   date: string
   description: string
   img: string
+  onReadMore: () => void
 }
 
-export default function BlogCard({ title, date, description, img }: BlogI) {
+export default function BlogCard({
+  title,
+  date,
+  description,
+  img,
+  onReadMore,
+}: BlogI) {
   return (
     <div
       className={`${darkerGrotesque.variable} ${karla.variable} relative z-[1] w-screen px-6 font-darker-grotesque md:w-[85%]`}
@@ -35,17 +42,20 @@ export default function BlogCard({ title, date, description, img }: BlogI) {
           <div
             className={`${darkerGrotesque.variable} ${karla.variable} font-darker-grotesque`}
           >
-            <button className='mb-6 ml-5 mt-6 h-[38px] w-[60%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white md:w-[15%]'>
+            <button
+              className='mb-6 ml-5 mt-6 h-[38px] w-[60%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white md:w-[15%]'
+              onClick={onReadMore}
+            >
               Seguí leyendo
             </button>
           </div>
         </div>
         <Image
-          src={img}
           alt={'meeting'}
           className='ml-2 mr-6 mt-10 h-[50px] w-[71px] md:ml-0 md:mr-0 md:mt-0 md:h-auto md:max-h-[260px] md:w-screen md:max-w-[28%] md:rounded-r-xl'
-          width={1800}
           height={1800}
+          src={img}
+          width={1800}
         />
       </div>
     </div>

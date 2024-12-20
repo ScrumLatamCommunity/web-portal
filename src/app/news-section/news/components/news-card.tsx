@@ -8,9 +8,16 @@ interface NewsI {
   date: string
   description: string
   img: string
+  onReadMore: () => void
 }
 
-export default function NewsCard({ title, date, description, img }: NewsI) {
+export default function NewsCard({
+  title,
+  date,
+  description,
+  img,
+  onReadMore,
+}: NewsI) {
   return (
     <div
       className={`${darkerGrotesque.variable} ${karla.variable} relative z-[1] items-center px-10 md:px-0 md:pb-3`}
@@ -18,11 +25,11 @@ export default function NewsCard({ title, date, description, img }: NewsI) {
       <div className='my-4 flex flex-col rounded-[15px] bg-white font-darker-grotesque shadow-[0px_8px_15px_rgba(0,0,0,0.2)] md:h-[526px] md:w-[421px]'>
         <div>
           <Image
-            src={img}
             alt={'meeting'}
             className='h-[200px] rounded-t-[15px] md:h-[231px]'
-            width={1600}
             height={1600}
+            src={img}
+            width={1600}
           />
           <p className='w-full pr-4 pt-3 text-right text-[14px] font-darker-grotesque-400 text-[#061D48]'>
             {date}
@@ -38,7 +45,10 @@ export default function NewsCard({ title, date, description, img }: NewsI) {
           </p>
         </div>
         <div className='font-darker-grotesque'>
-          <button className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'>
+          <button
+            className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'
+            onClick={onReadMore}
+          >
             Seguí leyendo
           </button>
         </div>

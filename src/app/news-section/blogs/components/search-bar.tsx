@@ -54,9 +54,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
     >
       <div className='relative z-20 w-full rounded-[15px] bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.1)] md:max-w-[1800px]'>
         <input
-          ref={inputRef}
-          type='text'
-          value={localQuery}
+          className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#FE5833] md:text-[22px]'
           onChange={(e) => {
             const query = e.target.value
             setLocalQuery(query)
@@ -64,7 +62,9 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
           }}
           onFocus={() => setIsDropdownVisible(localQuery.length > 0)}
           placeholder='Busca un blog...'
-          className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#FE5833] md:text-[22px]'
+          ref={inputRef}
+          type='text'
+          value={localQuery}
         />
         <button className='absolute right-3 top-1/2 -translate-y-1/2 text-[#FE2E00] hover:text-blue-500 md:scale-150 md:pr-1'>
           <FiSearch size={20} />
@@ -82,8 +82,8 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
             )
             .map((blogsItem) => (
               <div
-                key={blogsItem.id}
                 className='group relative flex items-center border-gray-200 p-2 hover:bg-[#FFEAE6]'
+                key={blogsItem.id}
                 onClick={() => handleSelect(blogsItem.title)}
               >
                 <div className='absolute left-0 top-0 h-full w-1 bg-[#FE5833] opacity-0 group-hover:opacity-100'></div>
