@@ -20,9 +20,9 @@ export default function ArticlesCard({
 }: ArticlesI) {
   return (
     <div
-      className={`${darkerGrotesque.variable} ${karla.variable} relative z-[1] items-center px-10 md:px-0 md:pb-3`}
+      className={`${darkerGrotesque.variable} ${karla.variable} relative z-[1] flex items-center px-10 md:px-0 md:pb-3`}
     >
-      <div className='my-4 flex flex-col rounded-[15px] bg-white font-darker-grotesque shadow-[0px_8px_15px_rgba(0,0,0,0.2)] md:h-[526px] md:w-[421px]'>
+      <div className='my-4 flex h-full flex-col rounded-[15px] bg-white font-darker-grotesque shadow-[0px_8px_15px_rgba(0,0,0,0.2)] md:h-[526px] md:w-[421px]'>
         <div>
           <Image
             src={img}
@@ -39,12 +39,12 @@ export default function ArticlesCard({
           </h1>
         </div>
 
-        <div className='font-karla'>
-          <p className='w-[92%] px-5 py-4 text-left text-[16px] font-karla-300 leading-[18.7px] text-[#061D48] md:py-6'>
+        <div className='flex-grow font-karla'>
+          <p className='w-[92%] px-5 py-4 text-left text-[16px] font-karla-300 leading-[18.7px] text-[#061D48] md:py-2'>
             {description}
           </p>
         </div>
-        <div className='font-darker-grotesque'>
+        <div className='mt-auto flex font-darker-grotesque'>
           <button
             className='mb-6 ml-5 mt-2 h-[38px] w-[50%] rounded-[20px] bg-[#FE5833] pb-1 text-[17px] font-darker-grotesque-600 text-white'
             onClick={onReadMore}
