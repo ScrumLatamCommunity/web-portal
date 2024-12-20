@@ -301,7 +301,8 @@ export const reviews: Review[] = [
     id: 1,
     position: 'Agile consultant',
     rating: 4,
-    description: 'Muy buena página.',
+    description:
+      'Tengo dos años en la comunidad Scrum Latam. Esta comunidad ha sido clave en mi desarrollo profesional, brindándome acceso a charlas, capacitaciones y apoyo para entrevistas en roles como Scrum Master. Gracias a esto, he mejorado mi carrera y la calidad de vida de mi familia, además de disfrutar sorteos de cursos y certificaciones.',
     profile: 'https://i.pravatar.cc/200',
     flag: 'https://flagcdn.com/ar.svg',
   },
@@ -310,7 +311,8 @@ export const reviews: Review[] = [
     id: 2,
     position: 'Agile coach',
     rating: 3,
-    description: 'Excelente página, muy buen diseño, amo la modernidad',
+    description:
+      'Llevó cinco meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimientos cada día como Scrum Master y además de eso me permito interactuar y conocer  grandes personas y grandes coaches día a día.',
     profile: 'https://i.pravatar.cc/200',
     flag: 'https://flagcdn.com/ar.svg',
   },
