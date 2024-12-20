@@ -18,12 +18,10 @@ export default function Articles() {
 
   const handleReadMore = () => {
     setShowPopup(true)
-    document.body.style.overflow = 'hidden'
   }
 
   const handleClosePopup = () => {
     setShowPopup(false)
-    document.body.style.overflow = 'auto'
   }
 
   return (
