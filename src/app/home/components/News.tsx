@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { newsCommunity } from '@/data/data'
 import TargetIcon2 from '@/assets/targetIcon2'
 import FolderIcon from '@/assets/FolderIcon'
@@ -8,6 +8,7 @@ import GlobeIcon from '@/assets/GlobeIcon'
 import BookOpenIcon from '@/assets/BookOpenIcon'
 import { Pagination } from './Pagination'
 import { ChevronLeft, ChevronRight } from 'react-feather'
+import { useSwiper } from '../hooks/useSwiper'
 
 const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
   bookOpen: BookOpenIcon,
@@ -17,52 +18,21 @@ const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
 
 export const News = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const touchStartX = useRef<number | null>(null)
-  const touchEndX = useRef<number | null>(null)
+  const {
+    handlePrev,
+    handleNext,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+  } = useSwiper({
+    currentIndex,
+    setCurrentIndex,
+    totalItems: newsCommunity.length,
+  })
 
+  // Reimplementa handlePageChange
   const handlePageChange = (index: number) => {
     setCurrentIndex(index)
-  }
-
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    }
-  }
-
-  const handleNext = () => {
-    if (currentIndex < newsCommunity.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-    }
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX
-  }
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current === null || touchEndX.current === null) return
-
-    const diffX = touchStartX.current - touchEndX.current
-
-    // Detect swipe direction
-    if (Math.abs(diffX) > 50) {
-      if (diffX > 0) {
-        // Swipe left
-        handleNext()
-      } else {
-        // Swipe right
-        handlePrev()
-      }
-    }
-
-    // Reset touch values
-    touchStartX.current = null
-    touchEndX.current = null
   }
 
   useEffect(() => {
@@ -80,14 +50,14 @@ export const News = () => {
 
   return (
     <div
-      className='relative flex max-w-screen-2xl flex-col items-center pb-9'
+      className='relative mx-auto flex min-h-screen w-full max-w-screen-2xl flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       <div className='mt-8 flex flex-wrap items-center justify-center pt-12'>
         <TargetIcon2 className='mb-6 h-10 w-10 md:h-20 md:w-20' />
-        <h1 className='pb-6 text-center font-darker-grotesque text-[25px] font-extrabold text-[#082965] md:pt-10 md:text-5xl'>
+        <h1 className='pb-6 text-center font-darker-grotesque text-[25px] font-extrabold text-[#082965] md:pb-14 md:pt-10 md:text-5xl'>
           Novedades de la comunidad
         </h1>
       </div>
