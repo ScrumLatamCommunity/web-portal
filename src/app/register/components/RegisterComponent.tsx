@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 interface RegisterProps {
@@ -41,84 +42,84 @@ export const RegisterComponent: React.FC<RegisterProps> = ({ onRegister }) => {
         <form onSubmit={handleSubmit} className='space-y-4'>
           <div>
             <label
-              htmlFor='name'
               className='block text-sm font-medium text-gray-700'
+              htmlFor='name'
             >
               Nombre Completo
             </label>
             <input
-              type='text'
+              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
               id='name'
-              value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder='Tu nombre completo'
               required
-              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
+              type='text'
+              value={name}
             />
           </div>
           <div>
             <label
-              htmlFor='email'
               className='block text-sm font-medium text-gray-700'
+              htmlFor='email'
             >
               Correo Electrónico
             </label>
             <input
-              type='email'
+              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
               id='email'
-              value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder='tucorreo@ejemplo.com'
               required
-              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
+              type='email'
+              value={email}
             />
           </div>
           <div>
             <label
-              htmlFor='password'
               className='block text-sm font-medium text-gray-700'
+              htmlFor='password'
             >
               Contraseña
             </label>
             <input
-              type='password'
+              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
               id='password'
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder='••••••••'
               required
-              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
+              type='password'
+              value={password}
             />
           </div>
           <div>
             <label
-              htmlFor='confirmPassword'
               className='block text-sm font-medium text-gray-700'
+              htmlFor='confirmPassword'
             >
               Confirmar Contraseña
             </label>
             <input
-              type='password'
+              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
               id='confirmPassword'
-              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder='••••••••'
               required
-              className='mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-200'
+              type='password'
+              value={confirmPassword}
             />
           </div>
           <button
-            type='submit'
             className='w-full rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200'
+            type='submit'
           >
             Registrarse
           </button>
         </form>
         <p className='mt-4 text-center text-sm text-gray-600'>
           ¿Ya tienes una cuenta?{' '}
-          <a href='#' className='text-indigo-600 hover:underline'>
+          <Link className='text-indigo-600 hover:underline' href='/register'>
             Inicia Sesión
-          </a>
+          </Link>
         </p>
       </div>
     </div>

@@ -86,3 +86,5 @@ Nombre de la tarjeta: `PWS1-12 Carrusel desplazable con novedades / Próximos ev
 Nombre de la rama: `PWS1-12-<type>/<component-name-or-task>`
 
 # Todo código, rama o commit se deberan crear en inglés.
+
+Collaborators:
