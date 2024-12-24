@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import TutorialFeature from './components/tutorialFeature'
 import ManualFeature from './components/manualFeature'
@@ -15,14 +15,13 @@ import SearchBar from './components/search-bar'
 import DottedOrange from '@/assets/dottedOrange'
 import DottedBlue from '@/assets/dottedBlue'
 
-export default function Documentations() {
+function DocumentationsContent() {
   const searchParams = useSearchParams()
   const section = searchParams.get('section')
 
   const [query, setQuery] = React.useState<string>('')
 
-  // Determina los datos y el componente según la sección
-  let placeholder = 'Busca un artículo' // Valor por defecto
+  let placeholder = 'Busca un artículo'
 
   const getFilteredData = () => {
     if (section === 'tutorials') {
@@ -83,5 +82,13 @@ export default function Documentations() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function Documentations() {
+  return (
+    <Suspense fallback={<div className='text-center'>Cargando...</div>}>
+      <DocumentationsContent />
+    </Suspense>
   )
 }
