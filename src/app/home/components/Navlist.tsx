@@ -375,7 +375,7 @@ export const Navlist: React.FC = () => {
                 </Link>
               </li>
               <li className='space-y-4'>
-                <Link href='/documentation/database'>
+                <Link href='/documentation?section=database'>
                   <h3>Base de Datos</h3>
                   <div className='flex items-start'>
                     <img

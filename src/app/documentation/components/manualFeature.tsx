@@ -29,7 +29,7 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
   }
 
   return (
-    <section className='flex min-h-[300px] flex-col items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-screen-2xl md:justify-between'>
+    <section className='flex min-h-[300px] flex-col items-center justify-center py-4 md:mt-4 md:max-w-screen-2xl md:justify-between'>
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
