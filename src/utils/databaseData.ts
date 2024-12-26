@@ -14,7 +14,7 @@ export const databaseData = [
     title: 'Introducción a Scrum',
     date: '11/SEP/2024',
     description: 'Conoce las bases y estructuras del marco de trabajo Scrum',
-    category: 'Metodología Ágil',
+    category: 'Metodología No Ágil',
     subject: 'Scrum',
     onReadMore: () => console.log('Leer más sobre Base de datos 1'),
   },
@@ -34,8 +34,8 @@ export const databaseData = [
     date: '06/SEP/2024',
     description:
       'Una guía esencial para entender los conceptos básicos de Scrum',
-    category: 'Metodología Ágil',
-    subject: 'Scrum',
+    category: 'Metodología Diferente',
+    subject: 'Guías',
     onReadMore: () => console.log('Leer más sobre Base de datos 1'),
   },
 ]

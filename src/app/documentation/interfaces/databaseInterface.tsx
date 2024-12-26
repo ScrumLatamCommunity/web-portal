@@ -4,6 +4,6 @@ export interface Database {
   date: string
   description: string
   category: string
-  subject: string // Nueva propiedad "subject"
+  subject: string
   onReadMore?: () => void // Propiedad opcional
 }

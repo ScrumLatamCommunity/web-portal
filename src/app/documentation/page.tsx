@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import TutorialFeature from './components/tutorialFeature'
 import ManualFeature from './components/manualFeature'
@@ -19,9 +19,21 @@ function DocumentationsContent() {
   const searchParams = useSearchParams()
   const section = searchParams.get('section')
 
-  const [query, setQuery] = React.useState<string>('')
+  const [query, setQuery] = useState<string>('')
+  const [placeholder, setPlaceholder] = useState<string>('Busca un artículo')
 
-  let placeholder = 'Busca un artículo'
+  useEffect(() => {
+    // Actualiza el placeholder según la sección
+    if (section === 'tutorials') {
+      setPlaceholder('Busca un tutorial')
+    } else if (section === 'manuals') {
+      setPlaceholder('Busca un manual')
+    } else if (section === 'database') {
+      setPlaceholder('Busca un artículo')
+    } else {
+      setPlaceholder('Sección no encontrada')
+    }
+  }, [section]) // Ejecuta el efecto cuando cambia la sección
 
   const getFilteredData = () => {
     if (section === 'tutorials') {
@@ -42,13 +54,10 @@ function DocumentationsContent() {
 
   const renderFeatureComponent = () => {
     if (section === 'tutorials') {
-      placeholder = 'Busca un tutorial'
       return <TutorialFeature tutorials={getFilteredData() as Tutorial[]} />
     } else if (section === 'manuals') {
-      placeholder = 'Busca un manual'
       return <ManualFeature manuals={getFilteredData() as Manual[]} />
     } else if (section === 'database') {
-      placeholder = 'Busca un artículo'
       return <DatabaseFeature databases={getFilteredData() as Database[]} />
     } else {
       return <p className='text-center text-gray-500'>Sección no encontrada.</p>
