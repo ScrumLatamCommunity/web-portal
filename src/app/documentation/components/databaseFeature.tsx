@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react'
 import { Database } from '../interfaces/databaseInterface'
 import DatabaseCards from './databaseCards'
 import FolderPlusIcon from '@/assets/FolderPlusIcon'
-import PaperclipIcon from '@/assets/PaperClipIcon'
+import PaperclipIcon from '@/assets/PaperclipIcon'
 import FileTextIcon from '@/assets/FileTextIcon'
 import ChevronDownIcon from '@/assets/ChevronDownIcon'
 
