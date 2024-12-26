@@ -1,29 +1,26 @@
 'use client'
-import { NextPage } from 'next'
-import { useMemo, useState } from 'react'
-import Select, { SingleValue } from 'react-select'
-import countryList from 'react-select-country-list'
-import MembershipModal from './components/MembershipModal'
-import { BackgroundCircles } from './components/BackgroundCircles'
-import { useRegisterForm } from './hooks/useRegisterForm'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { REGISTER_URL } from './constants/constant'
+import { useRegisterForm } from './hooks/useRegisterForm'
+import { BackgroundCircles } from './components/BackgroundCircles'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 
-const RegisterForm: NextPage = () => {
+const SelectComponent = dynamic(() => import('./components/SelectComponent'), {
+  ssr: false,
+})
+
+function RegisterFormComponent() {
+  const searchParams = useSearchParams()
+  const selectedMembershipFromQuery = searchParams.get('membership')
+
   const {
     selectedCountry,
     setSelectedCountry,
     selectedMembership,
-    setSelectedMembership,
     handleSubmit: onSubmit,
   } = useRegisterForm(REGISTER_URL)
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const options = useMemo(() => countryList().getData(), [])
-
-  const handleCountryChange = (
-    selectedOption: SingleValue<{ label: string; value: string }>,
-  ) => {
-    setSelectedCountry(selectedOption?.label || '')
-  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -98,50 +95,26 @@ const RegisterForm: NextPage = () => {
         </div>
         <div className='mb-6 flex flex-col justify-between md:flex-row'>
           <div className='w-full md:w-1/2'>
-            <Select
-              classNamePrefix='react-select'
-              options={options}
-              styles={{
-                container: (provided) => ({
-                  ...provided,
-                  width: '100%',
-                }),
-                control: (provided) => ({
-                  ...provided,
-                  border: 'none',
-                  borderBottom: '2px solid #FD3600',
-                  boxShadow: 'none',
-                  borderRadius: '0',
-                  padding: '16px 0 16px 15px',
-                  backgroundColor: 'transparent',
-                  '&:hover': {
-                    borderBottom: '2px solid #FD3600',
-                  },
-                }),
-                dropdownIndicator: () => ({
-                  display: 'none',
-                }),
-                indicatorSeparator: () => ({
-                  display: 'none',
-                }),
-                valueContainer: (provided) => ({
-                  ...provided,
-                  padding: '0',
-                }),
-              }}
-              onChange={handleCountryChange}
-              placeholder='País'
-              value={options.find((option) => option.label === selectedCountry)}
+            <SelectComponent
+              selectedCountry={selectedCountry}
+              setSelectedCountry={setSelectedCountry}
             />
           </div>
-          <input
-            className='w-full border-b-2 border-[#FD3600] bg-transparent p-4 shadow-sm placeholder:text-[#555] md:ml-4 md:w-1/2'
-            onClick={() => setIsModalOpen(true)}
-            placeholder='Seleccionar membresía'
-            readOnly
-            type='text'
-            value={selectedMembership}
-          />
+          <Link
+            href={{
+              pathname: `/register/select`,
+              query: 'modal=membership',
+            }}
+            style={{ display: 'contents' }}
+          >
+            <input
+              className='w-full border-b-2 border-[#FD3600] bg-transparent p-4 shadow-sm placeholder:text-[#555] md:ml-4 md:w-1/2'
+              placeholder='Seleccionar membresía'
+              readOnly
+              type='text'
+              value={selectedMembershipFromQuery ?? ''}
+            />
+          </Link>
         </div>
         <button
           className='rounded bg-[#FD3600] px-4 py-2 text-white'
@@ -150,13 +123,14 @@ const RegisterForm: NextPage = () => {
           Crear Usuario
         </button>
       </form>
-      <MembershipModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSelect={(membership) => setSelectedMembership(membership)}
-      />
     </div>
   )
 }
 
-export default RegisterForm
+export default function RegisterForm() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RegisterFormComponent />
+    </Suspense>
+  )
+}

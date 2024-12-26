@@ -39,7 +39,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   className='mb rounded-full bg-red-500 px-3 py-2 text-[14px] font-bold text-white hover:bg-red-300 sm:max-w-[98px]'
-                  href='/register'
+                  href='/register/create'
                 >
                   Registrarse
                 </Link>
@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
               </Link>
               <Link
                 className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
-                href='/register'
+                href='/register/create'
               >
                 Registrarse
               </Link>
