@@ -16,17 +16,22 @@ export default function DatabaseFeature({
   const [filter, setFilter] = useState('Todo')
   const [sortOrder, setSortOrder] = useState<'recent' | 'oldest'>('recent')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isCategoriesMenuOpen, setIsCategoriesMenuOpen] = useState(false)
+
+  // Obtener categorías únicas de los datos
+  const categories = useMemo(() => {
+    return Array.from(new Set(databases.map((db) => db.category)))
+  }, [databases])
 
   const handleFilterChange = (newFilter: string) => {
+    console.log('Changing filter to:', newFilter)
     setFilter(newFilter)
   }
 
   const filteredDatabases = useMemo(() => {
     return databases.filter((database) => {
       if (filter === 'Todo') return true
-      if (filter === 'Categorías') return database.category === 'Categorías'
-      if (filter === 'Temas') return database.subject === 'Temas'
-      return false
+      return database.category === filter
     })
   }, [filter, databases])
 
@@ -58,7 +63,7 @@ export default function DatabaseFeature({
   }
 
   return (
-    <section className='flex flex-col bg-[#F5F5F5] md:mt-8'>
+    <section className='flex flex-col bg-[#F5F5F5] md:mt-8 md:pb-1'>
       {/* Menú lateral móvil */}
       <div className='w-full bg-[#FCFCFC] shadow-md md:hidden'>
         <div className='flex items-center justify-around py-4'>
@@ -128,40 +133,62 @@ export default function DatabaseFeature({
             </span>
           </button>
 
-          <button
-            className={`relative flex w-full items-center gap-6 px-4 py-2 pl-10 text-left ${
-              filter === 'Categorías' ? 'bg-[#E6EAF0]' : ''
-            }`}
-            onClick={() => handleFilterChange('Categorías')}
-          >
-            {filter === 'Categorías' && (
-              <div
-                aria-hidden='true'
-                className='absolute left-0 top-0 h-full w-2 bg-[#FD3600]'
+          {/* Botón para Categorías con submenú */}
+          <div className='w-full'>
+            <button
+              className={`relative flex w-full items-center gap-6 px-4 py-2 pl-10 text-left ${
+                categories.includes(filter) ? 'bg-[#E6EAF0]' : ''
+              }`}
+              onClick={() => setIsCategoriesMenuOpen((prev) => !prev)}
+            >
+              {categories.includes(filter) && (
+                <div
+                  aria-hidden='true'
+                  className='absolute left-0 top-0 h-full w-2 bg-[#FD3600]'
+                />
+              )}
+
+              <FileTextIcon className='text-[#FE2E00]' />
+              <span className='font-darker-grotesque text-[40px] text-[#082965]'>
+                Categorías
+              </span>
+              <ChevronDownIcon
+                className={`ml-auto transition-transform ${
+                  isCategoriesMenuOpen ? 'rotate-180' : 'rotate-0'
+                }`}
               />
+            </button>
+            {isCategoriesMenuOpen && (
+              <div className='relative ml-10 mt-2 flex flex-col'>
+                {/* Línea vertical principal */}
+                <div className='absolute left-[10px] top-0 h-full w-[1px] bg-[#082965]'></div>
+
+                {categories.map((category, index) => (
+                  <button
+                    key={category}
+                    className={`relative flex w-full items-center gap-4 px-4 py-2 pl-14 text-left ${
+                      filter === category ? 'text-[#FE2E00]' : 'text-[#082965]'
+                    }`}
+                    onClick={() => handleFilterChange(category)}
+                  >
+                    {/* Línea de conexión horizontal */}
+                    <div
+                      className={`absolute left-[10px] top-1/2 h-[1px] w-[40px] bg-[#082965]`}
+                    ></div>
+                    {/* Línea de conexión vertical */}
+                    <div
+                      className={`absolute left-[10px] h-full w-[1px] bg-[#082965] ${
+                        index === categories.length - 1 ? 'h-[50%]' : 'h-full'
+                      }`}
+                    ></div>
+                    <span className='font-darker-grotesque text-[16px]'>
+                      {category}
+                    </span>
+                  </button>
+                ))}
+              </div>
             )}
-            <FileTextIcon className='text-[#FE2E00]' />
-            <span className='font-darker-grotesque text-[40px] text-[#082965]'>
-              Categorías
-            </span>
-          </button>
-          <button
-            className={`relative flex w-full items-center gap-6 px-4 py-2 pl-10 text-left ${
-              filter === 'Temas' ? 'bg-[#E6EAF0]' : ''
-            }`}
-            onClick={() => handleFilterChange('Temas')}
-          >
-            {filter === 'Temas' && (
-              <div
-                aria-hidden='true'
-                className='absolute left-0 top-0 h-full w-2 bg-[#FD3600]'
-              />
-            )}
-            <FolderPlusIcon className='text-[#FE2E00]' />
-            <span className='font-darker-grotesque text-[40px] text-[#082965]'>
-              Temas
-            </span>
-          </button>
+          </div>
         </div>
 
         {/* Contenedor de las tarjetas */}
