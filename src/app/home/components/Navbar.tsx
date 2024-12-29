@@ -15,30 +15,30 @@ export const Navbar: React.FC = () => {
   }
 
   return (
-    <header className='font-DM sticky top-0 z-50 border-b-2 border-gray-200 bg-black-3'>
-      <div className='mx-auto max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
+    <header className='font-DM sticky top-0 z-50 min-w-[370px] border-b-2 border-gray-200 bg-black-3'>
+      <div className='mx-auto min-w-[360px] max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='scroll flex justify-between lg:justify-start'>
-          <a href='#' className='flex flex-row justify-start'>
+          <Link href='/' className='flex flex-row justify-start'>
             <img
               alt='logo'
-              className='h-12 w-auto'
+              className='h-12 w-auto min-w-[90px]'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
             />
-          </a>
+          </Link>
 
           {/* Enlace de navegación visible en pantallas pequeñas */}
           {(screen === 'sm' || screen === 'md') && (
             <div className='flex flex-row items-center'>
-              <div className='flex items-center space-x-6 whitespace-nowrap'>
+              <div className='ml-3 flex items-center whitespace-nowrap'>
                 <Link
                   className='flex items-center p-2 text-red-400 hover:text-red-200'
                   href='/login'
                 >
-                  <User className='mr-2 h-4' />
-                  <h2 className='block'>Iniciar sesión</h2>
+                  <User className='h-4 sm:mr-1 md:mr-2' />
+                  <h2 className='block text-[14px]'>Iniciar sesión</h2>
                 </Link>
                 <Link
-                  className='rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-300'
+                  className='mb rounded-full bg-red-500 px-3 py-2 text-[14px] font-bold text-white hover:bg-red-300 sm:max-w-[98px]'
                   href='/register'
                 >
                   Registrarse

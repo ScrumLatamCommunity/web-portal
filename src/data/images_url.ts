@@ -48,9 +48,9 @@ export const images: {
   goal_logo:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/News%20component%2FGoal_icon.png?alt=media&token=18d1a8e7-7e93-4d59-b431-efd01abbb471',
   joinSectionMobile:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FImagen%20uniter%20a%20nosotros%20-%20mobile%20compr.png?alt=media&token=60a290bd-555e-4309-9805-04d53e8c087c',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FImagen%20%2B%20franja%20mobile.png?alt=media&token=10d93a10-c033-4801-b963-0bcc209757dc',
   joinSectionDesktop:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FMask%20group%20C.png?alt=media&token=8d0b320e-948f-4dc1-864e-4dcde5fcf3a2',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FImagen%20%2B%20franja.png?alt=media&token=dd043a83-6bae-4ad9-aa83-d92941ca0937',
   backgroundDataCommunity:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2FAbstract%20textured%20backgound.png?alt=media&token=296561ab-a517-4fbf-873d-b3bde1a2feb8',
   history:

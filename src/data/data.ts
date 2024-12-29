@@ -310,7 +310,8 @@ export const reviews: Review[] = [
     id: 1,
     position: 'Agile consultant',
     rating: 4,
-    description: 'Muy buena página.',
+    description:
+      'Tengo dos años en la comunidad Scrum Latam. Esta comunidad ha sido clave en mi desarrollo profesional, brindándome acceso a charlas, capacitaciones y apoyo para entrevistas en roles como Scrum Master. Gracias a esto, he mejorado mi carrera y la calidad de vida de mi familia, además de disfrutar sorteos de cursos y certificaciones.',
     profile: 'https://i.pravatar.cc/200',
     flag: 'https://flagcdn.com/ar.svg',
   },
@@ -319,7 +320,8 @@ export const reviews: Review[] = [
     id: 2,
     position: 'Agile coach',
     rating: 3,
-    description: 'Excelente página, muy buen diseño, amo la modernidad',
+    description:
+      'Llevó cinco meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimientos cada día como Scrum Master y además de eso me permito interactuar y conocer  grandes personas y grandes coaches día a día.',
     profile: 'https://i.pravatar.cc/200',
     flag: 'https://flagcdn.com/ar.svg',
   },
@@ -394,6 +396,264 @@ export const history: History[] = [
     description: [
       'Inspirar y empoderar a personas y organizaciones para alcanzar su máximo potencial a través de la Agilidad, promoviendo una cultura de aprendizaje continuo, colaboración y transformación sostenible en América Latina. Además, impactamos en el ser, fomentando el crecimiento personal y profesional.',
     ],
+  },
+]
+
+export const memberships = [
+  {
+    id: 1,
+    title: 'Flex',
+    price: '$50',
+    description1: 'Acceso a Cursos Avanzados',
+    description2: 'Talleres Prácticos Mensuales',
+    description3: 'Certificado Profesional',
+  },
+  {
+    id: 2,
+    title: 'Gratuito',
+    price: '$0.00',
+    description1: 'Acceso a cursos introductorios',
+    description2: 'Webinars Mensuales',
+    description3: 'Certificado de participación',
+  },
+  {
+    id: 3,
+    title: 'Premium',
+    price: '$150',
+    description1: 'Asesorías Personalizadas Mensuales',
+    description2: 'Invitación a Eventos Exclusivos',
+    description3: 'Certificación Especializada',
+  },
+]
+
+export const benefits = [
+  {
+    id: 1,
+    text: 'Acceso a webinars , talleres y charlas virtuales sobre agilidad y similares',
+    checkFree: true,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 2,
+    text: 'Oportunidad participar de los sorteos que realiza la comunidad',
+    checkFree: true,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 3,
+    text: 'Preparación para CV  y entrevistas (Rol Scrum Master)',
+    checkFree: true,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 4,
+    text: 'Acceso a Simuladores. Preparación con certificación',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 5,
+    text: 'Certificados de participación de Talleres',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 6,
+    text: 'Descuentos en cursos y certificaciones por parte de los aliados',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 7,
+    text: 'Coach o mentoring personalizado (one to one)',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 8,
+    text: 'Acceso a grupos de discusión con otros miembros',
+    checkFree: false,
+    checkFlex: true,
+    checkPremium: true,
+  },
+  {
+    id: 9,
+    text: 'Acceso a recursos básicos sobre metodologías ágiles',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 10,
+    text: 'Cupo asegurado en nuestro Aniversarios  formato (Open Space)',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 11,
+    text: 'Membresía bonificada por 6 meses a miembros activos',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 12,
+    text: 'Posibilidad de hacer una certificación y un taller bonificados cada año',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+  {
+    id: 13,
+    text: 'Prioridad estar en todos los canales comunicación de Scrum Latam',
+    checkFree: false,
+    checkFlex: false,
+    checkPremium: true,
+  },
+]
+
+export const news = [
+  {
+    id: 1,
+    title: 'Scrum: Clave en equipos tecnológicos',
+    date: '10/JUL/2024',
+    description:
+      'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fd1e6ef2d44e34f4d389e0cdeb46eea41.png?alt=media&token=d16451e2-8df0-4235-a4c8-b178de77bf94',
+  },
+  {
+    id: 2,
+    title: 'Gestión visual con Kanban en equipos TI',
+    date: '15/JUL/2024',
+    description:
+      'Los equipos ahora pueden visualizar el estado de cada tarea en tiempo real, lo que ha facilitado una comunicación más efectiva entre los miembros y un enfoque más ágil.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F2771a871698d72743ceadfa4f5c14f21.png?alt=media&token=7e208a1c-28e4-49a3-94d4-a53f4a3bcd18',
+  },
+  {
+    id: 3,
+    title: 'Agile Impulsa la Satisfacción del Cliente',
+    date: '06/SEP/2024',
+    description:
+      'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo. ',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F81be6df9336320083b26889275a348c3.png?alt=media&token=232a11bc-9ffc-4665-ae2a-be3d64c30310',
+  },
+  {
+    id: 4,
+    title: 'Flexibilidad y Productividad Para el Mundo Empresarial',
+    date: '19/SEP/2024',
+    description:
+      'Empresas de todo el mundo han adoptado Scrum para optimizar sus procesos y mejorar la calidad de sus productos, logrando así una mayor satisfacción de sus clientes.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fa7c7c7dd76a56a383763b5e69a832e8c.png?alt=media&token=a1c901d7-0a0d-4f0c-83cf-5d0e758ccb30',
+  },
+  {
+    id: 5,
+    title: 'Kanban: Más visibilidad, Menos Estrés',
+    date: '21/SEP/2024',
+    description:
+      'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo. ',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Feda87c676156f9ab64916ab5893e2aee.png?alt=media&token=a9576de5-1ba0-4dda-82b4-4553d6d2f63b',
+  },
+  {
+    id: 6,
+    title: 'El Futuro de la Gestión de Proyectos',
+    date: '02/OCT/2024',
+    description:
+      'Pilar fundamental para las empresas que buscan adaptarse rápidamente a un mercado en constante cambio. A través de enfoques como Scrum, Kanban y Lean',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fda044e04532b9cd31c96fccfb828bc5e.png?alt=media&token=e04c775c-504f-459d-8f20-b89b3d6661cc',
+  },
+]
+
+export const articles = [
+  {
+    id: 1,
+    title: 'Talleres: Actualizaciones en Algunos Horarios',
+    date: '10/JUL/2024',
+    description:
+      'A partir del 1 de noviembre de 2024, se implementarán algunos cambios clave en los horarios y formatos de los talleres y cursos disponibles. ',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F583a0ab9b6d457c1946ebf8ce35ff845.png?alt=media&token=55b0e9c8-9636-41ae-9e63-4d6519b0f221',
+  },
+  {
+    id: 2,
+    title: 'Descarga de Certificados Desde tu Perfil',
+    date: '15/JUL/2024',
+    description:
+      'La comunidad también ha agregado nuevas funcionalidades, como la posibilidad de descargar certificados de participación directamente desde el perfil de usuario, tras completar cada curso.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F69483224fe586f63149d769cd253dd50.png?alt=media&token=8eb70d85-4105-4c33-bad6-0598761bda42',
+  },
+  {
+    id: 3,
+    title: 'Colaboración en Vivo Para Proyectos',
+    date: '06/SEP/2024',
+    description:
+      ' La empresa busca fomentar una cultura de innovación y adaptación rápida a las necesidades del mercado, y Agile ha sido clave en este cambio.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fa4c7eea5688479b8acd8dd5e64ad7f7e.png?alt=media&token=b0b958c9-ba03-4ec9-89ef-b147c0c24391',
+  },
+  {
+    id: 4,
+    title: 'Nueva Función de Mentoría',
+    date: '19/SEP/2024',
+    description:
+      'Finalmente, se ha implementado una nueva función de mentoría, donde los miembros más experimentados podrán guiar a otros en su camino hacia la agilidad.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F863cfae757f8154ffcf956215d3c46c4.png?alt=media&token=0c49c654-85b9-4b1c-b6d4-536b371e4205',
+  },
+  {
+    id: 5,
+    title: 'Biblioteca de Recursos Descargables',
+    date: '21/SEP/2024',
+    description:
+      'Uno de los cambios más destacados es la incorporación de una biblioteca de recursos descargables, que incluirá plantillas de trabajo ágiles, guías de Scrum y Kanban.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Faee26d9fc35cf0e132de5471b8535945(1).png?alt=media&token=d5eadf64-d102-4027-853f-ee4909e631b1',
+  },
+  {
+    id: 6,
+    title: 'Únete a los foros de la Comunidad',
+    date: '02/OCT/2024',
+    description:
+      'La comunidad ha mejorado su sistema de foros, agregando categorías específicas para diferentes temas como la gestión de proyectos ágiles y liderazgo en equipos remotos.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fb0183205782f01e6128d2125933380c0(1).png?alt=media&token=8d6a92f7-4bb3-451e-bf4b-df18035e3f13',
+  },
+]
+
+export const blogs = [
+  {
+    id: 1,
+    title: 'Scrum vs. Kanban: ¿Qué marco ágil es mejor para tu proyecto?',
+    date: '06/SEP/2024',
+    description:
+      'En este artículo, exploramos cómo estas metodologías no solo mejoran la productividad y la colaboración en equipos, sino que también permiten una mayor adaptabilidad frente a los desafíos. Descubre los principios fundamentales del agilismo y cómo aplicarlos para maximizar el éxito.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F2c77dae153ea601efcb05ed200bb4498.png?alt=media&token=f32ff936-bd8a-4c64-a152-c95b7834b47a',
+  },
+  {
+    id: 2,
+    title: 'Cómo implementar metodologías ágiles en equipos remotos',
+    date: '11/SEP/2024',
+    description:
+      'La transformación digital ha permitido que cada vez más empresas adopten el trabajo remoto como una modalidad estándar. Sin embargo, la gestión de proyectos en equipos distribuidos puede ser un desafío, especialmente si se busca mantener un ritmo ágil y colaborativo.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fb6df1bf955633ef74ad36629278931be.png?alt=media&token=8a246b81-b5f5-4d2c-a6c3-ca0a323db54f',
+  },
+  {
+    id: 3,
+    title: 'El rol del product owner en un equipo ágil exitoso',
+    date: '05/OCT/2024',
+    description:
+      'El Product Owner es una figura clave en cualquier equipo ágil exitoso, responsable de maximizar el valor del producto desarrollado. En esta entrada, analizamos las principales responsabilidades de este rol, desde la gestión del backlog hasta la toma de decisiones estratégicas.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2Fa608643a18e5f41158e36f3ef0c84550.png?alt=media&token=e0c729b7-0036-42d5-8d74-de022a7d2434',
+  },
+  {
+    id: 4,
+    title: 'Transformando equipos ágiles con Jira: un enfoque eficiente',
+    date: '12/OCT/2024',
+    description:
+      'En el mundo de las metodologías ágiles, Jira se ha convertido en una de las herramientas más populares para gestionar proyectos y equipos de trabajo. Su flexibilidad permite implementar marcos como Scrum y Kanban, facilitando la planificación, el seguimiento de tareas y la priorización del backlog.',
+    img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F8707a207f678c22343417a18e9db520f.png?alt=media&token=6ab28e8d-7219-425b-a8f7-8842a5eebf81',
   },
 ]
 

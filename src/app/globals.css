@@ -55,4 +55,54 @@ body {
   .event-swiper-container .swiper-button-next::after {
     font-size: 1.5rem;
   }
+
+  /* Estilos generales para pantallas pequeñas (default) */
+  .profile-swiper-container .swiper-button-prev,
+  .profile-swiper-container .swiper-button-next {
+    color: #fe2e00;
+    height: 2rem;
+    width: 2rem;
+    opacity: 1;
+  }
+
+  .profile-swiper-container .swiper-button-prev:hover,
+  .profile-swiper-container .swiper-button-next:hover {
+    transform: scale(1.1);
+  }
+
+  .profile-swiper-container .swiper-button-prev::after,
+  .profile-swiper-container .swiper-button-next::after {
+    font-size: 1.5rem;
+    color: #fe2e00;
+  }
+
+  .profile-swiper-container .swiper-button-prev {
+    left: -0.6rem;
+  }
+
+  .profile-swiper-container .swiper-button-next {
+    right: -0.6rem;
+  }
+
+  /* Ajustes para pantallas medianas en adelante */
+  @media (min-width: 768px) {
+    .profile-swiper-container .swiper-button-prev,
+    .profile-swiper-container .swiper-button-next {
+      height: 3rem;
+      width: 3rem;
+    }
+
+    .profile-swiper-container .swiper-button-prev::after,
+    .profile-swiper-container .swiper-button-next::after {
+      font-size: 2rem;
+    }
+
+    .profile-swiper-container .swiper-button-prev {
+      left: 2rem;
+    }
+
+    .profile-swiper-container .swiper-button-next {
+      right: 2rem;
+    }
+  }
 }
