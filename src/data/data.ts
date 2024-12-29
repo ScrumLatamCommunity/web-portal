@@ -49,6 +49,8 @@ export interface ValuesCulture {
   title: string
   image: string
   description: string[]
+  desktopTitle: string[]
+  desktopDescription: string[]
 }
 
 export const sponsors: Sponsor[] = [
@@ -409,6 +411,22 @@ export const valuesCulture: ValuesCulture[] = [
       'Transparencia: Mantener la comunicación abierta y honesta en todas las interacciones.',
       'Compromiso: Demostramos dedicación, perseverancia hacia los objetivos como comunidad.',
     ],
+    desktopTitle: [
+      'Colaboracion',
+      'Innovación',
+      'Inclusión',
+      'Aprendizaje Contínuo',
+      'Transparencia',
+      'Compromiso',
+    ],
+    desktopDescription: [
+      'Fomentar un entorno donde la comunidad trabaje junta hacia metas compartidas.',
+      'Adoptar nuevas ideas y prácticas que impulsen la evolución ágil.',
+      'Crear un espacio donde todas las voces sean escuchadas y respetadas.',
+      'Promover el crecimiento profesional y personal de los miembros.',
+      'Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Demostramos dedicación, perseverancia hacia los objetivos como comunidad.',
+    ],
   },
   {
     id: 2,
@@ -422,6 +440,22 @@ export const valuesCulture: ValuesCulture[] = [
       'Comunicación Activa: Usar canales efectivos para que todos estén informados y comprometidos.',
       'Celebración de Logros: Mantener la comunicación abierta y honesta en todas las interacciones.',
       'Innovación: Fomentar un entorno donde la innovación y la creatividad sean incentivadas y valoradas.',
+    ],
+    desktopTitle: [
+      'Diversidad y Apertura',
+      'Empoderamiento',
+      'Sostenibilidad',
+      'Comunicación Activa',
+      'Celebración de Logros',
+      'Innovación',
+    ],
+    desktopDescription: [
+      'Atraer a personas de diferentes culturas y disciplinas, y valorar sus perspectivas únicas.',
+      'Proveer herramientas y apoyo para que los miembros alcancen su máximo potencial.',
+      'Diseñar prácticas y eventos que sean sostenibles a largo plazo.',
+      'Usar canales efectivos para que todos estén informados y comprometidos.',
+      'Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Fomentar un entorno donde la innovación y la creatividad sean incentivadas y valoradas.',
     ],
   },
 ]
