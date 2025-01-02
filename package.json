@@ -31,8 +31,11 @@
     "react-dom": "^18",
     "react-feather": "^2.0.10",
     "react-icons": "^5.4.0",
+    "react-select": "^5.9.0",
+    "react-select-country-list": "^2.2.3",
     "react-youtube": "^10.1.0",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
@@ -41,6 +44,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-select": "^5.0.1",
+    "@types/react-select-country-list": "^2.2.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
     "eslint-config-prettier": "^9.1.0",

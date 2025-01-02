@@ -21,7 +21,7 @@ export const Navlist: React.FC = () => {
       >
         Inicio
       </Link>
-      <a
+      <div
         className={`py-full h-full flex-grow border-b-2 border-gray-200 lg:border-b-0`}
         onMouseEnter={() => toggleMenu('comunidad')}
         onMouseLeave={() => toggleMenu('')}
@@ -111,7 +111,7 @@ export const Navlist: React.FC = () => {
             </ul>
           </div>
         )}
-      </a>
+      </div>
       <div
         className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
         onMouseEnter={() => toggleMenu('actividades')}
