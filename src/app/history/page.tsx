@@ -3,6 +3,7 @@ import {
   Intro,
   MisionVision,
   MobileValuesCulture,
+  RegisterNow,
   Timeline,
 } from './components/index'
 
@@ -14,6 +15,7 @@ export default function History() {
       <MobileValuesCulture />
       <Timeline />
       <Founder />
+      <RegisterNow />
     </main>
   )
 }
