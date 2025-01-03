@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { Footer } from './home/components/Footer'
 import { Navbar } from './home/components'
+import FloatingButton from './home/components/FloatingButton'
 import '../app/globals.css'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='es'>
       <body>
         <Navbar />
+        <FloatingButton />
         <div className='flex flex-col items-center justify-center'>
           {children}
         </div>
