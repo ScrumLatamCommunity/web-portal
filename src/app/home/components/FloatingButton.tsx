@@ -43,7 +43,7 @@ const FloatingButton: React.FC = () => {
   }, [isHovered])
 
   return (
-    <div className='fixed inset-x-0 bottom-1/4 z-50 translate-y-1/2 transform md:right-0 md:top-20 md:w-full'>
+    <div className='fixed inset-x-0 bottom-1/4 z-50 translate-y-1/2 transform md:right-0 md:top-20 md:w-full md:translate-y-0'>
       <div className='mx-auto flex max-w-screen-2xl justify-end pr-4'>
         {isHovered ? (
           <Link href='/memberships'>
