@@ -17,7 +17,7 @@ export const DesktopTimeline = () => {
   }
 
   return (
-    <div className='mx-auto flex h-auto max-w-screen-2xl items-center justify-start overflow-hidden bg-[#F0F0F0]'>
+    <div className='mx-auto flex h-[770px] w-full items-center justify-start overflow-hidden bg-[#F0F0F0]'>
       <div className='relative z-10 flex w-[3%] items-center justify-center'>
         <button
           onClick={() => scrollTimeline('left')}
@@ -33,7 +33,7 @@ export const DesktopTimeline = () => {
           </h1>
         </div>
         <div
-          className='scrollbar-hide relative flex overflow-x-hidden whitespace-nowrap'
+          className='scrollbar-hide relative flex overflow-x-hidden whitespace-nowrap pl-48'
           ref={timelineRef}
         >
           <div className='relative mb-10 flex h-16'>
@@ -56,7 +56,7 @@ export const DesktopTimeline = () => {
           <div className='mb-20 flex'>
             <img
               alt='timeline'
-              className='mt-14 h-[131px] min-w-[1700px] object-left'
+              className='mt-14 flex h-[131px] min-w-[1700px] object-left'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FTimeline%2FLinea%20de%20tiempo%20desktop.png?alt=media&token=fec439d7-d9c1-40d8-be90-df27a3626dd7'
             />
           </div>

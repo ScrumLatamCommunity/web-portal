@@ -6,6 +6,6 @@ import { MobileTimeline } from './MobileTimeline'
 import useIsLargeScreen from '@/hooks'
 
 export const Timeline = () => {
-  const isLargeScreen = useIsLargeScreen(680)
+  const isLargeScreen = useIsLargeScreen(1024)
   return <div>{isLargeScreen ? <DesktopTimeline /> : <MobileTimeline />}</div>
 }
