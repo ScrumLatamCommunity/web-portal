@@ -21,8 +21,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='es'>
       <body>
         <Navbar />
-        <FloatingButton />
         <div className='flex flex-col items-center justify-center'>
+          <FloatingButton />
           {children}
         </div>
         <Footer />

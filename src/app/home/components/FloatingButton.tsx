@@ -43,7 +43,7 @@ const FloatingButton: React.FC = () => {
   }, [isHovered])
 
   return (
-    <div className='fixed right-0 z-50 md:top-20 md:w-full'>
+    <div className='fixed inset-x-0 bottom-1/4 z-50 translate-y-1/2 transform md:right-0 md:top-20 md:w-full'>
       <div className='mx-auto flex max-w-screen-2xl justify-end pr-4'>
         {isHovered ? (
           <Link href='/memberships'>
@@ -75,9 +75,9 @@ const FloatingButton: React.FC = () => {
             }`}
             id='floating-button'
             style={isHovered ? undefined : { borderColor: '#FE7354' }}
-            onClick={(event) => handleInteraction(event)} // Primer clic en pantallas pequeñas
-            onMouseEnter={() => setIsHovered(true)} // Hover en pantallas md
-            onMouseLeave={() => setIsHovered(false)} // Hover en pantallas md
+            onClick={(event) => handleInteraction(event)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {isHovered && (
               <span
