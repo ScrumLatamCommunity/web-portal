@@ -6,6 +6,8 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 import type { Metadata } from 'next'
+import { AuthProvider } from '@/contexts/AuthContext'
+
 interface RootLayoutProps {
   children: ReactNode
 }
@@ -19,11 +21,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='es'>
       <body>
-        <Navbar />
-        <div className='flex flex-col items-center justify-center'>
-          {children}
-        </div>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <div className='flex flex-col items-center justify-center'>
+            {children}
+          </div>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )
