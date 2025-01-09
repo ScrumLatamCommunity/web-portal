@@ -51,10 +51,10 @@ export default function TutorialCards({ tutorial }: { tutorial: Tutorial }) {
             <p className='mt-1 flex justify-end font-darker-grotesque text-sm text-[#061D48]'>
               {tutorial.date}
             </p>
-            <h2 className='font-darker-grotesque text-2xl font-bold text-[#FE2E00]'>
+            <h2 className='font-darker-grotesque text-2xl font-bold text-[#FE2E00] md:pb-4'>
               {tutorial.title}
             </h2>
-            <p className='mt-2 h-[6rem] overflow-hidden font-karla text-[16px] leading-6 text-[#000000]'>
+            <p className='mt-2 h-[6rem] overflow-hidden font-karla text-[16px] leading-6 text-[#061D48]'>
               {tutorial.description}
             </p>
           </div>

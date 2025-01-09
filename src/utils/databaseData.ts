@@ -108,4 +108,14 @@ export const databaseData = [
     subject: 'SCRUM',
     onReadMore: () => console.log('Leer más sobre Base de datos 1'),
   },
+  {
+    id: 12,
+    title: 'Fundamentos de Scrum',
+    date: '06/SEP/2024',
+    description:
+      'Una guía esencial para entender los conceptos básicos de Scrum',
+    category: 'Casos de Estudio',
+    subject: 'Guías',
+    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+  },
 ]

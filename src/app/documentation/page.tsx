@@ -14,6 +14,7 @@ import { Database } from './interfaces/databaseInterface'
 import SearchBar from './components/search-bar'
 import DottedOrange from '@/assets/dottedOrange'
 import DottedBlue from '@/assets/dottedBlue'
+import Benefits from './components/benefits'
 
 function DocumentationsContent() {
   const searchParams = useSearchParams()
@@ -89,6 +90,13 @@ function DocumentationsContent() {
             </p>
           )}
         </div>
+      </section>
+      <section className='mt-10'>
+        <Benefits
+          buttonText='Beneficios'
+          description='Descubre los beneficios de ser parte de nuestra comunidad y acceder a nuevos programas de entrenamiento'
+          title='¿Deseas ver el contenido completo?'
+        />
       </section>
     </div>
   )

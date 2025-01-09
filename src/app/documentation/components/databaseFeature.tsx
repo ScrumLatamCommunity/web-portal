@@ -128,7 +128,7 @@ export default function DatabaseFeature({
               />
             )}
             <PaperclipIcon className='text-[#FE2E00]' />
-            <span className='font-darker-grotesque text-[40px] text-[#082965]'>
+            <span className='font-darker-grotesque text-[30px] text-[#082965]'>
               Todo
             </span>
           </button>
@@ -149,7 +149,7 @@ export default function DatabaseFeature({
               )}
 
               <FileTextIcon className='text-[#FE2E00]' />
-              <span className='font-darker-grotesque text-[40px] text-[#082965]'>
+              <span className='font-darker-grotesque text-[30px] text-[#082965]'>
                 Categorías
               </span>
               <ChevronDownIcon

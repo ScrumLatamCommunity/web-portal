@@ -65,7 +65,7 @@ export default function SearchBar({
                 : 'Noticias'}
         </h1>
       </div>
-      <div className='relative w-full md:max-w-[1800px]'>
+      <div className='relative z-20 w-full rounded-[15px] bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.1)] md:max-w-[1800px]'>
         <input
           className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#FE5833] md:text-[22px]'
           onChange={(e) => {
