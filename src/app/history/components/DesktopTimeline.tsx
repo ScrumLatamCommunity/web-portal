@@ -8,11 +8,22 @@ export const DesktopTimeline = () => {
 
   const scrollTimeline = (direction: 'left' | 'right'): void => {
     if (timelineRef.current) {
-      const scrollAmount = 300
-      timelineRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      })
+      const scrollAmount = 400
+      const currentScroll = timelineRef.current.scrollLeft
+      const maxScroll =
+        timelineRef.current.scrollWidth - timelineRef.current.clientWidth
+
+      if (direction === 'left' && currentScroll > 0) {
+        timelineRef.current.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth',
+        })
+      } else if (direction === 'right' && currentScroll < maxScroll) {
+        timelineRef.current.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth',
+        })
+      }
     }
   }
 
@@ -21,7 +32,7 @@ export const DesktopTimeline = () => {
       <div className='relative z-10 flex w-[3%] items-center justify-center'>
         <button
           onClick={() => scrollTimeline('left')}
-          className='focus:outline-none'
+          className='transition-opacity hover:opacity-70 focus:outline-none'
         >
           <ChevronLeft className='cursor-pointer' />
         </button>
@@ -33,8 +44,9 @@ export const DesktopTimeline = () => {
           </h1>
         </div>
         <div
-          className='scrollbar-hide relative flex overflow-x-hidden whitespace-nowrap pl-48'
+          className='scrollbar-hide relative flex overflow-x-auto whitespace-nowrap pl-48'
           ref={timelineRef}
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           <div className='relative mb-10 flex h-16'>
             <h2 className='absolute bottom-1 left-[110px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
@@ -65,7 +77,7 @@ export const DesktopTimeline = () => {
       <div className='z-10 flex w-[3%] items-center justify-center'>
         <button
           onClick={() => scrollTimeline('right')}
-          className='focus:outline-none'
+          className='transition-opacity hover:opacity-70 focus:outline-none'
         >
           <ChevronRight className='cursor-pointer' />
         </button>
