@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'react-feather'
-
 export const DesktopTimeline = () => {
   const timelineRef = useRef<HTMLDivElement | null>(null)
 
@@ -44,27 +43,27 @@ export const DesktopTimeline = () => {
           </h1>
         </div>
         <div
-          className='scrollbar-hide relative flex overflow-x-auto whitespace-nowrap pl-48'
+          className='scrollbar-hide relative flex h-[700px] flex-col overflow-x-auto whitespace-nowrap'
           ref={timelineRef}
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          <div className='relative mb-10 flex h-16'>
-            <h2 className='absolute bottom-1 left-[110px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+          {/* <div className='relative mb-10 flex font-darker-grotesque h-16'>
+            <h2 className='absolute top-[80px] left-[110px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2020
             </h2>
-            <h2 className='absolute bottom-1 left-[480px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute top-[80px] left-[480px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2021
             </h2>
-            <h2 className='absolute bottom-1 left-[830px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute top-[80px] left-[830px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2022
             </h2>
-            <h2 className='absolute bottom-1 left-[1160px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute top-[80px] left-[1160px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2023
             </h2>
-            <h2 className='absolute bottom-1 left-[1470px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute top-[80px] left-[1470px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2024
             </h2>
-          </div>
+          </div> */}
           <div className='mb-20 flex'>
             <img
               alt='timeline'
@@ -72,6 +71,38 @@ export const DesktopTimeline = () => {
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FTimeline%2FLinea%20de%20tiempo%20desktop.png?alt=media&token=fec439d7-d9c1-40d8-be90-df27a3626dd7'
             />
           </div>
+          {/* <div className="relative flex h-auto font-darker-grotesque">
+            <div className="absolute max-w-[254px] left-16 top-[-30px] flex w-full whitespace-normal">
+              <p className="font-karla text-5 text-[#061D48]">
+                Se funda la comunidad SL. Se establecen los delegados representantes por país, quienes se encargan de invitar a
+                las personas de su nación a los eventos de la comunidad. Se implementan los "Martes de Retrospectiva" y, a finales del año,
+                se lanzan los primeros webinars.
+              </p>
+            </div>
+            <div className="absolute max-w-[254px] left-[399px] top-[-30px] flex w-full whitespace-normal">
+              <p className="font-karla text-5 text-[#061D48]">
+                Se crean los Squads, equipos que fortalecen la colaboración y el trabajo en grupo dentro de la comunidad.
+              </p>
+            </div>
+            <div className="absolute max-w-[254px] left-[762px] top-[-30px] flex w-full whitespace-normal">
+              <p className="font-karla text-5 text-[#061D48]">
+                Se lanzan los talleres,  ofreciendo sesiones prácticas y formativas que enriquecen el aprendizaje y la participación
+                de los miembros.
+              </p>
+            </div>
+            <div className="absolute max-w-[254px] left-[1088px] top-[-30px] flex w-full whitespace-normal">
+              <p className="font-karla text-5 text-[#061D48]">
+                Se lanzan los talleres,  ofreciendo sesiones prácticas y formativas que enriquecen el aprendizaje y la participación
+                de los miembros.
+              </p>
+            </div>
+            <div className="absolute max-w-[254px] left-[1401px] top-[-30px] flex w-full whitespace-normal">
+              <p className="font-karla text-5 text-[#061D48]">
+                Se lanzan las membresías para los miembros de la comunidad y se estrena el nuevo portal web,
+                proporcionando una plataforma mejorada para la interacción y el acceso a recursos.
+              </p>
+            </div>
+          </div> */}
         </div>
       </div>
       <div className='z-10 flex w-[3%] items-center justify-center'>
