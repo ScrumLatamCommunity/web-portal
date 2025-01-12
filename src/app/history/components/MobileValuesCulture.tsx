@@ -16,7 +16,7 @@ export const MobileValuesCulture = () => {
       <div className='hidden lg:flex'>
         <DesktopValuesCulture />
       </div>
-      <div className='mb-9 flex w-full flex-col gap-4 p-10 px-3 lg:hidden'>
+      <div className='mb-9 flex w-full flex-col gap-4 p-10 px-3 font-darker-grotesque lg:hidden'>
         {valuesCulture.map((item) => (
           <div key={item.id}>
             <div
@@ -38,7 +38,7 @@ export const MobileValuesCulture = () => {
                 openAccordion === item.id ? 'max-h-screen' : 'max-h-0'
               }`}
             >
-              <div className='overflow-hidden rounded-xl px-4 py-3 text-5 transition-all duration-500 ease-in-out'>
+              <div className='overflow-hidden rounded-xl px-4 py-3 font-karla text-5 transition-all duration-500 ease-in-out'>
                 <ul
                   className={`${item.id === 1 ? 'marker:text-[#FE5833]' : 'marker:text-[#95A3BD]'} prose list-disc space-y-2 pl-5 md:grid md:grid-cols-3 md:gap-6 md:space-y-0`}
                 >
