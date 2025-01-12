@@ -16,10 +16,10 @@ export const Founder = () => {
       </div>
       <div className='flex w-fit justify-center rounded-lg bg-[#345081] bg-opacity-10 px-4 py-2'>
         <span className='font-darker-grotesque text-lg font-semibold text-[#082965] sm:text-2xl'>
-          ¿Qué es lo que hacemos?
+          La persona detrás de la comunidad
         </span>
       </div>
-      <p className='px-7 text-center font-karla text-3 font-medium text-[#061D48] md:w-1/2'>
+      <p className='px-7 text-center font-karla text-[25px] font-medium leading-9 text-[#061D48] md:w-[52%]'>
         Rubén Darío Romero Chica inició la comunidad Scrum Latam en 2020 con la
         visión de crear un espacio colaborativo para compartir conocimientos
         sobre agilidad. Su liderazgo y pasión por Scrum han sido fundamentales
