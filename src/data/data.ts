@@ -692,7 +692,7 @@ export const valuesCulture: ValuesCulture[] = [
     id: 2,
     title: 'Nuestra Cultura',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FValuesCulture%2FEstrella%20con%20fondo.png?alt=media&token=a3396805-0b3b-4bf2-849a-0a32de2973ea',
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FFounder%2FEstrella%20con%20fondo.svg?alt=media&token=28e0e4f1-a8fd-498a-8fb8-1a5714d4b769',
     description: [
       'Diversidad y Apertura: Atraer a personas de diferentes culturas y disciplinas, y valorar sus perspectivas únicas.',
       'Empoderamiento: Proveer herramientas y apoyo para que los miembros alcancen su máximo potencial.',

@@ -6,10 +6,13 @@ import {
   RegisterNow,
   Timeline,
 } from './components/index'
+import { darkerGrotesque, karla, roboto } from '@/fonts'
 
 export default function History() {
   return (
-    <main>
+    <main
+      className={`mx-auto max-w-screen-2xl ${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
+    >
       <Intro />
       <MisionVision />
       <MobileValuesCulture />

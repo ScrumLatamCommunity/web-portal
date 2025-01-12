@@ -7,10 +7,10 @@ import { GitHub, Instagram } from 'react-feather'
 
 export const MobileFounder = () => {
   return (
-    <div className='flex flex-col items-center gap-8 pb-20 pt-20'>
+    <div className='flex flex-col items-center gap-8 pb-20 pt-20 font-darker-grotesque'>
       <div className='flex gap-2'>
         <img alt='icono' className='object-cover' src={images.founder[0]} />
-        <span className='text-10 font-black text-[#061D48]'>
+        <span className='font-darker-grotesque text-10 font-black text-[#061D48]'>
           Nuestro fundador
         </span>
       </div>
