@@ -300,12 +300,102 @@ export const Navlist: React.FC = () => {
           </div>
         )}
       </div>
-      <Link
-        className='md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline lg:justify-center lg:border-b-0'
-        href='/documentacion'
+      <div
+        className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
+        onMouseEnter={() => toggleMenu('documentacion')}
+        onMouseLeave={() => toggleMenu('')}
+        onClick={() => toggleMenu('documentacion')}
       >
-        Documentación
-      </Link>
+        <a
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${
+            screen === 'sm' || screen === 'md'
+              ? 'justify-between'
+              : 'justify-center'
+          } ${activeMenu === 'documentacion' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
+        >
+          Documentación
+          {screen === 'lg' || screen === 'xl' ? (
+            <ChevronDown
+              className={`h-4 w-4 transition-transform lg:block ${
+                activeMenu === 'documentacion' ? 'rotate-180' : ''
+              }`}
+              strokeWidth={2.5}
+            />
+          ) : activeMenu === 'documentacion' ? (
+            <ChevronDown
+              className='h-6 w-6 transition-transform lg:block'
+              strokeWidth={2.5}
+            />
+          ) : (
+            <ChevronRight
+              className='h-6 w-6 transition-transform lg:block'
+              strokeWidth={2.5}
+            />
+          )}
+        </a>
+
+        {activeMenu === 'documentacion' && (
+          <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
+            <ul className='space-y-4'>
+              <li className='space-y-4'>
+                <Link href='/documentation?section=manuals'>
+                  <h3>Manuales</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Manuales'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20libro.svg?alt=media&token=e668d076-74d4-4440-b444-938ab4ca08c4'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Guías y recursos</p>
+                      <p className='text-sm text-gray-500'>
+                        Accede a manuales detallados para aprender más.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+              <li className='space-y-4'>
+                <Link href='/documentation?section=tutorials'>
+                  <h3>Tutoriales</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Tutoriales'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FIcono%20cara.svg?alt=media&token=07a8e8e3-7c4c-416f-9462-9d116a5d2e99'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Paso a paso</p>
+                      <p className='text-sm text-gray-500'>
+                        Encuentra tutoriales prácticos para dominar
+                        herramientas.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+              <li className='space-y-4'>
+                <Link href='/documentation?section=database'>
+                  <h3>Base de Datos</h3>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Base de Datos'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FGroup%20633047.svg?alt=media&token=ce02d28a-dfdd-4f4c-8e89-8944651d3a12'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>Consulta avanzada</p>
+                      <p className='text-sm text-gray-500'>
+                        Explora información organizada y bases de datos útiles.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
     </>
   )
 }
