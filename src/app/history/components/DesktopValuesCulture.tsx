@@ -30,7 +30,7 @@ export const DesktopValuesCulture = () => {
             />
           </div>
           <div
-            className={`overflow-hidden font-darker-grotesque shadow-md transition-all duration-500 ease-in-out ${
+            className={`overflow-hidden font-darker-grotesque shadow-xl transition-all duration-500 ease-in-out ${
               openAccordion === item.id ? 'h-auto' : 'max-h-0'
             }`}
           >
