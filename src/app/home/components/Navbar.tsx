@@ -61,7 +61,7 @@ export const Navbar: React.FC = () => {
       <div className='mx-auto min-w-[360px] max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='scroll flex justify-between lg:justify-start'>
           <Link href='/' className='flex flex-row justify-start'>
-            <Image
+            <img
               alt='logo'
               width={90}
               height={48}
