@@ -54,7 +54,7 @@ export const Navlist: React.FC = () => {
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
-                <Link href='/historia'>
+                <Link href='/history'>
                   <h3>Historia</h3>
                   <div className='flex items-start'>
                     <img
