@@ -2,7 +2,7 @@
 
 import { useTypeScreen } from '@/hooks'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDown, ChevronRight } from 'react-feather'
 
 export const Navlist: React.FC = () => {
@@ -13,6 +13,20 @@ export const Navlist: React.FC = () => {
     setActiveMenu(activeMenu === menu ? '' : menu)
   }
 
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as HTMLElement
+    if (!target.closest('.menu-container')) {
+      setActiveMenu('')
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('click', handleClickOutside)
+    }
+  }, [handleClickOutside])
+
   return (
     <>
       <Link
@@ -22,9 +36,7 @@ export const Navlist: React.FC = () => {
         Inicio
       </Link>
       <div
-        className={`py-full h-full flex-grow border-b-2 border-gray-200 lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('comunidad')}
-        onMouseLeave={() => toggleMenu('')}
+        className={`menu-container py-full h-full flex-grow border-b-2 border-gray-200 lg:border-b-0`}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
@@ -113,9 +125,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
-        onMouseEnter={() => toggleMenu('actividades')}
-        onMouseLeave={() => toggleMenu('')}
+        className='menu-container relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
         onClick={() => toggleMenu('actividades')}
       >
         <a
@@ -207,9 +217,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
-        onMouseEnter={() => toggleMenu('Novedades')}
-        onMouseLeave={() => toggleMenu('')}
+        className='menu-container relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
         onClick={() => toggleMenu('Novedades')}
       >
         <a
@@ -301,9 +309,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className='relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
-        onMouseEnter={() => toggleMenu('documentacion')}
-        onMouseLeave={() => toggleMenu('')}
+        className='menu-container relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
         onClick={() => toggleMenu('documentacion')}
       >
         <a
