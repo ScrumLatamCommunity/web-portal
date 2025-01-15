@@ -50,12 +50,12 @@ export const News = () => {
 
   return (
     <div
-      className='relative mx-auto flex min-h-screen w-full max-w-screen-2xl flex-col items-center justify-center'
+      className='relative mx-auto my-12 flex w-full max-w-screen-2xl flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className='mt-8 flex flex-wrap items-center justify-center pt-12'>
+      <div className='flex flex-wrap items-center justify-center md:mt-8 md:pt-12'>
         <TargetIcon2 className='mb-6 h-10 w-10 md:h-20 md:w-20' />
         <h1 className='pb-6 text-center font-darker-grotesque text-[25px] font-extrabold text-[#082965] md:pb-14 md:pt-10 md:text-5xl'>
           Novedades de la comunidad
