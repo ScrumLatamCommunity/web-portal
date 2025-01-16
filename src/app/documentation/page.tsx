@@ -15,6 +15,8 @@ import SearchBar from './components/search-bar'
 import DottedOrange from '@/assets/dottedOrange'
 import DottedBlue from '@/assets/dottedBlue'
 import Benefits from './components/benefits'
+import HeroSection from '@/app/activities/components/heroSection'
+import ActivitiesImage from '@/assets/documentImg'
 
 function DocumentationsContent() {
   const searchParams = useSearchParams()
@@ -69,7 +71,16 @@ function DocumentationsContent() {
 
   return (
     <div>
-      <section className='mb-4 mt-10 flex w-full px-10 md:mb-0'>
+      {/* Hero Section */}
+      <HeroSection
+        description='Accede a guías detalladas paso a paso sobre metodologías ágiles y Scrum. Aquí encontrarás todo lo necesario para aplicar las mejores prácticas en tu equipo: desde la planificación de sprints hasta la gestión de equipos bajo los principios ágiles.'
+        image={
+          <ActivitiesImage className='h-auto max-w-full md:h-[456px] md:max-w-[580px]' />
+        }
+        linkTitle=''
+        title='Documentación de la Comunidad'
+      />
+      <section className='mb-4 mt-0 flex w-full px-10 md:mb-0'>
         <div className='mx-auto w-full md:mx-0 md:w-1/2 md:max-w-screen-xl md:justify-start'>
           <SearchBar
             setQuery={setQuery}
