@@ -44,6 +44,15 @@ export interface History {
   description: string[]
 }
 
+export interface ValuesCulture {
+  id: number
+  title: string
+  image: string
+  description: string[]
+  desktopTitle: string[]
+  desktopDescription: string[]
+}
+
 export const sponsors: Sponsor[] = [
   {
     id: 1,
@@ -645,6 +654,69 @@ export const blogs = [
     description:
       'En el mundo de las metodologías ágiles, Jira se ha convertido en una de las herramientas más populares para gestionar proyectos y equipos de trabajo. Su flexibilidad permite implementar marcos como Scrum y Kanban, facilitando la planificación, el seguimiento de tareas y la priorización del backlog.',
     img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F8707a207f678c22343417a18e9db520f.png?alt=media&token=6ab28e8d-7219-425b-a8f7-8842a5eebf81',
+  },
+]
+
+export const valuesCulture: ValuesCulture[] = [
+  {
+    id: 1,
+    title: 'Nuestros Valores',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FValuesCulture%2FGroup%20633723.svg?alt=media&token=eee11f6f-091c-462a-bd95-9652caed035e',
+    description: [
+      'Colaboración: Fomentar un entorno donde la comunidad trabaje junta hacia metas compartidas.',
+      'Innovación: Adoptar nuevas ideas y prácticas que impulsen la evolución ágil.',
+      'Inclusión: Crear un espacio donde todas las voces sean escuchadas y respetadas.',
+      'Aprendizaje Contínuo: Promover el crecimiento profesional y personal de los miembros.',
+      'Transparencia: Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Compromiso: Demostramos dedicación, perseverancia hacia los objetivos como comunidad.',
+    ],
+    desktopTitle: [
+      'Colaboracion',
+      'Innovación',
+      'Inclusión',
+      'Aprendizaje Contínuo',
+      'Transparencia',
+      'Compromiso',
+    ],
+    desktopDescription: [
+      'Fomentar un entorno donde la comunidad trabaje junta hacia metas compartidas.',
+      'Adoptar nuevas ideas y prácticas que impulsen la evolución ágil.',
+      'Crear un espacio donde todas las voces sean escuchadas y respetadas.',
+      'Promover el crecimiento profesional y personal de los miembros.',
+      'Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Demostramos dedicación, perseverancia hacia los objetivos como comunidad.',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Nuestra Cultura',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FFounder%2FEstrella%20con%20fondo.svg?alt=media&token=28e0e4f1-a8fd-498a-8fb8-1a5714d4b769',
+    description: [
+      'Diversidad y Apertura: Atraer a personas de diferentes culturas y disciplinas, y valorar sus perspectivas únicas.',
+      'Empoderamiento: Proveer herramientas y apoyo para que los miembros alcancen su máximo potencial.',
+      'Sostenibilidad: Diseñar prácticas y eventos que sean sostenibles a largo plazo.',
+      'Comunicación Activa: Usar canales efectivos para que todos estén informados y comprometidos.',
+      'Celebración de Logros: Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Innovación: Fomentar un entorno donde la innovación y la creatividad sean incentivadas y valoradas.',
+    ],
+    desktopTitle: [
+      'Diversidad y Apertura',
+      'Empoderamiento',
+      'Sostenibilidad',
+      'Comunicación Activa',
+      'Celebración de Logros',
+      'Innovación',
+    ],
+    desktopDescription: [
+      'Atraer a personas de diferentes culturas y disciplinas, y valorar sus perspectivas únicas.',
+      'Proveer herramientas y apoyo para que los miembros alcancen su máximo potencial.',
+      'Diseñar prácticas y eventos que sean sostenibles a largo plazo.',
+      'Usar canales efectivos para que todos estén informados y comprometidos.',
+      'Mantener la comunicación abierta y honesta en todas las interacciones.',
+      'Fomentar un entorno donde la innovación y la creatividad sean incentivadas y valoradas.',
+    ],
   },
 ]
 
