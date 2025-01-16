@@ -150,3 +150,5 @@ export const News = () => {
     </div>
   )
 }
+
+// para generar un nuevo preview

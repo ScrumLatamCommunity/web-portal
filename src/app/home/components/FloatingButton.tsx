@@ -43,17 +43,17 @@ const FloatingButton: React.FC = () => {
   }, [isHovered])
 
   return (
-    <div className='fixed inset-x-0 bottom-1/4 z-50 translate-y-1/2 transform md:right-0 md:top-20 md:w-full md:translate-y-0'>
-      <div className='mx-auto flex max-w-screen-2xl justify-end pr-4'>
+    <div className='fixed bottom-1/4 right-4 z-50 md:bottom-auto md:top-20'>
+      <div className='flex justify-end'>
         {isHovered ? (
           <Link href='/memberships'>
             <button
-              className='flex items-center justify-center rounded-full bg-[#FE7354] px-4 shadow-lg transition-all duration-300'
+              className='flex items-center justify-center rounded-full bg-[#FE5833] px-4 shadow-lg transition-all duration-300 md:h-16'
               id='floating-button'
               onClick={() => setIsHovered(false)}
             >
               <span
-                className='mr-3 text-[20px] text-white md:text-[30px]'
+                className='mr-3 text-[20px] font-darker-grotesque-700 text-white md:text-[30px]'
                 style={{
                   transition: 'opacity 0.3s ease-in-out',
                 }}
@@ -61,7 +61,7 @@ const FloatingButton: React.FC = () => {
                 Suscríbete
               </span>
               <FloatIconOutlined
-                className='h-6 w-6 md:h-8 md:w-8'
+                className='h-6 w-6 md:h-10 md:w-10'
                 preserveAspectRatio='xMidYMid meet'
               />
             </button>
@@ -71,7 +71,7 @@ const FloatingButton: React.FC = () => {
             className={`flex items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
               isHovered
                 ? 'bg-[#FE7354] px-4'
-                : 'h-8 w-8 border-2 bg-white md:h-12 md:w-12'
+                : 'h-8 w-8 border-2 bg-white shadow-[0px_4px_15px_rgba(100,100,100,0.5)] md:h-16 md:w-16'
             }`}
             id='floating-button'
             style={isHovered ? undefined : { borderColor: '#FE7354' }}
@@ -91,13 +91,13 @@ const FloatingButton: React.FC = () => {
             )}
             {isHovered ? (
               <FloatIconOutlined
-                className='h-6 w-6 md:h-8 md:w-8'
+                className='h-6 w-6 md:h-10 md:w-10'
                 preserveAspectRatio='xMidYMid meet'
               />
             ) : (
               <Link href='/memberships'>
                 <FloatIcon
-                  className='h-6 w-6 md:h-8 md:w-8'
+                  className='h-6 w-6 md:h-10 md:w-10'
                   preserveAspectRatio='xMidYMid meet'
                 />
               </Link>

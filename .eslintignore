@@ -1,1 +1,6 @@
 *.css
+.next/
+node_modules/
+build/
+dist/
+coverage/
