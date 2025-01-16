@@ -1,13 +1,16 @@
 'use client'
 
+import { darkerGrotesque } from '@/fonts'
 import { useTypeScreen } from '@/hooks'
 import Link from 'next/link'
 import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDown, ChevronRight } from 'react-feather'
+import { usePathname } from 'next/navigation'
 
 export const Navlist: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string>('')
   const screen = useTypeScreen()
+  const pathname = usePathname()
 
   const toggleMenu = (menu: string) => {
     setActiveMenu(activeMenu === menu ? '' : menu)
@@ -29,18 +32,33 @@ export const Navlist: React.FC = () => {
 
   return (
     <>
-      <Link
-        href='/'
-        className='md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 font-medium text-blue-7 hover:text-red-500 hover:underline lg:justify-center lg:border-b-0'
-      >
-        Inicio
-      </Link>
+      <div className={`${darkerGrotesque.variable} font-darker-grotesque`}>
+        <Link
+          href='/'
+          className={`${darkerGrotesque.variable} md:item-start flex flex-grow items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 text-[20px] font-darker-grotesque-600 ${
+            pathname === '/' ? 'text-orange-500 underline' : 'text-blue-7'
+          } hover:text-orange-500 hover:underline lg:justify-center lg:border-b-0`}
+        >
+          Inicio
+        </Link>
+      </div>
       <div
-        className={`menu-container py-full h-full flex-grow border-b-2 border-gray-200 lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        onMouseEnter={() => toggleMenu('comunidad')}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'comunidad' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 ${
+            pathname === '/history' ||
+            pathname === '/community/squads' ||
+            pathname === '/onboarding'
+              ? 'text-orange-500 underline'
+              : 'text-blue-7'
+          } ${
+            screen === 'sm' || screen === 'md'
+              ? 'justify-between'
+              : 'justify-center'
+          } hover:text-orange-500 hover:underline`}
         >
           Comunidad
           {screen === 'lg' || screen === 'xl' ? (
@@ -66,7 +84,7 @@ export const Navlist: React.FC = () => {
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
-                <Link href='/historia'>
+                <Link href='/history'>
                   <h3>Historia</h3>
                   <div className='flex items-start'>
                     <img
@@ -125,11 +143,17 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className='menu-container relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        onMouseEnter={() => toggleMenu('actividades')}
+        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('actividades')}
       >
         <a
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'actividades' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${
+            pathname === '/activities'
+              ? 'text-orange-500 underline'
+              : 'text-blue-7'
+          } ${activeMenu === 'actividades' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
         >
           Actividades
           {screen === 'lg' || screen === 'xl' ? (
@@ -156,7 +180,7 @@ export const Navlist: React.FC = () => {
           <div className='z-10 w-full md:bg-black-3 lg:absolute lg:mt-0 lg:w-80 lg:bg-black-2 lg:p-6 lg:shadow-lg'>
             <ul className='space-y-4'>
               <li className='space-y-4'>
-                <Link href='/eventos'>
+                <Link href='/activities'>
                   <h3>Eventos</h3>
                   <div className='flex items-start'>
                     <img
@@ -217,11 +241,19 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className='menu-container relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
+        className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        onMouseEnter={() => toggleMenu('Novedades')}
+        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('Novedades')}
       >
         <a
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${activeMenu === 'Novedades' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${
+            pathname === '/news-section/news' ||
+            pathname === '/news-section/blogs' ||
+            pathname === '/news-section/articles'
+              ? 'text-orange-500 underline'
+              : 'text-blue-7'
+          } ${activeMenu === 'Novedades' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
         >
           Novedades
           {screen === 'lg' || screen === 'xl' ? (
@@ -309,15 +341,21 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className='menu-container relative flex-grow border-b-2 border-gray-200 lg:border-b-0'
+        className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        onMouseEnter={() => toggleMenu('documentacion')}
+        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('documentacion')}
       >
         <a
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 font-medium text-blue-7 ${
+          className={`font flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 ${
+            pathname.startsWith('/documentation')
+              ? 'text-orange-500 underline'
+              : 'text-blue-7'
+          } ${
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } ${activeMenu === 'documentacion' ? 'text-red-500 underline' : ''} hover:text-red-500 hover:underline`}
+          } hover:text-orange-500 hover:underline`}
         >
           Documentación
           {screen === 'lg' || screen === 'xl' ? (
