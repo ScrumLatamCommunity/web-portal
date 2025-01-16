@@ -145,7 +145,6 @@ export const Navlist: React.FC = () => {
       <div
         className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('actividades')}
-        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('actividades')}
       >
         <a
@@ -243,7 +242,6 @@ export const Navlist: React.FC = () => {
       <div
         className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('Novedades')}
-        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('Novedades')}
       >
         <a
@@ -343,7 +341,6 @@ export const Navlist: React.FC = () => {
       <div
         className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('documentacion')}
-        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('documentacion')}
       >
         <a
