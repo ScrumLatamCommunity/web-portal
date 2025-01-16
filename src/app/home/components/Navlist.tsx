@@ -3,7 +3,7 @@
 import { darkerGrotesque } from '@/fonts'
 import { useTypeScreen } from '@/hooks'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDown, ChevronRight } from 'react-feather'
 import { usePathname } from 'next/navigation'
 
@@ -15,6 +15,20 @@ export const Navlist: React.FC = () => {
   const toggleMenu = (menu: string) => {
     setActiveMenu(activeMenu === menu ? '' : menu)
   }
+
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as HTMLElement
+    if (!target.closest('.menu-container')) {
+      setActiveMenu('')
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('click', handleClickOutside)
+    }
+  }, [handleClickOutside])
 
   return (
     <>
@@ -29,9 +43,8 @@ export const Navlist: React.FC = () => {
         </Link>
       </div>
       <div
-        className={`${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('comunidad')}
-        onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
@@ -130,7 +143,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className={`${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('actividades')}
         onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('actividades')}
@@ -228,7 +241,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className={`${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('Novedades')}
         onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('Novedades')}
@@ -328,7 +341,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className={`${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onMouseEnter={() => toggleMenu('documentacion')}
         onMouseLeave={() => toggleMenu('')}
         onClick={() => toggleMenu('documentacion')}
