@@ -26,6 +26,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <AuthProvider>
           <Navbar />
           <div className='flex flex-col items-center justify-center'>
+            <FloatingButton />
             {children}
             <FloatingButton />
           </div>
