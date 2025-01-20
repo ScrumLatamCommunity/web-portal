@@ -44,7 +44,6 @@ export const Navlist: React.FC = () => {
       </div>
       <div
         className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('comunidad')}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
@@ -58,7 +57,7 @@ export const Navlist: React.FC = () => {
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'comunidad' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
         >
           Comunidad
           {screen === 'lg' || screen === 'xl' ? (
@@ -144,7 +143,6 @@ export const Navlist: React.FC = () => {
       </div>
       <div
         className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('actividades')}
         onClick={() => toggleMenu('actividades')}
       >
         <a
@@ -241,7 +239,6 @@ export const Navlist: React.FC = () => {
       </div>
       <div
         className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('Novedades')}
         onClick={() => toggleMenu('Novedades')}
       >
         <a
@@ -340,7 +337,6 @@ export const Navlist: React.FC = () => {
       </div>
       <div
         className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('documentacion')}
         onClick={() => toggleMenu('documentacion')}
       >
         <a
@@ -352,7 +348,7 @@ export const Navlist: React.FC = () => {
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'documentacion' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
         >
           Documentación
           {screen === 'lg' || screen === 'xl' ? (
