@@ -30,6 +30,7 @@ export default function NewsCard({
             height={1600}
             src={img}
             width={1600}
+            unoptimized
           />
           <p className='w-full pr-4 pt-3 text-right text-[14px] font-darker-grotesque-400 text-[#061D48]'>
             {date}
