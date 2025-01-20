@@ -51,13 +51,13 @@ export const Navlist: React.FC = () => {
             pathname === '/history' ||
             pathname === '/community/squads' ||
             pathname === '/onboarding'
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
           } ${
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } ${activeMenu === 'comunidad' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'comunidad' ? 'text-red-400 underline' : ''} hover:text-orange-500 hover:underline`}
         >
           Comunidad
           {screen === 'lg' || screen === 'xl' ? (
@@ -148,9 +148,9 @@ export const Navlist: React.FC = () => {
         <a
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${
             pathname === '/activities'
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
-          } ${activeMenu === 'actividades' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'actividades' ? 'text-red-400 underline' : ''} hover:text-red-400 hover:underline`}
         >
           Actividades
           {screen === 'lg' || screen === 'xl' ? (
@@ -246,9 +246,9 @@ export const Navlist: React.FC = () => {
             pathname === '/news-section/news' ||
             pathname === '/news-section/blogs' ||
             pathname === '/news-section/articles'
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
-          } ${activeMenu === 'Novedades' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'Novedades' ? 'text-red-400 underline' : ''} hover:text-red-400 hover:underline`}
         >
           Novedades
           {screen === 'lg' || screen === 'xl' ? (
@@ -342,13 +342,13 @@ export const Navlist: React.FC = () => {
         <a
           className={`font flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 ${
             pathname.startsWith('/documentation')
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
           } ${
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } ${activeMenu === 'documentacion' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'documentacion' ? 'text-red-400 underline' : ''} hover:text-red-400 hover:underline`}
         >
           Documentación
           {screen === 'lg' || screen === 'xl' ? (
