@@ -68,9 +68,9 @@ function DocumentationsContent() {
   const filteredData = getFilteredData()
 
   return (
-    <div>
+    <div className='mx-auto w-screen md:max-w-[1980px]'>
       <section className='mb-4 mt-10 flex w-full px-10 md:mb-0'>
-        <div className='mx-auto w-full md:mx-0 md:w-1/2 md:max-w-screen-xl md:justify-start'>
+        <div className='mx-auto w-screen md:mx-0 md:w-1/2 md:max-w-[1980px] md:justify-start'>
           <SearchBar
             setQuery={setQuery}
             data={filteredData}

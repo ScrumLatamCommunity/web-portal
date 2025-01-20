@@ -5,7 +5,7 @@ import { history } from '@/data/data'
 
 export const DesktopMisionVision = () => {
   return (
-    <div className='flex w-full flex-wrap justify-center gap-10 bg-black-4 px-2 py-20 lg:gap-16'>
+    <div className='flex w-full max-w-[1980px] flex-wrap justify-center gap-10 bg-black-4 px-2 py-20 lg:gap-16'>
       {history.map((item) => (
         <div key={item.id} className='flex w-96 flex-col items-center gap-6'>
           <img alt={item.title} className='flex h-28 w-28' src={item.image} />

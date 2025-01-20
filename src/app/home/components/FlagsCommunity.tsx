@@ -17,7 +17,7 @@ export const FlagsCommunity = () => {
   const duplicateFlags = [...FlagsCommunity, ...FlagsCommunity]
 
   return (
-    <div className='relative w-screen bg-black-5 py-6 shadow-shadowFlags md:m-auto md:max-w-screen-2xl md:py-[2.5%] md:shadow-shadowFlagsDesktop'>
+    <div className='relative w-screen bg-black-5 py-6 shadow-shadowFlags md:m-auto md:max-w-[1980px] md:py-[2.5%] md:shadow-shadowFlagsDesktop'>
       <div className='flex overflow-hidden sm:h-12 md:min-h-[5vh] md:bg-inherit'>
         <div className='flex w-full animate-scrollLeft items-center justify-center gap-6 lg:gap-20'>
           {duplicateFlags.map((flag, index) => (

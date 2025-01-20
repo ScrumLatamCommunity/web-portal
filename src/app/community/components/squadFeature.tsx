@@ -10,7 +10,7 @@ export default function SquadFeature({
   title,
 }: SquadFeatureInterface) {
   return (
-    <section className='relative flex h-dvh max-w-screen-2xl flex-1 flex-col justify-around bg-[#FFEAE6] pb-12 md:h-[467px] md:flex-row md:pb-0'>
+    <section className='relative flex h-dvh flex-1 flex-col justify-around bg-[#FFEAE6] pb-12 md:h-[467px] md:max-w-[1980px] md:flex-row md:pb-0'>
       <DottedOrange className='absolute bottom-0 right-0 h-[250px] w-[250px] translate-y-1/2 md:h-[400px] md:w-[300px]' />
       <div className='relative flex h-full flex-col items-center justify-around md:mx-14 md:justify-center'>
         <a

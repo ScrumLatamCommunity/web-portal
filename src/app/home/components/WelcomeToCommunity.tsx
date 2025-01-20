@@ -13,7 +13,7 @@ export const WelcomeToCommunity = () => {
   }, [isLargeScreen])
 
   return (
-    <section className='flex flex-col pl-4 md:items-center md:bg-gradient-to-tr md:from-red-300 md:to-transparent md:pl-0 xl:m-auto'>
+    <section className='flex flex-col pl-4 md:max-w-[1980px] md:items-center md:bg-gradient-to-tr md:from-red-300 md:to-transparent md:pl-0 xl:m-auto'>
       <div className='relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center md:flex-row'>
         <div className='absolute right-0 top-10 h-[100px] w-[100px] rounded-full bg-blue-5 opacity-60 blur-2xl md:hidden'></div>
         <div className='absolute -left-14 bottom-1/4 h-[300px] w-[300px] rounded-full bg-red-300 opacity-20 blur-2xl md:hidden'></div>
