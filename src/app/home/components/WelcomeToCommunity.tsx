@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { PrimaryButton } from '../../../core/PrimaryButton'
 import { image_url_mobile, image_url_desktop } from '@/data/data'
 import useIsLargeScreen from '@/hooks/index'
+import { darkerGrotesque } from '@/fonts'
 
 export const WelcomeToCommunity = () => {
   const isLargeScreen = useIsLargeScreen(468)
@@ -29,8 +30,11 @@ export const WelcomeToCommunity = () => {
             metodologías ágiles. ¡Bienvenidos a un entorno donde la cooperación
             y la agilidad impulsan nuestro crecimiento y éxito!
           </p>
-          <div className='pt-6 md:block md:pt-4 xl:pt-10'>
-            <PrimaryButton label='Únete a nosotros' />
+          <div className='pt-6 font-darker-grotesque md:block md:pt-4 xl:pt-10'>
+            <PrimaryButton
+              className='px-3 pb-1 text-[15px] font-darker-grotesque-600 md:pb-3 md:text-[20px]'
+              label='Únete a nosotros'
+            />
           </div>
         </div>
         <img
