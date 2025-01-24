@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 export const DesktopSidebar = () => {
   return (
-    <div className='flex w-[17%] flex-col items-center justify-center gap-2 border-r border-[#082965] pt-[52px]'>
+    <div className='flex w-[17%] flex-col items-center gap-2 border-r border-[#082965] pt-[52px]'>
       {superAdminDashboard.map((item: SuperAdminDashboard) => (
         <div
           key={item.id}

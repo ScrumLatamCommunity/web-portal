@@ -1,3 +1,4 @@
 import { DesktopNavbar } from './DesktopNavbar'
 import { DesktopSidebar } from './DesktopSidebar'
-export { DesktopNavbar, DesktopSidebar }
+import { Dashboard } from './Dashboard'
+export { DesktopNavbar, DesktopSidebar, Dashboard }
