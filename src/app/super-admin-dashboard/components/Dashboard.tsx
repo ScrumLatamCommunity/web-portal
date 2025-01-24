@@ -152,35 +152,35 @@ export const Dashboard = () => {
               <span>Tipo</span>
               <span>Metodo de Pago</span>
             </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[29px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>0/50</span>
+              <span className='pl-[53px]'>11/12/2024</span>
+              <span className='pl-[30px]'>Flex</span>
+              <span className='pl-[3px]'>Tarjeta de Crédito</span>
             </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[29px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>0/50</span>
+              <span className='pl-[53px]'>11/12/2024</span>
+              <span className='pl-[30px]'>Flex</span>
+              <span className='pl-[3px]'>Tarjeta de Crédito</span>
             </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[29px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>0/50</span>
+              <span className='pl-[53px]'>11/12/2024</span>
+              <span className='pl-[30px]'>Flex</span>
+              <span className='pl-[3px]'>Tarjeta de Crédito</span>
             </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[29px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>0/50</span>
+              <span className='pl-[53px]'>11/12/2024</span>
+              <span className='pl-[30px]'>Flex</span>
+              <span className='pl-[3px]'>Tarjeta de Crédito</span>
             </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[29px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>0/50</span>
+              <span className='pl-[53px]'>11/12/2024</span>
+              <span className='pl-[30px]'>Flex</span>
+              <span className='pl-[3px]'>Tarjeta de Crédito</span>
             </div>
           </div>
           <div className='flex items-end justify-end'>
