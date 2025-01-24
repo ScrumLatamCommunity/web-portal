@@ -58,31 +58,31 @@ export const Dashboard = () => {
               <span>Fecha de evento</span>
               <span>Cupos</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
               <span>Metodologí..</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
               <span>Metodologí..</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
               <span>Metodologí..</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
               <span>Metodologí..</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
               <span>Metodologí..</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
@@ -96,42 +96,42 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className='flex gap-[20px] pl-24 pt-[10px]'>
+      <div className='flex gap-[20px] pb-[75px] pl-24 pt-[10px]'>
         {/* Tercer contenedor */}
         <div className='flex min-w-[517px] flex-col gap-[33px] rounded-xl border border-[#082965] px-[18px] pb-[14px] pt-6'>
           <span className='pl-[13px] font-darker-grotesque text-10 font-bold text-[#082965]'>
-            Últimos Eventos
+            Últimos Sponsors
           </span>
           <div className='flex flex-col gap-[6px]'>
-            <div className='flex gap-[65px] pl-[15px] pr-[15px] text-[12px] font-inter-600'>
+            <div className='flex gap-[106px] pl-[15px] pr-[15px] text-[12px] font-inter-600'>
               <span>Nombre</span>
               <span>Aliado desde</span>
               <span>Servicio</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>Educación</span>
+              <span className='pl-[46px]'>11/12/2024</span>
+              <span className='pl-[45px]'>Educación</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>Educación</span>
+              <span className='pl-[46px]'>11/12/2024</span>
+              <span className='pl-[45px]'>Educación</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>Educación</span>
+              <span className='pl-[46px]'>11/12/2024</span>
+              <span className='pl-[45px]'>Educación</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>Educación</span>
+              <span className='pl-[46px]'>11/12/2024</span>
+              <span className='pl-[45px]'>Educación</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>Educación</span>
+              <span className='pl-[46px]'>11/12/2024</span>
+              <span className='pl-[45px]'>Educación</span>
             </div>
           </div>
           <div className='flex items-end justify-end'>
@@ -142,41 +142,41 @@ export const Dashboard = () => {
         </div>
         {/* Cuarto contenedor */}
         <div className='flex min-w-[579px] flex-col gap-[33px] rounded-xl border border-[#082965] px-[18px] pb-[14px] pt-6'>
-          <span className='pl-[13px] font-darker-grotesque text-10 font-bold text-[#082965]'>
-            Últimos Eventos
+          <span className='pl-[18px] font-darker-grotesque text-10 font-bold text-[#082965]'>
+            Últimas Membresías
           </span>
           <div className='flex flex-col gap-[6px]'>
-            <div className='flex gap-[65px] pl-[15px] pr-[15px] text-[12px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span>Fecha de creacion</span>
-              <span>Fecha de evento</span>
-              <span>Cupos</span>
+            <div className='flex gap-[66px] pl-[28px] pr-[15px] text-[12px] font-inter-600'>
+              <span className='pl-[4px]'>Nombre</span>
+              <span className='pl-[22px]'>Membresías desde</span>
+              <span>Tipo</span>
+              <span>Metodo de Pago</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span className='pl-[43px]'>11/12/2024</span>
-              <span className='pl-[33px]'>0/50</span>
-            </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
               <span className='pl-[33px]'>0/50</span>
             </div>
-            <div className='flex gap-[65px] rounded-2xl border border-[#000000] px-[16px] py-[13px] text-[10px] font-inter-600'>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
+              <span>Juan Perez</span>
+              <span>11/12/2024</span>
+              <span className='pl-[43px]'>11/12/2024</span>
+              <span className='pl-[33px]'>0/50</span>
+            </div>
+            <div className='flex gap-[65px] rounded-xl border border-[#000000] py-[13px] pl-[28px] pr-[16px] text-[10px] font-inter-600'>
               <span>Juan Perez</span>
               <span>11/12/2024</span>
               <span className='pl-[43px]'>11/12/2024</span>
@@ -185,7 +185,7 @@ export const Dashboard = () => {
           </div>
           <div className='flex items-end justify-end'>
             <button className='rounded-2xl bg-[#FD3600] px-[19px] py-[10px] text-white'>
-              Ir a Miembros
+              Ir a Membresías
             </button>
           </div>
         </div>
