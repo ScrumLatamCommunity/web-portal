@@ -133,7 +133,7 @@ export const News = () => {
             <h1 className='pb-4 font-darker-grotesque text-3xl font-bold text-[#000000] md:px-2 md:pb-12 md:text-5xl'>
               {currentNews.sub_title}
             </h1>
-            <p className='w-full font-karla text-sm leading-3 text-[#082965] md:px-2 md:pb-0 md:pr-28 md:text-[22px]'>
+            <p className='w-full font-karla text-sm leading-3 text-[#082965] md:px-2 md:pb-0 md:pr-28 md:text-[22px] md:leading-6'>
               {currentNews.text}
             </p>
           </div>
