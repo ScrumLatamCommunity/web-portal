@@ -8,6 +8,7 @@ import { useTypeScreen } from '@/hooks'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { logout } from '@/app/actions/auth'
 import Image from 'next/image'
+import { darkerGrotesque } from '@/fonts'
 
 export const Navbar: React.FC = () => {
   const [openNav, setOpenNav] = useState<boolean>(false)
@@ -18,20 +19,24 @@ export const Navbar: React.FC = () => {
   }
 
   const AuthButtons = ({ isMobile = false }) => (
-    <div className={`flex ${isMobile ? 'flex-col space-y-4' : 'items-center'}`}>
+    <div
+      className={`flex ${darkerGrotesque.variable} ${isMobile ? 'flex-col space-y-4' : 'items-center'}`}
+    >
       <AuthWrapper showWhenAuth={false}>
         <div
-          className={`${isMobile ? 'flex flex-col space-y-4' : 'flex items-center'}`}
+          className={`font-darker-grotesque ${isMobile ? 'flex flex-col space-y-4' : 'flex items-center'}`}
         >
           <Link
             className='flex items-center whitespace-nowrap p-2 text-red-400 hover:text-red-200'
             href='/login'
           >
             <User className='mr-2 h-4' />
-            <h2 className='block'>Iniciar sesión</h2>
+            <h2 className='block text-[20px] font-darker-grotesque-600'>
+              Iniciar sesión
+            </h2>
           </Link>
           <Link
-            className='rounded-full bg-red-500 px-4 py-2 text-center font-bold text-white hover:bg-red-300'
+            className='rounded-full bg-red-500 px-4 py-1 pb-2 text-center text-[18px] font-darker-grotesque-600 text-white hover:bg-red-300'
             href='/register'
           >
             Registrarse
@@ -42,10 +47,10 @@ export const Navbar: React.FC = () => {
       <AuthWrapper showWhenAuth={true}>
         <button
           onClick={logout}
-          className='flex items-center text-red-400 hover:text-red-200'
+          className='flex items-center font-darker-grotesque-600 text-red-400 hover:text-red-200'
         >
           <User className='mr-2 h-4' />
-          <span>Cerrar sesión</span>
+          <span className='font-darker-grotesque-600'>Cerrar sesión</span>
         </button>
       </AuthWrapper>
     </div>
@@ -56,7 +61,7 @@ export const Navbar: React.FC = () => {
       <div className='mx-auto min-w-[360px] max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='scroll flex justify-between lg:justify-start'>
           <Link href='/' className='flex flex-row justify-start'>
-            <Image
+            <img
               alt='logo'
               width={90}
               height={48}

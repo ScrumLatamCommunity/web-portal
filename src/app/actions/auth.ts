@@ -2,6 +2,7 @@
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export async function login(formData: FormData) {
   const email = formData.get('email')
@@ -37,8 +38,10 @@ export async function login(formData: FormData) {
       path: '/',
     })
 
+    toast.success('Sesión iniciada correctamente')
     redirect('/')
   } catch (error) {
+    toast.error('Error al iniciar sesión')
     console.error('Login error:', error)
     throw error instanceof Error ? error : new Error('Error al iniciar sesión')
   }

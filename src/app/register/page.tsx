@@ -18,7 +18,6 @@ function RegisterFormComponent() {
   const {
     selectedCountry,
     setSelectedCountry,
-    selectedMembership,
     handleSubmit: onSubmit,
   } = useRegisterForm(REGISTER_URL)
 
@@ -35,7 +34,7 @@ function RegisterFormComponent() {
       password: formData.get('password')?.toString() || '',
       confirmPassword: formData.get('confirmPassword')?.toString() || '',
       country: selectedCountry,
-      membership: selectedMembership,
+      membership: selectedMembershipFromQuery ?? 'Free',
     }
 
     onSubmit(userData)

@@ -1,9 +1,12 @@
 import { z } from 'zod'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { registerSchema } from '../schema/userSchema'
 import { METHODS } from '@/interfaces'
+import toast from 'react-hot-toast'
 
 export const useRegisterForm = (API_URL: string) => {
+  const router = useRouter()
   const [selectedCountry, setSelectedCountry] = useState<string>('')
   const [selectedMembership, setSelectedMembership] = useState<string>('')
 
@@ -24,15 +27,20 @@ export const useRegisterForm = (API_URL: string) => {
         throw new Error(errorData.message || 'Error al registrar usuario')
       }
 
-      alert('Usuario registrado exitosamente')
+      toast.success('Usuario registrado exitosamente')
+      setTimeout(() => {
+        router.push('/login')
+      }, 2000)
     } catch (error) {
       if (error instanceof z.ZodError) {
         console.log(error)
-        alert(
+        toast.error(
           error.errors
             .map((err) => `${err.path.join('.')}: ${err.message}`)
             .join('\n'),
         )
+      } else if (error instanceof Error) {
+        toast.error(error.message)
       }
     }
   }
