@@ -8,9 +8,18 @@ import { Instagram } from 'react-feather'
 export const Founder = () => {
   return (
     <div className='flex flex-col items-center gap-8 pb-20 pt-20 font-darker-grotesque md:gap-16'>
-      <div className='flex gap-2'>
-        <img alt='icono' className='object-cover' src={images.founder[0]} />
-        <span className='text-10 font-black text-[#061D48]'>
+      <div className='flex items-center gap-2'>
+        <img
+          alt='icono'
+          className='h-[42px] w-[41px] object-cover'
+          src={images.founder[0]}
+        />
+        <span
+          className='font-darker-grotesque text-[48px] font-black text-[#061D48]'
+          style={{
+            textShadow: '0.35px 0.35px 0 #082965, -0.35px -0.35px 0 #082965',
+          }}
+        >
           Nuestro fundador
         </span>
       </div>

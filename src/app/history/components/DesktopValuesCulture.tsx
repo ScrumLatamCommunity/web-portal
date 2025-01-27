@@ -21,9 +21,15 @@ export const DesktopValuesCulture = () => {
           >
             <div className='flex items-center gap-5'>
               <img alt={item.title} className='h-12 w-12' src={item.image} />
-              <h1 className='flex text-2xl font-black text-[#082965]'>
+              <h2
+                className='flex font-darker-grotesque text-[48px] font-black text-[#082965]'
+                style={{
+                  textShadow:
+                    '0.35px 0.35px 0 #082965, -0.35px -0.35px 0 #082965',
+                }}
+              >
                 {item.title}
-              </h1>
+              </h2>
             </div>
             <ChevronRight
               className={`h-8 w-8 transform transition-transform ${openAccordion === item.id ? 'rotate-90' : ''} justify-end text-red-400`}

@@ -25,9 +25,15 @@ export const MobileValuesCulture = () => {
             >
               <div className='flex items-center gap-5'>
                 <img alt={item.title} src={item.image} />
-                <h1 className='flex text-10 font-black text-[#082965]'>
+                <h2
+                  className='flex font-darker-grotesque text-10 font-black text-[#082965]'
+                  style={{
+                    textShadow:
+                      '0.35px 0.35px 0 #082965, -0.35px -0.35px 0 #082965',
+                  }}
+                >
                   {item.title}
-                </h1>
+                </h2>
               </div>
               <ChevronRight
                 className={`transform transition-transform ${openAccordion === item.id ? 'rotate-90' : ''} justify-end text-red-400`}
