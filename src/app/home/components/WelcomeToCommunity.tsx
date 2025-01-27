@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react'
 import { PrimaryButton } from '../../../core/PrimaryButton'
 import { image_url_mobile, image_url_desktop } from '@/data/data'
 import useIsLargeScreen from '@/hooks/index'
+import { useAuth } from '@/app/context/AuthContext'
 import { darkerGrotesque } from '@/fonts'
 
 export const WelcomeToCommunity = () => {
+  const { user } = useAuth()
+  console.log(user)
   const isLargeScreen = useIsLargeScreen(468)
   const [image, setImage] = useState(image_url_mobile)
 

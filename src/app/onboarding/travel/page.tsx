@@ -1,8 +1,13 @@
 'use client'
 import { BorderLinearProgress } from '@/app/home/components/progressBar'
 import { ChevronDown, ChevronUp } from 'react-feather'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import YouTube from 'react-youtube'
+import { useOnboarding } from '@/app/onboarding/context/OnboardingContext'
+import { useAuth } from '@/app/context/AuthContext'
+import { toast } from 'react-hot-toast'
+import { useRegister } from '@/app/context/RegisterContext'
+import { useRouter } from 'next/navigation'
 
 interface ListaItem {
   isActive: boolean
@@ -13,7 +18,7 @@ const Lista = () => {
   const [expanded, setExpanded] = useState(true)
   const listaItems: ListaItem[] = [
     { label: 'Bienvenida', isActive: true },
-    { label: 'Términos y condiciones', isActive: false },
+    { label: 'Términos y condiciones', isActive: false }
   ]
 
   const handleToggleExpanded = () => {
@@ -50,8 +55,24 @@ const Lista = () => {
 }
 
 export default function Travel() {
-  const [showNextModuleButton, setShowNextModuleButton] = useState(false)
-  const value = 15
+  const { completeWelcome, progress, isWelcomeCompleted } = useOnboarding()
+  const { user } = useAuth()
+  const [showNextModuleButton, setShowNextModuleButton] =
+    useState(isWelcomeCompleted)
+  const { registerUser } = useRegister()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isWelcomeCompleted) {
+      setShowNextModuleButton(true)
+    }
+  }, [isWelcomeCompleted])
+
+  useEffect(() => {
+    if (!registerUser) {
+      router.push('/login')
+    }
+  }, [registerUser, router])
 
   return (
     <div className='relative flex h-[70vh] max-h-[450px] w-screen'>
@@ -59,15 +80,25 @@ export default function Travel() {
         <div className='h-1.5/6 mx-6 mb-6 mt-10 bg-[#FFBEB0]'>
           <h1 className='p-4 text-3xl font-medium'>Onboarding</h1>
           <div className='px-5 py-1'>
-            <BorderLinearProgress variant='determinate' value={value} />
-            <p>{value}%&nbsp;&nbsp;Completado</p>
+            <BorderLinearProgress variant='determinate' value={progress} />
+            <p>{progress}%&nbsp;&nbsp;Completado</p>
           </div>
         </div>
         <Lista />
         {showNextModuleButton && (
           <a
-            className='mx-6 mb-6 rounded-md bg-[#FD3600] p-2 font-bold text-white'
-            href='terms'
+            className={`mx-6 mb-6 rounded-md bg-[#FD3600] p-2 font-bold text-white ${
+              user?.onboarding ? 'cursor-not-allowed opacity-50' : ''
+            }`}
+            href={user?.onboarding ? '#' : 'terms'}
+            onClick={(e) => {
+              if (user?.onboarding) {
+                e.preventDefault()
+                toast.success('Ya has completado el onboarding')
+                return
+              }
+              completeWelcome()
+            }}
           >
             Siguiente módulo
           </a>
@@ -75,14 +106,17 @@ export default function Travel() {
       </div>
       <div className='relative ml-6 mt-10 h-[95%] w-4/6'>
         <YouTube
-          onEnd={() => setShowNextModuleButton(true)}
+          onEnd={() => {
+            setShowNextModuleButton(true)
+            completeWelcome()
+          }}
           opts={{
             playerVars: {
               autoplay: 1,
               modestbranding: 1,
               rel: 0,
-              showinfo: 0,
-            },
+              showinfo: 0
+            }
           }}
           videoId='LZJoRGuqb7o'
         />

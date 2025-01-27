@@ -39,15 +39,15 @@ function DocumentationsContent() {
   const getFilteredData = () => {
     if (section === 'tutorials') {
       return tutorialsData.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase()),
+        item.title.toLowerCase().includes(query.toLowerCase())
       )
     } else if (section === 'manuals') {
       return manualsData.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase()),
+        item.title.toLowerCase().includes(query.toLowerCase())
       )
     } else if (section === 'database') {
       return databaseData.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase()),
+        item.title.toLowerCase().includes(query.toLowerCase())
       )
     }
     return []
