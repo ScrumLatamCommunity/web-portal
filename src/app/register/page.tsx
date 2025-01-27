@@ -5,21 +5,29 @@ import { REGISTER_URL } from './constants/constant'
 import { useRegisterForm } from './hooks/useRegisterForm'
 import { BackgroundCircles } from './components/BackgroundCircles'
 import dynamic from 'next/dynamic'
+import { z } from 'zod'
 import { Suspense } from 'react'
+import { useRegister } from '@/app/context/RegisterContext'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
+import { registerSchema } from './schema/userSchema'
+import { useAuth } from '@/app/context/AuthContext'
 
 const SelectComponent = dynamic(() => import('./components/SelectComponent'), {
   ssr: false,
 })
 
 function RegisterFormComponent() {
+  const { user } = useAuth()
   const searchParams = useSearchParams()
   const selectedMembershipFromQuery = searchParams.get('membership')
+  const router = useRouter()
+  const { setRegisterUser } = useRegister()
+  const { selectedCountry, setSelectedCountry } = useRegisterForm()
 
-  const {
-    selectedCountry,
-    setSelectedCountry,
-    handleSubmit: onSubmit,
-  } = useRegisterForm(REGISTER_URL)
+  if (user) {
+    router.push('/')
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -37,7 +45,41 @@ function RegisterFormComponent() {
       membership: selectedMembershipFromQuery ?? 'Free',
     }
 
-    onSubmit(userData)
+    registerSchema.parse(userData)
+
+    const { confirmPassword, ...userDataToSend } = userData
+
+    try {
+      const response = await fetch(`${REGISTER_URL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userDataToSend),
+      })
+
+      const data = await response.json()
+      console.log(data)
+      if (response.ok) {
+        setRegisterUser(data)
+        router.push('/onboarding/travel')
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        console.log(error)
+        toast.error(
+          error.errors
+            .map((err) => `${err.path.join('.')}: ${err.message}`)
+            .join('\n')
+        )
+      }
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
+      toast.error('Error en el registro')
+    }
   }
 
   return (
@@ -126,7 +168,7 @@ function RegisterFormComponent() {
   )
 }
 
-export default function RegisterForm() {
+export default function Register() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <RegisterFormComponent />

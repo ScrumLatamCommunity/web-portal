@@ -129,11 +129,16 @@ const config: Config = {
       },
       animation: {
         scrollLeft: 'scroll-left 20s linear infinite',
+        'infinite-scroll': 'scroll 25s linear infinite',
       },
       keyframes: {
         'scroll-left': {
           'from%': { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' },
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(calc(-250px * 7))' }, // ajusta este valor según el número de logos
         },
       },
       boxShadow: {
