@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 's3-alpha-sig.figma.com',
         pathname: '/**', // Permitir todas las rutas
       },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+        pathname: '/**',
+      }
     ],
   },
 }
