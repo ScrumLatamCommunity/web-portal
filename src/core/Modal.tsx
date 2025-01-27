@@ -19,7 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
   modalClassName = '',
   contentClassName = '',
   backdropClassName = '',
-  closeButtonClassName = '',
+  closeButtonClassName = ''
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null
 
   const handleBackdropClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     if (e.target === e.currentTarget) {
       onClose()

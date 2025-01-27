@@ -55,7 +55,7 @@ const FloatingButton: React.FC = () => {
               <span
                 className='mr-3 text-[20px] text-white md:text-[30px]'
                 style={{
-                  transition: 'opacity 0.3s ease-in-out',
+                  transition: 'opacity 0.3s ease-in-out'
                 }}
               >
                 Suscríbete
@@ -83,7 +83,7 @@ const FloatingButton: React.FC = () => {
               <span
                 className='mr-3 text-[20px] text-white md:text-[30px]'
                 style={{
-                  transition: 'opacity 0.3s ease-in-out',
+                  transition: 'opacity 0.3s ease-in-out'
                 }}
               >
                 Suscríbete

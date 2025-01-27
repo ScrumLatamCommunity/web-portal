@@ -4,7 +4,7 @@ import {
   useContext,
   useState,
   ReactNode,
-  useEffect,
+  useEffect
 } from 'react'
 import { jwtDecode } from 'jwt-decode'
 
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user,
         token,
         setAuthToken,
-        logout,
+        logout
       }}
     >
       {children}

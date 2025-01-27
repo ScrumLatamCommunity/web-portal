@@ -4,7 +4,7 @@ import {
   useContext,
   useState,
   ReactNode,
-  useEffect,
+  useEffect
 } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -29,7 +29,7 @@ const getInitialState = (): OnboardingState => {
     return {
       progress: 0,
       isWelcomeCompleted: false,
-      isTermsCompleted: false,
+      isTermsCompleted: false
     }
   }
 
@@ -41,7 +41,7 @@ const getInitialState = (): OnboardingState => {
   return {
     progress: 0,
     isWelcomeCompleted: false,
-    isTermsCompleted: false,
+    isTermsCompleted: false
   }
 }
 
@@ -61,7 +61,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     setState((prev) => ({
       ...prev,
       isWelcomeCompleted: true,
-      progress: prev.isTermsCompleted ? 100 : 50,
+      progress: prev.isTermsCompleted ? 100 : 50
     }))
   }
 
@@ -69,7 +69,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     setState((prev) => ({
       ...prev,
       isTermsCompleted: true,
-      progress: prev.isWelcomeCompleted ? 100 : 50,
+      progress: prev.isWelcomeCompleted ? 100 : 50
     }))
 
     if (state.isWelcomeCompleted) {
@@ -84,7 +84,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
         completeWelcome,
         completeTerms,
         isWelcomeCompleted: state.isWelcomeCompleted,
-        isTermsCompleted: state.isTermsCompleted,
+        isTermsCompleted: state.isTermsCompleted
       }}
     >
       {children}

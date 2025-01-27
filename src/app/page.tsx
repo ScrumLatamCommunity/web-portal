@@ -7,7 +7,7 @@ import {
   News,
   DataComunity,
   JoinOurCommunity,
-  Sponsors,
+  Sponsors
 } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 

@@ -10,7 +10,7 @@ interface AuthWrapperProps {
 
 export function AuthWrapper({
   children,
-  showWhenAuth = true,
+  showWhenAuth = true
 }: AuthWrapperProps) {
   const { user } = useAuth()
   const [isAuthenticated, setIsAuthenticated] = useState(false)

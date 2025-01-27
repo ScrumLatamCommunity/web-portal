@@ -4,7 +4,7 @@ import {
   useContext,
   useState,
   ReactNode,
-  useEffect,
+  useEffect
 } from 'react'
 
 interface RegisterUser {
@@ -55,7 +55,7 @@ export function RegisterProvider({ children }: { children: ReactNode }) {
       value={{
         registerUser,
         setRegisterUser,
-        clearRegisterUser,
+        clearRegisterUser
       }}
     >
       {children}

@@ -29,12 +29,12 @@ export default function Comment() {
       const response = await fetch(`${API_URL}auth/onboarding`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           email: registerUser.email,
-          completed: true,
-        }),
+          completed: true
+        })
       })
 
       if (response.ok) {

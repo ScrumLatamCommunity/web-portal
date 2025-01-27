@@ -16,7 +16,7 @@ const Lista = () => {
   const [expanded, setExpanded] = useState(true)
   const listaItems: ListaItem[] = [
     { label: 'Bienvenida', isActive: true },
-    { label: 'Términos y condiciones', isActive: true },
+    { label: 'Términos y condiciones', isActive: true }
   ]
 
   const handleToggleExpanded = (): void => {

@@ -18,7 +18,7 @@ interface RootLayoutProps {
 
 export const metadata: Metadata = {
   title: 'Scrum Latam',
-  description: 'Scrum Latam',
+  description: 'Scrum Latam'
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {

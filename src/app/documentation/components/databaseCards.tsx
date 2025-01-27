@@ -10,7 +10,7 @@ export default function DatabaseCards({
   description,
   title,
   subject,
-  onReadMore,
+  onReadMore
 }: Database) {
   return (
     <div

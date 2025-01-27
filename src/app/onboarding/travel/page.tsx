@@ -18,7 +18,7 @@ const Lista = () => {
   const [expanded, setExpanded] = useState(true)
   const listaItems: ListaItem[] = [
     { label: 'Bienvenida', isActive: true },
-    { label: 'Términos y condiciones', isActive: false },
+    { label: 'Términos y condiciones', isActive: false }
   ]
 
   const handleToggleExpanded = () => {
@@ -115,8 +115,8 @@ export default function Travel() {
               autoplay: 1,
               modestbranding: 1,
               rel: 0,
-              showinfo: 0,
-            },
+              showinfo: 0
+            }
           }}
           videoId='LZJoRGuqb7o'
         />

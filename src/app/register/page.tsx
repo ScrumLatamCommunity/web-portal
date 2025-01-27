@@ -14,7 +14,7 @@ import { registerSchema } from './schema/userSchema'
 import { useAuth } from '@/app/context/AuthContext'
 
 const SelectComponent = dynamic(() => import('./components/SelectComponent'), {
-  ssr: false,
+  ssr: false
 })
 
 function RegisterFormComponent() {
@@ -42,7 +42,7 @@ function RegisterFormComponent() {
       password: formData.get('password')?.toString() || '',
       confirmPassword: formData.get('confirmPassword')?.toString() || '',
       country: selectedCountry,
-      membership: selectedMembershipFromQuery ?? 'Free',
+      membership: selectedMembershipFromQuery ?? 'Free'
     }
 
     registerSchema.parse(userData)
@@ -53,9 +53,9 @@ function RegisterFormComponent() {
       const response = await fetch(`${REGISTER_URL}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userDataToSend),
+        body: JSON.stringify(userDataToSend)
       })
 
       const data = await response.json()
@@ -144,7 +144,7 @@ function RegisterFormComponent() {
           <Link
             href={{
               pathname: `/register/select`,
-              query: 'modal=membership',
+              query: 'modal=membership'
             }}
             style={{ display: 'contents' }}
           >

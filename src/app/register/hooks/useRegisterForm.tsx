@@ -8,6 +8,6 @@ export const useRegisterForm = () => {
     selectedCountry,
     setSelectedCountry,
     selectedMembership,
-    setSelectedMembership,
+    setSelectedMembership
   }
 }

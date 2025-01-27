@@ -1,7 +1,7 @@
 export default function InstagramIcon({
   className,
   height,
-  width,
+  width
 }: {
   className?: string
   height: number
