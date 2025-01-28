@@ -16,7 +16,7 @@ export default function ArticlesCard({
   date,
   description,
   img,
-  onReadMore,
+  onReadMore
 }: ArticlesI) {
   return (
     <div

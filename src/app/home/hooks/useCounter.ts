@@ -17,7 +17,7 @@ export const useCounter = (counters: Counter[]): void => {
         count += increment
         countersElement.forEach((counter, index) => {
           counter.textContent = Math.ceil(
-            count * (counters[index].number / maxNumber),
+            count * (counters[index].number / maxNumber)
           ).toString()
         })
       } else {

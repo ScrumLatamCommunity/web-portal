@@ -8,7 +8,7 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 
 export default function WorkshopFeature({
-  workshops,
+  workshops
 }: {
   workshops: Array<Workshop>
 }) {
@@ -17,21 +17,21 @@ export default function WorkshopFeature({
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
-            delay: 5000, // Automático cada 5 segundos
+            delay: 5000 // Automático cada 5 segundos
           }}
           breakpoints={{
             320: {
               slidesPerView: 1,
-              spaceBetween: 0,
+              spaceBetween: 0
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 0,
+              spaceBetween: 0
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 0,
-            },
+              spaceBetween: 0
+            }
           }}
           className='workshop-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-screen-2xl'
           modules={[Navigation]}

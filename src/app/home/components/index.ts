@@ -21,5 +21,5 @@ export {
   News,
   DataComunity,
   JoinOurCommunity,
-  Sponsors,
+  Sponsors
 }
