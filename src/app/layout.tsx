@@ -26,7 +26,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='es'>
       <body>
         <AuthProvider>
-
           <RegisterProvider>
             <OnboardingProvider>
               <Navbar />
