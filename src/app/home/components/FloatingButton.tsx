@@ -43,13 +43,11 @@ const FloatingButton: React.FC = () => {
   }, [isHovered])
 
   return (
-
     <div
       className='fixed bottom-1/4 right-4 z-50 md:bottom-auto md:top-20'
       onMouseEnter={() => setIsHovered(true)} // Cambiar estado al entrar al hover
       onMouseLeave={() => setIsHovered(false)} // Cambiar estado al salir del hover
     >
-
       <div className='flex justify-end'>
         {isHovered ? (
           <Link href='/memberships'>
