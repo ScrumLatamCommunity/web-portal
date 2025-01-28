@@ -9,7 +9,7 @@ export const eventsData = [
     description:
       'Explora Lean Startup y Lean Change Management en nuestros encuentros formativos.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const eventsData = [
     description:
       'Ensaya para roles ágiles. Colabora y recibe feedback para perfeccionar tus habilidades.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const eventsData = [
     description:
       'Estudia para ser Scrum Master y Product Owner en sesiones colaborativas. Intercambia conocimientos y experiencias.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ export const eventsData = [
     description:
       'Explora Lean Startup y Lean Change Management en nuestros encuentros formativos.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ export const eventsData = [
     description:
       'Ensaya para roles ágiles. Colabora y recibe feedback para perfeccionar tus habilidades.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 6,
@@ -69,6 +69,6 @@ export const eventsData = [
     description:
       'Estudia para ser Scrum Master y Product Owner en sesiones colaborativas. Intercambia conocimientos y experiencias.',
     link: '#',
-    details: '#',
-  },
+    details: '#'
+  }
 ]

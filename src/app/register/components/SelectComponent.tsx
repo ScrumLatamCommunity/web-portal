@@ -5,7 +5,7 @@ import countryList from 'react-select-country-list'
 
 export default function SelectComponent({
   selectedCountry,
-  setSelectedCountry,
+  setSelectedCountry
 }: {
   selectedCountry: string
   setSelectedCountry: (value: string) => void
@@ -14,7 +14,7 @@ export default function SelectComponent({
   const options = useMemo(() => countryList().getData(), [])
 
   const handleCountryChange = (
-    selectedOption: SingleValue<{ label: string; value: string }>,
+    selectedOption: SingleValue<{ label: string; value: string }>
   ) => {
     setSelectedCountry(selectedOption?.label || '')
   }
@@ -27,7 +27,7 @@ export default function SelectComponent({
       styles={{
         container: (provided) => ({
           ...provided,
-          width: '100%',
+          width: '100%'
         }),
         control: (provided) => ({
           ...provided,
@@ -38,19 +38,19 @@ export default function SelectComponent({
           padding: '16px 0 16px 15px',
           backgroundColor: 'transparent',
           '&:hover': {
-            borderBottom: '2px solid #FD3600',
-          },
+            borderBottom: '2px solid #FD3600'
+          }
         }),
         dropdownIndicator: () => ({
-          display: 'none',
+          display: 'none'
         }),
         indicatorSeparator: () => ({
-          display: 'none',
+          display: 'none'
         }),
         valueContainer: (provided) => ({
           ...provided,
-          padding: '0',
-        }),
+          padding: '0'
+        })
       }}
       onChange={handleCountryChange}
       placeholder='País'

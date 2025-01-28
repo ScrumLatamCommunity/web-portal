@@ -13,7 +13,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/sergioGonzalez',
     behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez'
   },
   {
     name: 'Ana Martínez',
@@ -22,7 +22,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/anaMartinez',
     behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez'
   },
   {
     name: 'Carlos Reyes',
@@ -31,7 +31,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/carlosReyes',
     behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes'
   },
   {
     name: 'Laura Ortega',
@@ -41,7 +41,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/lauraOrtega',
     behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega'
   },
   {
     name: 'Pedro Ramírez',
@@ -51,7 +51,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/pedroRamirez',
     behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez',
+    instagramUrl: 'https://instagram.com/pedroRamirez'
   },
   {
     name: 'Sergio Gonzalez',
@@ -60,7 +60,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/sergioGonzalez',
     behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez'
   },
   {
     name: 'Ana Martínez',
@@ -69,7 +69,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/anaMartinez',
     behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez'
   },
   {
     name: 'Carlos Reyes',
@@ -78,7 +78,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/carlosReyes',
     behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes'
   },
   {
     name: 'Laura Ortega',
@@ -88,7 +88,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/lauraOrtega',
     behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega'
   },
   {
     name: 'Pedro Ramírez',
@@ -98,7 +98,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/pedroRamirez',
     behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez',
+    instagramUrl: 'https://instagram.com/pedroRamirez'
   },
   {
     name: 'Sergio Gonzalez',
@@ -107,7 +107,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/sergioGonzalez',
     behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez'
   },
   {
     name: 'Ana Martínez',
@@ -116,7 +116,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/anaMartinez',
     behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez'
   },
   {
     name: 'Carlos Reyes',
@@ -125,7 +125,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/carlosReyes',
     behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes'
   },
   {
     name: 'Laura Ortega',
@@ -135,7 +135,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/lauraOrtega',
     behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega'
   },
   {
     name: 'Pedro Ramírez',
@@ -145,7 +145,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/pedroRamirez',
     behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez',
+    instagramUrl: 'https://instagram.com/pedroRamirez'
   },
   {
     name: 'Sergio Gonzalez',
@@ -154,7 +154,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/sergioGonzalez',
     behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez',
+    instagramUrl: 'https://instagram.com/sergioGonzalez'
   },
   {
     name: 'Ana Martínez',
@@ -163,7 +163,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/anaMartinez',
     behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez',
+    instagramUrl: 'https://instagram.com/anaMartinez'
   },
   {
     name: 'Carlos Reyes',
@@ -172,7 +172,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/carlosReyes',
     behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes',
+    instagramUrl: 'https://instagram.com/carlosReyes'
   },
   {
     name: 'Laura Ortega',
@@ -182,7 +182,7 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/lauraOrtega',
     behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega',
+    instagramUrl: 'https://instagram.com/lauraOrtega'
   },
   {
     name: 'Pedro Ramírez',
@@ -192,8 +192,8 @@ const profiles = [
     image: <ProfileImage />,
     githubUrl: 'https://github.com/pedroRamirez',
     behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez',
-  },
+    instagramUrl: 'https://instagram.com/pedroRamirez'
+  }
 ]
 
 export default function ProfileSection() {
@@ -216,7 +216,7 @@ export default function ProfileSection() {
       }}
       navigation={{
         prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next',
+        nextEl: '.swiper-button-next'
       }}
       spaceBetween={-30}
       slidesPerView={1}
@@ -224,12 +224,12 @@ export default function ProfileSection() {
       breakpoints={{
         320: {
           slidesPerView: 1,
-          spaceBetween: -30,
+          spaceBetween: -30
         },
         1024: {
           slidesPerView: 3,
-          spaceBetween: -30,
-        },
+          spaceBetween: -30
+        }
       }}
       className='profile-swiper-container w-[275px] md:w-full md:max-w-screen-2xl'
     >

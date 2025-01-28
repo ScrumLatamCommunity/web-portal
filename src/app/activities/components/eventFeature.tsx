@@ -13,21 +13,21 @@ export default function EventFeature({ events }: { events: Array<Event> }) {
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
-            delay: 5000,
+            delay: 5000
           }}
           breakpoints={{
             320: {
               slidesPerView: 1,
-              spaceBetween: 0,
+              spaceBetween: 0
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 0,
+              spaceBetween: 0
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 0,
-            },
+              spaceBetween: 0
+            }
           }}
           className='event-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-screen-2xl'
           modules={[Navigation]}

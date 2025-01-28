@@ -13,7 +13,7 @@ export default function Benefits({
   text,
   checkFree,
   checkFlex,
-  checkPremium,
+  checkPremium
 }: BenefitsInterface) {
   return (
     <main className={`${darkerGrotesque.variable}`}>
@@ -28,7 +28,7 @@ export default function Benefits({
               <CheckBox
                 sx={{
                   color: '#FD3600',
-                  visibility: checkFree ? 'visible' : 'hidden',
+                  visibility: checkFree ? 'visible' : 'hidden'
                 }}
               />
             </div>
@@ -36,7 +36,7 @@ export default function Benefits({
               <CheckBox
                 sx={{
                   color: '#FD3600',
-                  visibility: checkFlex ? 'visible' : 'hidden',
+                  visibility: checkFlex ? 'visible' : 'hidden'
                 }}
               />
             </div>
@@ -44,7 +44,7 @@ export default function Benefits({
               <CheckBox
                 sx={{
                   color: '#FD3600',
-                  visibility: checkPremium ? 'visible' : 'hidden',
+                  visibility: checkPremium ? 'visible' : 'hidden'
                 }}
               />
             </div>

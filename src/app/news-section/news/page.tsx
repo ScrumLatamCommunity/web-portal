@@ -12,7 +12,7 @@ export default function News() {
 
   const filteredNews = query
     ? news.filter((news) =>
-        news.title.toLowerCase().includes(query.toLowerCase()),
+        news.title.toLowerCase().includes(query.toLowerCase())
       )
     : news
 

@@ -78,7 +78,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
         >
           {articles
             .filter((article) =>
-              article.title.toLowerCase().includes(localQuery.toLowerCase()),
+              article.title.toLowerCase().includes(localQuery.toLowerCase())
             )
             .map((articlesItem) => (
               <div
@@ -91,7 +91,7 @@ export default function SearchBar({ setQuery }: SearchBarProps) {
                 <p
                   className='z-10 ml-2 text-sm font-darker-grotesque-600 text-[#63789E]'
                   dangerouslySetInnerHTML={{
-                    __html: highlightMatch(articlesItem.title, localQuery),
+                    __html: highlightMatch(articlesItem.title, localQuery)
                   }}
                 />
               </div>

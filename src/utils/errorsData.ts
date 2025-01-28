@@ -6,7 +6,7 @@ export const errorsData = [
     title: ['¡UPS!', 'Algo salió mal...'],
     description:
       'No te preocupes, estamos solucionándolo. Mientras tanto, sigue navegando por nuestro portal.',
-    message: '¡Gracias por tu paciencia!',
+    message: '¡Gracias por tu paciencia!'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const errorsData = [
     title: ['Vaya, tenemos un problema en el servidor...'],
     description:
       'Oops, tenemos un problema en el servidor. Estamos trabajando para resolverlo lo antes posible. Por favor, vuelve a intentarlo en unos minutos.',
-    message: '¡Gracias por tu comprensión!',
+    message: '¡Gracias por tu comprensión!'
   },
   {
     id: 3,
@@ -23,6 +23,6 @@ export const errorsData = [
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Errors%2Ferror503.png?alt=media&token=3b28f264-f423-4199-a0d9-3f7871d75921',
     title: ['Página en construcción'],
     description:
-      'Estamos trabajando en algo increíble para ti. ¡Gracias por tu paciencia! Mientras terminamos de construir esta página, te invitamos a explorar otras secciones de nuestro portal.',
-  },
+      'Estamos trabajando en algo increíble para ti. ¡Gracias por tu paciencia! Mientras terminamos de construir esta página, te invitamos a explorar otras secciones de nuestro portal.'
+  }
 ]

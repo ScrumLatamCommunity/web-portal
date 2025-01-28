@@ -43,11 +43,13 @@ const FloatingButton: React.FC = () => {
   }, [isHovered])
 
   return (
+
     <div
       className='fixed bottom-1/4 right-4 z-50 md:bottom-auto md:top-20'
       onMouseEnter={() => setIsHovered(true)} // Cambiar estado al entrar al hover
       onMouseLeave={() => setIsHovered(false)} // Cambiar estado al salir del hover
     >
+
       <div className='flex justify-end'>
         {isHovered ? (
           <Link href='/memberships'>
@@ -59,7 +61,7 @@ const FloatingButton: React.FC = () => {
               <span
                 className='mr-3 text-[20px] font-darker-grotesque-600 text-[#FCFCFC] md:text-[38px] md:font-darker-grotesque-700'
                 style={{
-                  transition: 'opacity 0.3s ease-in-out',
+                  transition: 'opacity 0.3s ease-in-out'
                 }}
               >
                 Suscríbete
@@ -85,7 +87,7 @@ const FloatingButton: React.FC = () => {
               <span
                 className='mr-3 text-[20px] font-darker-grotesque-600 text-white md:text-[38px] md:font-darker-grotesque-700'
                 style={{
-                  transition: 'opacity 0.3s ease-in-out',
+                  transition: 'opacity 0.3s ease-in-out'
                 }}
               >
                 Suscríbete
