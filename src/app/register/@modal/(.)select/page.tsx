@@ -19,8 +19,11 @@ function MembershipComponent() {
             {MEMBERSHIP.map((membership) => (
               <div
                 key={membership.id}
-                className='cursor-pointer rounded border p-4 hover:bg-gray-100'
+                className={`cursor-pointer rounded border p-4 hover:bg-gray-100 ${
+                  membership.disabled ? 'cursor-not-allowed opacity-50' : ''
+                }`}
                 onClick={() =>
+                  !membership.disabled &&
                   router.replace(`/register?membership=${membership.name}`)
                 }
               >

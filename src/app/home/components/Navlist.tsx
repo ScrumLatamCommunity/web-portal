@@ -6,8 +6,10 @@ import Link from 'next/link'
 import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDown, ChevronRight } from 'react-feather'
 import { usePathname } from 'next/navigation'
+import { useAuth } from '@/app/context/AuthContext'
 
 export const Navlist: React.FC = () => {
+  const { user } = useAuth()
   const [activeMenu, setActiveMenu] = useState<string>('')
   const screen = useTypeScreen()
   const pathname = usePathname()
@@ -120,23 +122,25 @@ export const Navlist: React.FC = () => {
                   </div>
                 </li>
               </Link>
-              <Link href='/onboarding'>
-                <li className='space-y-4'>
-                  <div className='flex items-start'>
-                    <img
-                      alt='Opción 2'
-                      className='h-10 w-10'
-                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
-                    />
-                    <div className='ml-3'>
-                      <p className='lg:font-bold'>Onboarding</p>
-                      <p className='text-sm text-gray-500'>
-                        Conoce más sobre nuestra comunidad y sus objetivos.
-                      </p>
+              {!user && (
+                <Link href='/onboarding'>
+                  <li className='space-y-4'>
+                    <div className='flex items-start'>
+                      <img
+                        alt='Opción 2'
+                        className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
+                      />
+                      <div className='ml-3'>
+                        <p className='lg:font-bold'>Onboarding</p>
+                        <p className='text-sm text-gray-500'>
+                          Conoce más sobre nuestra comunidad y sus objetivos.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </Link>
+                  </li>
+                </Link>
+              )}
             </ul>
           </div>
         )}

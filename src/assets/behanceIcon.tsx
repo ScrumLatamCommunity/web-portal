@@ -1,7 +1,7 @@
 export default function BehanceIcon({
   className,
   height,
-  width,
+  width
 }: {
   className?: string
   height: number

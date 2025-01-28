@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles'
 import LinearProgress, {
-  linearProgressClasses,
+  linearProgressClasses
 } from '@mui/material/LinearProgress'
 
 export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -9,14 +9,14 @@ export const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: theme.palette.grey[200],
     ...theme.applyStyles('dark', {
-      backgroundColor: theme.palette.grey[800],
-    }),
+      backgroundColor: theme.palette.grey[800]
+    })
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
     backgroundColor: '#FD3600',
     ...theme.applyStyles('dark', {
-      backgroundColor: '#308fe8',
-    }),
-  },
+      backgroundColor: '#308fe8'
+    })
+  }
 }))
