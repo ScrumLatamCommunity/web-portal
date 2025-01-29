@@ -9,7 +9,7 @@ interface UseSwiperProps {
 export const useSwiper = ({
   currentIndex,
   setCurrentIndex,
-  totalItems,
+  totalItems
 }: UseSwiperProps) => {
   const touchStartX = useRef<number | null>(null)
   const touchEndX = useRef<number | null>(null)
@@ -60,6 +60,6 @@ export const useSwiper = ({
     handleNext,
     handleTouchStart,
     handleTouchMove,
-    handleTouchEnd,
+    handleTouchEnd
   }
 }

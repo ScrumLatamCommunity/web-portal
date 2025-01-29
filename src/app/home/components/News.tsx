@@ -13,7 +13,7 @@ import { useSwiper } from '../hooks/useSwiper'
 const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
   bookOpen: BookOpenIcon,
   folder: FolderIcon,
-  globe: GlobeIcon,
+  globe: GlobeIcon
 }
 
 export const News = () => {
@@ -23,11 +23,11 @@ export const News = () => {
     handleNext,
     handleTouchStart,
     handleTouchMove,
-    handleTouchEnd,
+    handleTouchEnd
   } = useSwiper({
     currentIndex,
     setCurrentIndex,
-    totalItems: newsCommunity.length,
+    totalItems: newsCommunity.length
   })
 
   // Reimplementa handlePageChange
@@ -38,7 +38,7 @@ export const News = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex < newsCommunity.length - 1 ? prevIndex + 1 : 0,
+        prevIndex < newsCommunity.length - 1 ? prevIndex + 1 : 0
       )
     }, 5000)
 
@@ -50,12 +50,12 @@ export const News = () => {
 
   return (
     <div
-      className='relative mx-auto flex min-h-screen w-full max-w-[1980px] flex-col items-center justify-center'
+      className='relative mx-auto my-12 flex w-full max-w-[1980px] flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className='mt-8 flex flex-wrap items-center justify-center pt-12'>
+      <div className='flex flex-wrap items-center justify-center md:mt-8 md:pt-12'>
         <TargetIcon2 className='mb-6 h-10 w-10 md:h-20 md:w-20' />
         <h1 className='pb-6 text-center font-darker-grotesque text-[25px] font-extrabold text-[#082965] md:pb-14 md:pt-10 md:text-5xl'>
           Novedades de la comunidad
@@ -68,7 +68,7 @@ export const News = () => {
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.2)',
-              transformOrigin: 'top left',
+              transformOrigin: 'top left'
             }}
           ></div>
           <div
@@ -76,7 +76,7 @@ export const News = () => {
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.3)',
-              transformOrigin: 'top left',
+              transformOrigin: 'top left'
             }}
           ></div>
           <img
@@ -84,7 +84,7 @@ export const News = () => {
             className='h-full w-full scale-x-125 object-cover md:scale-100'
             src={currentNews.image}
             style={{
-              margin: 0,
+              margin: 0
             }}
           />
           <div className='bg-black absolute bottom-0 left-0 bg-opacity-50 px-14 pb-10 text-white md:hidden'>

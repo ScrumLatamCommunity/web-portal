@@ -7,7 +7,7 @@ export default function SquadFeature({
   descriptionMiddle,
   image,
   linkTitle,
-  title,
+  title
 }: SquadFeatureInterface) {
   return (
     <section className='relative flex h-dvh flex-1 flex-col justify-around bg-[#FFEAE6] pb-12 md:h-[467px] md:max-w-[1980px] md:flex-row md:pb-0'>

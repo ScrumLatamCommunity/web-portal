@@ -6,7 +6,7 @@ export default function HeroSection({
   description,
   image,
   linkTitle,
-  title,
+  title
 }: HeroInterface) {
   return (
     <section className='relative flex w-screen flex-col items-center justify-center md:mt-2 md:max-w-[1980px] md:justify-between'>

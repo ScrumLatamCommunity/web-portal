@@ -33,21 +33,21 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
-            delay: 5000,
+            delay: 5000
           }}
           breakpoints={{
             320: {
               slidesPerView: 1,
-              spaceBetween: 0,
+              spaceBetween: 0
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 0,
+              spaceBetween: 0
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 0,
-            },
+              spaceBetween: 0
+            }
           }}
           className='manual-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-[1980px]'
           modules={[Navigation]}
@@ -55,7 +55,7 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
           slidesPerView={1}
           spaceBetween={0}
           style={{
-            minHeight: '300px',
+            minHeight: '300px'
           }}
         >
           {manuals.map((manual) => (

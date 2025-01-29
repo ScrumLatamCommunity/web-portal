@@ -3,11 +3,13 @@
 import { darkerGrotesque } from '@/fonts'
 import { useTypeScreen } from '@/hooks'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDown, ChevronRight } from 'react-feather'
 import { usePathname } from 'next/navigation'
+import { useAuth } from '@/app/context/AuthContext'
 
 export const Navlist: React.FC = () => {
+  const { user } = useAuth()
   const [activeMenu, setActiveMenu] = useState<string>('')
   const screen = useTypeScreen()
   const pathname = usePathname()
@@ -15,6 +17,20 @@ export const Navlist: React.FC = () => {
   const toggleMenu = (menu: string) => {
     setActiveMenu(activeMenu === menu ? '' : menu)
   }
+
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as HTMLElement
+    if (!target.closest('.menu-container')) {
+      setActiveMenu('')
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('click', handleClickOutside)
+    }
+  }, [handleClickOutside])
 
   return (
     <>
@@ -29,9 +45,7 @@ export const Navlist: React.FC = () => {
         </Link>
       </div>
       <div
-        className={`${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('comunidad')}
-        onMouseLeave={() => toggleMenu('')}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
@@ -39,13 +53,13 @@ export const Navlist: React.FC = () => {
             pathname === '/history' ||
             pathname === '/community/squads' ||
             pathname === '/onboarding'
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
           } ${
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'comunidad' ? 'text-red-400 underline' : ''} hover:text-orange-500 hover:underline`}
         >
           Comunidad
           {screen === 'lg' || screen === 'xl' ? (
@@ -108,39 +122,39 @@ export const Navlist: React.FC = () => {
                   </div>
                 </li>
               </Link>
-              <Link href='/onboarding'>
-                <li className='space-y-4'>
-                  <div className='flex items-start'>
-                    <img
-                      alt='Opción 2'
-                      className='h-10 w-10'
-                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
-                    />
-                    <div className='ml-3'>
-                      <p className='lg:font-bold'>Onboarding</p>
-                      <p className='text-sm text-gray-500'>
-                        Conoce más sobre nuestra comunidad y sus objetivos.
-                      </p>
+              {!user && (
+                <Link href='/onboarding'>
+                  <li className='space-y-4'>
+                    <div className='flex items-start'>
+                      <img
+                        alt='Opción 2'
+                        className='h-10 w-10'
+                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
+                      />
+                      <div className='ml-3'>
+                        <p className='lg:font-bold'>Onboarding</p>
+                        <p className='text-sm text-gray-500'>
+                          Conoce más sobre nuestra comunidad y sus objetivos.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </Link>
+                  </li>
+                </Link>
+              )}
             </ul>
           </div>
         )}
       </div>
       <div
-        className={`${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('actividades')}
-        onMouseLeave={() => toggleMenu('')}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onClick={() => toggleMenu('actividades')}
       >
         <a
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 text-blue-7 ${screen === 'sm' || screen === 'md' ? 'justify-between' : 'justify-center'} ${
             pathname === '/activities'
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
-          } ${activeMenu === 'actividades' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'actividades' ? 'text-red-400 underline' : ''} hover:text-red-400 hover:underline`}
         >
           Actividades
           {screen === 'lg' || screen === 'xl' ? (
@@ -228,9 +242,7 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className={`${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('Novedades')}
-        onMouseLeave={() => toggleMenu('')}
+        className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onClick={() => toggleMenu('Novedades')}
       >
         <a
@@ -238,9 +250,9 @@ export const Navlist: React.FC = () => {
             pathname === '/news-section/news' ||
             pathname === '/news-section/blogs' ||
             pathname === '/news-section/articles'
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
-          } ${activeMenu === 'Novedades' ? 'text-red-500 underline' : ''} hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'Novedades' ? 'text-red-400 underline' : ''} hover:text-red-400 hover:underline`}
         >
           Novedades
           {screen === 'lg' || screen === 'xl' ? (
@@ -328,21 +340,19 @@ export const Navlist: React.FC = () => {
         )}
       </div>
       <div
-        className={`${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
-        onMouseEnter={() => toggleMenu('documentacion')}
-        onMouseLeave={() => toggleMenu('')}
+        className={`menu-container ${darkerGrotesque.variable} relative flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
         onClick={() => toggleMenu('documentacion')}
       >
         <a
           className={`font flex cursor-pointer items-center gap-2 py-2 pr-4 text-[20px] font-darker-grotesque-600 ${
             pathname.startsWith('/documentation')
-              ? 'text-orange-500 underline'
+              ? 'text-red-400 underline'
               : 'text-blue-7'
           } ${
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } hover:text-orange-500 hover:underline`}
+          } ${activeMenu === 'documentacion' ? 'text-red-400 underline' : ''} hover:text-red-400 hover:underline`}
         >
           Documentación
           {screen === 'lg' || screen === 'xl' ? (

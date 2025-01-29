@@ -12,7 +12,7 @@ export default function Articles() {
 
   const filteredArticles = query
     ? articles.filter((article) =>
-        article.title.toLowerCase().includes(query.toLowerCase()),
+        article.title.toLowerCase().includes(query.toLowerCase())
       )
     : articles
 

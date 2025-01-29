@@ -16,7 +16,7 @@ export default function BlogCard({
   date,
   description,
   img,
-  onReadMore,
+  onReadMore
 }: BlogI) {
   return (
     <div

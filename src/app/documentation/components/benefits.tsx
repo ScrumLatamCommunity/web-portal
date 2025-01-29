@@ -5,7 +5,7 @@ import TargetIcon from '@/assets/targetIcon'
 export default function Benefits({
   buttonText,
   description,
-  title,
+  title
 }: BenefitsProps) {
   return (
     <div className='flex min-h-[40dvh] w-full flex-col items-center justify-center bg-[#F15A2B] p-4 text-center md:h-[367px] md:min-h-0 md:max-w-[1980px]'>

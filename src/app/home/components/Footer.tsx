@@ -8,7 +8,7 @@ import {
   Facebook,
   Instagram,
   ChevronDown,
-  ChevronUp,
+  ChevronUp
 } from 'react-feather'
 import Link from 'next/link'
 import { TermsAndConditions } from '@/app/history/components/TermsAndConditions'
@@ -22,14 +22,14 @@ export const Footer = () => {
     community: false,
     training: false,
     documentation: false,
-    news: false,
+    news: false
   })
 
   const toggleSection = (section: keyof typeof sections) => {
     if (!isLargeScreen) {
       setSections((prevSections) => ({
         ...prevSections,
-        [section]: !prevSections[section],
+        [section]: !prevSections[section]
       }))
     }
   }
