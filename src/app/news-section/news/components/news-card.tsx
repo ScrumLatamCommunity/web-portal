@@ -16,7 +16,7 @@ export default function NewsCard({
   date,
   description,
   img,
-  onReadMore,
+  onReadMore
 }: NewsI) {
   return (
     <div

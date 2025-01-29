@@ -5,7 +5,7 @@ import { MembershipModalProps } from '../interface/registerInterface'
 const MembershipModal: React.FC<MembershipModalProps> = ({
   isOpen,
   onClose,
-  onSelect,
+  onSelect
 }) => {
   if (!isOpen) return null
 

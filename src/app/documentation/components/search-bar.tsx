@@ -8,7 +8,7 @@ import { SearchBarProps } from '../interfaces/searchBarPropsInterface'
 export default function SearchBar({
   setQuery,
   data,
-  placeholder,
+  placeholder
 }: SearchBarProps) {
   const [localQuery, setLocalQuery] = useState<string>('')
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false)
@@ -89,7 +89,7 @@ export default function SearchBar({
           >
             {data
               .filter((item) =>
-                item.title.toLowerCase().includes(localQuery.toLowerCase()),
+                item.title.toLowerCase().includes(localQuery.toLowerCase())
               )
               .map((dataItem) => (
                 <div
@@ -102,7 +102,7 @@ export default function SearchBar({
                   <p
                     className='z-10 ml-2 text-sm font-darker-grotesque-600 text-[#63789E]'
                     dangerouslySetInnerHTML={{
-                      __html: highlightMatch(dataItem.title, localQuery),
+                      __html: highlightMatch(dataItem.title, localQuery)
                     }}
                   />
                 </div>

@@ -12,7 +12,7 @@ export default function Blogs() {
 
   const filteredBlogs = query
     ? blogs.filter((blogs) =>
-        blogs.title.toLowerCase().includes(query.toLowerCase()),
+        blogs.title.toLowerCase().includes(query.toLowerCase())
       )
     : blogs
 

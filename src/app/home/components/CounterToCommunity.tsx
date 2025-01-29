@@ -17,7 +17,6 @@ export const CounterToCommunity = () => {
         </h3>
       </div>
       <div className='flex flex-wrap justify-center justify-items-center gap-14 md:gap-14 xl:mt-14 xl:gap-x-32'>
-
         {counters.map((counter) => (
           <div
             className='mt-6 flex flex-col items-center md:gap-7'

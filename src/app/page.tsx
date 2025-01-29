@@ -7,14 +7,14 @@ import {
   News,
   DataComunity,
   JoinOurCommunity,
-  Sponsors,
+  Sponsors
 } from './home/components/index'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 
 export default function Home() {
   return (
     <main
-      className={`${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
+      className={`mx-auto md:max-w-[1980px] ${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
     >
       <WelcomeToCommunity />
       <FlagsCommunity />

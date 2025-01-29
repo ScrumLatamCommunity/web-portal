@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuth } from '@/app/context/AuthContext'
 import { useEffect, useState } from 'react'
 
 interface AuthWrapperProps {
@@ -9,14 +10,15 @@ interface AuthWrapperProps {
 
 export function AuthWrapper({
   children,
-  showWhenAuth = true,
+  showWhenAuth = true
 }: AuthWrapperProps) {
+  const { user } = useAuth()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const checkAuth = () => {
-      const hasToken = document.cookie.includes('auth_token=')
+      const hasToken = user !== null
       setIsAuthenticated(hasToken)
       setIsLoading(false)
     }

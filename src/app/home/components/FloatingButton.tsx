@@ -43,7 +43,7 @@ const FloatingButton: React.FC = () => {
   }, [isHovered])
 
   return (
-    <div className='fixed bottom-1/4 right-4 z-50 md:bottom-auto md:top-20'>
+    <div className='fixed bottom-4 right-4 z-50 md:bottom-auto md:top-20'>
       <div className='flex justify-end'>
         {isHovered ? (
           <Link href='/memberships'>
@@ -55,7 +55,7 @@ const FloatingButton: React.FC = () => {
               <span
                 className='mr-3 text-[20px] text-white md:text-[30px]'
                 style={{
-                  transition: 'opacity 0.3s ease-in-out',
+                  transition: 'opacity 0.3s ease-in-out'
                 }}
               >
                 Suscríbete
@@ -83,7 +83,7 @@ const FloatingButton: React.FC = () => {
               <span
                 className='mr-3 text-[20px] text-white md:text-[30px]'
                 style={{
-                  transition: 'opacity 0.3s ease-in-out',
+                  transition: 'opacity 0.3s ease-in-out'
                 }}
               >
                 Suscríbete

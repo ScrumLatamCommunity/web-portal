@@ -10,7 +10,7 @@ export default function ProfileCard({
   image,
   instagramUrl,
   name,
-  title,
+  title
 }: ProfileCardProps) {
   return (
     <div className='mx-auto flex min-h-[500px] w-fit max-w-[250px] flex-col items-center justify-center rounded-lg p-5 text-center font-sans'>

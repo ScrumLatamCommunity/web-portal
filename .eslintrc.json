@@ -29,7 +29,7 @@
     "react/jsx-no-target-blank": "off",
     "prettier/prettier": "error",
     "react/no-unescaped-entities": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": 0,
     "@next/next/no-page-custom-font": "off"
   }
 }
