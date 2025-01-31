@@ -15,12 +15,12 @@ export const DesktopTimeline = () => {
       if (direction === 'left' && currentScroll > 0) {
         timelineRef.current.scrollBy({
           left: -scrollAmount,
-          behavior: 'smooth',
+          behavior: 'smooth'
         })
       } else if (direction === 'right' && currentScroll < maxScroll) {
         timelineRef.current.scrollBy({
           left: scrollAmount,
-          behavior: 'smooth',
+          behavior: 'smooth'
         })
       }
     }
