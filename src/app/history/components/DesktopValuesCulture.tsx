@@ -47,6 +47,10 @@ export const DesktopValuesCulture = () => {
                     ? 'marker:text-[#FE5833]'
                     : 'marker:text-[#95A3BD]'
                 } grid grid-cols-1 gap-4 font-darker-grotesque md:grid-cols-3 md:items-start md:justify-items-start md:gap-28`}
+                style={{
+                  textShadow:
+                    '0.35px 0.35px 0 #082965, -0.35px -0.35px 0 #082965',
+                }}
               >
                 {item.desktopTitle.map((title, index) => {
                   const words = title.split(' ') // Divide el título en palabras
@@ -69,19 +73,19 @@ export const DesktopValuesCulture = () => {
                       <div className='flex max-w-[280px] flex-col gap-4 font-darker-grotesque'>
                         {words.length >= 2 && words.length <= 3 ? (
                           <>
-                            <span className='font-darker-grotesque text-[30px] font-bold'>
+                            <span className='font-darker-grotesque text-[42px] font-bold'>
                               {words[0]}
                             </span>
-                            <span className='font-darker-grotesque text-[30px] font-bold'>
+                            <span className='font-darker-grotesque text-[42px] font-bold'>
                               {words.slice(1).join(' ')}
                             </span>
                           </>
                         ) : (
-                          <span className='font-darker-grotesque text-[30px] font-bold'>
+                          <span className='font-darker-grotesque text-[42px] font-bold'>
                             {title}
                           </span>
                         )}
-                        <span className='font-karla text-[18px]'>
+                        <span className='font-karla text-[18px] font-karla-300 leading-[20px]'>
                           {item.desktopDescription[index]}
                         </span>
                       </div>

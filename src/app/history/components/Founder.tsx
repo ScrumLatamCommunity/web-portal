@@ -40,16 +40,16 @@ export const Founder = () => {
         <img alt='founder' src={images.founder[1]} />
         <div className='flex items-center justify-center gap-2'>
           <img
-            className='h-5 w-5 text-red-500'
+            className='h-6 w-6 text-red-500'
             src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FFounder%2F%F0%9F%A6%86%20icon%20_github_.svg?alt=media&token=e16fa7de-274e-4bf0-9a4c-e7158766f629'
           />
-          <BehanceIcon className='text-red-500' width={23} height={14} />
+          <BehanceIcon className='text-red-500' width={35} height={22} />
           <a
             href='https://www.instagram.com/scrumlatamcomunidad/'
             target='_blank'
             rel='noopener noreferrer'
           >
-            <Instagram className='text-red-500' />
+            <Instagram className='h-6 w-6 text-red-500' />
           </a>
         </div>
       </div>

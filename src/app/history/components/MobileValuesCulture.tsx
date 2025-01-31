@@ -46,16 +46,16 @@ export const MobileValuesCulture = () => {
             >
               <div className='mb-[30px] overflow-hidden rounded-xl px-4 py-8 font-karla text-5 transition-all duration-500 ease-in-out'>
                 <ul
-                  className={`${item.id === 1 ? 'marker:text-[#FE5833]' : 'marker:text-[#95A3BD]'} prose list-disc space-y-2 pl-5 md:grid md:grid-cols-3 md:gap-6 md:space-y-0`}
+                  className={`${item.id === 1 ? 'marker:text-[#FE5833]' : 'marker:text-[#95A3BD]'} prose list-disc space-y-2 pl-4 md:grid md:grid-cols-3 md:gap-6 md:space-y-0`}
                 >
                   {item.description.map((point, index) => {
                     const [boldPart, rest] = point.split(':')
                     return (
                       <li
                         key={index}
-                        className='font-normal leading-7 text-blue-8'
+                        className='text-[16px] font-normal leading-7 text-blue-8'
                       >
-                        <strong>{boldPart}:</strong>
+                        <strong className='text-[18px]'>{boldPart}:</strong>
                         {rest}
                       </li>
                     )
