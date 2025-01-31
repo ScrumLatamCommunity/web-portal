@@ -6,11 +6,7 @@
     "node": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "next/core-web-vitals",
-    "next/typescript",
     "plugin:prettier/recommended",
     "prettier"
   ],
@@ -33,7 +29,7 @@
     "react/jsx-no-target-blank": "off",
     "prettier/prettier": "error",
     "react/no-unescaped-entities": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": 0,
     "@next/next/no-page-custom-font": "off"
   }
 }

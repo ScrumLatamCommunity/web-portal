@@ -5,7 +5,7 @@ export const logos: { [key: string]: string } = {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Logos%20comunidad%2Flogo_footer_orange.svg?alt=media&token=ddfda43a-c5e1-4fc3-b47f-df419d556597',
 
   img_logo:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
 }
 
 export const vectors: { [key: string]: string } = {
@@ -22,7 +22,7 @@ export const vectors: { [key: string]: string } = {
   vectorDesktopJoin1:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FvectorDesktopJoin1%20C.png?alt=media&token=73b51a45-9970-45f7-99c8-11abd590265c',
   vectorDesktopJoin2:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FvectorDesktopJoin2%20C.png?alt=media&token=d35583a4-9848-4cf6-b21b-582b463e1c98',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FvectorDesktopJoin2%20C.png?alt=media&token=d35583a4-9848-4cf6-b21b-582b463e1c98'
 }
 
 // Exportamos un objeto llamado 'images' que contiene las URLs de las imágenes almacenadas en Firebase.
@@ -42,16 +42,16 @@ export const images: {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%203%20community.png?alt=media&token=0e6854b8-81bb-4367-bef7-418c62a278b6',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%204%20community.png?alt=media&token=e61be7e5-98b0-4cdd-9cb4-f4fffa1366f8',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%205%20community.png?alt=media&token=01d3ac08-c0fd-4694-a832-a490b798c8df',
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%206%20%20community.png?alt=media&token=d86d0d77-f963-478e-8b36-6a132b165702',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%206%20%20community.png?alt=media&token=d86d0d77-f963-478e-8b36-6a132b165702'
   ],
   goal_logo:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/News%20component%2FGoal_icon.png?alt=media&token=18d1a8e7-7e93-4d59-b431-efd01abbb471',
   joinSectionMobile:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FImagen%20uniter%20a%20nosotros%20-%20mobile%20compr.png?alt=media&token=60a290bd-555e-4309-9805-04d53e8c087c',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FImagen%20%2B%20franja%20mobile.png?alt=media&token=10d93a10-c033-4801-b963-0bcc209757dc',
   joinSectionDesktop:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FMask%20group%20C.png?alt=media&token=8d0b320e-948f-4dc1-864e-4dcde5fcf3a2',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FImagen%20%2B%20franja.png?alt=media&token=dd043a83-6bae-4ad9-aa83-d92941ca0937',
   backgroundDataCommunity:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2FAbstract%20textured%20backgound.png?alt=media&token=296561ab-a517-4fbf-873d-b3bde1a2feb8',
   history:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FIntro%2FIlustracion%20-%20historia%20desktop.svg?alt=media&token=08693768-2e73-499c-85bf-3a2c8614c4ac',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FIntro%2FIlustracion%20-%20historia%20desktop.svg?alt=media&token=08693768-2e73-499c-85bf-3a2c8614c4ac'
 }

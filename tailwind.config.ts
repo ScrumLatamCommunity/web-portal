@@ -10,7 +10,7 @@ const config: Config = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/core/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/core/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -25,7 +25,7 @@ const config: Config = {
           600: global.Red['red-600'].value,
           700: global.Red['red-700'].value,
           800: global.Red['red-800'].value,
-          900: global.Red['red-900'].value,
+          900: global.Red['red-900'].value
         },
         blue: {
           1: global.Blue['blue-1'].value,
@@ -37,7 +37,7 @@ const config: Config = {
           7: global.Blue['blue-7'].value,
           8: global.Blue['blue-8'].value,
           9: global.Blue['blue-9'].value,
-          10: global.Blue['blue-10'].value,
+          10: global.Blue['blue-10'].value
         },
         black: {
           1: global.Black['black-1'].value,
@@ -52,13 +52,13 @@ const config: Config = {
           10: global.Black['black-10'].value,
           11: global.Black['black-11'].value,
           12: global.Black['black-12'].value,
-          13: global.Black['black-13'].value,
-        },
+          13: global.Black['black-13'].value
+        }
       },
       fontFamily: {
         'darker-grotesque': ['var(--darker-grotesque)', 'sans-serif'],
         roboto: ['var(--roboto)', 'sans-serif'],
-        karla: ['var(--karla)', 'sans-serif'],
+        karla: ['var(--karla)', 'sans-serif']
       },
       fontSize: {
         0: global.fontSize['0'].value + 'px',
@@ -81,7 +81,7 @@ const config: Config = {
         17: global.fontSize['17'].value + 'px',
         18: global.fontSize['18'].value + 'px',
         19: global.fontSize['19'].value + 'px',
-        20: global.fontSize['20'].value + 'px',
+        20: global.fontSize['20'].value + 'px'
       },
       lineHeight: {
         0: global.lineHeights['0'].value + 'px',
@@ -89,7 +89,7 @@ const config: Config = {
         2: global.lineHeights['2'].value + 'px',
         3: global.lineHeights['3'].value + 'px',
         4: global.lineHeights['4'].value + 'px',
-        5: global.lineHeights['5'].value + 'px',
+        5: global.lineHeights['5'].value + 'px'
       },
       fontWeight: {
         'darker-grotesque-0': global.fontWeights['darker-grotesque-0'].value, // Medium
@@ -103,33 +103,53 @@ const config: Config = {
         'karla-8': global.fontWeights['karla-8'].value, // Medium
         'karla-9': global.fontWeights['karla-9'].value, // Light
         'karla-10': global.fontWeights['karla-10'].value, // Bold
-        'darker-grotesque-11': global.fontWeights['darker-grotesque-11'].value, // Semi Bold
+        'darker-grotesque-11': global.fontWeights['darker-grotesque-11'].value,
+        'darker-grotesque-300': '300', // Peso Medium
+        'darker-grotesque-400': '400', // Peso Regular
+        'darker-grotesque-500': '500', // Peso Medium
+        'darker-grotesque-600': '600', // Peso SemiBold
+        'darker-grotesque-700': '700', // Peso Bold // Semi Bold
+        'karla-300': '300', // Peso Medium
+        'karla-400': '400', // Peso Regular
+        'karla-500': '500', // Peso Medium
+        'karla-600': '600', // Peso SemiBold
+        'karla-700': '700', // Peso Bold // Semi Bold
+        'inter-300': '300', // Peso Medium
+        'inter-400': '400', // Peso Regular
+        'inter-500': '500', // Peso Medium
+        'inter-600': '600', // Peso SemiBold
+        'inter-700': '700' // Peso Bold // Semi Bold
       },
       screens: {
         sm: '480px',
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1536px',
+        '2xl': '1536px'
       },
       animation: {
         scrollLeft: 'scroll-left 20s linear infinite',
+        'infinite-scroll': 'scroll 25s linear infinite'
       },
       keyframes: {
         'scroll-left': {
           'from%': { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(-100%)' }
         },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(calc(-250px * 7))' } // ajusta este valor según el número de logos
+        }
       },
       boxShadow: {
         shadowFlags: '0 -5px 10px rgba(0, 0, 0, 0.16)',
-        shadowFlagsDesktop: '0 0 30px rgba(0, 0, 0, 0.16)',
+        shadowFlagsDesktop: '0 0 30px rgba(0, 0, 0, 0.16)'
       },
       width: {
-        widthFlags: 'clamp(47px, 15vw, 72px)',
-      },
-    },
+        widthFlags: 'clamp(47px, 15vw, 72px)'
+      }
+    }
   },
-  plugins: [tailwindScrollbar({ nocompatible: true })],
+  plugins: [tailwindScrollbar({ nocompatible: true })]
 }
 export default config

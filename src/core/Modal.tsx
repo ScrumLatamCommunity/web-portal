@@ -19,7 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
   modalClassName = '',
   contentClassName = '',
   backdropClassName = '',
-  closeButtonClassName = '',
+  closeButtonClassName = ''
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null
 
   const handleBackdropClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     if (e.target === e.currentTarget) {
       onClose()
@@ -48,8 +48,9 @@ export const Modal: React.FC<ModalProps> = ({
         className={`fixed inset-0 z-50 flex items-center justify-center bg-black-10 bg-opacity-50 ${backdropClassName}`}
         onClick={handleBackdropClick}
       >
+        {/* prettier-ignore */}
         <div
-          className={`relative flex max-h-[85vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full sm:w-4/5 lg:w-3/5 ${modalClassName}`}
+          className={`scrollbar-thin scrollbar-thumb-black-8 scrollbar-thumb-rounded-full relative flex max-h-[85vh] w-full justify-start overflow-y-auto rounded-lg bg-white shadow-lg sm:w-4/5 lg:w-3/5 ${modalClassName}`}
         >
           <div
             className={`flex w-full flex-col items-start gap-3 p-8 ${contentClassName}`}

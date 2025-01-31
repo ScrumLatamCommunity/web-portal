@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Onboarding() {
   return (
     <div className='relative top-[-74px] flex h-screen w-screen items-center justify-center'>
@@ -11,12 +13,12 @@ export default function Onboarding() {
           <br />
           necesitas ayuda en el camino, ¡no dudes en contactarnos!
         </p>
-        <a
+        <Link
           className='rounded-full bg-red-500 px-10 py-2 text-xl font-bold text-white hover:bg-red-300'
           href='onboarding/travel'
         >
           Iniciar
-        </a>
+        </Link>
       </div>
     </div>
   )

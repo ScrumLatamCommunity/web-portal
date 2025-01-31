@@ -14,22 +14,22 @@ export const Sponsors: React.FC = () => {
   useEffect(() => {
     setSponsorsLogo(sponsors)
   }, [])
-  const duplicateSponsors = [...SponsorsLogo, ...SponsorsLogo]
+  const duplicateSponsors = [...SponsorsLogo, ...SponsorsLogo, ...SponsorsLogo]
 
   return (
-    <div className='flex flex-col items-center bg-black-4 px-4 py-6 text-white'>
-      <div className='flex w-full max-w-[960px] flex-col gap-4'>
-        <span className='text-center font-darker-grotesque text-[20px] font-extrabold text-blue-6 sm:text-3xl md:text-5xl'>
-          Junto a nuestros aliados
-        </span>
-        <div className='my-10 flex w-full animate-scrollLeft items-center justify-center gap-[32px] md:gap-[96px]'>
-          {duplicateSponsors.map((sponsors, index) => (
+    <div className='mx-auto hidden max-w-screen-xl px-4 py-12 lg:block'>
+      <h2 className='mb-12 text-center text-3xl font-bold text-[#0A2472]'>
+        Junto a nuestros aliados
+      </h2>
+      <div className='relative overflow-hidden'>
+        <div className='flex animate-infinite-scroll items-center gap-6 py-6 lg:gap-20'>
+          {duplicateSponsors.map((sponsor, index) => (
             <img
-              alt={sponsors.name}
+              alt={sponsor.name}
               aria-hidden='true'
-              className='w-widthFlags md:border 2xl:h-[90%]'
+              className='h-8 w-auto object-contain md:h-12 lg:h-16'
               key={index}
-              src={sponsors.image}
+              src={sponsor.image}
             />
           ))}
         </div>

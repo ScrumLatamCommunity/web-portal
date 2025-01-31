@@ -1,7 +1,7 @@
 export default function ProfileImage({
   className,
   height,
-  width,
+  width
 }: {
   className?: string
   height?: number
