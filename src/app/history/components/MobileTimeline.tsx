@@ -2,15 +2,11 @@
 
 import React from 'react'
 import { ChevronDown } from 'react-feather'
-import { DesktopTimeline } from './DesktopTimeline'
 
 export const MobileTimeline = () => {
   return (
     <div className='flex'>
-      <div className='hidden lg:flex'>
-        <DesktopTimeline />
-      </div>
-      <div className='relative flex h-[1485px] w-full flex-col lg:hidden'>
+      <div className='relative flex h-[1485px] w-full flex-col'>
         <div className='flex justify-center bg-[#F0F0F0] pt-4'>
           <h1 className='font-darker-grotesque text-6 font-black text-blue-6'>
             Logros de la comunidad

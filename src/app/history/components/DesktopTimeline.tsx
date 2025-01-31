@@ -33,7 +33,7 @@ export const DesktopTimeline = () => {
           onClick={() => scrollTimeline('left')}
           className='transition-opacity hover:opacity-70 focus:outline-none'
         >
-          <ChevronLeft className='cursor-pointer' />
+          <ChevronLeft className='mb-[120px] h-[50px] w-[50px] cursor-pointer border-red-400 text-red-400' />
         </button>
       </div>
       <div className='relative flex flex-1 flex-col overflow-hidden bg-[#F0F0F0]'>
@@ -47,23 +47,23 @@ export const DesktopTimeline = () => {
           ref={timelineRef}
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {/* <div className='relative mb-10 flex font-darker-grotesque h-16'>
-            <h2 className='absolute top-[80px] left-[110px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+          <div className='relative mb-10 flex h-16 font-darker-grotesque'>
+            <h2 className='absolute left-[110px] top-[80px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2020
             </h2>
-            <h2 className='absolute top-[80px] left-[480px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute left-[480px] top-[80px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2021
             </h2>
-            <h2 className='absolute top-[80px] left-[830px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute left-[830px] top-[80px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2022
             </h2>
-            <h2 className='absolute top-[80px] left-[1160px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute left-[1160px] top-[80px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2023
             </h2>
-            <h2 className='absolute top-[80px] left-[1470px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
+            <h2 className='absolute left-[1470px] top-[80px] font-darker-grotesque text-18 font-bold text-[#061D48]'>
               2024
             </h2>
-          </div> */}
+          </div>
           <div className='mb-20 flex'>
             <img
               alt='timeline'
@@ -71,38 +71,44 @@ export const DesktopTimeline = () => {
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2FTimeline%2FLinea%20de%20tiempo%20desktop.png?alt=media&token=fec439d7-d9c1-40d8-be90-df27a3626dd7'
             />
           </div>
-          {/* <div className="relative flex h-auto font-darker-grotesque">
-            <div className="absolute max-w-[254px] left-16 top-[-30px] flex w-full whitespace-normal">
-              <p className="font-karla text-5 text-[#061D48]">
-                Se funda la comunidad SL. Se establecen los delegados representantes por país, quienes se encargan de invitar a
-                las personas de su nación a los eventos de la comunidad. Se implementan los "Martes de Retrospectiva" y, a finales del año,
+          <div className='relative flex h-auto font-darker-grotesque'>
+            <div className='absolute left-16 top-[-30px] flex w-full max-w-[254px] whitespace-normal'>
+              <p className='font-karla text-5 text-[#061D48]'>
+                Se funda la comunidad SL. Se establecen los delegados
+                representantes por país, quienes se encargan de invitar a las
+                personas de su nación a los eventos de la comunidad. Se
+                implementan los "Martes de Retrospectiva" y, a finales del año,
                 se lanzan los primeros webinars.
               </p>
             </div>
-            <div className="absolute max-w-[254px] left-[399px] top-[-30px] flex w-full whitespace-normal">
-              <p className="font-karla text-5 text-[#061D48]">
-                Se crean los Squads, equipos que fortalecen la colaboración y el trabajo en grupo dentro de la comunidad.
+            <div className='absolute left-[399px] top-[-30px] flex w-full max-w-[254px] whitespace-normal'>
+              <p className='font-karla text-5 text-[#061D48]'>
+                Se crean los Squads, equipos que fortalecen la colaboración y el
+                trabajo en grupo dentro de la comunidad.
               </p>
             </div>
-            <div className="absolute max-w-[254px] left-[762px] top-[-30px] flex w-full whitespace-normal">
-              <p className="font-karla text-5 text-[#061D48]">
-                Se lanzan los talleres,  ofreciendo sesiones prácticas y formativas que enriquecen el aprendizaje y la participación
-                de los miembros.
+            <div className='absolute left-[762px] top-[-30px] flex w-full max-w-[254px] whitespace-normal'>
+              <p className='font-karla text-5 text-[#061D48]'>
+                Se lanzan los talleres, ofreciendo sesiones prácticas y
+                formativas que enriquecen el aprendizaje y la participación de
+                los miembros.
               </p>
             </div>
-            <div className="absolute max-w-[254px] left-[1088px] top-[-30px] flex w-full whitespace-normal">
-              <p className="font-karla text-5 text-[#061D48]">
-                Se lanzan los talleres,  ofreciendo sesiones prácticas y formativas que enriquecen el aprendizaje y la participación
-                de los miembros.
+            <div className='absolute left-[1088px] top-[-30px] flex w-full max-w-[254px] whitespace-normal'>
+              <p className='font-karla text-5 text-[#061D48]'>
+                Se lanzan los talleres, ofreciendo sesiones prácticas y
+                formativas que enriquecen el aprendizaje y la participación de
+                los miembros.
               </p>
             </div>
-            <div className="absolute max-w-[254px] left-[1401px] top-[-30px] flex w-full whitespace-normal">
-              <p className="font-karla text-5 text-[#061D48]">
-                Se lanzan las membresías para los miembros de la comunidad y se estrena el nuevo portal web,
-                proporcionando una plataforma mejorada para la interacción y el acceso a recursos.
+            <div className='absolute left-[1401px] top-[-30px] flex w-full max-w-[254px] whitespace-normal'>
+              <p className='font-karla text-5 text-[#061D48]'>
+                Se lanzan las membresías para los miembros de la comunidad y se
+                estrena el nuevo portal web, proporcionando una plataforma
+                mejorada para la interacción y el acceso a recursos.
               </p>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className='z-10 flex w-[3%] items-center justify-center'>
@@ -110,7 +116,7 @@ export const DesktopTimeline = () => {
           onClick={() => scrollTimeline('right')}
           className='transition-opacity hover:opacity-70 focus:outline-none'
         >
-          <ChevronRight className='cursor-pointer' />
+          <ChevronRight className='mb-[120px] h-[50px] w-[50px] cursor-pointer border-red-400 text-red-400' />
         </button>
       </div>
     </div>
