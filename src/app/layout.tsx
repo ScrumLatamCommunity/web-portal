@@ -41,3 +41,4 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   )
 }
+// Conflictos con enter

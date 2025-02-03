@@ -79,14 +79,25 @@ export const News = () => {
               transformOrigin: 'top left'
             }}
           ></div>
-          <img
-            alt=''
-            className='h-full w-full scale-x-125 object-cover md:scale-100'
-            src={currentNews.image}
-            style={{
-              margin: 0
-            }}
-          />
+          <div className='relative h-full w-full'>
+            <img
+              alt=''
+              className='h-full w-full scale-x-125 object-cover md:scale-100'
+              src={currentNews.image}
+              style={{
+                margin: 0
+              }}
+            />
+            {/* Capa de opacidad exclusiva para la imagen */}
+            <div
+              className='absolute inset-0'
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                pointerEvents: 'none'
+              }}
+            ></div>
+          </div>
+
           <div className='bg-black absolute bottom-0 left-0 bg-opacity-50 px-14 pb-10 text-white md:hidden'>
             <div className='inline-flex items-center gap-2 rounded-xl bg-[#E6EAF0] px-3 py-1'>
               {IconComponent && (
@@ -99,14 +110,14 @@ export const News = () => {
             <h1 className='font-darker-grotesque text-3xl font-bold text-[#FFFFFF]'>
               {currentNews.title}
             </h1>
-            <h2 className='text-[#FFFFF font-darker-grotesque text-3xl font-bold'>
+            <h2 className='font-darker-grotesque text-3xl font-bold text-[#FFFFF]'>
               {currentNews.sub_title}
             </h2>
-            <p className='text-13px mt-2'>{currentNews.text}</p>
+            <p className='text-13px mt-2 font-karla'>{currentNews.text}</p>
           </div>
         </div>
         <div className='m-0 w-full flex-col items-start bg-transparent md:flex md:w-[39%] md:pt-[2rem]'>
-          <div className='hidden items-center gap-2 rounded-xl bg-[#E6EAF0] md:mb-6 md:mt-8 md:flex md:px-2'>
+          <div className='hidden items-center gap-2 rounded-full bg-[#E6EAF0] md:mb-6 md:mt-8 md:flex md:px-2 md:py-0'>
             {IconComponent && (
               <IconComponent className='h-6 w-6 text-[#345081]' />
             )}
@@ -114,6 +125,7 @@ export const News = () => {
               {currentNews.type}
             </p>
           </div>
+
           <div className='hidden flex-col md:flex'>
             <h1 className='font-darker-grotesque text-3xl font-bold text-[#FE2E00] md:px-2 md:pb-0 md:text-5xl'>
               {currentNews.title}
@@ -121,7 +133,7 @@ export const News = () => {
             <h1 className='pb-4 font-darker-grotesque text-3xl font-bold text-[#000000] md:px-2 md:pb-12 md:text-5xl'>
               {currentNews.sub_title}
             </h1>
-            <p className='w-full font-darker-grotesque text-sm font-medium leading-3 text-[#082965] md:px-2 md:pb-0 md:pr-28 md:text-[22px]'>
+            <p className='w-full font-karla text-sm leading-3 text-[#082965] md:px-2 md:pb-0 md:pr-28 md:text-[22px] md:leading-6'>
               {currentNews.text}
             </p>
           </div>
