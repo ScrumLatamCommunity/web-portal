@@ -30,7 +30,7 @@ export default function SponsorProfile() {
   return (
     <section className={`${darkerGrotesque.variable} ${karla.variable} mb-8`}>
       <h1
-        className={`items-left ml-12 max-w-[1980px] text-[28px] font-darker-grotesque-700 text-[#082965]`}
+        className={`items-left mb-6 ml-4 max-w-[1980px] text-[28px] font-darker-grotesque-700 text-[#082965]`}
       >
         Perfil del Sponsor
       </h1>
