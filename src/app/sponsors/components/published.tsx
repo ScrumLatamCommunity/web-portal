@@ -6,7 +6,7 @@ import group from './imgs/Group.png'
 import vector from './imgs/Vector.png'
 import { darkerGrotesque, karla } from '@/fonts'
 
-export default function CartelMembresias({ onClose }: { onClose: () => void }) {
+export default function PostPublished({ onClose }: { onClose: () => void }) {
   const router = useRouter()
 
   return (
@@ -19,6 +19,7 @@ export default function CartelMembresias({ onClose }: { onClose: () => void }) {
           className='relative z-10 -mt-1 h-[150px] w-[155px] md:h-[140px] md:w-[235px]'
           height={500}
           src={group}
+          unoptimized
           width={405}
         ></Image>
         <Image
@@ -26,6 +27,7 @@ export default function CartelMembresias({ onClose }: { onClose: () => void }) {
           className='z-1 absolute h-[147px] w-[175px] md:h-[137px] md:w-[250px]'
           height={400}
           src={vector}
+          unoptimized
           width={400}
         ></Image>
       </div>
@@ -40,13 +42,13 @@ export default function CartelMembresias({ onClose }: { onClose: () => void }) {
       <div className='font-darker-grotesque'>
         <button
           className='mb-1 rounded-lg bg-[#FE5833] px-6 pb-1 text-[20px] font-darker-grotesque-500 text-white hover:bg-red-300 md:mb-2 md:px-10 md:text-[24px]'
-          onClick={() => router.push('/memberships')}
+          onClick={onClose}
         >
           Publicar otro contenido
         </button>
         <p
           className='mb-5 cursor-pointer text-center text-[20px] font-darker-grotesque-600 text-[#FE5833] md:mb-7 md:text-[18px]'
-          onClick={onClose}
+          onClick={() => router.push('/')}
         >
           Ir a la pagina principal
         </p>

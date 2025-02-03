@@ -1,204 +1,283 @@
 'use client'
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import TextEditor from '../components/TextEditor'
+import { darkerGrotesque, inter, karla } from '@/fonts'
+import CategoriesDropdown from '../components/categories-dropdown'
+import OffertDropdown from '../components/offert-dropdown'
+import GlobeIcon from '@/assets/GlobeIcon'
+import ImageUpload from '../components/imageUpload'
+import PostPublished from '../components/published'
 
-export default function SponsorProfile() {
+export default function SponsorPosts() {
+  const [showPopup, setShowPopup] = useState(false)
+
+  const handlePublished = () => {
+    setShowPopup(true)
+  }
+
+  const handleClosePopup = () => {
+    setShowPopup(false)
+  }
   return (
-    <section>
-      <h1 className={`items-left ml-12 max-w-[1980px]`}>
+    <section
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 w-auto max-w-[1980px] items-center overflow-hidden`}
+    >
+      <h1
+        className={`items-left mb-0 text-[30px] font-darker-grotesque-700 text-[#082965]`}
+      >
         Publica tu contenido
       </h1>
-      <h2 className={`items-left ml-12 max-w-[1980px]`}>
+      <h2
+        className={`items-left mb-4 text-[18px] font-karla-400 text-[#141414]`}
+      >
         Llena este formulario para compartir tus noticias con nuestra comunidad.
       </h2>
-      <div className={`w-[1200px] border-[0.5px] border-black-13 p-8`}>
+      <div
+        className={`mb-8 w-[1200px] rounded-[20px] border-[0.5px] border-black-13 py-6 pr-8`}
+      >
         <div className={`flex flex-row`}>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label className='' htmlFor='post-title'>
+            <label className='font-darker-grotesque-700' htmlFor='post-title'>
               Título
             </label>
             <input
-              className='h-[39px] w-[325px] bg-[#D9D9D940]'
+              className='ml-2 h-[39px] w-[325px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
               type='text'
               id='post-title'
               placeholder='Título de la publicacion'
             ></input>
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-date'>Fecha de validez</label>
+            <label className='font-darker-grotesque-700' htmlFor='post-date'>
+              Fecha de validez
+            </label>
             <input
-              className='h-[39px] w-[140px] bg-[#D9D9D940] p-[8px] text-center'
-              type='text'
+              className='h-[39px] w-[140px] rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
+              type='date'
               id='post-date'
               placeholder='22/01/2025'
             ></input>
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-date-end'>Fecha de caducidad</label>
+            <label
+              className='w-[150px] font-darker-grotesque-700'
+              htmlFor='post-date-end'
+            >
+              Fecha de caducidad
+            </label>
             <input
-              className='h-[39px] w-[140px] bg-[#D9D9D940] p-[8px] text-center'
-              type='text'
+              className='h-[39px] w-[140px] rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
+              type='date'
               id='post-date-end'
               placeholder='23/01/2025'
             ></input>
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-category'>Categoría</label>
-            <input
-              className='h-[39px] w-[325px] bg-[#D9D9D940]'
-              type='text'
-              id='post-category'
-              placeholder='Noticias'
-            ></input>
+            <label
+              className='font-darker-grotesque-700'
+              htmlFor='post-category'
+            >
+              Categoría
+            </label>
+            <CategoriesDropdown />
           </div>
         </div>
-        <div className={`flex flex-col`}>
+        <div className={`mb-6 mt-6 flex flex-col`}>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-description'>Descripción</label>
-            <p
-              className='h-[140px] w-[85%] bg-[#D9D9D940]'
-              id='post-description'
-            >
-              Acá va un texto de ejemplo, acá va un texto de ejemplo, acá va
-              texto de ejemplo. Acá va un texto de ejemplo, Acá va un texto de
-              de ejemplo, Acá va un texto de ejemplo,
-            </p>
+            <label className='font-darker-grotesque-700'>Descripción</label>
+            <TextEditor />
           </div>
-          <div className='mx-[33px] flex flex-col gap-2'>
-            <p>Ingresar link y/o web</p>
+          <div className='mx-[33px] my-6 flex w-[540px] flex-col gap-2'>
+            <p className='font-darker-grotesque-700'>Ingresar link y/o web</p>
             <label htmlFor='post-web'>
               Insertar link para redireccionar al usuario donde desee.
             </label>
-            <input
-              className='h-[39px] w-[325px] bg-[#D9D9D940]'
-              type='text'
-              id='post-web'
-              placeholder='www.ejemplo.com'
-            ></input>
+            <div className='flex flex-row'>
+              <GlobeIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <input
+                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                id='company-web'
+                placeholder='www.ejemplo.com'
+              />
+            </div>
+            <button className='self-end pr-3 text-[15px] font-darker-grotesque-600 text-[#FE5833]'>
+              Actualizar link
+            </button>
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-img'>Imagen destacada</label>
-            <div className='flex flex-row'>
-              <input
-                className='h-[39px] w-[325px] bg-[#D9D9D940]'
-                type='text'
-                id='post-img'
-                placeholder='Subir archivo'
-              ></input>
-              <button className='mx-4 h-[39px] w-[auto] bg-[#FD3600] px-3 text-[#FFFFFF]'>
-                Subir Archivo
-              </button>
+            <label
+              className='mb-2 font-darker-grotesque-700'
+              htmlFor='post-img'
+            >
+              Imagen destacada
+            </label>
+            <div className='mb-4 flex flex-row'>
+              <div className='mr-6 flex flex-col'>
+                <label
+                  className='mb-8 font-darker-grotesque-400'
+                  htmlFor='company-logo'
+                >
+                  <strong>Pantalla grande:</strong> 650x550 px (ideal para
+                  computadoras).
+                </label>
+                <div className='mt-3 h-[280px] w-[560px]'>
+                  <ImageUpload />
+                </div>
+              </div>
+              <div className='flex flex-col'>
+                <label
+                  className='mb-[8px] w-[286px] pl-2 font-darker-grotesque-400'
+                  htmlFor='company-logo'
+                >
+                  <strong>Pantalla pequeña:</strong> 393x288 px (optimizado para
+                  celulares).
+                </label>
+                <div className='mt-3 h-[280px] w-[314px]'>
+                  <ImageUpload />
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className={`flex w-full flex-row justify-end`}>
-          <button className='h-[39px] w-[auto] bg-[#FFFFFF] px-3 text-[#FD3600]'>
+          <button className='h-[48px] w-[150px] rounded-[10px] bg-[#FFFFFF] px-3 text-[18px] text-[#FD3600]'>
             Vista previa
           </button>
-          <button className='h-[39px] w-[auto] bg-[#FD3600] px-3 text-[#FFFFFF]'>
+          <button
+            className='h-[48px] w-[207px] rounded-[10px] bg-[#FD3600] px-3 text-[#FFFFFF]'
+            onClick={handlePublished}
+          >
             Publicar
           </button>
         </div>
       </div>
-      <h1 className={`items-left ml-12 max-w-[1980px]`}>
+      <h1
+        className={`items-left mb-0 max-w-[1980px] text-[30px] font-darker-grotesque-700 text-[#082965]`}
+      >
         Ofertas para la Comunidad
       </h1>
-      <h2 className={`items-left ml-12 max-w-[1980px]`}>
+      <h2
+        className={`items-left mb-4 max-w-[1980px] text-[18px] font-karla-400 text-[#141414]`}
+      >
         Llena este formulario para compartir tus beneficios u ofertas con
         nuestra comunidad.
       </h2>
-      <div className={`w-[1200px] border-[0.5px] border-black-13 p-8`}>
-        <div className={`flex flex-row`}>
+      <div
+        className={`w-[1200px] rounded-[20px] border-[0.5px] border-black-13 p-8`}
+      >
+        <div className={`mb-8 flex flex-row`}>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label className='' htmlFor='offer-name'>
+            <label className='font-darker-grotesque-700' htmlFor='offer-name'>
               Título
             </label>
             <input
-              className='h-[39px] w-[325px] bg-[#D9D9D940]'
+              className='h-[39px] w-[325px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
               type='text'
               id='offer-name'
               placeholder='Título de la oferta'
             ></input>
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='offer-date'>Fecha de validez</label>
+            <label className='font-darker-grotesque-700' htmlFor='offer-date'>
+              Fecha de validez
+            </label>
             <input
-              className='h-[39px] w-[120px] bg-[#D9D9D940] p-[8px] text-center'
-              type='text'
+              className='h-[39px] w-[140px] rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
+              type='date'
               id='offer-date'
               placeholder='22/01/2025'
             ></input>
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='offer-date-end'>Fecha de caducidad</label>
+            <label
+              className='font-darker-grotesque-700'
+              htmlFor='offer-date-end'
+            >
+              Fecha de caducidad
+            </label>
             <input
-              className='h-[39px] w-[120px] bg-[#D9D9D940] p-[8px] text-center'
-              type='text'
+              className='h-[39px] w-[140px] rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
+              type='date'
               id='offer-date-end'
               placeholder='23/01/2025'
             ></input>
           </div>
         </div>
-        <div className={`flex flex-row`}>
+        <div className={`mb-8 flex flex-row`}>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <p>Categoría</p>
-            <label htmlFor='offer-category'>Inserte el tipo de oferta.</label>
-            <input
-              className='h-[39px] w-[325px] bg-[#D9D9D940]'
-              type='text'
-              id='offer-category'
-              placeholder='Oferta'
-            ></input>
+            <p className='font-darker-grotesque-700'>Categoría</p>
+            <label className='mb-3' htmlFor='offer-category'>
+              Inserte el tipo de oferta.
+            </label>
+            <OffertDropdown />
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <p>Ingresar link y/o web</p>
+            <p className='font-darker-grotesque-700'>Ingresar link y/o web</p>
             <label htmlFor='post-web'>
               Insertar link para redireccionar al usuario donde desee.
             </label>
-            <input
-              className='h-[39px] w-[325px] bg-[#D9D9D940]'
-              type='text'
-              id='post-web'
-              placeholder='www.ejemplo.com'
-            ></input>
+            <div className='mt-3 flex flex-row'>
+              <GlobeIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <input
+                className='ml-2 h-[39px] w-[555px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                type='text'
+                id='post-web'
+                placeholder='www.ejemplo.com'
+              ></input>
+            </div>
+            <button className='self-end pr-3 text-[15px] font-darker-grotesque-600 text-[#FE5833]'>
+              Actualizar link
+            </button>
           </div>
         </div>
         <div className={`flex flex-col`}>
-          <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-description'>Descripción</label>
-            <p
-              className='h-[140px] w-[85%] bg-[#D9D9D940]'
-              id='post-description'
-            >
-              Acá va un texto de ejemplo, acá va un texto de ejemplo, acá va
-              texto de ejemplo. Acá va un texto de ejemplo, Acá va un texto de
-              de ejemplo, Acá va un texto de ejemplo,
-            </p>
+          <div className='mx-[33px] mb-10 flex flex-col gap-2'>
+            <label className='font-darker-grotesque-700'>Descripción</label>
+            <TextEditor />
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
-            <label htmlFor='post-img'>Imagen destacada</label>
-            <div className='flex flex-row'>
-              <input
-                className='h-[39px] w-[325px] bg-[#D9D9D940]'
-                type='text'
-                id='post-img'
-                placeholder='Subir archivo'
-              ></input>
-              <button className='mx-4 h-[39px] w-[auto] bg-[#FD3600] px-3 text-[#FFFFFF]'>
-                Subir Archivo
-              </button>
+            <label className='font-darker-grotesque-700' htmlFor='post-img'>
+              Imagen destacada
+            </label>
+            <div className='mb-4 flex flex-row'>
+              <div className='flex flex-col'>
+                <label
+                  className='mb-[8px] w-[500px] font-darker-grotesque-400'
+                  htmlFor='company-logo'
+                >
+                  <strong>Usa formatos PNG o JPG para mejor calidad: </strong>{' '}
+                  412x300 px
+                </label>
+                <div className='mt-3 h-[280px] w-[314px]'>
+                  <ImageUpload />
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className={`flex w-full flex-row justify-end`}>
-          <button className='h-[39px] w-[auto] bg-[#FFFFFF] px-3 text-[#FD3600]'>
+          <button className='h-[48px] w-[150px] rounded-[10px] bg-[#FFFFFF] px-3 text-[18px] text-[#FD3600]'>
             Vista previa
           </button>
-          <button className='h-[39px] w-[auto] bg-[#FD3600] px-3 text-[#FFFFFF]'>
+          <button
+            className='h-[48px] w-[207px] rounded-[10px] bg-[#FD3600] px-3 text-[#FFFFFF]'
+            onClick={handlePublished}
+          >
             Publicar
           </button>
         </div>
       </div>
+      {showPopup && (
+        <div className='fixed inset-0 z-50 flex items-center justify-center'>
+          <div
+            className='absolute inset-0 bg-black-8 opacity-75'
+            onClick={handleClosePopup}
+          ></div>
+          <div className='relative z-10'>
+            <PostPublished onClose={handleClosePopup} />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
