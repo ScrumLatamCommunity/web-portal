@@ -18,7 +18,7 @@ export default function Plans({
   price,
   description1,
   description2,
-  description3,
+  description3
 }: PlansProps) {
   return (
     <main
@@ -51,8 +51,8 @@ export default function Plans({
                 color: '#B299FF',
                 transform: 'scale(1.3)',
                 '& .MuiSvgIcon-root': {
-                  fontSize: '0.8rem',
-                },
+                  fontSize: '0.8rem'
+                }
               }}
             />
             <p className='ml-2 pl-4 text-[18px] font-darker-grotesque-600'>
@@ -65,8 +65,8 @@ export default function Plans({
                 color: '#B299FF',
                 transform: 'scale(1.3)',
                 '& .MuiSvgIcon-root': {
-                  fontSize: '0.8rem',
-                },
+                  fontSize: '0.8rem'
+                }
               }}
             />
             <p className='ml-2 pl-4 text-[18px] font-darker-grotesque-600'>
@@ -79,8 +79,8 @@ export default function Plans({
                 color: '#B299FF',
                 transform: 'scale(1.3)',
                 '& .MuiSvgIcon-root': {
-                  fontSize: '0.8rem',
-                },
+                  fontSize: '0.8rem'
+                }
               }}
             />
             <p className='ml-2 pl-4 text-[18px] font-darker-grotesque-600'>

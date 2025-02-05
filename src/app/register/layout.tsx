@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function layout({
   children,
-  modal,
+  modal
 }: {
   children: React.ReactNode
   modal: React.ReactNode

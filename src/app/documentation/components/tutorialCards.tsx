@@ -4,21 +4,21 @@ import YoutubeIcon from '@/assets/YoutubeIcon'
 
 const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
   youtube: YoutubeIcon,
-  folder: FolderIcon,
+  folder: FolderIcon
 }
 
 const colorClassesMap: {
   [key: string]: { bgColor: string; textColor: string }
 } = {
   folder: { bgColor: 'bg-[#FFEAE6]', textColor: 'text-[#FE2E00]' },
-  youtube: { bgColor: 'bg-[#E6EAF0]', textColor: 'text-[#082965]' },
+  youtube: { bgColor: 'bg-[#E6EAF0]', textColor: 'text-[#082965]' }
 }
 
 export default function TutorialCards({ tutorial }: { tutorial: Tutorial }) {
   const IconComponent = iconMap[tutorial.icon]
   const colors = colorClassesMap[tutorial.icon] || {
     bgColor: 'bg-[#E6EAF0]',
-    textColor: 'text-[#000000]',
+    textColor: 'text-[#000000]'
   }
 
   return (

@@ -9,7 +9,7 @@ import FileTextIcon from '@/assets/FileTextIcon'
 import ChevronDownIcon from '@/assets/ChevronDownIcon'
 
 export default function DatabaseFeature({
-  databases,
+  databases
 }: {
   databases: Array<Database>
 }) {

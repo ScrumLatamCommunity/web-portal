@@ -7,7 +7,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Metodología Ágiles',
     subject: 'Scrum',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ export const databaseData = [
     description: 'Conoce las bases y estructuras del marco de trabajo Scrum',
     category: 'Metodología Ágiles',
     subject: 'Scrum',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const databaseData = [
       'Explora los vaolores y principios fundamentales del pensamiento ágil.',
     category: 'Roles y Responsabilidades',
     subject: 'Scrum',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ export const databaseData = [
       'Explora los vaolores y principios fundamentales del pensamiento ágil.',
     category: 'Roles y Responsabilidades',
     subject: 'Scrum',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Herramientas y técnicas',
     subject: 'Guías',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Herramientas y técnicas',
     subject: 'Guías',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 7,
@@ -66,7 +66,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Casos de Estudio',
     subject: 'Guías',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 8,
@@ -76,7 +76,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Guías y Manuales',
     subject: 'Guías',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 9,
@@ -86,7 +86,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Guías y Manuales',
     subject: 'Guías',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 10,
@@ -96,7 +96,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Best Practices',
     subject: 'SCRUM',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 11,
@@ -106,7 +106,7 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Best Practices',
     subject: 'SCRUM',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
   },
   {
     id: 12,
@@ -116,6 +116,6 @@ export const databaseData = [
       'Una guía esencial para entender los conceptos básicos de Scrum',
     category: 'Casos de Estudio',
     subject: 'Guías',
-    onReadMore: () => console.log('Leer más sobre Base de datos 1'),
-  },
+    onReadMore: () => console.log('Leer más sobre Base de datos 1')
+  }
 ]

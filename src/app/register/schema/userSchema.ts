@@ -13,9 +13,9 @@ export const registerSchema = z
       .min(6, 'La contraseña debe tener al menos 6 caracteres'),
     confirmPassword: z.string(),
     country: z.string().min(1, 'El país es obligatorio'),
-    membership: z.string().min(1, 'La membresía es obligatoria'),
+    membership: z.string().min(1, 'La membresía es obligatoria')
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Las contraseñas no coinciden',
-    path: ['confirmPassword'],
+    path: ['confirmPassword']
   })

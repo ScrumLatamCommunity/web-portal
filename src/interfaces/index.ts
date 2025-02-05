@@ -3,5 +3,5 @@ export enum METHODS {
   GET = 'GET',
   PUT = 'PUT',
   PATCH = 'PATCH',
-  DELETE = 'DELETE',
+  DELETE = 'DELETE'
 }

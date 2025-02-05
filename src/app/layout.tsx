@@ -6,9 +6,11 @@ import '../app/globals.css'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Toaster } from 'react-hot-toast'
+import { AuthProvider } from '@/app/context/AuthContext'
+import { OnboardingProvider } from './onboarding/context/OnboardingContext'
+import { RegisterProvider } from '@/app/context/RegisterContext'
 
 import type { Metadata } from 'next'
-import { AuthProvider } from '@/contexts/AuthContext'
 
 interface RootLayoutProps {
   children: ReactNode
@@ -16,7 +18,7 @@ interface RootLayoutProps {
 
 export const metadata: Metadata = {
   title: 'Scrum Latam',
-  description: 'Scrum Latam',
+  description: 'Scrum Latam'
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -24,15 +26,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='es'>
       <body>
         <AuthProvider>
-          <Navbar />
-          <div className='flex flex-col items-center justify-center'>
-            {children}
-            <FloatingButton />
-          </div>
-          <Footer />
-          <Toaster position='top-right' />
+          <RegisterProvider>
+            <OnboardingProvider>
+              <Navbar />
+              <div className='flex flex-col items-center justify-center'>
+                {children}
+                <FloatingButton />
+              </div>
+              <Footer />
+              <Toaster position='top-right' />
+            </OnboardingProvider>
+          </RegisterProvider>
         </AuthProvider>
       </body>
     </html>
   )
 }
+// Conflictos con enter
