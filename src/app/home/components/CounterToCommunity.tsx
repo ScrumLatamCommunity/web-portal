@@ -7,7 +7,7 @@ const gea_icon =
 export const CounterToCommunity = () => {
   useCounter(counters)
   return (
-    <section className='relative m-auto mt-8 max-w-screen-2xl font-darker-grotesque md:pb-16'>
+    <section className='relative m-auto mt-8 font-darker-grotesque md:max-w-[1980px] md:pb-16'>
       <div className='absolute right-44 top-0 z-10 hidden h-[19dvw] w-[19dvw] rounded-full bg-red-300 opacity-15 blur-3xl md:block'></div>
       <div className='absolute bottom-1/4 left-40 z-10 hidden h-[19dvw] w-[19dvw] rounded-full bg-blue-5 opacity-15 blur-3xl md:block'></div>
       <div className='mt-8 flex flex-wrap items-center justify-center gap-4 pt-12'>
@@ -16,7 +16,7 @@ export const CounterToCommunity = () => {
           Somos una gran comunidad
         </h3>
       </div>
-      <div className='flex flex-wrap justify-center justify-items-center gap-x-20 md:gap-14 xl:mt-14 xl:gap-20'>
+      <div className='flex flex-wrap justify-center justify-items-center gap-x-20 md:gap-14 xl:mt-14 xl:gap-x-32'>
         {counters.map((counter) => (
           <div
             className='mt-6 flex flex-col items-center md:gap-7'

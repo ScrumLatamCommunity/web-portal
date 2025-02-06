@@ -50,7 +50,7 @@ export const News = () => {
 
   return (
     <div
-      className='relative mx-auto my-12 flex w-full max-w-screen-2xl flex-col items-center justify-center'
+      className='relative mx-auto my-12 flex w-full max-w-[1980px] flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -64,7 +64,7 @@ export const News = () => {
       <div className='relative z-0 flex flex-col overflow-hidden bg-black-4 shadow-xl md:flex-row-reverse'>
         <div className='relative h-[422px] w-full md:h-[460px] md:w-[45%]'>
           <div
-            className='absolute -left-3 top-[-10px] hidden w-6 bg-[#E72A00] md:block'
+            className='absolute -left-5 top-[-10px] hidden w-6 bg-[#E72A00] md:block 2xl:-left-0'
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.2)',
@@ -72,7 +72,7 @@ export const News = () => {
             }}
           ></div>
           <div
-            className='absolute -left-9 top-[-20px] hidden w-5 bg-[#FE5833] md:block'
+            className='absolute -left-9 top-[-20px] hidden w-5 bg-[#FE5833] md:block 2xl:-left-5'
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.3)',

@@ -44,6 +44,13 @@ export interface History {
   description: string[]
 }
 
+export interface SponsorsDashboard {
+  id: number
+  name: string
+  image: string
+  link: string
+}
+
 export const sponsors: Sponsor[] = [
   {
     id: 1,
@@ -645,6 +652,23 @@ export const blogs = [
     description:
       'En el mundo de las metodologías ágiles, Jira se ha convertido en una de las herramientas más populares para gestionar proyectos y equipos de trabajo. Su flexibilidad permite implementar marcos como Scrum y Kanban, facilitando la planificación, el seguimiento de tareas y la priorización del backlog.',
     img: 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Novedades%2F8707a207f678c22343417a18e9db520f.png?alt=media&token=6ab28e8d-7219-425b-a8f7-8842a5eebf81'
+  }
+]
+
+export const sponsorsDashboard: SponsorsDashboard[] = [
+  {
+    id: 1,
+    name: 'Perfil',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633846.svg?alt=media&token=0d2cf271-3da2-4968-a525-1d1f82bfbb6e',
+    link: '/sponsors/profile'
+  },
+  {
+    id: 2,
+    name: 'Editar Contenido',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
+    link: '/sponsors/posts'
   }
 ]
 
