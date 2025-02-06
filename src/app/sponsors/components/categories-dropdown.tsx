@@ -15,7 +15,7 @@ export default function CategoriesDropdown() {
   ]
   const [text, setText] = useState('')
   return (
-    <div className='relative z-20 w-72'>
+    <div className='relative z-20 w-full'>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='text-black flex w-full items-center justify-between rounded-[10px] bg-[#D9D9D940] px-4 py-2'

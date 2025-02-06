@@ -150,7 +150,12 @@
       "karla": {
         "value": "Karla",
         "type": "fontFamilies"
+      },
+      "inter":{
+        "value": "Inter", 
+        "type": "fontFamilies"
       }
+      
     },
     "lineHeights": {
       "0": {

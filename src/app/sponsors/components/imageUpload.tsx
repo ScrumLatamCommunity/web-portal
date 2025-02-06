@@ -31,7 +31,7 @@ const ImageUpload = () => {
       {image ? (
         <Image
           alt='Uploaded'
-          className='h-full w-full object-cover'
+          className='h-full w-full object-fill'
           height={300}
           src={image}
           unoptimized
