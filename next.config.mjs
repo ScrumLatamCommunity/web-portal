@@ -6,12 +6,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
-        pathname: '/v0/b/**' // Permitir todas las rutas bajo este patrón
+        pathname: '/v0/b/**'
       },
       {
         protocol: 'https',
         hostname: 's3-alpha-sig.figma.com',
-        pathname: '/**' // Permitir todas las rutas
+        pathname: '/**'
       },
       {
         protocol: 'https',

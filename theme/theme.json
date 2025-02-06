@@ -151,11 +151,10 @@
         "value": "Karla",
         "type": "fontFamilies"
       },
-      "inter":{
-        "value": "Inter", 
+      "inter": {
+        "value": "Inter",
         "type": "fontFamilies"
       }
-      
     },
     "lineHeights": {
       "0": {
