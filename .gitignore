@@ -2,10 +2,9 @@
 
 # dependencies
 /node_modules
-/package-lock
 /.pnp
 .pnp.js
-.yarn/install-state.gz
+package-lock.json
 
 # testing
 /coverage
@@ -28,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel

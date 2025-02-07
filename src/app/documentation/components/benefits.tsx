@@ -8,7 +8,7 @@ export default function Benefits({
   title
 }: BenefitsProps) {
   return (
-    <div className='flex min-h-[40dvh] w-full max-w-screen-2xl flex-col items-center justify-center bg-[#F15A2B] p-4 text-center md:h-[367px] md:min-h-0'>
+    <div className='flex min-h-[40dvh] w-full flex-col items-center justify-center bg-[#F15A2B] p-4 text-center md:h-[367px] md:min-h-0 md:max-w-[1980px]'>
       <div className='mb-6 md:relative'>
         <GearIcon className='hidden h-8 w-8 md:absolute md:left-[-400px] md:h-16 md:w-16' />
       </div>

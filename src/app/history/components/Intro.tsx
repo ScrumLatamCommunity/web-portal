@@ -15,7 +15,7 @@ export const Intro = () => {
   }
 
   return (
-    <div className='relative flex w-full px-14 py-16'>
+    <div className='relative flex w-full max-w-[1980px] px-14 py-16'>
       <div className='absolute left-[-4rem] top-[-16rem] hidden h-[473px] w-[473px] lg:flow-root'>
         <img
           alt='ellipse'

@@ -1,0 +1,30 @@
+/* Cambiar el color de los íconos de la barra de herramientas */
+.ql-toolbar .ql-stroke {
+  stroke: #FE2E00; /* Color para los íconos con trazo */
+}
+
+.ql-toolbar .ql-fill {
+  fill: #FE2E00; /* Color para los íconos rellenos */
+}
+
+.ql-toolbar .ql-picker-label {
+  color: #FE2E00; /* Color para el texto de los selectores */
+}
+
+/* Cambiar el color de los botones al pasar el mouse */
+.ql-toolbar button:hover .ql-stroke {
+  stroke: #FE2E00;
+}
+
+.ql-toolbar button:hover .ql-fill {
+  fill: #FE2E00;
+}
+
+/* Cambiar el color de los botones activos */
+.ql-toolbar button.ql-active .ql-stroke {
+  stroke: #FE2E00;
+}
+
+.ql-toolbar button.ql-active .ql-fill {
+  fill: #FE2E00;
+}

@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 
 export const DiscoverCommunity: React.FC = () => (
-  <div className='relative mb-[152px] mt-[72px] flex flex-col items-center gap-16'>
+  <div className='relative mb-[152px] mt-[72px] flex flex-col items-center gap-16 md:max-w-[1980px]'>
     <div className='absolute left-[-4rem] top-[-16rem] hidden h-[473px] w-[473px] sm:flow-root'>
       <img
         alt='ellipse'
@@ -31,7 +31,7 @@ export const DiscoverCommunity: React.FC = () => (
       </div>
     </div>
 
-    <div className='flex w-auto flex-wrap justify-center gap-6'>
+    <div className='flex w-auto flex-wrap justify-center gap-6 md:gap-24'>
       <Link href='/community/squads'>
         <div className='flex cursor-pointer flex-col items-center gap-6'>
           <div className='relative'>
