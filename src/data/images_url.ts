@@ -5,7 +5,7 @@ export const logos: { [key: string]: string } = {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Logos%20comunidad%2Flogo_footer_orange.svg?alt=media&token=ddfda43a-c5e1-4fc3-b47f-df419d556597',
 
   img_logo:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
 }
 
 export const vectors: { [key: string]: string } = {
@@ -22,7 +22,7 @@ export const vectors: { [key: string]: string } = {
   vectorDesktopJoin1:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FvectorDesktopJoin1%20C.png?alt=media&token=73b51a45-9970-45f7-99c8-11abd590265c',
   vectorDesktopJoin2:
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FvectorDesktopJoin2%20C.png?alt=media&token=d35583a4-9848-4cf6-b21b-582b463e1c98',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/JoinOurCommunity%20component%2FvectorDesktopJoin2%20C.png?alt=media&token=d35583a4-9848-4cf6-b21b-582b463e1c98'
 }
 
 // Exportamos un objeto llamado 'images' que contiene las URLs de las imágenes almacenadas en Firebase.
@@ -43,7 +43,7 @@ export const images: {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%203%20community.png?alt=media&token=0e6854b8-81bb-4367-bef7-418c62a278b6',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%204%20community.png?alt=media&token=e61be7e5-98b0-4cdd-9cb4-f4fffa1366f8',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%205%20community.png?alt=media&token=01d3ac08-c0fd-4694-a832-a490b798c8df',
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%206%20%20community.png?alt=media&token=d86d0d77-f963-478e-8b36-6a132b165702',
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%206%20%20community.png?alt=media&token=d86d0d77-f963-478e-8b36-6a132b165702'
   ],
   goal_logo:
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/News%20component%2FGoal_icon.png?alt=media&token=18d1a8e7-7e93-4d59-b431-efd01abbb471',
@@ -62,6 +62,6 @@ export const images: {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633849.svg?alt=media&token=e577db73-eca6-441a-a7c5-bd898b305d19',
-    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841',
-  ],
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841'
+  ]
 }

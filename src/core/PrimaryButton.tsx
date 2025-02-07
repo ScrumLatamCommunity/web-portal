@@ -7,7 +7,7 @@ interface PrimaryButtonProps {
 export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   label,
   className,
-  onClick,
+  onClick
 }) => (
   <button
     className={`rounded-[20px] bg-red-400 px-2 py-[.5vw] font-darker-grotesque md:px-5 ${className}`}

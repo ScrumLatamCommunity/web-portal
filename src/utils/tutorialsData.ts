@@ -10,7 +10,7 @@ export const tutorialsData = [
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const tutorialsData = [
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const tutorialsData = [
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const tutorialsData = [
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ export const tutorialsData = [
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
     link: '#',
-    details: '#',
+    details: '#'
   },
   {
     id: 6,
@@ -75,6 +75,6 @@ export const tutorialsData = [
     description:
       'Recientemente, una importante empresa tecnológica anunció la adopción de la metodología Scrum para mejorar la agilidad de sus equipos de desarrollo.',
     link: '#',
-    details: '#',
-  },
+    details: '#'
+  }
 ]

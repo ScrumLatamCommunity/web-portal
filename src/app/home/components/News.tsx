@@ -13,7 +13,7 @@ import { useSwiper } from '../hooks/useSwiper'
 const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
   bookOpen: BookOpenIcon,
   folder: FolderIcon,
-  globe: GlobeIcon,
+  globe: GlobeIcon
 }
 
 export const News = () => {
@@ -23,11 +23,11 @@ export const News = () => {
     handleNext,
     handleTouchStart,
     handleTouchMove,
-    handleTouchEnd,
+    handleTouchEnd
   } = useSwiper({
     currentIndex,
     setCurrentIndex,
-    totalItems: newsCommunity.length,
+    totalItems: newsCommunity.length
   })
 
   // Reimplementa handlePageChange
@@ -38,7 +38,7 @@ export const News = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex < newsCommunity.length - 1 ? prevIndex + 1 : 0,
+        prevIndex < newsCommunity.length - 1 ? prevIndex + 1 : 0
       )
     }, 5000)
 
@@ -50,12 +50,12 @@ export const News = () => {
 
   return (
     <div
-      className='relative mx-auto flex min-h-screen w-full max-w-screen-2xl flex-col items-center justify-center'
+      className='relative mx-auto my-12 flex w-full max-w-screen-2xl flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className='mt-8 flex flex-wrap items-center justify-center pt-12'>
+      <div className='flex flex-wrap items-center justify-center md:mt-8 md:pt-12'>
         <TargetIcon2 className='mb-6 h-10 w-10 md:h-20 md:w-20' />
         <h1 className='pb-6 text-center font-darker-grotesque text-[25px] font-extrabold text-[#082965] md:pb-14 md:pt-10 md:text-5xl'>
           Novedades de la comunidad
@@ -68,7 +68,7 @@ export const News = () => {
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.2)',
-              transformOrigin: 'top left',
+              transformOrigin: 'top left'
             }}
           ></div>
           <div
@@ -76,17 +76,28 @@ export const News = () => {
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.3)',
-              transformOrigin: 'top left',
+              transformOrigin: 'top left'
             }}
           ></div>
-          <img
-            alt=''
-            className='h-full w-full scale-x-125 object-cover md:scale-100'
-            src={currentNews.image}
-            style={{
-              margin: 0,
-            }}
-          />
+          <div className='relative h-full w-full'>
+            <img
+              alt=''
+              className='h-full w-full scale-x-125 object-cover md:scale-100'
+              src={currentNews.image}
+              style={{
+                margin: 0
+              }}
+            />
+            {/* Capa de opacidad exclusiva para la imagen */}
+            <div
+              className='absolute inset-0'
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                pointerEvents: 'none'
+              }}
+            ></div>
+          </div>
+
           <div className='bg-black absolute bottom-0 left-0 bg-opacity-50 px-14 pb-10 text-white md:hidden'>
             <div className='inline-flex items-center gap-2 rounded-xl bg-[#E6EAF0] px-3 py-1'>
               {IconComponent && (
@@ -99,14 +110,14 @@ export const News = () => {
             <h1 className='font-darker-grotesque text-3xl font-bold text-[#FFFFFF]'>
               {currentNews.title}
             </h1>
-            <h2 className='text-[#FFFFF font-darker-grotesque text-3xl font-bold'>
+            <h2 className='font-darker-grotesque text-3xl font-bold text-[#FFFFF]'>
               {currentNews.sub_title}
             </h2>
-            <p className='text-13px mt-2'>{currentNews.text}</p>
+            <p className='text-13px mt-2 font-karla'>{currentNews.text}</p>
           </div>
         </div>
         <div className='m-0 w-full flex-col items-start bg-transparent md:flex md:w-[39%] md:pt-[2rem]'>
-          <div className='hidden items-center gap-2 rounded-xl bg-[#E6EAF0] md:mb-6 md:mt-8 md:flex md:px-2'>
+          <div className='hidden items-center gap-2 rounded-full bg-[#E6EAF0] md:mb-6 md:mt-8 md:flex md:px-2 md:py-0'>
             {IconComponent && (
               <IconComponent className='h-6 w-6 text-[#345081]' />
             )}
@@ -114,6 +125,7 @@ export const News = () => {
               {currentNews.type}
             </p>
           </div>
+
           <div className='hidden flex-col md:flex'>
             <h1 className='font-darker-grotesque text-3xl font-bold text-[#FE2E00] md:px-2 md:pb-0 md:text-5xl'>
               {currentNews.title}
@@ -121,7 +133,7 @@ export const News = () => {
             <h1 className='pb-4 font-darker-grotesque text-3xl font-bold text-[#000000] md:px-2 md:pb-12 md:text-5xl'>
               {currentNews.sub_title}
             </h1>
-            <p className='w-full font-darker-grotesque text-sm font-medium leading-3 text-[#082965] md:px-2 md:pb-0 md:pr-28 md:text-[22px]'>
+            <p className='w-full font-karla text-sm leading-3 text-[#082965] md:px-2 md:pb-0 md:pr-28 md:text-[22px] md:leading-6'>
               {currentNews.text}
             </p>
           </div>

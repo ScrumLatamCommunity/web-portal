@@ -10,7 +10,7 @@ export const workshopsData = [
     link: '#',
     country: 'Colombia',
     flag: 'https://flagcdn.com/co.svg', // Bandera
-    details: '#',
+    details: '#'
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const workshopsData = [
     link: '#',
     country: 'Colombia',
     flag: 'https://flagcdn.com/co.svg',
-    details: '#',
+    details: '#'
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const workshopsData = [
     link: '#',
     country: 'Colombia',
     flag: 'https://flagcdn.com/co.svg',
-    details: '#',
+    details: '#'
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const workshopsData = [
     link: '#',
     country: 'Colombia',
     flag: 'https://flagcdn.com/co.svg', // Bandera
-    details: '#',
+    details: '#'
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ export const workshopsData = [
     link: '#',
     country: 'Colombia',
     flag: 'https://flagcdn.com/co.svg',
-    details: '#',
+    details: '#'
   },
   {
     id: 6,
@@ -75,6 +75,6 @@ export const workshopsData = [
     link: '#',
     country: 'Colombia',
     flag: 'https://flagcdn.com/co.svg',
-    details: '#',
-  },
+    details: '#'
+  }
 ]

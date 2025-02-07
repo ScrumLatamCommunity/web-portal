@@ -1,9 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import { BorderLinearProgress } from '@/app/home/components/progressBar'
 import { ChevronDown, ChevronUp } from 'react-feather'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Button from '@mui/material/Button'
+import { useOnboarding } from '@/app/onboarding/context/OnboardingContext'
+import { useAuth } from '@/app/context/AuthContext'
 
 interface ListaItem {
   isActive: boolean
@@ -14,10 +16,10 @@ const Lista = () => {
   const [expanded, setExpanded] = useState(true)
   const listaItems: ListaItem[] = [
     { label: 'Bienvenida', isActive: true },
-    { label: 'Términos y condiciones', isActive: true },
+    { label: 'Términos y condiciones', isActive: true }
   ]
 
-  const handleToggleExpanded = () => {
+  const handleToggleExpanded = (): void => {
     setExpanded(!expanded)
   }
 
@@ -50,11 +52,44 @@ const Lista = () => {
   )
 }
 
-export default function Travel() {
-  const [showNextModuleButton] = useState(false)
-  const [checkedA, setCheckedA] = useState(false)
-  const [checkedB, setCheckedB] = useState(false)
-  const value = 15
+export default function Terms() {
+  const { completeTerms, progress, isTermsCompleted } = useOnboarding()
+  const { user } = useAuth()
+  const [checkedA, setCheckedA] = useState(isTermsCompleted)
+  const [checkedB, setCheckedB] = useState(isTermsCompleted)
+
+  useEffect(() => {
+    if (user?.onboarding) {
+      setCheckedA(true)
+      setCheckedB(true)
+    } else if (isTermsCompleted) {
+      setCheckedA(true)
+      setCheckedB(true)
+    }
+  }, [isTermsCompleted, user])
+
+  const handleNextModule = () => {
+    completeTerms()
+  }
+
+  const handleCheckboxChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: 'A' | 'B'
+  ) => {
+    if (type === 'A') {
+      setCheckedA(e.target.checked)
+    } else {
+      setCheckedB(e.target.checked)
+    }
+
+    // // Si ambos checkboxes están marcados, completar los términos
+    // if (
+    //   (type === 'A' && e.target.checked && checkedB) ||
+    //   (type === 'B' && e.target.checked && checkedA)
+    // ) {
+    //   completeTerms()
+    // }
+  }
 
   return (
     <div className='relative flex h-[70vh] max-h-[450px] w-screen'>
@@ -62,108 +97,182 @@ export default function Travel() {
         <div className='h-1.5/6 mx-6 mb-6 mt-10 bg-[#FFBEB0]'>
           <h1 className='p-4 text-3xl font-medium'>Onboarding</h1>
           <div className='px-5 py-1'>
-            <BorderLinearProgress variant='determinate' value={value} />
-            <p>{value}%&nbsp;&nbsp;Completado</p>
+            <BorderLinearProgress variant='determinate' value={progress} />
+            <p>{progress}%&nbsp;&nbsp;Completado</p>
           </div>
         </div>
         <Lista />
-        {showNextModuleButton && (
-          <a
+        {checkedA && checkedB && (
+          <Button
             className='mx-6 mb-6 rounded-md bg-[#FD3600] p-2 font-bold text-white'
-            href='terms'
+            onClick={handleNextModule}
           >
             Siguiente módulo
-          </a>
+          </Button>
         )}
       </div>
       <div className='relative ml-6 mt-10 h-[85%] w-4/6 overflow-x-auto overflow-y-auto'>
+        <h1 className='mb-5 text-3xl font-medium'>
+          TÉRMINOS Y CONDICIONES DE SCRUM LATAM
+        </h1>
         <p className='mb-5 whitespace-pre-line'>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id illo
-          quisquam quae qui deserunt dolor voluptas maiores quia. Doloremque
-          sequi accusamus est nesciunt obcaecati nostrum. Cum distinctio quam
-          similique sit ad non magni voluptates molestias optio, iure ex
-          placeat, impedit sint sequi nulla ducimus voluptatum perferendis neque
-          atque ipsam saepe nesciunt doloremque quasi. Hic libero eligendi
-          reiciendis tempore quidem nisi quisquam, voluptatum eum et eaque, non
-          voluptates expedita alias exercitationem fugiat molestias accusamus
-          quam! Libero minima ipsa sit pariatur voluptatibus commodi illum ut ab
-          magnam nam saepe obcaecati delectus nulla animi aspernatur aperiam,
-          quo impedit necessitatibus deserunt dolor praesentium dolores ad. Quod
-          et sint, nihil obcaecati dolorum ea hic expedita pariatur quos eaque
-          itaque at, placeat, asperiores praesentium error dolorem perspiciatis
-          labore assumenda? Iusto aliquam quibusdam earum adipisci culpa
-          perspiciatis, illo unde reiciendis sint incidunt rem porro
-          praesentium? Quasi porro ratione labore iure tenetur? Esse,
-          praesentium quas! Sit consectetur delectus sequi expedita.
-          Perspiciatis ullam vero obcaecati aliquam, nulla illo iste assumenda
-          eaque dolores explicabo quas consequatur quo facere, qui nesciunt
-          voluptatum nobis autem. Libero expedita quo atque ipsa similique
-          placeat corporis a assumenda quas impedit, dolorum tempora voluptatem
-          quidem molestiae nostrum repellendus temporibus consequatur. Fugiat
-          perspiciatis repellat impedit atque, eaque rerum nam. Ipsam aut
-          recusandae, sed ipsum mollitia earum eligendi ex pariatur repellendus
-          eveniet quidem nam veniam veritatis quas laborum maiores beatae ab
-          repellat, aperiam, fugiat itaque. Nobis sequi sint ratione dicta nemo
-          veritatis soluta ullam praesentium culpa quae hic, dolor, et amet
-          ipsum architecto labore sapiente, eaque iure reprehenderit qui libero
-          explicabo inventore consequuntur. Sunt odio, debitis necessitatibus
-          animi sed veniam eius quam explicabo laborum nulla maxime deleniti
-          itaque consectetur error dignissimos a quasi doloremque ducimus
-          quisquam amet! Ratione quae nostrum porro dolorem neque facere
-          reprehenderit inventore harum odio laborum illum totam doloremque
-          facilis quibusdam quasi, fugiat obcaecati provident ad sit tempora,
-          ipsa corrupti! Tempora odio ad molestias, porro numquam minima
-          repellat laboriosam libero provident ipsam, tempore doloremque
-          asperiores, dolor debitis optio labore nam? Rerum expedita, eaque
-          minima, magnam facere accusantium, autem voluptates labore ea quaerat
-          deserunt! Sapiente accusantium magni molestias. Ad reprehenderit et
-          quod at deserunt neque nam expedita omnis quos fuga, nesciunt
-          doloribus incidunt dicta dolorum dolor hic? Facere et, veritatis
-          impedit aliquam nemo, ipsum alias rerum quisquam ratione recusandae
-          temporibus maiores assumenda quasi tenetur, ex eveniet? Cumque
-          mollitia et accusantium molestiae blanditiis impedit vel. Suscipit
-          voluptatibus, excepturi obcaecati laboriosam animi natus blanditiis
-          quam illum facilis quisquam dolorem corporis quasi aliquam possimus
-          dolore vero eius? Cumque, vero animi ut voluptate illum autem odio qui
-          officia laudantium modi praesentium deleniti nihil possimus omnis
-          recusandae quae incidunt similique facere necessitatibus non commodi
-          ad pariatur at nisi. Ut alias repudiandae eum dolore soluta harum
-          ratione, itaque qui enim tempore et, officia quos necessitatibus esse
-          in perspiciatis laudantium reiciendis a atque, eaque beatae ipsa
-          libero! Provident reprehenderit nam exercitationem quos suscipit
-          corrupti accusantium iusto, amet reiciendis expedita sint ut commodi,
-          quod blanditiis pariatur sed quia totam quisquam magni alias adipisci
-          tenetur? Eius, quo ut. Earum, maiores voluptatum officiis dolores in
-          consectetur.
+          <strong>Bienvenida a SCRUM LATAM</strong>
         </p>
-        {checkedA && checkedB ? (
-          <Link
-            className='mb-4 rounded-md bg-[#FD3600] p-2 font-bold text-white'
-            href='/'
+        <p className='mb-5 whitespace-pre-line'>
+          Estamos encantados de que te unas a nuestra comunidad. SCRUM LATAM es
+          un espacio digital dedicado a la difusión y el aprendizaje en las
+          buenas prácticas herramientas y técnicas en Agile. Aquí podrás
+          compartir experiencias, recursos y conocimientos para fomentar el
+          liderazgo ágil en las organizaciones.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Nuestra Misión y Visión</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Misión:</strong> Compartir y fomentar el mindset agile a
+          través del intercambio de conocimiento y buenas prácticas en la
+          comunidad LATAM.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Visión:</strong> Convertirnos en el principal espacio de
+          aprendizaje y crecimiento en Latinoamérica, generando un impacto
+          positivo en las organizaciones a través de nuestros miembros.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Compromiso de Participación</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          Al unirte a SCRUM LATAM, te comprometes a:
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <ul className='list-disc space-y-2 pl-6'>
+            <li>
+              Participar activamente y con respeto en todas las actividades,
+              discusiones y eventos.
+            </li>
+            <li>
+              Mantener un comportamiento cortés y profesional en tus
+              interacciones.
+            </li>
+            <li>
+              Compartir contenido relevante en Buenas prácticas en Agilidad.
+            </li>
+            <li>
+              Respetar los derechos de autor y la privacidad de los demás
+              miembros.
+            </li>
+          </ul>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Registro y Creación de Cuenta</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          Para formar parte de SCRUM LATAM, te pedimos que proporciones
+          información verídica y actualizada. Tu compromiso nos ayuda a mantener
+          una comunidad segura y colaborativa. Protege la privacidad de tu
+          cuenta y recuerda que eres responsable de las actividades realizadas
+          en ella.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Reglas de Contenido y Comportamiento</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          Queremos que este sea un espacio inclusivo y respetuoso. Por eso, te
+          pedimos:
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <ul className='list-disc space-y-2 pl-6'>
+            <li>
+              <strong>Respeto y Profesionalismo:</strong> Mantén un
+              comportamiento cortés y profesional en todas tus interacciones.
+            </li>
+            <li>
+              <strong>Contenido Relevante:</strong> Publica contenido
+              relacionado con metodologías ágiles y temas de desarrollo
+              profesional en agilidad.
+            </li>
+            <li>
+              <strong>No Publicidad Sin Autorización:</strong> Evita promover
+              productos o servicios pagos sin autorización. Los Sponsor son los
+              únicos autorizados.
+            </li>
+            <li>
+              <strong>Contenido Apropiado:</strong> No compartas contenido que
+              incite a la violencia, actividades ilegales o información falsa.
+            </li>
+            <li>
+              <strong>Derechos de Autor:</strong> Respeta los derechos de autor
+              y no compartas contenido sin el permiso necesario.
+            </li>
+            <li>
+              <strong>Privacidad:</strong> No compartas información personal o
+              confidencial de otros sin su consentimiento.
+            </li>
+          </ul>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Privacidad y Protección de Datos</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          En SCRUM LATAM, valoramos tu privacidad. No compartiremos tus datos
+          personales con terceros sin tu consentimiento. Para más información,
+          consulta nuestra Política de Privacidad.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Propiedad Intelectual</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          El contenido original de SCRUM LATAM, como publicaciones y materiales
+          educativos, es propiedad de la comunidad. Puedes compartir este
+          contenido para fines personales y educativos, siempre y cuando
+          respetes los derechos de autor.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Modificación de los Términos y Condiciones</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          Podemos actualizar estos términos para mejorar la comunidad. Te
+          notificaremos sobre cualquier cambio importante. Mantente informado
+          revisando estos términos periódicamente.
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          <strong>Terminación de la Cuenta</strong>
+        </p>
+        <p className='mb-5 whitespace-pre-line'>
+          Queremos que todos disfruten de una experiencia positiva en SCRUM
+          LATAM. Si alguien no sigue estas guías, podríamos suspender o cancelar
+          su cuenta. Si tienes preguntas sobre una decisión, contáctanos en
+          scrumlatam@gmail.com.
+        </p>
+        <div className='mt-4'>
+          <label
+            className={user?.onboarding ? 'cursor-not-allowed opacity-50' : ''}
           >
-            Siguiente módulo
-          </Link>
-        ) : (
-          <div className='mt-4'>
-            <label>
-              <input
-                checked={checkedA}
-                onChange={(e) => setCheckedA(e.target.checked)}
-                type='checkbox'
-              />
-              Acepto los términos y condiciones
-            </label>
-            <br />
-            <label>
-              <input
-                checked={checkedB}
-                onChange={(e) => setCheckedB(e.target.checked)}
-                type='checkbox'
-              />
-              Estoy de acuerdo con la política de privacidad
-            </label>
-          </div>
-        )}
+            <input
+              checked={checkedA}
+              onChange={(e) =>
+                !user?.onboarding && handleCheckboxChange(e, 'A')
+              }
+              type='checkbox'
+              disabled={user?.onboarding}
+            />
+            Acepto los términos y condiciones
+          </label>
+          <br />
+          <label
+            className={user?.onboarding ? 'cursor-not-allowed opacity-50' : ''}
+          >
+            <input
+              checked={checkedB}
+              onChange={(e) =>
+                !user?.onboarding && handleCheckboxChange(e, 'B')
+              }
+              type='checkbox'
+              disabled={user?.onboarding}
+            />
+            Estoy de acuerdo con la política de privacidad
+          </label>
+        </div>
       </div>
     </div>
   )

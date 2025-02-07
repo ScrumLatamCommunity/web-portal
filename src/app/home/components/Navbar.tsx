@@ -6,11 +6,11 @@ import { Menu, X, User } from 'react-feather'
 import { Navlist } from './Navlist'
 import { useTypeScreen } from '@/hooks'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
-import { logout } from '@/app/actions/auth'
-import Image from 'next/image'
 import { darkerGrotesque } from '@/fonts'
+import { useAuth } from '@/app/context/AuthContext'
 
 export const Navbar: React.FC = () => {
+  const { logout } = useAuth()
   const [openNav, setOpenNav] = useState<boolean>(false)
   const screen = useTypeScreen()
 
@@ -47,7 +47,7 @@ export const Navbar: React.FC = () => {
       <AuthWrapper showWhenAuth={true}>
         <button
           onClick={logout}
-          className='flex items-center font-darker-grotesque-600 text-red-400 hover:text-red-200'
+          className='flex cursor-pointer items-center font-darker-grotesque-600 text-red-400 hover:text-red-200'
         >
           <User className='mr-2 h-4' />
           <span className='font-darker-grotesque-600'>Cerrar sesión</span>

@@ -5,9 +5,9 @@ const nextConfig = {
     domains: [
       'firebasestorage.googleapis.com',
       's3-alpha-sig.figma.com',
-      'flagcdn.com',
-    ],
-  },
+      'flagcdn.com'
+    ]
+  }
 }
 
 export default nextConfig

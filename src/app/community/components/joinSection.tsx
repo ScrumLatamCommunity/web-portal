@@ -6,7 +6,7 @@ export default function JoinCommunity({
   buttonText,
   callToAction,
   description,
-  title,
+  title
 }: JoinCommunityProps) {
   return (
     <div className='flex min-h-dvh w-full max-w-screen-2xl flex-col items-center justify-center bg-[#F15A2B] p-4 text-center md:h-[467px] md:min-h-0'>
