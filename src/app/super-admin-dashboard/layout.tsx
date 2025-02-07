@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import { DesktopNavbar } from './components/DesktopNavbar'
+import { DesktopNavbar } from './allies/components/DesktopNavbar'
 import '../../app/globals.css'
-import { DesktopSidebar } from './components/DesktopSidebar'
+import { DesktopSidebar } from './allies/components/DesktopSidebar'
 
 interface SuperAdminLayoutProps {
   children: ReactNode
