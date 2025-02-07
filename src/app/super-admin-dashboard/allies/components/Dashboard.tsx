@@ -1,39 +1,87 @@
 'use client'
 
-import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { PieChart } from './PieChart'
+
+const API_URL = 'http://localhost:8002/api/v1'
 
 export const Dashboard = () => {
+  const [token, setToken] = useState<string | null>(null)
+  const [data, setData] = useState<any>(null)
+  const [user, setUser] = useState<any>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const loginRes = await axios.post(`${API_URL}/auth/login`, {
+          email: 'gabrielta1798@gmail.com',
+          password: '5CrUmL4T4M!'
+        })
+
+        setToken(loginRes.data.access_token)
+        console.log('Token obtenido:', loginRes.data.access_token)
+      } catch (error) {
+        setError((error as Error).message)
+      }
+    }
+
+    fetchToken()
+  }, [])
+
+  useEffect(() => {
+    if (!token) return
+
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/admin/stats?filters=role`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(res.data)
+        setData(res.data)
+
+        const resUsers = await axios.get(`${API_URL}/admin/users?order=desc`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log('Users', resUsers.data)
+        setUser(resUsers.data)
+      } catch (error) {
+        setError((error as Error).message)
+      } finally {
+        setLoading(false)
+        console.log('Complete', token)
+      }
+    }
+
+    fetchData()
+  }, [token])
+
   return (
     <div className='flex flex-col'>
       <div className='flex gap-[20px] pl-24 pt-[48px]'>
-        {/* Primer contenedor */}
+        {/* Primer Contenedor */}
         <div className='flex min-w-[553px] flex-col gap-[38px] rounded-2xl border border-[#082965] pb-[14px] pl-8 pr-4 pt-6'>
           <span className='font-darker-grotesque text-10 font-bold text-[#082965]'>
             Miembros
           </span>
           <div className='flex gap-[88px] pl-[34px]'>
-            <Image
-              alt='chart'
-              className=''
-              height={162}
-              src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FOBJECTS.svg?alt=media&token=f42de4ed-3318-41ee-b417-2dfd1da3f073'
-              width={162}
-            />
+            {token && <PieChart token={token} />}
             <div className='flex gap-[25px] pr-[29px]'>
               <div className='flex flex-col gap-[10px] font-inter-600'>
-                <span className=''>3</span>
-                <span>5</span>
-                <span>3</span>
-                <span>18</span>
-                <span>103</span>
+                {data?.role?.map((item: any, index: number) => (
+                  <span key={index}>{item.count}</span>
+                ))}
               </div>
               <div className='flex flex-col gap-[10px] font-inter-400'>
-                <span>Administradores</span>
-                <span>Editores</span>
-                <span>Sponsors</span>
-                <span>Membresías</span>
-                <span>Usuarios</span>
+                {data?.role?.map((item: any, index: number) => (
+                  <span key={index}>{item.role}</span>
+                ))}
               </div>
             </div>
           </div>
@@ -98,42 +146,31 @@ export const Dashboard = () => {
       </div>
       <div className='flex gap-[20px] pb-[75px] pl-24 pt-[10px]'>
         {/* Tercer contenedor */}
-        <div className='flex min-w-[517px] flex-col gap-[33px] rounded-xl border border-[#082965] px-[18px] pb-[14px] pt-6'>
+        <div className='flex min-w-[517px] flex-col gap-[6px] rounded-xl border border-[#082965] px-[18px] pb-[14px] pt-6'>
           <span className='pl-[13px] font-darker-grotesque text-10 font-bold text-[#082965]'>
             Últimos Sponsors
           </span>
-          <div className='flex flex-col gap-[6px]'>
+          <div className='flex flex-col gap-[6px] pt-[28px]'>
             <div className='flex gap-[106px] pl-[15px] pr-[15px] text-[12px] font-inter-600'>
               <span>Nombre</span>
               <span>Aliado desde</span>
               <span>Servicio</span>
             </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span className='pl-[46px]'>11/12/2024</span>
-              <span className='pl-[45px]'>Educación</span>
-            </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span className='pl-[46px]'>11/12/2024</span>
-              <span className='pl-[45px]'>Educación</span>
-            </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span className='pl-[46px]'>11/12/2024</span>
-              <span className='pl-[45px]'>Educación</span>
-            </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span className='pl-[46px]'>11/12/2024</span>
-              <span className='pl-[45px]'>Educación</span>
-            </div>
-            <div className='flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'>
-              <span>Juan Perez</span>
-              <span className='pl-[46px]'>11/12/2024</span>
-              <span className='pl-[45px]'>Educación</span>
-            </div>
           </div>
+          {user?.slice(0, 5).map((item: any, index: number) => (
+            <div
+              className='relative flex gap-[65px] rounded-xl border border-[#000000] px-[25px] py-[13px] text-[10px] font-inter-600'
+              key={index}
+            >
+              <span>
+                {item.firstName} {item.lastName}
+              </span>
+              <span className='absolute left-[180px]'>
+                {item.createdAt.split('T')[0]}
+              </span>
+              <span className='absolute left-[350px]'>Educación</span>
+            </div>
+          ))}
           <div className='flex items-end justify-end'>
             <button className='rounded-2xl bg-[#FD3600] px-[19px] py-[10px] text-white'>
               Ir a Aliados
