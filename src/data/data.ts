@@ -44,11 +44,20 @@ export interface History {
   description: string[]
 }
 
-export interface SuperAdminDashboard {
+export interface SponsorsDashboard {
   id: number
   name: string
   image: string
   link: string
+}
+
+export interface ProductsServicesItem {
+  id: number
+  type: string
+  iconName: string
+  title: string
+  text: string
+  image: string
 }
 
 export const sponsors: Sponsor[] = [
@@ -655,41 +664,20 @@ export const blogs = [
   }
 ]
 
-export const superAdminDashboard: SuperAdminDashboard[] = [
+export const sponsorsDashboard: SponsorsDashboard[] = [
   {
     id: 1,
-    name: 'Dashboard',
+    name: 'Perfil',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633846.svg?alt=media&token=0d2cf271-3da2-4968-a525-1d1f82bfbb6e',
-    link: '/super-admin-dashboard'
+    link: '/sponsors/profile'
   },
   {
     id: 2,
-    name: 'Miembros',
+    name: 'Editar Contenido',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
-    link: '/super-admin-dashboard/members'
-  },
-  {
-    id: 3,
-    name: 'Eventos',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-    link: '/super-admin-dashboard/events'
-  },
-  {
-    id: 4,
-    name: 'Aliados',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633849.svg?alt=media&token=e577db73-eca6-441a-a7c5-bd898b305d19',
-    link: '/super-admin-dashboard/allies'
-  },
-  {
-    id: 5,
-    name: 'Membresías',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841',
-    link: '/super-admin-dashboard/memberships'
+    link: '/sponsors/posts'
   }
 ]
 
@@ -697,3 +685,33 @@ export const image_url_mobile =
   'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20scrum%20latam%20MOBILE.svg?alt=media&token=9341b402-afa4-481c-90a4-1c12b8a121ab'
 export const image_url_desktop =
   'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20DESTOK.svg?alt=media&token=abfb73e3-b1d4-4a92-a924-a86e3df53fb1'
+
+export const ProductsServices: ProductsServicesItem[] = [
+  {
+    id: 1,
+    type: 'Noticia',
+    iconName: 'globe',
+    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
+    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/News%20component%2Fimg_webinar_news_comp.png?alt=media&token=b9539e05-8461-4fdd-a209-0b638a518736'
+  },
+  {
+    id: 2,
+    type: 'Noticia',
+    iconName: 'globe',
+    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
+    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/News%20component%2Fimg_webinar_news_comp.png?alt=media&token=b9539e05-8461-4fdd-a209-0b638a518736'
+  },
+  {
+    id: 3,
+    type: 'Noticia',
+    iconName: 'globe',
+    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
+    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/News%20component%2Fimg_webinar_news_comp.png?alt=media&token=b9539e05-8461-4fdd-a209-0b638a518736'
+  }
+]

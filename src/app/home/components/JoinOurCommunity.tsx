@@ -12,22 +12,22 @@ export const JoinOurCommunity = () => {
     : images.joinSectionMobile
 
   return (
-    <div className='relative m-auto flex w-4/6 flex-col items-center justify-center py-0 lg:mb-32'>
+    <div className='relative m-auto flex w-4/6 max-w-[1980px] flex-col items-center justify-center py-2 lg:mb-32'>
       <div className='z-0 flex flex-col items-center overflow-hidden rounded-xl bg-black-4 shadow-xl md:flex-row-reverse'>
-        <div className='flex h-full w-1/2'>
+        <div className='flex h-full'>
           <img
             alt=''
-            className='flex h-full'
+            className='flex h-full w-full'
             height={600}
             src={joinUsImage}
             width={600}
           />
         </div>
-        <div className='m-0 flex flex-col items-center gap-[2vw] bg-transparent pb-10 pt-[2rem] sm:w-1/2 md:items-start md:pb-0 md:pl-14 md:pt-0 lg:justify-center lg:gap-2 lg:py-8'>
-          <p className='m-0 text-center font-darker-grotesque text-[5dvw] font-extrabold leading-8 text-blue-6 md:flex md:flex-col md:text-start lg:text-15'>
+        <div className='m-0 flex flex-col items-center gap-[2vw] bg-transparent pb-10 pt-[2rem] sm:w-1/2 md:items-start md:pb-0 md:pl-14 lg:justify-center lg:gap-0 lg:py-8'>
+          <p className='m-0 text-center font-darker-grotesque text-[5dvw] font-extrabold leading-8 text-blue-6 md:mb-0 md:flex md:flex-col md:text-start lg:text-15'>
             ¿POR QUÉ UNIRSE
           </p>
-          <p className='m-0 text-center font-darker-grotesque text-[6dvw] font-extrabold leading-8 text-red-400 md:flex md:flex-col md:text-start md:text-17 lg:text-17'>
+          <p className='m-0 text-center font-darker-grotesque text-[6dvw] font-extrabold leading-8 text-red-400 md:mt-2 md:flex md:flex-col md:text-start md:text-17 lg:text-17'>
             A NOSOTROS?
           </p>
           <p className='w-[80%] text-center font-karla text-[3.5dvw] font-medium leading-3 text-blue-6 md:flex md:text-start md:text-7 md:leading-9 lg:pt-10'>

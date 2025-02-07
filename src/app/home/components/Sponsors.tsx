@@ -17,7 +17,7 @@ export const Sponsors: React.FC = () => {
   const duplicateSponsors = [...SponsorsLogo, ...SponsorsLogo, ...SponsorsLogo]
 
   return (
-    <div className='mx-auto hidden max-w-screen-xl px-4 py-12 lg:block'>
+    <div className='mx-auto hidden w-screen max-w-[1980px] px-4 py-12 lg:block'>
       <h2 className='mb-12 text-center text-3xl font-bold text-[#0A2472]'>
         Junto a nuestros aliados
       </h2>

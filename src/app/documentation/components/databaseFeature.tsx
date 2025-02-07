@@ -56,7 +56,7 @@ export default function DatabaseFeature({
 
   if (databases.length === 0) {
     return (
-      <section className='flex min-h-[300px] items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-screen-2xl'>
+      <section className='flex min-h-[300px] items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-[1980px]'>
         <p className='text-gray-500'>No se encontraron datos.</p>
       </section>
     )
@@ -107,7 +107,7 @@ export default function DatabaseFeature({
 
       {/* Contenedor principal */}
       <div
-        className='relative flex h-full w-full max-w-screen-2xl md:flex-row'
+        className='relative flex h-full w-full md:max-w-[1980px] md:flex-row'
         style={{ borderTop: '2px solid #082965' }}
       >
         {/* Barra lateral (pantallas grandes) */}

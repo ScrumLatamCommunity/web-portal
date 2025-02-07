@@ -10,7 +10,7 @@ import { Navigation } from 'swiper/modules'
 export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
   if (manuals.length === 0) {
     return (
-      <section className='flex min-h-[300px] items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-screen-2xl'>
+      <section className='flex min-h-[300px] items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-[1980px]'>
         <p className='text-gray-500'>No se encontraron manuales.</p>
       </section>
     )
@@ -18,7 +18,7 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
 
   if (manuals.length <= 2) {
     return (
-      <section className='flex flex-col items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-screen-2xl md:justify-between'>
+      <section className='flex flex-col items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-[1980px] md:justify-between'>
         <div className='flex flex-wrap items-center justify-center gap-4'>
           {manuals.map((manual) => (
             <ManualCard key={manual.id} manual={manual} />
@@ -29,7 +29,7 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
   }
 
   return (
-    <section className='flex min-h-[300px] flex-col items-center justify-center py-4 md:mt-4 md:max-w-screen-2xl md:justify-between'>
+    <section className='flex min-h-[300px] flex-col items-center justify-center py-4 md:mt-4 md:max-w-[1980px] md:justify-between'>
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
@@ -49,7 +49,7 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
               spaceBetween: 0
             }
           }}
-          className='manual-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-screen-2xl'
+          className='manual-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-[1980px]'
           modules={[Navigation]}
           navigation={true}
           slidesPerView={1}

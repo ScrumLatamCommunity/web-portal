@@ -58,7 +58,8 @@ const config: Config = {
       fontFamily: {
         'darker-grotesque': ['var(--darker-grotesque)', 'sans-serif'],
         roboto: ['var(--roboto)', 'sans-serif'],
-        karla: ['var(--karla)', 'sans-serif']
+        karla: ['var(--karla)', 'sans-serif'],
+        inter: ['var(--inter)', 'sans-serif']
       },
       fontSize: {
         0: global.fontSize['0'].value + 'px',
