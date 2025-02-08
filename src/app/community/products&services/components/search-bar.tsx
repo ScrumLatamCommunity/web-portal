@@ -20,15 +20,9 @@ export default function SearchBar({
     setIsDropdownVisible(query.length > 0)
   }
 
-  const highlightMatch = (text: string, query: string): string => {
-    if (!query) return text
-    const regex = new RegExp(`(${query})`, 'gi')
-    return text.replace(regex, '<strong>$1</strong>')
-  }
-
-  const handleSelect = (title: string) => {
-    setLocalQuery(title)
-    setQuery(title)
+  const handleSelect = (query: string) => {
+    setLocalQuery(query)
+    setQuery(query)
     setIsDropdownVisible(false)
   }
 
@@ -54,7 +48,6 @@ export default function SearchBar({
     <div
       className={`relative flex w-full flex-col items-center ${darkerGrotesque.variable}`}
     >
-      <div className='w-full'></div>
       <div className='relative z-20 w-full rounded-[15px] bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.1)] md:max-w-[1800px]'>
         <input
           className='w-full rounded-lg border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#63789E] focus:outline-none focus:ring-2 focus:ring-[#FE5833] md:text-[22px]'
@@ -81,20 +74,16 @@ export default function SearchBar({
               .filter((item) =>
                 item.title.toLowerCase().includes(localQuery.toLowerCase())
               )
-              .map((dataItem) => (
+              .map((filteredItem) => (
                 <div
                   className='group relative flex items-center border-gray-200 p-2 hover:bg-[#FFEAE6]'
-                  key={dataItem.id}
-                  onClick={() => handleSelect(dataItem.title)}
+                  key={filteredItem.id}
+                  onClick={() => handleSelect(filteredItem.title)}
                 >
                   <div className='absolute left-0 top-0 h-full w-1 bg-[#FE5833] opacity-0 group-hover:opacity-100'></div>
-
-                  <p
-                    className='z-10 ml-2 text-sm font-darker-grotesque-600 text-[#63789E]'
-                    dangerouslySetInnerHTML={{
-                      __html: highlightMatch(dataItem.title, localQuery)
-                    }}
-                  />
+                  <p className='z-10 ml-2 text-sm font-darker-grotesque-600 text-[#63789E]'>
+                    {filteredItem.title}
+                  </p>
                 </div>
               ))}
           </div>

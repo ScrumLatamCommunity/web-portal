@@ -56,8 +56,8 @@ export const NewsBlogsUpdates = () => {
       <div className='relative z-0 flex flex-col overflow-hidden bg-[#D9D9D9] shadow-xl md:flex-row-reverse'>
         <div className='relative h-[422px] w-full overflow-hidden md:h-[460px] md:w-[45%]'>
           {/* Líneas Roja y Naranja - Más gruesas y juntas */}
-          <div className='absolute -left-2 top-[-10px] z-20 h-[140%] w-[16px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#E72A00] md:block'></div>
-          <div className='absolute -left-6 top-[-10px] z-20 h-[140%] w-[16px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#FE5833] md:block'></div>
+          <div className='absolute -left-2 top-[-10px] z-20 hidden h-[140%] w-[16px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#E72A00] md:block'></div>
+          <div className='absolute -left-6 top-[-10px] z-20 hidden h-[140%] w-[16px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#FE5833] md:block'></div>
 
           {/* Imagen Cortada Correctamente */}
           <div className='relative z-10 h-full w-full overflow-hidden'>
@@ -72,7 +72,34 @@ export const NewsBlogsUpdates = () => {
               }}
             />
             {/* Capa de opacidad sobre la imagen */}
-            <div className='bg-black pointer-events-none absolute inset-0 bg-opacity-30'></div>
+            <div
+              className='absolute inset-0'
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                pointerEvents: 'none'
+              }}
+            ></div>
+          </div>
+
+          {/* 🔥 Texto en pantallas pequeñas */}
+          <div className='bg-black absolute bottom-2 left-0 z-30 w-full bg-opacity-50 px-16 py-4 text-white md:hidden'>
+            <img
+              src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FAgile%20Talent%202.png?alt=media&token=1a7b04af-5b67-4474-8b7c-b7e0faabfd7f'
+              alt='Agile Talent Club'
+              className='h-20 w-20 rounded-full'
+            />
+            <div className='inline-flex items-center gap-2 rounded-xl bg-[#E6EAF0] px-3 py-1'>
+              {IconComponent && (
+                <IconComponent className='text-12px h-6 w-6 font-karla text-[#345081]' />
+              )}
+              <p className='text-12px font-karla font-bold text-[#345081]'>
+                {currentNews.type}
+              </p>
+            </div>
+            <h1 className='font-darker-grotesque text-[25px] font-bold text-white'>
+              {currentNews.title}
+            </h1>
+            <p className='text-13px mt-2 font-karla'>{currentNews.text}</p>
           </div>
         </div>
 
@@ -117,7 +144,7 @@ export const NewsBlogsUpdates = () => {
         />
         {/* Flecha de la Derecha */}
         <ChevronRight
-          className={`absolute right-4 top-1/2 z-50 h-16 w-16 -translate-y-1/2 transform cursor-pointer text-red-400 md:block ${
+          className={`absolute right-4 top-1/2 z-50 hidden h-16 w-16 -translate-y-1/2 transform cursor-pointer text-red-400 md:block ${
             currentIndex === ProductsServices.length - 1
               ? 'cursor-not-allowed opacity-50'
               : ''

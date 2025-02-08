@@ -5,13 +5,12 @@ import HeroSection from './components/heroSection'
 import ProductImg from '@/assets/productImg'
 import Breadcrumbs from './components/breadcrumbs'
 import { NewsBlogsUpdates } from './components/NewsBlogsUpdates'
-import SearchBar from '@/app/documentation/components/search-bar'
+import SearchBar from './components/search-bar'
 import ProductServiceFeature from '@/app/community/products&services/components/productServiceFeature'
 import AgileTalentClubImg from '@/assets/agileTalentClubImg'
 import AgileMindsImg from '@/assets/agileMindsImg'
 import { servicesData } from '@/utils/productsServicesData'
 
-// Función para mapear identificadores de imágenes a componentes
 const imageMap: Record<string, JSX.Element> = {
   agileTalentClub: <AgileTalentClubImg className='h-[200px] w-[300px] pt-8' />,
   agileMinds: <AgileMindsImg className='h-[200px] w-[300px] pt-8' />
