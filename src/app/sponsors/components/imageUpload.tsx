@@ -1,11 +1,30 @@
+'use client'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import UploadIcon from '@/assets/UploadIcon'
 import { darkerGrotesque } from '@/fonts'
 
-const ImageUpload = () => {
+type ImageUploadProps = {
+  onChange: (file: File) => void // Función para notificar cambios
+}
+
+const ImageUpload = ({ onChange }: ImageUploadProps) => {
   const [image, setImage] = useState<string | null>(null)
 
+  // Manejar la selección de archivos
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImage(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+      onChange(file) // Notificar al padre el archivo seleccionado
+    }
+  }
+
+  // Manejar la carga de archivos mediante drag and drop
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     const file = e.dataTransfer.files[0]
@@ -15,9 +34,11 @@ const ImageUpload = () => {
         setImage(reader.result as string)
       }
       reader.readAsDataURL(file)
+      onChange(file) // Notificar al padre el archivo seleccionado
     }
   }
 
+  // Permitir que el archivo se arrastre sobre el área
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
   }
@@ -47,6 +68,16 @@ const ImageUpload = () => {
           <p className='mt-4 text-center text-[16px] font-darker-grotesque-700 text-[#63789E]'>
             Subir imagen
           </p>
+          <input
+            type='file'
+            accept='image/*'
+            onChange={handleFileChange}
+            className='hidden'
+            id='file-input'
+          />
+          <label htmlFor='file-input' className='cursor-pointer'>
+            Seleccionar archivo
+          </label>
         </div>
       )}
     </div>
