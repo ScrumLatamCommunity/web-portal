@@ -28,8 +28,11 @@ export const Reviews: React.FC = () => {
       if (window.innerWidth <= 520) {
         setItemsPerPage(1)
         setIsMobile(true)
-      } else {
+      } else if (window.innerWidth <= 1440) {
         setItemsPerPage(3)
+        setIsMobile(false)
+      } else {
+        setItemsPerPage(4)
         setIsMobile(false)
       }
     }

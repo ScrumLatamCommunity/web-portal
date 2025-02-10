@@ -1,5 +1,5 @@
 const InstagramIconSponsors: React.FC<React.SVGProps<SVGSVGElement>> = (
-  props,
+  props
 ) => (
   <svg
     width='24'

@@ -44,6 +44,13 @@ export interface History {
   description: string[]
 }
 
+export interface SponsorsDashboard {
+  id: number
+  name: string
+  image: string
+  link: string
+}
+
 export interface SuperAdminDashboard {
   id: number
   name: string
@@ -690,6 +697,23 @@ export const superAdminDashboard: SuperAdminDashboard[] = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841',
     link: '/super-admin-dashboard/memberships'
+  }
+]
+
+export const sponsorsDashboard: SponsorsDashboard[] = [
+  {
+    id: 1,
+    name: 'Perfil',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633846.svg?alt=media&token=0d2cf271-3da2-4968-a525-1d1f82bfbb6e',
+    link: '/sponsors/profile'
+  },
+  {
+    id: 2,
+    name: 'Editar Contenido',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
+    link: '/sponsors/posts'
   }
 ]
 

@@ -70,7 +70,7 @@ function DocumentationsContent() {
   const filteredData = getFilteredData()
 
   return (
-    <div>
+    <div className='mx-auto w-screen md:max-w-[1980px]'>
       {/* Hero Section */}
       <HeroSection
         description='Accede a guías detalladas paso a paso sobre metodologías ágiles y Scrum. Aquí encontrarás todo lo necesario para aplicar las mejores prácticas en tu equipo: desde la planificación de sprints hasta la gestión de equipos bajo los principios ágiles.'
@@ -81,7 +81,7 @@ function DocumentationsContent() {
         title='Documentación de la Comunidad'
       />
       <section className='mb-4 mt-0 flex w-full px-10 md:mb-0'>
-        <div className='mx-auto w-full md:mx-0 md:w-1/2 md:max-w-screen-xl md:justify-start'>
+        <div className='mx-auto w-screen md:mx-0 md:w-1/2 md:max-w-[1980px] md:justify-start'>
           <SearchBar
             setQuery={setQuery}
             data={filteredData}

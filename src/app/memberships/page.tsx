@@ -13,7 +13,9 @@ import { benefits } from '@/data/data'
 
 export default function Memberships() {
   return (
-    <main className={`${darkerGrotesque.variable} ${karla.variable}`}>
+    <main
+      className={`${darkerGrotesque.variable} ${karla.variable} max-w-[1980px]`}
+    >
       <section className='flex flex-col items-center pt-12 font-darker-grotesque md:pt-32'>
         <h1
           className={`pb-3 text-center text-[30px] font-darker-grotesque-700 md:mr-0 md:pb-6 md:text-[48px]`}
