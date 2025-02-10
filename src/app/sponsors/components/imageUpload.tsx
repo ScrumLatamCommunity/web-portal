@@ -1,17 +1,16 @@
 'use client'
+
 import Image from 'next/image'
 import React, { useState } from 'react'
 import UploadIcon from '@/assets/UploadIcon'
 import { darkerGrotesque } from '@/fonts'
 
 type ImageUploadProps = {
-  onChange: (file: File) => void // Función para notificar cambios
+  onChange: (file: File) => void
 }
 
 const ImageUpload = ({ onChange }: ImageUploadProps) => {
   const [image, setImage] = useState<string | null>(null)
-
-  // Manejar la selección de archivos
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file && file.type.startsWith('image/')) {
@@ -20,11 +19,10 @@ const ImageUpload = ({ onChange }: ImageUploadProps) => {
         setImage(reader.result as string)
       }
       reader.readAsDataURL(file)
-      onChange(file) // Notificar al padre el archivo seleccionado
+      onChange(file)
     }
   }
 
-  // Manejar la carga de archivos mediante drag and drop
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     const file = e.dataTransfer.files[0]
@@ -34,11 +32,10 @@ const ImageUpload = ({ onChange }: ImageUploadProps) => {
         setImage(reader.result as string)
       }
       reader.readAsDataURL(file)
-      onChange(file) // Notificar al padre el archivo seleccionado
+      onChange(file)
     }
   }
 
-  // Permitir que el archivo se arrastre sobre el área
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
   }

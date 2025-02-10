@@ -27,27 +27,21 @@ const TextEditor = ({ value, onChange }: TextEditorProps) => {
             },
             placeholder: 'Texto de Descripción aquí'
           })
-
-          // Establecer el valor inicial del editor
           quillRef.current.root.innerHTML = value
-
-          // Escuchar cambios en el editor
           quillRef.current.on('text-change', () => {
             const content = quillRef.current.root.innerHTML
-            onChange(content) // Notificar al padre el cambio
+            onChange(content)
           })
         }
       })
     }
   }, [])
 
-  // Actualizar el contenido del editor cuando `value` cambie
   useEffect(() => {
     if (quillRef.current && quillRef.current.root.innerHTML !== value) {
       quillRef.current.root.innerHTML = value
     }
   }, [value])
-
   return (
     <div
       ref={editorRef}

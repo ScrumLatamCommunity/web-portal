@@ -28,7 +28,7 @@ export default function CategoriesDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className='text-black flex w-full items-center justify-between rounded-[10px] bg-[#D9D9D940] px-4 py-2'
       >
-        {value} {/* Usamos el valor controlado desde el padre */}
+        {value}
         <span>{isOpen ? '▲' : '▼'}</span>
       </button>
       {isOpen && (
