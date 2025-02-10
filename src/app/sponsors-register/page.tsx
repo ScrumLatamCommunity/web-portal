@@ -120,7 +120,7 @@ export default function RegisterSponsor() {
         <h1
           className={`items-left mb-5 ml-8 max-w-[1980px] font-darker-grotesque text-[26px] font-darker-grotesque-700 text-[#082965]`}
         >
-          Actualizar Información
+          Registrar un nuevo sponsor
         </h1>
         <div className={`flex flex-row`}>
           <div className='mx-[33px] mb-6 flex w-[30%] flex-col gap-2'>
