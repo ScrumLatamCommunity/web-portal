@@ -8,7 +8,7 @@ import MailIcon from '@/assets/MailIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react' // Importa useEffect
+import React, { useState, useEffect } from 'react'
 import OffertCard from './components/offertsCard'
 import { flags } from '@/data/data'
 import { Pagination } from '@/app/home//components/Pagination'
@@ -143,10 +143,12 @@ export default function Offerts() {
         </h2>
       </div>
 
-      <div className='flex flex-col items-center bg-[#FFEAE6] pt-12'>
-        {currentItems.map((offert, index) => (
-          <OffertCard key={index} {...offert} />
-        ))}
+      <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
+        <div className='grid grid-cols-1 justify-items-center md:grid-cols-3 md:py-16'>
+          {currentItems.map((offert, index) => (
+            <OffertCard key={index} {...offert} />
+          ))}
+        </div>
 
         {isMobile && (
           <Pagination
