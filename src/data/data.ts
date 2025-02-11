@@ -51,6 +51,14 @@ export interface SponsorsDashboard {
   link: string
 }
 
+export interface ProductsServicesItem {
+  id: number
+  type: string
+  iconName: string
+  title: string
+  text: string
+  image: string
+}
 export interface SuperAdminDashboard {
   id: number
   name: string
@@ -735,3 +743,33 @@ export const image_url_mobile =
   'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20scrum%20latam%20MOBILE.svg?alt=media&token=9341b402-afa4-481c-90a4-1c12b8a121ab'
 export const image_url_desktop =
   'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Imagen%20home%20-%20DESTOK.svg?alt=media&token=abfb73e3-b1d4-4a92-a924-a86e3df53fb1'
+
+export const ProductsServices: ProductsServicesItem[] = [
+  {
+    id: 1,
+    type: 'Noticia',
+    iconName: 'globe',
+    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
+    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
+  },
+  {
+    id: 2,
+    type: 'Noticia',
+    iconName: 'globe',
+    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
+    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
+  },
+  {
+    id: 3,
+    type: 'Noticia',
+    iconName: 'globe',
+    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
+    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
+  }
+]

@@ -122,6 +122,26 @@ export const Navlist: React.FC = () => {
                   </div>
                 </li>
               </Link>
+              <Link href='/community/products&services'>
+                <li className='space-y-4'>
+                  <div className='flex items-start'>
+                    <img
+                      alt='Opción 1'
+                      className='h-10 w-10'
+                      src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FGroup%20633690.png?alt=media&token=fc85a476-18f9-4e7a-9be9-ca4ba397725d'
+                    />
+                    <div className='ml-3'>
+                      <p className='lg:font-bold'>
+                        Productos y Servicios de Nuestros Sponsors
+                      </p>
+                      <p className='text-sm text-gray-500'>
+                        Conocé todo lo que nuestros sponsors tienen para
+                        ofrecerte
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </Link>
             </ul>
           </div>
         )}
