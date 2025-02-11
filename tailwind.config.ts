@@ -130,7 +130,8 @@ const config: Config = {
       },
       animation: {
         scrollLeft: 'scroll-left 20s linear infinite',
-        'infinite-scroll': 'scroll 25s linear infinite'
+        'infinite-scroll': 'scroll 25s linear infinite',
+        typing: 'typing 2s steps(20, end) infinite'
       },
       keyframes: {
         'scroll-left': {
@@ -140,6 +141,10 @@ const config: Config = {
         scroll: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(calc(-250px * 7))' } // ajusta este valor según el número de logos
+        },
+        typing: {
+          '0%': { width: '0' },
+          '100%': { width: '100%' }
         }
       },
       boxShadow: {

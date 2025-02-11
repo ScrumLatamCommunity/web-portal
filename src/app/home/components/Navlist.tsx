@@ -122,25 +122,6 @@ export const Navlist: React.FC = () => {
                   </div>
                 </li>
               </Link>
-              {!user && (
-                <Link href='/onboarding'>
-                  <li className='space-y-4'>
-                    <div className='flex items-start'>
-                      <img
-                        alt='Opción 2'
-                        className='h-10 w-10'
-                        src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e'
-                      />
-                      <div className='ml-3'>
-                        <p className='lg:font-bold'>Onboarding</p>
-                        <p className='text-sm text-gray-500'>
-                          Conoce más sobre nuestra comunidad y sus objetivos.
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                </Link>
-              )}
             </ul>
           </div>
         )}

@@ -19,7 +19,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const pathname = usePathname()
-  const hideLayout = pathname.startsWith('/sponsors')
+  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
+  const hideLayout = hiddenLayoutRoutes.some((route) =>
+    pathname.startsWith(route)
+  )
 
   return (
     <html lang='es'>

@@ -92,7 +92,7 @@ export default function Terms() {
   }
 
   return (
-    <div className='relative flex h-[70vh] max-h-[450px] w-screen'>
+    <div className='relative flex h-[70vh] max-h-[450px]'>
       <div className='h-full max-h-[400px] w-2/6 min-w-[240px]'>
         <div className='h-1.5/6 mx-6 mb-6 mt-10 bg-[#FFBEB0]'>
           <h1 className='p-4 text-3xl font-medium'>Onboarding</h1>
