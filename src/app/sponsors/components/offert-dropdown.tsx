@@ -1,7 +1,14 @@
 import { useState } from 'react'
 
-export default function OffertDropdown() {
-  const [selected, setSelected] = useState('Curso')
+interface OffertDropdownProps {
+  value: string
+  onChange: (value: string) => void
+}
+
+export default function OffertDropdown({
+  value,
+  onChange
+}: OffertDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
   const options = [
     'Curso',
@@ -10,14 +17,14 @@ export default function OffertDropdown() {
     'Eventos Especiales',
     'Colaboraciones y Alianzas'
   ]
-  const [text, setText] = useState('')
+
   return (
     <div className='relative z-10 w-72'>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='text-black flex w-full items-center justify-between rounded-[10px] bg-[#D9D9D940] px-4 py-2'
       >
-        {selected}
+        {value || 'Selecciona una categoría'}
         <span>{isOpen ? '▲' : '▼'}</span>
       </button>
       {isOpen && (
@@ -26,7 +33,7 @@ export default function OffertDropdown() {
             <li
               key={option}
               onClick={() => {
-                setSelected(option)
+                onChange(option)
                 setIsOpen(false)
               }}
               className='cursor-pointer p-2 hover:bg-gray-300'

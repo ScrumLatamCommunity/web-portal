@@ -22,7 +22,7 @@ export default function CountriesDropdown() {
     'Paraguay',
     'Brasil',
     'Canada',
-    'Estados Unidos',
+    'Estados Unidos'
   ]
   const [text, setText] = useState('')
   return (

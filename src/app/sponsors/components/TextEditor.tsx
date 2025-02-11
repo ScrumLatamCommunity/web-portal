@@ -7,7 +7,7 @@ type TextEditorProps = {
   onChange: (value: string) => void // Función para notificar cambios
 }
 
-const TextEditor = ({ value, onChange }: TextEditorProps) => {
+const TextEditor = ({ value = '', onChange }: TextEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null)
   const quillRef = useRef<any>(null)
 
@@ -27,10 +27,14 @@ const TextEditor = ({ value, onChange }: TextEditorProps) => {
             },
             placeholder: 'Texto de Descripción aquí'
           })
-          quillRef.current.root.innerHTML = value
+
+          // Asegurarse de que el valor inicial sea un string vacío si es undefined
+          const initialContent = value || ''
+          quillRef.current.root.innerHTML = initialContent
+
           quillRef.current.on('text-change', () => {
             const content = quillRef.current.root.innerHTML
-            onChange(content)
+            onChange(content || '') // Asegurarse de que siempre enviemos un string
           })
         }
       })
@@ -39,9 +43,11 @@ const TextEditor = ({ value, onChange }: TextEditorProps) => {
 
   useEffect(() => {
     if (quillRef.current && quillRef.current.root.innerHTML !== value) {
-      quillRef.current.root.innerHTML = value
+      // Asegurarse de que el valor sea un string vacío si es undefined
+      quillRef.current.root.innerHTML = value || ''
     }
   }, [value])
+
   return (
     <div
       ref={editorRef}

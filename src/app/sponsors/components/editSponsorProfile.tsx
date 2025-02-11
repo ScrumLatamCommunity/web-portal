@@ -1,7 +1,6 @@
 'use client'
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import React from 'react'
-import { flags } from '@/data/data'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
@@ -12,27 +11,156 @@ import TextEditor from './TextEditor'
 import ImageUpload from './imageUpload'
 import CountriesDropdown from './countries-dropdown'
 import FacebookIcon from '@/assets/FacebookIcon'
+import { getCountryFlag } from '@/utils/getFlags'
+import { useAuth } from '@/app/context/AuthContext'
 
-type Flag = {
-  id: number
-  name: string
-  flag: string
+interface SponsorData {
+  id: string
+  userId: string
+  status: string
+  companyName: string
+  specialization: string
+  description: string
+  web: string
+  phone: string
+  socials: string[]
+  logo: string
+  bannerWeb: string
+  bannerMobile: string
+  createdAt: string
+  user: {
+    id: string
+    firstName: string
+    lastName: string
+    username: string
+    email: string
+    country: string
+  }
+}
+
+interface SponsorUpdateData {
+  companyName: string
+  specialization: string
+  description: string
+  web: string
+  phone: string
+  socials: string[]
+  logo: string
+  bannerWeb: string
+  bannerMobile: string
+  status: string
 }
 
 type EditSponsorProfileProps = {
   onEditComplete: () => void
+  sponsorData: SponsorData
+  onUpdate: () => Promise<void>
 }
 
 export default function EditSponsorProfile({
-  onEditComplete
+  onEditComplete,
+  sponsorData,
+  onUpdate
 }: EditSponsorProfileProps) {
-  const handleSave = () => {
-    onEditComplete()
+  const { token } = useAuth()
+  const [formData, setFormData] = useState({
+    ...sponsorData,
+    logo: sponsorData.logo,
+    bannerWeb: sponsorData.bannerWeb,
+    bannerMobile: sponsorData.bannerMobile
+  })
+  const [isSaving, setIsSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const cleanSponsorData = (data: typeof formData): SponsorUpdateData => {
+    const {
+      companyName,
+      specialization,
+      description,
+      web,
+      phone,
+      socials,
+      logo,
+      bannerWeb,
+      bannerMobile,
+      status
+    } = data
+
+    return {
+      companyName,
+      specialization,
+      description,
+      web,
+      phone,
+      socials,
+      logo,
+      bannerWeb,
+      bannerMobile,
+      status
+    }
+  }
+
+  const handleLogoChange = (imageUrl: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      logo: imageUrl
+    }))
+  }
+
+  const handleBannerWebChange = (imageUrl: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      bannerWeb: imageUrl
+    }))
+  }
+
+  const handleBannerMobileChange = (imageUrl: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      bannerMobile: imageUrl
+    }))
+  }
+
+  const handleSave = async () => {
+    try {
+      setIsSaving(true)
+      setError(null)
+      const cleanedData = cleanSponsorData(formData)
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorData.id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify(cleanedData)
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar el perfil')
+      }
+
+      await onUpdate()
+
+      onEditComplete()
+    } catch (error) {
+      console.error('Error saving profile:', error)
+      setError(
+        error instanceof Error ? error.message : 'Error al guardar los cambios'
+      )
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const handleDiscard = () => {
     onEditComplete()
   }
+
+  console.log(sponsorData)
   return (
     <section
       className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8`}
@@ -61,6 +189,7 @@ export default function EditSponsorProfile({
             <input
               className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
               id='company-name'
+              value={sponsorData.companyName}
               placeholder='Nombre de la empresa'
             />
           </div>
@@ -71,7 +200,10 @@ export default function EditSponsorProfile({
             >
               Área de Especialización
             </label>
-            <CategoriesDropdown />
+            <CategoriesDropdown
+              value={sponsorData.specialization}
+              onChange={() => {}}
+            />
           </div>
           <div className='mx-[33px] flex w-[15%] flex-col gap-2'>
             <label
@@ -84,6 +216,9 @@ export default function EditSponsorProfile({
               className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
               id='sponsor-date'
               type='date'
+              value={
+                new Date(sponsorData.createdAt).toISOString().split('T')[0]
+              }
             />
           </div>
         </div>
@@ -103,6 +238,7 @@ export default function EditSponsorProfile({
                     className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                     id='company-mail'
                     placeholder='ejemplo@scrumlatam.com'
+                    value={sponsorData.user.email}
                   />
                 </div>
                 <div className='mx-[33px] flex flex-col gap-2'>
@@ -116,14 +252,14 @@ export default function EditSponsorProfile({
                     <Image
                       alt='flag'
                       className='my-2 mr-2 h-[21px] w-[38px] bg-[#D9D9D940]'
-                      src={
-                        flags.find((flag) => flag.name === 'Colombia')?.flag ||
-                        '/default-flag.png'
-                      }
+                      src={getCountryFlag(sponsorData.user.country)}
                       width={100}
                       height={100}
                     ></Image>
-                    <CountriesDropdown />
+                    <CountriesDropdown
+                      value={sponsorData.user.country}
+                      onChange={() => {}}
+                    />
                   </div>
                 </div>
               </div>
@@ -131,7 +267,10 @@ export default function EditSponsorProfile({
                 <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
                   Descripción
                 </label>
-                <TextEditor />
+                <TextEditor
+                  value={sponsorData.description}
+                  onChange={() => {}}
+                />
               </div>
             </div>
           </div>
@@ -148,6 +287,7 @@ export default function EditSponsorProfile({
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-web'
                 placeholder='www.ejemplo.com'
+                value={sponsorData.web}
               />
             </div>
             <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
@@ -167,6 +307,7 @@ export default function EditSponsorProfile({
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-wpp'
                 placeholder='+99 9999999999'
+                value={sponsorData.phone}
               />
             </div>
             <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
@@ -186,6 +327,7 @@ export default function EditSponsorProfile({
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-socials1'
                 placeholder='https://www.linkedin.com/ejemplo'
+                value={sponsorData.socials[0]}
               />
             </div>
             <div className='flex flex-row'>
@@ -194,6 +336,7 @@ export default function EditSponsorProfile({
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-socials2'
                 placeholder='https://www.instagram.com/ejemplo'
+                value={sponsorData.socials[1]}
               />
             </div>
             <div className='flex flex-row'>
@@ -202,6 +345,7 @@ export default function EditSponsorProfile({
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-socials3'
                 placeholder='https://www.facebook.com/ejemplo'
+                value={sponsorData.socials[2]}
               />
             </div>
             <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
@@ -220,7 +364,10 @@ export default function EditSponsorProfile({
               200x200 px para una visualización óptima.
             </p>
             <div className='mb-6 ml-8 h-[230px] w-[230px]'>
-              <ImageUpload />
+              <ImageUpload
+                onChange={handleLogoChange}
+                initialImage={formData.logo}
+              />
             </div>
             <label
               className='mb-3 pl-8 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
@@ -238,7 +385,10 @@ export default function EditSponsorProfile({
                   computadoras).
                 </label>
                 <div className='ml-8 mt-3 h-[280px] w-[560px]'>
-                  <ImageUpload />
+                  <ImageUpload
+                    onChange={handleBannerWebChange}
+                    initialImage={formData.bannerWeb}
+                  />
                 </div>
               </div>
               <div className='flex flex-col'>
@@ -250,7 +400,10 @@ export default function EditSponsorProfile({
                   celulares).
                 </label>
                 <div className='mt-3 h-[280px] w-[314px]'>
-                  <ImageUpload />
+                  <ImageUpload
+                    onChange={handleBannerMobileChange}
+                    initialImage={formData.bannerMobile}
+                  />
                 </div>
               </div>
             </div>
@@ -259,18 +412,26 @@ export default function EditSponsorProfile({
 
         <div className={`${inter.variable} flex w-full flex-row`}>
           <button
-            className='my-6 ml-12 h-[60px] w-[66%] rounded-[10px] bg-[#FD3600] px-3 font-inter font-inter-400 text-[#FFFFFF]'
+            className='my-6 ml-12 h-[60px] w-[66%] rounded-[10px] bg-[#FD3600] px-3 font-inter font-inter-400 text-[#FFFFFF] disabled:opacity-50'
             onClick={handleSave}
+            disabled={isSaving}
           >
-            Guardar Perfil
+            {isSaving ? 'Guardando...' : 'Guardar Perfil'}
           </button>
           <button
             className='mx-12 my-6 h-[60px] w-[33%] rounded-[10px] border-2 border-[#FD3600] bg-[#FFFFFF] px-3 font-inter font-inter-400 text-[#FD3600]'
             onClick={handleDiscard}
+            disabled={isSaving}
           >
             Descartar
           </button>
         </div>
+
+        {error && (
+          <div className='mx-12 mb-4 rounded bg-red-100 p-3 text-red-600'>
+            {error}
+          </div>
+        )}
       </div>
     </section>
   )

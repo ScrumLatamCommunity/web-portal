@@ -1,4 +1,4 @@
-import { Dashboard } from './allies/components'
+import { Dashboard } from './dashboard/page'
 
 export default function SuperAdminDashboard() {
   return (

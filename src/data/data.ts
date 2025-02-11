@@ -326,7 +326,7 @@ export const reviews: Review[] = [
     position: 'Agile coach',
     rating: 3,
     description:
-      'Llevó cinco meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimientos cada día como Scrum Master y además de eso me permito interactuar y conocer  grandes personas y grandes coaches día a día.',
+      'Llevó cinco meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimientos cada día como Scrum Master y además de eso me permito interactuar y conocer grandes personas y grandes coaches día a día.',
     profile: 'https://i.pravatar.cc/200',
     flag: 'https://flagcdn.com/ar.svg'
   },
@@ -700,20 +700,34 @@ export const superAdminDashboard: SuperAdminDashboard[] = [
   }
 ]
 
-export const sponsorsDashboard: SponsorsDashboard[] = [
+export const sponsorDashboard = [
   {
     id: 1,
     name: 'Perfil',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633846.svg?alt=media&token=0d2cf271-3da2-4968-a525-1d1f82bfbb6e',
-    link: '/sponsors/profile'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
+    link: '/sponsors'
   },
   {
     id: 2,
-    name: 'Editar Contenido',
+    name: 'Mis publicaciones',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
+    link: '/sponsors/mis-publish'
+  },
+  {
+    id: 3,
+    name: 'Publicar contenido',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
     link: '/sponsors/posts'
+  },
+  {
+    id: 4,
+    name: 'Ofertas',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
+    link: '/sponsors/offerts'
   }
 ]
 
