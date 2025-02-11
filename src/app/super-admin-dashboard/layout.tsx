@@ -9,7 +9,7 @@ interface SuperAdminLayoutProps {
 
 export const metadata = {
   title: 'Super Admin Dashboard',
-  description: 'Dashboard exclusivo para administradores.',
+  description: 'Dashboard exclusivo para administradores.'
 }
 
 export default function SuperAdminLayout({ children }: SuperAdminLayoutProps) {
