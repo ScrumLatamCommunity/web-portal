@@ -11,7 +11,7 @@ export default function CategoriesDropdown() {
     'Liderazgo y Desarrollo Organizacional',
     'Tecnologías Emergentes',
     'Marketing Digital',
-    'Certificaciones Profesionales',
+    'Certificaciones Profesionales'
   ]
   const [text, setText] = useState('')
   return (

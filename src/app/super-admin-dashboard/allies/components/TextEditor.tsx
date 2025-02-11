@@ -17,10 +17,10 @@ const TextEditor = () => {
                 ['bold', 'italic'], // Negrita y cursiva
                 [{ list: 'ordered' }, { list: 'bullet' }], // Listas ordenadas y no ordenadas
                 ['align'], // Alineación de texto
-                ['clean'], // Eliminar formato
-              ],
+                ['clean'] // Eliminar formato
+              ]
             },
-            placeholder: '(100 caracteres máximo).',
+            placeholder: '(100 caracteres máximo).'
           })
 
           // Limitar a 100 caracteres
@@ -42,7 +42,7 @@ const TextEditor = () => {
         backgroundColor: '#F5F5F5',
         height: '100px',
         border: '1px solid #082965',
-        borderRadius: '5px',
+        borderRadius: '5px'
       }}
     ></div>
   )

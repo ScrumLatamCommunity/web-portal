@@ -6,6 +6,7 @@ import { DesktopSidebar } from './allies/components/DesktopSidebar'
 import { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/navigation'
 import { LoadingScreen } from './components/LoadingScreen'
+import { superAdminDashboard } from '@/data/data'
 
 interface SuperAdminLayoutProps {
   children: ReactNode
@@ -32,7 +33,7 @@ export default function SuperAdminLayout({ children }: SuperAdminLayoutProps) {
     <div className='flex min-h-screen w-full flex-col'>
       <DesktopNavbar />
       <div className='flex flex-1'>
-        <DesktopSidebar />
+        <DesktopSidebar routes={superAdminDashboard} />
         <main className='flex-1 p-6'>{children}</main>
       </div>
     </div>

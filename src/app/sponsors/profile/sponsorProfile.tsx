@@ -1,7 +1,6 @@
 'use client'
 import { darkerGrotesque, inter, karla } from '@/fonts'
 import React, { useState, useEffect } from 'react'
-import { flags } from '@/data/data'
 import Image from 'next/image'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
@@ -11,6 +10,7 @@ import FacebookIcon from '@/assets/FacebookIcon'
 import EditSponsorProfile from '../components/editSponsorProfile'
 import { useAuth } from '@/app/context/AuthContext'
 import Skeleton from '../components/Skeleton'
+import { getCountryFlag } from '@/utils/getFlags'
 
 interface SponsorData {
   id: string
@@ -73,47 +73,38 @@ export default function SponsorProfile() {
       .trim()
   }
 
-  const getCountryFlag = (country?: string) => {
-    if (!country) return '/default-flag.png'
-    const flag = flags.find((f) => f.name === country)
+  const fetchSponsorData = async () => {
+    setIsLoading(true)
+    try {
+      if (!user?.sub || !token) {
+        setError('No hay información de usuario disponible')
+        return
+      }
 
-    return flag?.flag || '/default-flag.png'
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/${user.sub}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`)
+      }
+
+      const data = await response.json()
+      setSponsorData(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error al cargar los datos')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
-    const fetchSponsorData = async () => {
-      setIsLoading(true)
-      try {
-        if (!user?.sub || !token) {
-          setError('No hay información de usuario disponible')
-          return
-        }
-
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}sponsors/${user.sub}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        )
-
-        if (!response.ok) {
-          throw new Error(
-            `Error HTTP: ${response.status} ${response.statusText}`
-          )
-        }
-        const data = await response.json()
-        setSponsorData(data)
-      } catch (error) {
-        console.error('Error detallado:', error)
-        setError(error instanceof Error ? error.message : 'Error desconocido')
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
     fetchSponsorData()
   }, [user, token])
 
@@ -121,52 +112,20 @@ export default function SponsorProfile() {
     setIsEditing(false)
   }
 
-  //   {
-  //     "id": "984b3a71-6260-4d0b-9535-b4d8530cff0e",
-  //     "userId": "2016e4c5-7020-42ba-b1d0-4b0bd8f6f0fb",
-  //     "status": "ACTIVE",
-  //     "companyName": "los mafiosos",
-  //     "specialization": "Metodologías Ágiles",
-  //     "description": "<p>)(/)UN7n1n8 81 127 8 8 1091</p>",
-  //     "web": "https://www.google.com/",
-  //     "phone": "+182371928",
-  //     "socials": [
-  //         "https://www.google.com/",
-  //         "https://www.google.com/",
-  //         "https://www.google.com/"
-  //     ],
-  //     "logo": "https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203",
-  //     "bannerWeb": "https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203",
-  //     "bannerMobile": "https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203",
-  //     "createdAt": "2025-02-11T02:47:27.925Z",
-  //     "updatedAt": "2025-02-11T02:47:27.925Z",
-  //     "user": {
-  //         "id": "2016e4c5-7020-42ba-b1d0-4b0bd8f6f0fb",
-  //         "firstName": "gabriel",
-  //         "lastName": "el mujeriego",
-  //         "username": "elmujeriego",
-  //         "email": "el-mas-capito@gmail.com",
-  //         "password": "$2b$10$D3V4DKohzoyUuDonwCSN0.wr24GSM/uyHY6fv.ttqtoYFYCdC5wK2",
-  //         "country": "Argentina",
-  //         "membership": "Premium",
-  //         "role": "SPONSOR",
-  //         "onboarding": true,
-  //         "createdAt": "2025-02-11T02:47:27.621Z",
-  //         "updatedAt": "2025-02-11T02:47:27.621Z"
-  //     },
-  //     "posts": [],
-  //     "offers": []
-  // }
-
   if (error) {
     return <div className='p-4 text-red-500'>Error: {error}</div>
   }
 
-  if (isEditing) {
-    return <EditSponsorProfile onEditComplete={handleEditComplete} />
+  if (isEditing && sponsorData) {
+    return (
+      <EditSponsorProfile
+        onEditComplete={handleEditComplete}
+        sponsorData={sponsorData}
+        onUpdate={fetchSponsorData}
+      />
+    )
   }
 
-  // Componente para las imágenes con fallback
   const ImageWithFallback = ({
     src,
     alt,
@@ -201,6 +160,8 @@ export default function SponsorProfile() {
       />
     )
   }
+
+  console.log(sponsorData)
 
   return (
     <section className={`${darkerGrotesque.variable} ${karla.variable} mb-8`}>
