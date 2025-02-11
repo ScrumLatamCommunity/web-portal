@@ -1,27 +1,10 @@
-'use client'
-
 import Image from 'next/image'
 import React, { useState } from 'react'
 import UploadIcon from '@/assets/UploadIcon'
 import { darkerGrotesque } from '@/fonts'
 
-type ImageUploadProps = {
-  onChange: (file: File) => void
-}
-
-const ImageUpload = ({ onChange }: ImageUploadProps) => {
+const ImageUpload = () => {
   const [image, setImage] = useState<string | null>(null)
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImage(reader.result as string)
-      }
-      reader.readAsDataURL(file)
-      onChange(file)
-    }
-  }
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -32,7 +15,6 @@ const ImageUpload = ({ onChange }: ImageUploadProps) => {
         setImage(reader.result as string)
       }
       reader.readAsDataURL(file)
-      onChange(file)
     }
   }
 
@@ -49,7 +31,7 @@ const ImageUpload = ({ onChange }: ImageUploadProps) => {
       {image ? (
         <Image
           alt='Uploaded'
-          className='h-full w-full object-fill'
+          className='h-full w-full object-cover'
           height={300}
           src={image}
           unoptimized
@@ -65,16 +47,6 @@ const ImageUpload = ({ onChange }: ImageUploadProps) => {
           <p className='mt-4 text-center text-[16px] font-darker-grotesque-700 text-[#63789E]'>
             Subir imagen
           </p>
-          <input
-            type='file'
-            accept='image/*'
-            onChange={handleFileChange}
-            className='hidden'
-            id='file-input'
-          />
-          <label htmlFor='file-input' className='cursor-pointer'>
-            Seleccionar archivo
-          </label>
         </div>
       )}
     </div>
