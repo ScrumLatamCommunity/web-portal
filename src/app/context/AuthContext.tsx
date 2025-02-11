@@ -9,10 +9,12 @@ import {
 import { jwtDecode } from 'jwt-decode'
 
 interface User {
+  sub: string
   email: string
   name: string
   exp?: number
   onboarding: boolean
+  role: string
 }
 
 interface AuthContextType {
