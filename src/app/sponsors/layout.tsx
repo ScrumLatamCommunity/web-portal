@@ -17,17 +17,17 @@ export default function SponsorLayout({ children }: SponsorLayoutProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
 
-  // useEffect(() => {
-  //   if (user && user.role !== 'SPONSOR') {
-  //     router.push('/')
-  //     return
-  //   }
-  //   setIsLoading(false)
-  // }, [user, router])
+  useEffect(() => {
+    if (user && user.role !== 'SPONSOR') {
+      router.push('/')
+      return
+    }
+    setIsLoading(false)
+  }, [user, router])
 
-  // if (isLoading) {
-  //   return <LoadingScreen />
-  // }
+  if (isLoading) {
+    return <LoadingScreen />
+  }
 
   return (
     <div className='flex min-h-screen w-full flex-col'>
