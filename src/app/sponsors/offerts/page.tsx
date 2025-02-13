@@ -5,7 +5,7 @@ import OffertDropdown from '../components/offert-dropdown'
 import GlobeIcon from '@/assets/GlobeIcon'
 import TextEditor from '../components/TextEditor'
 import ImageUpload from '../components/imageUpload'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Switch } from '@headlessui/react'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
@@ -27,6 +27,13 @@ export default function Offerts() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+
+  const handleDescriptionChange = useCallback((value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: value
+    }))
+  }, [])
 
   async function handleSubmit() {
     try {
@@ -246,7 +253,27 @@ export default function Offerts() {
               }
             />
           </div>
-          <div className='mx-[33px] flex w-[35%] flex-col gap-2'>
+          <div className='mx-[33px] flex w-[40%] flex-col gap-2'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+              htmlFor='offer-name'
+            >
+              Descuento
+            </label>
+            <input
+              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+              id='discount'
+              placeholder='Ej: ¡10% de descuento a miembros de la comunidad!'
+              type='text'
+              value={formData.discount}
+              onChange={(e) =>
+                setFormData({ ...formData, discount: e.target.value })
+              }
+            />
+          </div>
+        </div>
+        <div className={`flex flex-col`}>
+          <div className='mx-[33px] mb-4 flex w-[35%] flex-col gap-2'>
             <label
               className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
               htmlFor='offer-name'
@@ -263,17 +290,13 @@ export default function Offerts() {
               }
             />
           </div>
-        </div>
-        <div className={`flex flex-col`}>
           <div className='mx-[33px] mb-10 flex flex-col gap-2'>
             <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
               Descripción
             </label>
             <TextEditor
               value={formData.description}
-              onChange={(value) =>
-                setFormData({ ...formData, description: value })
-              }
+              onChange={handleDescriptionChange}
             />
           </div>
           <div className='mx-[33px] mb-6 flex flex-col gap-2'>
