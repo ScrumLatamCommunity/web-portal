@@ -8,11 +8,19 @@ import { useTypeScreen } from '@/hooks'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { darkerGrotesque } from '@/fonts'
 import { useAuth } from '@/app/context/AuthContext'
+import { useRouter } from 'next/navigation'
 
 export const Navbar: React.FC = () => {
-  const { logout } = useAuth()
+  const { logout, user } = useAuth()
+  const router = useRouter()
   const [openNav, setOpenNav] = useState<boolean>(false)
   const screen = useTypeScreen()
+
+  const mapRoutes: Record<string, string> = {
+    ADMIN: '/super-admin-dashboard',
+    SPONSOR: '/sponsors',
+    USER: '/'
+  }
 
   const toggleNav = (): void => {
     setOpenNav(!openNav)
@@ -51,6 +59,12 @@ export const Navbar: React.FC = () => {
         >
           <User className='mr-2 h-4' />
           <span className='font-darker-grotesque-600'>Cerrar sesión</span>
+        </button>
+        <button
+          onClick={() => router.push(user?.role ? mapRoutes[user?.role] : '/')}
+          className='darker-grotesque-600 ml-2 flex cursor-pointer items-center rounded-full bg-red-400 px-4 py-1 pb-2 text-white hover:bg-red-300'
+        >
+          <span className='font-darker-grotesque-600'>Dashboard</span>
         </button>
       </AuthWrapper>
     </div>

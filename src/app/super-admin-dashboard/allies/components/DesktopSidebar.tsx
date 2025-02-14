@@ -7,32 +7,48 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export const DesktopSidebar = () => {
+interface Route {
+  id: number
+  name: string
+  image: string
+  link: string
+}
+
+interface DesktopSidebarProps {
+  routes: Route[]
+}
+
+export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ routes }) => {
   const pathname = usePathname()
+
   return (
-    <div className='flex w-[17%] flex-col items-center gap-2 border-r border-[#082965] pt-[52px]'>
-      {superAdminDashboard.map((item: SuperAdminDashboard) => (
+    <div className='flex w-[20%] flex-col items-center gap-4 border-r border-[#082965] py-6'>
+      {routes.map((item: SuperAdminDashboard) => (
         <Link
-          className='flex w-full justify-center'
+          className='flex w-full justify-center px-4'
           href={item.link}
           key={item.id}
         >
           <div
-            className={`flex w-[86%] items-center justify-between gap-4 rounded-2xl border border-[#000000] py-[18px] pl-[23px] pr-[16px] ${pathname === item.link ? 'bg-[#FD3600]' : ''}`}
+            className={`flex w-full items-center justify-between rounded-2xl border border-[#000000] px-3 py-2 transition-colors duration-200 hover:bg-gray-50 ${
+              pathname === item.link ? 'bg-[#FD3600] text-white' : ''
+            }`}
           >
-            <div className='flex'>
-              <Image
-                alt='icono'
-                className='h-8 w-8'
-                height={33}
-                src={item.image}
-                width={33}
-              />
+            <div className='flex items-center gap-3'>
+              <div className='flex h-8 w-8 flex-shrink-0 items-center justify-center'>
+                <Image
+                  alt='icono'
+                  className='h-6 w-6'
+                  height={24}
+                  src={item.image}
+                  width={24}
+                />
+              </div>
+              <span className='font-darker-grotesque text-base font-semibold'>
+                {item.name}
+              </span>
             </div>
-            <span className='flex flex-1 justify-start font-darker-grotesque text-[16px] font-bold'>
-              {item.name}
-            </span>
-            <ChevronRight height={20} width={20} />
+            <ChevronRight className='h-5 w-5 flex-shrink-0' />
           </div>
         </Link>
       ))}
