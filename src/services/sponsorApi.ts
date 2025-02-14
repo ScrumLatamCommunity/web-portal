@@ -73,14 +73,11 @@ export const getUserById = async (id: string, token: string): Promise<User> => {
 
 export const getAllSponsors = async (): Promise<SponsorsData[]> => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/sponsors`,
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
+      headers: {
+        'Content-Type': 'application/json'
       }
-    )
+    })
 
     if (!response.ok) {
       throw new Error(`Error HTTP: ${response.status}`)

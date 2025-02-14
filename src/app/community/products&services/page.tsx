@@ -7,16 +7,8 @@ import Breadcrumbs from './components/breadcrumbs'
 import { NewsBlogsUpdates } from './components/NewsBlogsUpdates'
 import SearchBar from './components/search-bar'
 import ProductServiceFeature from '@/app/community/products&services/components/productServiceFeature'
-import AgileTalentClubImg from '@/assets/agileTalentClubImg'
-import AgileMindsImg from '@/assets/agileMindsImg'
-import { servicesData } from '@/utils/productsServicesData'
 import { getAllSponsors } from '@/services/sponsorApi'
 import { useAuth } from '@/app/context/AuthContext'
-
-const imageMap: Record<string, JSX.Element> = {
-  agileTalentClub: <AgileTalentClubImg className='h-[200px] w-[300px] pt-8' />,
-  agileMinds: <AgileMindsImg className='h-[200px] w-[300px] pt-8' />
-}
 
 export default function Squads() {
   const { user, token } = useAuth()
@@ -25,19 +17,22 @@ export default function Squads() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Filtrar servicios según la búsqueda
-  const filteredServices = servicesData.filter((service) =>
-    service.title.toLowerCase().includes(query.toLowerCase())
-  )
-
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
         setIsLoading(true)
         const data = await getAllSponsors()
-        console.log('Sponsors fetched:', data)
+
+        if (!Array.isArray(data)) {
+          console.error('❌ Error: Response is not an array', data)
+          setSponsors([])
+          return
+        }
+
+        console.log('✅ Sponsors fetched:', data)
         setSponsors(data)
       } catch (err) {
+        console.error('❌ Error fetching sponsors:', err)
         setError(
           err instanceof Error ? err.message : 'Error al obtener sponsors'
         )
@@ -48,6 +43,28 @@ export default function Squads() {
 
     fetchSponsors()
   }, [])
+
+  const countryFlags: Record<string, string> = {
+    argentina: 'https://flagcdn.com/ar.svg',
+    colombia: 'https://flagcdn.com/co.svg',
+    peru: 'https://flagcdn.com/pe.svg',
+    mexico: 'https://flagcdn.com/mx.svg',
+    chile: 'https://flagcdn.com/cl.svg'
+  }
+
+  const sponsorsWithFlags = sponsors
+    .filter((sponsor) => sponsor?.companyName && sponsor?.status === 'ACTIVE')
+    .map((sponsor) => ({
+      ...sponsor,
+      flag: countryFlags[sponsor?.user?.country?.toLowerCase() || ''] || ''
+    }))
+
+  const filteredSponsors = sponsorsWithFlags.filter((sponsor) =>
+    (sponsor.companyName || '').toLowerCase().includes(query.toLowerCase())
+  )
+
+  console.log('🔍 Query:', query)
+  console.log('🔎 Filtered Sponsors:', filteredSponsors)
 
   return (
     <>
@@ -62,30 +79,31 @@ export default function Squads() {
       />
       <NewsBlogsUpdates />
 
-      {/* Search Bar */}
       <section className='mb-4 mt-0 flex w-full justify-center px-10 md:mb-6'>
         <div className='w-full max-w-[600px]'>
           <SearchBar
             setQuery={setQuery}
-            data={filteredServices}
+            data={filteredSponsors}
             placeholder='Busca servicio o producto'
           />
         </div>
       </section>
 
-      {/* Renderizar dinámicamente los servicios desde JSON con separación */}
       <section className='mt-6 flex flex-col gap-8'>
-        {filteredServices.length > 0 ? (
-          filteredServices.map((service) => (
+        {filteredSponsors.length > 0 ? (
+          filteredSponsors.map((sponsor) => (
             <ProductServiceFeature
-              key={service.id}
-              title={service.title}
-              flag={service.flag}
-              description={service.description}
-              highlights={service.highlights}
-              image={imageMap[service.imageId]}
-              linkTitle={service.linkTitle}
-              socialUrls={service.socialUrls}
+              key={sponsor.id}
+              title={sponsor.companyName}
+              flag={sponsor.flag}
+              description={sponsor.description || 'Sin descripción'}
+              highlights={[sponsor.specialization || '']}
+              image={sponsor.logo || ''}
+              linkTitle='Conocer Ofertas'
+              socialUrls={{
+                website: sponsor.web || '',
+                phone: sponsor.phone || ''
+              }}
             />
           ))
         ) : (

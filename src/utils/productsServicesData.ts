@@ -6,7 +6,8 @@ export const servicesData = [
     description:
       'Brindamos un asesoramiento integral en prácticas Ágiles y estrategias para Transformación Digital-Organizacional-Ágil. Facilitación y Capacitación en temas generales sobre Agilidad y Liderazgo.',
     highlights: ['Metodologías Ágiles', 'Agilidad y Liderazgo'],
-    imageId: 'agileTalentClub', // Usamos un identificador en lugar de importar la imagen
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fproducts%26services%2FAgileTalentClub.png?alt=media&token=8df8911c-d82c-435e-99c2-db8b2b497353', // Usamos un identificador en lugar de importar la imagen
     linkTitle: 'Conocer Ofertas',
     socialUrls: {
       email: 'contacto@agiletalentclub.com',
@@ -28,7 +29,8 @@ export const servicesData = [
       'Gestión de Proyectos',
       'Liderazgo y Desarrollo Organizacional'
     ],
-    imageId: 'agileMinds', // Identificador de imagen
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fproducts%26services%2FAgiltyMinds.png?alt=media&token=59bebe44-cc4d-4545-944c-1797794b9f9e', // Identificador de imagen
     linkTitle: 'Conocer Ofertas',
     socialUrls: {
       email: 'contacto@scrumacademy.com',

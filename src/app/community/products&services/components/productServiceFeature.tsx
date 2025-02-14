@@ -19,15 +19,21 @@ export default function ProductServiceFeature({
   return (
     <>
       {/* 💻 Versión MD y mayores */}
-      <section className='relative hidden h-dvh flex-col justify-between bg-[#FFEAE6] pb-12 md:flex md:h-[467px] md:max-w-[1980px] md:flex-row md:pb-0'>
+      <section className='relative hidden h-dvh flex-col justify-between bg-[#FFEAE6] pb-12 md:flex md:h-[467px] md:w-full md:flex-row md:pb-0'>
         <DottedOrange className='absolute bottom-0 right-0 h-[250px] w-[250px] translate-y-1/2 md:h-[400px] md:w-[300px]' />
 
         {/* 📷 Imagen + Redes Sociales */}
         <div className='relative flex h-full flex-col items-center justify-between md:mx-14 md:mt-10 md:justify-center md:pl-14'>
           <div className='flex h-[250px] w-[250px] items-center justify-center'>
-            {React.cloneElement(image as React.ReactElement, {
-              className: 'h-full w-full object-cover'
-            })}
+            {typeof image === 'string' ? (
+              <img
+                src={image}
+                alt='Product'
+                className='h-full w-full object-cover'
+              />
+            ) : (
+              <p className='text-red-500'>No image available</p>
+            )}
           </div>
 
           {/* 🔗 Redes Sociales */}

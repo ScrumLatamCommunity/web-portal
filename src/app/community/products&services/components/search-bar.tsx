@@ -71,18 +71,20 @@ export default function SearchBar({
             className='absolute top-full z-10 w-full overflow-y-auto rounded-b-xl bg-white shadow-md'
           >
             {data
-              .filter((item) =>
-                item.title.toLowerCase().includes(localQuery.toLowerCase())
+              ?.filter((item) =>
+                (item?.companyName || '')
+                  .toLowerCase()
+                  .includes(localQuery.toLowerCase())
               )
               .map((filteredItem) => (
                 <div
                   className='group relative flex items-center border-gray-200 p-2 hover:bg-[#FFEAE6]'
                   key={filteredItem.id}
-                  onClick={() => handleSelect(filteredItem.title)}
+                  onClick={() => handleSelect(filteredItem.companyName)}
                 >
                   <div className='absolute left-0 top-0 h-full w-1 bg-[#FE5833] opacity-0 group-hover:opacity-100'></div>
                   <p className='z-10 ml-2 text-sm font-darker-grotesque-600 text-[#63789E]'>
-                    {filteredItem.title}
+                    {filteredItem.companyName}
                   </p>
                 </div>
               ))}
