@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import HeroSection from './components/heroSection'
 import ProductImg from '@/assets/productImg'
 import Breadcrumbs from './components/breadcrumbs'
@@ -10,6 +10,8 @@ import ProductServiceFeature from '@/app/community/products&services/components/
 import AgileTalentClubImg from '@/assets/agileTalentClubImg'
 import AgileMindsImg from '@/assets/agileMindsImg'
 import { servicesData } from '@/utils/productsServicesData'
+import { getAllSponsors } from '@/services/sponsorApi'
+import { useAuth } from '@/app/context/AuthContext'
 
 const imageMap: Record<string, JSX.Element> = {
   agileTalentClub: <AgileTalentClubImg className='h-[200px] w-[300px] pt-8' />,
@@ -17,12 +19,35 @@ const imageMap: Record<string, JSX.Element> = {
 }
 
 export default function Squads() {
+  const { user, token } = useAuth()
   const [query, setQuery] = useState<string>('')
+  const [sponsors, setSponsors] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   // Filtrar servicios según la búsqueda
   const filteredServices = servicesData.filter((service) =>
     service.title.toLowerCase().includes(query.toLowerCase())
   )
+
+  useEffect(() => {
+    const fetchSponsors = async () => {
+      try {
+        setIsLoading(true)
+        const data = await getAllSponsors()
+        console.log('Sponsors fetched:', data)
+        setSponsors(data)
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : 'Error al obtener sponsors'
+        )
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchSponsors()
+  }, [])
 
   return (
     <>
