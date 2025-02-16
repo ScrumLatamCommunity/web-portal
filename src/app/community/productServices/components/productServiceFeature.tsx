@@ -8,6 +8,7 @@ import LinkedInIcon from '@/assets/LinkedinIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 
 export default function ProductServiceFeature({
+  id,
   description,
   image,
   flag,
@@ -109,7 +110,7 @@ export default function ProductServiceFeature({
 
           <div className='absolute bottom-8 left-0 flex w-full justify-end p-4 md:pt-4'>
             <a
-              href='#SQUAD'
+              href={`/community/productServices/offerts/${id}`}
               className='rounded-2xl bg-[#FE2E00] px-10 py-3 font-darker-grotesque text-lg text-[#FFFFFF]'
             >
               {linkTitle}
@@ -215,7 +216,7 @@ export default function ProductServiceFeature({
           {/* 🔘 Botón */}
           <div className='mt-4 flex justify-end'>
             <a
-              href='#SQUAD'
+              href={`/community/productServices/offerts/${id}`}
               className='rounded-2xl bg-[#FE2E00] px-6 py-2 text-white'
             >
               {linkTitle}

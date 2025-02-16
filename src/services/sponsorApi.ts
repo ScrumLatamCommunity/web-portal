@@ -14,6 +14,24 @@ export interface SponsorPost {
   updatedAt: string
 }
 
+export interface SponsorsOffert {
+  id: string
+  sponsorId: string
+  status: string
+  title: string
+  discount: string
+  validFrom: string
+  validUntil: string
+  description: string
+  time: string
+  place: string
+  intendedFor: string
+  link: string
+  image: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface SponsorsData {
   id: string
   userId: string
@@ -30,6 +48,7 @@ export interface SponsorsData {
   createdAt: string
   updatedAt: string
   posts?: SponsorPost[]
+  offerts?: SponsorsOffert[]
 }
 
 export interface User {
@@ -88,5 +107,28 @@ export const getAllSponsors = async (): Promise<SponsorsData[]> => {
   } catch (error) {
     console.error('Error fetching sponsors:', error)
     throw new Error('No se pudo obtener la lista de sponsors')
+  }
+}
+
+export const getSponsorById = async (id: string): Promise<SponsorsData> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}sponsors/${id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`)
+    }
+
+    const sponsorData: SponsorsData = await response.json()
+    return sponsorData
+  } catch (error) {
+    console.error('Error fetching sponsor data:', error)
+    throw new Error('No se pudo obtener la información del sponsor')
   }
 }

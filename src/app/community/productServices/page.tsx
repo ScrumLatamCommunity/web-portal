@@ -6,7 +6,7 @@ import ProductImg from '@/assets/productImg'
 import Breadcrumbs from './components/breadcrumbs'
 import { NewsBlogsUpdates } from './components/NewsBlogsUpdates'
 import SearchBar from './components/search-bar'
-import ProductServiceFeature from '@/app/community/products&services/components/productServiceFeature'
+import ProductServiceFeature from '@/app/community/productServices/components/productServiceFeature'
 import { getAllSponsors } from '@/services/sponsorApi'
 import { useAuth } from '@/app/context/AuthContext'
 
@@ -94,6 +94,7 @@ export default function Squads() {
           filteredSponsors.map((sponsor) => (
             <ProductServiceFeature
               key={sponsor.id}
+              id={sponsor.id}
               title={sponsor.companyName}
               flag={sponsor.flag}
               description={sponsor.description || 'Sin descripción'}

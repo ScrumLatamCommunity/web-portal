@@ -1,5 +1,6 @@
 'use client'
 
+import { useParams } from 'next/navigation'
 import FacebookIcon from '@/assets/FacebookIcon'
 import GlobeIcon from '@/assets/GlobeIcon'
 import InstagramIcon from '@/assets/instagramIcon'
@@ -9,9 +10,10 @@ import PhoneIcon from '@/assets/PhoneIcon'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import OffertCard from './components/offertsCard'
+import OffertCard from '@/app/community/productServices/offerts/components/offertsCard'
 import { flags } from '@/data/data'
 import { Pagination } from '@/app/home//components/Pagination'
+import { getSponsorById } from '@/services/sponsorApi'
 
 const offerts = [
   {
@@ -48,9 +50,34 @@ const offerts = [
 ]
 
 export default function Offerts() {
+  const params = useParams()
+  // console.log('Params en la página dinámica:', params)
+
   const itemsPerPage = 1
   const [currentPage, setCurrentPage] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+
+  const sponsorId = Array.isArray(params.id) ? params.id[0] : params.id
+
+  useEffect(() => {
+    console.log('Sponsor ID:', sponsorId)
+
+    if (!sponsorId) {
+      console.warn(
+        'Sponsor ID es undefined o null, no se ejecutará la petición.'
+      )
+      return
+    }
+
+    console.log('Fetching sponsor data with ID:', sponsorId)
+    getSponsorById(sponsorId)
+      .then((data) => {
+        console.log('Sponsor Data:', data)
+      })
+      .catch((error) => {
+        console.error('Error fetching sponsor:', error)
+      })
+  }, [sponsorId])
 
   useEffect(() => {
     const handleResize = () => {
