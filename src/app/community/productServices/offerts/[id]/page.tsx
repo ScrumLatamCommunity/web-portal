@@ -58,6 +58,7 @@ export default function Offerts() {
   const [isMobile, setIsMobile] = useState(false)
 
   const sponsorId = Array.isArray(params.id) ? params.id[0] : params.id
+  const [sponsorData, setSponsorData] = useState<any>(null)
 
   useEffect(() => {
     console.log('Sponsor ID:', sponsorId)
@@ -72,6 +73,7 @@ export default function Offerts() {
     console.log('Fetching sponsor data with ID:', sponsorId)
     getSponsorById(sponsorId)
       .then((data) => {
+        setSponsorData(data)
         console.log('Sponsor Data:', data)
       })
       .catch((error) => {
@@ -91,12 +93,14 @@ export default function Offerts() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const currentItems = isMobile
-    ? offerts.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-      )
-    : offerts
+  const currentItems = sponsorData?.offers ?? []
+
+  // const currentItems = isMobile
+  //   ? offerts.slice(
+  //       currentPage * itemsPerPage,
+  //       (currentPage + 1) * itemsPerPage
+  //     )
+  //   : offerts
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
@@ -120,7 +124,7 @@ export default function Offerts() {
           <div className='md:mr-8'>
             <Image
               className='m-4 object-fill md:h-[175px] md:w-[175px]'
-              src='https://s3-alpha-sig.figma.com/img/7384/01ec/2c96a25e3686f2e1b090999f0a6da119?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Q9axOfMXTsQJEm9trvgDM1s8iu-9ooJGXcm71hKtQuLME1Nq14GTYKKYF2~CCeY8nPOS8No-sgLdrMUCKhB2lWJIrTr8GbgvJtHhrsh7jQdMQJ9XcDPCN~Jddy0ywVX~dCMYeC556z5u7-7-GEOYKy~arhlMuGtQj-OMe-nFhlUwPFZgnnEwnxYObpi5Ozb~n6loB~-Rm492Ro~2BJ2iJolsU2qC-1eo1sgoLdCt0MEzQl9UP57AmcO4txGcyNBeWDXoBVpK2PI8yXNMaGq3m2Xd9AtNvk4-M-bqus~q5kZwT-kqAKNv1ygPu7K4CiHdSUqHMO5ZK8Smi4C2EEnEqQ__'
+              src={sponsorData?.logo || '/default-banner.jpg'}
               alt='Offerts'
               width={80}
               height={80}
@@ -129,7 +133,7 @@ export default function Offerts() {
           <div className='mt-5 flex w-full flex-col pl-6'>
             <div className='flex flex-row items-center'>
               <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold md:mr-4 md:text-[56px]'>
-                Aqui Nombre del Sponsor
+                {sponsorData?.companyName}
               </h1>
               <Image
                 className='h-[20px] md:mt-3 md:h-[30px] md:w-[50px]'
@@ -140,7 +144,7 @@ export default function Offerts() {
               />
             </div>
             <p className='mb-2 font-roboto text-[16px] font-normal md:mb-3 md:text-[26px]'>
-              Aqui sus categorías
+              {sponsorData?.specialization}
             </p>
             <div className='mb-6 flex flex-row gap-2 md:gap-4'>
               <div className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'>
@@ -172,9 +176,24 @@ export default function Offerts() {
 
       <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
         <div className='grid grid-cols-1 justify-items-center md:grid-cols-3 md:py-16'>
-          {currentItems.map((offert, index) => (
-            <OffertCard key={index} {...offert} />
-          ))}
+          {currentItems.length > 0 ? (
+            currentItems.map((offer: any, index: number) => (
+              <OffertCard
+                key={index}
+                offertImage={offer.image}
+                offertTitle={offer.title}
+                offertDescription={offer.description}
+                offertDate={offer.validFrom}
+                offertTime={offer.time}
+                offertPlace={offer.place}
+                offertGoTo={offer.intendedFor}
+                offertDiscount={offer.discount}
+                offertLink={offer.link}
+              />
+            ))
+          ) : (
+            <p className='text-lg text-gray-500'>No hay ofertas disponibles</p>
+          )}
         </div>
 
         {isMobile && (

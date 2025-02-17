@@ -55,7 +55,7 @@ export default function Offerts() {
       }
 
       const sponsorData = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}sponsors/${user?.sub}`,
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user?.sub}`,
         {
           method: 'GET',
           headers: {

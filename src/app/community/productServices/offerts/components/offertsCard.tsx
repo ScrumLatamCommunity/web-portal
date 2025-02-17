@@ -11,6 +11,8 @@ interface Offert {
   offertTime: string
   offertPlace: string
   offertGoTo: string
+  offertDiscount: string
+  offertLink: string
 }
 
 export default function OffertCard({
@@ -20,7 +22,9 @@ export default function OffertCard({
   offertDate,
   offertTime,
   offertPlace,
-  offertGoTo
+  offertGoTo,
+  offertDiscount,
+  offertLink
 }: Offert) {
   return (
     <div
@@ -37,7 +41,7 @@ export default function OffertCard({
         {offertTitle}
       </h1>
       <h2 className='px-5 pb-2 font-darker-grotesque text-[20px] font-darker-grotesque-700 leading-[30px] text-[#061D48]'>
-        15% DE DESCUENTO PARA MIEMBROS DE LA COMUNIDAD
+        {offertDiscount}
       </h2>
       <p className='px-5 font-karla text-[16px] font-karla-400'>
         {offertDescription}
@@ -56,7 +60,15 @@ export default function OffertCard({
       </p>
       <div className='mt-4 flex flex-row items-center px-5'>
         <ArrowUpRight />
-        <button className='pb-2 font-darker-grotesque text-[24px] font-darker-grotesque-600 text-[#FE5833]'>
+        <button
+          onClick={() => {
+            const url = offertLink.startsWith('http')
+              ? offertLink
+              : `https://${offertLink}`
+            window.open(url, '_blank', 'noopener,noreferrer')
+          }}
+          className='cursor-pointer pb-2 font-darker-grotesque text-[24px] font-darker-grotesque-600 text-[#FE5833] hover:underline'
+        >
           Inscribirse ahora
         </button>
       </div>
