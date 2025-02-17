@@ -1,7 +1,7 @@
 'use client'
 
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
@@ -10,8 +10,24 @@ import CategoriesDropdown from '../../sponsors/components/categories-dropdown'
 import TextEditor from '../../sponsors/components/TextEditor'
 import CountriesDropdown from '../../sponsors/components/countries-dropdown'
 import FacebookIcon from '@/assets/FacebookIcon'
+import SponsorsList from './components/sponsorsList'
+import { useAuth } from '@/app/context/AuthContext'
+
+interface Sponsor {
+  id: number
+  companyName: string
+  createdAt: string
+  web: string
+  status: string
+}
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('es-ES')
+}
 
 export default function AlliesPage() {
+  const { token, user } = useAuth()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')
@@ -27,6 +43,7 @@ export default function AlliesPage() {
   const [linkedin, setLinkedin] = useState('')
   const [instagram, setInstagram] = useState('')
   const [facebook, setFacebook] = useState('')
+  const [sponsors, setSponsors] = useState<Sponsor[]>([])
 
   const resetForm = () => {
     setFirstName('')
@@ -45,6 +62,36 @@ export default function AlliesPage() {
     setInstagram('')
     setFacebook('')
   }
+
+  const getSponsors = async () => {
+    try {
+      const response = await fetch(
+        'http://localhost:8002/api/v1/sponsors?order=desc',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Error al obtener sponsors')
+      }
+
+      const data = await response.json()
+      console.log('Sponsors obtenidos:', data)
+
+      setSponsors(data)
+    } catch (error) {
+      console.error('Error al obtener sponsors:', error)
+    }
+  }
+
+  useEffect(() => {
+    getSponsors()
+  }, [setSponsors])
 
   const handleSave = async () => {
     if (password !== confirmPassword) {
@@ -112,8 +159,40 @@ export default function AlliesPage() {
       <h1
         className={`items-left mb-5 max-w-[1980px] font-darker-grotesque text-[30px] font-darker-grotesque-700 text-[#082965]`}
       >
-        Perfil del Sponsor
+        Sponsors de la Comunidad
       </h1>
+      <div
+        className={`mb-6 w-full rounded-[20px] border-[0.5px] border-black-13 p-4`}
+      >
+        <div className='grid grid-cols-5 gap-4 rounded-[20px] border-[0.5px] border-black-9 p-2'>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Nombre
+          </button>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Aliado desde
+          </button>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Web
+          </button>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Estado
+          </button>
+          <p className='flex items-center justify-center font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Acción
+          </p>
+        </div>
+        <div className='custom-scrollbar h-[300px] overflow-y-scroll'>
+          {sponsors.map((sponsor) => (
+            <SponsorsList
+              key={sponsor.id}
+              name={sponsor.companyName}
+              since={formatDate(sponsor.createdAt)}
+              web={sponsor.web}
+              status={sponsor.status}
+            />
+          ))}
+        </div>
+      </div>
       <div
         className={`w-full rounded-[20px] border-[0.5px] border-black-13 py-4`}
       >
