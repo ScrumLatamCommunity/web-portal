@@ -1,7 +1,6 @@
 'use client'
 
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import OffertDropdown from '../components/offert-dropdown'
 import GlobeIcon from '@/assets/GlobeIcon'
 import TextEditor from '../components/TextEditor'
 import ImageUpload from '../components/imageUpload'
@@ -65,6 +64,8 @@ export default function Offerts() {
           }
         }
       ).then((res) => res.json())
+
+      console.log('Sponsor data:', sponsorData)
 
       const sendData = {
         ...formData,

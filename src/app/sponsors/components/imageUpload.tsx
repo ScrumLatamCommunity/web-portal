@@ -44,7 +44,7 @@ const ImageUpload = ({
           body: formData
         }
       )
-
+      console.log(response)
       if (!response.ok) {
         throw new Error('Error al subir la imagen')
       }
