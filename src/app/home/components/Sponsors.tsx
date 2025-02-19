@@ -17,7 +17,7 @@ export const Sponsors: React.FC = () => {
   const duplicateSponsors = [...SponsorsLogo, ...SponsorsLogo, ...SponsorsLogo]
 
   return (
-    <div className='mx-auto hidden w-screen max-w-[1980px] px-4 py-12 lg:block'>
+    <div className='mx-auto hidden w-screen max-w-[1980px] bg-[#fbfbfb] px-4 py-12 lg:block'>
       <h2 className='mb-12 text-center text-3xl font-bold text-[#0A2472]'>
         Junto a nuestros aliados
       </h2>
@@ -27,7 +27,7 @@ export const Sponsors: React.FC = () => {
             <img
               alt={sponsor.name}
               aria-hidden='true'
-              className='h-8 w-auto object-contain md:h-12 lg:h-16'
+              className='h-8 w-auto max-w-[100px] object-contain md:h-12 lg:h-16'
               key={index}
               src={sponsor.image}
             />
