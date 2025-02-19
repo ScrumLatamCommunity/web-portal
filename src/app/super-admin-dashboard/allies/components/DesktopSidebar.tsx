@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ChevronRight } from 'react-feather'
-import { superAdminDashboard, SuperAdminDashboard } from '@/data/data'
+import { SuperAdminDashboard } from '@/data/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
