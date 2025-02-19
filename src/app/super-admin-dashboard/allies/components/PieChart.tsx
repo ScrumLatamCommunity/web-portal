@@ -16,52 +16,7 @@ interface ChartData {
   }[]
 }
 
-interface PieChartProps {
-  token: string | null
-}
-
-export const PieChart = ({ token }: PieChartProps) => {
-  const [chartData, setChartData] = useState<ChartData>({
-    labels: [],
-    datasets: [{ data: [], backgroundColor: [] }]
-  })
-
-  useEffect(() => {
-    if (!token) {
-      console.warn('No hay token disponible.')
-      return
-    }
-
-    console.log('Usando token:', token)
-
-    axios
-      .get(
-        'http://localhost:8002/api/v1/admin/stats?filters=role,country,membership',
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      )
-      .then((response) => {
-        console.log('Respuesta de la API:', response.data)
-
-        if (!response.data.role || !Array.isArray(response.data.role)) {
-          console.warn("No hay datos disponibles en 'role'.")
-          return
-        }
-
-        const roles = response.data.role
-        const labels = roles.map((r: any) => r.role)
-        const data = roles.map((r: any) => parseFloat(r.percentage))
-        const colors = ['#FE5833', '#345081', '#FF9F8A', '#C4CCDA']
-
-        setChartData({
-          labels,
-          datasets: [{ data, backgroundColor: colors }]
-        })
-      })
-      .catch((error) => console.error('Error fetching data:', error))
-  }, [token])
-
+export const PieChart = ({ chartData }: { chartData: ChartData }) => {
   return (
     <div style={{ width: '164px', height: '164px' }}>
       <Pie
