@@ -125,7 +125,7 @@ export default function AlliesPage() {
 
     try {
       const response = await fetch(
-        'http://localhost:8002/api/v1/auth/register/sponsor',
+        `${process.env.NEXT_PUBLIC_API_URL}auth/register/sponsor`,
         {
           method: 'POST',
           headers: {
