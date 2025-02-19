@@ -35,23 +35,20 @@ export const PieChart = ({ token }: PieChartProps) => {
     console.log('Usando token:', token)
 
     axios
-      .get(
-        'http://localhost:8002/api/v1/admin/stats?filters=role,country,membership',
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      )
+      .get('http://localhost:8002/api/v1/admin/stats?filters=country', {
+        headers: { Authorization: `Bearer ${token}` }
+      })
       .then((response) => {
         console.log('Respuesta de la API:', response.data)
 
-        if (!response.data.role || !Array.isArray(response.data.role)) {
+        if (!response.data.country || !Array.isArray(response.data.country)) {
           console.warn("No hay datos disponibles en 'role'.")
           return
         }
 
-        const roles = response.data.role
-        const labels = roles.map((r: any) => r.role)
-        const data = roles.map((r: any) => parseFloat(r.percentage))
+        const roles = response.data.country
+        const labels = roles.map((r: any) => r.country)
+        const data = roles.map((r: any) => parseFloat(r.count))
         const colors = ['#FE5833', '#345081', '#FF9F8A', '#C4CCDA']
 
         setChartData({

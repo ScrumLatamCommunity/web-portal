@@ -3,40 +3,24 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { PieChart } from '../allies/components/PieChart'
+import { useAuth } from '@/app/context/AuthContext'
 
-const API_URL = 'http://localhost:8002/api/v1'
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export const Dashboard = () => {
-  const [token, setToken] = useState<string | null>(null)
+  const { token } = useAuth()
   const [data, setData] = useState<any>(null)
-  const [user, setUser] = useState<any>(null)
+  const [users, setUsers] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const loginRes = await axios.post(`${API_URL}/auth/login`, {
-          email: 'gabrielta1798@gmail.com',
-          password: '5CrUmL4T4M!'
-        })
-
-        setToken(loginRes.data.access_token)
-        console.log('Token obtenido:', loginRes.data.access_token)
-      } catch (error) {
-        setError((error as Error).message)
-      }
-    }
-
-    fetchToken()
-  }, [])
+  const [freeUsers, setFreeUsers] = useState<any>([])
 
   useEffect(() => {
     if (!token) return
 
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${API_URL}/admin/stats?filters=role`, {
+        const res = await axios.get(`${API_URL}admin/stats?filters=country`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -44,18 +28,27 @@ export const Dashboard = () => {
         console.log(res.data)
         setData(res.data)
 
-        const resUsers = await axios.get(`${API_URL}/admin/users?order=desc`, {
+        const resUsers = await axios.get(`${API_URL}admin/users`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
-        console.log('Users', resUsers.data)
-        setUser(resUsers.data)
+        setUsers(resUsers.data.filter((user: any) => user.role === 'SPONSOR'))
+        const filterFreeUsers = resUsers.data.filter(
+          (user: any) => user.membership === 'Free'
+        )
+        setFreeUsers(
+          filterFreeUsers.map((user: any) => ({
+            name: user.firstName,
+            lastName: user.lastName,
+            membership: user.membership,
+            creationDate: user.createdAt
+          }))
+        )
       } catch (error) {
         setError((error as Error).message)
       } finally {
         setLoading(false)
-        console.log('Complete', token)
       }
     }
 
@@ -73,13 +66,13 @@ export const Dashboard = () => {
           {token && <PieChart token={token} />}
           <div className='flex gap-6'>
             <div className='flex flex-col gap-2.5 font-inter-600'>
-              {data?.role?.map((item: any, index: number) => (
+              {data?.country?.map((item: any, index: number) => (
                 <span key={index}>{item.count}</span>
               ))}
             </div>
             <div className='flex flex-col gap-2.5 font-inter-400'>
-              {data?.role?.map((item: any, index: number) => (
-                <span key={index}>{item.role}</span>
+              {data?.country?.map((item: any, index: number) => (
+                <span key={index}>{item.country}</span>
               ))}
             </div>
           </div>
@@ -133,7 +126,7 @@ export const Dashboard = () => {
             <span>Aliado desde</span>
             <span>Servicio</span>
           </div>
-          {user?.slice(0, 5).map((item: any, index: number) => (
+          {users?.slice(0, 5).map((item: any, index: number) => (
             <div
               key={index}
               className='grid grid-cols-3 gap-4 rounded-xl border border-[#000000] p-4 text-[10px] font-inter-600'
@@ -165,14 +158,16 @@ export const Dashboard = () => {
             <span>Tipo</span>
             <span>Metodo de Pago</span>
           </div>
-          {[1, 2, 3, 4, 5].map((_, index) => (
+          {freeUsers.map((user: any, index: any) => (
             <div
               key={index}
               className='grid grid-cols-4 gap-4 rounded-xl border border-[#000000] p-4 text-[10px] font-inter-600'
             >
-              <span>Juan Perez</span>
-              <span>11/12/2024</span>
-              <span>Flex</span>
+              <span>
+                {user.name} {user.lastName}
+              </span>
+              <span>{user.creationDate.split('T')[0]}</span>
+              <span>{user.membership}</span>
               <span>Tarjeta de Crédito</span>
             </div>
           ))}
