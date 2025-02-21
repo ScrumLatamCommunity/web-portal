@@ -1,11 +1,10 @@
 'use client'
 
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import OffertDropdown from '../components/offert-dropdown'
 import GlobeIcon from '@/assets/GlobeIcon'
 import TextEditor from '../components/TextEditor'
 import ImageUpload from '../components/imageUpload'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Switch } from '@headlessui/react'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
@@ -16,7 +15,10 @@ export default function Offerts() {
     title: '',
     validFrom: '',
     validUntil: '',
-    category: '',
+    discount: '',
+    time: '',
+    place: '',
+    intendedFor: '',
     link: '',
     description: '',
     image: '',
@@ -24,6 +26,14 @@ export default function Offerts() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [imageUploadKey, setImageUploadKey] = useState(0)
+
+  const handleDescriptionChange = useCallback((value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: value
+    }))
+  }, [])
 
   async function handleSubmit() {
     try {
@@ -33,8 +43,13 @@ export default function Offerts() {
       if (
         !formData.title ||
         !formData.validFrom ||
+        !formData.time ||
+        !formData.place ||
+        !formData.intendedFor ||
+        !formData.link ||
+        !formData.discount ||
+        !formData.image ||
         !formData.validUntil ||
-        !formData.category ||
         !formData.description
       ) {
         toast.error('Por favor completa todos los campos requeridos')
@@ -50,6 +65,8 @@ export default function Offerts() {
           }
         }
       ).then((res) => res.json())
+
+      console.log('Sponsor data:', sponsorData)
 
       const sendData = {
         ...formData,
@@ -79,12 +96,17 @@ export default function Offerts() {
         title: '',
         validFrom: '',
         validUntil: '',
-        category: '',
         link: '',
         description: '',
         image: '',
+        discount: '',
+        place: '',
+        time: '',
+        intendedFor: '',
         status: 'INACTIVE'
       })
+
+      setImageUploadKey((prev) => prev + 1)
 
       toast.success('Oferta creada exitosamente')
     } catch (error) {
@@ -103,6 +125,8 @@ export default function Offerts() {
       status: prev.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     }))
   }
+
+  console.log('Form data:', formData)
 
   return (
     <section
@@ -199,21 +223,89 @@ export default function Offerts() {
           </div>
         </div>
         <div className={`mb-8 flex flex-row`}>
-          <div className='mx-[33px] flex flex-col gap-2'>
-            <p className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-              Categoría
-            </p>
-            <label className='mb-3' htmlFor='offer-category'>
-              Inserte el tipo de oferta.
+          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+              htmlFor='offer-name'
+            >
+              Horario
             </label>
-            <OffertDropdown
-              value={formData.category}
-              onChange={(value) =>
-                setFormData({ ...formData, category: value })
+            <input
+              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+              id='time'
+              placeholder='Ej: de 16hs a 21hs'
+              type='text'
+              value={formData.time}
+              onChange={(e) =>
+                setFormData({ ...formData, time: e.target.value })
               }
             />
           </div>
-          <div className='mx-[33px] flex flex-col gap-2'>
+          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+              htmlFor='offer-name'
+            >
+              Lugar
+            </label>
+            <input
+              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+              id='place'
+              placeholder='Ej: Vía Zoom // Meeting Room'
+              type='text'
+              value={formData.place}
+              onChange={(e) =>
+                setFormData({ ...formData, place: e.target.value })
+              }
+            />
+          </div>
+          <div className='mx-[33px] flex w-[40%] flex-col gap-2'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+              htmlFor='offer-name'
+            >
+              Descuento
+            </label>
+            <input
+              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+              id='discount'
+              placeholder='Ej: ¡10% de descuento a miembros de la comunidad!'
+              type='text'
+              value={formData.discount}
+              onChange={(e) =>
+                setFormData({ ...formData, discount: e.target.value })
+              }
+            />
+          </div>
+        </div>
+        <div className={`flex flex-col`}>
+          <div className='mx-[33px] mb-4 flex w-[35%] flex-col gap-2'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+              htmlFor='offer-name'
+            >
+              Dirigido a
+            </label>
+            <textarea
+              className='h-[70px] w-full resize-none rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+              id='intendedFor'
+              placeholder='Dirijido a personas con intereses en...'
+              value={formData.intendedFor}
+              onChange={(e) =>
+                setFormData({ ...formData, intendedFor: e.target.value })
+              }
+            />
+          </div>
+          <div className='mx-[33px] mb-10 flex flex-col gap-2'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
+              Descripción
+            </label>
+            <TextEditor
+              value={formData.description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
+          <div className='mx-[33px] mb-6 flex flex-col gap-2'>
             <p className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
               Ingresar link y/o web
             </p>
@@ -234,19 +326,6 @@ export default function Offerts() {
               ></input>
             </div>
           </div>
-        </div>
-        <div className={`flex flex-col`}>
-          <div className='mx-[33px] mb-10 flex flex-col gap-2'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-              Descripción
-            </label>
-            <TextEditor
-              value={formData.description}
-              onChange={(value) =>
-                setFormData({ ...formData, description: value })
-              }
-            />
-          </div>
           <div className='mx-[33px] flex flex-col gap-2'>
             <label
               className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
@@ -265,6 +344,7 @@ export default function Offerts() {
                 </label>
                 <div className='mt-3 h-[280px] w-[314px]'>
                   <ImageUpload
+                    key={imageUploadKey}
                     onChange={(value) =>
                       setFormData({ ...formData, image: value })
                     }
