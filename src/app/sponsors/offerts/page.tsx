@@ -26,6 +26,7 @@ export default function Offerts() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [imageUploadKey, setImageUploadKey] = useState(0)
 
   const handleDescriptionChange = useCallback((value: string) => {
     setFormData((prev) => ({
@@ -105,6 +106,8 @@ export default function Offerts() {
         status: 'INACTIVE'
       })
 
+      setImageUploadKey((prev) => prev + 1)
+
       toast.success('Oferta creada exitosamente')
     } catch (error) {
       setError(
@@ -122,6 +125,8 @@ export default function Offerts() {
       status: prev.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     }))
   }
+
+  console.log('Form data:', formData)
 
   return (
     <section
@@ -339,6 +344,7 @@ export default function Offerts() {
                 </label>
                 <div className='mt-3 h-[280px] w-[314px]'>
                   <ImageUpload
+                    key={imageUploadKey}
                     onChange={(value) =>
                       setFormData({ ...formData, image: value })
                     }

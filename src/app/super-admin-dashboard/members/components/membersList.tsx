@@ -21,20 +21,36 @@ export default function MembersList({
   role
 }: MembersProps) {
   return (
-    <div
-      className={`${darkerGrotesque.variable} ${karla.variable} grid grid-cols-8 place-items-center gap-2 py-3`}
+    <tr
+      className={`${darkerGrotesque.variable} ${karla.variable} border-b border-gray-200`}
     >
-      <p className='font-karla text-[15px] font-karla-400'>{firstName}</p>
-      <p className='font-karla text-[15px] font-karla-400'>{lastName}</p>
-      <p className='font-karla text-[15px] font-karla-400'>{email}</p>
-      <p className='font-karla text-[15px] font-karla-400'>{country}</p>
-      <p className='font-karla text-[15px] font-karla-400'>{createdAt}</p>
-      <p className='font-karla text-[15px] font-karla-400'>{membership}</p>
-      <p className='font-karla text-[15px] font-karla-400'>{role}</p>
-      <div className='flex flex-row gap-6 font-darker-grotesque text-[20px] font-darker-grotesque-600'>
-        <button className='text-[#FE5833]'>Ver Perfil</button>
-        <button className='text-[#FE5833]'>Eliminar</button>
-      </div>
-    </div>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {firstName}
+      </td>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {lastName}
+      </td>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {email}
+      </td>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {country}
+      </td>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {createdAt}
+      </td>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {membership}
+      </td>
+      <td className='p-4 text-left font-karla text-[15px] font-karla-400'>
+        {role}
+      </td>
+      <td className='p-4 text-center'>
+        <div className='flex justify-center gap-6 font-darker-grotesque text-[20px] font-darker-grotesque-600'>
+          <button className='text-[#FE5833]'>Ver Perfil</button>
+          <button className='text-[#FE5833]'>Eliminar</button>
+        </div>
+      </td>
+    </tr>
   )
 }

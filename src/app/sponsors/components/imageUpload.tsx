@@ -1,19 +1,21 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import UploadIcon from '@/assets/UploadIcon'
 import { darkerGrotesque } from '@/fonts'
 import { useAuth } from '@/app/context/AuthContext'
 
-type ImageUploadProps = {
-  onChange: (imageUrl: string) => void
+interface ImageUploadProps {
+  onChange: (value: string) => void
+  onReset?: () => void
   initialImage?: string
   className?: string
 }
 
 const ImageUpload = ({
   onChange,
+  onReset,
   initialImage,
   className
 }: ImageUploadProps) => {
@@ -107,6 +109,18 @@ const ImageUpload = ({
   const triggerFileInput = () => {
     fileInputRef.current?.click()
   }
+
+  const resetImage = () => {
+    setImage(null)
+    setError(null)
+    setLastFile(null)
+  }
+
+  useEffect(() => {
+    if (onReset) {
+      onReset = resetImage
+    }
+  }, [onReset])
 
   return (
     <div

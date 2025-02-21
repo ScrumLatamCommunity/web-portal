@@ -12,6 +12,7 @@ import CountriesDropdown from '../../sponsors/components/countries-dropdown'
 import FacebookIcon from '@/assets/FacebookIcon'
 import SponsorsList from './components/sponsorsList'
 import { useAuth } from '@/app/context/AuthContext'
+import { toast } from 'react-hot-toast'
 
 interface Sponsor {
   id: number
@@ -27,7 +28,7 @@ const formatDate = (dateString: string) => {
 }
 
 export default function AlliesPage() {
-  const { token, user } = useAuth()
+  const { token } = useAuth()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')
@@ -66,7 +67,7 @@ export default function AlliesPage() {
   const getSponsors = async () => {
     try {
       const response = await fetch(
-        'http://localhost:8002/api/v1/sponsors?order=desc',
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors?order=desc`,
         {
           method: 'GET',
           headers: {
@@ -81,7 +82,6 @@ export default function AlliesPage() {
       }
 
       const data = await response.json()
-      console.log('Sponsors obtenidos:', data)
 
       setSponsors(data)
     } catch (error) {
@@ -136,11 +136,12 @@ export default function AlliesPage() {
       )
 
       if (response.ok) {
-        alert('Sponsor registrado correctamente!')
+        toast.success('Sponsor registrado correctamente!')
         resetForm()
+        await getSponsors()
       } else {
         const errorData = await response.json()
-        alert(`Error: ${errorData.message}`)
+        toast.error(`Error: ${errorData.message}`)
       }
     } catch (error) {
       console.error('Error al enviar los datos:', error)
