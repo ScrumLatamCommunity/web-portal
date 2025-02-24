@@ -76,17 +76,17 @@ export const sponsors: Sponsor[] = [
   },
   {
     id: 2,
-    name: 'Agile quest',
+    name: 'Route Agile',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FAgile%20quest.png?alt=media&token=7e1d4fa8-8c2b-4fa1-acdd-8307051ac0e6',
-    alt: 'Agile_quest'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%2FWhatsApp%20Image%202025-02-19%20at%202.58.10%20PM.jpeg?alt=media&token=ca7fa64b-f3ad-42a8-9926-53cbc3504720',
+    alt: 'Route_agile'
   },
   {
     id: 3,
-    name: 'Caroli',
+    name: 'Agilisters',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FCaroli.png?alt=media&token=82894ec2-8911-47ab-b2de-e87c8029ffee',
-    alt: 'Caroli'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%2FWhatsApp%20Image%202025-02-19%20at%202.57.58%20PM.jpeg?alt=media&token=d2531f5d-22c2-4f26-989f-c7a3e792e3ca',
+    alt: 'Agilisters'
   },
   {
     id: 4,
@@ -103,13 +103,6 @@ export const sponsors: Sponsor[] = [
     alt: 'Go_productivity'
   },
   {
-    id: 6,
-    name: 'Hidekel',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FHidekel.png?alt=media&token=5b48187c-803b-4a0b-817c-540412b2fd26',
-    alt: 'Hidekel'
-  },
-  {
     id: 7,
     name: 'ITcert',
     image:
@@ -122,20 +115,6 @@ export const sponsors: Sponsor[] = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FTaurus%20Galaxy.png?alt=media&token=af85f62f-bf72-4f2b-8d3a-97eb92c72872',
     alt: 'Taurus_Galaxy'
-  },
-  {
-    id: 9,
-    name: 'Ya abtal',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2FYa%20abtal.png?alt=media&token=8350404d-8515-4905-a931-918eab8fb655',
-    alt: 'Ya_abtal'
-  },
-  {
-    id: 10,
-    name: 'flowie',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Sponsors%20Component%2Fflowie.png?alt=media&token=02726fb1-065d-4c10-b891-84281c9f9d24',
-    alt: 'flowie'
   },
   {
     id: 11,
