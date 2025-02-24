@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, User } from 'react-feather'
 import { Navlist } from './Navlist'
-import { useTypeScreen } from '@/hooks'
+import useIsLargeScreen, { useTypeScreen } from '@/hooks'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { darkerGrotesque } from '@/fonts'
 import { useAuth } from '@/app/context/AuthContext'
@@ -15,6 +15,7 @@ export const Navbar: React.FC = () => {
   const router = useRouter()
   const [openNav, setOpenNav] = useState<boolean>(false)
   const screen = useTypeScreen()
+  const isLargeScreen = useIsLargeScreen(1140)
 
   const mapRoutes: Record<string, string> = {
     ADMIN: '/super-admin-dashboard',
@@ -94,7 +95,9 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Enlace de navegación visible en pantallas medianas y grandes */}
-        <nav className='py-full z-10 hidden h-full space-x-10 lg:flex lg:w-auto'>
+        <nav
+          className={`py-full z-10 hidden h-full space-x-10 pl-4 ${isLargeScreen ? 'lg:flex' : ''} lg:w-auto`}
+        >
           <Navlist />
         </nav>
 
