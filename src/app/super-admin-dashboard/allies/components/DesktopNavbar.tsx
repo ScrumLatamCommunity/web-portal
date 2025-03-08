@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export const DesktopNavbar = () => {
   const { logout } = useAuth()
@@ -19,17 +20,21 @@ export const DesktopNavbar = () => {
   return (
     <div className='flex h-[80px] justify-between border border-[#000000] pl-3 pr-9'>
       <div className='flex items-center gap-2'>
-        <Image
-          alt='logo'
-          className='flex'
-          height={47}
-          src={images.superadmin[0]}
-          width={47}
-        />
+        <Link href='/'>
+          <Image
+            alt='logo'
+            className='flex cursor-pointer'
+            height={47}
+            src={images.superadmin[0]}
+            width={47}
+          />
+        </Link>
 
-        <span className='flex font-darker-grotesque text-[34px] font-bold text-[#082965]'>
-          Dashboard
-        </span>
+        <Link href='/'>
+          <span className='flex cursor-pointer font-darker-grotesque text-[34px] font-bold text-[#082965]'>
+            Dashboard
+          </span>
+        </Link>
       </div>
 
       <div className='relative flex'>

@@ -1,15 +1,13 @@
 'use client'
 
+import { ChevronDown, ChevronRight } from 'react-feather'
 import { darkerGrotesque } from '@/fonts'
+import { usePathname } from 'next/navigation'
 import { useTypeScreen } from '@/hooks'
 import Link from 'next/link'
 import React, { useCallback, useEffect, useState } from 'react'
-import { ChevronDown, ChevronRight } from 'react-feather'
-import { usePathname } from 'next/navigation'
-import { useAuth } from '@/app/context/AuthContext'
 
 export const Navlist: React.FC = () => {
-  const { user } = useAuth()
   const [activeMenu, setActiveMenu] = useState<string>('')
   const screen = useTypeScreen()
   const pathname = usePathname()

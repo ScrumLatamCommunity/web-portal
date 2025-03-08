@@ -1,7 +1,4 @@
-'use client'
-
 import { ReactNode } from 'react'
-import { usePathname } from 'next/navigation'
 import { Footer } from './home/components/Footer'
 import { Navbar } from './home/components'
 import FloatingButton from './home/components/FloatingButton'
@@ -18,24 +15,18 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const pathname = usePathname()
-  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
-  const hideLayout = hiddenLayoutRoutes.some((route) =>
-    pathname.startsWith(route)
-  )
-
   return (
     <html lang='es'>
       <body>
         <AuthProvider>
           <RegisterProvider>
             <OnboardingProvider>
-              {!hideLayout && <Navbar />}
+              <Navbar />
               <div className='flex flex-col items-center justify-center'>
                 {children}
-                {!hideLayout && <FloatingButton />}
+                <FloatingButton />
               </div>
-              {!hideLayout && <Footer />}
+              <Footer />
               <Toaster position='top-right' />
             </OnboardingProvider>
           </RegisterProvider>

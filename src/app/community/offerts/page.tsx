@@ -13,44 +13,35 @@ import OffertCard from './components/offertsCard'
 import { flags } from '@/data/data'
 import { Pagination } from '@/app/home//components/Pagination'
 
-const offerts = [
-  {
-    offertImage:
-      'https://s3-alpha-sig.figma.com/img/a260/4e27/5558b571c8524f3b9ff2fa0541318698?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=F45S0DbGJqjarOkajsVGYXmr5UeBX7d4Q8qDsKEl-BOHpJHwGH2ngSfzVQvQagBil-3MO3KHs3-7kD9vwihLDtHN9GREyWNiLjkTp1UzxR5BvSY8pqlEMisnPBu9irDWVruN83UXNjp9AlMD56x3viLRq5sQV3akblR7aHDojcdbRka54uAF3kWpXuEOlP0KtQC6jQWEumeONhiE0LERrt-mCvmZ-9fvAc-hqYQylEh~4wsqHTs23zaKnme24bDr9ltb3f~5FUrC9rI~F8LLi365elFT4Z4p2Ll0m7zL-jw4v3Tdxd550gniWiEEur3AYbrwUPU90c-z~noVxTWagw__',
-    offertTitle: 'Curso de Desarrollo Web',
-    offertDescription:
-      'Aprende a crear aplicaciones web con HTML, CSS, y JavaScript.',
-    offertDate: '12 de Febrero, 2025',
-    offertTime: '18:00',
-    offertPlace: 'Salón de Conferencias, Edificio A',
-    offertGoTo: 'Desarrolladores novatos y profesionales'
-  },
-  {
-    offertImage:
-      'https://s3-alpha-sig.figma.com/img/a260/4e27/5558b571c8524f3b9ff2fa0541318698?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=F45S0DbGJqjarOkajsVGYXmr5UeBX7d4Q8qDsKEl-BOHpJHwGH2ngSfzVQvQagBil-3MO3KHs3-7kD9vwihLDtHN9GREyWNiLjkTp1UzxR5BvSY8pqlEMisnPBu9irDWVruN83UXNjp9AlMD56x3viLRq5sQV3akblR7aHDojcdbRka54uAF3kWpXuEOlP0KtQC6jQWEumeONhiE0LERrt-mCvmZ-9fvAc-hqYQylEh~4wsqHTs23zaKnme24bDr9ltb3f~5FUrC9rI~F8LLi365elFT4Z4p2Ll0m7zL-jw4v3Tdxd550gniWiEEur3AYbrwUPU90c-z~noVxTWagw__',
-    offertTitle: 'Taller de React.js',
-    offertDescription: 'Domina React y construye interfaces interactivas.',
-    offertDate: '15 de Febrero, 2025',
-    offertTime: '10:00',
-    offertPlace: 'Sala 305, Campus B',
-    offertGoTo: 'Desarrolladores interesados en React'
-  },
-  {
-    offertImage:
-      'https://s3-alpha-sig.figma.com/img/a260/4e27/5558b571c8524f3b9ff2fa0541318698?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=F45S0DbGJqjarOkajsVGYXmr5UeBX7d4Q8qDsKEl-BOHpJHwGH2ngSfzVQvQagBil-3MO3KHs3-7kD9vwihLDtHN9GREyWNiLjkTp1UzxR5BvSY8pqlEMisnPBu9irDWVruN83UXNjp9AlMD56x3viLRq5sQV3akblR7aHDojcdbRka54uAF3kWpXuEOlP0KtQC6jQWEumeONhiE0LERrt-mCvmZ-9fvAc-hqYQylEh~4wsqHTs23zaKnme24bDr9ltb3f~5FUrC9rI~F8LLi365elFT4Z4p2Ll0m7zL-jw4v3Tdxd550gniWiEEur3AYbrwUPU90c-z~noVxTWagw__',
-    offertTitle: 'Junta sobre Agilidad',
-    offertDescription: 'Domina React y construye interfaces interactivas.',
-    offertDate: '15 de Febrero, 2025',
-    offertTime: '10:00',
-    offertPlace: 'Sala 305, Campus B',
-    offertGoTo: 'Desarrolladores interesados en React'
-  }
-]
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export default function Offerts() {
   const itemsPerPage = 1
-  const [currentPage, setCurrentPage] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+  const [offerts, setOfferts] = useState<any[]>([])
+
+  async function getData() {
+    try {
+      const response = await fetch(`${API_URL}sponsors/offerts`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const data = await response.json()
+
+      setOfferts(data)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,13 +54,6 @@ export default function Offerts() {
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
-  const currentItems = isMobile
-    ? offerts.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-      )
-    : offerts
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
@@ -145,7 +129,7 @@ export default function Offerts() {
 
       <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
         <div className='grid grid-cols-1 justify-items-center md:grid-cols-3 md:py-16'>
-          {currentItems.map((offert, index) => (
+          {offerts.map((offert, index) => (
             <OffertCard key={index} {...offert} />
           ))}
         </div>

@@ -13,8 +13,14 @@ import {
 import Link from 'next/link'
 import { TermsAndConditions } from '@/app/history/components/TermsAndConditions'
 import { Modal } from '@/core/Modal'
+import { usePathname } from 'next/navigation'
 
 export const Footer = () => {
+  const pathname = usePathname()
+  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
+  const hideLayout = hiddenLayoutRoutes.some((route) =>
+    pathname.startsWith(route)
+  )
   const [openModal, setOpenModal] = useState(false)
   const isLargeScreen = useIsLargeScreen(480)
 
@@ -36,6 +42,10 @@ export const Footer = () => {
 
   const handleModal = () => {
     setOpenModal(!openModal)
+  }
+
+  if (hideLayout) {
+    return null
   }
 
   return (

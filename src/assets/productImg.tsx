@@ -28,7 +28,7 @@ export default function ProductImg({ className }: { className?: string }) {
       <path
         d='M403.897 374.617C403.812 352.457 408.11 306.072 433.682 298.32'
         stroke='white'
-        stroke-width='0.75'
+        strokeWidth='0.75'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
@@ -39,7 +39,7 @@ export default function ProductImg({ className }: { className?: string }) {
       <path
         d='M391.384 370.614C388.435 344.62 377.06 290.905 346.011 285.386'
         stroke='white'
-        stroke-width='0.75'
+        strokeWidth='0.75'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
@@ -168,7 +168,7 @@ export default function ProductImg({ className }: { className?: string }) {
         opacity='0.23'
         d='M291.116 215.703H265.417M291.116 221.601H265.417'
         stroke='#34A853'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />
@@ -179,7 +179,7 @@ export default function ProductImg({ className }: { className?: string }) {
       <path
         d='M267.945 123.018C258.676 126.388 243.51 138.606 244.773 158.406'
         stroke='white'
-        stroke-width='4'
+        strokeWidth='4'
         stroke-miterlimit='10'
         stroke-linecap='round'
       />

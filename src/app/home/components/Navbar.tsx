@@ -8,9 +8,14 @@ import useIsLargeScreen, { useTypeScreen } from '@/hooks'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { darkerGrotesque } from '@/fonts'
 import { useAuth } from '@/app/context/AuthContext'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 export const Navbar: React.FC = () => {
+  const pathname = usePathname()
+  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
+  const hideLayout = hiddenLayoutRoutes.some((route) =>
+    pathname.startsWith(route)
+  )
   const { logout, user } = useAuth()
   const router = useRouter()
   const [openNav, setOpenNav] = useState<boolean>(false)
@@ -25,6 +30,10 @@ export const Navbar: React.FC = () => {
 
   const toggleNav = (): void => {
     setOpenNav(!openNav)
+  }
+
+  if (hideLayout) {
+    return null
   }
 
   const AuthButtons = ({ isMobile = false }) => (
@@ -78,8 +87,8 @@ export const Navbar: React.FC = () => {
           <Link href='/' className='flex flex-row justify-start'>
             <img
               alt='logo'
-              width={90}
-              height={48}
+              width={60}
+              height={38}
               className='h-12 w-auto min-w-[90px]'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
             />
@@ -96,7 +105,7 @@ export const Navbar: React.FC = () => {
 
         {/* Enlace de navegación visible en pantallas medianas y grandes */}
         <nav
-          className={`py-full z-10 hidden h-full space-x-10 pl-4 ${isLargeScreen ? 'lg:flex' : ''} lg:w-auto`}
+          className={`py-full z-10 hidden h-full space-x-4 pl-4 ${isLargeScreen ? 'lg:flex' : ''} lg:w-auto`}
         >
           <Navlist />
         </nav>
