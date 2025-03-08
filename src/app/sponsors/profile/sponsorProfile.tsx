@@ -72,7 +72,7 @@ export default function SponsorProfile() {
       .replace(/[)(/)]/g, '') // Remover caracteres especiales como )(/))
       .trim()
   }
-
+  console.log('user', user)
   const fetchSponsorData = async () => {
     setIsLoading(true)
     try {
