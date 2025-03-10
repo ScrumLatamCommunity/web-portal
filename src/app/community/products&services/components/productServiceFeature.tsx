@@ -7,18 +7,30 @@ import FacebookIcon from '@/assets/FacebookIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import { flags } from '@/data/data'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/app/context/AuthContext'
 
 export default function ProductServiceFeature({
+  sponsorId,
   description,
   image,
   flag,
-  linkTitle,
   title,
   highlights,
   socialUrls
 }: ProductServiceFeatureInterface) {
+  const { setSelectedSponsorId } = useAuth()
   const flagData = flags.find((item) => item.name === flag)
   const flagUrl = flagData ? flagData.flag : ''
+  const router = useRouter()
+
+  const handleClick = () => {
+    if (sponsorId) {
+      setSelectedSponsorId(sponsorId)
+      router.push('/community/offerts')
+    }
+  }
+
   return (
     <>
       {/* 💻 Versión MD y mayores */}
@@ -107,12 +119,12 @@ export default function ProductServiceFeature({
           </p>
 
           <div className='absolute bottom-8 left-0 flex w-full justify-end p-4 md:pt-4'>
-            <a
-              href='#SQUAD'
+            <button
+              onClick={handleClick}
               className='rounded-2xl bg-[#FE2E00] px-10 py-3 font-darker-grotesque text-lg text-[#FFFFFF]'
             >
-              {linkTitle}
-            </a>
+              Ver Ofertas
+            </button>
           </div>
         </div>
       </section>
@@ -217,7 +229,7 @@ export default function ProductServiceFeature({
               href='#SQUAD'
               className='rounded-2xl bg-[#FE2E00] px-6 py-2 text-white'
             >
-              {linkTitle}
+              Ver Ofertas
             </a>
           </div>
         </div>

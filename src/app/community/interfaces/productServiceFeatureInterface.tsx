@@ -1,4 +1,5 @@
 export interface ProductServiceFeatureInterface {
+  sponsorId: string
   title: string
   flag: string
   description: string

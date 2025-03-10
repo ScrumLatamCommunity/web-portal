@@ -28,7 +28,6 @@ export default function Squads() {
 
     const data = await response.json()
     setSponsorData(data)
-    console.log(data)
   }
 
   useEffect(() => {
@@ -77,6 +76,7 @@ export default function Squads() {
               (
                 <ProductServiceFeature
                   key={servicesData.id}
+                  sponsorId={servicesData.id}
                   title={servicesData.companyName}
                   flag={servicesData.user.country}
                   description={servicesData.description}
