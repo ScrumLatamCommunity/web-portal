@@ -6,6 +6,7 @@ import GlobeIcon from '@/assets/GlobeIcon'
 import FacebookIcon from '@/assets/FacebookIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
+import { flags } from '@/data/data'
 
 export default function ProductServiceFeature({
   description,
@@ -16,6 +17,8 @@ export default function ProductServiceFeature({
   highlights,
   socialUrls
 }: ProductServiceFeatureInterface) {
+  const flagData = flags.find((item) => item.name === flag)
+  const flagUrl = flagData ? flagData.flag : ''
   return (
     <>
       {/* 💻 Versión MD y mayores */}
@@ -25,9 +28,11 @@ export default function ProductServiceFeature({
         {/* 📷 Imagen + Redes Sociales */}
         <div className='relative flex h-full flex-col items-center justify-between md:mx-14 md:mt-10 md:justify-center md:pl-14'>
           <div className='flex h-[250px] w-[250px] items-center justify-center'>
-            {React.cloneElement(image as React.ReactElement, {
-              className: 'h-full w-full object-cover'
-            })}
+            <img
+              alt={title}
+              className='h-full w-full object-fill'
+              src={image}
+            />
           </div>
 
           {/* 🔗 Redes Sociales */}
@@ -83,7 +88,7 @@ export default function ProductServiceFeature({
             <h1 className='font-darker-grotesque font-bold tracking-wide text-[#082965] md:text-[48px]'>
               {title}
             </h1>
-            <img src={flag} alt='Flag' className='h-6 w-8 md:h-8 md:w-10' />
+            <img src={flagUrl} alt='Flag' className='h-6 w-8 md:h-8 md:w-10' />
           </div>
 
           <ul className='mt-2 flex flex-wrap gap-4 text-lg text-[#061D48] md:text-2xl'>

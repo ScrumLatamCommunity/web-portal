@@ -2,7 +2,7 @@ export interface ProductServiceFeatureInterface {
   title: string
   flag: string
   description: string
-  image: React.ReactNode
+  image: string
   linkTitle: string
   highlights: string[] // Nuevo array para las líneas debajo del título
   socialUrls?: {

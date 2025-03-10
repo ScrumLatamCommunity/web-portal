@@ -15,7 +15,7 @@ const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
   globe: GlobeIcon
 }
 
-export const NewsBlogsUpdates = () => {
+export default function NewsBlogsUpdates() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const {
     handlePrev,

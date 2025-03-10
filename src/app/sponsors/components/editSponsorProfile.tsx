@@ -19,7 +19,7 @@ interface SponsorData {
   userId: string
   status: string
   companyName: string
-  specialization: string
+  specialization: string[]
   description: string
   web: string
   phone: string
@@ -40,7 +40,7 @@ interface SponsorData {
 
 interface SponsorUpdateData {
   companyName: string
-  specialization: string
+  specialization: string[]
   description: string
   web: string
   phone: string

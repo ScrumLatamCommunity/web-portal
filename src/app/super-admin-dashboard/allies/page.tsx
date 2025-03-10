@@ -36,7 +36,7 @@ export default function AlliesPage() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [companyName, setCompanyName] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [selectedCountry, setSelectedCountry] = useState('')
   const [description, setDescription] = useState('')
   const [web, setWeb] = useState('')
@@ -54,7 +54,7 @@ export default function AlliesPage() {
     setPassword('')
     setConfirmPassword('')
     setCompanyName('')
-    setSelectedCategory('')
+    setSelectedCategories([''])
     setSelectedCountry('')
     setDescription('')
     setWeb('')
@@ -108,7 +108,7 @@ export default function AlliesPage() {
       email,
       password,
       companyName,
-      specialization: selectedCategory,
+      specialization: selectedCategories,
       country: selectedCountry,
       membership: 'Premium',
       status: 'ACTIVE',
@@ -322,8 +322,8 @@ export default function AlliesPage() {
               Área de Especialización
             </label>
             <CategoriesDropdown
-              value={selectedCategory}
-              onChange={setSelectedCategory}
+              value={selectedCategories}
+              onChange={setSelectedCategories}
             />
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>
