@@ -26,8 +26,7 @@ export default function ProductServiceFeature({
 
   const handleClick = () => {
     if (sponsorId) {
-      setSelectedSponsorId(sponsorId)
-      router.push('/community/offerts')
+      router.push(`/community/offerts/${sponsorId}`)
     }
   }
 
@@ -225,12 +224,12 @@ export default function ProductServiceFeature({
 
           {/* 🔘 Botón */}
           <div className='mt-4 flex justify-end'>
-            <a
-              href='#SQUAD'
+            <button
+              onClick={handleClick}
               className='rounded-2xl bg-[#FE2E00] px-6 py-2 text-white'
             >
               Ver Ofertas
-            </a>
+            </button>
           </div>
         </div>
       </section>

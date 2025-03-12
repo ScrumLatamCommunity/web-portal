@@ -73,31 +73,52 @@ export default function EditSponsorProfile({
   const [error, setError] = useState<string | null>(null)
 
   const cleanSponsorData = (data: typeof formData): SponsorUpdateData => {
-    const {
-      companyName,
-      specialization,
-      description,
-      web,
-      phone,
-      socials,
-      logo,
-      bannerWeb,
-      bannerMobile,
-      status
-    } = data
+    // Asegurarse de que los arrays no sean null
+    const socials = Array.isArray(data.socials) ? data.socials : []
+    const specialization = Array.isArray(data.specialization)
+      ? data.specialization
+      : []
 
-    return {
-      companyName,
-      specialization,
-      description,
-      web,
-      phone,
-      socials,
-      logo,
-      bannerWeb,
-      bannerMobile,
-      status
+    // Limpiar strings vacíos
+    const cleanedData = {
+      companyName: data.companyName?.trim() || '',
+      specialization: specialization.filter(
+        (item) => item && item.trim() !== ''
+      ),
+      description: data.description?.trim() || '',
+      web: data.web?.trim() || '',
+      phone: data.phone?.trim() || '',
+      socials: socials.map((s) => s?.trim() || '').filter((s) => s !== ''),
+      logo: data.logo || '',
+      bannerWeb: data.bannerWeb || '',
+      bannerMobile: data.bannerMobile || '',
+      status: data.status || 'ACTIVE'
     }
+
+    console.log('Datos limpiados:', cleanedData)
+    return cleanedData
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value
+    }))
+  }
+
+  const handleSpecializationChange = (specialization: string[]) => {
+    setFormData((prev) => ({
+      ...prev,
+      specialization
+    }))
+  }
+
+  const handleDescriptionChange = (description: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      description
+    }))
   }
 
   const handleLogoChange = (imageUrl: string) => {
@@ -127,6 +148,21 @@ export default function EditSponsorProfile({
       setError(null)
       const cleanedData = cleanSponsorData(formData)
 
+      // Log para depuración
+      console.log('Datos que se enviarán al servidor:', cleanedData)
+
+      // Validación básica de datos
+      if (!cleanedData.companyName || cleanedData.companyName.trim() === '') {
+        throw new Error('El nombre de la empresa es requerido')
+      }
+
+      if (
+        !cleanedData.specialization ||
+        cleanedData.specialization.length === 0
+      ) {
+        throw new Error('Debe seleccionar al menos una especialización')
+      }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorData.id}`,
         {
@@ -140,11 +176,13 @@ export default function EditSponsorProfile({
       )
 
       if (!response.ok) {
-        throw new Error('Error al actualizar el perfil')
+        // Intentar obtener el mensaje de error del servidor
+        const errorData = await response.json().catch(() => null)
+        console.error('Respuesta del servidor:', errorData)
+        throw new Error(errorData?.message || 'Error al actualizar el perfil')
       }
 
       await onUpdate()
-
       onEditComplete()
     } catch (error) {
       console.error('Error saving profile:', error)
@@ -188,8 +226,9 @@ export default function EditSponsorProfile({
             </label>
             <input
               className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='company-name'
-              value={sponsorData.companyName}
+              id='companyName'
+              value={formData.companyName}
+              onChange={handleInputChange}
               placeholder='Nombre de la empresa'
             />
           </div>
@@ -201,8 +240,8 @@ export default function EditSponsorProfile({
               Área de Especialización
             </label>
             <CategoriesDropdown
-              value={sponsorData.specialization}
-              onChange={() => {}}
+              value={formData.specialization}
+              onChange={handleSpecializationChange}
             />
           </div>
           <div className='mx-[33px] flex w-[15%] flex-col gap-2'>
@@ -268,8 +307,8 @@ export default function EditSponsorProfile({
                   Descripción
                 </label>
                 <TextEditor
-                  value={sponsorData.description}
-                  onChange={() => {}}
+                  value={formData.description}
+                  onChange={handleDescriptionChange}
                 />
               </div>
             </div>
@@ -285,9 +324,10 @@ export default function EditSponsorProfile({
               <GlobeIcon className='my-1 mr-2 stroke-[#FE2E00]' />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-web'
+                id='web'
                 placeholder='www.ejemplo.com'
-                value={sponsorData.web}
+                value={formData.web}
+                onChange={handleInputChange}
               />
             </div>
             <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
@@ -305,9 +345,10 @@ export default function EditSponsorProfile({
               <PhoneIcon className='my-1 mr-2 stroke-[#FE2E00]' />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-wpp'
+                id='phone'
                 placeholder='+99 9999999999'
-                value={sponsorData.phone}
+                value={formData.phone}
+                onChange={handleInputChange}
               />
             </div>
             <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
@@ -325,27 +366,51 @@ export default function EditSponsorProfile({
               <LinkedInIcon className='my-1 mr-2 stroke-[#FE2E00]' />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-socials1'
+                id='socials-linkedin'
                 placeholder='https://www.linkedin.com/ejemplo'
-                value={sponsorData.socials[0]}
+                value={formData.socials[0]}
+                onChange={(e) => {
+                  const newSocials = [...formData.socials]
+                  newSocials[0] = e.target.value
+                  setFormData((prev) => ({
+                    ...prev,
+                    socials: newSocials
+                  }))
+                }}
               />
             </div>
             <div className='flex flex-row'>
               <InstagramIconSponsors className='my-2 mr-2 stroke-[#FE2E00]' />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-socials2'
+                id='socials-instagram'
                 placeholder='https://www.instagram.com/ejemplo'
-                value={sponsorData.socials[1]}
+                value={formData.socials[1]}
+                onChange={(e) => {
+                  const newSocials = [...formData.socials]
+                  newSocials[1] = e.target.value
+                  setFormData((prev) => ({
+                    ...prev,
+                    socials: newSocials
+                  }))
+                }}
               />
             </div>
             <div className='flex flex-row'>
               <FacebookIcon className='my-1 mr-2 stroke-[#FE2E00]' />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-socials3'
+                id='socials-facebook'
                 placeholder='https://www.facebook.com/ejemplo'
-                value={sponsorData.socials[2]}
+                value={formData.socials[2]}
+                onChange={(e) => {
+                  const newSocials = [...formData.socials]
+                  newSocials[2] = e.target.value
+                  setFormData((prev) => ({
+                    ...prev,
+                    socials: newSocials
+                  }))
+                }}
               />
             </div>
             <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
