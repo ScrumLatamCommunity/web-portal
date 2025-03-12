@@ -67,7 +67,7 @@ export default function Squads() {
       </section>
 
       {/* Renderizar dinámicamente los servicios desde JSON con separación */}
-      <section className='mt-6 flex flex-col gap-8'>
+      <section className='mt-6 flex w-full flex-col gap-8'>
         {filteredServices.length > 0 ? (
           filteredServices.map((servicesData) => (
             <ProductServiceFeature
