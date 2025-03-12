@@ -34,29 +34,6 @@ export default function Squads() {
     fetchSponsorData()
   }, [token])
 
-  const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
-  const { token } = useAuth()
-
-  const fetchSponsorData = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`)
-    }
-
-    const data = await response.json()
-    setSponsorData(data)
-  }
-
-  useEffect(() => {
-    fetchSponsorData()
-  }, [token])
-
   const [query, setQuery] = useState<string>('')
 
   // Filtrar servicios según la búsqueda
@@ -65,12 +42,6 @@ export default function Squads() {
         service.companyName.toLowerCase().includes(query.toLowerCase())
       )
     : []
-  const filteredServices = sponsorData
-    ? sponsorData.filter((service) =>
-        service.companyName.toLowerCase().includes(query.toLowerCase())
-      )
-    : []
-
   return (
     <>
       <Breadcrumbs rootName='Comunidad' />
