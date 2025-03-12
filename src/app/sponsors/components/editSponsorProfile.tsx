@@ -20,6 +20,7 @@ interface SponsorData {
   status: string
   companyName: string
   specialization: string[]
+  specialization: string[]
   description: string
   web: string
   phone: string
