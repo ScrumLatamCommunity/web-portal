@@ -65,9 +65,6 @@ export default function Offerts() {
           }
         }
       ).then((res) => res.json())
-
-      console.log('Sponsor data:', sponsorData)
-
       const sendData = {
         ...formData,
         sponsorId: sponsorData.id,
@@ -125,9 +122,6 @@ export default function Offerts() {
       status: prev.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     }))
   }
-
-  console.log('Form data:', formData)
-
   return (
     <section
       className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 w-auto max-w-[1980px] items-center overflow-hidden`}

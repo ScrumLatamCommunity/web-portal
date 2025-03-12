@@ -70,37 +70,32 @@ export default function Squads() {
       {/* Renderizar dinámicamente los servicios desde JSON con separación */}
       <section className='mt-6 flex flex-col gap-8'>
         {filteredServices.length > 0 ? (
-          filteredServices.map(
-            (servicesData) => (
-              console.log(servicesData),
-              (
-                <ProductServiceFeature
-                  key={servicesData.id}
-                  sponsorId={servicesData.id}
-                  title={servicesData.companyName}
-                  flag={servicesData.user.country}
-                  description={servicesData.description}
-                  highlights={servicesData.specialization}
-                  image={servicesData.bannerWeb}
-                  linkTitle={servicesData.web}
-                  socialUrls={{
-                    linkedin:
-                      servicesData.socials.find((url) =>
-                        url.includes('linkedin')
-                      ) || undefined,
-                    facebook:
-                      servicesData.socials.find((url) =>
-                        url.includes('facebook')
-                      ) || undefined,
-                    instagram:
-                      servicesData.socials.find((url) =>
-                        url.includes('instagram')
-                      ) || undefined
-                  }}
-                />
-              )
-            )
-          )
+          filteredServices.map((servicesData) => (
+            <ProductServiceFeature
+              key={servicesData.id}
+              sponsorId={servicesData.id}
+              title={servicesData.companyName}
+              flag={servicesData.user.country}
+              description={servicesData.description}
+              highlights={servicesData.specialization}
+              image={servicesData.bannerWeb}
+              linkTitle={servicesData.web}
+              socialUrls={{
+                linkedin:
+                  servicesData.socials.find((url) =>
+                    url.includes('linkedin')
+                  ) || undefined,
+                facebook:
+                  servicesData.socials.find((url) =>
+                    url.includes('facebook')
+                  ) || undefined,
+                instagram:
+                  servicesData.socials.find((url) =>
+                    url.includes('instagram')
+                  ) || undefined
+              }}
+            />
+          ))
         ) : (
           <p className='text-center text-xl text-gray-500'>
             No se encontraron resultados.

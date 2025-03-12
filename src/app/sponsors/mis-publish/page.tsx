@@ -238,8 +238,6 @@ export default function MisPublish() {
     )
   }
 
-  console.log(sponsorData)
-
   return (
     <section
       className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 w-auto max-w-[1980px] items-center overflow-hidden`}
