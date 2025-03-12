@@ -58,7 +58,7 @@ export default function SponsorProfile() {
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}sponsors/${user.sub}`,
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user.sub}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

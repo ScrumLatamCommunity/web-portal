@@ -42,6 +42,11 @@ export default function OffertCard({
     })
   }
 
+  const formatUrl = (url: string) => {
+    if (!url) return ''
+    return url.startsWith('http') ? url : `https://${url}`
+  }
+
   // Fechas formateadas
   const fromDate = formatDate(validFrom)
   const untilDate = formatDate(validUntil)
@@ -84,7 +89,11 @@ export default function OffertCard({
           <p className='py-1'>
             <strong>Dirigido a:</strong> {intendedFor}
           </p>
-          <Link href={link} target='_blank' rel='noopener noreferrer'>
+          <Link
+            href={formatUrl(link)}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <div className='mt-4 flex flex-row items-center'>
               <ArrowUpRight />
               <button className='pb-2 font-darker-grotesque text-[24px] font-darker-grotesque-600 text-[#FE5833] hover:underline'>
