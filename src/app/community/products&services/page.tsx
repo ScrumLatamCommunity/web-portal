@@ -68,7 +68,7 @@ export default function Squads() {
       </section>
 
       {/* Renderizar dinámicamente los servicios desde JSON con separación */}
-      <section className='mt-6 flex flex-col gap-8'>
+      <section className='mt-6 flex w-full flex-col gap-8'>
         {filteredServices.length > 0 ? (
           filteredServices.map(
             (servicesData) => (
@@ -84,6 +84,8 @@ export default function Squads() {
                   image={servicesData.bannerWeb}
                   linkTitle={servicesData.web}
                   socialUrls={{
+                    phone: servicesData.phone,
+                    website: servicesData.web,
                     linkedin:
                       servicesData.socials.find((url) =>
                         url.includes('linkedin')
