@@ -11,7 +11,7 @@ import { Switch } from '@headlessui/react'
 
 interface PostFormData {
   title: string
-  category: string
+  category: string[]
   validFrom: string
   validUntil: string
   description: string
@@ -28,7 +28,7 @@ export default function SponsorPosts() {
   const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState<PostFormData>({
     title: '',
-    category: '',
+    category: [],
     validFrom: '',
     validUntil: '',
     description: '',
@@ -48,7 +48,7 @@ export default function SponsorPosts() {
     }))
   }
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category: string[]) => {
     setFormData((prev) => ({
       ...prev,
       category
@@ -116,7 +116,7 @@ export default function SponsorPosts() {
       setShowPopup(true)
       setFormData({
         title: '',
-        category: '',
+        category: [],
         validFrom: '',
         validUntil: '',
         description: '',

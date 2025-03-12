@@ -1,5 +1,7 @@
+import { SponsorData } from '@/interfaces'
+
 export interface SearchBarProps {
   setQuery: (query: string) => void
-  data: Array<{ id: number; title: string }>
+  data?: SponsorData[]
   placeholder: string
 }

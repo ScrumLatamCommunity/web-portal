@@ -15,7 +15,7 @@ const iconMap: { [key: string]: React.FC<{ className?: string }> } = {
   globe: GlobeIcon
 }
 
-export const NewsBlogsUpdates = () => {
+export default function NewsBlogsUpdates() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const {
     handlePrev,
@@ -54,10 +54,10 @@ export const NewsBlogsUpdates = () => {
       onTouchEnd={handleTouchEnd}
     >
       <div className='relative z-0 flex flex-col overflow-hidden bg-[#D9D9D9] shadow-xl md:flex-row-reverse'>
-        <div className='relative h-[422px] w-full overflow-hidden md:h-[460px] md:w-[45%]'>
+        <div className='relative h-[422px] w-full md:h-[460px] md:w-[45%]'>
           {/* Líneas Roja y Naranja - Más gruesas y juntas */}
-          <div className='absolute -left-2 top-[-10px] z-20 hidden h-[140%] w-[16px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#E72A00] md:block'></div>
-          <div className='absolute -left-6 top-[-10px] z-20 hidden h-[140%] w-[16px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#FE5833] md:block'></div>
+          <div className='absolute left-1 top-[-10px] z-20 hidden h-[140%] w-[25px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#E72A00] md:block'></div>
+          <div className='absolute -left-5 top-[-10px] z-20 hidden h-[140%] w-[25px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#FE5833] md:block'></div>
 
           {/* Imagen Cortada Correctamente */}
           <div className='relative z-10 h-full w-full overflow-hidden'>
@@ -71,14 +71,6 @@ export const NewsBlogsUpdates = () => {
                 objectPosition: 'right' // Corta la parte izquierda
               }}
             />
-            {/* Capa de opacidad sobre la imagen */}
-            <div
-              className='absolute inset-0'
-              style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                pointerEvents: 'none'
-              }}
-            ></div>
           </div>
 
           {/* 🔥 Texto en pantallas pequeñas */}

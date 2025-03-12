@@ -20,6 +20,8 @@ interface User {
 interface AuthContextType {
   user: User | null
   token: string | null
+  selectedSponsorId: string | null
+  setSelectedSponsorId: (id: string | null) => void
   setAuthToken: (token: string) => void
   logout: () => void
 }
@@ -29,6 +31,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
+  const [selectedSponsorId, setSelectedSponsorId] = useState<string | null>(
+    null
+  )
 
   useEffect(() => {
     const savedToken = localStorage.getItem('auth_token')
@@ -59,6 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('auth_token')
     setToken(null)
     setUser(null)
+    setSelectedSponsorId(null)
   }
 
   return (
@@ -66,8 +72,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         user,
         token,
+        selectedSponsorId,
         setAuthToken,
-        logout
+        logout,
+        setSelectedSponsorId
       }}
     >
       {children}

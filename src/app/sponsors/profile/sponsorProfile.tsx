@@ -11,30 +11,7 @@ import EditSponsorProfile from '../components/editSponsorProfile'
 import { useAuth } from '@/app/context/AuthContext'
 import Skeleton from '../components/Skeleton'
 import { getCountryFlag } from '@/utils/getFlags'
-
-interface SponsorData {
-  id: string
-  userId: string
-  status: string
-  companyName: string
-  specialization: string
-  description: string
-  web: string
-  phone: string
-  socials: string[]
-  logo: string
-  bannerWeb: string
-  bannerMobile: string
-  createdAt: string
-  user: {
-    id: string
-    firstName: string
-    lastName: string
-    username: string
-    email: string
-    country: string
-  }
-}
+import { SponsorData } from '@/interfaces'
 
 export default function SponsorProfile() {
   const { user, token } = useAuth()
@@ -72,7 +49,6 @@ export default function SponsorProfile() {
       .replace(/[)(/)]/g, '') // Remover caracteres especiales como )(/))
       .trim()
   }
-  console.log('user', user)
   const fetchSponsorData = async () => {
     setIsLoading(true)
     try {
@@ -82,7 +58,7 @@ export default function SponsorProfile() {
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}sponsors/${user.sub}`,
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user.sub}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -160,8 +136,6 @@ export default function SponsorProfile() {
       />
     )
   }
-
-  console.log(sponsorData)
 
   return (
     <section className={`${darkerGrotesque.variable} ${karla.variable} mb-8`}>

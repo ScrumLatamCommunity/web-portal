@@ -6,16 +6,30 @@ import GlobeIcon from '@/assets/GlobeIcon'
 import FacebookIcon from '@/assets/FacebookIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
+import { flags } from '@/data/data'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/app/context/AuthContext'
 
 export default function ProductServiceFeature({
+  sponsorId,
   description,
   image,
   flag,
-  linkTitle,
   title,
   highlights,
   socialUrls
 }: ProductServiceFeatureInterface) {
+  const { setSelectedSponsorId } = useAuth()
+  const flagData = flags.find((item) => item.name === flag)
+  const flagUrl = flagData ? flagData.flag : ''
+  const router = useRouter()
+
+  const handleClick = () => {
+    if (sponsorId) {
+      router.push(`/community/offerts/${sponsorId}`)
+    }
+  }
+
   return (
     <>
       {/* 💻 Versión MD y mayores */}
@@ -25,9 +39,11 @@ export default function ProductServiceFeature({
         {/* 📷 Imagen + Redes Sociales */}
         <div className='relative flex h-full flex-col items-center justify-between md:mx-14 md:mt-10 md:justify-center md:pl-14'>
           <div className='flex h-[250px] w-[250px] items-center justify-center'>
-            {React.cloneElement(image as React.ReactElement, {
-              className: 'h-full w-full object-cover'
-            })}
+            <img
+              alt={title}
+              className='h-full w-full object-fill'
+              src={image}
+            />
           </div>
 
           {/* 🔗 Redes Sociales */}
@@ -83,7 +99,7 @@ export default function ProductServiceFeature({
             <h1 className='font-darker-grotesque font-bold tracking-wide text-[#082965] md:text-[48px]'>
               {title}
             </h1>
-            <img src={flag} alt='Flag' className='h-6 w-8 md:h-8 md:w-10' />
+            <img src={flagUrl} alt='Flag' className='h-6 w-8 md:h-8 md:w-10' />
           </div>
 
           <ul className='mt-2 flex flex-wrap gap-4 text-lg text-[#061D48] md:text-2xl'>
@@ -102,12 +118,12 @@ export default function ProductServiceFeature({
           </p>
 
           <div className='absolute bottom-8 left-0 flex w-full justify-end p-4 md:pt-4'>
-            <a
-              href='#SQUAD'
+            <button
+              onClick={handleClick}
               className='rounded-2xl bg-[#FE2E00] px-10 py-3 font-darker-grotesque text-lg text-[#FFFFFF]'
             >
-              {linkTitle}
-            </a>
+              Ver Ofertas
+            </button>
           </div>
         </div>
       </section>
@@ -208,12 +224,12 @@ export default function ProductServiceFeature({
 
           {/* 🔘 Botón */}
           <div className='mt-4 flex justify-end'>
-            <a
-              href='#SQUAD'
+            <button
+              onClick={handleClick}
               className='rounded-2xl bg-[#FE2E00] px-6 py-2 text-white'
             >
-              {linkTitle}
-            </a>
+              Ver Ofertas
+            </button>
           </div>
         </div>
       </section>
