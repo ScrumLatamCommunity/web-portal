@@ -1,7 +1,7 @@
 'use client'
 
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
@@ -10,8 +10,25 @@ import CategoriesDropdown from '../../sponsors/components/categories-dropdown'
 import TextEditor from '../../sponsors/components/TextEditor'
 import CountriesDropdown from '../../sponsors/components/countries-dropdown'
 import FacebookIcon from '@/assets/FacebookIcon'
+import SponsorsList from './components/sponsorsList'
+import { useAuth } from '@/app/context/AuthContext'
+import { toast } from 'react-hot-toast'
+
+interface Sponsor {
+  id: number
+  companyName: string
+  createdAt: string
+  web: string
+  status: string
+}
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('es-ES')
+}
 
 export default function AlliesPage() {
+  const { token } = useAuth()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')
@@ -19,7 +36,7 @@ export default function AlliesPage() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [companyName, setCompanyName] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [selectedCountry, setSelectedCountry] = useState('')
   const [description, setDescription] = useState('')
   const [web, setWeb] = useState('')
@@ -27,6 +44,7 @@ export default function AlliesPage() {
   const [linkedin, setLinkedin] = useState('')
   const [instagram, setInstagram] = useState('')
   const [facebook, setFacebook] = useState('')
+  const [sponsors, setSponsors] = useState<Sponsor[]>([])
 
   const resetForm = () => {
     setFirstName('')
@@ -36,7 +54,7 @@ export default function AlliesPage() {
     setPassword('')
     setConfirmPassword('')
     setCompanyName('')
-    setSelectedCategory('')
+    setSelectedCategories([''])
     setSelectedCountry('')
     setDescription('')
     setWeb('')
@@ -45,6 +63,35 @@ export default function AlliesPage() {
     setInstagram('')
     setFacebook('')
   }
+
+  const getSponsors = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors?order=desc`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Error al obtener sponsors')
+      }
+
+      const data = await response.json()
+
+      setSponsors(data)
+    } catch (error) {
+      console.error('Error al obtener sponsors:', error)
+    }
+  }
+
+  useEffect(() => {
+    getSponsors()
+  }, [setSponsors])
 
   const handleSave = async () => {
     if (password !== confirmPassword) {
@@ -61,7 +108,7 @@ export default function AlliesPage() {
       email,
       password,
       companyName,
-      specialization: selectedCategory,
+      specialization: selectedCategories,
       country: selectedCountry,
       membership: 'Premium',
       status: 'ACTIVE',
@@ -89,11 +136,12 @@ export default function AlliesPage() {
       )
 
       if (response.ok) {
-        alert('Sponsor registrado correctamente!')
+        toast.success('Sponsor registrado correctamente!')
         resetForm()
+        await getSponsors()
       } else {
         const errorData = await response.json()
-        alert(`Error: ${errorData.message}`)
+        toast.error(`Error: ${errorData.message}`)
       }
     } catch (error) {
       console.error('Error al enviar los datos:', error)
@@ -112,8 +160,40 @@ export default function AlliesPage() {
       <h1
         className={`items-left mb-5 max-w-[1980px] font-darker-grotesque text-[30px] font-darker-grotesque-700 text-[#082965]`}
       >
-        Perfil del Sponsor
+        Sponsors de la Comunidad
       </h1>
+      <div
+        className={`mb-6 w-full rounded-[20px] border-[0.5px] border-black-13 p-4`}
+      >
+        <div className='grid grid-cols-5 gap-4 rounded-[20px] border-[0.5px] border-black-9 p-2'>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Nombre
+          </button>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Aliado desde
+          </button>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Web
+          </button>
+          <button className='font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Estado
+          </button>
+          <p className='flex items-center justify-center font-darker-grotesque text-[21px] font-darker-grotesque-700'>
+            Acción
+          </p>
+        </div>
+        <div className='custom-scrollbar h-[300px] overflow-y-scroll'>
+          {sponsors.map((sponsor) => (
+            <SponsorsList
+              key={sponsor.id}
+              name={sponsor.companyName}
+              since={formatDate(sponsor.createdAt)}
+              web={sponsor.web}
+              status={sponsor.status}
+            />
+          ))}
+        </div>
+      </div>
       <div
         className={`w-full rounded-[20px] border-[0.5px] border-black-13 py-4`}
       >
@@ -242,8 +322,8 @@ export default function AlliesPage() {
               Área de Especialización
             </label>
             <CategoriesDropdown
-              value={selectedCategory}
-              onChange={setSelectedCategory}
+              value={selectedCategories}
+              onChange={setSelectedCategories}
             />
           </div>
           <div className='mx-[33px] flex flex-col gap-2'>

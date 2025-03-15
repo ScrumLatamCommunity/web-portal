@@ -12,45 +12,78 @@ import React, { useState, useEffect } from 'react'
 import OffertCard from './components/offertsCard'
 import { flags } from '@/data/data'
 import { Pagination } from '@/app/home//components/Pagination'
+import { useAuth } from '@/app/context/AuthContext'
 
-const offerts = [
-  {
-    offertImage:
-      'https://s3-alpha-sig.figma.com/img/a260/4e27/5558b571c8524f3b9ff2fa0541318698?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=F45S0DbGJqjarOkajsVGYXmr5UeBX7d4Q8qDsKEl-BOHpJHwGH2ngSfzVQvQagBil-3MO3KHs3-7kD9vwihLDtHN9GREyWNiLjkTp1UzxR5BvSY8pqlEMisnPBu9irDWVruN83UXNjp9AlMD56x3viLRq5sQV3akblR7aHDojcdbRka54uAF3kWpXuEOlP0KtQC6jQWEumeONhiE0LERrt-mCvmZ-9fvAc-hqYQylEh~4wsqHTs23zaKnme24bDr9ltb3f~5FUrC9rI~F8LLi365elFT4Z4p2Ll0m7zL-jw4v3Tdxd550gniWiEEur3AYbrwUPU90c-z~noVxTWagw__',
-    offertTitle: 'Curso de Desarrollo Web',
-    offertDescription:
-      'Aprende a crear aplicaciones web con HTML, CSS, y JavaScript.',
-    offertDate: '12 de Febrero, 2025',
-    offertTime: '18:00',
-    offertPlace: 'Salón de Conferencias, Edificio A',
-    offertGoTo: 'Desarrolladores novatos y profesionales'
-  },
-  {
-    offertImage:
-      'https://s3-alpha-sig.figma.com/img/a260/4e27/5558b571c8524f3b9ff2fa0541318698?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=F45S0DbGJqjarOkajsVGYXmr5UeBX7d4Q8qDsKEl-BOHpJHwGH2ngSfzVQvQagBil-3MO3KHs3-7kD9vwihLDtHN9GREyWNiLjkTp1UzxR5BvSY8pqlEMisnPBu9irDWVruN83UXNjp9AlMD56x3viLRq5sQV3akblR7aHDojcdbRka54uAF3kWpXuEOlP0KtQC6jQWEumeONhiE0LERrt-mCvmZ-9fvAc-hqYQylEh~4wsqHTs23zaKnme24bDr9ltb3f~5FUrC9rI~F8LLi365elFT4Z4p2Ll0m7zL-jw4v3Tdxd550gniWiEEur3AYbrwUPU90c-z~noVxTWagw__',
-    offertTitle: 'Taller de React.js',
-    offertDescription: 'Domina React y construye interfaces interactivas.',
-    offertDate: '15 de Febrero, 2025',
-    offertTime: '10:00',
-    offertPlace: 'Sala 305, Campus B',
-    offertGoTo: 'Desarrolladores interesados en React'
-  },
-  {
-    offertImage:
-      'https://s3-alpha-sig.figma.com/img/a260/4e27/5558b571c8524f3b9ff2fa0541318698?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=F45S0DbGJqjarOkajsVGYXmr5UeBX7d4Q8qDsKEl-BOHpJHwGH2ngSfzVQvQagBil-3MO3KHs3-7kD9vwihLDtHN9GREyWNiLjkTp1UzxR5BvSY8pqlEMisnPBu9irDWVruN83UXNjp9AlMD56x3viLRq5sQV3akblR7aHDojcdbRka54uAF3kWpXuEOlP0KtQC6jQWEumeONhiE0LERrt-mCvmZ-9fvAc-hqYQylEh~4wsqHTs23zaKnme24bDr9ltb3f~5FUrC9rI~F8LLi365elFT4Z4p2Ll0m7zL-jw4v3Tdxd550gniWiEEur3AYbrwUPU90c-z~noVxTWagw__',
-    offertTitle: 'Junta sobre Agilidad',
-    offertDescription: 'Domina React y construye interfaces interactivas.',
-    offertDate: '15 de Febrero, 2025',
-    offertTime: '10:00',
-    offertPlace: 'Sala 305, Campus B',
-    offertGoTo: 'Desarrolladores interesados en React'
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
+interface Sponsor {
+  id: string
+  companyName: string
+  description: string
+  bannerMobile: string
+  bannerWeb: string
+  logo: string
+  phone: string
+  web: string
+  socials: string[]
+  specialization: string[]
+  status: string
+  createdAt: string
+  updatedAt: string
+  userId: string
+  user: {
+    country: string
   }
-]
+  offers: any[]
+  posts: any[]
+}
 
 export default function Offerts() {
   const itemsPerPage = 1
-  const [currentPage, setCurrentPage] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+  const [sponsor, setSponsor] = useState<Sponsor | null>(null)
+  const flagData = flags.find((item) => item.name === sponsor?.user.country)
+  const flagUrl = flagData ? flagData.flag : ''
+  const { selectedSponsorId, user } = useAuth()
+
+  async function getData(sponsorId: string) {
+    try {
+      const response = await fetch(`${API_URL}sponsors/${sponsorId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const data = await response.json()
+      console.log('Respuesta de la API:', data)
+
+      const storedSponsors = JSON.parse(
+        localStorage.getItem('sponsorsData') || '{}'
+      )
+      storedSponsors[sponsorId] = data
+      localStorage.setItem('sponsorsData', JSON.stringify(storedSponsors))
+
+      setSponsor(data)
+    } catch (error) {
+      console.log('Error al obtener los datos:', error)
+    }
+  }
+
+  useEffect(() => {
+    if (!selectedSponsorId) return
+
+    const storedSponsors = JSON.parse(
+      localStorage.getItem('sponsorsData') || '{}'
+    )
+
+    if (storedSponsors[selectedSponsorId]) {
+      setSponsor(storedSponsors[selectedSponsorId])
+    } else {
+      getData(selectedSponsorId)
+    }
+  }, [selectedSponsorId])
 
   useEffect(() => {
     const handleResize = () => {
@@ -58,21 +91,21 @@ export default function Offerts() {
     }
 
     handleResize()
-
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const currentItems = isMobile
-    ? offerts.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-      )
-    : offerts
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
+  }
+
+  if (!sponsor) {
+    return (
+      <div className='flex h-full w-full items-center justify-center'>
+        <span>Cargando...</span>
+      </div>
+    )
   }
 
   return (
@@ -81,39 +114,39 @@ export default function Offerts() {
     >
       <div className=''>
         <Image
-          className='w-full'
-          src='https://s3-alpha-sig.figma.com/img/79d9/32c9/4e7041f25507be7e10f0bb0529a179b6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=bz7ptBGX9VBVCfL~CapIUBoR~qw5EO-vjpPQb1iKUu9rUp4rw2UjwoRaUnAo7SStOKcXS320vBiQGUVaDhBQRQxj5jTkTXn6VDHWNuafLdG6N~ThN2sSv5oSNnadDeVhvYr7jNcsuFn7k8rgeYkcQTLJDJwkeB~ZoPkWy0oZr0mcvIOcTWkhUOU~why~IvCHqmeascu8DCWgal0Sjcxgkqxvb2VHikXtK1SqC8fRuDzrHBfk481v7N9dMbS0NA5eStu3gvOnI6QqpdRJel37BPbaRjh5l1t8mahkNEeiEum03KepB~lyJVoMDw04APRmAO2Y2mHy-8g0-4X8WR5S9w__'
           alt='Offerts'
-          width={1200}
+          className='w-full'
           height={540}
+          src={sponsor.bannerWeb}
+          width={1200}
         />
       </div>
       <div className='flex flex-col bg-gradient-to-br from-[#e0eafc] to-[#1B6AF400] md:pt-10'>
         <div className='flex flex-row 2xl:ml-[280px]'>
           <div className='md:mr-8'>
             <Image
-              className='m-4 object-fill md:h-[175px] md:w-[175px]'
-              src='https://s3-alpha-sig.figma.com/img/7384/01ec/2c96a25e3686f2e1b090999f0a6da119?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Q9axOfMXTsQJEm9trvgDM1s8iu-9ooJGXcm71hKtQuLME1Nq14GTYKKYF2~CCeY8nPOS8No-sgLdrMUCKhB2lWJIrTr8GbgvJtHhrsh7jQdMQJ9XcDPCN~Jddy0ywVX~dCMYeC556z5u7-7-GEOYKy~arhlMuGtQj-OMe-nFhlUwPFZgnnEwnxYObpi5Ozb~n6loB~-Rm492Ro~2BJ2iJolsU2qC-1eo1sgoLdCt0MEzQl9UP57AmcO4txGcyNBeWDXoBVpK2PI8yXNMaGq3m2Xd9AtNvk4-M-bqus~q5kZwT-kqAKNv1ygPu7K4CiHdSUqHMO5ZK8Smi4C2EEnEqQ__'
               alt='Offerts'
-              width={80}
+              className='m-4 object-fill md:h-[175px] md:w-[175px]'
               height={80}
+              src={sponsor.logo}
+              width={80}
             />
           </div>
           <div className='mt-5 flex w-full flex-col pl-6'>
             <div className='flex flex-row items-center'>
               <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold md:mr-4 md:text-[56px]'>
-                Aqui Nombre del Sponsor
+                {sponsor.companyName}
               </h1>
               <Image
                 className='h-[20px] md:mt-3 md:h-[30px] md:w-[50px]'
-                src={flags[0].flag}
+                src={flagUrl}
                 alt={'flags'}
                 width={30}
                 height={10}
               />
             </div>
             <p className='mb-2 font-roboto text-[16px] font-normal md:mb-3 md:text-[26px]'>
-              Aqui sus categorías
+              {sponsor.specialization}
             </p>
             <div className='mb-6 flex flex-row gap-2 md:gap-4'>
               <div className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'>
@@ -145,7 +178,7 @@ export default function Offerts() {
 
       <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
         <div className='grid grid-cols-1 justify-items-center md:grid-cols-3 md:py-16'>
-          {currentItems.map((offert, index) => (
+          {sponsor.offers.map((offert, index) => (
             <OffertCard key={index} {...offert} />
           ))}
         </div>
@@ -155,7 +188,7 @@ export default function Offerts() {
             currentIndex={currentPage}
             itemsPerPage={itemsPerPage}
             onPageChange={handlePageChange}
-            totalItems={offerts.length}
+            totalItems={sponsor.offers.length}
           />
         )}
       </div>

@@ -1,28 +1,47 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import HeroSection from './components/heroSection'
 import ProductImg from '@/assets/productImg'
 import Breadcrumbs from './components/breadcrumbs'
-import { NewsBlogsUpdates } from './components/NewsBlogsUpdates'
+import NewsBlogsUpdates from './components/NewsBlogsUpdates'
 import SearchBar from './components/search-bar'
-import ProductServiceFeature from '@/app/community/products&services/components/productServiceFeature'
-import AgileTalentClubImg from '@/assets/agileTalentClubImg'
-import AgileMindsImg from '@/assets/agileMindsImg'
-import { servicesData } from '@/utils/productsServicesData'
-
-const imageMap: Record<string, JSX.Element> = {
-  agileTalentClub: <AgileTalentClubImg className='h-[200px] w-[300px] pt-8' />,
-  agileMinds: <AgileMindsImg className='h-[200px] w-[300px] pt-8' />
-}
+import ProductServiceFeature from './components/productServiceFeature'
+import { useAuth } from '@/app/context/AuthContext'
+import { SponsorData } from '@/interfaces'
 
 export default function Squads() {
+  const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
+  const { token } = useAuth()
+
+  const fetchSponsorData = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`)
+    }
+
+    const data = await response.json()
+    setSponsorData(data)
+  }
+
+  useEffect(() => {
+    fetchSponsorData()
+  }, [token])
+
   const [query, setQuery] = useState<string>('')
 
   // Filtrar servicios según la búsqueda
-  const filteredServices = servicesData.filter((service) =>
-    service.title.toLowerCase().includes(query.toLowerCase())
-  )
+  const filteredServices = sponsorData
+    ? sponsorData.filter((service) =>
+        service.companyName.toLowerCase().includes(query.toLowerCase())
+      )
+    : []
 
   return (
     <>
@@ -41,28 +60,49 @@ export default function Squads() {
       <section className='mb-4 mt-0 flex w-full justify-center px-10 md:mb-6'>
         <div className='w-full max-w-[600px]'>
           <SearchBar
-            setQuery={setQuery}
             data={filteredServices}
             placeholder='Busca servicio o producto'
+            setQuery={setQuery}
           />
         </div>
       </section>
 
       {/* Renderizar dinámicamente los servicios desde JSON con separación */}
-      <section className='mt-6 flex flex-col gap-8'>
+      <section className='mt-6 flex w-full flex-col gap-8'>
         {filteredServices.length > 0 ? (
-          filteredServices.map((service) => (
-            <ProductServiceFeature
-              key={service.id}
-              title={service.title}
-              flag={service.flag}
-              description={service.description}
-              highlights={service.highlights}
-              image={imageMap[service.imageId]}
-              linkTitle={service.linkTitle}
-              socialUrls={service.socialUrls}
-            />
-          ))
+          filteredServices.map(
+            (servicesData) => (
+              console.log(servicesData),
+              (
+                <ProductServiceFeature
+                  key={servicesData.id}
+                  sponsorId={servicesData.id}
+                  title={servicesData.companyName}
+                  flag={servicesData.user.country}
+                  description={servicesData.description}
+                  highlights={servicesData.specialization}
+                  image={servicesData.bannerWeb}
+                  linkTitle={servicesData.web}
+                  socialUrls={{
+                    phone: servicesData.phone,
+                    website: servicesData.web,
+                    linkedin:
+                      servicesData.socials.find((url) =>
+                        url.includes('linkedin')
+                      ) || undefined,
+                    facebook:
+                      servicesData.socials.find((url) =>
+                        url.includes('facebook')
+                      ) || undefined,
+                    instagram:
+                      servicesData.socials.find((url) =>
+                        url.includes('instagram')
+                      ) || undefined
+                  }}
+                />
+              )
+            )
+          )
         ) : (
           <p className='text-center text-xl text-gray-500'>
             No se encontraron resultados.

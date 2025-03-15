@@ -18,7 +18,7 @@ export const WelcomeToCommunity = () => {
 
   return (
     <section
-      className={`${darkerGrotesque.variable} mt-10 flex flex-col pl-4 md:max-w-[1980px] md:items-center md:bg-gradient-to-tr md:from-red-300 md:to-transparent md:pl-0 xl:m-auto`}
+      className={`${darkerGrotesque.variable} flex flex-col pl-4 md:max-w-[1980px] md:items-center md:bg-gradient-to-tr md:from-red-300 md:to-transparent md:pl-0 xl:m-auto`}
     >
       <div className='relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center md:flex-row'>
         <div className='absolute right-0 top-10 h-[100px] w-[100px] rounded-full bg-blue-5 opacity-60 blur-2xl md:hidden'></div>

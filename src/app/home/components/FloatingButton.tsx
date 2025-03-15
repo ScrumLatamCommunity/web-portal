@@ -4,9 +4,15 @@ import React, { useState, useEffect } from 'react'
 import FloatIcon from '@/assets/FloatIcon'
 import FloatIconOutlined from '@/assets/FloatIconOutlined'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const FloatingButton: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false)
+  const pathname = usePathname()
+  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
+  const hideLayout = hiddenLayoutRoutes.some((route) =>
+    pathname.startsWith(route)
+  )
+  const [isHovered, setIsHovered] = useState<boolean>(false)
 
   const handleInteraction = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!isHovered) {
@@ -42,22 +48,26 @@ const FloatingButton: React.FC = () => {
     }
   }, [isHovered])
 
+  if (hideLayout) {
+    return null
+  }
+
   return (
     <div
       className='fixed bottom-1/4 right-4 z-50 md:bottom-auto md:top-20'
-      onMouseEnter={() => setIsHovered(true)} // Cambiar estado al entrar al hover
-      onMouseLeave={() => setIsHovered(false)} // Cambiar estado al salir del hover
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className='flex justify-end'>
         {isHovered ? (
           <Link href='/memberships'>
             <button
-              className='flex h-16 items-center justify-center rounded-full bg-[#FE5833] px-4 shadow-lg transition-all duration-300 md:h-24'
+              className='flex h-16 items-center justify-center rounded-full bg-[#FE5833] px-4 shadow-lg transition-all duration-300 md:h-16'
               id='floating-button'
               onClick={() => setIsHovered(false)}
             >
               <span
-                className='mr-3 text-[20px] font-darker-grotesque-600 text-[#FCFCFC] md:text-[38px] md:font-darker-grotesque-700'
+                className='mr-3 text-[16px] font-darker-grotesque-600 text-[#FCFCFC] md:text-[38px] md:font-darker-grotesque-700'
                 style={{
                   transition: 'opacity 0.3s ease-in-out'
                 }}
@@ -75,7 +85,7 @@ const FloatingButton: React.FC = () => {
             className={`flex items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
               isHovered
                 ? 'bg-[#FE7354] px-4'
-                : 'h-16 w-16 border-2 bg-white shadow-[0px_4px_15px_rgba(100,100,100,0.5)] md:h-24 md:w-24'
+                : 'h-16 w-16 border-2 bg-white shadow-[0px_4px_15px_rgba(100,100,100,0.5)]'
             }`}
             id='floating-button'
             style={isHovered ? undefined : { borderColor: '#FE7354' }}
@@ -83,7 +93,7 @@ const FloatingButton: React.FC = () => {
           >
             {isHovered && (
               <span
-                className='mr-3 text-[20px] font-darker-grotesque-600 text-white md:text-[38px] md:font-darker-grotesque-700'
+                className='mr-3 text-[16px] font-darker-grotesque-600 text-white md:text-[38px] md:font-darker-grotesque-700'
                 style={{
                   transition: 'opacity 0.3s ease-in-out'
                 }}
@@ -93,13 +103,13 @@ const FloatingButton: React.FC = () => {
             )}
             {isHovered ? (
               <FloatIconOutlined
-                className='h-10 w-10 md:h-12 md:w-12'
+                className='h-10 w-10'
                 preserveAspectRatio='xMidYMid meet'
               />
             ) : (
               <Link href='/memberships'>
                 <FloatIcon
-                  className='h-10 w-10 md:h-12 md:w-12'
+                  className='h-10 w-10'
                   preserveAspectRatio='xMidYMid meet'
                 />
               </Link>
