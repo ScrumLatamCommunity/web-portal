@@ -94,8 +94,6 @@ export default function EditSponsorProfile({
       bannerMobile: data.bannerMobile || '',
       status: data.status || 'ACTIVE'
     }
-
-    console.log('Datos limpiados:', cleanedData)
     return cleanedData
   }
 
@@ -147,10 +145,6 @@ export default function EditSponsorProfile({
       setIsSaving(true)
       setError(null)
       const cleanedData = cleanSponsorData(formData)
-
-      // Log para depuración
-      console.log('Datos que se enviarán al servidor:', cleanedData)
-
       // Validación básica de datos
       if (!cleanedData.companyName || cleanedData.companyName.trim() === '') {
         throw new Error('El nombre de la empresa es requerido')
@@ -197,8 +191,6 @@ export default function EditSponsorProfile({
   const handleDiscard = () => {
     onEditComplete()
   }
-
-  console.log(sponsorData)
   return (
     <section
       className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8`}

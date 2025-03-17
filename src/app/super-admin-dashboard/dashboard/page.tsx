@@ -64,8 +64,6 @@ export const Dashboard = () => {
             }
           }
         )
-
-        console.log(res.data)
         const roles = res.data.country
         const labels = roles.map((r: CountryStats) =>
           r.country.replace(/(\D+)(\d+)/, '$1 - $2')

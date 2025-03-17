@@ -119,8 +119,8 @@ export default function Offerts({ params }: OffertsProps) {
         />
       </div>
       <div className='flex flex-col md:pt-10'>
-        <div className='absolute -left-8 top-36 z-[10] h-[250px] w-[250px] rounded-full bg-blue-400 opacity-40 blur-3xl md:-left-28 md:top-96 md:h-[500px] md:w-[1000px]'></div>
-        <div className='z-[20] flex flex-row 2xl:ml-[400px]'>
+        <div className='absolute -left-8 top-36 z-[10] h-[200px] w-[200px] rounded-full bg-blue-400 opacity-40 blur-3xl md:-left-28 md:top-96 md:h-[500px] md:w-[450px]'></div>
+        <div className='z-[20] flex flex-row md:ml-[400px]'>
           <div className='ml-6 mt-2 py-4 md:mr-8'>
             <Image
               alt='Offerts'
@@ -201,7 +201,7 @@ export default function Offerts({ params }: OffertsProps) {
             </div>
           </div>
         </div>
-        <h2 className='w-full pb-5 text-center font-darker-grotesque text-[22px] font-darker-grotesque-700 text-[#082965] md:pb-14 md:pt-6 2xl:text-[40px]'>
+        <h2 className='w-full pb-5 text-center font-darker-grotesque text-[22px] font-darker-grotesque-700 text-[#082965] md:pb-14 md:pt-6 md:text-[40px]'>
           Nuestras Certificaciones, cursos y más
         </h2>
       </div>
