@@ -1,15 +1,27 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+const MAINTENANCE_MODE = true
+
 const publicRoutes = ['/', '/login', '/register', '/recover', '/reset-password']
 
 const openRoutes = ['/api/health', '/api/docs']
+
+const exemptRoutes = ['/maintenance']
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (openRoutes.includes(pathname)) {
     return NextResponse.next()
+  }
+
+  if (
+    MAINTENANCE_MODE &&
+    !exemptRoutes.some((route) => pathname.startsWith(route))
+  ) {
+    const maintenanceUrl = new URL('/maintenance', request.url)
+    return NextResponse.redirect(maintenanceUrl)
   }
 
   const token = request.cookies.get('auth_token')

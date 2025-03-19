@@ -21,13 +21,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <AuthProvider>
           <RegisterProvider>
             <OnboardingProvider>
-              <Navbar />
+              {/*               <Navbar />
               <div className='flex flex-col items-center justify-center'>
-                {children}
                 <FloatingButton />
-              </div>
-              <Footer />
-              <Toaster position='top-right' />
+              </div> */}
+              {children}
+              {/*               <Footer />
+              <Toaster position='top-right' /> */}
             </OnboardingProvider>
           </RegisterProvider>
         </AuthProvider>
