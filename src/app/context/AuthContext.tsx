@@ -31,16 +31,31 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
-  const [selectedSponsorId, setSelectedSponsorId] = useState<string | null>(
-    null
-  )
+  const [selectedSponsorId, setSelectedSponsorIdState] = useState<
+    string | null
+  >(null)
 
   useEffect(() => {
     const savedToken = localStorage.getItem('auth_token')
+    const savedSponsorId = localStorage.getItem('selectedSponsorId')
+
     if (savedToken) {
       setAuthToken(savedToken)
     }
+
+    if (savedSponsorId) {
+      setSelectedSponsorIdState(savedSponsorId)
+    }
   }, [])
+
+  const setSelectedSponsorId = (id: string | null) => {
+    if (id) {
+      localStorage.setItem('selectedSponsorId', id)
+    } else {
+      localStorage.removeItem('selectedSponsorId')
+    }
+    setSelectedSponsorIdState(id)
+  }
 
   const setAuthToken = (newToken: string) => {
     try {
@@ -62,9 +77,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     localStorage.removeItem('auth_token')
+    localStorage.removeItem('selectedSponsorId')
     setToken(null)
     setUser(null)
-    setSelectedSponsorId(null)
+    setSelectedSponsorIdState(null)
   }
 
   return (
