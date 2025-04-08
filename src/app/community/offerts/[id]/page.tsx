@@ -13,6 +13,7 @@ import OffertCard from '../components/offertsCard'
 import { flags } from '@/data/data'
 import { Pagination } from '@/app/home//components/Pagination'
 import { useAuth } from '@/app/context/AuthContext'
+import { toast } from 'react-hot-toast'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -205,7 +206,9 @@ export default function Offerts() {
               <div
                 onClick={() => {
                   navigator.clipboard.writeText(sponsor.phone)
-                  alert('Número copiado al portapapeles: ' + sponsor.phone)
+                  toast.success(
+                    `Número copiado al portapapeles: ${sponsor.phone}`
+                  )
                 }}
                 className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
               >
