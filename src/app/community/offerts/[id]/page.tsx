@@ -115,7 +115,7 @@ export default function Offerts() {
       <div className=''>
         <Image
           alt='Offerts'
-          className='w-full p-6'
+          className='w-full p-2 md:p-6'
           height={540}
           src={sponsor.bannerWeb}
           width={1200}

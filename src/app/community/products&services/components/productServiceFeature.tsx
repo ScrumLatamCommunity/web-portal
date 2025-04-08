@@ -259,12 +259,12 @@ export default function ProductServiceFeature({
 
           {/* 🔘 Botón */}
           <div className='w-30 mt-4 flex h-8 items-center justify-end'>
-            <a
-              href='#SQUAD'
+            <button
+              onClick={handleClick}
               className='rounded-xl bg-[#FE2E00] px-6 py-2 text-2 text-white'
             >
               Conocer Ofertas
-            </a>
+            </button>
           </div>
         </div>
       </section>
