@@ -28,7 +28,7 @@ export default function ProductServiceFeature({
   const handleClick = () => {
     if (sponsorId) {
       setSelectedSponsorId(sponsorId)
-      router.push('/community/offerts')
+      router.push(`/community/offerts/${sponsorId}`)
     }
   }
 
