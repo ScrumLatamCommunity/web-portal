@@ -33,7 +33,7 @@ export default function TutorialFeature({
   }
 
   return (
-    <section className='flex min-h-[300px] flex-col items-center justify-center py-4 md:mt-4 md:max-w-[1980px] md:justify-between'>
+    <section className='flex min-h-[300px] flex-col items-center justify-center py-4 md:mt-4 md:justify-between'>
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
@@ -53,7 +53,7 @@ export default function TutorialFeature({
               spaceBetween: 0
             }
           }}
-          className='tutorial-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-[1980px]'
+          className='tutorial-swiper-container relative w-[90%] md:max-w-[1480px]'
           modules={[Navigation]}
           navigation={true}
           slidesPerView={1}
