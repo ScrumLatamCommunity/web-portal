@@ -49,7 +49,7 @@ export default function ManualFeature({ manuals }: { manuals: Array<Manual> }) {
               spaceBetween: 0
             }
           }}
-          className='manual-swiper-container relative w-[90%] max-w-[100vw] md:w-full md:max-w-[1980px]'
+          className='manual-swiper-container relative w-[90%] max-w-[100vw] md:max-w-[1980px]'
           modules={[Navigation]}
           navigation={true}
           slidesPerView={1}
