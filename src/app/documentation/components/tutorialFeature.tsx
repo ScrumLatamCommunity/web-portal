@@ -53,7 +53,7 @@ export default function TutorialFeature({
               spaceBetween: 0
             }
           }}
-          className='tutorial-swiper-container relative w-[90%] md:max-w-[1480px]'
+          className='tutorial-swiper-container relative w-[90%] max-w-[100vw] md:max-w-[1980px]'
           modules={[Navigation]}
           navigation={true}
           slidesPerView={1}
