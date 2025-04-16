@@ -64,7 +64,7 @@ export const News = () => {
       <div className='relative z-0 flex flex-col overflow-hidden bg-black-4 shadow-xl md:flex-row-reverse'>
         <div className='relative h-[422px] w-full md:h-[460px] md:w-[45%]'>
           <div
-            className='absolute -left-5 top-[-10px] hidden w-6 bg-[#E72A00] md:block 2xl:-left-0'
+            className='absolute -left-4 top-[-10px] hidden w-7 bg-[#E72A00] md:block 2xl:-left-0'
             style={{
               height: '130%',
               transform: 'rotate(-13.5deg) scaleY(1.2)',
@@ -88,14 +88,6 @@ export const News = () => {
                 margin: 0
               }}
             />
-            {/* Capa de opacidad exclusiva para la imagen */}
-            <div
-              className='absolute inset-0'
-              style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                pointerEvents: 'none'
-              }}
-            ></div>
           </div>
 
           <div className='bg-black absolute bottom-0 left-0 bg-opacity-50 px-14 pb-10 text-white md:hidden'>
