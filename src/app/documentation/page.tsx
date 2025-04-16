@@ -70,7 +70,7 @@ function DocumentationsContent() {
   const filteredData = getFilteredData()
 
   return (
-    <div className='mx-auto w-screen md:max-w-[1980px]'>
+    <div className='mx-auto w-screen overflow-hidden md:max-w-[1980px]'>
       {/* Hero Section */}
       <HeroSection
         description='Accede a guías detalladas paso a paso sobre metodologías ágiles y Scrum. Aquí encontrarás todo lo necesario para aplicar las mejores prácticas en tu equipo: desde la planificación de sprints hasta la gestión de equipos bajo los principios ágiles.'
