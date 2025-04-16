@@ -131,9 +131,10 @@ export default function ProductServiceFeature({
                 </li>
               ))}
             </ul>
-            <p className='mt-4 flex-grow font-karla text-lg leading-7 text-[#061D48] md:text-[25px]'>
-              {description}
-            </p>
+            <div
+              className='mt-4 flex-grow font-karla text-lg leading-7 text-[#061D48] md:text-[25px]'
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
           </div>
 
           <div className='flex w-full items-end justify-end'>
@@ -253,17 +254,18 @@ export default function ProductServiceFeature({
           </div>
 
           {/* 📜 Descripción */}
-          <p className='mt-2 font-karla text-[12px] text-[#061D48]'>
-            {description}
-          </p>
+          <div
+            className='mt-2 font-karla text-[12px] text-[#061D48]'
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></div>
 
           {/* 🔘 Botón */}
-          <div className='w-30 mt-4 flex h-8 items-center justify-end'>
+          <div className='mt-4 flex justify-end'>
             <button
               onClick={handleClick}
-              className='rounded-xl bg-[#FE2E00] px-6 py-2 text-2 text-white'
+              className='rounded-2xl bg-[#FE2E00] px-6 py-2 text-white'
             >
-              Conocer Ofertas
+              Ver Ofertas
             </button>
           </div>
         </div>
