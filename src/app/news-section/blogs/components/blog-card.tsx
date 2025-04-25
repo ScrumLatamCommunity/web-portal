@@ -55,6 +55,7 @@ export default function BlogCard({
           className='ml-2 mr-6 mt-10 h-[50px] w-[71px] md:ml-0 md:mr-0 md:mt-0 md:h-auto md:max-h-[260px] md:w-screen md:max-w-[28%] md:rounded-r-xl'
           height={1800}
           src={img}
+          unoptimized
           width={1800}
         />
       </div>

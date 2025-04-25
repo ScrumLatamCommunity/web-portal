@@ -58,7 +58,11 @@ export default function Offerts() {
         }
       })
       const data = await response.json()
-      console.log('Respuesta de la API:', data)
+
+      const filteredOffers = data.offers.filter(
+        (offer: { status: string }) => offer.status === 'ACTIVE'
+      )
+      data.offers = filteredOffers
 
       const storedSponsors = JSON.parse(
         localStorage.getItem('sponsorsData') || '{}'
@@ -74,15 +78,7 @@ export default function Offerts() {
   useEffect(() => {
     if (!selectedSponsorId) return
 
-    const storedSponsors = JSON.parse(
-      localStorage.getItem('sponsorsData') || '{}'
-    )
-
-    if (storedSponsors[selectedSponsorId]) {
-      setSponsor(storedSponsors[selectedSponsorId])
-    } else {
-      getData(selectedSponsorId)
-    }
+    getData(selectedSponsorId)
   }, [selectedSponsorId])
 
   useEffect(() => {
@@ -127,9 +123,9 @@ export default function Offerts() {
             <Image
               alt='Offerts'
               className='m-4 rounded-full bg-white object-fill md:h-[175px] md:w-[175px]'
-              height={80}
+              height={1800}
               src={sponsor.logo}
-              width={80}
+              width={1800}
             />
           </div>
           <div className='mt-5 flex w-full flex-col pl-6'>
@@ -223,10 +219,12 @@ export default function Offerts() {
       </div>
 
       <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
-        <div className='grid grid-cols-1 justify-items-center md:grid-cols-3 md:py-16'>
-          {sponsor.offers.map((offert, index) => (
-            <OffertCard key={index} {...offert} />
-          ))}
+        <div className='grid grid-cols-1 justify-items-center gap-y-8 py-8 md:grid-cols-3'>
+          {sponsor.offers
+            .filter((offert) => offert.status === 'ACTIVE')
+            .map((offert, index) => (
+              <OffertCard key={index} {...offert} />
+            ))}
         </div>
 
         {isMobile && (

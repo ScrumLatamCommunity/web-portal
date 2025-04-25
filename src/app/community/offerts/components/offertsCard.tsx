@@ -53,7 +53,7 @@ export default function OffertCard({
 
   return (
     <div
-      className={`${darkerGrotesque.variable} ${karla.variable} mb-5 flex h-full w-[85%] flex-col rounded-lg bg-white pb-3 shadow-md md:w-[80%]`}
+      className={`${darkerGrotesque.variable} ${karla.variable} flex h-full w-[85%] flex-col rounded-lg bg-white pb-3 shadow-md md:w-[80%]`}
     >
       <div className='h-[200px] w-full overflow-hidden rounded-t-lg'>
         <Image

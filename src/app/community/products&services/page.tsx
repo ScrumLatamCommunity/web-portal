@@ -13,6 +13,8 @@ import { SponsorData } from '@/interfaces'
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
   const { token } = useAuth()
+  const [visibleSponsors, setVisibleSponsors] = useState<number>(5)
+  const [hasMore, setHasMore] = useState<boolean>(true)
 
   const fetchSponsorData = async () => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
@@ -34,6 +36,14 @@ export default function Squads() {
     fetchSponsorData()
   }, [token])
 
+  useEffect(() => {
+    if (sponsorData && visibleSponsors >= sponsorData.length) {
+      setHasMore(false)
+    } else {
+      setHasMore(true)
+    }
+  }, [visibleSponsors, sponsorData])
+
   const [query, setQuery] = useState<string>('')
 
   // Filtrar servicios según la búsqueda
@@ -42,6 +52,11 @@ export default function Squads() {
         service.companyName.toLowerCase().includes(query.toLowerCase())
       )
     : []
+
+  const handleLoadMore = () => {
+    setVisibleSponsors((prev) => prev + 5)
+  }
+
   return (
     <>
       <Breadcrumbs rootName='Comunidad' />
@@ -69,7 +84,7 @@ export default function Squads() {
       {/* Renderizar dinámicamente los servicios desde JSON con separación */}
       <section className='mt-6 flex w-full flex-col gap-8'>
         {filteredServices.length > 0 ? (
-          filteredServices.map((servicesData) => (
+          filteredServices.slice(0, visibleSponsors).map((servicesData) => (
             <ProductServiceFeature
               key={servicesData.id}
               sponsorId={servicesData.id}
@@ -101,6 +116,20 @@ export default function Squads() {
           </p>
         )}
       </section>
+
+      {/* Botón de Cargar Más */}
+      {hasMore &&
+        filteredServices &&
+        filteredServices.length > visibleSponsors && (
+          <div className='my-4 flex justify-center'>
+            <button
+              onClick={handleLoadMore}
+              className='rounded-lg bg-[#FE2E00] px-6 py-2 font-darker-grotesque text-lg font-semibold text-white transition-colors hover:bg-[#e62a00]'
+            >
+              Cargar más
+            </button>
+          </div>
+        )}
     </>
   )
 }

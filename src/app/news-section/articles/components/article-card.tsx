@@ -29,6 +29,7 @@ export default function ArticlesCard({
             alt={'meeting'}
             className='h-[200px] rounded-t-[15px] md:h-[231px]'
             width={1600}
+            unoptimized
             height={1600}
           />
           <p className='w-full pr-4 pt-3 text-right text-[14px] font-darker-grotesque-400 text-[#061D48]'>
