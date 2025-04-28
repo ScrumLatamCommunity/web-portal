@@ -3,200 +3,18 @@ import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
 import ProfileCard from './profileCardSection'
-import ProfileImage from '@/assets/perfilImg'
 
-const profiles = [
-  {
-    name: 'Sergio Gonzalez',
-    title: 'CEO',
-    description: 'Creador y fundador de la comunidad SCRUM',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/sergioGonzalez',
-    behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez'
-  },
-  {
-    name: 'Ana Martínez',
-    title: 'CTO',
-    description: 'Experta en desarrollo de software y transformación digital',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/anaMartinez',
-    behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez'
-  },
-  {
-    name: 'Carlos Reyes',
-    title: 'Product Manager',
-    description: 'Líder en gestión de productos digitales e innovación',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/carlosReyes',
-    behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes'
-  },
-  {
-    name: 'Laura Ortega',
-    title: 'UX/UI Designer',
-    description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/lauraOrtega',
-    behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega'
-  },
-  {
-    name: 'Pedro Ramírez',
-    title: 'Frontend Developer',
-    description:
-      'Desarrollador frontend apasionado por las tecnologías web modernas',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/pedroRamirez',
-    behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez'
-  },
-  {
-    name: 'Sergio Gonzalez',
-    title: 'CEO',
-    description: 'Creador y fundador de la comunidad SCRUM',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/sergioGonzalez',
-    behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez'
-  },
-  {
-    name: 'Ana Martínez',
-    title: 'CTO',
-    description: 'Experta en desarrollo de software y transformación digital',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/anaMartinez',
-    behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez'
-  },
-  {
-    name: 'Carlos Reyes',
-    title: 'Product Manager',
-    description: 'Líder en gestión de productos digitales e innovación',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/carlosReyes',
-    behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes'
-  },
-  {
-    name: 'Laura Ortega',
-    title: 'UX/UI Designer',
-    description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/lauraOrtega',
-    behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega'
-  },
-  {
-    name: 'Pedro Ramírez',
-    title: 'Frontend Developer',
-    description:
-      'Desarrollador frontend apasionado por las tecnologías web modernas',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/pedroRamirez',
-    behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez'
-  },
-  {
-    name: 'Sergio Gonzalez',
-    title: 'CEO',
-    description: 'Creador y fundador de la comunidad SCRUM',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/sergioGonzalez',
-    behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez'
-  },
-  {
-    name: 'Ana Martínez',
-    title: 'CTO',
-    description: 'Experta en desarrollo de software y transformación digital',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/anaMartinez',
-    behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez'
-  },
-  {
-    name: 'Carlos Reyes',
-    title: 'Product Manager',
-    description: 'Líder en gestión de productos digitales e innovación',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/carlosReyes',
-    behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes'
-  },
-  {
-    name: 'Laura Ortega',
-    title: 'UX/UI Designer',
-    description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/lauraOrtega',
-    behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega'
-  },
-  {
-    name: 'Pedro Ramírez',
-    title: 'Frontend Developer',
-    description:
-      'Desarrollador frontend apasionado por las tecnologías web modernas',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/pedroRamirez',
-    behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez'
-  },
-  {
-    name: 'Sergio Gonzalez',
-    title: 'CEO',
-    description: 'Creador y fundador de la comunidad SCRUM',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/sergioGonzalez',
-    behanceUrl: 'https://behance.net/sergioGonzalez',
-    instagramUrl: 'https://instagram.com/sergioGonzalez'
-  },
-  {
-    name: 'Ana Martínez',
-    title: 'CTO',
-    description: 'Experta en desarrollo de software y transformación digital',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/anaMartinez',
-    behanceUrl: 'https://behance.net/anaMartinez',
-    instagramUrl: 'https://instagram.com/anaMartinez'
-  },
-  {
-    name: 'Carlos Reyes',
-    title: 'Product Manager',
-    description: 'Líder en gestión de productos digitales e innovación',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/carlosReyes',
-    behanceUrl: 'https://behance.net/carlosReyes',
-    instagramUrl: 'https://instagram.com/carlosReyes'
-  },
-  {
-    name: 'Laura Ortega',
-    title: 'UX/UI Designer',
-    description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/lauraOrtega',
-    behanceUrl: 'https://behance.net/lauraOrtega',
-    instagramUrl: 'https://instagram.com/lauraOrtega'
-  },
-  {
-    name: 'Pedro Ramírez',
-    title: 'Frontend Developer',
-    description:
-      'Desarrollador frontend apasionado por las tecnologías web modernas',
-    image: <ProfileImage />,
-    githubUrl: 'https://github.com/pedroRamirez',
-    behanceUrl: 'https://behance.net/pedroRamirez',
-    instagramUrl: 'https://instagram.com/pedroRamirez'
-  }
-]
+interface ProfileSectionProps {
+  profiles: {
+    name: string
+    title: string
+    description: string
+    imageUrl: string
+    linkedinUrl: string
+  }[]
+}
 
-export default function ProfileSection() {
+export default function ProfileSection({ profiles }: ProfileSectionProps) {
   const swiperRef = useRef<SwiperType | null>(null)
 
   useEffect(() => {
@@ -204,7 +22,7 @@ export default function ProfileSection() {
       if (swiperRef.current) {
         swiperRef.current.slideNext()
       }
-    }, 5000)
+    }, 7500)
 
     return () => clearInterval(interval)
   }, [])
@@ -220,6 +38,7 @@ export default function ProfileSection() {
       }}
       spaceBetween={-30}
       slidesPerView={1}
+      loop={true}
       modules={[Navigation]}
       breakpoints={{
         320: {
@@ -240,10 +59,8 @@ export default function ProfileSection() {
             name={profile.name}
             title={profile.title}
             description={profile.description}
-            image={profile.image}
-            githubUrl={profile.githubUrl}
-            behanceUrl={profile.behanceUrl}
-            instagramUrl={profile.instagramUrl}
+            imageUrl={profile.imageUrl}
+            linkedinUrl={profile.linkedinUrl}
           />
         </SwiperSlide>
       ))}
