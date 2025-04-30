@@ -12,7 +12,20 @@ import Image from 'next/image'
 
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
+  const [shuffledSponsors, setShuffledSponsors] = useState<
+    SponsorData[] | null
+  >(null)
   const { token } = useAuth()
+  const [query, setQuery] = useState<string>('')
+
+  const shuffleArray = (array: SponsorData[]) => {
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+    }
+    return newArray
+  }
 
   const fetchSponsorData = async () => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
@@ -28,49 +41,36 @@ export default function Squads() {
 
     const data = await response.json()
     setSponsorData(data)
+
+    const now = new Date().getTime()
+    const lastShuffleTime = localStorage.getItem('lastShuffleTime')
+    const shuffledData = localStorage.getItem('shuffledData')
+    const oneHour = 60 * 60 * 1000
+
+    if (
+      lastShuffleTime &&
+      shuffledData &&
+      now - parseInt(lastShuffleTime) < oneHour
+    ) {
+      setShuffledSponsors(JSON.parse(shuffledData))
+    } else {
+      const shuffled = shuffleArray(data)
+      localStorage.setItem('lastShuffleTime', now.toString())
+      localStorage.setItem('shuffledData', JSON.stringify(shuffled))
+      setShuffledSponsors(shuffled)
+    }
   }
 
   useEffect(() => {
     fetchSponsorData()
   }, [token])
 
-  const [query, setQuery] = useState<string>('')
-
-  const shuffleArray = (array: SponsorData[]) => {
-    const newArray = [...array]
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-    }
-    return newArray
-  }
-
-  const getShuffledData = (data: SponsorData[]) => {
-    const now = new Date().getTime()
-    const lastShuffleTime = localStorage.getItem('lastShuffleTime')
-    const shuffledData = localStorage.getItem('shuffledData')
-
-    if (lastShuffleTime && shuffledData) {
-      const timeSinceLastShuffle = now - parseInt(lastShuffleTime)
-      const oneHour = 60 * 60 * 1000 // 1 hora en milisegundos
-
-      if (timeSinceLastShuffle < oneHour) {
-        return JSON.parse(shuffledData)
-      }
-    }
-
-    const newShuffledData = shuffleArray(data)
-    localStorage.setItem('lastShuffleTime', now.toString())
-    localStorage.setItem('shuffledData', JSON.stringify(newShuffledData))
-    return newShuffledData
-  }
-
-  const filteredServices = sponsorData
-    ? getShuffledData(
-        sponsorData.filter((service) =>
+  const filteredServices = shuffledSponsors
+    ? query
+      ? shuffledSponsors.filter((service) =>
           service.companyName.toLowerCase().includes(query.toLowerCase())
         )
-      )
+      : shuffledSponsors
     : []
 
   return (
@@ -78,14 +78,19 @@ export default function Squads() {
       <div className='absolute left-[-4rem] top-[400px] hidden h-[473px] w-[473px] lg:flow-root'>
         <Image
           alt='ellipse'
+          className='h-[516px] w-[800px]'
+          height={200}
           src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2010.svg?alt=media&token=ba52aa7c-1cd0-433f-8ced-93442b38c647'
+          width={200}
         />
       </div>
       <div className='absolute bottom-[-42rem] left-[1280px] hidden lg:flow-root'>
         <Image
           alt='ellipse2'
           className='h-[516px] w-[800px]'
+          height={200}
           src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2011.svg?alt=media&token=9a4c6557-3de7-4595-95fb-153d5877ee04'
+          width={200}
         />
       </div>
       <HeroSection
@@ -105,7 +110,7 @@ export default function Squads() {
       <section className='mb-4 mt-0 flex w-full justify-center px-10 md:mb-6'>
         <div className='w-full max-w-[600px]'>
           <SearchBar
-            data={filteredServices}
+            data={sponsorData || []}
             placeholder='Busca servicio o producto'
             setQuery={setQuery}
           />
@@ -128,7 +133,7 @@ export default function Squads() {
           ))
         ) : (
           <p className='col-span-full text-center text-xl text-gray-500'>
-            Cargando los sponsors.
+            {query ? 'No se encontraron resultados.' : 'Cargando los sponsors.'}
           </p>
         )}
       </section>
