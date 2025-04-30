@@ -34,7 +34,7 @@ interface Sponsor {
   userId: string
   user: {
     country: string
-    mail: string
+    email: string
   }
   offers: any[]
   posts: any[]
@@ -108,10 +108,10 @@ export default function Offerts() {
     <section
       className={`${darkerGrotesque.variable} ${roboto.variable} ${karla.variable} flex w-full max-w-[1980px] flex-col`}
     >
-      <div className=''>
+      <div className='flex max-h-[540px]'>
         <Image
           alt='Offerts'
-          className='w-full p-2 md:p-6'
+          className='w-full object-contain p-2 md:p-6'
           height={540}
           src={sponsor.bannerWeb}
           width={1200}
@@ -122,7 +122,7 @@ export default function Offerts() {
           <div className='md:mr-8'>
             <Image
               alt='Offerts'
-              className='m-4 rounded-full bg-white object-fill md:h-[175px] md:w-[175px]'
+              className='m-4 rounded-full bg-white md:h-[175px] md:w-[175px]'
               height={1800}
               src={sponsor.logo}
               width={1800}
@@ -142,15 +142,22 @@ export default function Offerts() {
               />
             </div>
             <p className='mb-2 font-roboto text-[16px] font-normal md:mb-3 md:text-[26px]'>
-              {sponsor.specialization}
+              {Array.isArray(sponsor.specialization)
+                ? sponsor.specialization.join(', ')
+                : sponsor?.specialization || 'No hay área de especialización'}
             </p>
             <div className='mb-6 flex flex-row gap-2 md:gap-4'>
-              <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
-                href={`mailto:${sponsor.user.mail}`}
+              <div
+                onClick={() => {
+                  navigator.clipboard.writeText(sponsor.user.email)
+                  toast.success(
+                    `Mail copiado al portapapeles: ${sponsor.user.email}`
+                  )
+                }}
+                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
               >
                 <MailIcon />
-              </a>
+              </div>
               <a
                 className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
                 href={

@@ -38,8 +38,14 @@ export default function ProductServiceFeature({
       <section className='hidden justify-between bg-[#FFEAE6] px-16 py-14 md:flex md:max-w-[1980px]'>
         {/* 📷 Imagen + Redes Sociales */}
         <div className='flex h-full min-h-80 w-1/3 flex-col items-center justify-between'>
-          <div className='flex h-[200px] w-[200px] place-content-center items-center justify-center rounded-full bg-white'>
-            <Image alt={title} height={176} src={image} width={176} />
+          <div className='flex h-[200px] w-[200px] place-content-center items-center justify-center overflow-hidden rounded-full bg-white'>
+            <Image
+              alt={title}
+              className='object-contain'
+              height={176}
+              src={image}
+              width={176}
+            />
           </div>
 
           {/* 🔗 Redes Sociales */}
