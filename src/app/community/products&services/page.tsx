@@ -36,7 +36,6 @@ export default function Squads() {
 
   const [query, setQuery] = useState<string>('')
 
-  // Función para mezclar aleatoriamente un array
   const shuffleArray = (array: SponsorData[]) => {
     const newArray = [...array]
     for (let i = newArray.length - 1; i > 0; i--) {
@@ -46,9 +45,28 @@ export default function Squads() {
     return newArray
   }
 
-  // Filtrar servicios según la búsqueda y mezclar aleatoriamente
+  const getShuffledData = (data: SponsorData[]) => {
+    const now = new Date().getTime()
+    const lastShuffleTime = localStorage.getItem('lastShuffleTime')
+    const shuffledData = localStorage.getItem('shuffledData')
+
+    if (lastShuffleTime && shuffledData) {
+      const timeSinceLastShuffle = now - parseInt(lastShuffleTime)
+      const oneHour = 60 * 60 * 1000 // 1 hora en milisegundos
+
+      if (timeSinceLastShuffle < oneHour) {
+        return JSON.parse(shuffledData)
+      }
+    }
+
+    const newShuffledData = shuffleArray(data)
+    localStorage.setItem('lastShuffleTime', now.toString())
+    localStorage.setItem('shuffledData', JSON.stringify(newShuffledData))
+    return newShuffledData
+  }
+
   const filteredServices = sponsorData
-    ? shuffleArray(
+    ? getShuffledData(
         sponsorData.filter((service) =>
           service.companyName.toLowerCase().includes(query.toLowerCase())
         )
@@ -57,12 +75,25 @@ export default function Squads() {
 
   return (
     <>
+      <div className='absolute left-[-4rem] top-[400px] hidden h-[473px] w-[473px] lg:flow-root'>
+        <Image
+          alt='ellipse'
+          src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2010.svg?alt=media&token=ba52aa7c-1cd0-433f-8ced-93442b38c647'
+        />
+      </div>
+      <div className='absolute bottom-[-42rem] left-[1280px] hidden lg:flow-root'>
+        <Image
+          alt='ellipse2'
+          className='h-[516px] w-[800px]'
+          src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2011.svg?alt=media&token=9a4c6557-3de7-4595-95fb-153d5877ee04'
+        />
+      </div>
       <HeroSection
         image={
           <Image
             alt=''
             src={Banner}
-            className='h-[200px] w-[300px] md:h-[455px] md:w-[620px]'
+            className='mt-12 h-[200px] w-[300px] md:h-[455px] md:w-[620px]'
           />
         }
         title='Productos y servicios de nuestros Sponsor'
@@ -80,11 +111,13 @@ export default function Squads() {
           />
         </div>
       </section>
-      {/* Renderizar dinámicamente los servicios desde JSON con separación */}
-      <section className='mb-10 mt-6 grid w-full grid-cols-1 items-center justify-items-center gap-2 px-36 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      <section className='mb-10 mt-6 flex w-full flex-wrap items-center justify-center gap-1 xl:px-36'>
         {filteredServices.length > 0 ? (
-          filteredServices.map((servicesData) => (
-            <div key={servicesData.id} className='flex w-full justify-center'>
+          filteredServices.map((servicesData: SponsorData) => (
+            <div
+              key={servicesData.id}
+              className='flex w-[350px] justify-center'
+            >
               <SponsorCard
                 sponsorId={servicesData.id}
                 companyName={servicesData.companyName}
@@ -95,7 +128,7 @@ export default function Squads() {
           ))
         ) : (
           <p className='col-span-full text-center text-xl text-gray-500'>
-            No se encontraron resultados.
+            Cargando los sponsors.
           </p>
         )}
       </section>

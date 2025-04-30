@@ -28,9 +28,9 @@ export default function SponsorCard({
     }
   }
   return (
-    <div className='group my-3 flex min-h-[200px] w-[85%] flex-col justify-between rounded-3xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 group-hover:shadow-xl'>
+    <div className='group z-10 my-3 flex min-h-[200px] w-[85%] flex-col justify-between rounded-3xl bg-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 group-hover:shadow-xl'>
       <div className='flex flex-col items-center justify-center py-5'>
-        <div className='mb-2 flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full shadow-[4px_4px_10px_rgba(0,0,0,0.1)]'>
+        <div className='mb-2 flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full p-2 shadow-[4px_4px_10px_rgba(0,0,0,0.1)]'>
           <Image
             alt={`${companyName} logo`}
             height={80}
