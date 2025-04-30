@@ -2,19 +2,30 @@
 
 import { useEffect, useState } from 'react'
 import HeroSection from './components/heroSection'
-import ProductImg from '@/assets/productImg'
-import Breadcrumbs from './components/breadcrumbs'
 import NewsBlogsUpdates from './components/NewsBlogsUpdates'
 import SearchBar from './components/search-bar'
-import ProductServiceFeature from './components/productServiceFeature'
 import { useAuth } from '@/app/context/AuthContext'
 import { SponsorData } from '@/interfaces'
+import SponsorCard from './components/sponsorCard'
+import Banner from '@/assets/SponsorBannerImage.png'
+import Image from 'next/image'
 
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
+  const [shuffledSponsors, setShuffledSponsors] = useState<
+    SponsorData[] | null
+  >(null)
   const { token } = useAuth()
-  const [visibleSponsors, setVisibleSponsors] = useState<number>(5)
-  const [hasMore, setHasMore] = useState<boolean>(true)
+  const [query, setQuery] = useState<string>('')
+
+  const shuffleArray = (array: SponsorData[]) => {
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+    }
+    return newArray
+  }
 
   const fetchSponsorData = async () => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
@@ -30,106 +41,85 @@ export default function Squads() {
 
     const data = await response.json()
     setSponsorData(data)
+
+    const now = new Date().getTime()
+    const lastShuffleTime = localStorage.getItem('lastShuffleTime')
+    const shuffledData = localStorage.getItem('shuffledData')
+    const oneHour = 60 * 60 * 1000
+
+    if (
+      lastShuffleTime &&
+      shuffledData &&
+      now - parseInt(lastShuffleTime) < oneHour
+    ) {
+      setShuffledSponsors(JSON.parse(shuffledData))
+    } else {
+      const shuffled = shuffleArray(data)
+      localStorage.setItem('lastShuffleTime', now.toString())
+      localStorage.setItem('shuffledData', JSON.stringify(shuffled))
+      setShuffledSponsors(shuffled)
+    }
   }
 
   useEffect(() => {
     fetchSponsorData()
   }, [token])
 
-  useEffect(() => {
-    if (sponsorData && visibleSponsors >= sponsorData.length) {
-      setHasMore(false)
-    } else {
-      setHasMore(true)
-    }
-  }, [visibleSponsors, sponsorData])
-
-  const [query, setQuery] = useState<string>('')
-
-  // Filtrar servicios según la búsqueda
-  const filteredServices = sponsorData
-    ? sponsorData.filter((service) =>
-        service.companyName.toLowerCase().includes(query.toLowerCase())
-      )
+  const filteredServices = shuffledSponsors
+    ? query
+      ? shuffledSponsors.filter((service) =>
+          service.companyName.toLowerCase().includes(query.toLowerCase())
+        )
+      : shuffledSponsors
     : []
-
-  const handleLoadMore = () => {
-    setVisibleSponsors((prev) => prev + 5)
-  }
 
   return (
     <>
-      <Breadcrumbs rootName='Comunidad' />
       <HeroSection
-        description='Descubre productos, servicios y ofertas de cursos exclusivos para la comunidad de Scrum LATAM.'
         image={
-          <ProductImg className='h-[200px] w-[300px] md:h-[455px] md:w-[455px]' />
+          <Image
+            alt=''
+            src={Banner}
+            className='mt-12 h-[200px] w-[300px] md:h-[455px] md:w-[620px]'
+          />
         }
-        linkTitle='Noticias, Blogs y Actualizaciones'
         title='Productos y servicios de nuestros Sponsor'
-      />
-      <NewsBlogsUpdates />
-
+      >
+        Descubre productos, servicios y ofertas de cursos exclusivos para la
+        comunidad de Scrum <span style={{ color: '#FE2E00' }}>Latam</span>.
+      </HeroSection>
       {/* Search Bar */}
-      <section className='mb-4 mt-0 flex w-full justify-center px-10 md:mb-6'>
+      <section className='mb-4 flex w-full justify-center px-10 md:mb-12 md:mt-12'>
         <div className='w-full max-w-[600px]'>
           <SearchBar
-            data={filteredServices}
+            data={sponsorData || []}
             placeholder='Busca servicio o producto'
             setQuery={setQuery}
           />
         </div>
       </section>
-
-      {/* Renderizar dinámicamente los servicios desde JSON con separación */}
-      <section className='mt-6 flex w-full flex-col gap-8'>
+      <section className='mb-10 mt-6 flex w-full flex-wrap items-center justify-center gap-1 xl:px-36'>
         {filteredServices.length > 0 ? (
-          filteredServices.slice(0, visibleSponsors).map((servicesData) => (
-            <ProductServiceFeature
+          filteredServices.map((servicesData: SponsorData) => (
+            <div
               key={servicesData.id}
-              sponsorId={servicesData.id}
-              title={servicesData.companyName}
-              flag={servicesData.user.country}
-              description={servicesData.description}
-              highlights={servicesData.specialization}
-              image={servicesData.bannerWeb}
-              linkTitle={servicesData.web}
-              socialUrls={{
-                linkedin:
-                  servicesData.socials.find((url) =>
-                    url.includes('linkedin')
-                  ) || undefined,
-                facebook:
-                  servicesData.socials.find((url) =>
-                    url.includes('facebook')
-                  ) || undefined,
-                instagram:
-                  servicesData.socials.find((url) =>
-                    url.includes('instagram')
-                  ) || undefined
-              }}
-            />
+              className='flex w-[350px] justify-center'
+            >
+              <SponsorCard
+                sponsorId={servicesData.id}
+                companyName={servicesData.companyName}
+                specialization={servicesData.specialization}
+                logo={servicesData.logo}
+              />
+            </div>
           ))
         ) : (
-          <p className='text-center text-xl text-gray-500'>
-            No se encontraron resultados.
+          <p className='col-span-full text-center text-xl text-gray-500'>
+            {query ? 'No se encontraron resultados.' : 'Cargando los sponsors.'}
           </p>
         )}
       </section>
-
-      {/* Botón de Cargar Más */}
-      {hasMore &&
-        filteredServices &&
-        filteredServices.length > visibleSponsors && (
-          <div className='my-4 flex justify-center'>
-            <button
-              onClick={handleLoadMore}
-              className='rounded-lg bg-[#FE2E00] px-6 py-2 font-darker-grotesque text-lg font-semibold text-white transition-colors hover:bg-[#e62a00]'
-            >
-              Cargar más
-            </button>
-          </div>
-        )}
+      <NewsBlogsUpdates />
     </>
   )
 }
