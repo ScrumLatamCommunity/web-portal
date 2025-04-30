@@ -752,3 +752,125 @@ export const ProductsServices: ProductsServicesItem[] = [
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
   }
 ]
+
+export const profilesTecnologia = [
+  {
+    name: 'Ruben Dario Romero Chica',
+    title: 'Fundador',
+    description: 'Creador y fundador de la comunidad SCRUM Latam',
+    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
+    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
+  },
+  {
+    name: 'Geornith Melo Ortiz',
+    title: 'Product Owner',
+    description: 'Experta en desarrollo de software y transformación digital',
+    countryFlagUrl: 'https://flagcdn.com/co.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FGeornith_Melo_Ortiz.jpg?alt=media&token=31faefd8-2bcf-4a06-8172-07867e13324b',
+    linkedinUrl: 'www.linkedin.com/in/geornith-melo-ortiz'
+  },
+  {
+    name: 'Majiruz Vargas',
+    title: 'UX/UI Designer',
+    description:
+      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
+    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FMajiruz_Vargas.jpg?alt=media&token=343f4f7b-f8c9-4165-85da-08647a7046a2',
+    linkedinUrl: 'https://www.linkedin.com/in/majiruz-vargas-majilustra/'
+  },
+  {
+    name: 'Fernando Campellone',
+    title: 'Fullstack Developer',
+    description:
+      'Desarrollador fullstack apasionado por las tecnologías web modernas',
+    countryFlagUrl: 'https://flagcdn.com/ar.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FFernando_C.jpg?alt=media&token=782a7e9b-3e78-4ef2-8f03-67381259a822',
+    linkedinUrl: 'https://www.linkedin.com/in/fernando-campellone-a57335232/'
+  },
+  {
+    name: 'David Morcillo Benavidez',
+    title: 'Fullstack Developer',
+    description:
+      'Desarrollador fullstack apasionado en crear soluciones robustas y ',
+    countryFlagUrl: 'https://flagcdn.com/co.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FAlejandro_Morcillo.jpg?alt=media&token=7c76c116-055f-49aa-938c-c7d577ac6044',
+    linkedinUrl:
+      'https://www.linkedin.com/in/david-morcillo-benavidez-aljo1996/'
+  }
+]
+
+export const profilesCOE = [
+  {
+    name: 'Ruben Dario Romero Chica',
+    title: 'Fundador',
+    description: 'Creador y fundador de la comunidad SCRUM Latam',
+    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
+    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
+  },
+  {
+    name: 'Karen Lara Ferrufino',
+    title: 'Scrum Master',
+    description: 'Facilitador del equipo y guardián de los principios ágiles',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FKaren_Lara.png?alt=media&token=db24f658-5e6e-46ac-bbff-e275b64e44a6',
+    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
+  },
+  {
+    name: 'Vanesa Dominguez',
+    title: 'Scrum Master',
+    description:
+      'Facilita el trabajo del equipo y promueve la mejora continua en la comunidad ágil',
+    countryFlagUrl: 'https://flagcdn.com/py.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FCoE%2FVanesa_Dominguez.jpeg?alt=media&token=fdde85c3-5b6f-4ece-9b22-8a9e8fd81e67',
+    linkedinUrl: 'https://www.linkedin.com/in/vane-dominguez/'
+  }
+]
+
+export const profilesCatalizador = [
+  {
+    name: 'Karen Lara Ferrufino',
+    title: 'Scrum Master',
+    description: 'Facilitador del equipo y guardián de los principios ágiles',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FKaren_Lara.png?alt=media&token=db24f658-5e6e-46ac-bbff-e275b64e44a6',
+    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
+  },
+  {
+    name: 'David Oña',
+    title: 'Product Owner',
+    description: 'Visionario del impacto del Squad en la comunidad ágil.',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FDavid%20.jpg?alt=media&token=d894b9e0-f813-4a88-a730-8c86da79c56d',
+    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
+  },
+  {
+    name: 'Yenny Viviana Campos Diaz',
+    title: 'Team Member',
+    description: 'Ejecutores y co-creadores de iniciativas de cambio.',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FViviana.jpg?alt=media&token=0904d4ff-4dcb-4e71-afd3-8d1d80242f2d',
+    linkedinUrl: 'www.linkedin.com/in/viviana-campos-031a25142/'
+  },
+  {
+    name: 'Michelle Bonilla',
+    title: 'Team Member',
+    description: 'Ejecutores y co-creadores de iniciativas de cambio.',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FMichelleBonilla.jpg?alt=media&token=b6d9b0c4-a2ca-4c96-baae-1f94e8bda72d',
+    linkedinUrl: 'www.linkedin.com/in/joyamichelle'
+  }
+]

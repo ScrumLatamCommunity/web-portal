@@ -9,99 +9,11 @@ import MountainImg from '@/assets/mountainImg'
 import ProfileSection from '@/app/community/components/profileSection'
 import JoinCommunity from '@/app/community/components/joinSection'
 import Breadcrumbs from '@/app/community/components/breadcrumbs'
-
-const profilesTecnologia = [
-  {
-    name: 'Ruben Dario Romero Chica',
-    title: 'Fundador',
-    description: 'Creador y fundador de la comunidad SCRUM Latam',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FRuben.jpg?alt=media&token=b4607afc-b5c6-4b94-890a-312231e7aa16',
-    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
-  },
-  {
-    name: 'Majiruz Vargas',
-    title: 'UX/UI Designer',
-    description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FMajiruz_Vargas.jpeg?alt=media&token=5f61150b-ea70-4ff8-bc68-d0f49ce39971',
-    linkedinUrl: 'https://www.linkedin.com/in/majiruz-vargas-majilustra/'
-  },
-  {
-    name: 'Fernando Campellone',
-    title: 'Fullstack Developer',
-    description:
-      'Desarrollador fullstack apasionado por las tecnologías web modernas',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FFernandoCampellone.jpg?alt=media&token=98160cee-e1aa-48d2-ae61-08405079f5df',
-    linkedinUrl: 'https://www.linkedin.com/in/fernando-campellone-a57335232/'
-  },
-  {
-    name: 'David Morcillo Benavidez',
-    title: 'Fullstack Developer',
-    description:
-      'Desarrollador fullstack apasionado por las tecnologías web modernas',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FAlejandro_Morcillo.jpg?alt=media&token=26ecc8ae-527e-4eff-91d4-5cb199b4c102',
-    linkedinUrl:
-      'https://www.linkedin.com/in/david-morcillo-benavidez-aljo1996/'
-  },
-  {
-    name: 'Geornith Melo Ortiz',
-    title: 'Product Owner',
-    description: 'Experta en desarrollo de software y transformación digital',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FGeornith_Melo_Ortiz.jpg?alt=media&token=e53d32c9-69d6-4de3-ab11-1292332a7b99',
-    linkedinUrl: 'www.linkedin.com/in/geornith-melo-ortiz'
-  }
-]
-
-const profilesCOE = [
-  {
-    name: 'Perfil COE',
-    title: 'COE',
-    description: 'Descricion perfil COE',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
-    name: 'Perfil COE',
-    title: 'COE',
-    description: 'Descricion perfil COE',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
-    name: 'Perfil COE',
-    title: 'COE',
-    description: 'Descricion perfil COE',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  }
-]
-
-const profilesCatalizador = [
-  {
-    name: 'Perfil Catalizador',
-    title: 'Catalizador',
-    description: 'Descricion perfil Catalizador',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
-    name: 'Perfil Catalizador',
-    title: 'Catalizador',
-    description: 'Descricion perfil Catalizador',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2Femoji_user_blue.svg?alt=media&token=d3a4b3b8-49e0-40f0-a71d-a00f5224f46e',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  }
-]
+import {
+  profilesCatalizador,
+  profilesCOE,
+  profilesTecnologia
+} from '@/data/data'
 
 export default function Squads() {
   return (
@@ -132,8 +44,8 @@ export default function Squads() {
       />
       <ProfileSection profiles={profilesTecnologia} />
       <SquadFeature
-        description='Diseñar y desarrollar cursos, talleres, promover la formación de líderes ágiles y Fomentar el aprendizaje continuo.'
-        descriptionMiddle='Ser el líder en la generación de experiencias en formación y capacitación de alta calidad para la comunidad en Latinoamérica, impulsando el conocimiento y la adopción de prácticas ágiles.'
+        description='Acompañamos y guiamos a los equipos en la adopción de Scrum, facilitamos espacios de reflexión y aprendizaje, diseñamos experiencias formativas, promovemos la experimentación ágil y compartimos conocimientos para construir una cultura organizacional centrada en la mejora continua y el valor.'
+        descriptionMiddle='Ser el motor del cambio cultural y de la evolución ágil dentro de la comunidad, a través de la promoción de prácticas Scrum efectivas que fortalezcan la colaboración, el aprendizaje continuo y la mejora de los equipos.'
         image={<BooknoteImg className='h-[268px] w-[393px]' />}
         linkTitle='Squad Catalizador'
         title='¿Qué hacemos?'

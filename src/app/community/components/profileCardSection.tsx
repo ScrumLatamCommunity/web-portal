@@ -5,6 +5,7 @@ import Image from 'next/image'
 export default function ProfileCard({
   linkedinUrl,
   description,
+  countryFlagUrl,
   imageUrl,
   name,
   title
@@ -14,6 +15,7 @@ export default function ProfileCard({
       <div className='mx-auto mb-5 h-36 w-36 overflow-hidden rounded-full'>
         <Image src={imageUrl} alt='Foto perfil' width={144} height={144} />
       </div>
+      <Image src={countryFlagUrl} alt='Pais' width={40} height={40} />
       <h2 className='mb-1 font-darker-grotesque text-xl font-semibold text-[#072356]'>
         {name}
       </h2>

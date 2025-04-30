@@ -9,6 +9,7 @@ interface ProfileSectionProps {
     name: string
     title: string
     description: string
+    countryFlagUrl: string
     imageUrl: string
     linkedinUrl: string
   }[]
@@ -58,6 +59,7 @@ export default function ProfileSection({ profiles }: ProfileSectionProps) {
             key={index}
             name={profile.name}
             title={profile.title}
+            countryFlagUrl={profile.countryFlagUrl}
             description={profile.description}
             imageUrl={profile.imageUrl}
             linkedinUrl={profile.linkedinUrl}
