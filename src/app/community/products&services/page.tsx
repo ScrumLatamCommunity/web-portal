@@ -75,24 +75,6 @@ export default function Squads() {
 
   return (
     <>
-      <div className='absolute left-[-4rem] top-[400px] hidden h-[473px] w-[473px] lg:flow-root'>
-        <Image
-          alt='ellipse'
-          className='h-[516px] w-[800px]'
-          height={200}
-          src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2010.svg?alt=media&token=ba52aa7c-1cd0-433f-8ced-93442b38c647'
-          width={200}
-        />
-      </div>
-      <div className='absolute bottom-[-42rem] left-[1280px] hidden lg:flow-root'>
-        <Image
-          alt='ellipse2'
-          className='h-[516px] w-[800px]'
-          height={200}
-          src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/DiscoverCommunity%2FEllipse%2011.svg?alt=media&token=9a4c6557-3de7-4595-95fb-153d5877ee04'
-          width={200}
-        />
-      </div>
       <HeroSection
         image={
           <Image

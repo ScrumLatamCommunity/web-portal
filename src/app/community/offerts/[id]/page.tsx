@@ -180,7 +180,11 @@ export default function Offerts() {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <LinkedInIcon height={20} width={20} />
+                <LinkedInIcon
+                  className='text-[#FE2E00]'
+                  height={20}
+                  width={20}
+                />
               </a>
               <a
                 className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
@@ -204,7 +208,7 @@ export default function Offerts() {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <FacebookIcon />
+                <FacebookIcon className='text-[#FE2E00]' />
               </a>
               <div
                 onClick={() => {
