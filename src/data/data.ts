@@ -765,7 +765,7 @@ export const profilesTecnologia = [
   },
   {
     name: 'Geornith Melo Ortiz',
-    title: 'Product Owner',
+    title: 'Scrum Master',
     description: 'Experta en desarrollo de software y transformación digital',
     countryFlagUrl: 'https://flagcdn.com/co.svg',
     imageUrl:
@@ -850,7 +850,7 @@ export const profilesCatalizador = [
     name: 'David Oña',
     title: 'Product Owner',
     description: 'Visionario del impacto del Squad en la comunidad ágil.',
-    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    countryFlagUrl: 'https://flagcdn.com/ec.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FDavid%20.jpg?alt=media&token=d894b9e0-f813-4a88-a730-8c86da79c56d',
     linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
@@ -859,7 +859,7 @@ export const profilesCatalizador = [
     name: 'Yenny Viviana Campos Diaz',
     title: 'Team Member',
     description: 'Ejecutores y co-creadores de iniciativas de cambio.',
-    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    countryFlagUrl: 'https://flagcdn.com/co.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FViviana.jpg?alt=media&token=0904d4ff-4dcb-4e71-afd3-8d1d80242f2d',
     linkedinUrl: 'www.linkedin.com/in/viviana-campos-031a25142/'
@@ -868,7 +868,7 @@ export const profilesCatalizador = [
     name: 'Michelle Bonilla',
     title: 'Team Member',
     description: 'Ejecutores y co-creadores de iniciativas de cambio.',
-    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    countryFlagUrl: 'https://flagcdn.com/sv.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FMichelleBonilla.jpg?alt=media&token=b6d9b0c4-a2ca-4c96-baae-1f94e8bda72d',
     linkedinUrl: 'www.linkedin.com/in/joyamichelle'

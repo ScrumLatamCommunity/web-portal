@@ -28,8 +28,8 @@ export default function Squads() {
         title='¿Quienes somos?'
       />
       <SquadFeature
-        description='Diseñar y desarrollar cursos, talleres, promover la formación de líderes ágiles y Fomentar el aprendizaje continuo.'
-        descriptionMiddle='Ser el líder en la generación de experiencias en formación y capacitación de alta calidad para la comunidad en Latinoamérica, impulsando el conocimiento y la adopción de prácticas ágiles.'
+        description='Nos encargaremos de brindar soporte y asesoría constante, asegurando que cada equipo y proyecto esté alineado con los principios y la visión de la comunidad.'
+        descriptionMiddle='Facilitar la innovación y la mejora continua. Queremos establecer un entorno organizado y estructurado que permita a todos los miembros colaborar de manera efectiva, compartir conocimientos y aplicar las mejores prácticas ágiles. '
         image={<BooknoteImg className='h-[268px] w-[393px]' />}
         linkTitle='COE'
         title='¿Qué hacemos?'
