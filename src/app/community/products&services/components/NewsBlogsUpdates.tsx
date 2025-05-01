@@ -48,17 +48,13 @@ export default function NewsBlogsUpdates() {
 
   return (
     <div
-      className='relative mx-auto my-12 flex w-full max-w-[1980px] flex-col items-center justify-center'
+      className='relative mx-auto my-20 flex w-full max-w-[1980px] flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       <div className='relative z-0 flex flex-col overflow-hidden bg-[#D9D9D9] shadow-xl md:flex-row-reverse'>
-        <div className='relative h-[422px] w-full md:h-[460px] md:w-[45%]'>
-          {/* Líneas Roja y Naranja - Más gruesas y juntas */}
-          <div className='absolute left-1 top-[-10px] z-20 hidden h-[140%] w-[25px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#E72A00] md:block'></div>
-          <div className='absolute -left-5 top-[-10px] z-20 hidden h-[140%] w-[25px] origin-top-left rotate-[-13deg] scale-y-[1.3] bg-[#FE5833] md:block'></div>
-
+        <div className='relative h-[560px] w-full md:h-[460px] md:w-[45%]'>
           {/* Imagen Cortada Correctamente */}
           <div className='relative z-10 h-full w-full overflow-hidden'>
             <img
@@ -67,27 +63,13 @@ export default function NewsBlogsUpdates() {
               src={currentNews.image}
               style={{
                 margin: 0,
-                objectFit: 'cover',
-                objectPosition: 'right' // Corta la parte izquierda
+                objectFit: 'cover'
               }}
             />
           </div>
 
           {/* 🔥 Texto en pantallas pequeñas */}
           <div className='bg-black absolute bottom-2 left-0 z-30 w-full bg-opacity-50 px-16 py-4 text-white md:hidden'>
-            <img
-              src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FAgile%20Talent%202.png?alt=media&token=1a7b04af-5b67-4474-8b7c-b7e0faabfd7f'
-              alt='Agile Talent Club'
-              className='h-20 w-20 rounded-full'
-            />
-            <div className='inline-flex items-center gap-2 rounded-xl bg-[#E6EAF0] px-3 py-1'>
-              {IconComponent && (
-                <IconComponent className='text-12px h-6 w-6 font-karla text-[#345081]' />
-              )}
-              <p className='text-12px font-karla font-bold text-[#345081]'>
-                {currentNews.type}
-              </p>
-            </div>
             <h1 className='font-darker-grotesque text-[25px] font-bold text-white'>
               {currentNews.title}
             </h1>
@@ -97,25 +79,6 @@ export default function NewsBlogsUpdates() {
 
         {/* Contenedor de Texto y Detalles */}
         <div className='m-0 w-full flex-col items-start bg-transparent md:flex md:w-[39%] md:pt-[2rem]'>
-          <div className='hidden items-center gap-4 md:mb-6 md:mt-8 md:flex md:px-2 md:py-0'>
-            <img
-              src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FagileTalentClubImg.png?alt=media&token=f7fc7141-a29e-4b13-a025-e70096604333'
-              alt='Agile Talent Club'
-              className='h-20 w-20 rounded-full'
-            />
-            <div className='inline-flex items-center gap-1 rounded-xl bg-[#E6EAF0] px-3 py-0'>
-              {/* Ícono del tipo */}
-              {IconComponent && (
-                <IconComponent className='h-6 w-6 text-[#345081]' />
-              )}
-
-              {/* Texto del tipo */}
-              <p className='font-karla font-bold leading-3 text-[#345081] md:text-6 md:leading-9'>
-                {currentNews.type}
-              </p>
-            </div>
-          </div>
-
           {/* Contenido Principal */}
           <div className='hidden flex-col md:flex'>
             <h1 className='font-darker-grotesque text-3xl font-bold text-[#04122D] md:px-2 md:pb-6 md:text-[36px]'>

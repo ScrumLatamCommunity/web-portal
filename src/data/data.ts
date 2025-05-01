@@ -731,7 +731,7 @@ export const ProductsServices: ProductsServicesItem[] = [
     title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
     text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
   },
   {
     id: 2,
@@ -740,7 +740,7 @@ export const ProductsServices: ProductsServicesItem[] = [
     title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
     text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
   },
   {
     id: 3,
@@ -749,6 +749,6 @@ export const ProductsServices: ProductsServicesItem[] = [
     title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
     text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2FproductVector.png?alt=media&token=63516384-db36-44b2-92e0-83a8550ac657'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
   }
 ]
