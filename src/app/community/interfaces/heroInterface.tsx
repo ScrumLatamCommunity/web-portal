@@ -1,6 +1,6 @@
 export interface HeroInterface {
-  description: string
   image: React.ReactNode
-  linkTitle: string
+  description?: string
   title: string
+  linkTitle?: string
 }

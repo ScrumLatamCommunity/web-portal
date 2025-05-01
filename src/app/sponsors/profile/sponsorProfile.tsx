@@ -177,11 +177,13 @@ export default function SponsorProfile() {
               <Skeleton className='h-[39px] w-full' />
             ) : (
               <p
-                className='h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
+                className='min-h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
                 id='specialization'
               >
-                {sponsorData?.specialization ||
-                  'No hay área de especialización'}
+                {Array.isArray(sponsorData?.specialization)
+                  ? sponsorData.specialization.join(', ')
+                  : sponsorData?.specialization ||
+                    'No hay área de especialización'}
               </p>
             )}
           </div>
