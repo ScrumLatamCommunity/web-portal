@@ -766,11 +766,22 @@ export const profilesTecnologia = [
   {
     name: 'Geornith Melo Ortiz',
     title: 'Scrum Master',
-    description: 'Experta en desarrollo de software y transformación digital',
+    description:
+      'Facilitadora de equipos ágiles, enfocada en la mejora continua y la entrega de valor',
     countryFlagUrl: 'https://flagcdn.com/co.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FGeornith_Melo_Ortiz.jpg?alt=media&token=31faefd8-2bcf-4a06-8172-07867e13324b',
     linkedinUrl: 'www.linkedin.com/in/geornith-melo-ortiz'
+  },
+  {
+    name: 'Rosita Jhaneth Chichipe Falen',
+    title: 'Product Owner',
+    description:
+      'Líder estratégica en productos digitales con foco en necesidades del usuario y visión de negocio',
+    countryFlagUrl: 'https://flagcdn.com/co.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRosita_Jhaneth_Chichipe_Falen.jpeg?alt=media&token=35f11502-fe26-4cb9-8ea7-8f24ab5b3b37',
+    linkedinUrl: 'https://www.linkedin.com/in/rosi-chichipe/'
   },
   {
     name: 'Majiruz Vargas',
