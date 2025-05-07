@@ -56,6 +56,7 @@ export interface ProductsServicesItem {
   type: string
   iconName: string
   title: string
+  sub_title: string
   text: string
   image: string
 }
@@ -728,26 +729,29 @@ export const ProductsServices: ProductsServicesItem[] = [
     id: 1,
     type: 'Noticia',
     iconName: 'globe',
-    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
-    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    title: ' Impulsando el Liderazgo Ágil en Scrum Latam',
+    sub_title: 'El respaldo que fortalece a una comunidad de líderes',
+    text: 'Gracias al apoyo estratégico, Scrum Latam puede seguir creciendo como un espacio de formación para nuevos líderes ágiles. Este respaldo permite crear experiencias de aprendizaje, generar conexiones entre profesionales y difundir las buenas prácticas de Scrum en toda la región. Haz clic aquí para conocer cómo estamos construyendo juntos un ecosistema más colaborativo e innovador.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
   },
   {
     id: 2,
-    type: 'Noticia',
-    iconName: 'globe',
-    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
-    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    type: 'Blog',
+    iconName: 'book',
+    title: 'Formar líderes comienza con creer en la comunidad',
+    sub_title: ' El crecimiento ágil necesita espacios que lo hagan posible',
+    text: 'En Scrum Latam creemos que el liderazgo nace del aprendizaje continuo y del contacto con una comunidad viva. El apoyo recibido nos permite generar oportunidades, abrir conversaciones y conectar a quienes transforman equipos a través de metodologías ágiles. Haz clic aquí para ser parte del cambio.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
   },
   {
     id: 3,
-    type: 'Noticia',
-    iconName: 'globe',
-    title: '¿Qué es el Liderazgo Ágil y Cómo Puede Transformar tu Equipo?',
-    text: 'Conoce nuestro artículo sobre liderazgo ágil y descubre cómo esta metodología puede mejorar la comunicación, impulsar la productividad y llevar a tu equipo al siguiente nivel. Haz clic aquí para leer más',
+    type: 'Actualización',
+    iconName: 'bell',
+    title: ' Construyendo el futuro del agilismo en Latinoamérica',
+    sub_title: ' Cuando una comunidad crece, el liderazgo también lo hace',
+    text: 'El impacto de Scrum Latam no sería posible sin el impulso que permite llegar a más personas, más equipos y más países. Gracias a esta sinergia, podemos inspirar a nuevos líderes, crear contenido formativo y reforzar el compromiso con el crecimiento ágil en toda la región. Haz clic aquí para conocer más.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
   }
