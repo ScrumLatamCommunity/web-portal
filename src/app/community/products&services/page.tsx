@@ -89,7 +89,7 @@ export default function Squads() {
         comunidad de Scrum <span style={{ color: '#FE2E00' }}>Latam</span>.
       </HeroSection>
       {/* Search Bar */}
-      <section className='mb-4 mt-0 flex w-full justify-center px-10 md:mb-6'>
+      <section className='mb-4 flex w-full justify-center px-10 md:mb-12 md:mt-12'>
         <div className='w-full max-w-[600px]'>
           <SearchBar
             data={sponsorData || []}
