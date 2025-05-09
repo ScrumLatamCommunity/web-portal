@@ -12,6 +12,9 @@ import Image from 'next/image'
 
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
+  const [shuffledSponsors, setShuffledSponsors] = useState<
+    SponsorData[] | null
+  >(null)
   const { token } = useAuth()
   const [query, setQuery] = useState<string>('')
 
@@ -89,7 +92,7 @@ export default function Squads() {
           </p>
         )}
       </section>
-      {/* <NewsBlogsUpdates /> */}
+      <NewsBlogsUpdates />
     </>
   )
 }

@@ -1,22 +1,21 @@
 import { ProfileCardProps } from '@/app/community/interfaces/profileCardInterface'
-import GithubIcon from '@/assets/githubIcon'
-import BehanceIcon from '@/assets/behanceIcon'
-import InstagramIcon from '@/assets/instagramIcon'
+import LinkedInIcon from '@/assets/LinkedinIcon'
+import Image from 'next/image'
 
 export default function ProfileCard({
-  behanceUrl,
+  linkedinUrl,
   description,
-  githubUrl,
-  image,
-  instagramUrl,
+  countryFlagUrl,
+  imageUrl,
   name,
   title
 }: ProfileCardProps) {
   return (
     <div className='mx-auto flex min-h-[500px] w-fit max-w-[250px] flex-col items-center justify-center rounded-lg p-5 text-center font-sans'>
       <div className='mx-auto mb-5 h-36 w-36 overflow-hidden rounded-full'>
-        {image}
+        <Image src={imageUrl} alt='Foto perfil' width={144} height={144} />
       </div>
+      <Image src={countryFlagUrl} alt='Pais' width={40} height={40} />
       <h2 className='mb-1 font-darker-grotesque text-xl font-semibold text-[#072356]'>
         {name}
       </h2>
@@ -27,37 +26,15 @@ export default function ProfileCard({
         {description}
       </p>
       <div className='flex justify-center space-x-4'>
-        {githubUrl && (
+        {linkedinUrl && (
           <a
             className='text-[#FE2E00] transition-colors hover:text-red-800'
-            href={githubUrl}
+            href={linkedinUrl}
             rel='noopener noreferrer'
             target='_blank'
           >
-            <GithubIcon height={20} width={20} />
-            <span className='sr-only'>GitHub</span>
-          </a>
-        )}
-        {behanceUrl && (
-          <a
-            className='text-[#FE2E00] transition-colors hover:text-red-800'
-            href={behanceUrl}
-            rel='noopener noreferrer'
-            target='_blank'
-          >
-            <BehanceIcon height={20} width={20} />
+            <LinkedInIcon height={20} width={20} />
             <span className='sr-only'>Behance</span>
-          </a>
-        )}
-        {instagramUrl && (
-          <a
-            className='text-[#FE2E00] transition-colors hover:text-red-800'
-            href={instagramUrl}
-            rel='noopener noreferrer'
-            target='_blank'
-          >
-            <InstagramIcon height={20} width={20} />
-            <span className='sr-only'>Instagram</span>
           </a>
         )}
       </div>

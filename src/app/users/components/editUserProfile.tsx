@@ -215,7 +215,7 @@ export default function EditUserProfile({
             <label className='text-[21px] font-bold text-[#000000]'>
               Foto de Perfil
             </label>
-            <ImageUpload onChange={handleChange} />
+            {/* <ImageUpload onChange={handleChange} /> */}
           </div>
 
           <div
