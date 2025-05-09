@@ -229,7 +229,7 @@ export default function Offerts() {
         </h2>
       </div>
 
-      <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
+      <div className='flex w-full flex-col items-center'>
         <div className='grid grid-cols-1 justify-items-center gap-y-8 py-8 md:grid-cols-3'>
           {sponsor.offers
             .filter((offert) => offert.status === 'ACTIVE')

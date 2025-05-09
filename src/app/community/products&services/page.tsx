@@ -12,20 +12,8 @@ import Image from 'next/image'
 
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
-  const [shuffledSponsors, setShuffledSponsors] = useState<
-    SponsorData[] | null
-  >(null)
   const { token } = useAuth()
   const [query, setQuery] = useState<string>('')
-
-  const shuffleArray = (array: SponsorData[]) => {
-    const newArray = [...array]
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-    }
-    return newArray
-  }
 
   const fetchSponsorData = async () => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
@@ -41,36 +29,18 @@ export default function Squads() {
 
     const data = await response.json()
     setSponsorData(data)
-
-    const now = new Date().getTime()
-    const lastShuffleTime = localStorage.getItem('lastShuffleTime')
-    const shuffledData = localStorage.getItem('shuffledData')
-    const oneHour = 60 * 60 * 1000
-
-    if (
-      lastShuffleTime &&
-      shuffledData &&
-      now - parseInt(lastShuffleTime) < oneHour
-    ) {
-      setShuffledSponsors(JSON.parse(shuffledData))
-    } else {
-      const shuffled = shuffleArray(data)
-      localStorage.setItem('lastShuffleTime', now.toString())
-      localStorage.setItem('shuffledData', JSON.stringify(shuffled))
-      setShuffledSponsors(shuffled)
-    }
   }
 
   useEffect(() => {
     fetchSponsorData()
   }, [token])
 
-  const filteredServices = shuffledSponsors
+  const filteredServices = sponsorData
     ? query
-      ? shuffledSponsors.filter((service) =>
+      ? sponsorData.filter((service) =>
           service.companyName.toLowerCase().includes(query.toLowerCase())
         )
-      : shuffledSponsors
+      : sponsorData
     : []
 
   return (
@@ -93,7 +63,7 @@ export default function Squads() {
         <div className='w-full max-w-[600px]'>
           <SearchBar
             data={sponsorData || []}
-            placeholder='Busca servicio o producto'
+            placeholder='Busca un sponsor'
             setQuery={setQuery}
           />
         </div>
@@ -119,7 +89,7 @@ export default function Squads() {
           </p>
         )}
       </section>
-      <NewsBlogsUpdates />
+      {/* <NewsBlogsUpdates /> */}
     </>
   )
 }

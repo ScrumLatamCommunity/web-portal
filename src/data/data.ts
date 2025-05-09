@@ -687,6 +687,16 @@ export const superAdminDashboard: SuperAdminDashboard[] = [
   }
 ]
 
+export const userDashboard = [
+  {
+    id: 1,
+    name: 'Mi Perfil',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
+    link: '/users'
+  }
+]
+
 export const sponsorDashboard = [
   {
     id: 1,
