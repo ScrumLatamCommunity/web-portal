@@ -2,8 +2,6 @@ const GlobeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
     xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
     viewBox='0 0 24 24'
     fill='none'
     stroke='currentColor'
@@ -11,6 +9,7 @@ const GlobeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     strokeLinecap='round'
     strokeLinejoin='round'
     className={`feather feather-globe ${props.className}`}
+    {...props}
   >
     <circle cx='12' cy='12' r='10'></circle>
     <line x1='2' y1='12' x2='22' y2='12'></line>
