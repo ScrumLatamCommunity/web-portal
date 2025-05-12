@@ -66,27 +66,27 @@ export default function OffertCard({
         />
       </div>
       <div className='flex flex-grow flex-col p-5'>
-        <h1 className='pb-2 font-darker-grotesque text-[26px] font-darker-grotesque-700 leading-[30px] text-[#FE2E00]'>
+        <h1 className='pb-2 font-darker-grotesque text-[26px] font-darker-grotesque-700 leading-[30px] text-[#082965]'>
           {title}
         </h1>
-        <h2 className='pb-3 font-darker-grotesque text-[20px] font-darker-grotesque-700 leading-[24px] text-[#061D48]'>
+        <h2 className='pb-3 font-darker-grotesque text-[20px] font-darker-grotesque-700 leading-[24px] text-[#082965]'>
           {discount}
         </h2>
         <div
-          className='mb-4 font-karla text-[16px] font-karla-400 text-gray-700'
+          className='mb-4 font-karla text-[16px] font-karla-400 text-[#082965]'
           dangerouslySetInnerHTML={{ __html: description }}
         />
         <div className='mt-auto'>
-          <p className='py-1'>
+          <p className='py-1 text-[#082965]'>
             <strong>Fechas:</strong> {fromDate} - {untilDate}
           </p>
-          <p className='py-1'>
+          <p className='py-1 text-[#082965]'>
             <strong>Hora:</strong> {time}
           </p>
-          <p className='py-1'>
+          <p className='py-1 text-[#082965]'>
             <strong>Lugar:</strong> {place}
           </p>
-          <p className='py-1'>
+          <p className='py-1 text-[#082965]'>
             <strong>Dirigido a:</strong> {intendedFor}
           </p>
           <Link
@@ -95,8 +95,8 @@ export default function OffertCard({
             rel='noopener noreferrer'
           >
             <div className='mt-4 flex flex-row items-center'>
-              <ArrowUpRight />
-              <button className='pb-2 font-darker-grotesque text-[24px] font-darker-grotesque-600 text-[#FE5833] hover:underline'>
+              <ArrowUpRight className='text-[#082965]' />
+              <button className='pb-2 font-darker-grotesque text-[24px] font-darker-grotesque-600 text-[#082965] hover:underline'>
                 Inscribirse ahora
               </button>
             </div>

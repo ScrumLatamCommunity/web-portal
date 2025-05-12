@@ -299,7 +299,11 @@ export default function SponsorProfile() {
               Web
             </label>
             <div className='mb-6 flex flex-row'>
-              <GlobeIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <GlobeIcon
+                className='my-1 mr-2 stroke-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               {isLoading ? (
                 <Skeleton className='h-[39px] w-[461px]' />
               ) : (
@@ -320,7 +324,11 @@ export default function SponsorProfile() {
               Whatsapp
             </label>
             <div className='flex flex-row'>
-              <PhoneIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <PhoneIcon
+                className='my-1 mr-2 stroke-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               {isLoading ? (
                 <Skeleton className='h-[39px] w-[461px]' />
               ) : (
@@ -341,7 +349,11 @@ export default function SponsorProfile() {
               Redes Sociales
             </label>
             <div className='flex flex-row'>
-              <LinkedInIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <LinkedInIcon
+                className='my-1 mr-2 text-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               {isLoading ? (
                 <Skeleton className='h-[39px] w-[497px]' />
               ) : (
@@ -354,7 +366,11 @@ export default function SponsorProfile() {
               )}
             </div>
             <div className='flex flex-row'>
-              <InstagramIconSponsors className='my-2 mr-2 stroke-[#FE2E00]' />
+              <InstagramIconSponsors
+                className='my-1 mr-2 text-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               {isLoading ? (
                 <Skeleton className='h-[39px] w-[497px]' />
               ) : (
@@ -367,7 +383,11 @@ export default function SponsorProfile() {
               )}
             </div>
             <div className='flex flex-row'>
-              <FacebookIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <FacebookIcon
+                className='my-1 mr-2 text-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               {isLoading ? (
                 <Skeleton className='h-[39px] w-[497px]' />
               ) : (

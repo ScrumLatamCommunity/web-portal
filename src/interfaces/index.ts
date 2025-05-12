@@ -28,3 +28,14 @@ export interface SponsorData {
     country: string
   }
 }
+
+export interface UserData {
+  id: string
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  country: string
+  membership: string
+  createdAt: string
+}

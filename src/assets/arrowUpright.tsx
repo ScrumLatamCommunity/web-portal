@@ -9,14 +9,14 @@ export default function ArrowUpRight({ className }: { className?: string }) {
     >
       <path
         d='M7 17L17 7'
-        stroke='#FE2E00'
+        stroke='#082965'
         strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'
       />
       <path
         d='M7 7H17V17'
-        stroke='#FE2E00'
+        stroke='#082965'
         strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'

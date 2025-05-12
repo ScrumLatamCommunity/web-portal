@@ -14,6 +14,8 @@ import { flags } from '@/data/data'
 import { Pagination } from '@/app/home//components/Pagination'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
+import AboutUs from '../components/svg/about-us'
+import Certificates from '../components/svg/certificates'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -45,6 +47,10 @@ export default function Offerts() {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [sponsor, setSponsor] = useState<Sponsor | null>(null)
+  const [activeSection, setActiveSection] = useState<'about' | 'certificates'>(
+    'about'
+  )
+
   const flagData = flags.find((item) => item.name === sponsor?.user.country)
   const flagUrl = flagData ? flagData.flag : ''
   const { selectedSponsorId } = useAuth()
@@ -117,12 +123,12 @@ export default function Offerts() {
           width={1200}
         />
       </div>
-      <div className='flex flex-col bg-gradient-to-br from-[#e0eafc] to-[#1B6AF400] md:pt-10'>
+      <div className='flex flex-col items-center md:pr-80 md:pt-10'>
         <div className='flex flex-row 2xl:ml-[280px]'>
           <div className='md:mr-8'>
             <Image
               alt='Offerts'
-              className='m-4 rounded-full bg-white md:h-[175px] md:w-[175px]'
+              className='m-4 rounded-full bg-white md:h-[300px] md:w-[300px]'
               height={1800}
               src={sponsor.logo}
               width={1800}
@@ -130,22 +136,17 @@ export default function Offerts() {
           </div>
           <div className='mt-5 flex w-full flex-col pl-6'>
             <div className='flex flex-row items-center'>
-              <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold md:mr-4 md:text-[56px]'>
+              <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold text-[#082965] md:mr-4 md:text-[80px]'>
                 {sponsor.companyName}
               </h1>
               <Image
-                className='h-[20px] md:mt-3 md:h-[30px] md:w-[50px]'
+                className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
                 src={flagUrl}
                 alt={'flags'}
                 width={30}
                 height={10}
               />
             </div>
-            <p className='mb-2 font-roboto text-[16px] font-normal md:mb-3 md:text-[26px]'>
-              {Array.isArray(sponsor.specialization)
-                ? sponsor.specialization.join(', ')
-                : sponsor?.specialization || 'No hay área de especialización'}
-            </p>
             <div className='mb-6 flex flex-row gap-2 md:gap-4'>
               <div
                 onClick={() => {
@@ -154,12 +155,12 @@ export default function Offerts() {
                     `Mail copiado al portapapeles: ${sponsor.user.email}`
                   )
                 }}
-                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
+                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
               >
-                <MailIcon />
+                <MailIcon className='text-[#082965]' height={40} width={40} />
               </div>
               <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
                 href={
                   sponsor.web.startsWith('http')
                     ? sponsor.web
@@ -168,10 +169,10 @@ export default function Offerts() {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <GlobeIcon className='text-[#FE2E00]' />
+                <GlobeIcon className='text-[#082965]' height={40} width={40} />
               </a>
               <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
                 href={
                   sponsor.socials[0].startsWith('http')
                     ? sponsor.socials[0]
@@ -181,13 +182,13 @@ export default function Offerts() {
                 target='_blank'
               >
                 <LinkedInIcon
-                  className='text-[#FE2E00]'
-                  height={20}
-                  width={20}
+                  className='text-[#082965]'
+                  height={40}
+                  width={40}
                 />
               </a>
               <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
                 href={
                   sponsor.socials[1].startsWith('http')
                     ? sponsor.socials[1]
@@ -196,10 +197,14 @@ export default function Offerts() {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <InstagramIcon height={20} width={20} />
+                <InstagramIcon
+                  className='text-[#082965]'
+                  height={40}
+                  width={40}
+                />
               </a>
               <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
                 href={
                   sponsor.socials[2].startsWith('http')
                     ? sponsor.socials[2]
@@ -208,7 +213,11 @@ export default function Offerts() {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <FacebookIcon className='text-[#FE2E00]' />
+                <FacebookIcon
+                  className='text-[#082965]'
+                  height={40}
+                  width={40}
+                />
               </a>
               <div
                 onClick={() => {
@@ -217,36 +226,96 @@ export default function Offerts() {
                     `Número copiado al portapapeles: ${sponsor.phone}`
                   )
                 }}
-                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[45px] md:w-[45px]'
+                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
               >
-                <PhoneIcon className='text-[#FE2E00]' height={20} width={20} />
+                <PhoneIcon className='text-[#082965]' height={35} width={35} />
               </div>
             </div>
+            {sponsor.specialization.map((item, index) => (
+              <p
+                key={index}
+                className='text-[24px] text-[#082965] before:mr-2 before:content-["●"]'
+              >
+                {item}
+              </p>
+            ))}
           </div>
         </div>
-        <h2 className='w-full pb-5 text-center font-darker-grotesque text-[22px] font-darker-grotesque-700 text-[#082965] md:pb-10 md:pt-6 2xl:text-[40px]'>
-          Nuestras Certificaciones, cursos y más
-        </h2>
       </div>
-
-      <div className='flex w-full flex-col items-center bg-[#FFEAE6]'>
-        <div className='grid grid-cols-1 justify-items-center gap-y-8 py-8 md:grid-cols-3'>
-          {sponsor.offers
-            .filter((offert) => offert.status === 'ACTIVE')
-            .map((offert, index) => (
-              <OffertCard key={index} {...offert} />
-            ))}
+      <div className='mb-0 mt-24 flex flex-row items-center justify-center gap-x-48'>
+        <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
+          <div className='relative flex h-full w-full flex-col items-center rounded-[50px] border-2 border-[#082965] px-5'>
+            <div className='absolute -top-20 z-10 flex flex-col rounded-full bg-white'>
+              <AboutUs className='rounded-full' />
+            </div>
+            <p className='mb-6 pt-24 text-[20px] text-[#082965]'>
+              Descubre la esencia de nuestra empresa y nuestro compromiso
+              contigo.
+            </p>
+            <button
+              onClick={() => setActiveSection('about')}
+              className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
+                activeSection === 'about'
+                  ? 'border-[#082965] bg-[#082965] text-white'
+                  : 'border-[#082965] bg-white text-[#082965]'
+              }`}
+            >
+              Sobre nosotros
+            </button>
+          </div>
         </div>
-
-        {isMobile && (
-          <Pagination
-            currentIndex={currentPage}
-            itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-            totalItems={sponsor.offers.length}
-          />
-        )}
+        <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
+          <div className='relative flex h-full w-full flex-col items-center rounded-[50px] border-2 border-[#082965] px-5'>
+            <div className='absolute -top-14 z-10 flex flex-col rounded-full bg-white'>
+              <Certificates className='rounded-full' />
+            </div>
+            <p className='mb-6 pt-24 text-[20px] text-[#082965]'>
+              Emitimos certificaciones que avalan tus conocimientos y
+              habilidades adquiridas.
+            </p>
+            <button
+              onClick={() => setActiveSection('certificates')}
+              className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
+                activeSection === 'certificates'
+                  ? 'border-[#082965] bg-[#082965] text-white'
+                  : 'border-[#082965] bg-white text-[#082965]'
+              }`}
+            >
+              Certificados
+            </button>
+          </div>
+        </div>
       </div>
+      {activeSection === 'about' && (
+        <div className='animate-fadeIn mt-16 flex items-center justify-center transition-opacity duration-500 ease-in-out'>
+          <div className='mb-10 flex w-[50%] scale-100 transform items-center justify-center rounded-3xl border-[2px] border-[#082965] p-3 transition-transform duration-500 ease-in-out'>
+            <div
+              className='text-[20px] leading-relaxed'
+              dangerouslySetInnerHTML={{ __html: sponsor.description }}
+            />
+          </div>
+        </div>
+      )}
+      {activeSection === 'certificates' && (
+        <div className='animate-fadeIn flex w-full flex-col items-center transition-opacity duration-500 ease-in-out'>
+          <div className='grid grid-cols-1 justify-items-center gap-y-8 py-8 md:grid-cols-3'>
+            {sponsor.offers
+              .filter((offert) => offert.status === 'ACTIVE')
+              .map((offert, index) => (
+                <OffertCard key={index} {...offert} />
+              ))}
+          </div>
+
+          {isMobile && (
+            <Pagination
+              currentIndex={currentPage}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+              totalItems={sponsor.offers.length}
+            />
+          )}
+        </div>
+      )}
     </section>
   )
 }

@@ -19,7 +19,10 @@ export default function CategoriesDropdown({
     'Liderazgo y Desarrollo Organizacional',
     'Tecnologías Emergentes',
     'Marketing Digital',
-    'Certificaciones Profesionales'
+    'Certificaciones Profesionales',
+    'Servicio al Cliente',
+    'Asistentes Administrativos',
+    'Agentes de Centro de Llamadas'
   ]
 
   const handleOptionClick = (option: string) => {
