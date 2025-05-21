@@ -307,7 +307,11 @@ export default function Offerts() {
               Insertar link para redireccionar al usuario donde desee.
             </label>
             <div className='mt-3 flex flex-row'>
-              <GlobeIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <GlobeIcon
+                className='my-1 mr-2 stroke-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               <input
                 className='ml-2 h-[39px] w-[555px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='post-web'

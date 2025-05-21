@@ -3,9 +3,11 @@ const AboutUs: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     width='186'
     height='161'
     viewBox='0 0 186 161'
-    fill='none'
+    fill='currentColor'
     xmlns='http://www.w3.org/2000/svg'
     xmlnsXlink='http://www.w3.org/1999/xlink'
+    className={`about-icon ${props.className}`}
+    {...props}
   >
     <rect width='185.188' height='161' fill='url(#pattern0_4686_15509)' />
     <defs>

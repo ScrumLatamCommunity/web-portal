@@ -16,6 +16,9 @@ import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
 import AboutUs from '../components/svg/about-us'
 import Certificates from '../components/svg/certificates'
+import YouTubeIcon from '@/assets/YoutubeIcon'
+import XIcon from '@/assets/twitter-x'
+import WhatsappIcon from '@/assets/whatsapp'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -27,6 +30,7 @@ interface Sponsor {
   bannerWeb: string
   logo: string
   phone: string
+  wppMessage: string
   web: string
   socials: string[]
   specialization: string[]
@@ -35,7 +39,7 @@ interface Sponsor {
   updatedAt: string
   userId: string
   user: {
-    country: string
+    country: string[]
     email: string
   }
   offers: any[]
@@ -51,8 +55,11 @@ export default function Offerts() {
     'about'
   )
 
-  const flagData = flags.find((item) => item.name === sponsor?.user.country)
-  const flagUrl = flagData ? flagData.flag : ''
+  const getFlagUrl = (country: string) => {
+    const flagData = flags.find((item) => item.name === country)
+    return flagData ? flagData.flag : ''
+  }
+
   const { selectedSponsorId } = useAuth()
 
   async function getData(sponsorId: string) {
@@ -139,13 +146,18 @@ export default function Offerts() {
               <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold text-[#082965] md:mr-4 md:text-[80px]'>
                 {sponsor.companyName}
               </h1>
-              <Image
-                className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
-                src={flagUrl}
-                alt={'flags'}
-                width={30}
-                height={10}
-              />
+              <div className='flex gap-2'>
+                {sponsor.user.country.map((country, index) => (
+                  <Image
+                    key={index}
+                    className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
+                    src={getFlagUrl(country)}
+                    alt={`flag-${country}`}
+                    width={30}
+                    height={10}
+                  />
+                ))}
+              </div>
             </div>
             <div className='mb-6 flex flex-row gap-2 md:gap-4'>
               <div
@@ -171,65 +183,86 @@ export default function Offerts() {
               >
                 <GlobeIcon className='text-[#082965]' height={40} width={40} />
               </a>
-              <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-                href={
-                  sponsor.socials[0].startsWith('http')
-                    ? sponsor.socials[0]
-                    : `https://${sponsor.socials[0]}`
-                }
-                rel='noopener noreferrer'
-                target='_blank'
-              >
-                <LinkedInIcon
-                  className='text-[#082965]'
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-                href={
-                  sponsor.socials[1].startsWith('http')
-                    ? sponsor.socials[1]
-                    : `https://${sponsor.socials[1]}`
-                }
-                rel='noopener noreferrer'
-                target='_blank'
-              >
-                <InstagramIcon
-                  className='text-[#082965]'
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-                href={
-                  sponsor.socials[2].startsWith('http')
-                    ? sponsor.socials[2]
-                    : `https://${sponsor.socials[2]}`
-                }
-                rel='noopener noreferrer'
-                target='_blank'
-              >
-                <FacebookIcon
-                  className='text-[#082965]'
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <div
-                onClick={() => {
-                  navigator.clipboard.writeText(sponsor.phone)
-                  toast.success(
-                    `Número copiado al portapapeles: ${sponsor.phone}`
+              {sponsor.socials.map((social, index) => {
+                const url = social.startsWith('http')
+                  ? social
+                  : `https://${social}`
+
+                const renderIcon = () => {
+                  if (social.includes('linkedin')) {
+                    return (
+                      <LinkedInIcon
+                        className='text-[#082965]'
+                        height={40}
+                        width={40}
+                      />
+                    )
+                  }
+                  if (social.includes('instagram')) {
+                    return (
+                      <InstagramIcon
+                        className='text-[#082965]'
+                        height={40}
+                        width={40}
+                      />
+                    )
+                  }
+                  if (social.includes('facebook')) {
+                    return (
+                      <FacebookIcon
+                        className='text-[#082965]'
+                        height={40}
+                        width={40}
+                      />
+                    )
+                  }
+                  if (social.includes('x.com')) {
+                    return (
+                      <XIcon
+                        className='text-[#082965]'
+                        height={40}
+                        width={40}
+                      />
+                    )
+                  }
+                  if (social.includes('youtube')) {
+                    return (
+                      <YouTubeIcon
+                        className='stroke-[#082965] text-white'
+                        height={40}
+                        width={40}
+                      />
+                    )
+                  }
+                  return (
+                    <span className='h-[30px] w-[30px] rounded-full bg-[#ccc]' />
                   )
-                }}
-                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                }
+
+                return (
+                  <a
+                    key={index}
+                    className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                    href={url}
+                    rel='noopener noreferrer'
+                    target='_blank'
+                  >
+                    {renderIcon()}
+                  </a>
+                )
+              })}
+              <a
+                href={`https://wa.me/${sponsor.phone}?text=${sponsor.wppMessage}`}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
               >
-                <PhoneIcon className='text-[#082965]' height={35} width={35} />
-              </div>
+                <WhatsappIcon
+                  className='text-[#082965]'
+                  height={40}
+                  width={40}
+                />
+              </a>
             </div>
             {sponsor.specialization.map((item, index) => (
               <p
@@ -244,11 +277,23 @@ export default function Offerts() {
       </div>
       <div className='mb-0 mt-24 flex flex-row items-center justify-center gap-x-48'>
         <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
-          <div className='relative flex h-full w-full flex-col items-center rounded-[50px] border-2 border-[#082965] px-5'>
+          <div
+            className={`relative flex h-full w-full flex-col items-center rounded-[50px] border-2 px-5 transition-colors duration-300 ${
+              activeSection === 'about' ? 'border-gray-400' : 'border-[#082965]'
+            }`}
+          >
             <div className='absolute -top-20 z-10 flex flex-col rounded-full bg-white'>
-              <AboutUs className='rounded-full' />
+              <AboutUs
+                className={`rounded-full transition-colors duration-300 ${
+                  activeSection === 'about' ? 'text-gray-400' : 'text-[#082965]'
+                }`}
+              />
             </div>
-            <p className='mb-6 pt-24 text-[20px] text-[#082965]'>
+            <p
+              className={`mb-6 pt-24 text-[20px] transition-colors duration-300 ${
+                activeSection === 'about' ? 'text-gray-400' : 'text-[#082965]'
+              }`}
+            >
               Descubre la esencia de nuestra empresa y nuestro compromiso
               contigo.
             </p>
@@ -256,8 +301,8 @@ export default function Offerts() {
               onClick={() => setActiveSection('about')}
               className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
                 activeSection === 'about'
-                  ? 'border-[#082965] bg-[#082965] text-white'
-                  : 'border-[#082965] bg-white text-[#082965]'
+                  ? 'border-gray-400 text-gray-400'
+                  : 'border-[#082965] text-[#082965]'
               }`}
             >
               Sobre nosotros
@@ -265,11 +310,29 @@ export default function Offerts() {
           </div>
         </div>
         <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
-          <div className='relative flex h-full w-full flex-col items-center rounded-[50px] border-2 border-[#082965] px-5'>
+          <div
+            className={`relative flex h-full w-full flex-col items-center rounded-[50px] border-2 px-5 transition-colors duration-300 ${
+              activeSection === 'certificates'
+                ? 'border-gray-400'
+                : 'border-[#082965]'
+            }`}
+          >
             <div className='absolute -top-14 z-10 flex flex-col rounded-full bg-white'>
-              <Certificates className='rounded-full' />
+              <Certificates
+                className={`rounded-full transition-colors duration-300 ${
+                  activeSection === 'certificates'
+                    ? 'text-gray-400'
+                    : 'text-[#082965]'
+                }`}
+              />
             </div>
-            <p className='mb-6 pt-24 text-[20px] text-[#082965]'>
+            <p
+              className={`mb-6 pt-24 text-[20px] transition-colors duration-300 ${
+                activeSection === 'certificates'
+                  ? 'text-gray-400'
+                  : 'text-[#082965]'
+              }`}
+            >
               Emitimos certificaciones que avalan tus conocimientos y
               habilidades adquiridas.
             </p>
@@ -277,8 +340,8 @@ export default function Offerts() {
               onClick={() => setActiveSection('certificates')}
               className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
                 activeSection === 'certificates'
-                  ? 'border-[#082965] bg-[#082965] text-white'
-                  : 'border-[#082965] bg-white text-[#082965]'
+                  ? 'border-gray-400 text-gray-400'
+                  : 'border-[#082965] text-[#082965]'
               }`}
             >
               Certificados
@@ -288,7 +351,7 @@ export default function Offerts() {
       </div>
       {activeSection === 'about' && (
         <div className='animate-fadeIn mt-16 flex items-center justify-center transition-opacity duration-500 ease-in-out'>
-          <div className='mb-10 flex w-[50%] scale-100 transform items-center justify-center rounded-3xl border-[2px] border-[#082965] p-3 transition-transform duration-500 ease-in-out'>
+          <div className='z-[-1] flex w-[100%] scale-100 transform animate-slideUp items-center justify-center rounded-t-3xl bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.7)] transition-all duration-1000 ease-in-out'>
             <div
               className='text-[20px] leading-relaxed'
               dangerouslySetInnerHTML={{ __html: sponsor.description }}
@@ -298,7 +361,7 @@ export default function Offerts() {
       )}
       {activeSection === 'certificates' && (
         <div className='animate-fadeIn flex w-full flex-col items-center transition-opacity duration-500 ease-in-out'>
-          <div className='grid grid-cols-1 justify-items-center gap-y-8 py-8 md:grid-cols-3'>
+          <div className='animate-fadeIn grid grid-cols-1 justify-items-center gap-y-8 py-8 transition-opacity duration-1000 ease-in-out md:grid-cols-3'>
             {sponsor.offers
               .filter((offert) => offert.status === 'ACTIVE')
               .map((offert, index) => (

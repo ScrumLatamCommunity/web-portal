@@ -4,13 +4,10 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
-import LinkedInIcon from '@/assets/LinkedinIcon'
-import InstagramIconSponsors from '@/assets/InstagramIconSponsors'
 import CategoriesDropdown from './categories-dropdown'
 import TextEditor from './TextEditor'
 import ImageUpload from './imageUpload'
 import CountriesDropdown from './countries-dropdown'
-import FacebookIcon from '@/assets/FacebookIcon'
 import { getCountryFlag } from '@/utils/getFlags'
 import { useAuth } from '@/app/context/AuthContext'
 
@@ -23,6 +20,7 @@ interface SponsorData {
   description: string
   web: string
   phone: string
+  wppMessage: string
   socials: string[]
   logo: string
   bannerWeb: string
@@ -34,7 +32,7 @@ interface SponsorData {
     lastName: string
     username: string
     email: string
-    country: string
+    country: string[]
   }
 }
 
@@ -44,11 +42,13 @@ interface SponsorUpdateData {
   description: string
   web: string
   phone: string
+  wppMessage: string
   socials: string[]
   logo: string
   bannerWeb: string
   bannerMobile: string
   status: string
+  country: string[]
 }
 
 type EditSponsorProfileProps = {
@@ -65,6 +65,9 @@ export default function EditSponsorProfile({
   const { token } = useAuth()
   const [formData, setFormData] = useState({
     ...sponsorData,
+    user: {
+      ...sponsorData.user
+    },
     logo: sponsorData.logo,
     bannerWeb: sponsorData.bannerWeb,
     bannerMobile: sponsorData.bannerMobile
@@ -92,12 +95,16 @@ export default function EditSponsorProfile({
       logo: data.logo || '',
       bannerWeb: data.bannerWeb || '',
       bannerMobile: data.bannerMobile || '',
-      status: data.status || 'ACTIVE'
+      status: data.status || 'ACTIVE',
+      wppMessage: data.wppMessage?.trim() || '',
+      country: data.user.country // Enviamos solo el array de países
     }
     return cleanedData
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -137,6 +144,15 @@ export default function EditSponsorProfile({
     setFormData((prev) => ({
       ...prev,
       bannerMobile: imageUrl
+    }))
+  }
+  const handleCountryChange = (countries: string[]) => {
+    setFormData((prev) => ({
+      ...prev,
+      user: {
+        ...prev.user,
+        country: countries
+      }
     }))
   }
 
@@ -250,6 +266,7 @@ export default function EditSponsorProfile({
               value={
                 new Date(sponsorData.createdAt).toISOString().split('T')[0]
               }
+              readOnly
             />
           </div>
         </div>
@@ -270,6 +287,7 @@ export default function EditSponsorProfile({
                     id='company-mail'
                     placeholder='ejemplo@scrumlatam.com'
                     value={sponsorData.user.email}
+                    readOnly
                   />
                 </div>
                 <div className='mx-[33px] flex flex-col gap-2'>
@@ -283,13 +301,13 @@ export default function EditSponsorProfile({
                     <Image
                       alt='flag'
                       className='my-2 mr-2 h-[21px] w-[38px] bg-[#D9D9D940]'
-                      src={getCountryFlag(sponsorData.user.country)}
+                      src={getCountryFlag(formData.user.country[0])}
                       width={100}
                       height={100}
                     ></Image>
                     <CountriesDropdown
-                      value={sponsorData.user.country}
-                      onChange={() => {}}
+                      value={formData.user.country}
+                      onChange={handleCountryChange}
                     />
                   </div>
                 </div>
@@ -330,30 +348,54 @@ export default function EditSponsorProfile({
               Actualizar link
             </button>
           </div>
-          <div className='mx-[33px] my-6 flex w-[540px] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-wpp'
-            >
-              Whatsapp
-            </label>
-            <div className='flex flex-row'>
-              <PhoneIcon
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='phone'
-                placeholder='+99 9999999999'
-                value={formData.phone}
-                onChange={handleInputChange}
-              />
+          <div className='flex flex-row'>
+            <div className='mx-[33px] my-6 flex w-[540px] flex-col gap-2'>
+              <label
+                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+                htmlFor='company-wpp'
+              >
+                Whatsapp
+              </label>
+              <div className='flex flex-row'>
+                <PhoneIcon
+                  className='my-1 mr-2 text-[#FE2E00]'
+                  height={30}
+                  width={30}
+                />
+                <input
+                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                  id='phone'
+                  placeholder='+99 9999999999'
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
-            <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
-              Actualizar teléfono
-            </button>
+            <div className='mx-[33px] my-6 flex w-[540px] flex-col gap-2'>
+              <label
+                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+                htmlFor='company-wpp'
+              >
+                Mensaje de Whatsapp
+              </label>
+              <div className='flex flex-col'>
+                <textarea
+                  className='ml-2 h-[150px] w-[497px] resize-none rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                  id='wppMessage'
+                  placeholder='Mensaje de Whatsapp'
+                  value={formData.wppMessage}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 500) {
+                      handleInputChange(e)
+                    }
+                  }}
+                  rows={1}
+                />
+                <span className='mt-1 text-sm text-gray-500'>
+                  {formData.wppMessage?.length || 0}/500 caracteres
+                </span>
+              </div>
+            </div>
           </div>
           <div className='mx-[33px] mb-6 flex w-[540px] flex-col gap-2'>
             <label
@@ -362,72 +404,59 @@ export default function EditSponsorProfile({
             >
               Redes Sociales
             </label>
-            <div className='flex flex-row'>
-              <LinkedInIcon
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='socials-linkedin'
-                placeholder='https://www.linkedin.com/ejemplo'
-                value={formData.socials[0]}
-                onChange={(e) => {
-                  const newSocials = [...formData.socials]
-                  newSocials[0] = e.target.value
+            {formData.socials.map((social, index) => (
+              <div key={index} className='flex flex-row items-center'>
+                <div className='my-1 mr-2 text-[#FE2E00]'>
+                  {index === 0 ? (
+                    <GlobeIcon height={30} width={30} />
+                  ) : index > 0 ? (
+                    <GlobeIcon height={30} width={30} />
+                  ) : (
+                    <GlobeIcon height={30} width={30} />
+                  )}
+                </div>
+                <input
+                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                  placeholder={`https://www.redsocial.com/ejemplo`}
+                  value={social}
+                  onChange={(e) => {
+                    const newSocials = [...formData.socials]
+                    newSocials[index] = e.target.value
+                    setFormData((prev) => ({
+                      ...prev,
+                      socials: newSocials
+                    }))
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    const newSocials = formData.socials.filter(
+                      (_, i) => i !== index
+                    )
+                    setFormData((prev) => ({
+                      ...prev,
+                      socials: newSocials
+                    }))
+                  }}
+                  className='ml-2 text-[#FE2E00] hover:text-[#FE5833]'
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <div className='flex justify-between'>
+              <button
+                onClick={() => {
                   setFormData((prev) => ({
                     ...prev,
-                    socials: newSocials
+                    socials: [...prev.socials, '']
                   }))
                 }}
-              />
+                className='font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
+              >
+                + Agregar red social
+              </button>
             </div>
-            <div className='flex flex-row'>
-              <InstagramIconSponsors
-                className='my-2 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='socials-instagram'
-                placeholder='https://www.instagram.com/ejemplo'
-                value={formData.socials[1]}
-                onChange={(e) => {
-                  const newSocials = [...formData.socials]
-                  newSocials[1] = e.target.value
-                  setFormData((prev) => ({
-                    ...prev,
-                    socials: newSocials
-                  }))
-                }}
-              />
-            </div>
-            <div className='flex flex-row'>
-              <FacebookIcon
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='socials-facebook'
-                placeholder='https://www.facebook.com/ejemplo'
-                value={formData.socials[2]}
-                onChange={(e) => {
-                  const newSocials = [...formData.socials]
-                  newSocials[2] = e.target.value
-                  setFormData((prev) => ({
-                    ...prev,
-                    socials: newSocials
-                  }))
-                }}
-              />
-            </div>
-            <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
-              Actualizar link
-            </button>
           </div>
           <div className='flex flex-col'>
             <label
