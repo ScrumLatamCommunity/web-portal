@@ -132,7 +132,6 @@ export default function AlliesPage() {
           body: JSON.stringify(sponsorData)
         }
       )
-      console.log(sponsorData)
 
       if (response.ok) {
         toast.success('Sponsor registrado correctamente!')
