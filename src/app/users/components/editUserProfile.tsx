@@ -176,7 +176,7 @@ export default function EditUserProfile({
                     height={100}
                   />
                   <CountriesDropdown
-                    value={formData.country || []}
+                    countries={formData.country || []}
                     onChange={handleCountryChange}
                   />
                 </div>

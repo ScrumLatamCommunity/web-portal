@@ -6,7 +6,7 @@ import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import CategoriesDropdown from '../../sponsors/components/categories-dropdown'
 import TextEditor from '../../sponsors/components/TextEditor'
-import CountriesDropdown from '../../sponsors/components/countries-dropdown'
+import CountriesDropdown from '@/app/users/components/countries-dropdown'
 import SponsorsList from './components/sponsorsList'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
@@ -328,7 +328,7 @@ export default function AlliesPage() {
               País
             </label>
             <CountriesDropdown
-              value={selectedCountry}
+              countries={selectedCountry}
               onChange={setSelectedCountry}
             />
           </div>
