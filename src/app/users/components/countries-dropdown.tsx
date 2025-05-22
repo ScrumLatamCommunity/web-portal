@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 type CountriesDropdownProps = {
-  value: string[]
-  onChange: (value: string[]) => void
+  countries: string[]
+  onChange: (countries: string[]) => void
 }
 
 export default function CountriesDropdown({
-  value,
+  countries,
   onChange
 }: CountriesDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -34,10 +34,10 @@ export default function CountriesDropdown({
   ]
 
   const handleCountrySelect = (country: string) => {
-    if (value.includes(country)) {
-      onChange(value.filter((c) => c !== country))
+    if (countries.includes(country)) {
+      onChange(countries.filter((c) => c !== country))
     } else {
-      onChange([...value, country])
+      onChange([...countries, country])
     }
   }
 
@@ -48,17 +48,17 @@ export default function CountriesDropdown({
         className='text-black flex w-full cursor-pointer items-center justify-between rounded-[10px] bg-[#D9D9D940] px-4 py-2'
       >
         <div className='flex flex-wrap gap-1'>
-          {value.length > 0 ? (
-            value.map((country) => (
+          {countries.length > 0 ? (
+            countries.map((countries) => (
               <span
-                key={country}
+                key={countries}
                 className='flex items-center gap-1 rounded-full bg-[#082965] px-2 py-1 text-sm text-white'
               >
-                {country}
+                {countries}
                 <button
                   onClick={(e) => {
                     e.stopPropagation()
-                    handleCountrySelect(country)
+                    handleCountrySelect(countries)
                   }}
                   className='ml-1 text-white hover:text-red-300'
                 >
@@ -79,13 +79,13 @@ export default function CountriesDropdown({
               key={option}
               onClick={() => handleCountrySelect(option)}
               className={`cursor-pointer p-2 hover:bg-gray-300 ${
-                value.includes(option) ? 'bg-gray-200' : ''
+                countries.includes(option) ? 'bg-gray-200' : ''
               }`}
             >
               <div className='flex items-center gap-2'>
                 <input
                   type='checkbox'
-                  checked={value.includes(option)}
+                  checked={countries.includes(option)}
                   onChange={() => handleCountrySelect(option)}
                   className='h-4 w-4'
                 />

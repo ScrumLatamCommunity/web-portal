@@ -4,17 +4,13 @@ import { darkerGrotesque, inter, karla } from '@/fonts'
 import React, { useEffect, useState } from 'react'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
-import LinkedInIcon from '@/assets/LinkedinIcon'
-import InstagramIconSponsors from '@/assets/InstagramIconSponsors'
 import CategoriesDropdown from '../../sponsors/components/categories-dropdown'
 import TextEditor from '../../sponsors/components/TextEditor'
 import CountriesDropdown from '../../sponsors/components/countries-dropdown'
-import FacebookIcon from '@/assets/FacebookIcon'
 import SponsorsList from './components/sponsorsList'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
-import XIcon from '@/assets/twitter-x'
-import YoutubeIcon from '@/assets/YoutubeIcon'
+import { getSocialIcon } from '@/utils/getSocialIcon'
 
 interface Sponsor {
   id: number
@@ -400,85 +396,32 @@ export default function AlliesPage() {
             >
               Redes Sociales
             </label>
-            {socials.map((social, index) => {
-              const icon = (() => {
-                if (social.includes('linkedin'))
-                  return (
-                    <LinkedInIcon
-                      className='my-1 mr-2 text-[#FE2E00]'
-                      height={30}
-                      width={30}
-                    />
-                  )
-                if (social.includes('instagram'))
-                  return (
-                    <InstagramIconSponsors
-                      className='my-1 mr-2 text-[#FE2E00]'
-                      height={30}
-                      width={30}
-                    />
-                  )
-                if (social.includes('facebook'))
-                  return (
-                    <FacebookIcon
-                      className='my-1 mr-2 text-[#FE2E00]'
-                      height={30}
-                      width={30}
-                    />
-                  )
-                if (
-                  social.includes('www.x.com') ||
-                  social.includes('twitter.com')
-                )
-                  return (
-                    <XIcon
-                      className='my-1 mr-2 text-[#FE2E00]'
-                      height={30}
-                      width={30}
-                    />
-                  )
-                if (social.includes('youtube'))
-                  return (
-                    <YoutubeIcon
-                      className='my-1 mr-2 stroke-[#FE2E00] text-white'
-                      height={30}
-                      width={30}
-                    />
-                  )
-                return (
-                  <GlobeIcon
-                    className='my-1 mr-2 text-[#FE2E00]'
-                    height={30}
-                    width={30}
-                  />
-                )
-              })()
-
-              return (
-                <div key={index} className='flex flex-row items-center'>
-                  <div className='my-1 mr-2 text-[#FE2E00]'>{icon}</div>
-                  <input
-                    className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                    placeholder={`https://www.redsocial.com/ejemplo`}
-                    value={social}
-                    onChange={(e) => {
-                      const newSocials = [...socials]
-                      newSocials[index] = e.target.value
-                      setSocials(newSocials)
-                    }}
-                  />
-                  <button
-                    onClick={() => {
-                      const newSocials = socials.filter((_, i) => i !== index)
-                      setSocials(newSocials)
-                    }}
-                    className='ml-2 text-[#FE2E00] hover:text-[#FE5833]'
-                  >
-                    ✕
-                  </button>
+            {socials.map((social, index) => (
+              <div key={index} className='flex flex-row items-center'>
+                <div className='my-1 mr-2 text-[#FE2E00]'>
+                  {getSocialIcon(social)}
                 </div>
-              )
-            })}
+                <input
+                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                  placeholder={`https://www.redsocial.com/ejemplo`}
+                  value={social}
+                  onChange={(e) => {
+                    const newSocials = [...socials]
+                    newSocials[index] = e.target.value
+                    setSocials(newSocials)
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    const newSocials = socials.filter((_, i) => i !== index)
+                    setSocials(newSocials)
+                  }}
+                  className='ml-2 text-[#FE2E00] hover:text-[#FE5833]'
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
             <div className='flex justify-between'>
               <button
                 onClick={() => {

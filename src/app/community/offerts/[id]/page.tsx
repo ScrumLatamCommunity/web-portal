@@ -1,11 +1,6 @@
 'use client'
 
-import FacebookIcon from '@/assets/FacebookIcon'
-import GlobeIcon from '@/assets/GlobeIcon'
-import InstagramIcon from '@/assets/instagramIcon'
-import LinkedInIcon from '@/assets/LinkedinIcon'
-import MailIcon from '@/assets/MailIcon'
-import PhoneIcon from '@/assets/PhoneIcon'
+import { getSocialIcon } from '@/utils/getSocialIcon'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
@@ -19,6 +14,9 @@ import Certificates from '../components/svg/certificates'
 import YouTubeIcon from '@/assets/YoutubeIcon'
 import XIcon from '@/assets/twitter-x'
 import WhatsappIcon from '@/assets/whatsapp'
+import { getCountryFlag } from '@/utils/getFlags'
+import MailIcon from '@/assets/MailIcon'
+import GlobeIcon from '@/assets/GlobeIcon'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -54,11 +52,6 @@ export default function Offerts() {
   const [activeSection, setActiveSection] = useState<'about' | 'certificates'>(
     'about'
   )
-
-  const getFlagUrl = (country: string) => {
-    const flagData = flags.find((item) => item.name === country)
-    return flagData ? flagData.flag : ''
-  }
 
   const { selectedSponsorId } = useAuth()
 
@@ -135,10 +128,10 @@ export default function Offerts() {
           <div className='md:mr-8'>
             <Image
               alt='Offerts'
-              className='m-4 rounded-full bg-white md:h-[300px] md:w-[300px]'
-              height={1800}
+              className='m-4 rounded-full bg-white object-contain md:h-[300px] md:w-[300px]'
+              height={300}
+              width={300}
               src={sponsor.logo}
-              width={1800}
             />
           </div>
           <div className='mt-5 flex w-full flex-col pl-6'>
@@ -151,7 +144,7 @@ export default function Offerts() {
                   <Image
                     key={index}
                     className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
-                    src={getFlagUrl(country)}
+                    src={getCountryFlag(country)}
                     alt={`flag-${country}`}
                     width={30}
                     height={10}
@@ -188,57 +181,6 @@ export default function Offerts() {
                   ? social
                   : `https://${social}`
 
-                const renderIcon = () => {
-                  if (social.includes('linkedin')) {
-                    return (
-                      <LinkedInIcon
-                        className='text-[#082965]'
-                        height={40}
-                        width={40}
-                      />
-                    )
-                  }
-                  if (social.includes('instagram')) {
-                    return (
-                      <InstagramIcon
-                        className='text-[#082965]'
-                        height={40}
-                        width={40}
-                      />
-                    )
-                  }
-                  if (social.includes('facebook')) {
-                    return (
-                      <FacebookIcon
-                        className='text-[#082965]'
-                        height={40}
-                        width={40}
-                      />
-                    )
-                  }
-                  if (social.includes('x.com')) {
-                    return (
-                      <XIcon
-                        className='text-[#082965]'
-                        height={40}
-                        width={40}
-                      />
-                    )
-                  }
-                  if (social.includes('youtube')) {
-                    return (
-                      <YouTubeIcon
-                        className='stroke-[#082965] text-white'
-                        height={40}
-                        width={40}
-                      />
-                    )
-                  }
-                  return (
-                    <span className='h-[30px] w-[30px] rounded-full bg-[#ccc]' />
-                  )
-                }
-
                 return (
                   <a
                     key={index}
@@ -247,7 +189,11 @@ export default function Offerts() {
                     rel='noopener noreferrer'
                     target='_blank'
                   >
-                    {renderIcon()}
+                    {getSocialIcon(social, {
+                      className: 'text-[#082965]',
+                      height: 40,
+                      width: 40
+                    })}
                   </a>
                 )
               })}
@@ -319,7 +265,7 @@ export default function Offerts() {
           >
             <div className='absolute -top-14 z-10 flex flex-col rounded-full bg-white'>
               <Certificates
-                className={`rounded-full transition-colors duration-300 ${
+                className={`p-5 transition-colors duration-300 ${
                   activeSection === 'certificates'
                     ? 'text-gray-400'
                     : 'text-[#082965]'
