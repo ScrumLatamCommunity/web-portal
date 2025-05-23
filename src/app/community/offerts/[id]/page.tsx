@@ -1,11 +1,6 @@
 'use client'
 
-import FacebookIcon from '@/assets/FacebookIcon'
-import GlobeIcon from '@/assets/GlobeIcon'
-import InstagramIcon from '@/assets/instagramIcon'
-import LinkedInIcon from '@/assets/LinkedinIcon'
-import MailIcon from '@/assets/MailIcon'
-import PhoneIcon from '@/assets/PhoneIcon'
+import { getSocialIcon } from '@/utils/getSocialIcon'
 import { darkerGrotesque, karla, roboto } from '@/fonts'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
@@ -16,6 +11,12 @@ import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
 import AboutUs from '../components/svg/about-us'
 import Certificates from '../components/svg/certificates'
+import YouTubeIcon from '@/assets/YoutubeIcon'
+import XIcon from '@/assets/twitter-x'
+import WhatsappIcon from '@/assets/whatsapp'
+import { getCountryFlag } from '@/utils/getFlags'
+import MailIcon from '@/assets/MailIcon'
+import GlobeIcon from '@/assets/GlobeIcon'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -27,6 +28,7 @@ interface Sponsor {
   bannerWeb: string
   logo: string
   phone: string
+  wppMessage: string
   web: string
   socials: string[]
   specialization: string[]
@@ -35,7 +37,7 @@ interface Sponsor {
   updatedAt: string
   userId: string
   user: {
-    country: string
+    country: string[]
     email: string
   }
   offers: any[]
@@ -51,8 +53,6 @@ export default function Offerts() {
     'about'
   )
 
-  const flagData = flags.find((item) => item.name === sponsor?.user.country)
-  const flagUrl = flagData ? flagData.flag : ''
   const { selectedSponsorId } = useAuth()
 
   async function getData(sponsorId: string) {
@@ -128,10 +128,15 @@ export default function Offerts() {
           <div className='md:mr-8'>
             <Image
               alt='Offerts'
-              className='m-4 rounded-full bg-white md:h-[300px] md:w-[300px]'
-              height={1800}
+              className='m-4 rounded-full bg-white object-contain md:h-[300px] md:w-[300px]'
+              height={300}
+              width={300}
               src={sponsor.logo}
-              width={1800}
+              priority
+              quality={75}
+              sizes='(max-width: 768px) 100vw, 300px'
+              placeholder='blur'
+              blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjg0PjU2ODU6Ojo8Pj4+QEZGRkZGRkZGRkZGRkZGRkb/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k='
             />
           </div>
           <div className='mt-5 flex w-full flex-col pl-6'>
@@ -139,13 +144,18 @@ export default function Offerts() {
               <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold text-[#082965] md:mr-4 md:text-[80px]'>
                 {sponsor.companyName}
               </h1>
-              <Image
-                className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
-                src={flagUrl}
-                alt={'flags'}
-                width={30}
-                height={10}
-              />
+              <div className='flex gap-2'>
+                {sponsor.user.country.map((country, index) => (
+                  <Image
+                    key={index}
+                    className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
+                    src={getCountryFlag(country)}
+                    alt={`flag-${country}`}
+                    width={30}
+                    height={10}
+                  />
+                ))}
+              </div>
             </div>
             <div className='mb-6 flex flex-row gap-2 md:gap-4'>
               <div
@@ -171,65 +181,39 @@ export default function Offerts() {
               >
                 <GlobeIcon className='text-[#082965]' height={40} width={40} />
               </a>
+              {sponsor.socials.map((social, index) => {
+                const url = social.startsWith('http')
+                  ? social
+                  : `https://${social}`
+
+                return (
+                  <a
+                    key={index}
+                    className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                    href={url}
+                    rel='noopener noreferrer'
+                    target='_blank'
+                  >
+                    {getSocialIcon(social, {
+                      className: 'text-[#082965]',
+                      height: 40,
+                      width: 40
+                    })}
+                  </a>
+                )
+              })}
               <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-                href={
-                  sponsor.socials[0].startsWith('http')
-                    ? sponsor.socials[0]
-                    : `https://${sponsor.socials[0]}`
-                }
-                rel='noopener noreferrer'
+                href={`https://wa.me/${sponsor.phone}?text=${sponsor.wppMessage}`}
                 target='_blank'
+                rel='noopener noreferrer'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
               >
-                <LinkedInIcon
+                <WhatsappIcon
                   className='text-[#082965]'
                   height={40}
                   width={40}
                 />
               </a>
-              <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-                href={
-                  sponsor.socials[1].startsWith('http')
-                    ? sponsor.socials[1]
-                    : `https://${sponsor.socials[1]}`
-                }
-                rel='noopener noreferrer'
-                target='_blank'
-              >
-                <InstagramIcon
-                  className='text-[#082965]'
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-                href={
-                  sponsor.socials[2].startsWith('http')
-                    ? sponsor.socials[2]
-                    : `https://${sponsor.socials[2]}`
-                }
-                rel='noopener noreferrer'
-                target='_blank'
-              >
-                <FacebookIcon
-                  className='text-[#082965]'
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <div
-                onClick={() => {
-                  navigator.clipboard.writeText(sponsor.phone)
-                  toast.success(
-                    `Número copiado al portapapeles: ${sponsor.phone}`
-                  )
-                }}
-                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
-              >
-                <PhoneIcon className='text-[#082965]' height={35} width={35} />
-              </div>
             </div>
             {sponsor.specialization.map((item, index) => (
               <p
@@ -244,11 +228,23 @@ export default function Offerts() {
       </div>
       <div className='mb-0 mt-24 flex flex-row items-center justify-center gap-x-48'>
         <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
-          <div className='relative flex h-full w-full flex-col items-center rounded-[50px] border-2 border-[#082965] px-5'>
+          <div
+            className={`relative flex h-full w-full flex-col items-center rounded-[50px] border-2 px-5 transition-colors duration-300 ${
+              activeSection === 'about' ? 'border-gray-400' : 'border-[#082965]'
+            }`}
+          >
             <div className='absolute -top-20 z-10 flex flex-col rounded-full bg-white'>
-              <AboutUs className='rounded-full' />
+              <AboutUs
+                className={`rounded-full transition-colors duration-300 ${
+                  activeSection === 'about' ? 'text-gray-400' : 'text-[#082965]'
+                }`}
+              />
             </div>
-            <p className='mb-6 pt-24 text-[20px] text-[#082965]'>
+            <p
+              className={`mb-6 pt-24 text-[20px] transition-colors duration-300 ${
+                activeSection === 'about' ? 'text-gray-400' : 'text-[#082965]'
+              }`}
+            >
               Descubre la esencia de nuestra empresa y nuestro compromiso
               contigo.
             </p>
@@ -256,8 +252,8 @@ export default function Offerts() {
               onClick={() => setActiveSection('about')}
               className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
                 activeSection === 'about'
-                  ? 'border-[#082965] bg-[#082965] text-white'
-                  : 'border-[#082965] bg-white text-[#082965]'
+                  ? 'border-gray-400 text-gray-400'
+                  : 'border-[#082965] text-[#082965]'
               }`}
             >
               Sobre nosotros
@@ -265,11 +261,29 @@ export default function Offerts() {
           </div>
         </div>
         <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
-          <div className='relative flex h-full w-full flex-col items-center rounded-[50px] border-2 border-[#082965] px-5'>
+          <div
+            className={`relative flex h-full w-full flex-col items-center rounded-[50px] border-2 px-5 transition-colors duration-300 ${
+              activeSection === 'certificates'
+                ? 'border-gray-400'
+                : 'border-[#082965]'
+            }`}
+          >
             <div className='absolute -top-14 z-10 flex flex-col rounded-full bg-white'>
-              <Certificates className='rounded-full' />
+              <Certificates
+                className={`p-5 transition-colors duration-300 ${
+                  activeSection === 'certificates'
+                    ? 'text-gray-400'
+                    : 'text-[#082965]'
+                }`}
+              />
             </div>
-            <p className='mb-6 pt-24 text-[20px] text-[#082965]'>
+            <p
+              className={`mb-6 pt-24 text-[20px] transition-colors duration-300 ${
+                activeSection === 'certificates'
+                  ? 'text-gray-400'
+                  : 'text-[#082965]'
+              }`}
+            >
               Emitimos certificaciones que avalan tus conocimientos y
               habilidades adquiridas.
             </p>
@@ -277,8 +291,8 @@ export default function Offerts() {
               onClick={() => setActiveSection('certificates')}
               className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
                 activeSection === 'certificates'
-                  ? 'border-[#082965] bg-[#082965] text-white'
-                  : 'border-[#082965] bg-white text-[#082965]'
+                  ? 'border-gray-400 text-gray-400'
+                  : 'border-[#082965] text-[#082965]'
               }`}
             >
               Certificados
@@ -288,7 +302,7 @@ export default function Offerts() {
       </div>
       {activeSection === 'about' && (
         <div className='animate-fadeIn mt-16 flex items-center justify-center transition-opacity duration-500 ease-in-out'>
-          <div className='mb-10 flex w-[50%] scale-100 transform items-center justify-center rounded-3xl border-[2px] border-[#082965] p-3 transition-transform duration-500 ease-in-out'>
+          <div className='z-[-1] flex w-[100%] scale-100 transform animate-slideUp items-center justify-center rounded-t-3xl bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.7)] transition-all duration-1000 ease-in-out'>
             <div
               className='text-[20px] leading-relaxed'
               dangerouslySetInnerHTML={{ __html: sponsor.description }}
@@ -298,7 +312,7 @@ export default function Offerts() {
       )}
       {activeSection === 'certificates' && (
         <div className='animate-fadeIn flex w-full flex-col items-center transition-opacity duration-500 ease-in-out'>
-          <div className='grid grid-cols-1 justify-items-center gap-y-8 py-8 md:grid-cols-3'>
+          <div className='animate-fadeIn grid grid-cols-1 justify-items-center gap-y-8 py-8 transition-opacity duration-1000 ease-in-out md:grid-cols-3'>
             {sponsor.offers
               .filter((offert) => offert.status === 'ACTIVE')
               .map((offert, index) => (

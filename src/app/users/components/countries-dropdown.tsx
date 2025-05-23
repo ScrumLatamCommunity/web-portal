@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 type CountriesDropdownProps = {
-  value: string
-  onChange: (value: string) => void
+  countries: string[]
+  onChange: (countries: string[]) => void
 }
 
 export default function CountriesDropdown({
-  value,
+  countries,
   onChange
 }: CountriesDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,27 +33,64 @@ export default function CountriesDropdown({
     'Estados Unidos'
   ]
 
+  const handleCountrySelect = (country: string) => {
+    if (countries.includes(country)) {
+      onChange(countries.filter((c) => c !== country))
+    } else {
+      onChange([...countries, country])
+    }
+  }
+
   return (
     <div className='relative z-10 w-72'>
-      <button
+      <div
         onClick={() => setIsOpen(!isOpen)}
-        className='text-black flex w-full items-center justify-between rounded-[10px] bg-[#D9D9D940] px-4 py-2'
+        className='text-black flex w-full cursor-pointer items-center justify-between rounded-[10px] bg-[#D9D9D940] px-4 py-2'
       >
-        {value}
+        <div className='flex flex-wrap gap-1'>
+          {countries.length > 0 ? (
+            countries.map((countries) => (
+              <span
+                key={countries}
+                className='flex items-center gap-1 rounded-full bg-[#082965] px-2 py-1 text-sm text-white'
+              >
+                {countries}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleCountrySelect(countries)
+                  }}
+                  className='ml-1 text-white hover:text-red-300'
+                >
+                  ×
+                </button>
+              </span>
+            ))
+          ) : (
+            <span className='text-gray-500'>Seleccionar países</span>
+          )}
+        </div>
         <span>{isOpen ? '▲' : '▼'}</span>
-      </button>
+      </div>
       {isOpen && (
-        <ul className='absolute mt-1 w-full rounded-md bg-white shadow-md'>
+        <ul className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-md'>
           {options.map((option) => (
             <li
               key={option}
-              onClick={() => {
-                onChange(option)
-                setIsOpen(false)
-              }}
-              className='cursor-pointer p-2 hover:bg-gray-300'
+              onClick={() => handleCountrySelect(option)}
+              className={`cursor-pointer p-2 hover:bg-gray-300 ${
+                countries.includes(option) ? 'bg-gray-200' : ''
+              }`}
             >
-              {option}
+              <div className='flex items-center gap-2'>
+                <input
+                  type='checkbox'
+                  checked={countries.includes(option)}
+                  onChange={() => handleCountrySelect(option)}
+                  className='h-4 w-4'
+                />
+                {option}
+              </div>
             </li>
           ))}
         </ul>

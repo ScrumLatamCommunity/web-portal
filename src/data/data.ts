@@ -713,13 +713,13 @@ export const sponsorDashboard = [
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
     link: '/sponsors/mis-publish'
   },
-  {
-    id: 3,
-    name: 'Publicar contenido',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-    link: '/sponsors/posts'
-  },
+  // {
+  //   id: 3,
+  //   name: 'Publicar contenido',
+  //   image:
+  //     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
+  //   link: '/sponsors/posts'
+  // },
   {
     id: 4,
     name: 'Ofertas',

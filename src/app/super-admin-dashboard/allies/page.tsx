@@ -4,15 +4,13 @@ import { darkerGrotesque, inter, karla } from '@/fonts'
 import React, { useEffect, useState } from 'react'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
-import LinkedInIcon from '@/assets/LinkedinIcon'
-import InstagramIconSponsors from '@/assets/InstagramIconSponsors'
 import CategoriesDropdown from '../../sponsors/components/categories-dropdown'
 import TextEditor from '../../sponsors/components/TextEditor'
-import CountriesDropdown from '../../sponsors/components/countries-dropdown'
-import FacebookIcon from '@/assets/FacebookIcon'
+import CountriesDropdown from '@/app/users/components/countries-dropdown'
 import SponsorsList from './components/sponsorsList'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
+import { getSocialIcon } from '@/utils/getSocialIcon'
 
 interface Sponsor {
   id: number
@@ -37,13 +35,11 @@ export default function AlliesPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [companyName, setCompanyName] = useState('')
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  const [selectedCountry, setSelectedCountry] = useState('')
+  const [selectedCountry, setSelectedCountry] = useState<string[]>([])
   const [description, setDescription] = useState('')
   const [web, setWeb] = useState('')
   const [phone, setPhone] = useState('')
-  const [linkedin, setLinkedin] = useState('')
-  const [instagram, setInstagram] = useState('')
-  const [facebook, setFacebook] = useState('')
+  const [socials, setSocials] = useState<string[]>(['', '', ''])
   const [sponsors, setSponsors] = useState<Sponsor[]>([])
 
   const resetForm = () => {
@@ -55,13 +51,11 @@ export default function AlliesPage() {
     setConfirmPassword('')
     setCompanyName('')
     setSelectedCategories([''])
-    setSelectedCountry('')
+    setSelectedCountry([])
     setDescription('')
     setWeb('')
     setPhone('')
-    setLinkedin('')
-    setInstagram('')
-    setFacebook('')
+    setSocials(['', '', ''])
   }
 
   const getSponsors = async () => {
@@ -99,7 +93,7 @@ export default function AlliesPage() {
       return
     }
 
-    const socialsArray = [linkedin, instagram, facebook].filter(Boolean)
+    const socialsArray = socials.filter(Boolean)
 
     const sponsorData = {
       firstName,
@@ -334,7 +328,7 @@ export default function AlliesPage() {
               País
             </label>
             <CountriesDropdown
-              value={selectedCountry}
+              countries={selectedCountry}
               onChange={setSelectedCountry}
             />
           </div>
@@ -359,7 +353,11 @@ export default function AlliesPage() {
               Web
             </label>
             <div className='flex flex-row'>
-              <GlobeIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <GlobeIcon
+                className='my-1 mr-2 text-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-web'
@@ -377,7 +375,11 @@ export default function AlliesPage() {
               Whatsapp
             </label>
             <div className='flex flex-row'>
-              <PhoneIcon className='my-1 mr-2 stroke-[#FE2E00]' />
+              <PhoneIcon
+                className='my-1 mr-2 text-[#FE2E00]'
+                height={30}
+                width={30}
+              />
               <input
                 className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
                 id='company-wpp'
@@ -394,35 +396,41 @@ export default function AlliesPage() {
             >
               Redes Sociales
             </label>
-            <div className='flex flex-row'>
-              <LinkedInIcon className='my-1 mr-2 stroke-[#FE2E00]' />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-socials1'
-                placeholder='https://www.linkedin.com/ejemplo'
-                value={linkedin}
-                onChange={(e) => setLinkedin(e.target.value)}
-              />
-            </div>
-            <div className='flex flex-row'>
-              <InstagramIconSponsors className='my-2 mr-2 stroke-[#FE2E00]' />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-socials2'
-                placeholder='https://www.instagram.com/ejemplo'
-                value={instagram}
-                onChange={(e) => setInstagram(e.target.value)}
-              />
-            </div>
-            <div className='flex flex-row'>
-              <FacebookIcon className='my-1 mr-2 stroke-[#FE2E00]' />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='company-socials3'
-                placeholder='https://www.facebook.com/ejemplo'
-                value={facebook}
-                onChange={(e) => setFacebook(e.target.value)}
-              />
+            {socials.map((social, index) => (
+              <div key={index} className='flex flex-row items-center'>
+                <div className='my-1 mr-2 text-[#FE2E00]'>
+                  {getSocialIcon(social)}
+                </div>
+                <input
+                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+                  placeholder={`https://www.redsocial.com/ejemplo`}
+                  value={social}
+                  onChange={(e) => {
+                    const newSocials = [...socials]
+                    newSocials[index] = e.target.value
+                    setSocials(newSocials)
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    const newSocials = socials.filter((_, i) => i !== index)
+                    setSocials(newSocials)
+                  }}
+                  className='ml-2 text-[#FE2E00] hover:text-[#FE5833]'
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <div className='flex justify-between'>
+              <button
+                onClick={() => {
+                  setSocials([...socials, ''])
+                }}
+                className='font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
+              >
+                + Agregar red social
+              </button>
             </div>
           </div>
         </div>

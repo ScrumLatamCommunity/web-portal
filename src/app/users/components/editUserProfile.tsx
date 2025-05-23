@@ -65,6 +65,10 @@ export default function EditUserProfile({
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const handleCountryChange = (countries: string[]) => {
+    setFormData((prev) => ({ ...prev, country: countries }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -167,13 +171,13 @@ export default function EditUserProfile({
                   <Image
                     alt='flag'
                     className='my-2 mr-2 h-[21px] w-[38px] bg-[#D9D9D940]'
-                    src={getCountryFlag(userData?.country)}
+                    src={getCountryFlag(formData.country)}
                     width={100}
                     height={100}
                   />
                   <CountriesDropdown
-                    value={userData?.country || ''}
-                    onChange={() => {}}
+                    countries={formData.country || []}
+                    onChange={handleCountryChange}
                   />
                 </div>
               )}

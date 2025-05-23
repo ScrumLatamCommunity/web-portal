@@ -7,6 +7,8 @@ import PhoneIcon from '@/assets/PhoneIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
 import InstagramIconSponsors from '@/assets/InstagramIconSponsors'
 import FacebookIcon from '@/assets/FacebookIcon'
+import XIcon from '@/assets/twitter-x'
+import YoutubeIcon from '@/assets/YoutubeIcon'
 import EditSponsorProfile from '../components/editSponsorProfile'
 import { useAuth } from '@/app/context/AuthContext'
 import Skeleton from '../components/Skeleton'
@@ -238,20 +240,28 @@ export default function SponsorProfile() {
                   >
                     País
                   </label>
-                  <div className={'flex flex-row'}>
-                    <ImageWithFallback
-                      src={getCountryFlag(sponsorData?.user?.country)}
-                      alt='flag'
-                      className='my-2 mr-2 h-[21px] w-[38px] bg-[#D9D9D940]'
-                    />
+                  <div className={'flex flex-row items-center'}>
+                    <div className='flex gap-2'>
+                      {sponsorData?.user?.country?.map((country, index) => (
+                        <ImageWithFallback
+                          key={index}
+                          src={getCountryFlag(country)}
+                          alt={`flag-${country}`}
+                          className='my-2 h-[21px] w-[38px] bg-[#D9D9D940]'
+                        />
+                      ))}
+                    </div>
                     {isLoading ? (
                       <Skeleton className='h-[39px] w-full' />
                     ) : (
                       <p
-                        className='h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
+                        className='ml-2 h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
                         id='company-country'
                       >
-                        {sponsorData?.user?.country || 'No hay país'}
+                        {sponsorData?.user?.country &&
+                        sponsorData.user.country.length > 0
+                          ? sponsorData.user.country.join(', ')
+                          : 'No hay país'}
                       </p>
                     )}
                   </div>
@@ -316,89 +326,135 @@ export default function SponsorProfile() {
               )}
             </div>
           </div>
-          <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-wpp'
-            >
-              Whatsapp
-            </label>
-            <div className='flex flex-row'>
-              <PhoneIcon
-                className='my-1 mr-2 stroke-[#FE2E00]'
-                height={30}
-                width={30}
-              />
+          <div className='flex flex-row'>
+            <div className='mx-[33px] mb-6 flex flex-col gap-2'>
+              <label
+                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+                htmlFor='company-wpp'
+              >
+                Whatsapp
+              </label>
+              <div className='flex flex-row'>
+                <PhoneIcon
+                  className='my-1 mr-2 stroke-[#FE2E00]'
+                  height={30}
+                  width={30}
+                />
+                {isLoading ? (
+                  <Skeleton className='h-[39px] w-[461px]' />
+                ) : (
+                  <p
+                    className='h-[39px] w-[461px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
+                    id='company-wpp'
+                  >
+                    {sponsorData?.phone || 'No hay whatsapp'}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className='mx-[33px] mb-6 flex flex-col gap-2'>
+              <label
+                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
+                htmlFor='company-wpp'
+              >
+                Mensaje de Whatsapp
+              </label>
               {isLoading ? (
                 <Skeleton className='h-[39px] w-[461px]' />
               ) : (
-                <p
-                  className='h-[39px] w-[461px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                  id='company-wpp'
-                >
-                  {sponsorData?.phone || 'No hay whatsapp'}
-                </p>
+                <div className='flex flex-col'>
+                  <p
+                    className='min-h-[39px] w-[461px] whitespace-pre-wrap break-words rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
+                    id='company-wpp'
+                  >
+                    {sponsorData?.wppMessage || 'No hay mensaje de whatsapp'}
+                  </p>
+                  <span className='mt-1 text-sm text-gray-500'>
+                    {sponsorData?.wppMessage?.length || 0}/500 caracteres
+                  </span>
+                </div>
               )}
             </div>
           </div>
           <div className='mx-[33px] mb-6 flex flex-col gap-2'>
             <label
               className='mb-2 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-socials1'
+              htmlFor='company-socials'
             >
               Redes Sociales
             </label>
-            <div className='flex flex-row'>
-              <LinkedInIcon
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              {isLoading ? (
-                <Skeleton className='h-[39px] w-[497px]' />
-              ) : (
-                <p
-                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                  id='company-socials1'
-                >
-                  {sponsorData?.socials[0] || 'No hay redes sociales'}
-                </p>
-              )}
-            </div>
-            <div className='flex flex-row'>
-              <InstagramIconSponsors
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              {isLoading ? (
-                <Skeleton className='h-[39px] w-[497px]' />
-              ) : (
-                <p
-                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                  id='company-socials2'
-                >
-                  {sponsorData?.socials[1] || 'No hay redes sociales'}
-                </p>
-              )}
-            </div>
-            <div className='flex flex-row'>
-              <FacebookIcon
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              {isLoading ? (
-                <Skeleton className='h-[39px] w-[497px]' />
-              ) : (
-                <p
-                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                  id='company-socials3'
-                >
-                  {sponsorData?.socials[2] || 'No hay redes sociales'}
-                </p>
-              )}
-            </div>
+
+            {isLoading ? (
+              Array(3)
+                .fill(0)
+                .map((_, idx) => (
+                  <Skeleton key={idx} className='mb-2 h-[39px] w-[497px]' />
+                ))
+            ) : sponsorData?.socials?.length ? (
+              sponsorData.socials.map((social, index) => {
+                const icon = (() => {
+                  if (social.includes('linkedin'))
+                    return (
+                      <LinkedInIcon
+                        className='my-1 mr-2 text-[#FE2E00]'
+                        height={30}
+                        width={30}
+                      />
+                    )
+                  if (social.includes('instagram'))
+                    return (
+                      <InstagramIconSponsors
+                        className='my-1 mr-2 text-[#FE2E00]'
+                        height={30}
+                        width={30}
+                      />
+                    )
+                  if (social.includes('facebook'))
+                    return (
+                      <FacebookIcon
+                        className='my-1 mr-2 text-[#FE2E00]'
+                        height={30}
+                        width={30}
+                      />
+                    )
+                  if (social.includes('www.x.com'))
+                    return (
+                      <XIcon
+                        className='my-1 mr-2 text-[#FE2E00]'
+                        height={30}
+                        width={30}
+                      />
+                    )
+                  if (social.includes('youtube'))
+                    return (
+                      <YoutubeIcon
+                        className='my-1 mr-2 stroke-[#FE2E00] text-white'
+                        height={30}
+                        width={30}
+                      />
+                    )
+                  return (
+                    <span className='my-1 mr-2 h-[30px] w-[30px] rounded-full bg-[#ccc]' />
+                  )
+                })()
+
+                return (
+                  <div key={index} className='mb-2 flex flex-row items-center'>
+                    {icon}
+                    <p
+                      className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
+                      id={`company-socials-${index}`}
+                    >
+                      {social}
+                    </p>
+                  </div>
+                )
+              })
+            ) : (
+              <p className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'>
+                No hay redes sociales
+              </p>
+            )}
           </div>
           <div className='flex flex-col'>
             <label

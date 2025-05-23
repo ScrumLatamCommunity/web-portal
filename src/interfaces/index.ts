@@ -14,6 +14,7 @@ export interface SponsorData {
   description: string
   web: string
   phone: string
+  wppMessage: string
   socials: string[]
   logo: string
   bannerWeb: string
@@ -25,7 +26,7 @@ export interface SponsorData {
     lastName: string
     username: string
     email: string
-    country: string
+    country: string[]
   }
 }
 
@@ -35,7 +36,7 @@ export interface UserData {
   lastName: string
   username: string
   email: string
-  country: string
+  country: string[]
   membership: string
   createdAt: string
 }
