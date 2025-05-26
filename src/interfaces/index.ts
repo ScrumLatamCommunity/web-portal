@@ -37,6 +37,7 @@ export interface UserData {
   username: string
   email: string
   country: string[]
+  profilePictureUrl: string
   membership: string
   createdAt: string
 }
