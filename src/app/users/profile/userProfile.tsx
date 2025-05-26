@@ -15,7 +15,7 @@ import ProfileImageUploadModal from '../components/profileImageUploadModal'
 const DEFAULT_PROFILE_FALLBACK_IMAGE_URL =
   'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FIsotipo%20principal%201.svg?alt=media&token=c82729ba-f8ca-48cd-af3f-eb69b5a4024c'
 
-export default function SponsorProfile() {
+export default function UserProfile() {
   const router = useRouter()
   const { user, token } = useAuth()
   const [userData, setUserData] = useState<UserData | null>(null)
