@@ -17,6 +17,17 @@ const SelectComponent = dynamic(() => import('./components/SelectComponent'), {
   ssr: false
 })
 
+interface UserRegistrationFormData {
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  password: string
+  confirmPassword: string
+  country: string[]
+  membership: string
+}
+
 function RegisterFormComponent() {
   const { user } = useAuth()
   const searchParams = useSearchParams()
@@ -34,7 +45,7 @@ function RegisterFormComponent() {
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    const userData: Record<string, string> = {
+    const userData: UserRegistrationFormData = {
       firstName: formData.get('firstName')?.toString() || '',
       lastName: formData.get('lastName')?.toString() || '',
       username: formData.get('username')?.toString() || '',
