@@ -13,7 +13,7 @@ interface RegisterUser {
   lastName: string
   username: string
   email: string
-  country: string
+  country: string[]
   membership: string
   onboarding: boolean
 }

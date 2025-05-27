@@ -41,7 +41,7 @@ function RegisterFormComponent() {
       email: formData.get('email')?.toString() || '',
       password: formData.get('password')?.toString() || '',
       confirmPassword: formData.get('confirmPassword')?.toString() || '',
-      country: selectedCountry,
+      country: selectedCountry ? [selectedCountry] : [],
       membership: selectedMembershipFromQuery ?? 'Free'
     }
 
