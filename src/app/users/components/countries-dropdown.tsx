@@ -3,11 +3,13 @@ import { useState } from 'react'
 type CountriesDropdownProps = {
   countries: string[]
   onChange: (countries: string[]) => void
+  disabled?: boolean
 }
 
 export default function CountriesDropdown({
   countries,
-  onChange
+  onChange,
+  disabled = false
 }: CountriesDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -34,11 +36,8 @@ export default function CountriesDropdown({
   ]
 
   const handleCountrySelect = (country: string) => {
-    if (countries.includes(country)) {
-      onChange(countries.filter((c) => c !== country))
-    } else {
-      onChange([...countries, country])
-    }
+    onChange([country])
+    setIsOpen(false)
   }
 
   return (
@@ -52,18 +51,9 @@ export default function CountriesDropdown({
             countries.map((countries) => (
               <span
                 key={countries}
-                className='flex items-center gap-1 rounded-full bg-[#082965] px-2 py-1 text-sm text-white'
+                className='text-black flex items-center gap-1 rounded-full px-2 py-1 text-sm'
               >
                 {countries}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    handleCountrySelect(countries)
-                  }}
-                  className='ml-1 text-white hover:text-red-300'
-                >
-                  ×
-                </button>
               </span>
             ))
           ) : (
@@ -84,9 +74,11 @@ export default function CountriesDropdown({
             >
               <div className='flex items-center gap-2'>
                 <input
-                  type='checkbox'
+                  type='button'
                   checked={countries.includes(option)}
-                  onChange={() => handleCountrySelect(option)}
+                  onChange={() => {
+                    handleCountrySelect(option)
+                  }}
                   className='h-4 w-4'
                 />
                 {option}
