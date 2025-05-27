@@ -3,11 +3,13 @@ import { useState } from 'react'
 type CountriesDropdownProps = {
   countries: string[]
   onChange: (countries: string[]) => void
+  disabled?: boolean
 }
 
 export default function CountriesDropdown({
   countries,
-  onChange
+  onChange,
+  disabled = false
 }: CountriesDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
 

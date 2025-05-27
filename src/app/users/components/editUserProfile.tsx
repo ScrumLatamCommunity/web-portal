@@ -57,7 +57,7 @@ export default function EditUserProfile({
       }
 
       const data: UserData = await response.json()
-      const { password, ...initialFormData } = data
+      const { ...initialFormData } = data
       setFormData({
         ...initialFormData,
         country: Array.isArray(initialFormData.country)
