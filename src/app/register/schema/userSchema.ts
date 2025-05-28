@@ -12,7 +12,10 @@ export const registerSchema = z
       .string()
       .min(6, 'La contraseña debe tener al menos 6 caracteres'),
     confirmPassword: z.string(),
-    country: z.string().min(1, 'El país es obligatorio'),
+    country: z
+      .array(z.string())
+      .min(1, 'Debes seleccionar al menos un país')
+      .or(z.string().transform((val) => [val])),
     membership: z.string().min(1, 'La membresía es obligatoria')
   })
   .refine((data) => data.password === data.confirmPassword, {

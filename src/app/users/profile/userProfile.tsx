@@ -241,7 +241,7 @@ export default function UserProfile() {
                 />
                 <button
                   onClick={() => setIsImageModalOpen(true)}
-                  className='bg-black absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-opacity-0 text-sm font-semibold text-[#082965] opacity-0 transition-opacity duration-300 group-hover:bg-opacity-50 group-hover:opacity-100'
+                  className='bg-black absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-opacity-0 text-sm font-semibold text-[#fefeff] opacity-0 transition-opacity duration-300 group-hover:bg-opacity-50 group-hover:opacity-100'
                   aria-label='Cambiar foto de perfil'
                 >
                   <svg
