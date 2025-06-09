@@ -1,6 +1,21 @@
+import { useAuth } from '@/app/context/AuthContext'
 import { Workshop } from '../interfaces/workshopInterface'
+import { useRouter } from 'next/navigation'
 
 export default function WorkshopCards({ workshop }: { workshop: Workshop }) {
+  const { user } = useAuth()
+  const router = useRouter()
+
+  const handleEnrollClick = () => {
+    if (!user) {
+      localStorage.setItem('redirectToAfterAuth', `/activities`)
+
+      router.push('/login')
+    } else {
+      console.log(`Usuario ${user.sub} inscribiéndose al evento...`)
+      // TODO: inscribcion al evento...
+    }
+  }
   return (
     <div className='px-6'>
       {/* Padding horizontal entre las tarjetas y el contenedor */}
@@ -35,11 +50,14 @@ export default function WorkshopCards({ workshop }: { workshop: Workshop }) {
             </p>
           </div>
           <div className='mt-4 flex items-center justify-between pb-[0.25rem] md:pb-6'>
-            <a
-              className='rounded-full bg-red-400 px-7 py-1 font-darker-grotesque text-white hover:bg-red-300'
-              href={workshop.link}
-            >
-              Inscribirse
+            <a href={workshop.link}>
+              <button
+                type='button'
+                className='rounded-full bg-red-400 px-7 py-1 font-darker-grotesque text-white hover:bg-red-300'
+                onClick={handleEnrollClick}
+              >
+                Inscribirse
+              </button>
             </a>
             <a
               className='font-darker-grotesque text-[#FE5833] hover:underline'

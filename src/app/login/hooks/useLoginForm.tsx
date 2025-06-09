@@ -37,7 +37,15 @@ export function useLoginForm() {
 
       if (response.ok) {
         setAuthToken(data.access_token)
-        router.push('/')
+        toast.success(data.message || 'Inicio de sesión exitoso')
+        const returnUrl = localStorage.getItem('redirectToAfterAuth')
+        console.log(returnUrl)
+        if (returnUrl) {
+          localStorage.removeItem('redirectToAfterAuth')
+          router.push(returnUrl)
+        } else {
+          router.push('/')
+        }
       } else {
         toast.error(data.message || 'Error al iniciar sesión')
       }
