@@ -12,7 +12,7 @@ export const JoinOurCommunity = () => {
     : images.joinSectionMobile
 
   return (
-    <div className='relative m-auto flex w-4/6 max-w-[1980px] flex-col items-center justify-center py-2 lg:mb-32'>
+    <div className='relative m-auto flex w-4/6 max-w-[1920px] flex-col items-center justify-center py-2 lg:mb-32'>
       <div className='z-0 flex flex-col items-center overflow-hidden rounded-xl bg-black-4 shadow-xl md:flex-row-reverse'>
         <div className='flex h-full'>
           <img

@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 
 export const DiscoverCommunity: React.FC = () => (
-  <div className='relative mb-[152px] mt-[72px] flex flex-col items-center gap-16 md:max-w-[1980px]'>
+  <div className='relative mb-[152px] mt-[72px] flex w-full flex-col items-center gap-16 md:max-w-[1920px]'>
     <div className='absolute left-[-4rem] top-[-16rem] hidden h-[473px] w-[473px] sm:flow-root'>
       <img
         alt='ellipse'

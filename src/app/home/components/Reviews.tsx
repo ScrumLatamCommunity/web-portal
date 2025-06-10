@@ -70,7 +70,7 @@ export const Reviews: React.FC = () => {
 
   return (
     <div
-      className={`flex flex-col gap-7 ${expandedReviewId !== null ? 'bg-gray-200' : ''} ${expandedReviewId !== null && isMobile ? 'bg-black-1' : ''}`}
+      className={`flex w-screen flex-col gap-7 md:max-w-[1920px] ${expandedReviewId !== null ? 'bg-gray-200' : ''} ${expandedReviewId !== null && isMobile ? 'bg-black-1' : ''}`}
     >
       <span className='pb:5 pt-5 text-center font-darker-grotesque text-[24px] font-extrabold text-blue-6 sm:text-3xl md:pb-10 md:pt-10 md:text-5xl'>
         ¿Qué opina nuestra comunidad?

@@ -13,7 +13,7 @@ export default function WorkshopFeature({
   workshops: Array<Workshop>
 }) {
   return (
-    <section className='md:max-w-screen-[1980px] flex flex-col items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:w-screen md:justify-between'>
+    <section className='flex w-full flex-col items-center justify-center bg-[#FFEAE6] py-12 md:mt-12 md:max-w-[1920px] md:justify-between'>
       <div className='flex flex-col gap-1 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <Swiper
           autoplay={{
