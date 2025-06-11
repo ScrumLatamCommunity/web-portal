@@ -71,7 +71,7 @@ export default function Squads() {
           />
         </div>
       </section>
-      <section className='mb-10 mt-6 flex w-full flex-wrap items-center justify-center gap-1 xl:px-36'>
+      <section className='mb-10 mt-6 flex w-full max-w-[1920px] flex-wrap items-center justify-center gap-1 xl:px-36'>
         {filteredServices.length > 0 ? (
           filteredServices.map((servicesData: SponsorData) => (
             <div

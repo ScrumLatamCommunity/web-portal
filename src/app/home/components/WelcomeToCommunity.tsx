@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { PrimaryButton } from '../../../core/PrimaryButton' // Asumo que este componente sigue siendo válido
-import { image_url_mobile, image_url_desktop } from '@/data/data' // Usaremos estos como placeholders
+import { PrimaryButton } from '../../../core/PrimaryButton'
+import { image_url_mobile, image_url_desktop } from '@/data/data'
 import useIsLargeScreen from '@/hooks/index'
 import { useAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'

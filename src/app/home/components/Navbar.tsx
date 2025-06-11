@@ -81,9 +81,9 @@ export const Navbar: React.FC = () => {
   )
 
   return (
-    <header className='font-DM sticky top-0 z-50 min-w-[370px] border-b-2 border-gray-200 bg-black-3'>
-      <div className='mx-auto min-w-[360px] max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
-        <div className='scroll flex justify-between lg:justify-start'>
+    <header className='font-DM sticky top-0 z-50 w-full border-b-2 border-gray-200 bg-black-3'>
+      <div className='mx-auto max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
+        <div className='flex justify-between lg:justify-start'>
           <Link href='/' className='flex flex-row justify-start'>
             <img
               alt='logo'
