@@ -50,7 +50,7 @@ export const News = () => {
 
   return (
     <div
-      className='relative mx-auto my-12 flex w-full max-w-[1980px] flex-col items-center justify-center'
+      className='relative mx-auto my-12 flex w-full max-w-[1920px] flex-col items-center justify-center'
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
