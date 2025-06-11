@@ -9,11 +9,7 @@ export default function HeroSection({
   title
 }: HeroInterface) {
   return (
-    <section className='md:max-w-screen-[1980px] relative flex flex-col items-center justify-center md:mt-24 md:w-screen md:justify-between'>
-      {/* Dotted Blue: Inferior izquierda */}
-      <DottedBlue className='absolute bottom-0 left-0 h-[600px] w-[400px] md:h-[349px] md:w-[333px]' />
-      {/* Dotted Orange: Superior derecha */}
-      <DottedOrange className='absolute right-[0rem] top-[-5rem] h-[500px] w-[400px] md:right-[-5rem] md:top-[-10rem] md:h-[500px] md:w-[700px]' />
+    <section className='relative flex w-full flex-col items-center justify-center md:mt-24 md:max-w-[1920px] md:justify-between'>
       <div className='flex flex-col gap-8 md:mx-52 md:flex-row md:items-center md:justify-center'>
         <div className='relative m-6 flex h-full flex-col justify-center md:w-[626px]'>
           <h1 className='pb-2 font-darker-grotesque text-3xl font-semibold text-[#FE2E00] md:pb-3 md:text-4xl'>

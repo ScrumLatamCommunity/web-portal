@@ -14,7 +14,7 @@ import { darkerGrotesque, karla, roboto } from '@/fonts'
 export default function Home() {
   return (
     <main
-      className={`mx-auto max-w-[1980px] ${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
+      className={`mx-auto w-full max-w-[1920px] overflow-x-hidden ${darkerGrotesque.variable} ${karla.variable} ${roboto.variable}`}
     >
       <WelcomeToCommunity />
       <FlagsCommunity />

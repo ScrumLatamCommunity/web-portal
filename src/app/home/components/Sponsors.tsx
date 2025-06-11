@@ -17,11 +17,11 @@ export const Sponsors: React.FC = () => {
   const duplicateSponsors = [...SponsorsLogo, ...SponsorsLogo, ...SponsorsLogo]
 
   return (
-    <div className='mx-auto hidden w-screen max-w-[1980px] bg-[#fbfbfb] px-4 py-12 lg:block'>
+    <div className='mx-auto hidden w-full max-w-[1920px] bg-[#fbfbfb] px-4 py-12 lg:block'>
       <h2 className='mb-12 text-center text-3xl font-bold text-[#0A2472]'>
         Junto a nuestros aliados
       </h2>
-      <div className='relative overflow-hidden'>
+      <div className='relative overflow-hidden md:max-w-[1920px]'>
         <div className='flex animate-infinite-scroll items-center gap-6 py-6 lg:gap-20'>
           {duplicateSponsors.map((sponsor, index) => (
             <img

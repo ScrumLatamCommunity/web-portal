@@ -10,12 +10,12 @@ import EventFeature from './components/eventFeature'
 
 export default function Activities() {
   return (
-    <>
+    <div className='mx-auto flex w-full max-w-[1920px] flex-col'>
       {/* Hero Section */}
       <HeroSection
         description='En nuestra comunidad, los talleres son el corazón de la colaboración y el aprendizaje. Aquí, te sumergirás en experiencias prácticas que te prepararán para los desafíos reales del mundo ágil. Desde simulacros de entrevistas hasta grupos de estudio, cada taller está diseñado para fortalecer tus habilidades y conocimientos en metodologías ágiles.'
         image={
-          <ActivitiesImage className='h-auto max-w-full md:h-[456px] md:max-w-[580px]' />
+          <ActivitiesImage className='h-auto w-full md:h-[456px] md:max-w-[580px]' />
         }
         linkTitle='Talleres'
         title='Formación de la Comunidad'
@@ -44,6 +44,6 @@ export default function Activities() {
         description='Conéctate con profesionales ágiles de toda Latinoamérica, accede a recursos exclusivos, y participa en eventos y webinars que impulsarán tu crecimiento.'
         title='¡Únete a Nuestra Comunidad!'
       />
-    </>
+    </div>
   )
 }
