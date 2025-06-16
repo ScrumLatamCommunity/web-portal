@@ -33,7 +33,7 @@ export const Navlist: React.FC = () => {
   }, [handleClickOutside])
 
   return (
-    <div className='flex flex-row items-center gap-8 lg:gap-12'>
+    <div className='flex flex-row items-center px-6 md:gap-12'>
       <div className={`${darkerGrotesque.variable} font-darker-grotesque`}>
         <Link
           href='/'
