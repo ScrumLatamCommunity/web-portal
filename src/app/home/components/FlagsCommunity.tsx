@@ -17,14 +17,14 @@ export const FlagsCommunity = () => {
   const duplicateFlags = [...FlagsCommunity, ...FlagsCommunity]
 
   return (
-    <div className='relative w-full bg-black-5 py-6 shadow-shadowFlags md:m-auto md:max-w-[1920px] md:py-[2.5%] md:shadow-shadowFlagsDesktop'>
+    <div className='relative w-full py-6 shadow-shadowFlags md:m-auto md:max-w-[1920px] md:py-[2.5%] md:shadow-shadowFlagsDesktop'>
       <div className='flex overflow-hidden sm:h-12 md:min-h-[5vh] md:bg-inherit'>
         <div className='flex w-full animate-scrollLeft items-center justify-center gap-x-14 lg:gap-20'>
           {duplicateFlags.map((flag, index) => (
             <img
               alt={flag.name}
               aria-hidden='true'
-              className='h-[28px] w-[48px] border border-black-13 object-cover md:h-full md:w-widthFlags'
+              className='h-[28px] w-[48px] rounded-md object-cover md:min-h-[45px] md:min-w-[75px] 2xl:h-full 2xl:max-h-[60px] 2xl:w-[120px]'
               key={index}
               src={flag.flag}
             />
