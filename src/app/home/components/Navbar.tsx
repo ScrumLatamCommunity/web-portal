@@ -89,7 +89,7 @@ export const Navbar: React.FC = () => {
               alt='logo'
               width={60}
               height={38}
-              className='h-12 w-auto min-w-[90px]'
+              className='h-12 w-auto'
               src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
             />
           </Link>
@@ -114,7 +114,7 @@ export const Navbar: React.FC = () => {
         <div
           className={`${
             openNav ? 'opacity-100' : 'pointer-events-none opacity-0'
-          } absolute left-0 right-0 top-full bg-black-3 p-6 text-7 shadow-lg transition-opacity duration-200 lg:hidden`}
+          } absolute left-0 right-0 top-full bg-black-3 text-7 shadow-lg transition-opacity duration-200 lg:hidden`}
         >
           <Navlist />
           <AuthButtons isMobile={true} />
