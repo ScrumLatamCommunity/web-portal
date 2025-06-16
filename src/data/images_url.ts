@@ -36,6 +36,7 @@ export const images: {
   backgroundDataCommunity: string
   history: string
   superadmin: string[]
+  welcomeComunity: string
 } = {
   imagesData: [
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Info%20Community%20component%2Fimg%201%20community.png?alt=media&token=7d827f23-b33c-4328-af08-df2959d08940',
@@ -63,5 +64,7 @@ export const images: {
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633849.svg?alt=media&token=e577db73-eca6-441a-a7c5-bd898b305d19',
     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841'
-  ]
+  ],
+  welcomeComunity:
+    'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Home%2FWelcomeComunity%2F07722000d9bf72ea593167c6416286d7fc5d2f1d.png?alt=media&token=461f574b-bc19-41a9-a9c7-a5e4cb96cf38'
 }
