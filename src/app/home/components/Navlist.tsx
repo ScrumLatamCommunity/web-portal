@@ -37,7 +37,7 @@ export const Navlist: React.FC = () => {
       <div className={`${darkerGrotesque.variable} font-darker-grotesque`}>
         <Link
           href='/'
-          className={`${darkerGrotesque.variable} md:item-start flex items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 text-[26px] font-darker-grotesque-600 ${
+          className={`${darkerGrotesque.variable} md:item-start flex items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 text-[16px] font-darker-grotesque-600 md:text-[26px] ${
             pathname === '/' ? 'text-orange-500 underline' : 'text-blue-7'
           } hover:text-orange-500 hover:underline lg:justify-center lg:border-b-0`}
         >
@@ -49,7 +49,7 @@ export const Navlist: React.FC = () => {
         onClick={() => router.push('/activities')}
       >
         <a
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[26px] font-darker-grotesque-600 text-blue-7 ${
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[16px] font-darker-grotesque-600 text-blue-7 md:text-[26px] ${
             pathname === '/activities'
               ? 'text-red-400 underline'
               : 'text-blue-7'
@@ -63,7 +63,7 @@ export const Navlist: React.FC = () => {
         onClick={() => toggleMenu('comunidad')}
       >
         <div
-          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[26px] font-darker-grotesque-600 ${
+          className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[16px] font-darker-grotesque-600 md:text-[26px] ${
             pathname === '/history' ||
             pathname === '/community/squads' ||
             pathname === '/onboarding'
