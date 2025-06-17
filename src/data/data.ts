@@ -899,3 +899,138 @@ export const profilesCatalizador = [
     linkedinUrl: 'www.linkedin.com/in/joyamichelle'
   }
 ]
+
+export const activityCategoriesData = [
+  {
+    id: 'agile-sos',
+    title: 'Agile S.O.S',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2F1e74b39a1c935fa15298fc9f02ebbc13907954ef.jpg?alt=media&token=fab37897-f470-4202-b581-8635ce45f883'
+  },
+  {
+    id: 'track-formativo',
+    title: 'Track Formativo',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2F2e8f549881db4bcd5748258ac626e1c377d80d53.jpg?alt=media&token=d52d5827-32d7-4438-ba20-e6573d36ae6c'
+  },
+  {
+    id: 'agile-learning-lab',
+    title: 'Agile Learning Lab',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2Fa43260d3f862e9736aa046286aa92a1795051164.jpg?alt=media&token=85d27b4a-3544-44b6-8cc2-8fd7c5676dcf'
+  },
+  {
+    id: 'scrum-latam-live',
+    title: 'Scrum Latam Live',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2Ff68ad6c595fe49cee207cea7e0fc286d611f01ad.jpg?alt=media&token=e58d46d8-2228-4859-b96e-0a39b5e1bc88'
+  }
+]
+
+// En tu archivo, por ejemplo: /data/data.ts
+
+export const allEventsData = [
+  // --- Scrum Latam Live ---
+  {
+    id: '1',
+    type: 'scrum-latam-live',
+    title: 'TRIPLE TRACK Product Discovery y PBB',
+    facilitator: 'Antonio Gallardo',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-06-25', // Formato YYYY-MM-DD es más robusto
+    time: ['19:00 - 20:00 (COL)'],
+    description:
+      'Explora a fondo el Product Discovery y la creación de un Product Backlog potente (PBB) en este taller intensivo con Antonio Gallardo.',
+    status: 'ACTIVE',
+    link: '/events/1'
+  },
+  {
+    id: '2',
+    type: 'scrum-latam-live',
+    title: 'IA con Norte: Estrategias y Métricas que Transforman',
+    facilitator: 'Yoko Pérez y Heileen Goodson',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-07-08',
+    time: ['19:00 - 21:00 (COL)'],
+    description:
+      'Descubre cómo la Inteligencia Artificial puede potenciar tus estrategias de producto y las métricas que realmente importan para el éxito.',
+    status: 'ACTIVE',
+    link: '/events/2'
+  },
+  // --- Agile Learning Lab ---
+  {
+    id: '3',
+    type: 'agile-learning-lab',
+    title: 'De 0 a Pro: Taller Práctico de Jira para Equipos Ágiles',
+    facilitator: 'Rigoberto Nava',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-07-15',
+    time: ['18:00 - 20:00 (MEX)'],
+    description:
+      'Domina Jira desde cero. Aprende a configurar tableros, flujos de trabajo y reportes para maximizar la productividad de tu equipo ágil.',
+    status: 'ACTIVE',
+    link: '/events/3'
+  },
+  {
+    id: '4',
+    type: 'agile-learning-lab',
+    title: 'Agilidad Empresarial con IA',
+    facilitator: 'Hiriam Eduardo Pérez',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-07-22',
+    time: ['19:00 - 21:00 (COL)'],
+    description:
+      'Desde la estrategia hasta la planeación, aprende a integrar la Inteligencia Artificial para llevar la agilidad a toda tu organización.',
+    status: 'ACTIVE',
+    link: '/events/4'
+  },
+  // --- Agile S.O.S ---
+  {
+    id: '5',
+    type: 'agile-sos',
+    title: 'Sesión Abierta de Dudas y Desafíos Ágiles',
+    facilitator: 'Comunidad Scrum Latam',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-06-20',
+    time: ['21:00 - 23:00 (ARG)'],
+    description:
+      '¿Tienes un bloqueo en tu proyecto? ¿Una duda sobre una ceremonia? Trae tus desafíos a esta sesión de ayuda mutua y aprovecha la inteligencia colectiva.',
+    status: 'ACTIVE',
+    link: '/events/5'
+  },
+  // --- Track Formativo ---
+  {
+    id: '6',
+    type: 'track-formativo',
+    title: 'Preparación de Entrevistas para Roles Ágiles',
+    facilitator: 'Jonathan Marinches',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-08-01',
+    time: ['19:00 - 21:00 (COL)'],
+    description:
+      'Prepárate para tu próxima entrevista. En este track, simularemos entrevistas, revisaremos preguntas comunes y te daremos feedback para que consigas el rol que buscas.',
+    status: 'ACTIVE',
+    link: '/events/6'
+  },
+  // --- Evento Inactivo (para probar el filtro de estado) ---
+  {
+    id: '7',
+    type: 'scrum-latam-live',
+    title: 'Evento Pasado: Retrospectivas Efectivas',
+    facilitator: 'Ana C.',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
+    date: '2025-05-15',
+    time: ['19:00 - 20:00 (COL)'],
+    description:
+      'Este evento ya concluyó. Aprendimos técnicas avanzadas para que las retrospectivas generen acciones de mejora reales y medibles.',
+    status: 'INACTIVE',
+    link: '/events/7'
+  }
+]

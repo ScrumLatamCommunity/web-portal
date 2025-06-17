@@ -1,11 +1,12 @@
 export interface Event {
-  id: number
-  image: string
+  id: string
+  type: string
   title: string
-  leader: string
+  facilitator: string
+  image: string
   date: string
-  time: string
+  time: string[]
   description: string
+  status: string
   link: string
-  details: string
 }
