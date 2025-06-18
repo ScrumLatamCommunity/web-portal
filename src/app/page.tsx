@@ -1,3 +1,4 @@
+import CommunityMembers from './home/components/CommunityMembers'
 import {
   WelcomeToCommunity,
   Reviews,
@@ -20,6 +21,7 @@ export default function Home() {
       <FlagsCommunity />
       <DataComunity />
       <CounterToCommunity />
+      <CommunityMembers />
       <News />
       <Reviews />
       <Sponsors />
