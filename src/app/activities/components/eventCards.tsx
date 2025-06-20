@@ -1,20 +1,19 @@
-// En tu archivo components/EventCard.tsx (o como lo llames, antes WorkshopCards.tsx)
 'use client'
 
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
 import { Calendar, Clock } from 'react-feather'
 import Image from 'next/image'
+import { useTimeConverter } from '../hooks/useFormatDate'
 
-// Interfaz basada en tu modelo Prisma 'Event'
 interface Event {
   id: string
-  type: string // ej: 'scrum-latam-live', 'agile-learning-lab'
+  type: string
   title: string
   description: string
-  date: string | Date // Puede ser string o Date, lo formatearemos
-  time: string[] // ej: ['19:00 a 20:00']
-  image: string // URL de la imagen del facilitador o evento
+  date: string | Date
+  time: string[]
+  image: string
   facilitator?: string | null
   link: string
 }
@@ -50,6 +49,10 @@ export default function EventCard({ event }: EventCardProps) {
   const { user } = useAuth()
   const router = useRouter()
   const { day, month } = formatDate(event.date)
+  const { formattedTime, isLoading } = useTimeConverter(
+    event.date,
+    event.time[0]
+  )
 
   const handleEnrollClick = () => {
     if (!user) {
@@ -57,71 +60,61 @@ export default function EventCard({ event }: EventCardProps) {
       router.push('/login')
     } else {
       console.log(`Usuario ${user.sub} inscribiéndose al evento ${event.id}`)
-      // Aquí iría la lógica de inscripción real
       window.open(event.link, '_blank')
     }
   }
 
   return (
-    <div className='max-w-12xl mx-auto flex w-full flex-row overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-md shadow-black-6 transition-transform duration-300 hover:scale-105 hover:shadow-2xl'>
-      {/* Columna Izquierda: Imagen y Fecha */}
-      <div className='relative h-56 w-full flex-shrink-0 sm:h-64 md:aspect-square md:h-auto md:w-1/3'>
+    <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md shadow-black-6 transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl lg:h-[620px]'>
+      {/* Imagen */}
+      <div className='lg:1/3 relative h-40 min-h-[10rem] w-2/5 sm:h-full'>
         <Image
           src={event.image}
           alt={`Facilitador ${event.facilitator || event.title}`}
-          fill // La prop `fill` hace que la imagen llene el contenedor padre
-          className='object-cover' // `object-cover` es una clase de Tailwind, reemplaza la prop `objectFit`
+          className='rounded-t-2xl object-cover sm:rounded-l-2xl sm:rounded-tr-none'
+          fill
         />
-        <div className='absolute left-4 top-4 rounded-lg bg-white bg-opacity-80 p-2 text-center leading-none backdrop-blur-sm'>
-          <p className='font-darker-grotesque text-3xl font-bold text-[#082965]'>
-            {day}
-          </p>
-          <p className='font-karla text-sm uppercase text-[#082965]'>{month}</p>
-        </div>
       </div>
 
-      {/* Columna Derecha: Información y Acción */}
-      <div className='flex flex-col justify-between gap-5 p-6 md:w-2/3'>
-        <div className='items-center py-10'>
-          <div className='mb-4 flex items-start justify-between'>
-            <p className='text-sm font-semibold uppercase tracking-wider text-[#FE5833]'>
-              {event.title}
-            </p>
-          </div>
+      {/* Contenido */}
+      <div className='flex w-2/3 flex-col justify-between p-3 text-sm sm:p-6 lg:text-3xl'>
+        {/* Sección del texto */}
+        <div className='flex flex-grow flex-col justify-center gap-2 lg:gap-y-7'>
+          <p className='text-xs font-semibold uppercase tracking-wider text-[#FE5833] lg:text-3xl'>
+            {event.title}
+          </p>
+
           {event.facilitator && (
-            <p className='text-md mb-3 font-karla font-semibold text-gray-700'>
+            <p className='font-karla text-xs font-semibold text-[#000000] lg:text-3xl'>
               Facilitador/a:{' '}
               <span className='font-normal'>{event.facilitator}</span>
             </p>
           )}
-          <p className='max-h-24 overflow-hidden font-karla text-sm leading-relaxed text-gray-600'>
+
+          <p className='line-clamp-3 font-karla text-xs text-[#000000] lg:text-2xl'>
             {event.description}
           </p>
 
-          <div className='mb-4 flex items-center gap-4 py-3 text-sm text-gray-800 sm:mb-0'>
-            {/* Aquí podrías mapear event.time si tiene múltiples horarios */}
-            <span className='rounded bg-[#07235644] px-2 font-normal'>
+          <div className='flex flex-wrap items-center gap-1 pt-1 text-xs text-gray-800 lg:space-x-10 lg:text-3xl'>
+            <span className='rounded-lg bg-[#07235644] px-8 py-0.5 text-center font-normal'>
               {event.type.replaceAll('-', ' ')}
             </span>
-            <span className='flex flex-nowrap items-center font-semibold'>
-              <Calendar className='mx-1 p-1 text-[#FE5833]' />{' '}
-              {new Date(event.date).toLocaleDateString('es-ES', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric'
-              })}
+            <span className='flex items-center gap-0.5 font-semibold'>
+              <Calendar className='h-4 w-4 text-[#FE5833] lg:h-8 lg:w-8' />
+              {new Date(event.date).toLocaleDateString('es-ES')}
             </span>
-            <span className='flex flex-nowrap items-center font-semibold'>
-              <Clock className='mx-1 p-1 text-[#FE5833]' />
-              {event.time.join().replace('-', ' a ')}
+            <span className='flex items-center gap-0.5 font-semibold'>
+              <Clock className='h-4 w-4 text-[#FE5833] lg:h-8 lg:w-8' />
+              {isLoading ? 'Calculando hora...' : formattedTime}
             </span>
           </div>
         </div>
 
-        <div className='flex justify-end pt-2'>
+        {/* Botón */}
+        <div className='flex justify-end pt-2 lg:px-20'>
           <button
             onClick={handleEnrollClick}
-            className='w-full rounded-2xl bg-[#082965] px-20 py-2 font-semibold text-white transition-colors duration-300 hover:bg-[#FE5833] sm:w-auto'
+            className='w-full self-end rounded-3xl bg-[#082965] px-6 py-2 text-sm font-normal text-white transition-colors duration-300 hover:bg-[#FE5833] lg:w-auto lg:px-44 lg:py-5 lg:text-3xl'
           >
             Inscribirme
           </button>

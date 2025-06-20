@@ -21,9 +21,9 @@ export default function EventFilters({
 }: EventFiltersProps) {
   return (
     <section className='py-6 md:py-8'>
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-full justify-start px-6 sm:px-8'>
         <div className='flex flex-col md:flex-row md:items-center md:gap-6'>
-          <h3 className='mb-4 flex-shrink-0 font-darker-grotesque text-lg font-semibold text-gray-700 md:mb-0'>
+          <h3 className='mb-4 flex-shrink-0 font-darker-grotesque text-lg font-normal text-gray-700 md:mb-0 lg:text-3xl'>
             Aplicar filtros:
           </h3>
 
@@ -40,9 +40,9 @@ export default function EventFilters({
                   id={`filter-${category.id}`}
                   checked={selectedCategories.includes(category.id)}
                   onChange={() => onFilterChange(category.id)}
-                  className='h-5 w-5 rounded border-gray-300 text-[#082965] focus:ring-[#082965]'
+                  className='h-5 w-5 rounded border-gray-300 text-[#FE5833] focus:ring-transparent'
                 />
-                <span className='select-none font-medium text-gray-800'>
+                <span className='select-none text-base font-normal text-gray-800 lg:text-3xl'>
                   {category.title}
                 </span>
               </label>

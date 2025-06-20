@@ -864,24 +864,32 @@ export const activityCategoriesData = [
   {
     id: 'agile-sos',
     title: 'Agile S.O.S',
+    description:
+      'Espacio de acompañamiento donde los miembros pueden plantear dudas y desafios para recibir ayuda de la comunidad.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2F1e74b39a1c935fa15298fc9f02ebbc13907954ef.jpg?alt=media&token=fab37897-f470-4202-b581-8635ce45f883'
   },
   {
     id: 'track-formativo',
     title: 'Track Formativo',
+    description:
+      'Programa para casos de estudio y llevar contenido teórico a la práctica.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2F2e8f549881db4bcd5748258ac626e1c377d80d53.jpg?alt=media&token=d52d5827-32d7-4438-ba20-e6573d36ae6c'
   },
   {
     id: 'agile-learning-lab',
     title: 'Agile Learning Lab',
+    description:
+      'Sesiones prácticas y colaborativas para aprender y aplicar conceptos ágiles mediante ejercicios y dinámicas.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2Fa43260d3f862e9736aa046286aa92a1795051164.jpg?alt=media&token=85d27b4a-3544-44b6-8cc2-8fd7c5676dcf'
   },
   {
     id: 'scrum-latam-live',
     title: 'Scrum Latam Live',
+    description:
+      'Charlas en vivo con expertos en metodologías ágiles y liderazgo con espacio para preguntas y debate.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2Ff68ad6c595fe49cee207cea7e0fc286d611f01ad.jpg?alt=media&token=e58d46d8-2228-4859-b96e-0a39b5e1bc88'
   }
@@ -953,7 +961,6 @@ export const allEventsData = [
     id: '5',
     type: 'agile-sos',
     title: 'Sesión Abierta de Dudas y Desafíos Ágiles',
-    facilitator: 'Comunidad Scrum Latam',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-06-20',

@@ -29,9 +29,6 @@ export default function UpcomingEventsGrid({
   return (
     <section className='py-12 md:py-16'>
       <div className='max-w-12xl mx-auto px-2 sm:px-6 lg:px-12'>
-        <h2 className='mb-12 text-start font-darker-grotesque text-lg font-bold text-[#082965]'>
-          Próximas Actividades
-        </h2>
         {isLoading ? (
           // Si está cargando, muestra 3 esqueletos
           <div className='grid grid-cols-1 gap-3'>

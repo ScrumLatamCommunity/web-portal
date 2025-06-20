@@ -1,4 +1,3 @@
-// En tu archivo components/ActivityTypeCard.tsx
 'use client'
 
 import Image from 'next/image'
@@ -6,6 +5,7 @@ import Image from 'next/image'
 interface Category {
   id: string
   title: string
+  description: string
   image: string
 }
 
@@ -20,31 +20,48 @@ export default function ActivityTypeCard({
   isSelected,
   onClick
 }: ActivityTypeCardProps) {
+  const active = isSelected
+
   return (
     <div
       onClick={onClick}
-      // --- CORRECCIÓN PRINCIPAL AQUÍ ---
-      // Se añade el prefijo `md:` al hover para que solo se aplique en pantallas medianas y más grandes.
-      // En móvil, la tarjeta ya no se escalará.
-      className={`w-50 group relative h-48 min-w-[100px] max-w-[300px] transform cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-300 ${isSelected ? 'scale-110 ring-4 ring-white/80 ring-offset-2' : 'md:hover:scale-105'}`}
+      className={`group relative h-44 w-full max-w-[250px] transform cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-300 lg:h-80 lg:max-w-[420px] ${
+        isSelected ? 'ring-4 ring-white/80 ring-offset-2' : ''
+      }`}
     >
-      {/* Capa 1: Imagen de Fondo */}
+      {/* Imagen de fondo */}
       <Image
         src={category.image}
         alt={category.title}
         fill
-        // El efecto de zoom en la imagen también se hace solo para desktop
         className='object-cover transition-transform duration-300 md:group-hover:scale-110'
+        sizes='(max-width: 768px) 90vw, 300px'
       />
 
-      {/* Capa 2: Overlay Azul */}
-      <div className='absolute inset-0 z-10 bg-gradient-to-t from-[#082965] via-[#082965]/70 to-transparent opacity-90'></div>
+      {/* Fondo dinámico */}
+      <div
+        className={`absolute inset-0 z-10 transition-colors duration-300 ${
+          active
+            ? 'bg-[#082965]'
+            : 'bg-gradient-to-t from-[#082965] via-[#082965]/70 to-transparent group-hover:bg-[#082965]'
+        } opacity-90`}
+      />
 
-      {/* Capa 3: Texto */}
-      <div className='absolute inset-x-0 bottom-0 z-20 p-4 text-center'>
-        <h4 className='font-darker-grotesque text-lg font-bold text-white sm:text-xl lg:text-2xl'>
-          {category.title}
-        </h4>
+      {/* Contenido centrado */}
+      <div
+        className={`absolute inset-0 z-20 flex flex-col items-center justify-end p-4 text-center text-white transition-all duration-300 group-hover:justify-center ${active ? 'justify-center' : ''} `}
+      >
+        <div>
+          <h4 className='font-darker-grotesque text-xl font-bold sm:text-2xl lg:text-3xl'>
+            {category.title}
+          </h4>
+
+          <p
+            className={`mt-2 max-h-0 overflow-hidden text-xl text-white/80 opacity-0 transition-all duration-300 ease-in-out group-hover:max-h-40 group-hover:opacity-100 ${active ? 'max-h-40 opacity-100' : ''} `}
+          >
+            {category.description}
+          </p>
+        </div>
       </div>
     </div>
   )

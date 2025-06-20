@@ -2,7 +2,7 @@ export interface Event {
   id: string
   type: string
   title: string
-  facilitator: string
+  facilitator?: string
   image: string
   date: string
   time: string[]

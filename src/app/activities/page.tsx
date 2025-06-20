@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import WeeklyActivityHero from './components/WeeklyActivityHero'
 import EventFilters from './components/EventFilters'
 import UpcomingEventsGrid from './components/UpcomingEventsGrid'
-import JoinCommunity from '@/app/community/components/joinSection'
 
 // Datos que vendrían de tu API o de archivos estáticos
 import { allEventsData } from '@/data/data'
@@ -21,21 +20,16 @@ export default function Activities() {
       (event) => event.status === 'ACTIVE'
     )
     setEvents(activeEvents)
-    setIsLoading(false) // Finaliza la carga
-  }, []) // El array vacío asegura que esto solo se ejecute una vez al montar
+    setIsLoading(false)
+  }, [])
 
   const handleFilterChange = (category: string) => {
-    setSelectedCategories(
-      (prev) =>
-        prev.includes(category)
-          ? prev.filter((c) => c !== category) // Si ya está, lo quita
-          : [...prev, category] // Si no está, lo añade
+    setSelectedCategories((prev) =>
+      prev.includes(category) ? prev.filter((c) => c !== category) : [category]
     )
   }
 
   const handleHeroCategorySelect = (category: string) => {
-    // Si se hace clic en la misma categoría que ya es el único filtro,
-    // se limpia la selección para mostrar todos los eventos.
     if (selectedCategories.length === 1 && selectedCategories[0] === category) {
       setSelectedCategories([])
     } else {
@@ -51,25 +45,29 @@ export default function Activities() {
 
   return (
     <>
-      {/* 1. Componente para la nueva sección principal "Actividad Semanal" */}
-      <WeeklyActivityHero
-        categories={activityCategoriesData}
-        onSelectCategory={handleHeroCategorySelect}
-        selectedCategory={
-          selectedCategories.length === 1 ? selectedCategories[0] : null
-        }
-      />
+      <div className='max-w-full overflow-x-hidden'>
+        {/* 1. Componente para la nueva sección principal "Actividad Semanal" */}
+        <WeeklyActivityHero
+          categories={activityCategoriesData}
+          onSelectCategory={handleHeroCategorySelect}
+          selectedCategory={
+            selectedCategories.length === 1 ? selectedCategories[0] : null
+          }
+        />
+        <h2 className='my-7 pl-6 text-start font-darker-grotesque text-lg font-medium text-[#082965] lg:text-5xl'>
+          Próximas Actividades
+        </h2>
+        {/* 2. Componente para la barra de filtros con checkboxes */}
+        <EventFilters
+          categories={activityCategoriesData}
+          selectedCategories={selectedCategories}
+          onFilterChange={handleFilterChange}
+        />
 
-      {/* 2. Componente para la barra de filtros con checkboxes */}
-      <EventFilters
-        categories={activityCategoriesData}
-        selectedCategories={selectedCategories}
-        onFilterChange={handleFilterChange}
-      />
-
-      {/* 3. Componente para la cuadrícula de "Próximos Eventos" */}
-      {/* Pasamos el estado de carga para que pueda mostrar un esqueleto si es necesario */}
-      <UpcomingEventsGrid events={filteredEvents} isLoading={isLoading} />
+        {/* 3. Componente para la cuadrícula de "Próximos Eventos" */}
+        {/* Pasamos el estado de carga para que pueda mostrar un esqueleto si es necesario */}
+        <UpcomingEventsGrid events={filteredEvents} isLoading={isLoading} />
+      </div>
     </>
   )
 }

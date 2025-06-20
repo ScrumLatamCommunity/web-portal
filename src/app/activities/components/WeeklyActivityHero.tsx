@@ -12,6 +12,7 @@ import 'swiper/css/navigation'
 interface Category {
   id: string
   title: string
+  description: string
   image: string
 }
 
@@ -28,8 +29,8 @@ export default function WeeklyActivityHero({
 }: WeeklyActivityHeroProps) {
   return (
     <section className='bg-white py-2 md:py-10'>
-      <div className='mx-1 max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <h2 className='mb-4 text-start font-darker-grotesque text-lg font-bold text-[#082965] sm:mb-6 sm:text-xl lg:text-2xl'>
+      <div className='mx-auto px-1 sm:px-3 lg:px-8'>
+        <h2 className='mb-4 text-start font-darker-grotesque text-lg font-medium text-[#082965] sm:mb-6 sm:text-xl lg:text-5xl'>
           Actividades Semanales
         </h2>
 
@@ -44,25 +45,25 @@ export default function WeeklyActivityHero({
           spaceBetween={16}
           className='weekly-activity-swiper'
           breakpoints={{
-            320: {
-              slidesPerView: 1,
+            0: {
+              slidesPerView: 1.2, // o 1.1 para pantallas de 320-400px
+              spaceBetween: 2
+            },
+            480: {
+              slidesPerView: 1.5,
               spaceBetween: 5
             },
             640: {
-              slidesPerView: 2,
-              spaceBetween: 5
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 5
+              slidesPerView: 3,
+              spaceBetween: 12
             },
             1024: {
-              slidesPerView: 3,
-              spaceBetween: 24
+              slidesPerView: 4,
+              spaceBetween: 20
             },
             1280: {
               slidesPerView: 4,
-              spaceBetween: 30
+              spaceBetween: 10
             }
           }}
         >
