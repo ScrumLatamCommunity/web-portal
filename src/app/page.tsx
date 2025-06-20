@@ -1,3 +1,5 @@
+import ActivitiesHome from './home/components/ActivitiesHome'
+import CommunityActivities from './home/components/CommunityActivities'
 import CommunityMembers from './home/components/CommunityMembers'
 import {
   WelcomeToCommunity,
@@ -21,6 +23,8 @@ export default function Home() {
       <FlagsCommunity />
       <DataComunity />
       <CounterToCommunity />
+      <CommunityActivities />
+      <ActivitiesHome />
       <CommunityMembers />
       <News />
       <Reviews />
