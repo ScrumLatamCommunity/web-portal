@@ -58,10 +58,9 @@ export default function Activities() {
     fetchSponsorData()
   }, [token])
 
-  // Filtrar eventos basados en las categorías seleccionadas
   const filteredActivities =
     selectedCategories.length === 0
-      ? activityData // Si no hay filtros, muestra todos los eventos activos
+      ? activityData
       : activityData.filter((activity) =>
           selectedCategories.includes(activity.type)
         )

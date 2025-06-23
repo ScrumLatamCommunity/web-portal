@@ -1,74 +1,169 @@
 'use client'
+import { FC, SVGProps, useEffect, useState } from 'react'
+import UserIcon from '@/assets/userIcon'
+import StarIcon from '@/assets/starIcon'
+import ActivityIcon from '@/assets/activityIcon'
+import React from 'react'
+import WorldIcon from '@/assets/worldIcon'
 
-import { useEffect, useState } from 'react'
-import { PrimaryButton } from '../../../core/PrimaryButton'
-import { image_url_mobile, image_url_desktop } from '@/data/data'
-import useIsLargeScreen from '@/hooks/index'
-import { useAuth } from '@/app/context/AuthContext'
-import Image from 'next/image'
-import { images } from '@/data/images_url'
+interface Counter {
+  id: number
+  number: number
+  text: string
+  icon: FC<SVGProps<SVGSVGElement>>
+}
 
-const NEW_IMAGE_URL = images.welcomeComunity
+const initialCounters: Counter[] = [
+  {
+    id: 1,
+    number: 0,
+    text: 'Miembros',
+    icon: UserIcon
+  },
+  {
+    id: 2,
+    number: 0,
+    text: 'Países',
+    icon: WorldIcon
+  },
+  {
+    id: 3,
+    number: 0,
+    text: 'Actividades',
+    icon: ActivityIcon
+  },
+  {
+    id: 4,
+    number: 0,
+    text: 'Sponsors',
+    icon: StarIcon
+  }
+]
 
-export const WelcomeToCommunity = () => {
-  const isLargeScreen = useIsLargeScreen()
-  const [image, setImage] = useState(NEW_IMAGE_URL)
+export const CounterToCommunity = () => {
+  const [currentCounters, setCurrentCounters] =
+    useState<Counter[]>(initialCounters)
+  const [currentActivities, setCurrentActivities] = useState<any[] | undefined>(
+    undefined
+  )
+
+  const getMembers = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error('Error al obtener miembros')
+      }
+
+      const data: { role: string; country: string }[] = await response.json()
+
+      let userCount = 0
+      let sponsorCount = 0
+      const uniqueCountries = new Set<string>()
+
+      data.forEach((user) => {
+        if (user.role === 'USER') {
+          userCount++
+        }
+        if (user.role === 'SPONSOR') {
+          sponsorCount++
+        }
+        if (user.country) {
+          uniqueCountries.add(user.country)
+        }
+      })
+
+      const updatedCounters = initialCounters.map((counter) => {
+        if (counter.text === 'Miembros') {
+          return { ...counter, number: userCount }
+        }
+        if (counter.text === 'Sponsors') {
+          return { ...counter, number: sponsorCount }
+        }
+        if (counter.text === 'Países') {
+          return { ...counter, number: uniqueCountries.size }
+        }
+        return counter
+      })
+
+      setCurrentCounters(updatedCounters)
+    } catch (error) {
+      console.error('Error al obtener miembros:', error)
+    }
+  }
+
+  const getActivities = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}activities`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Error al obtener actividades')
+      }
+      const data: any[] = await response.json()
+      setCurrentActivities(data)
+
+      setCurrentCounters((prevCounters) =>
+        prevCounters.map((counter) => {
+          if (counter.text === 'Actividades') {
+            return { ...counter, number: data.length }
+          }
+          return counter
+        })
+      )
+    } catch (error) {
+      console.error('Error al obtener actividades:', error)
+    }
+  }
 
   useEffect(() => {
-    setImage(NEW_IMAGE_URL)
-  }, [isLargeScreen])
-
-  const { user } = useAuth()
+    getMembers()
+    getActivities()
+  }, [])
 
   return (
-    // Sección principal con fondo blanco y padding vertical.
-    <section className={`bg-white py-12 font-darker-grotesque md:py-20`}>
-      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        {/* Contenedor con Grid para el layout de dos columnas */}
-        <div className='grid grid-cols-1 items-center gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20'>
-          {/* Columna Izquierda: Texto y Botón */}
-          <div className='text-center md:pr-12 md:text-left'>
-            {/* Título principal con medidas exactas */}
-            <h1 className='font-darker-grotesque text-[55px] font-bold leading-[50px] tracking-wide text-[#082965]'>
-              ¡Bienvenido! a
-            </h1>
-
-            {/* Subtítulo con medidas exactas */}
-            <p className='mt-6 font-darker-grotesque text-[26px] font-bold leading-[30px] text-[#082965]'>
-              Scrum <span className='text-[#FE5833]'>Latam</span>: Donde la
-              comunidad y la agilidad convergen.
-            </p>
-
-            {/* Párrafo descriptivo con medidas exactas */}
-            <p className='mt-4 font-karla text-[16px] font-medium leading-[120%] tracking-wider text-gray-600'>
-              Fomentamos el aprendizaje colaborativo y aplicamos metodologías
-              ágiles para crecer juntos con éxito.
-            </p>
-            {/* Contenedor del Botón */}
-            <div className='mt-10'>
-              <PrimaryButton
-                // Aplicando los nuevos colores al botón
-                className='rounded-full bg-[#082965] px-8 py-3 text-lg font-semibold text-white shadow-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#082965] focus:ring-offset-2'
-                label='Únete a nosotros'
-                // Aquí puedes añadir la lógica de navegación, ej: onClick={() => router.push('/register')}
-              />
+    <section className='relative m-auto mt-8 pb-8 font-darker-grotesque md:max-w-[1920px] md:pb-24'>
+      <div className='mt-8 flex flex-wrap items-center justify-center gap-4 pt-12'>
+        <h3 className='m-0 text-6 font-black text-blue-8 md:text-4xl xl:text-17'>
+          Somos una gran comunidad
+        </h3>
+      </div>
+      <div className='flex flex-wrap justify-around gap-x-20 px-5 md:gap-14 md:px-16 xl:mt-14 xl:gap-x-0 2xl:px-24'>
+        {currentCounters.map((counter, index) => (
+          <React.Fragment key={counter.id}>
+            <div className='mt-6 flex flex-col items-center md:gap-7'>
+              <div className='w-12 max-w-[114px] pt-3 md:w-[8dvw]'>
+                {React.createElement(counter.icon, {
+                  className: 'w-full h-full bg-white fill-none stroke-red-500'
+                })}
+              </div>
+              <h4
+                className='text-center text-10 font-black text-blue-8 md:text-5xl 2xl:text-7xl'
+                id='counter'
+              >
+                {counter.number}
+              </h4>
+              <p className='font-black text-blue-8 md:text-7 xl:text-11'>
+                {counter.text}
+              </p>
             </div>
-          </div>
-
-          {/* Columna Derecha: Imagen */}
-          <div className='flex justify-center md:justify-end'>
-            <div className='w-full md:w-full'>
-              <Image
-                src={image}
-                alt='Comunidad Scrum Latam en una videollamada'
-                width={1000} // Ancho intrínseco de la imagen para aspect-ratio
-                height={900} // Alto intrínseco de la imagen
-                className='lg:scale-140 h-auto w-full transform transition-transform duration-500 ease-in-out md:-translate-x-8 md:scale-125 lg:-translate-x-16'
-                priority // Cargar esta imagen de forma prioritaria ya que es principal
-              />
-            </div>
-          </div>
-        </div>
+            {index < currentCounters.length - 1 && (
+              <div className='hidden w-[1px] bg-gray-400 md:block md:h-72'></div>
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </section>
   )

@@ -134,7 +134,7 @@ export const CounterToCommunity = () => {
   }, [])
 
   return (
-    <section className='relative m-auto mt-8 font-darker-grotesque md:max-w-[1920px] md:pb-16'>
+    <section className='relative m-auto mt-8 pb-8 font-darker-grotesque md:max-w-[1920px] md:pb-24'>
       <div className='mt-8 flex flex-wrap items-center justify-center gap-4 pt-12'>
         <h3 className='m-0 text-6 font-black text-blue-8 md:text-4xl xl:text-17'>
           Somos una gran comunidad
