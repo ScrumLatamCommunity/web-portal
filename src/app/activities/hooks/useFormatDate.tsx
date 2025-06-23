@@ -1,12 +1,10 @@
-// app/hooks/useTimeConverter.ts
 'use client'
 
 import { useAuth } from '@/app/context/AuthContext'
 import { useState, useEffect } from 'react'
 import { UserData } from '@/interfaces'
+import { Activity } from '../interfaces/activityInterface'
 
-// MAPA 1: Nombre del país (en minúsculas) a su código ISO de 2 letras.
-// *** Actualizado para coincidir exactamente con tu lista de países ***
 const countryNameToIsoMap: { [key: string]: string } = {
   argentina: 'AR',
   chile: 'CL',
@@ -16,24 +14,22 @@ const countryNameToIsoMap: { [key: string]: string } = {
   ecuador: 'EC',
   guatemala: 'GT',
   panama: 'PA',
-  panamá: 'PA', // Variante con tilde
+  panamá: 'PA',
   'costa rica': 'CR',
   nicaragua: 'NI',
   'el salvador': 'SV',
   honduras: 'HN',
   méxico: 'MX',
-  mexico: 'MX', // Variante sin tilde
+  mexico: 'MX',
   venezuela: 'VE',
   bolivia: 'BO',
   paraguay: 'PY',
   brasil: 'BR',
   canada: 'CA',
-  canadá: 'CA', // Variante con tilde
+  canadá: 'CA',
   'estados unidos': 'US'
 }
 
-// MAPA 2: Código ISO de 2 letras a su zona horaria IANA.
-// Este mapa ya es compatible con todos los códigos del mapa anterior.
 const countryTimeZoneMap: { [key: string]: string } = {
   AR: 'America/Argentina/Buenos_Aires',
   CL: 'America/Santiago',
@@ -59,27 +55,21 @@ const countryTimeZoneMap: { [key: string]: string } = {
 const DEFAULT_TIMEZONE = 'America/Bogota'
 const DEFAULT_COUNTRY_CODE = 'CO'
 
-export const useTimeConverter = (
-  eventDate: string | Date,
-  timeRangeString: string
-) => {
+export const useTimeConverter = (activity: Activity) => {
   const { user, token } = useAuth()
+  const { date: activityDate, time: timeArray } = activity
 
   const [formattedTime, setFormattedTime] = useState('Calculando...')
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const timeRegex = /(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})/
-    const match = timeRangeString.match(timeRegex)
-
-    if (!match) {
-      setFormattedTime(timeRangeString)
+    if (!Array.isArray(timeArray) || timeArray.length !== 2) {
+      setFormattedTime('Formato de tiempo inválido')
       setIsLoading(false)
       return
     }
 
-    const startTimeOriginal = match[1]
-    const endTimeOriginal = match[2]
+    const [startTimeOriginal, endTimeOriginal] = timeArray
     const originalFormatted = `${startTimeOriginal} a ${endTimeOriginal}`
     const originalFormattedWithCountry = `${originalFormatted} (${DEFAULT_COUNTRY_CODE})`
 
@@ -101,56 +91,62 @@ export const useTimeConverter = (
           throw new Error('No se pudo obtener la información del usuario')
 
         const userData: UserData = await response.json()
-
         const userCountryName = userData?.country?.[0]
+
         let userTimeZone = DEFAULT_TIMEZONE
         let displayCountryCode = DEFAULT_COUNTRY_CODE
 
         if (userCountryName) {
-          const normalizedName = userCountryName.toLowerCase().trim()
-          const isoCode = countryNameToIsoMap[normalizedName]
+          const normalized = userCountryName.toLowerCase().trim()
+          const isoCode = countryNameToIsoMap[normalized]
 
-          if (isoCode) {
-            userTimeZone = countryTimeZoneMap[isoCode] || DEFAULT_TIMEZONE
+          if (isoCode && countryTimeZoneMap[isoCode]) {
+            userTimeZone = countryTimeZoneMap[isoCode]
             displayCountryCode = isoCode
           }
         }
 
-        const convertSingleTime = (time: string, timeZone: string): string => {
-          const dateString =
-            typeof eventDate === 'string'
-              ? eventDate
-              : eventDate.toISOString().split('T')[0]
-          const dateTimeString = `${dateString}T${time}:00`
+        const convertTime = (
+          time: string,
+          fromTZ: string,
+          toTZ: string
+        ): string => {
+          const dateStr =
+            typeof activityDate === 'string'
+              ? activityDate
+              : activityDate.toISOString().split('T')[0]
+          const isoString = `${dateStr}T${time}:00`
 
-          const eventDateInOriginTZ = new Date(
-            new Date(dateTimeString).toLocaleString('en-US', {
-              timeZone: DEFAULT_TIMEZONE
+          const localDate = new Date(
+            new Date(isoString).toLocaleString('en-US', {
+              timeZone: fromTZ
             })
           )
 
           return new Intl.DateTimeFormat('es-ES', {
             hour: '2-digit',
             minute: '2-digit',
-            timeZone: timeZone,
+            timeZone: toTZ,
             hour12: false
-          }).format(eventDateInOriginTZ)
+          }).format(localDate)
         }
 
-        const convertedStartTime = convertSingleTime(
+        const convertedStart = convertTime(
           startTimeOriginal,
+          DEFAULT_TIMEZONE,
           userTimeZone
         )
-        const convertedEndTime = convertSingleTime(
+        const convertedEnd = convertTime(
           endTimeOriginal,
+          DEFAULT_TIMEZONE,
           userTimeZone
         )
 
         setFormattedTime(
-          `${convertedStartTime} a ${convertedEndTime} (${displayCountryCode})`
+          `${convertedStart} a ${convertedEnd} (${displayCountryCode})`
         )
-      } catch (error) {
-        console.error('Error convirtiendo la hora:', error)
+      } catch (err) {
+        console.error('Error al convertir hora:', err)
         setFormattedTime(originalFormattedWithCountry)
       } finally {
         setIsLoading(false)
@@ -158,7 +154,7 @@ export const useTimeConverter = (
     }
 
     fetchAndConvert()
-  }, [user, token, eventDate, timeRangeString])
+  }, [user, token, activityDate, timeArray])
 
   return { formattedTime, isLoading }
 }

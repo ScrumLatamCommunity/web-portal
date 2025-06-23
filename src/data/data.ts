@@ -907,7 +907,7 @@ export const allEventsData = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-06-25', // Formato YYYY-MM-DD es más robusto
-    time: ['19:00 - 20:00 (COL)'],
+    time: ['19:00', '20:00'],
     description:
       'Explora a fondo el Product Discovery y la creación de un Product Backlog potente (PBB) en este taller intensivo con Antonio Gallardo.',
     status: 'ACTIVE',
@@ -921,7 +921,7 @@ export const allEventsData = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-07-08',
-    time: ['19:00 - 21:00 (COL)'],
+    time: ['19:00', '20:00'],
     description:
       'Descubre cómo la Inteligencia Artificial puede potenciar tus estrategias de producto y las métricas que realmente importan para el éxito.',
     status: 'ACTIVE',
@@ -936,7 +936,7 @@ export const allEventsData = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-07-15',
-    time: ['18:00 - 20:00 (MEX)'],
+    time: ['18:00', '20:00'],
     description:
       'Domina Jira desde cero. Aprende a configurar tableros, flujos de trabajo y reportes para maximizar la productividad de tu equipo ágil.',
     status: 'ACTIVE',
@@ -950,7 +950,7 @@ export const allEventsData = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-07-22',
-    time: ['19:00 - 21:00 (COL)'],
+    time: ['19:00', '21:00'],
     description:
       'Desde la estrategia hasta la planeación, aprende a integrar la Inteligencia Artificial para llevar la agilidad a toda tu organización.',
     status: 'ACTIVE',
@@ -964,7 +964,7 @@ export const allEventsData = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-06-20',
-    time: ['21:00 - 23:00 (ARG)'],
+    time: ['21:00', '23:00'],
     description:
       '¿Tienes un bloqueo en tu proyecto? ¿Una duda sobre una ceremonia? Trae tus desafíos a esta sesión de ayuda mutua y aprovecha la inteligencia colectiva.',
     status: 'ACTIVE',
@@ -979,7 +979,7 @@ export const allEventsData = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
     date: '2025-08-01',
-    time: ['19:00 - 21:00 (COL)'],
+    time: ['19:00', '21:00'],
     description:
       'Prepárate para tu próxima entrevista. En este track, simularemos entrevistas, revisaremos preguntas comunes y te daremos feedback para que consigas el rol que buscas.',
     status: 'ACTIVE',
@@ -993,8 +993,8 @@ export const allEventsData = [
     facilitator: 'Ana C.',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa',
-    date: '2025-05-15',
-    time: ['19:00 - 20:00 (COL)'],
+    date: '2025-07-06T19:00:00.000Z',
+    time: ['19:00', '20:00'],
     description:
       'Este evento ya concluyó. Aprendimos técnicas avanzadas para que las retrospectivas generen acciones de mejora reales y medibles.',
     status: 'INACTIVE',

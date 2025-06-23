@@ -5,72 +5,38 @@ import { useRouter } from 'next/navigation'
 import { Calendar, Clock } from 'react-feather'
 import Image from 'next/image'
 import { useTimeConverter } from '../hooks/useFormatDate'
+import { Activity } from '../interfaces/activityInterface'
 
-interface Event {
-  id: string
-  type: string
-  title: string
-  description: string
-  date: string | Date
-  time: string[]
-  image: string
-  facilitator?: string | null
-  link: string
+interface ActivityCardProps {
+  activity: Activity
 }
 
-interface EventCardProps {
-  event: Event
-}
-
-const formatDate = (
-  dateInput: string | Date
-): { day: string; month: string } => {
-  const date = new Date(dateInput)
-  const day = date.getDate().toString().padStart(2, '0')
-  const monthNames = [
-    'Ene',
-    'Feb',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dic'
-  ]
-  const month = monthNames[date.getMonth()]
-  return { day, month }
-}
-
-export default function EventCard({ event }: EventCardProps) {
+export default function ActivityCard({ activity }: ActivityCardProps) {
   const { user } = useAuth()
   const router = useRouter()
-  const { day, month } = formatDate(event.date)
-  const { formattedTime, isLoading } = useTimeConverter(
-    event.date,
-    event.time[0]
-  )
+  const { formattedTime, isLoading } = useTimeConverter(activity)
 
   const handleEnrollClick = () => {
     if (!user) {
       localStorage.setItem('redirectToAfterAuth', `/activities`)
       router.push('/login')
     } else {
-      console.log(`Usuario ${user.sub} inscribiéndose al evento ${event.id}`)
-      window.open(event.link, '_blank')
+      console.log(`Usuario ${user.sub} inscribiéndose al evento ${activity.id}`)
+      window.open(activity.link, '_blank')
     }
   }
+
+  const imageSrc = activity.image?.trim()
+    ? activity.image
+    : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
     <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md shadow-black-6 transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl lg:h-[620px]'>
       {/* Imagen */}
       <div className='lg:1/3 relative h-40 min-h-[10rem] w-2/5 sm:h-full'>
         <Image
-          src={event.image}
-          alt={`Facilitador ${event.facilitator || event.title}`}
+          src={imageSrc}
+          alt={`Facilitador ${activity.facilitator || activity.title}`}
           className='rounded-t-2xl object-cover sm:rounded-l-2xl sm:rounded-tr-none'
           fill
         />
@@ -81,27 +47,27 @@ export default function EventCard({ event }: EventCardProps) {
         {/* Sección del texto */}
         <div className='flex flex-grow flex-col justify-center gap-2 lg:gap-y-7'>
           <p className='text-xs font-semibold uppercase tracking-wider text-[#FE5833] lg:text-3xl'>
-            {event.title}
+            {activity.title}
           </p>
 
-          {event.facilitator && (
+          {activity.facilitator && (
             <p className='font-karla text-xs font-semibold text-[#000000] lg:text-3xl'>
               Facilitador/a:{' '}
-              <span className='font-normal'>{event.facilitator}</span>
+              <span className='font-normal'>{activity.facilitator}</span>
             </p>
           )}
 
           <p className='line-clamp-3 font-karla text-xs text-[#000000] lg:text-2xl'>
-            {event.description}
+            {activity.description}
           </p>
 
           <div className='flex flex-wrap items-center gap-1 pt-1 text-xs text-gray-800 lg:space-x-10 lg:text-3xl'>
             <span className='rounded-lg bg-[#07235644] px-8 py-0.5 text-center font-normal'>
-              {event.type.replaceAll('-', ' ')}
+              {activity.type.replaceAll('-', ' ')}
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>
               <Calendar className='h-4 w-4 text-[#FE5833] lg:h-8 lg:w-8' />
-              {new Date(event.date).toLocaleDateString('es-ES')}
+              {new Date(activity.date).toLocaleDateString('es-ES')}
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>
               <Clock className='h-4 w-4 text-[#FE5833] lg:h-8 lg:w-8' />

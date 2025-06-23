@@ -1,7 +1,7 @@
 // En un nuevo archivo, por ej: components/EventCardSkeleton.tsx
 'use client'
 
-export default function EventCardSkeleton() {
+export default function ActivityCardSkeleton() {
   return (
     <div className='mx-auto flex w-full max-w-4xl animate-pulse flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg md:flex-row'>
       {/* Columna Izquierda: Imagen y Fecha */}

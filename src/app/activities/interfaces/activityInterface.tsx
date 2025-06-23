@@ -1,10 +1,10 @@
-export interface Event {
+export interface Activity {
   id: string
   type: string
   title: string
   facilitator?: string
   image: string
-  date: string
+  date: string | Date
   time: string[]
   description: string
   status: string

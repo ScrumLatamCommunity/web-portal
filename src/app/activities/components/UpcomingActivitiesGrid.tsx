@@ -1,31 +1,19 @@
 // En tu archivo components/UpcomingEventsGrid.tsx
 'use client'
 
-import EventCard from './eventCards'
-import EventCardSkeleton from './EventCardSkeleton' // Importa el nuevo componente de esqueleto
+import { Activity } from '../interfaces/activityInterface'
+import ActivityCardSkeleton from './ActivityCardSkeleton'
+import ActivityCard from './activityCards'
 
-// Interfaz basada en tu modelo Prisma 'Event'
-interface Event {
-  id: string
-  type: string
-  title: string
-  description: string
-  date: string | Date
-  time: string[]
-  image: string
-  facilitator?: string | null
-  link: string
-}
-
-interface UpcomingEventsGridProps {
-  events: Event[]
+interface UpcomingActivitiesGridProps {
+  activities: Activity[]
   isLoading: boolean // Añade la prop isLoading
 }
 
-export default function UpcomingEventsGrid({
-  events,
+export default function UpcomingActivitiesGrid({
+  activities,
   isLoading
-}: UpcomingEventsGridProps) {
+}: UpcomingActivitiesGridProps) {
   return (
     <section className='py-12 md:py-16'>
       <div className='max-w-12xl mx-auto px-2 sm:px-6 lg:px-12'>
@@ -33,14 +21,14 @@ export default function UpcomingEventsGrid({
           // Si está cargando, muestra 3 esqueletos
           <div className='grid grid-cols-1 gap-3'>
             {[...Array(3)].map((_, index) => (
-              <EventCardSkeleton key={index} />
+              <ActivityCardSkeleton key={index} />
             ))}
           </div>
-        ) : events.length > 0 ? (
+        ) : activities.length > 0 ? (
           // Si no está cargando y hay eventos, muestra los eventos
           <div className='grid grid-cols-1 gap-6'>
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
+            {activities.map((activity) => (
+              <ActivityCard key={activity.id} activity={activity} />
             ))}
           </div>
         ) : (

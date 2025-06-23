@@ -1,4 +1,3 @@
-// En tu archivo components/EventFilters.tsx
 'use client'
 
 import React from 'react'
@@ -8,17 +7,17 @@ interface Category {
   title: string
 }
 
-interface EventFiltersProps {
+interface ActivityFiltersProps {
   categories: Category[]
   selectedCategories: string[]
   onFilterChange: (categoryId: string) => void
 }
 
-export default function EventFilters({
+export default function ActivityFilters({
   categories,
   selectedCategories,
   onFilterChange
-}: EventFiltersProps) {
+}: ActivityFiltersProps) {
   return (
     <section className='py-6 md:py-8'>
       <div className='mx-auto max-w-full justify-start px-6 sm:px-8'>
