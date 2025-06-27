@@ -4,10 +4,8 @@ import CommunityMembers from './home/components/CommunityMembers'
 import {
   WelcomeToCommunity,
   Reviews,
-  DiscoverCommunity,
   FlagsCommunity,
   CounterToCommunity,
-  News,
   DataComunity,
   JoinOurCommunity,
   Sponsors
@@ -26,11 +24,9 @@ export default function Home() {
       <CommunityActivities />
       <ActivitiesHome />
       <CommunityMembers />
-      <News />
-      <Reviews />
       <Sponsors />
-      <DiscoverCommunity />
       <JoinOurCommunity />
+      <Reviews />
     </main>
   )
 }

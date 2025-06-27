@@ -6,7 +6,7 @@ export default function CommunityActivities() {
     <div className='relative w-full'>
       <Image
         alt='members'
-        className='z-10 w-full object-cover md:h-[900px] 2xl:h-[1000px]'
+        className='z-10 w-full object-cover md:h-[800px] 2xl:h-[900px]'
         height={1600}
         priority
         quality={100}
