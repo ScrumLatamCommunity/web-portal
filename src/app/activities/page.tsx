@@ -40,6 +40,10 @@ export default function Activities() {
     }
   }
 
+  useEffect(() => {
+    fetchSponsorData()
+  }, [token])
+
   const handleFilterChange = (category: string) => {
     setSelectedCategories((prev) =>
       prev.includes(category) ? prev.filter((c) => c !== category) : [category]
@@ -54,10 +58,6 @@ export default function Activities() {
     }
   }
 
-  useEffect(() => {
-    fetchSponsorData()
-  }, [token])
-
   const filteredActivities =
     selectedCategories.length === 0
       ? activityData
@@ -67,7 +67,7 @@ export default function Activities() {
 
   return (
     <>
-      <div className='max-w-full overflow-x-hidden'>
+      <div className='mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8'>
         {/* 1. Componente para la nueva sección principal "Actividad Semanal" */}
         <WeeklyActivityHero
           categories={activityCategoriesData}

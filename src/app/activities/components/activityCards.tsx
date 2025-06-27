@@ -9,12 +9,14 @@ import { Activity } from '../interfaces/activityInterface'
 
 interface ActivityCardProps {
   activity: Activity
+  country: string
 }
 
-export default function ActivityCard({ activity }: ActivityCardProps) {
+export default function ActivityCard({ activity, country }: ActivityCardProps) {
   const { user } = useAuth()
   const router = useRouter()
-  const { formattedTime, isLoading } = useTimeConverter(activity)
+
+  const { formattedTime, isLoading } = useTimeConverter(activity, country)
 
   const handleEnrollClick = () => {
     if (!user) {
@@ -44,7 +46,6 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
 
       {/* Contenido */}
       <div className='flex w-2/3 flex-col justify-between p-3 text-sm sm:p-6 lg:text-3xl'>
-        {/* Sección del texto */}
         <div className='flex flex-grow flex-col justify-center gap-2 lg:gap-y-7'>
           <p className='text-xs font-semibold uppercase tracking-wider text-[#FE5833] lg:text-3xl'>
             {activity.title}
@@ -76,7 +77,6 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           </div>
         </div>
 
-        {/* Botón */}
         <div className='flex justify-end pt-2 lg:px-20'>
           <button
             onClick={handleEnrollClick}

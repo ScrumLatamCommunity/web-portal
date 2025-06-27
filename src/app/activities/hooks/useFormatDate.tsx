@@ -1,160 +1,142 @@
 'use client'
 
-import { useAuth } from '@/app/context/AuthContext'
 import { useState, useEffect } from 'react'
-import { UserData } from '@/interfaces'
 import { Activity } from '../interfaces/activityInterface'
 
-const countryNameToIsoMap: { [key: string]: string } = {
-  argentina: 'AR',
-  chile: 'CL',
-  colombia: 'CO',
-  españa: 'ES',
-  peru: 'PE',
-  ecuador: 'EC',
-  guatemala: 'GT',
-  panama: 'PA',
-  panamá: 'PA',
-  'costa rica': 'CR',
-  nicaragua: 'NI',
-  'el salvador': 'SV',
-  honduras: 'HN',
-  méxico: 'MX',
-  mexico: 'MX',
-  venezuela: 'VE',
-  bolivia: 'BO',
-  paraguay: 'PY',
-  brasil: 'BR',
-  canada: 'CA',
-  canadá: 'CA',
-  'estados unidos': 'US'
+const iso3ToTimeZone: { [key: string]: string } = {
+  ARG: 'America/Argentina/Buenos_Aires',
+  CHL: 'America/Santiago',
+  COL: 'America/Bogota',
+  ESP: 'Europe/Madrid',
+  PER: 'America/Lima',
+  ECU: 'America/Guayaquil',
+  GTM: 'America/Guatemala',
+  PAN: 'America/Panama',
+  CRI: 'America/Costa_Rica',
+  NIC: 'America/Managua',
+  SLV: 'America/El_Salvador',
+  HND: 'America/Tegucigalpa',
+  MEX: 'America/Mexico_City',
+  VEN: 'America/Caracas',
+  BOL: 'America/La_Paz',
+  PRY: 'America/Asuncion',
+  BRA: 'America/Sao_Paulo',
+  CAN: 'America/Toronto',
+  USA: 'America/New_York'
 }
 
-const countryTimeZoneMap: { [key: string]: string } = {
-  AR: 'America/Argentina/Buenos_Aires',
-  CL: 'America/Santiago',
-  CO: 'America/Bogota',
-  ES: 'Europe/Madrid',
-  PE: 'America/Lima',
-  EC: 'America/Guayaquil',
-  GT: 'America/Guatemala',
-  PA: 'America/Panama',
-  CR: 'America/Costa_Rica',
-  NI: 'America/Managua',
-  SV: 'America/El_Salvador',
-  HN: 'America/Tegucigalpa',
-  MX: 'America/Mexico_City',
-  VE: 'America/Caracas',
-  BO: 'America/La_Paz',
-  PY: 'America/Asuncion',
-  BR: 'America/Sao_Paulo',
-  CA: 'America/Toronto',
-  US: 'America/New_York'
+const countryNameToISO3: Record<string, string> = {
+  Argentina: 'ARG',
+  Chile: 'CHL',
+  Colombia: 'COL',
+  España: 'ESP',
+  Perú: 'PER',
+  Ecuador: 'ECU',
+  Guatemala: 'GTM',
+  Panamá: 'PAN',
+  'Costa Rica': 'CRI',
+  Nicaragua: 'NIC',
+  Honduras: 'HND',
+  México: 'MEX',
+  Venezuela: 'VEN',
+  Bolivia: 'BOL',
+  Paraguay: 'PRY',
+  Brasil: 'BRA',
+  Canadá: 'CAN',
+  'Estados Unidos': 'USA'
 }
 
 const DEFAULT_TIMEZONE = 'America/Bogota'
-const DEFAULT_COUNTRY_CODE = 'CO'
+const DEFAULT_ISO3 = 'COL'
+const DEFAULT_COUNTRY = 'Colombia'
 
-export const useTimeConverter = (activity: Activity) => {
-  const { user, token } = useAuth()
-  const { date: activityDate, time: timeArray } = activity
+export const useTimeConverter = (activity: Activity, userCountry?: string) => {
+  const { date, time } = activity
 
   const [formattedTime, setFormattedTime] = useState('Calculando...')
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (!Array.isArray(timeArray) || timeArray.length !== 2) {
+    if (!Array.isArray(time) || time.length !== 2 || !date) {
       setFormattedTime('Formato de tiempo inválido')
       setIsLoading(false)
       return
     }
 
-    const [startTimeOriginal, endTimeOriginal] = timeArray
-    const originalFormatted = `${startTimeOriginal} a ${endTimeOriginal}`
-    const originalFormattedWithCountry = `${originalFormatted} (${DEFAULT_COUNTRY_CODE})`
+    const [startTimeOriginal, endTimeOriginal] = time
+    const rawCountry = userCountry?.trim() || DEFAULT_COUNTRY
+    const destIso3 = countryNameToISO3[rawCountry] || DEFAULT_ISO3
+    const destTimeZone = iso3ToTimeZone[destIso3] || DEFAULT_TIMEZONE
 
-    if (!user || !token) {
-      setFormattedTime(originalFormattedWithCountry)
-      setIsLoading(false)
-      return
+    const fallback = `${startTimeOriginal} a ${endTimeOriginal} (${destIso3})`
+
+    console.log(rawCountry)
+    console.log(destIso3)
+
+    const convertTime = (timeStr: string): string => {
+      if (!/^\d{2}:\d{2}$/.test(timeStr)) return fallback
+
+      const today = new Date()
+      const [hour, minute] = timeStr.split(':').map(Number)
+
+      // Hora base: Bogotá (UTC-5)
+      const colombiaDate = new Date(
+        Date.UTC(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate(),
+          hour + 5,
+          minute
+        )
+      )
+
+      // Fecha en zona Colombia (para referencia)
+      const baseDateStr = new Intl.DateTimeFormat('en-CA', {
+        timeZone: DEFAULT_TIMEZONE,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(colombiaDate)
+
+      // Fecha en zona destino
+      const targetDateStr = new Intl.DateTimeFormat('en-CA', {
+        timeZone: destTimeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(colombiaDate)
+
+      const timeFormatted = new Intl.DateTimeFormat('es-CO', {
+        timeZone: destTimeZone,
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(colombiaDate)
+
+      const dayDiff = targetDateStr > baseDateStr ? ' (+1 día)' : ''
+
+      return `${timeFormatted}${dayDiff}`
     }
 
-    const fetchAndConvert = async () => {
+    try {
       setIsLoading(true)
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}users/${user.sub}`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        )
+      const s = convertTime(startTimeOriginal)
+      const e = convertTime(endTimeOriginal)
 
-        if (!response.ok)
-          throw new Error('No se pudo obtener la información del usuario')
+      console.log(`${s} a ${e} (${destIso3})`)
 
-        const userData: UserData = await response.json()
-        const userCountryName = userData?.country?.[0]
-
-        let userTimeZone = DEFAULT_TIMEZONE
-        let displayCountryCode = DEFAULT_COUNTRY_CODE
-
-        if (userCountryName) {
-          const normalized = userCountryName.toLowerCase().trim()
-          const isoCode = countryNameToIsoMap[normalized]
-
-          if (isoCode && countryTimeZoneMap[isoCode]) {
-            userTimeZone = countryTimeZoneMap[isoCode]
-            displayCountryCode = isoCode
-          }
-        }
-
-        const convertTime = (
-          time: string,
-          fromTZ: string,
-          toTZ: string
-        ): string => {
-          const dateStr =
-            typeof activityDate === 'string'
-              ? activityDate
-              : activityDate.toISOString().split('T')[0]
-          const isoString = `${dateStr}T${time}:00`
-
-          const localDate = new Date(
-            new Date(isoString).toLocaleString('en-US', {
-              timeZone: fromTZ
-            })
-          )
-
-          return new Intl.DateTimeFormat('es-ES', {
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: toTZ,
-            hour12: false
-          }).format(localDate)
-        }
-
-        const convertedStart = convertTime(
-          startTimeOriginal,
-          DEFAULT_TIMEZONE,
-          userTimeZone
-        )
-        const convertedEnd = convertTime(
-          endTimeOriginal,
-          DEFAULT_TIMEZONE,
-          userTimeZone
-        )
-
-        setFormattedTime(
-          `${convertedStart} a ${convertedEnd} (${displayCountryCode})`
-        )
-      } catch (err) {
-        console.error('Error al convertir hora:', err)
-        setFormattedTime(originalFormattedWithCountry)
-      } finally {
-        setIsLoading(false)
+      if (s === fallback || e === fallback) {
+        setFormattedTime(fallback)
+      } else {
+        setFormattedTime(`${s} a ${e} (${destIso3})`)
       }
+    } catch (err) {
+      console.error('Error en conversión de hora:', err)
+      setFormattedTime(fallback)
+    } finally {
+      setIsLoading(false)
     }
-
-    fetchAndConvert()
-  }, [user, token, activityDate, timeArray])
+  }, [date, JSON.stringify(time), userCountry]) // ahora evita bucles
 
   return { formattedTime, isLoading }
 }
