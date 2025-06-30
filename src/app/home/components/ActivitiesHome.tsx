@@ -53,7 +53,7 @@ export default function ActivitiesHome() {
   }, [])
 
   return (
-    <div className='flex flex-col md:pb-20 2xl:mb-24'>
+    <div className='hidden flex-col md:flex md:pb-20 2xl:mb-24'>
       <h1 className='mt-10 pl-36 font-darker-grotesque text-[22px] font-bold leading-1 text-[#082965] md:p-16 md:pb-2 md:pt-8 md:text-[55px] 2xl:p-16 2xl:pb-2 2xl:pt-12 2xl:text-[65px]'>
         Únete a nuestras actividades
       </h1>
