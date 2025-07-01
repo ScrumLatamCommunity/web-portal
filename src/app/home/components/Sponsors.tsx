@@ -1,6 +1,9 @@
 'use client'
+import { useAuth } from '@/app/context/AuthContext'
 import { sponsors } from '@/data/data'
 import React, { useEffect, useState } from 'react'
+import { SponsorData } from '@/interfaces'
+import Image from 'next/image'
 
 type Sponsor = {
   id: number
@@ -16,20 +19,50 @@ export const Sponsors: React.FC = () => {
   }, [])
   const duplicateSponsors = [...SponsorsLogo, ...SponsorsLogo, ...SponsorsLogo]
 
+  const { token } = useAuth()
+  const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
+
+  const fetchSponsorData = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}sponsors`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`)
+    }
+
+    const data = await response.json()
+    console.log(data)
+    setSponsorData(data)
+  }
+
+  useEffect(() => {
+    fetchSponsorData()
+  }, [token])
+
   return (
-    <div className='mx-auto hidden w-full max-w-[1920px] bg-[#fbfbfb] px-4 py-12 lg:block'>
-      <h2 className='mb-12 text-center text-3xl font-bold text-[#0A2472]'>
+    <div className='mx-auto flex w-full max-w-[1920px] flex-col bg-[#fbfbfb] px-4 py-8 md:py-20'>
+      <h2 className='pl-[10%] text-left font-darker-grotesque text-[26px] font-bold text-[#082965] md:mb-12 md:text-[50px] 2xl:text-[65px]'>
         Junto a nuestros aliados
       </h2>
       <div className='relative overflow-hidden md:max-w-[1920px]'>
         <div className='flex animate-infinite-scroll items-center gap-6 py-6 lg:gap-20'>
-          {duplicateSponsors.map((sponsor, index) => (
-            <img
-              alt={sponsor.name}
+          {[
+            ...(sponsorData || []),
+            ...(sponsorData || []),
+            ...(sponsorData || [])
+          ].map((sponsor: SponsorData, index: number) => (
+            <Image
+              alt={sponsor.companyName}
               aria-hidden='true'
-              className='h-8 w-auto max-w-[100px] object-contain md:h-12 lg:h-16'
+              className='h-8 w-auto max-w-[80px] object-contain md:h-[150px] md:max-w-[200px] 2xl:h-[200px]'
+              height={600}
               key={index}
-              src={sponsor.image}
+              src={sponsor.logo}
+              width={600}
             />
           ))}
         </div>

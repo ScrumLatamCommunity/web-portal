@@ -3,17 +3,14 @@
 import 'tailwindcss/tailwind.css'
 import useIsLargeScreen from '@/hooks'
 import { useState } from 'react'
-import {
-  Linkedin,
-  Facebook,
-  Instagram,
-  ChevronDown,
-  ChevronUp
-} from 'react-feather'
+import { Linkedin, Facebook, Instagram } from 'react-feather'
 import Link from 'next/link'
 import { TermsAndConditions } from '@/app/history/components/TermsAndConditions'
 import { Modal } from '@/core/Modal'
 import { usePathname } from 'next/navigation'
+import scrumFooterLogo from '@/assets/ScrumLatamFooterLogo.png'
+import Image from 'next/image'
+import GlobeIcon from '@/assets/GlobeIcon'
 
 export const Footer = () => {
   const pathname = usePathname()
@@ -31,15 +28,6 @@ export const Footer = () => {
     news: false
   })
 
-  const toggleSection = (section: keyof typeof sections) => {
-    if (!isLargeScreen) {
-      setSections((prevSections) => ({
-        ...prevSections,
-        [section]: !prevSections[section]
-      }))
-    }
-  }
-
   const handleModal = () => {
     setOpenModal(!openModal)
   }
@@ -49,137 +37,76 @@ export const Footer = () => {
   }
 
   return (
-    <div className='flex flex-col'>
-      <div className='flex flex-col items-center bg-black-10 px-4 py-6 text-white'>
-        <div className='flex w-full max-w-[960px] flex-col gap-4'>
+    <div className='flex flex-col align-top'>
+      <div className='flex flex-col items-center justify-evenly bg-[#082965] px-4 pb-16 pt-10 text-white sm:items-start md:flex-row'>
+        <div className='flex flex-col gap-4 pb-5 md:pb-0'>
           <div className='flex w-full flex-col'>
-            <img
-              src={
-                'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Logos%20comunidad%2Flogo_footer_orange.svg?alt=media&token=ddfda43a-c5e1-4fc3-b47f-df419d556597'
-              }
+            <Image
+              src={scrumFooterLogo}
               alt='logo'
-              className='h-12 w-40 sm:h-16 sm:w-80'
+              height={800}
+              width={800}
+              className='h-15 w-60 pb-6 sm:h-16 sm:w-80 sm:pb-0'
             />
           </div>
-
-          <div className='text-black flex flex-col flex-wrap justify-start gap-10 text-lg sm:flex-row sm:justify-end'>
-            <div className='flex flex-col gap-4'>
-              <div
-                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
-                onClick={() => {
-                  toggleSection('community')
-                }}
-              >
-                Comunidad
-                {!isLargeScreen &&
-                  (sections.community ? <ChevronUp /> : <ChevronDown />)}
+        </div>
+        <div className='flex flex-col-reverse flex-wrap justify-start gap-x-5 gap-y-10 text-lg sm:flex-row sm:justify-end sm:gap-x-16 md:flex-row md:gap-x-56 2xl:flex-row 2xl:gap-x-96'>
+          <div className='flex flex-col gap-4'>
+            <Link href='/community/squads'>
+              <div className='flex cursor-pointer gap-2 font-[600] text-black-1 sm:flex-row'>
+                Quiénes Somos
               </div>
-              {(isLargeScreen || sections.community) && (
-                <>
-                  <Link href='/history'>
-                    <span className='font-light'>Conócenos</span>
-                  </Link>
-                  <Link href='/history'>
-                    <span className='font-light'>Conócenos</span>
-                  </Link>
-                  <span className='font-light'>¿Quiénes somos?</span>
-                </>
-              )}
-            </div>
-
-            <div className='flex flex-col gap-4'>
-              <div
-                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
-                onClick={() => {
-                  toggleSection('training')
-                }}
-              >
-                Entrenamiento
-                {!isLargeScreen &&
-                  (sections.training ? <ChevronUp /> : <ChevronDown />)}
+            </Link>
+            <Link href='/activities'>
+              <div className='flex cursor-pointer gap-2 font-[600] text-black-1 sm:flex-row'>
+                Actividades
               </div>
-              {(isLargeScreen || sections.training) && (
-                <>
-                  <span className='font-light'>Eventos</span>
-                  <span className='font-light'>Webinars</span>
-                  <span className='font-light'>Talleres</span>
-                </>
-              )}
-            </div>
-
+            </Link>
             <div className='flex flex-col gap-4'>
-              <div
-                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
-                onClick={() => {
-                  toggleSection('documentation')
-                }}
+              <button className='font-[600] text-white' onClick={handleModal}>
+                Términos y condiciones
+              </button>
+              <Modal
+                isOpen={openModal}
+                onClose={() => setOpenModal(false)}
+                title='Términos y Condiciones'
+                contentClassName='justify-start gap-[10px]'
               >
-                Documentación
-                {!isLargeScreen &&
-                  (sections.documentation ? <ChevronUp /> : <ChevronDown />)}
-              </div>
-              {(isLargeScreen || sections.documentation) && <></>}
-            </div>
-
-            <div className='flex flex-col gap-4'>
-              <div
-                className='flex cursor-pointer gap-2 font-bold text-black-1 sm:flex-row'
-                onClick={() => {
-                  toggleSection('news')
-                }}
-              >
-                Novedades
-                {!isLargeScreen &&
-                  (sections.news ? <ChevronUp /> : <ChevronDown />)}
-              </div>
-              {(isLargeScreen || sections.news) && <></>}
+                <TermsAndConditions />
+              </Modal>
             </div>
           </div>
-
-          <div className='mt-6 flex flex-col gap-3'>
-            <span className='text-black sm:text-lg'>
-              Síguenos en nuestras redes
-            </span>
-            <div className='flex gap-4'>
+          <div className='mt-6 flex flex-row justify-start gap-3'>
+            <span className='text-black font-[600] sm:text-lg'>Síguenos</span>
+            <div className='flex flex-row gap-4 md:pl-8'>
               <a
                 href='https://www.facebook.com/scrumlatamcomunidad'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Facebook className='text-red-500' />
+                <Facebook className='text-white' />
               </a>
               <a
                 href='https://www.instagram.com/scrumlatamcomunidad/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Instagram className='text-red-500' />
+                <Instagram className='text-white' />
               </a>
               <a
                 href='https://www.linkedin.com/company/scrum-latam-comunidad'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Linkedin className='text-red-500' />
+                <Linkedin className='text-white' />
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <div className='text-black flex flex-col place-content-end gap-8 py-5 text-center font-semibold sm:flex-row sm:justify-evenly'>
-        <span>© 2024 Scrumlatam. Todos los derechos reservados.</span>
-        <button className='font-bold text-red-500' onClick={handleModal}>
-          Términos y condiciones
-        </button>
-        <Modal
-          isOpen={openModal}
-          onClose={() => setOpenModal(false)}
-          title='Términos y Condiciones'
-          contentClassName='justify-start gap-[10px]'
-        >
-          <TermsAndConditions />
-        </Modal>
+      <div className='flex flex-col place-content-end gap-8 bg-[#082965] py-5 text-center text-[15px] font-semibold text-white sm:flex-row sm:justify-evenly'>
+        <span>© 2025 Scrumlatam. Todos los derechos reservados.</span>
       </div>
     </div>
   )
