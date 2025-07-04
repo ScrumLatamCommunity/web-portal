@@ -20,21 +20,21 @@ export const WelcomeToCommunity = () => {
     <section className='my-10 bg-white font-darker-grotesque md:py-10'>
       <div className='mx-auto max-w-[1440px] px-1 lg:px-1'>
         <div className='grid grid-cols-1 items-center md:grid-cols-2 md:gap-x-12 lg:gap-x-24'>
-          <div className='space-y-10 text-center md:pr-12 md:text-left'>
-            <h1 className='font-darker-grotesque text-8xl font-bold leading-[70px] tracking-wide text-[#082965]'>
+          <div className='text-center md:pr-12 md:text-left'>
+            <h1 className='font-darker-grotesque text-[70px] font-bold leading-[70px] tracking-wide text-[#082965] md:text-8xl'>
               ¡Hola!
             </h1>
-            <div className='space-y-5'>
-              <p className='mt-6 font-darker-grotesque text-4xl font-bold leading-[30px] text-[#082965]'>
+            <div className=''>
+              <p className='mb-3 mt-8 font-darker-grotesque text-4xl font-bold leading-[30px] text-[#082965]'>
                 Scrum <span className='text-[#FE5833]'>Latam</span> te da la
                 bienvenida: Donde la comunidad y la agilidad convergen.
               </p>
-              <p className='mt-4 font-karla text-6 font-medium leading-[120%] tracking-wider text-gray-600'>
+              <p className='mt-8 px-1 font-karla text-6 font-medium leading-[120%] tracking-wider text-[#082965]'>
                 Fomentamos el aprendizaje colaborativo y aplicamos metodologías
                 ágiles para crecer juntos con éxito.
               </p>
             </div>
-            <div className='my-10'>
+            <div className='mt-10'>
               <PrimaryButton
                 className='rounded-full bg-[#082965] px-8 py-3 text-lg font-semibold text-white shadow-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#082965] focus:ring-offset-2'
                 label='Únete a nosotros'
