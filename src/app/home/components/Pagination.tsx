@@ -20,7 +20,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       {Array.from({ length: totalPages }).map((_, pageIndex) => (
         <div
           key={pageIndex}
-          className={`h-3 w-3 cursor-pointer rounded-full ${pageIndex === Math.floor(currentIndex / itemsPerPage) ? 'bg-red-400' : 'bg-gray-300'}`}
+          className={`h-3 w-3 cursor-pointer rounded-full ${pageIndex === Math.floor(currentIndex / itemsPerPage) ? 'bg-[#082965]' : 'bg-gray-300'}`}
           onClick={() => onPageChange(pageIndex * itemsPerPage)}
         />
       ))}
