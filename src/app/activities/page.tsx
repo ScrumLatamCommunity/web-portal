@@ -46,8 +46,6 @@ export default function Activities() {
     }
   }
 
-  console.log(selectedCategory)
-
   useEffect(() => {
     fetchSponsorData(selectedCategory ? { type: selectedCategory } : undefined)
   }, [token, selectedCategory])
@@ -59,7 +57,6 @@ export default function Activities() {
   const handleHeroCategorySelect = (category: string) => {
     setSelectedCategory((prev) => (prev === category ? null : category))
   }
-
   return (
     <>
       <div className='mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8'>

@@ -8,7 +8,7 @@ import useIsLargeScreen from '@/hooks'
 export const MisionVision = () => {
   const isLargeScreen = useIsLargeScreen(680)
   return (
-    <div>
+    <div className='flex w-full items-center justify-center'>
       {isLargeScreen ? <DesktopMisionVision /> : <MobileMisionVision />}
     </div>
   )
