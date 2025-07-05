@@ -27,6 +27,11 @@ export const Reviews: React.FC = () => {
   }
 
   const getVisibleReviews = () => {
+    // En mobile solo mostrar 1 review, en desktop mostrar 3
+    if (window.innerWidth < 768) {
+      return [reviews[centerIndex]]
+    }
+
     const left = centerIndex - 1 >= 0 ? reviews[centerIndex - 1] : null
     const center = reviews[centerIndex]
     const right =
@@ -42,87 +47,98 @@ export const Reviews: React.FC = () => {
         ¿Qué opina nuestra comunidad?
       </span>
       <div className='flex w-full items-center justify-center'>
-        <div className='flex items-center justify-center md:gap-6'>
+        <div className='flex items-center justify-center gap-4 md:gap-6'>
           <button
-            className={`flex h-24 w-24 cursor-default items-center justify-center border-none bg-transparent text-[#082965] ${centerIndex === 0 ? '' : 'cursor-pointer'}`}
+            className={`flex h-12 w-12 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === 0 ? '' : 'cursor-pointer'}`}
             onClick={prevReview}
             aria-label='Anterior'
             type='button'
           >
-            <ArrowRightIcon className='h-24 w-24 rotate-180 text-[#082965]' />
+            <ArrowRightIcon className='h-8 w-8 rotate-180 text-[#082965] md:h-24 md:w-24' />
           </button>
-          <div className='flex w-full min-w-[300px] flex-nowrap justify-center gap-8 md:min-w-[320px]'>
+          <div className='flex w-full min-w-[280px] flex-nowrap justify-center gap-4 md:min-w-[320px] md:gap-8'>
             {visibleReviews.map((review, idx) => {
-              if (!review) return <div key={idx} className='w-[320px]'></div>
-              const isCenter = idx === 1
+              if (!review)
+                return <div key={idx} className='w-[280px] md:w-[320px]'></div>
+              const isCenter = window.innerWidth < 768 ? true : idx === 1
               const isLeft = idx === 0
               const isRight = idx === 2
               const reviewIndex = centerIndex + (idx - 1)
               let translateClass = ''
-              if (isLeft) translateClass = '-translate-x-10'
-              if (isRight) translateClass = 'translate-x-10'
+              if (window.innerWidth >= 768) {
+                if (isLeft) translateClass = '-translate-x-10'
+                if (isRight) translateClass = 'translate-x-10'
+              }
               return (
                 <div
                   key={review.id + '-' + reviewIndex}
-                  className={`flex h-full flex-col gap-2 rounded-[5%] bg-black-2 px-4 py-8 text-blue-600 shadow-lg transition-all duration-150 md:px-6 ${translateClass} ${isCenter ? 'z-10 scale-110 bg-white text-blue-900 shadow-2xl md:w-[370px]' : 'scale-95 opacity-70 md:w-[300px]'}`}
+                  className={`flex h-full flex-col gap-2 rounded-[5%] bg-black-2 px-4 py-6 text-blue-600 shadow-lg transition-all duration-300 md:px-6 md:py-8 ${translateClass} ${isCenter ? 'z-10 w-[280px] scale-100 bg-white text-blue-900 shadow-2xl md:w-[370px] md:scale-110' : 'w-[280px] scale-95 opacity-70 md:w-[300px]'}`}
                   onClick={() => {
-                    if (!isCenter) setCenterIndex(reviewIndex)
+                    if (!isCenter && window.innerWidth >= 768) {
+                      setCenterIndex(reviewIndex)
+                    }
                   }}
                 >
-                  <div className='flex items-center gap-4'>
+                  <div className='flex items-center gap-3 md:gap-4'>
                     <div className='flex overflow-hidden rounded-full border-4 border-[#082965]'>
                       <img
                         alt={review.name}
-                        className='w-16'
+                        className='w-12 md:w-16'
                         src={review.profile}
                       />
                     </div>
                     <div className='flex flex-col'>
-                      <div className='font-darker-grotesque text-[20px] font-bold text-blue-6'>
+                      <div className='font-darker-grotesque text-[16px] font-bold text-blue-6 md:text-[20px]'>
                         {review.name}
                       </div>
-                      <div className='mt-[-8px] flex font-darker-grotesque text-[20px] font-medium text-blue-6'>
+                      <div className='mt-[-6px] flex font-darker-grotesque text-[14px] font-medium text-blue-6 md:mt-[-8px] md:text-[20px]'>
                         {review.position}
                       </div>
                       <img
                         alt='Nacionalidad'
-                        className='mt-1 flex h-4 w-5'
+                        className='mt-1 flex h-3 w-4 md:h-4 md:w-5'
                         src={review.flag}
                       />
                     </div>
                   </div>
                   <div className='flex justify-center gap-1 text-[#082965]'>
                     {[...Array(review.rating ?? 0)].map((_, index) => (
-                      <Star key={index} className='fill-current' />
+                      <Star
+                        key={index}
+                        className='h-8 w-8 fill-current md:h-5 md:w-5'
+                      />
                     ))}
                   </div>
-                  <div className='h-auto font-karla font-normal text-blue-6'>
+                  <div className='h-auto font-karla text-[14px] font-normal text-blue-6 md:text-base'>
                     {review.description.length > 120 && !isCenter
                       ? review.description.slice(0, 70) + '...'
                       : review.description}
                   </div>
-                  <button
-                    className={`mt-auto scale-95 self-end border-none pr-2 font-darker-grotesque text-[18px] font-semibold text-[#082965] ${isCenter ? 'pointer-events-none opacity-0' : 'opacity-70'}`}
-                  >
-                    Seguir leyendo
-                  </button>
+                  <div className='relative mt-auto flex h-[32px] items-end md:h-[40px]'>
+                    <button
+                      className={`absolute right-0 border-none pr-2 font-darker-grotesque text-[14px] font-semibold text-[#082965] transition-opacity duration-300 md:text-[18px] ${isCenter ? 'pointer-events-none opacity-0' : 'opacity-70'}`}
+                      style={{ minWidth: window.innerWidth < 768 ? 100 : 120 }}
+                    >
+                      Seguir leyendo
+                    </button>
+                  </div>
                 </div>
               )
             })}
           </div>
           <button
-            className={`flex h-24 w-24 cursor-default items-center justify-center border-none bg-transparent text-[#082965] opacity-100 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer opacity-100'}`}
+            className={`flex h-12 w-12 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer'}`}
             onClick={nextReview}
             aria-label='Siguiente'
             type='button'
           >
-            <ArrowRightIcon className='h-24 w-24' stroke='#082965' />
+            <ArrowRightIcon className='h-6 w-6 text-[#082965] md:h-24 md:w-24' />
           </button>
         </div>
       </div>
       <div className='mb-6 mt-4 flex justify-center gap-2'>
         {(() => {
-          const maxDots = 5
+          const maxDots = window.innerWidth < 768 ? 3 : 5
           const total = reviews.length
           let start = Math.max(0, centerIndex - Math.floor(maxDots / 2))
           let end = start + maxDots
@@ -135,7 +151,7 @@ export const Reviews: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`h-3 w-3 cursor-pointer rounded-full transition-colors duration-200 ${idx === centerIndex ? 'bg-[#082965]' : 'bg-gray-300'}`}
+                className={`h-2 w-2 cursor-pointer rounded-full transition-colors duration-200 md:h-3 md:w-3 ${idx === centerIndex ? 'bg-[#082965]' : 'bg-gray-300'}`}
                 onClick={() => setCenterIndex(idx)}
               />
             )
