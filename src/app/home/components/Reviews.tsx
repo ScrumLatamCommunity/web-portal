@@ -1,7 +1,7 @@
 'use client'
 
 import 'tailwindcss/tailwind.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Star } from 'react-feather'
 import { reviews } from '@/data/data'
 import ArrowRightIcon from '@/assets/ArrowRightIcon'
@@ -18,6 +18,18 @@ interface Review {
 
 export const Reviews: React.FC = () => {
   const [centerIndex, setCenterIndex] = useState<number>(1)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+
+    return () => window.removeEventListener('resize', checkIsMobile)
+  }, [])
 
   const prevReview = () => {
     if (centerIndex > 0) setCenterIndex(centerIndex - 1)
@@ -28,7 +40,7 @@ export const Reviews: React.FC = () => {
 
   const getVisibleReviews = () => {
     // En mobile solo mostrar 1 review, en desktop mostrar 3
-    if (window.innerWidth < 768) {
+    if (isMobile) {
       return [reviews[centerIndex]]
     }
 
@@ -49,7 +61,7 @@ export const Reviews: React.FC = () => {
       <div className='flex w-full items-center justify-center'>
         <div className='flex items-center justify-center gap-4 md:gap-6'>
           <button
-            className={`flex h-12 w-12 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === 0 ? '' : 'cursor-pointer'}`}
+            className={`flex h-8 w-8 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === 0 ? '' : 'cursor-pointer'}`}
             onClick={prevReview}
             aria-label='Anterior'
             type='button'
@@ -60,12 +72,12 @@ export const Reviews: React.FC = () => {
             {visibleReviews.map((review, idx) => {
               if (!review)
                 return <div key={idx} className='w-[280px] md:w-[320px]'></div>
-              const isCenter = window.innerWidth < 768 ? true : idx === 1
+              const isCenter = isMobile ? true : idx === 1
               const isLeft = idx === 0
               const isRight = idx === 2
               const reviewIndex = centerIndex + (idx - 1)
               let translateClass = ''
-              if (window.innerWidth >= 768) {
+              if (!isMobile) {
                 if (isLeft) translateClass = '-translate-x-10'
                 if (isRight) translateClass = 'translate-x-10'
               }
@@ -74,7 +86,7 @@ export const Reviews: React.FC = () => {
                   key={review.id + '-' + reviewIndex}
                   className={`flex h-full flex-col gap-2 rounded-[5%] bg-black-2 px-4 py-6 text-blue-600 shadow-lg transition-all duration-300 md:px-6 md:py-8 ${translateClass} ${isCenter ? 'z-10 w-[280px] scale-100 bg-white text-blue-900 shadow-2xl md:w-[370px] md:scale-110' : 'w-[280px] scale-95 opacity-70 md:w-[300px]'}`}
                   onClick={() => {
-                    if (!isCenter && window.innerWidth >= 768) {
+                    if (!isCenter && !isMobile) {
                       setCenterIndex(reviewIndex)
                     }
                   }}
@@ -117,7 +129,7 @@ export const Reviews: React.FC = () => {
                   <div className='relative mt-auto flex h-[32px] items-end md:h-[40px]'>
                     <button
                       className={`absolute right-0 border-none pr-2 font-darker-grotesque text-[14px] font-semibold text-[#082965] transition-opacity duration-300 md:text-[18px] ${isCenter ? 'pointer-events-none opacity-0' : 'opacity-70'}`}
-                      style={{ minWidth: window.innerWidth < 768 ? 100 : 120 }}
+                      style={{ minWidth: isMobile ? 100 : 120 }}
                     >
                       Seguir leyendo
                     </button>
@@ -127,7 +139,7 @@ export const Reviews: React.FC = () => {
             })}
           </div>
           <button
-            className={`flex h-12 w-12 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer'}`}
+            className={`flex h-6 w-6 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer'}`}
             onClick={nextReview}
             aria-label='Siguiente'
             type='button'
@@ -138,7 +150,7 @@ export const Reviews: React.FC = () => {
       </div>
       <div className='mb-6 mt-4 flex justify-center gap-2'>
         {(() => {
-          const maxDots = window.innerWidth < 768 ? 3 : 5
+          const maxDots = isMobile ? 3 : 5
           const total = reviews.length
           let start = Math.max(0, centerIndex - Math.floor(maxDots / 2))
           let end = start + maxDots
