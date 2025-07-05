@@ -73,7 +73,8 @@ export default function ActivityForm({
             image,
             link,
             type,
-            facilitator
+            facilitator,
+            observation
           } = formData
 
           let formattedDate = date
@@ -96,7 +97,8 @@ export default function ActivityForm({
             image,
             link,
             type,
-            facilitator
+            facilitator,
+            observation
           }
           console.log('Datos a enviar:', dataToSend)
           const response = await fetch(
@@ -338,10 +340,10 @@ export default function ActivityForm({
               Observaciones de la publicación
               <textarea
                 className='mt-1 w-full rounded border px-3 py-2 font-inter text-[16px] font-normal text-[#8C8C8C]'
-                value={formData.observations || ''}
+                value={formData.observation || ''}
                 readOnly={!isEditing}
                 onChange={(e) =>
-                  setFormData({ ...formData, observations: e.target.value })
+                  setFormData({ ...formData, observation: e.target.value })
                 }
               />
             </label>
