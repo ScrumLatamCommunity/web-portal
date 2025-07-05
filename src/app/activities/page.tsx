@@ -1,49 +1,88 @@
 'use client'
 
-import HeroSection from '@/app/activities/components/heroSection'
-import WorkshopFeature from '@/app/activities/components/workshopFeature'
-import JoinCommunity from '@/app/community/components/joinSection'
-import { workshopsData } from '@/utils/workshopsData'
-import { eventsData } from '@/utils/eventsData'
-import ActivitiesImage from '@/assets/activitiesImg'
-import EventFeature from './components/eventFeature'
+import { useState, useEffect } from 'react'
+import WeeklyActivityHero from './components/WeeklyActivityHero'
+import ActivityFilters from './components/ActivityFilters'
+import UpcomingActivitiesGrid from './components/UpcomingActivitiesGrid'
+
+import { activityCategoriesData } from '@/data/data'
+import { Activity } from './interfaces/activityInterface'
+import { useAuth } from '../context/AuthContext'
 
 export default function Activities() {
-  return (
-    <div className='mx-auto flex w-full max-w-[1920px] flex-col'>
-      {/* Hero Section */}
-      <HeroSection
-        description='En nuestra comunidad, los talleres son el corazón de la colaboración y el aprendizaje. Aquí, te sumergirás en experiencias prácticas que te prepararán para los desafíos reales del mundo ágil. Desde simulacros de entrevistas hasta grupos de estudio, cada taller está diseñado para fortalecer tus habilidades y conocimientos en metodologías ágiles.'
-        image={
-          <ActivitiesImage className='h-auto w-full md:h-[456px] md:max-w-[580px]' />
+  const { token } = useAuth()
+  const [activityData, setActivityData] = useState<Activity[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+
+  const fetchSponsorData = async (filters?: { type?: string }) => {
+    try {
+      const query = new URLSearchParams()
+      console.log()
+      if (filters?.type) {
+        query.append('type', filters.type)
+      }
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}activities/all?${query.toString()}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
-        linkTitle='Talleres'
-        title='Formación de la Comunidad'
-      />
+      )
 
-      {/* Workshops Section */}
-      <div id='talleres' className='scroll-mt-20'>
-        <WorkshopFeature workshops={workshopsData} />
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`)
+      }
+
+      const data = await response.json()
+      setActivityData(data ?? [])
+    } catch (error) {
+      console.error('Error al obtener actividades:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchSponsorData(selectedCategory ? { type: selectedCategory } : undefined)
+  }, [token, selectedCategory])
+
+  const handleFilterChange = (category: string) => {
+    setSelectedCategory((prev) => (prev === category ? null : category))
+  }
+
+  const handleHeroCategorySelect = (category: string) => {
+    setSelectedCategory((prev) => (prev === category ? null : category))
+  }
+  return (
+    <>
+      <div className='mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8'>
+        {/* 1. Componente para la nueva sección principal "Actividad Semanal" */}
+        <WeeklyActivityHero
+          categories={activityCategoriesData}
+          onSelectCategory={handleHeroCategorySelect}
+          selectedCategory={selectedCategory}
+        />
+        <h2 className='my-7 pl-6 text-start font-darker-grotesque text-lg font-medium text-[#082965] lg:text-5xl'>
+          Próximas Actividades
+        </h2>
+        {/* 2. Componente para la barra de filtros con checkboxes */}
+        <ActivityFilters
+          categories={activityCategoriesData}
+          selectedCategory={selectedCategory}
+          onFilterChange={handleFilterChange}
+        />
+
+        {/* 3. Componente para la cuadrícula de "Próximos Eventos" */}
+        {/* Pasamos el estado de carga para que pueda mostrar un esqueleto si es necesario */}
+        <UpcomingActivitiesGrid
+          activities={activityData}
+          isLoading={isLoading}
+        />
       </div>
-
-      {/* Próximos Eventos Section */}
-      <div id='eventos' className='scroll-mt-20'>
-        <h3 className='mt-4 pb-4 text-center font-darker-grotesque text-lg font-bold text-[#082965] md:mb-0 md:mt-12 md:text-4xl md:font-semibold'>
-          Próximos eventos
-        </h3>
-
-        <EventFeature events={eventsData} />
-      </div>
-
-      {/* Espaciado antes del footer */}
-      <div className='mt-20'></div>
-
-      <JoinCommunity
-        buttonText='Regístrate Ahora'
-        callToAction='¡Regístrate hoy y sé parte de nuestra transformación ágil!'
-        description='Conéctate con profesionales ágiles de toda Latinoamérica, accede a recursos exclusivos, y participa en eventos y webinars que impulsarán tu crecimiento.'
-        title='¡Únete a Nuestra Comunidad!'
-      />
-    </div>
+    </>
   )
 }

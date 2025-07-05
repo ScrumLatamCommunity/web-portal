@@ -7,64 +7,50 @@ import useIsLargeScreen from '@/hooks/index'
 import { useAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'
 import { images } from '@/data/images_url'
+import { useRouter } from 'next/navigation'
 
 const NEW_IMAGE_URL = images.welcomeComunity
 
 export const WelcomeToCommunity = () => {
   const isLargeScreen = useIsLargeScreen()
-  const [image, setImage] = useState(NEW_IMAGE_URL)
-
-  useEffect(() => {
-    setImage(NEW_IMAGE_URL)
-  }, [isLargeScreen])
-
+  const router = useRouter()
   const { user } = useAuth()
 
   return (
-    // Sección principal con fondo blanco y padding vertical.
-    <section className={`bg-white py-12 font-darker-grotesque md:py-20`}>
-      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        {/* Contenedor con Grid para el layout de dos columnas */}
-        <div className='grid grid-cols-1 items-center gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20'>
-          {/* Columna Izquierda: Texto y Botón */}
+    <section className='my-10 bg-white font-darker-grotesque md:py-10'>
+      <div className='mx-auto max-w-[1440px] px-1 lg:px-1'>
+        <div className='grid grid-cols-1 items-center md:grid-cols-2 md:gap-x-12 lg:gap-x-24'>
           <div className='text-center md:pr-12 md:text-left'>
-            {/* Título principal con medidas exactas */}
-            <h1 className='font-darker-grotesque text-[55px] font-bold leading-[50px] tracking-wide text-[#082965]'>
-              ¡Bienvenido! a
+            <h1 className='font-darker-grotesque text-[70px] font-bold leading-[70px] tracking-wide text-[#082965] md:text-8xl'>
+              ¡Hola!
             </h1>
-
-            {/* Subtítulo con medidas exactas */}
-            <p className='mt-6 font-darker-grotesque text-[26px] font-bold leading-[30px] text-[#082965]'>
-              Scrum <span className='text-[#FE5833]'>Latam</span>: Donde la
-              comunidad y la agilidad convergen.
-            </p>
-
-            {/* Párrafo descriptivo con medidas exactas */}
-            <p className='mt-4 font-karla text-[16px] font-medium leading-[120%] tracking-wider text-gray-600'>
-              Fomentamos el aprendizaje colaborativo y aplicamos metodologías
-              ágiles para crecer juntos con éxito.
-            </p>
-            {/* Contenedor del Botón */}
+            <div className=''>
+              <p className='mb-3 mt-8 font-darker-grotesque text-4xl font-bold leading-[30px] text-[#082965]'>
+                Scrum <span className='text-[#FE5833]'>Latam</span> te da la
+                bienvenida: Donde la comunidad y la agilidad convergen.
+              </p>
+              <p className='mt-8 px-1 font-karla text-6 font-medium leading-[120%] tracking-wider text-[#082965]'>
+                Fomentamos el aprendizaje colaborativo y aplicamos metodologías
+                ágiles para crecer juntos con éxito.
+              </p>
+            </div>
             <div className='mt-10'>
               <PrimaryButton
-                // Aplicando los nuevos colores al botón
                 className='rounded-full bg-[#082965] px-8 py-3 text-lg font-semibold text-white shadow-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#082965] focus:ring-offset-2'
                 label='Únete a nosotros'
-                // Aquí puedes añadir la lógica de navegación, ej: onClick={() => router.push('/register')}
+                onClick={() => router.push('/login')}
               />
             </div>
           </div>
-
-          {/* Columna Derecha: Imagen */}
-          <div className='flex justify-center md:justify-end'>
-            <div className='w-full md:w-full'>
+          <div className='mt-12 flex justify-center md:justify-end'>
+            <div className='w-full max-w-[700px] overflow-hidden md:w-full'>
               <Image
-                src={image}
+                src={NEW_IMAGE_URL}
                 alt='Comunidad Scrum Latam en una videollamada'
-                width={1000} // Ancho intrínseco de la imagen para aspect-ratio
-                height={900} // Alto intrínseco de la imagen
-                className='lg:scale-140 h-auto w-full transform transition-transform duration-500 ease-in-out md:-translate-x-8 md:scale-125 lg:-translate-x-16'
-                priority // Cargar esta imagen de forma prioritaria ya que es principal
+                width={1000}
+                height={900}
+                className='h-auto w-full max-w-[100%] transition-transform duration-500 ease-in-out md:-translate-x-4 md:scale-105 lg:-translate-x-8'
+                priority
               />
             </div>
           </div>
