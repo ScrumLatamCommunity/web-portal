@@ -39,7 +39,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
         <Image
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
-          className='rounded-t-2xl object-cover sm:rounded-l-2xl sm:rounded-tr-none'
+          className='object-cover'
           fill
         />
       </div>
@@ -47,7 +47,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
       {/* Contenido */}
       <div className='flex w-2/3 flex-col justify-between p-3 text-sm sm:p-6 lg:text-3xl'>
         <div className='flex flex-grow flex-col justify-center gap-2 lg:gap-y-7'>
-          <p className='text-xs font-semibold uppercase tracking-wider text-[#FE5833] lg:text-3xl'>
+          <p className='text-xs font-semibold tracking-wider text-[#FE5833] lg:text-3xl'>
             {activity.title}
           </p>
 
@@ -76,8 +76,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             </span>
           </div>
         </div>
-
-        <div className='flex justify-end pt-2 lg:px-20'>
+        <div className='flex justify-end pt-2 lg:px-10'>
           <button
             onClick={handleEnrollClick}
             className='w-full self-end rounded-3xl bg-[#082965] px-6 py-2 text-sm font-normal text-white transition-colors duration-300 hover:bg-[#FE5833] lg:w-auto lg:px-44 lg:py-5 lg:text-3xl'
