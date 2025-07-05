@@ -2,8 +2,9 @@
 
 import 'tailwindcss/tailwind.css'
 import React, { useState } from 'react'
-import { ChevronLeft, ChevronRight, Star } from 'react-feather'
+import { Star } from 'react-feather'
 import { reviews } from '@/data/data'
+import ArrowRightIcon from '@/assets/ArrowRightIcon'
 
 interface Review {
   id: number
@@ -25,7 +26,6 @@ export const Reviews: React.FC = () => {
     if (centerIndex < reviews.length - 1) setCenterIndex(centerIndex + 1)
   }
 
-  // Solo mostramos 3: el central y los adyacentes
   const getVisibleReviews = () => {
     const left = centerIndex - 1 >= 0 ? reviews[centerIndex - 1] : null
     const center = reviews[centerIndex]
@@ -43,20 +43,28 @@ export const Reviews: React.FC = () => {
       </span>
       <div className='flex w-full items-center justify-center'>
         <div className='flex items-center justify-center md:gap-6'>
-          <ChevronLeft
-            className={`h-8 w-8 cursor-default text-[#082965] opacity-30 ${centerIndex === 0 ? '' : 'cursor-pointer opacity-100'}`}
+          <button
+            className={`flex h-24 w-24 cursor-default items-center justify-center border-none bg-transparent text-[#082965] ${centerIndex === 0 ? '' : 'cursor-pointer'}`}
             onClick={prevReview}
-          />
+            aria-label='Anterior'
+            type='button'
+          >
+            <ArrowRightIcon className='h-24 w-24 rotate-180 text-[#082965]' />
+          </button>
           <div className='flex w-full min-w-[300px] flex-nowrap justify-center gap-8 md:min-w-[320px]'>
             {visibleReviews.map((review, idx) => {
               if (!review) return <div key={idx} className='w-[320px]'></div>
               const isCenter = idx === 1
+              const isLeft = idx === 0
+              const isRight = idx === 2
               const reviewIndex = centerIndex + (idx - 1)
+              let translateClass = ''
+              if (isLeft) translateClass = '-translate-x-10'
+              if (isRight) translateClass = 'translate-x-10'
               return (
                 <div
-                  key={review.id}
-                  className={`flex flex-col gap-2 rounded-[5%] bg-black-2 px-4 py-8 text-blue-600 shadow-lg transition-all duration-300 md:px-6${isCenter ? 'z-10 scale-110 bg-white text-blue-900 shadow-2xl md:w-[370px]' : 'scale-95 opacity-70 md:h-[260px] md:w-[300px]'}`}
-                  style={{ minWidth: isCenter ? 320 : 260 }}
+                  key={review.id + '-' + reviewIndex}
+                  className={`flex h-full flex-col gap-2 rounded-[5%] bg-black-2 px-4 py-8 text-blue-600 shadow-lg transition-all duration-150 md:px-6 ${translateClass} ${isCenter ? 'z-10 scale-110 bg-white text-blue-900 shadow-2xl md:w-[370px]' : 'scale-95 opacity-70 md:w-[300px]'}`}
                   onClick={() => {
                     if (!isCenter) setCenterIndex(reviewIndex)
                   }}
@@ -93,20 +101,46 @@ export const Reviews: React.FC = () => {
                       ? review.description.slice(0, 70) + '...'
                       : review.description}
                   </div>
-                  {!isCenter && (
-                    <button className='self-end border-none pr-8 font-darker-grotesque text-[18px] font-semibold text-[#082965]'>
-                      Seguir leyendo
-                    </button>
-                  )}
+                  <button
+                    className={`mt-auto scale-95 self-end border-none pr-2 font-darker-grotesque text-[18px] font-semibold text-[#082965] ${isCenter ? 'pointer-events-none opacity-0' : 'opacity-70'}`}
+                  >
+                    Seguir leyendo
+                  </button>
                 </div>
               )
             })}
           </div>
-          <ChevronRight
-            className={`h-8 w-8 cursor-default text-[#082965] opacity-30 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer opacity-100'}`}
+          <button
+            className={`flex h-24 w-24 cursor-default items-center justify-center border-none bg-transparent text-[#082965] opacity-100 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer opacity-100'}`}
             onClick={nextReview}
-          />
+            aria-label='Siguiente'
+            type='button'
+          >
+            <ArrowRightIcon className='h-24 w-24' stroke='#082965' />
+          </button>
         </div>
+      </div>
+      <div className='mb-6 mt-4 flex justify-center gap-2'>
+        {(() => {
+          const maxDots = 5
+          const total = reviews.length
+          let start = Math.max(0, centerIndex - Math.floor(maxDots / 2))
+          let end = start + maxDots
+          if (end > total) {
+            end = total
+            start = Math.max(0, end - maxDots)
+          }
+          return Array.from({ length: end - start }).map((_, i) => {
+            const idx = start + i
+            return (
+              <div
+                key={idx}
+                className={`h-3 w-3 cursor-pointer rounded-full transition-colors duration-200 ${idx === centerIndex ? 'bg-[#082965]' : 'bg-gray-300'}`}
+                onClick={() => setCenterIndex(idx)}
+              />
+            )
+          })
+        })()}
       </div>
     </div>
   )
