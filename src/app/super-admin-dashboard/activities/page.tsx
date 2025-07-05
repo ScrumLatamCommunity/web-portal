@@ -29,26 +29,31 @@ export default function EventsPage() {
     null
   )
 
-  useEffect(() => {
-    const fetchActivities = async () => {
-      try {
-        let url = `${process.env.NEXT_PUBLIC_API_URL}activities/all`
-        if (statusFilter) {
-          url += `?status=${statusFilter}`
-        }
-        const response = await fetch(url)
-        if (!response.ok) throw new Error('Error al obtener actividades')
-        const data = await response.json()
-        setActivities(data)
-      } catch (error) {
-        console.error(error)
+  const fetchActivities = async () => {
+    try {
+      let url = `${process.env.NEXT_PUBLIC_API_URL}activities/all`
+      if (statusFilter) {
+        url += `?status=${statusFilter}`
       }
+      const response = await fetch(url)
+      if (!response.ok) throw new Error('Error al obtener actividades')
+      const data = await response.json()
+      setActivities(data)
+    } catch (error) {
+      console.error(error)
     }
+  }
+
+  useEffect(() => {
     fetchActivities()
   }, [statusFilter])
 
   const handleCheckboxChange = (status: string) => {
     setStatusFilter((prev) => (prev === status ? null : status))
+  }
+
+  const handleActivityUpdate = () => {
+    fetchActivities()
   }
 
   return (
@@ -116,6 +121,7 @@ export default function EventsPage() {
         <ActivityForm
           activity={selectedActivity}
           onBack={() => setSelectedActivity(null)}
+          onActivityUpdate={handleActivityUpdate}
         />
       )}
     </section>

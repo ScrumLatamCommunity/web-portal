@@ -3,11 +3,28 @@ import { Activity } from '../page'
 import EditIcon from '@/assets/EditIcon'
 
 function formatDate(dateString: string) {
-  const date = new Date(dateString)
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const year = String(date.getFullYear()).slice(-2)
-  return `${day}/${month}/${year}`
+  try {
+    if (!dateString) return 'Sin fecha'
+
+    const date = new Date(dateString)
+
+    if (isNaN(date.getTime())) {
+      console.error('Fecha inválida:', dateString)
+      return 'Fecha inválida'
+    }
+
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = String(date.getFullYear()).slice(-2)
+
+    const formattedDate = `${day}/${month}/${year}`
+    console.log('Formateando fecha:', dateString, '→', formattedDate)
+
+    return formattedDate
+  } catch (error) {
+    console.error('Error formateando fecha:', dateString, error)
+    return 'Error fecha'
+  }
 }
 
 export default function ActivityList({
@@ -17,6 +34,11 @@ export default function ActivityList({
   activities: Activity[]
   onEdit?: (activity: Activity) => void
 }) {
+  console.log(
+    'ActivityList recibió actividades:',
+    activities.map((a) => ({ id: a.id, title: a.title, date: a.date }))
+  )
+
   return (
     <div className='grid grid-rows-4 gap-4 rounded-[10px] py-3'>
       {activities.map((activity) => (

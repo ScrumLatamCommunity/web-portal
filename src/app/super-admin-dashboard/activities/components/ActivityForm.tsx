@@ -3,13 +3,16 @@ import React from 'react'
 import Image from 'next/image'
 import EditIcon from '@/assets/EditIcon'
 import ConfirmModal, { SuccessModal } from './ConfirmModal'
+import ImageUpload from '../../components/imageUpload'
 
 export default function ActivityForm({
   activity,
-  onBack
+  onBack,
+  onActivityUpdate
 }: {
   activity: any
   onBack: () => void
+  onActivityUpdate: () => void
 }) {
   const [isEditing, setIsEditing] = React.useState(false)
   const [formData, setFormData] = React.useState(activity)
@@ -20,18 +23,29 @@ export default function ActivityForm({
   const [successModal, setSuccessModal] = React.useState<{
     open: boolean
     message: string
-  }>({ open: false, message: '' })
+    type: 'save' | 'reject' | 'approve' | null
+  }>({ open: false, message: '', type: null })
 
   React.useEffect(() => {
-    setFormData(activity)
-  }, [activity])
+    if (activity && (!formData || formData.id !== activity.id)) {
+      console.log('Actualizando formData con nueva actividad:', activity)
+      setFormData(activity)
+      setIsEditing(false)
+    }
+  }, [activity?.id])
+
+  const handleImageChange = (imageUrl: string) => {
+    setFormData({ ...formData, image: imageUrl })
+  }
 
   const handleEditSave = async () => {
     if (isEditing) {
+      console.log('Guardando cambios, formData actual:', formData)
       setConfirmType('save')
       setShowConfirm(true)
       return
     }
+    console.log('Entrando en modo edición')
     setIsEditing((prev) => !prev)
   }
 
@@ -61,10 +75,22 @@ export default function ActivityForm({
             type,
             facilitator
           } = formData
+
+          let formattedDate = date
+          if (date && !date.includes('T')) {
+            const [year, month, day] = date.split('-')
+            const localDate = new Date(
+              parseInt(year),
+              parseInt(month) - 1,
+              parseInt(day)
+            )
+            formattedDate = localDate.toISOString()
+          }
+
           const dataToSend = {
             title,
             description,
-            date,
+            date: formattedDate,
             recurrency,
             time,
             image,
@@ -72,6 +98,7 @@ export default function ActivityForm({
             type,
             facilitator
           }
+          console.log('Datos a enviar:', dataToSend)
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}activities/${activity.id}`,
             {
@@ -87,8 +114,10 @@ export default function ActivityForm({
           }
           setSuccessModal({
             open: true,
-            message: 'Cambios guardados con éxito'
+            message: 'Cambios guardados con éxito',
+            type: 'save'
           })
+          onActivityUpdate()
         } catch (error) {
           console.error(error)
         }
@@ -110,8 +139,10 @@ export default function ActivityForm({
         }
         setSuccessModal({
           open: true,
-          message: 'Actividad rechazada con éxito'
+          message: 'Actividad rechazada con éxito',
+          type: 'reject'
         })
+        onActivityUpdate()
       } catch (error) {
         console.error(error)
       }
@@ -131,8 +162,10 @@ export default function ActivityForm({
         }
         setSuccessModal({
           open: true,
-          message: 'Actividad publicada con éxito'
+          message: 'Actividad publicada con éxito',
+          type: 'approve'
         })
+        onActivityUpdate()
       } catch (error) {
         console.error(error)
       }
@@ -176,14 +209,27 @@ export default function ActivityForm({
           </h1>
         </div>
         <div className='flex flex-row'>
-          <div>
-            <Image
-              alt='ActivityImage'
-              className='rounded-2xl'
-              height={800}
-              src={formData.image}
-              width={500}
-            />
+          <div className='h-[550px] w-[550px]'>
+            {isEditing ? (
+              <>
+                <ImageUpload
+                  onChange={handleImageChange}
+                  initialImage={formData.image}
+                  className=''
+                />
+                <p className='text-black font-darker-grotesque text-[20px] font-normal'>
+                  *Haz click en la imagen o arrastra una para cambiarla
+                </p>
+              </>
+            ) : (
+              <Image
+                alt='ActivityImage'
+                className='rounded-2xl'
+                height={550}
+                src={formData.image}
+                width={550}
+              />
+            )}
           </div>
           <div className='flex w-[60%] flex-col gap-4 pl-6'>
             <label className='font-darker-grotesque text-[20px] font-semibold'>
@@ -193,9 +239,10 @@ export default function ActivityForm({
                 className='mt-1 w-full rounded border px-3 py-2 font-inter text-[16px] font-normal text-[#8C8C8C]'
                 value={formData.title || ''}
                 readOnly={!isEditing}
-                onChange={(e) =>
+                onChange={(e) => {
+                  console.log('Cambiando título:', e.target.value)
                   setFormData({ ...formData, title: e.target.value })
-                }
+                }}
               />
             </label>
             <label className='font-darker-grotesque font-semibold'>
@@ -224,15 +271,20 @@ export default function ActivityForm({
             <div className='flex flex-row gap-4'>
               <label className='flex-1 font-darker-grotesque font-semibold'>
                 Tipo de actividad
-                <input
-                  type='text'
+                <select
                   className='mt-1 w-full rounded border px-3 py-2 font-inter text-[16px] font-normal text-[#8C8C8C]'
                   value={formData.type || ''}
-                  readOnly={!isEditing}
+                  disabled={!isEditing}
                   onChange={(e) =>
                     setFormData({ ...formData, type: e.target.value })
                   }
-                />
+                >
+                  <option value='Agile SOS'>Agile SOS</option>
+                  <option value='Scrum Latam Live'>Scrum Latam Live</option>
+                  <option value='Agile Learning Lab'>Agile Learning Lab</option>
+                  <option value='Track Formativo'>Track Formativo</option>
+                  <option value='Evento'>Evento</option>
+                </select>
               </label>
             </div>
             <div className='flex flex-row gap-4'>
@@ -326,7 +378,10 @@ export default function ActivityForm({
       <SuccessModal
         isOpen={successModal.open}
         message={successModal.message}
-        onClose={() => setSuccessModal({ open: false, message: '' })}
+        type={successModal.type}
+        onClose={() =>
+          setSuccessModal({ open: false, message: '', type: null })
+        }
       />
     </div>
   )
