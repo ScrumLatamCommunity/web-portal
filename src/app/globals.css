@@ -13,6 +13,10 @@ body {
     text-wrap: balance;
   }
 
+  .container {
+    max-width: 1920px;
+  }
+
   /* Estilos para las flechas del componente específico */
   .workshop-swiper-container .swiper-button-prev,
   .workshop-swiper-container .swiper-button-next {

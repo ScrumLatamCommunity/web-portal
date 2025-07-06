@@ -22,7 +22,7 @@ export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ routes }) => {
   const pathname = usePathname()
 
   return (
-    <div className='flex w-[20%] flex-col items-center gap-4 border-r border-[#082965] py-6'>
+    <div className='hidden w-[20%] flex-col items-center gap-4 border-r border-[#082965] py-6 md:flex'>
       {routes.map((item: SuperAdminDashboard) => (
         <Link
           className='flex w-full justify-center px-4'
@@ -50,6 +50,29 @@ export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ routes }) => {
             </div>
             <ChevronRight className='h-5 w-5 flex-shrink-0' />
           </div>
+        </Link>
+      ))}
+    </div>
+  )
+}
+
+export const MobileTabBar: React.FC<DesktopSidebarProps> = ({ routes }) => {
+  return (
+    <div className='fixed bottom-0 left-0 right-0 z-50 flex justify-around border-t bg-white md:hidden'>
+      {routes.map((route) => (
+        <Link
+          key={route.id}
+          href={route.link}
+          className='flex flex-col items-center py-2'
+        >
+          <Image
+            src={route.image}
+            alt='icono'
+            className='h-6 w-6'
+            height={24}
+            width={24}
+          />
+          <span className='text-xs'>{route.name}</span>
         </Link>
       ))}
     </div>

@@ -163,6 +163,18 @@ const config: Config = {
       },
       width: {
         widthFlags: 'clamp(47px, 15vw, 72px)'
+      },
+      container: {
+        center: true,
+        padding: '1rem',
+        screens: {
+          DEFAULT: '100%',
+          sm: '100%',
+          md: '100%',
+          lg: '100%',
+          xl: '1280px',
+          '2xl': '1920px'
+        }
       }
     }
   },

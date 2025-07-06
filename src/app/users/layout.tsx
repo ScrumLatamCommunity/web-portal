@@ -1,5 +1,8 @@
 'use client'
-import { DesktopSidebar } from '../super-admin-dashboard/allies/components/DesktopSidebar'
+import {
+  DesktopSidebar,
+  MobileTabBar
+} from '../super-admin-dashboard/allies/components/DesktopSidebar'
 import { LoadingScreen } from '../super-admin-dashboard/components/LoadingScreen'
 import { ReactNode, useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
@@ -29,9 +32,10 @@ export default function UserLayout({ children }: UserLayoutProps) {
 
   return (
     <div className='flex min-h-screen w-full flex-col'>
-      <div className='flex flex-1'>
+      <div className='container mx-auto flex flex-1'>
         <DesktopSidebar routes={userDashboard} />
-        <main className='flex-1 p-6'>{children}</main>
+        <MobileTabBar routes={userDashboard} />
+        <main className='flex-1'>{children}</main>
       </div>
     </div>
   )
