@@ -1,120 +1,530 @@
 'use client'
-import { BorderLinearProgress } from '@/app/home/components/progressBar'
-import { ChevronDown, ChevronUp } from 'react-feather'
-import { useState, useEffect } from 'react'
-import YouTube from 'react-youtube'
+import { useState, useEffect, useRef } from 'react'
 import { useOnboarding } from '@/app/onboarding/context/OnboardingContext'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
 import { useRegister } from '@/app/context/RegisterContext'
 import { useRouter } from 'next/navigation'
+import { LogoScrumlatam } from '@/components/Logo'
+import React from 'react'
+import { MobileLogo } from '@/components/MobileLogo'
 
 interface ListaItem {
   isActive: boolean
   label: string
-}
-
-const Lista = () => {
-  const [expanded, setExpanded] = useState(true)
-  const listaItems: ListaItem[] = [
-    { label: 'Bienvenida', isActive: true },
-    { label: 'Términos y condiciones', isActive: false }
-  ]
-
-  const handleToggleExpanded = () => {
-    setExpanded(!expanded)
-  }
-
-  return (
-    <div className='mx-6 h-3/6 max-h-[450px]'>
-      <div className='flex items-center justify-between bg-[#FFBEB0] p-4'>
-        <div className='h-6 min-h-[24px] w-6 min-w-[24px] rounded-full border border-gray-300 bg-white' />
-        <h2 className='text-xl font-medium'>Conociendo a la comunidad</h2>
-        {expanded ? (
-          <ChevronUp onClick={handleToggleExpanded} />
-        ) : (
-          <ChevronDown onClick={handleToggleExpanded} />
-        )}
-      </div>
-      {expanded && (
-        <ul className='max-h-[200px] overflow-y-auto bg-[#FFBEB0] px-4'>
-          {listaItems.map((item, index) => (
-            <li key={index} className='flex items-center py-1'>
-              <div
-                className={`size-6 min-h-[24px] min-w-[24px] rounded-full ${
-                  item.isActive ? 'bg-[#061D48]' : 'bg-white'
-                } border border-gray-300`}
-              />
-              <span className='ml-4 text-lg'>{item.label}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  )
+  isCompleted: boolean
 }
 
 export default function Travel() {
-  const { completeWelcome, progress, isWelcomeCompleted } = useOnboarding()
+  const { completeWelcome, isWelcomeCompleted } = useOnboarding()
   const { user } = useAuth()
+  const [showVideo, setShowVideo] = useState(false)
+  const [videoCompleted, setVideoCompleted] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [showTermsCheckbox, setShowTermsCheckbox] = useState(false)
   const [showNextModuleButton, setShowNextModuleButton] =
     useState(isWelcomeCompleted)
+  const [currentStep, setCurrentStep] = useState(0)
+  const [comment, setComment] = useState('')
+  const termsContainerRef = useRef<HTMLDivElement>(null)
   const { registerUser } = useRegister()
   const router = useRouter()
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const [listaItems, setListaItems] = useState<ListaItem[]>([
+    { label: 'Bienvenida', isActive: true, isCompleted: false },
+    { label: 'Términos y Condiciones', isActive: false, isCompleted: false },
+    {
+      label: 'Expectativas sobre la comunidad',
+      isActive: false,
+      isCompleted: false
+    }
+  ])
 
   useEffect(() => {
     if (isWelcomeCompleted) {
       setShowNextModuleButton(true)
+      setVideoCompleted(true)
+      setListaItems((prev) =>
+        prev.map((item, index) =>
+          index === 0 ? { ...item, isCompleted: true } : item
+        )
+      )
     }
   }, [isWelcomeCompleted])
 
   useEffect(() => {
-    if (!registerUser) {
-      router.push('/login')
+    if (videoRef.current) {
+      videoRef.current.volume = 0.5 // Establece el volumen al 50%
     }
-  }, [registerUser, router])
+  }, [])
 
+  const handlePlayVideo = () => {
+    setShowVideo(true)
+  }
+
+  const handleVideoEnd = () => {
+    setVideoCompleted(true)
+    setShowNextModuleButton(true)
+    completeWelcome()
+  }
+
+  const handleSkip = () => {
+    toast.success('Onboarding omitido')
+    router.push('/')
+  }
+
+  const handleFinishOnboarding = async () => {
+    if (!registerUser && !user) {
+      toast.error('No hay información del usuario')
+      return
+    }
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL
+    try {
+      // Primero guardamos el comentario si existe
+      if (comment.trim()) {
+        await fetch(`${API_URL}comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: registerUser?.email || user?.email,
+            comment: comment
+          })
+        })
+      }
+
+      // Luego marcamos el onboarding como completado
+      const response = await fetch(`${API_URL}auth/onboarding`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: registerUser?.email || user?.email,
+          completed: true
+        })
+      })
+
+      if (response.ok) {
+        toast.success('¡Onboarding completado!')
+        router.push('/')
+      } else {
+        toast.error('Error al completar el onboarding')
+      }
+    } catch (error) {
+      toast.error('Error al completar el onboarding')
+      console.error('Error:', error)
+    }
+  }
+
+  const handleContinue = () => {
+    if (currentStep === 0 && !videoCompleted) {
+      toast.error('Por favor, mira el video completo antes de continuar')
+      return
+    }
+
+    if (currentStep === 1 && (!showTermsCheckbox || !termsAccepted)) {
+      toast.error('Por favor, acepta los términos y condiciones para continuar')
+      return
+    }
+
+    // Si es el último paso, finalizar el onboarding
+    if (currentStep === 2) {
+      handleFinishOnboarding()
+      return
+    }
+
+    if (user?.onboarding) {
+      toast.success('Ya has completado el onboarding')
+      return
+    }
+
+    // Marcar el paso actual como completado y activar el siguiente
+    setListaItems((prev) =>
+      prev.map((item, index) => {
+        if (index === currentStep)
+          return { ...item, isActive: false, isCompleted: true }
+        if (index === currentStep + 1) return { ...item, isActive: true }
+        return item
+      })
+    )
+
+    setCurrentStep((prev) => prev + 1)
+  }
+
+  const handleTermsScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.target as HTMLDivElement
+    const isAtBottom =
+      Math.abs(
+        element.scrollHeight - element.scrollTop - element.clientHeight
+      ) < 50
+    if (isAtBottom) {
+      setShowTermsCheckbox(true)
+    }
+  }
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return (
+          <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
+            <div className='bg-black relative aspect-video'>
+              {!showVideo ? (
+                <div className='absolute inset-0 flex items-center justify-center'>
+                  <img
+                    src='https://appwiseinnovations.dev/scrumlatam/Captura%20de%20pantalla%202025-07-06%20192049.png'
+                    alt='Video thumbnail'
+                    className='h-full w-full object-cover'
+                  />
+                  <button
+                    onClick={handlePlayVideo}
+                    className='bg-black absolute inset-0 flex items-center justify-center bg-opacity-30 transition-all hover:bg-opacity-40'
+                  >
+                    <div className='flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg'>
+                      <svg
+                        className='text-black ml-1 h-6 w-6'
+                        fill='currentColor'
+                        viewBox='0 0 24 24'
+                      >
+                        <path d='M8 5v14l11-7z' />
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              ) : (
+                <video
+                  ref={videoRef}
+                  src='https://appwiseinnovations.dev/scrumlatam/video_ruben_onboarding.mp4'
+                  controls
+                  autoPlay
+                  className='h-full w-full'
+                  onEnded={handleVideoEnd}
+                />
+              )}
+            </div>
+          </div>
+        )
+      case 1:
+        return (
+          <div className='h-[400px] rounded-lg border-2 border-blue-500 bg-white p-6'>
+            <div
+              ref={termsContainerRef}
+              onScroll={handleTermsScroll}
+              className='h-full overflow-y-auto pr-4'
+            >
+              <h1 className='mb-5 text-3xl font-medium'>
+                TÉRMINOS Y CONDICIONES DE SCRUM LATAM
+              </h1>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Bienvenida a SCRUM LATAM</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                Estamos encantados de que te unas a nuestra comunidad. SCRUM
+                LATAM es un espacio digital dedicado a la difusión y el
+                aprendizaje en las buenas prácticas herramientas y técnicas en
+                Agile. Aquí podrás compartir experiencias, recursos y
+                conocimientos para fomentar el liderazgo ágil en las
+                organizaciones.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Nuestra Misión y Visión</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Misión:</strong> Compartir y fomentar el mindset agile a
+                través del intercambio de conocimiento y buenas prácticas en la
+                comunidad LATAM.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Visión:</strong> Convertirnos en el principal espacio de
+                aprendizaje y crecimiento en Latinoamérica, generando un impacto
+                positivo en las organizaciones a través de nuestros miembros.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Compromiso de Participación</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                Al unirte a SCRUM LATAM, te comprometes a:
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <ul className='list-disc space-y-2 pl-6'>
+                  <li>
+                    Participar activamente y con respeto en todas las
+                    actividades, discusiones y eventos.
+                  </li>
+                  <li>
+                    Mantener un comportamiento cortés y profesional en tus
+                    interacciones.
+                  </li>
+                  <li>
+                    Compartir contenido relevante en Buenas prácticas en
+                    Agilidad.
+                  </li>
+                  <li>
+                    Respetar los derechos de autor y la privacidad de los demás
+                    miembros.
+                  </li>
+                </ul>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Registro y Creación de Cuenta</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                Para formar parte de SCRUM LATAM, te pedimos que proporciones
+                información verídica y actualizada. Tu compromiso nos ayuda a
+                mantener una comunidad segura y colaborativa. Protege la
+                privacidad de tu cuenta y recuerda que eres responsable de las
+                actividades realizadas en ella.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Reglas de Contenido y Comportamiento</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                Queremos que este sea un espacio inclusivo y respetuoso. Por
+                eso, te pedimos:
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <ul className='list-disc space-y-2 pl-6'>
+                  <li>
+                    <strong>Respeto y Profesionalismo:</strong> Mantén un
+                    comportamiento cortés y profesional en todas tus
+                    interacciones.
+                  </li>
+                  <li>
+                    <strong>Contenido Relevante:</strong> Publica contenido
+                    relacionado con metodologías ágiles y temas de desarrollo
+                    profesional en agilidad.
+                  </li>
+                  <li>
+                    <strong>No Publicidad Sin Autorización:</strong> Evita
+                    promover productos o servicios pagos sin autorización. Los
+                    Sponsor son los únicos autorizados.
+                  </li>
+                  <li>
+                    <strong>Contenido Apropiado:</strong> No compartas contenido
+                    que incite a la violencia, actividades ilegales o
+                    información falsa.
+                  </li>
+                  <li>
+                    <strong>Derechos de Autor:</strong> Respeta los derechos de
+                    autor y no compartas contenido sin el permiso necesario.
+                  </li>
+                  <li>
+                    <strong>Privacidad:</strong> No compartas información
+                    personal o confidencial de otros sin su consentimiento.
+                  </li>
+                </ul>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Privacidad y Protección de Datos</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                En SCRUM LATAM, valoramos tu privacidad. No compartiremos tus
+                datos personales con terceros sin tu consentimiento. Para más
+                información, consulta nuestra Política de Privacidad.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Propiedad Intelectual</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                El contenido original de SCRUM LATAM, como publicaciones y
+                materiales educativos, es propiedad de la comunidad. Puedes
+                compartir este contenido para fines personales y educativos,
+                siempre y cuando respetes los derechos de autor.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Modificación de los Términos y Condiciones</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                Podemos actualizar estos términos para mejorar la comunidad. Te
+                notificaremos sobre cualquier cambio importante. Mantente
+                informado revisando estos términos periódicamente.
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                <strong>Terminación de la Cuenta</strong>
+              </p>
+              <p className='mb-5 whitespace-pre-line'>
+                Queremos que todos disfruten de una experiencia positiva en
+                SCRUM LATAM. Si alguien no sigue estas guías, podríamos
+                suspender o cancelar su cuenta. Si tienes preguntas sobre una
+                decisión, contáctanos en scrumlatam@gmail.com.
+              </p>
+            </div>
+          </div>
+        )
+      case 2:
+        return (
+          <div className='rounded-lg border-2 border-blue-500 bg-white p-6'>
+            <h2 className='mb-4 text-2xl font-medium text-orange-500'>
+              ¡Ya casi finalizamos!
+            </h2>
+            <p className='mb-6 text-[#072356]'>
+              Nos gustaría saber tus expectativas sobre la comunidad (opcional)
+            </p>
+            <textarea
+              className='w-full rounded-lg border border-gray-300 p-4 text-[#072356] focus:border-blue-500 focus:outline-none'
+              rows={6}
+              placeholder='Escribe tus expectativas aquí...'
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+  console.log('user', user)
   return (
-    <div className='relative flex h-[70vh] max-h-[550px] w-screen'>
-      <div className='h-full max-h-[400px] w-2/6 min-w-[240px]'>
-        <div className='h-1.5/6 mx-6 mb-6 mt-10 bg-[#FFBEB0]'>
-          <h1 className='p-4 text-3xl font-medium'>Onboarding</h1>
-          <div className='px-5 py-1'>
-            <BorderLinearProgress variant='determinate' value={progress} />
-            <p>{progress}%&nbsp;&nbsp;Completado</p>
+    <div className='container mx-auto min-h-screen bg-gray-50'>
+      {/* Header */}
+      <div className='flex items-center justify-between bg-white px-6 py-4 shadow-sm'>
+        <div className='flex items-center gap-4'>
+          <div className='hidden md:block'>
+            <LogoScrumlatam />
+          </div>
+          <div className='block md:hidden'>
+            <MobileLogo />
           </div>
         </div>
-        <Lista />
-        {showNextModuleButton && (
-          <a
-            className={`mx-6 mb-6 rounded-md bg-[#FD3600] p-2 font-bold text-white ${
-              user?.onboarding ? 'cursor-not-allowed opacity-50' : ''
-            }`}
-            href={user?.onboarding ? '#' : 'terms'}
-            onClick={(e) => {
-              if (user?.onboarding) {
-                e.preventDefault()
-                toast.success('Ya has completado el onboarding')
-                return
-              }
-              completeWelcome()
-            }}
-          >
-            Siguiente módulo
-          </a>
-        )}
+        <div className='flex items-center gap-3'>
+          {user && (
+            <>
+              <span className='text-lg font-medium text-gray-700'>
+                ¡Hola {user.email.split('@')[0]}!
+              </span>
+              <div className='h-10 w-10 overflow-hidden rounded-full bg-gray-300'>
+                <img
+                  src='https://appwiseinnovations.dev/scrumlatam/photo.png'
+                  alt='Profile'
+                  className='h-full w-full object-cover'
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
-      <div className='relative ml-6 mt-10 h-[80%] w-4/6'>
-        <video
-          src='https://appwiseinnovations.dev/scrumlatam/scrum-latam.mp4'
-          controls
-          autoPlay
-          className='h-full w-full'
-          onEnded={() => {
-            setShowNextModuleButton(true)
-            completeWelcome()
-          }}
-        />
+
+      {/* Title Section */}
+      <div className='py-8 text-center'>
+        <h1 className='mb-4 text-[28px] font-semibold text-orange-500 md:text-3xl'>
+          Antes de comenzar...
+        </h1>
+        <p className='text-[12px] text-[#082965] md:text-lg'>
+          Debes completar el onboarding para continuar e iniciar con la
+          comunidad
+        </p>
+      </div>
+
+      {/* Two Columns Layout */}
+      <div className='grid grid-cols-1 gap-4 md:mx-auto md:max-w-7xl md:grid-cols-2 md:gap-8'>
+        {/* Left Column - Dynamic Content */}
+        <div className='w-full'>{renderStepContent()}</div>
+
+        {/* Right Column - Onboarding Info */}
+        <div className='flex flex-col justify-between rounded-lg border-2 border-orange-500 bg-white p-6'>
+          <div className='mb-6'>
+            <h2 className='mb-4 text-xl font-semibold text-orange-500'>
+              Onboarding
+            </h2>
+          </div>
+
+          <div className='mb-8 space-y-4'>
+            {listaItems.map((item, index) => (
+              <div key={index} className='flex items-center gap-3'>
+                <div
+                  className={`flex h-5 w-5 items-center justify-center rounded-full ${
+                    item.isCompleted
+                      ? 'bg-blue-600'
+                      : item.isActive
+                        ? 'bg-blue-600'
+                        : 'bg-gray-200'
+                  }`}
+                >
+                  {item.isCompleted && (
+                    <svg
+                      className='h-3 w-3 text-white'
+                      fill='currentColor'
+                      viewBox='0 0 20 20'
+                    >
+                      <path
+                        fillRule='evenodd'
+                        d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                        clipRule='evenodd'
+                      />
+                    </svg>
+                  )}
+                </div>
+                <span
+                  className={`text-sm ${
+                    item.isActive || item.isCompleted
+                      ? 'font-medium text-[#072356]'
+                      : 'text-gray-500'
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Actions */}
+          <div className='flex flex-col items-end gap-4'>
+            {currentStep === 1 && showTermsCheckbox && (
+              <div className='flex items-center gap-2 self-end'>
+                <input
+                  type='checkbox'
+                  id='accept-terms'
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                  className='h-4 w-4 rounded border-gray-300 text-blue-600'
+                />
+                <label htmlFor='accept-terms' className='text-sm text-gray-600'>
+                  Acepto los términos y condiciones
+                </label>
+              </div>
+            )}
+            <div className='flex w-full items-center justify-between'>
+              <button
+                onClick={handleSkip}
+                className='font-medium text-gray-500 hover:text-gray-700'
+              >
+                Omitir por ahora
+              </button>
+              <button
+                onClick={handleContinue}
+                disabled={
+                  (currentStep === 0 && !videoCompleted) ||
+                  (currentStep === 1 && (!showTermsCheckbox || !termsAccepted))
+                }
+                className={`flex items-center gap-2 font-medium ${
+                  (currentStep === 0 && videoCompleted) ||
+                  (currentStep === 1 && showTermsCheckbox && termsAccepted) ||
+                  currentStep > 1
+                    ? 'cursor-pointer text-gray-500 hover:text-[#072356]'
+                    : 'cursor-not-allowed text-gray-300'
+                }`}
+              >
+                {currentStep === 2 ? 'Finalizar' : 'Continuar'}
+                <svg
+                  className='h-4 w-4'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

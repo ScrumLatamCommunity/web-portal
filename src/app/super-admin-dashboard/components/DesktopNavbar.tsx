@@ -15,9 +15,6 @@ export const DesktopNavbar = () => {
           src={images.superadmin[0]}
           width={60}
         />
-        <span className='flex font-darker-grotesque text-[38px] font-bold text-[#082965]'>
-          Dashboard
-        </span>
       </div>
       <div className='flex'>
         <Image

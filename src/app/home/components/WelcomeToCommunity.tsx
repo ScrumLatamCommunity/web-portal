@@ -1,22 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { PrimaryButton } from '../../../core/PrimaryButton'
-import { image_url_mobile, image_url_desktop } from '@/data/data'
-import useIsLargeScreen from '@/hooks/index'
-import { useAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'
 import { images } from '@/data/images_url'
 
 const NEW_IMAGE_URL = images.welcomeComunity
 
 export const WelcomeToCommunity = () => {
-  const isLargeScreen = useIsLargeScreen()
-
-  const { user } = useAuth()
-
   return (
-    <section className='my-36 bg-white py-10 font-darker-grotesque md:py-10'>
+    <section className='bg-white py-10 font-darker-grotesque md:my-36 md:py-10'>
       <div className='mx-auto max-w-[1440px] px-1 lg:px-1'>
         <div className='grid grid-cols-1 items-center md:grid-cols-2 md:gap-x-12 lg:gap-x-24'>
           <div className='space-y-10 text-center md:pr-12 md:text-left'>

@@ -10,23 +10,22 @@ import { Modal } from '@/core/Modal'
 import { usePathname } from 'next/navigation'
 import scrumFooterLogo from '@/assets/ScrumLatamFooterLogo.png'
 import Image from 'next/image'
-import GlobeIcon from '@/assets/GlobeIcon'
 
 export const Footer = () => {
   const pathname = usePathname()
-  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
+  const hiddenLayoutRoutes = [
+    '/sponsors',
+    '/super-admin-dashboard',
+    '/users',
+    '/users/activities',
+    '/register',
+    '/login',
+    '/onboarding/travel'
+  ]
   const hideLayout = hiddenLayoutRoutes.some((route) =>
     pathname.startsWith(route)
   )
   const [openModal, setOpenModal] = useState(false)
-  const isLargeScreen = useIsLargeScreen(480)
-
-  const [sections, setSections] = useState({
-    community: false,
-    training: false,
-    documentation: false,
-    news: false
-  })
 
   const handleModal = () => {
     setOpenModal(!openModal)
