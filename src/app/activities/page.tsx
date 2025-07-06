@@ -13,12 +13,18 @@ export default function Activities() {
   const { token } = useAuth()
   const [activityData, setActivityData] = useState<Activity[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  const fetchSponsorData = async () => {
+  const fetchSponsorData = async (filters?: { type?: string }) => {
     try {
+      const query = new URLSearchParams()
+      console.log()
+      if (filters?.type) {
+        query.append('type', filters.type)
+      }
+
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}activities`,
+        `${process.env.NEXT_PUBLIC_API_URL}activities/all?${query.toString()}`,
         {
           method: 'GET',
           headers: {
@@ -41,30 +47,16 @@ export default function Activities() {
   }
 
   useEffect(() => {
-    fetchSponsorData()
-  }, [token])
+    fetchSponsorData(selectedCategory ? { type: selectedCategory } : undefined)
+  }, [token, selectedCategory])
 
   const handleFilterChange = (category: string) => {
-    setSelectedCategories((prev) =>
-      prev.includes(category) ? prev.filter((c) => c !== category) : [category]
-    )
+    setSelectedCategory((prev) => (prev === category ? null : category))
   }
 
   const handleHeroCategorySelect = (category: string) => {
-    if (selectedCategories.length === 1 && selectedCategories[0] === category) {
-      setSelectedCategories([])
-    } else {
-      setSelectedCategories([category])
-    }
+    setSelectedCategory((prev) => (prev === category ? null : category))
   }
-
-  const filteredActivities =
-    selectedCategories.length === 0
-      ? activityData
-      : activityData.filter((activity) =>
-          selectedCategories.includes(activity.type)
-        )
-
   return (
     <>
       <div className='mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8'>
@@ -72,9 +64,7 @@ export default function Activities() {
         <WeeklyActivityHero
           categories={activityCategoriesData}
           onSelectCategory={handleHeroCategorySelect}
-          selectedCategory={
-            selectedCategories.length === 1 ? selectedCategories[0] : null
-          }
+          selectedCategory={selectedCategory}
         />
         <h2 className='my-7 pl-6 text-start font-darker-grotesque text-lg font-medium text-[#082965] lg:text-5xl'>
           Próximas Actividades
@@ -82,14 +72,14 @@ export default function Activities() {
         {/* 2. Componente para la barra de filtros con checkboxes */}
         <ActivityFilters
           categories={activityCategoriesData}
-          selectedCategories={selectedCategories}
+          selectedCategory={selectedCategory}
           onFilterChange={handleFilterChange}
         />
 
         {/* 3. Componente para la cuadrícula de "Próximos Eventos" */}
         {/* Pasamos el estado de carga para que pueda mostrar un esqueleto si es necesario */}
         <UpcomingActivitiesGrid
-          activities={filteredActivities}
+          activities={activityData}
           isLoading={isLoading}
         />
       </div>

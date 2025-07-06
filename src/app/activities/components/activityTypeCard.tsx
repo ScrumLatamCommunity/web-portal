@@ -57,7 +57,7 @@ export default function ActivityTypeCard({
           </h4>
 
           <p
-            className={`mt-2 max-h-0 overflow-hidden text-xl text-white/80 opacity-0 transition-all duration-300 ease-in-out group-hover:max-h-40 group-hover:opacity-100 ${active ? 'max-h-40 opacity-100' : ''} `}
+            className={`mt-2 max-h-0 overflow-hidden text-base text-white/80 opacity-0 transition-all duration-300 ease-in-out group-hover:max-h-40 group-hover:opacity-100 lg:text-lg ${active ? 'max-h-40 opacity-100' : ''} `}
           >
             {category.description}
           </p>

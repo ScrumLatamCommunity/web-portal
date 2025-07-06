@@ -877,7 +877,7 @@ export const profilesCatalizador = [
 export const activityCategoriesData = [
   {
     id: 'agile-sos',
-    title: 'Agile S.O.S',
+    title: 'Agile SOS',
     description:
       'Espacio de acompañamiento donde los miembros pueden plantear dudas y desafios para recibir ayuda de la comunidad.',
     image:

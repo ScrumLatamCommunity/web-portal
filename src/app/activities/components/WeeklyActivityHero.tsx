@@ -80,15 +80,15 @@ export default function WeeklyActivityHero({
           breakpoints={{
             0: {
               slidesPerView: 1.2,
-              spaceBetween: 2
+              spaceBetween: 5
             },
             480: {
-              slidesPerView: 1.5,
-              spaceBetween: 5
+              slidesPerView: 1.75,
+              spaceBetween: 2
             },
             640: {
               slidesPerView: 3,
-              spaceBetween: 12
+              spaceBetween: 5
             },
             1024: {
               slidesPerView: 4,
@@ -104,8 +104,8 @@ export default function WeeklyActivityHero({
             <SwiperSlide key={category.id}>
               <ActivityTypeCard
                 category={category}
-                isSelected={selectedCategory === category.id}
-                onClick={() => onSelectCategory(category.id)}
+                isSelected={selectedCategory === category.title}
+                onClick={() => onSelectCategory(category.title)}
               />
             </SwiperSlide>
           ))}

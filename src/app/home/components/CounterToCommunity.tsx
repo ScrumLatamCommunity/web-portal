@@ -135,12 +135,12 @@ export const CounterToCommunity = () => {
 
   return (
     <section className='relative m-auto mt-8 pb-8 font-darker-grotesque md:max-w-[1920px] md:pb-24'>
-      <div className='mt-8 flex flex-wrap items-center justify-center gap-4 pt-12'>
-        <h3 className='m-0 text-6 font-black text-blue-8 md:text-4xl xl:text-17'>
+      <div className='mt-8 flex flex-wrap items-center justify-center gap-4 md:pt-12'>
+        <h3 className='m-0 text-[22px] font-black text-blue-8 md:text-4xl xl:text-17'>
           Somos una gran comunidad
         </h3>
       </div>
-      <div className='flex flex-wrap justify-around gap-x-20 px-5 md:gap-14 md:px-16 xl:mt-14 xl:gap-x-0 2xl:px-24'>
+      <div className='grid grid-cols-2 gap-x-4 gap-y-8 px-5 md:flex md:flex-wrap md:justify-around md:gap-14 md:px-16 xl:mt-14 xl:gap-x-0 2xl:px-24'>
         {currentCounters.map((counter, index) => (
           <React.Fragment key={counter.id}>
             <div className='mt-6 flex flex-col items-center md:gap-7'>
