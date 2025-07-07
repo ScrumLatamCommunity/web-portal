@@ -1,5 +1,5 @@
-import Travel from './travel/page'
+import { redirect } from 'next/navigation'
 
 export default function Onboarding() {
-  return <Travel />
+  redirect('/onboarding/travel')
 }

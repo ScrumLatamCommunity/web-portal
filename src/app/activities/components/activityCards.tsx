@@ -6,6 +6,7 @@ import { Calendar, Clock } from 'react-feather'
 import Image from 'next/image'
 import { useTimeConverter } from '../hooks/useFormatDate'
 import { Activity } from '../interfaces/activityInterface'
+import { registerActivity } from '../actions/register.actions'
 
 interface ActivityCardProps {
   activity: Activity
@@ -19,12 +20,13 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
   const { formattedTime, isLoading } = useTimeConverter(activity, country)
 
   const handleEnrollClick = () => {
-    if (!user) {
+    if (!user || !user.sub) {
       localStorage.setItem('redirectToAfterAuth', `/activities`)
       router.push('/login')
     } else {
-      console.log(`Usuario ${user.sub} inscribiéndose al evento ${activity.id}`)
+      registerActivity(activity.id, user?.sub || '')
       window.open(activity.link, '_blank')
+      console.log(`Usuario ${user.sub} inscribiéndose al evento ${activity.id}`)
     }
   }
 

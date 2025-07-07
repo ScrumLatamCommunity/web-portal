@@ -46,7 +46,7 @@ export const Sponsors: React.FC = () => {
   return (
     <div className='mx-auto flex w-full max-w-[1920px] flex-col bg-[#fbfbfb] px-4 py-8 md:py-20'>
       <h2 className='pl-[10%] text-left font-darker-grotesque text-[26px] font-bold text-[#082965] md:mb-12 md:text-[50px] 2xl:text-[65px]'>
-        Junto a nuestros aliados
+        Junto a nuestros sponsors
       </h2>
       <div className='relative overflow-hidden md:max-w-[1920px]'>
         <div className='flex animate-infinite-scroll items-center gap-6 py-6 lg:gap-20'>

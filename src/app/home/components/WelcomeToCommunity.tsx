@@ -1,10 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { PrimaryButton } from '../../../core/PrimaryButton'
-import { image_url_mobile, image_url_desktop } from '@/data/data'
-import useIsLargeScreen from '@/hooks/index'
-import { useAuth } from '@/app/context/AuthContext'
 import Image from 'next/image'
 import { images } from '@/data/images_url'
 import { useRouter } from 'next/navigation'
@@ -12,9 +8,7 @@ import { useRouter } from 'next/navigation'
 const NEW_IMAGE_URL = images.welcomeComunity
 
 export const WelcomeToCommunity = () => {
-  const isLargeScreen = useIsLargeScreen()
   const router = useRouter()
-  const { user } = useAuth()
 
   return (
     <section className='my-10 bg-white font-darker-grotesque md:py-10'>

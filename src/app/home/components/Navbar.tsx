@@ -9,10 +9,20 @@ import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { darkerGrotesque } from '@/fonts'
 import { useAuth } from '@/app/context/AuthContext'
 import { usePathname, useRouter } from 'next/navigation'
+import { LogoScrumlatam } from '@/components/Logo'
+import { MobileLogo } from '@/components/MobileLogo'
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname()
-  const hiddenLayoutRoutes = ['/sponsors', '/super-admin-dashboard']
+  const hiddenLayoutRoutes = [
+    '/sponsors',
+    '/super-admin-dashboard',
+    '/users',
+    '/users/activities',
+    '/register',
+    '/login',
+    '/onboarding/travel'
+  ]
   const hideLayout = hiddenLayoutRoutes.some((route) =>
     pathname.startsWith(route)
   )
@@ -82,23 +92,24 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className='font-DM sticky top-0 z-50 w-full border-b-2 border-gray-200 bg-black-3'>
-      <div className='mx-auto max-w-screen-2xl justify-between px-4 py-2 lg:flex lg:items-center'>
+      <div className='container mx-auto justify-between px-4 py-2 lg:flex lg:items-center'>
         <div className='flex justify-between lg:justify-start'>
-          <Link href='/' className='flex flex-row justify-start'>
-            <img
-              alt='logo'
-              width={60}
-              height={38}
-              className='h-12 w-auto'
-              src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/navbar%2FScrum%20logo%20principal.svg?alt=media&token=d8cce1e3-c821-4e52-9596-289f17c63203'
-            />
-          </Link>
+          {/* Logo para mobile (sm y md) */}
+          <div className='block lg:hidden'>
+            <MobileLogo />
+          </div>
+          {/* Logo para desktop (lg en adelante) */}
+          <div className='hidden lg:block'>
+            <LogoScrumlatam />
+          </div>
 
           <button
             onClick={toggleNav}
             className='block rounded p-1 text-red-500 focus:bg-black-3 focus:outline-none lg:hidden'
           >
-            <Menu className={`h-6 w-6 ${openNav ? 'hidden' : 'block'}`} />
+            <Menu
+              className={`h-[38px] w-[60px] ${openNav ? 'hidden' : 'block'}`}
+            />
             <X className={`h-6 w-6 ${openNav ? 'block' : 'hidden'}`} />
           </button>
         </div>
