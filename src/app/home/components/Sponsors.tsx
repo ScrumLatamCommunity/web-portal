@@ -58,7 +58,7 @@ export const Sponsors: React.FC = () => {
             <Image
               alt={sponsor.companyName}
               aria-hidden='true'
-              className='h-[80px] w-auto max-w-[80px] object-contain md:h-[120px] md:max-w-[200px] 2xl:h-[170px]'
+              className='h-8 w-auto max-w-[80px] object-contain md:h-[150px] md:max-w-[200px] 2xl:h-[200px]'
               height={600}
               key={index}
               src={sponsor.logo}

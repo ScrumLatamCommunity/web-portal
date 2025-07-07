@@ -14,10 +14,10 @@ interface ActivityProps {
 }
 
 export default function MainActivity({ activity }: ActivityProps) {
-  if (!activity) return null
+  if (!activity) return null // o un skeleton/loading
 
   return (
-    <div className='relative flex h-[250px] w-full flex-col rounded-[30px] shadow-2xl md:h-[500px]'>
+    <div className='relative flex h-[500px] w-full flex-col rounded-[30px] shadow-2xl'>
       <Image
         alt='homeActivity'
         className='h-full w-full rounded-[30px] object-cover'
@@ -25,14 +25,14 @@ export default function MainActivity({ activity }: ActivityProps) {
         src={activity.image}
         width={1000}
       />
-      <div className='absolute bottom-0 left-0 w-full rounded-b-[30px] bg-[#082965] px-6 py-3 opacity-70 md:p-6'>
-        <h1 className='font-darker-grotesque text-[18px] font-bold text-white md:text-[24px]'>
+      <div className='absolute bottom-0 left-0 w-full rounded-b-[30px] bg-[#082965] p-6 opacity-70'>
+        <h1 className='font-darker-grotesque text-[24px] font-bold text-white'>
           {activity.type}
         </h1>
-        <h2 className='pb-1 font-darker-grotesque text-[16px] font-bold text-white md:pb-4 md:text-[24px]'>
+        <h2 className='pb-4 font-darker-grotesque text-[24px] font-bold text-white'>
           {activity.title}
         </h2>
-        <p className='pb-2 font-darker-grotesque text-[14px] leading-[20px] text-white md:pb-6 md:text-[20px]'>
+        <p className='pb-6 font-darker-grotesque text-[20px] leading-[20px] text-white'>
           {activity.description}
         </p>
       </div>

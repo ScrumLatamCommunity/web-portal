@@ -627,24 +627,17 @@ export const superAdminDashboard: SuperAdminDashboard[] = [
   },
   {
     id: 3,
-    name: 'Eventos',
+    name: 'Actividades',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-    link: '/super-admin-dashboard/events'
+    link: '/super-admin-dashboard/activities'
   },
   {
     id: 4,
-    name: 'Aliados',
+    name: 'Sponsors',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633849.svg?alt=media&token=e577db73-eca6-441a-a7c5-bd898b305d19',
     link: '/super-admin-dashboard/allies'
-  },
-  {
-    id: 5,
-    name: 'Membresías',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841',
-    link: '/super-admin-dashboard/memberships'
   }
 ]
 
