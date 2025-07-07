@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 interface ActivityProps {
   activity: {
@@ -14,10 +15,15 @@ interface ActivityProps {
 }
 
 export default function MainActivity({ activity }: ActivityProps) {
+  const router = useRouter()
   if (!activity) return null
 
   return (
-    <div className='relative flex h-[250px] w-full flex-col rounded-[30px] shadow-2xl md:h-[500px]'>
+    <div
+      className='relative flex h-[250px] w-full flex-col rounded-[30px] shadow-2xl md:h-[500px]'
+      style={{ cursor: 'pointer' }}
+      onClick={() => router.push('/activities')}
+    >
       <Image
         alt='homeActivity'
         className='h-full w-full rounded-[30px] object-cover'
