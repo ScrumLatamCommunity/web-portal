@@ -29,12 +29,6 @@ export const DesktopNavbar = () => {
             width={47}
           />
         </Link>
-
-        <Link href='/'>
-          <span className='flex cursor-pointer font-darker-grotesque text-[34px] font-bold text-[#082965]'>
-            Dashboard
-          </span>
-        </Link>
       </div>
 
       <div className='relative flex'>

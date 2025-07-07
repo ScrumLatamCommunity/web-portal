@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 interface Category {
   id: string
@@ -9,13 +9,13 @@ interface Category {
 
 interface ActivityFiltersProps {
   categories: Category[]
-  selectedCategories: string[]
+  selectedCategory: string | null
   onFilterChange: (categoryId: string) => void
 }
 
 export default function ActivityFilters({
   categories,
-  selectedCategories,
+  selectedCategory,
   onFilterChange
 }: ActivityFiltersProps) {
   return (
@@ -27,7 +27,7 @@ export default function ActivityFilters({
           </h3>
 
           {/* Contenedor con scroll horizontal en móvil */}
-          <div className='flex flex-wrap items-center gap-4 overflow-x-auto pb-2 md:gap-6 md:pb-0'>
+          <div className='flex flex-wrap items-center gap-4 pb-2 md:gap-6 md:pb-0'>
             {categories.map((category) => (
               <label
                 key={category.id}
@@ -37,8 +37,8 @@ export default function ActivityFilters({
                 <input
                   type='checkbox'
                   id={`filter-${category.id}`}
-                  checked={selectedCategories.includes(category.id)}
-                  onChange={() => onFilterChange(category.id)}
+                  checked={selectedCategory == category.title}
+                  onChange={() => onFilterChange(category.title)}
                   className='h-5 w-5 rounded border-gray-300 text-[#FE5833] focus:ring-transparent'
                 />
                 <span className='select-none text-base font-normal text-gray-800 lg:text-3xl'>

@@ -9,7 +9,6 @@ import { getCountryFlag } from '@/utils/getFlags'
 import { UserData } from '@/interfaces'
 import { useRouter } from 'next/navigation'
 import EditUserProfile from '../components/editUserProfile'
-import ImageUpload from '../components/imageUpload'
 import ProfileImageUploadModal from '../components/profileImageUploadModal'
 
 const DEFAULT_PROFILE_FALLBACK_IMAGE_URL =

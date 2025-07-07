@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LoginHeader } from './components/LoginHeader'
 import { LoginForm } from './components/LoginForm'
 import { useAuth } from '@/app/context/AuthContext'
@@ -10,15 +10,24 @@ export default function LoginPage() {
   const router = useRouter()
   const { user } = useAuth()
 
-  if (user) {
-    router.push('/')
-  }
+  useEffect(() => {
+    if (user) {
+      router.push('/')
+    }
+  }, [user, router])
+
   return (
-    <div className='min-w-screen relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-100'>
-      <div className='absolute -left-20 top-20 h-40 w-40 rounded-full border-2 border-dashed border-blue-200'></div>
-      <div className='absolute -right-20 top-20 h-40 w-40 rounded-full border-2 border-dashed border-blue-200'></div>
-      <LoginHeader />
-      <LoginForm />
+    <div className='grid h-screen w-full grid-cols-1 md:grid-cols-2'>
+      <div className='col-span-1 hidden md:block'>
+        <img
+          src='https://appwiseinnovations.dev/scrumlatam/photo.png'
+          alt='register'
+          className='h-screen w-full object-cover'
+        />
+      </div>
+      <div className='col-span-1 flex items-center justify-center'>
+        <LoginForm />
+      </div>
     </div>
   )
 }

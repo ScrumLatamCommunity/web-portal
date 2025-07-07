@@ -37,6 +37,7 @@ export function useLoginForm() {
 
       if (response.ok) {
         setAuthToken(data.access_token)
+        toast.success('Inicio de sesión exitoso')
         router.push('/')
       } else {
         toast.error(data.message || 'Error al iniciar sesión')
