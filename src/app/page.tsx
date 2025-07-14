@@ -19,7 +19,6 @@ export default function Home() {
     >
       <WelcomeToCommunity />
       <FlagsCommunity />
-      <DataComunity />
       <CounterToCommunity />
       <CommunityActivities />
       <ActivitiesHome />
@@ -27,6 +26,7 @@ export default function Home() {
       <Sponsors />
       <JoinOurCommunity />
       <Reviews />
+      <DataComunity />
     </main>
   )
 }

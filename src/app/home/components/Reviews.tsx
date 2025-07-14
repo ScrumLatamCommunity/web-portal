@@ -32,10 +32,14 @@ export const Reviews: React.FC = () => {
   }, [])
 
   const prevReview = () => {
-    if (centerIndex > 0) setCenterIndex(centerIndex - 1)
+    centerIndex > 0
+      ? setCenterIndex(centerIndex - 1)
+      : setCenterIndex(reviews.length - 1)
   }
   const nextReview = () => {
-    if (centerIndex < reviews.length - 1) setCenterIndex(centerIndex + 1)
+    centerIndex < reviews.length - 1
+      ? setCenterIndex(centerIndex + 1)
+      : setCenterIndex(0)
   }
 
   const getVisibleReviews = () => {
