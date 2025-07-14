@@ -1,83 +1,52 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { images } from '@/data/images_url'
 
 const { imagesData } = images
 
 export const DataComunity = () => {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [showVideo, setShowVideo] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [images] = useState(imagesData)
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.volume = 0.5 // Establece el volumen al 50%
-    }
-  }, [])
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 5500)
 
-  const handlePlayVideo = () => {
-    setShowVideo(true)
-  }
+    return () => clearInterval(interval)
+  }, [images.length])
 
   return (
-    <>
-      <h2 className='mb-8 ml-28 mt-[100px] text-3xl font-bold text-[#082965] md:text-4xl'>
-        ¿Por qué unirse a nosotros?
-      </h2>
-      <div className='relative m-auto mb-[200px] grid grid-cols-1 grid-rows-2 flex-col justify-center font-darker-grotesque md:max-w-[1980px] md:grid-cols-[1fr_1.35fr] md:grid-rows-1'>
-        <div
-          className={
-            'relative flex flex-col items-center justify-center bg-[#082965] md:items-start md:bg-blend-normal lg:pl-24'
-          }
-        >
-          <p className='text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:w-[70%] md:text-start md:text-5 lg:text-11 lg:leading-[1.4]'>
-            Conéctate con profesionales ágiles de toda Latinoamérica. Accede
-            recursos exclusivos y participa en eventos que impulsarán tu
-            crecimiento.
-          </p>
-          <p className='text-center text-4 font-semibold text-[#FFFFFF] md:w-[70%] md:text-start md:text-5 lg:mt-8 lg:text-11 lg:leading-[1.4]'>
-            ¡<a className='text-[#FE5833]'>Regístrate </a> hoy y{' '}
-            <label className='text-[#FE5833]'>sé parte</label> de nuestra
-            transformación ágil!
-          </p>
-        </div>
-        <div className='overflow-hidden bg-white shadow-lg'>
-          <div className='bg-black relative aspect-video'>
-            {!showVideo ? (
-              <div className='absolute inset-0 flex items-center justify-center'>
-                <img
-                  src='https://appwiseinnovations.dev/scrumlatam/Captura%20de%20pantalla%202025-07-06%20192049.png'
-                  alt='Video thumbnail'
-                  className='h-full w-full object-cover'
-                />
-                <button
-                  onClick={handlePlayVideo}
-                  className='bg-black absolute inset-0 flex items-center justify-center bg-opacity-30 transition-all hover:bg-opacity-40'
-                >
-                  <div className='flex h-16 w-16 items-center justify-center shadow-lg'>
-                    <svg
-                      className='h-30 w-30 ml-1 text-[#bcb7b7]'
-                      fill='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M8 5v14l11-7z' />
-                    </svg>
-                  </div>
-                </button>
-              </div>
-            ) : (
-              <video
-                ref={videoRef}
-                src='https://appwiseinnovations.dev/scrumlatam/video_otro.mp4'
-                controls
-                autoPlay
-                className='h-full w-full'
-              />
-            )}
-          </div>
-        </div>
+    <div className='relative m-auto grid grid-cols-1 grid-rows-2 flex-col justify-center font-darker-grotesque md:max-w-[1980px] md:grid-cols-[1fr_1.35fr] md:grid-rows-1'>
+      {images.map((url, index) => (
+        <img
+          alt={`Imagen ${index + 1}`}
+          className={`col-start-1 col-end-2 row-start-1 row-end-2 h-full w-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out ${currentIndex === index ? 'opacity-100' : ''}`}
+          key={index}
+          src={url}
+        />
+      ))}
+      <div
+        className={
+          'relative flex flex-col items-center justify-center bg-[#082965] text-[#FCFCFC] md:items-start md:pl-[6dvw] md:text-blue-9 md:bg-blend-normal'
+        }
+      >
+        <h3 className='mb-0 text-[5.5dvw] font-bold text-[#FCFCFC] md:pb-7 md:text-start md:text-[45px] 2xl:text-[65px]'>
+          Conecta, Aprende y Lidera
+        </h3>
+        <p className='mt-5 w-9/12 text-center text-[3.5dvw] font-medium leading-[3.6dvw] text-[#FCFCFC] md:w-[60%] md:text-start md:text-[18px] md:font-normal md:leading-4 2xl:text-[22px]'>
+          Somos una comunidad <b className='font-bold'>LATAM </b>
+          dedicada a la difusión y aprendizaje del marco de trabajo Scrum y
+          otras metodologías ágiles. Nuestro objetivo es compartir
+          conocimientos, experiencias y fomentar el desarrollo continuo de
+          nuestros miembros.
+        </p>
+        <p className='mt-5 w-9/12 text-center text-[3.5dvw] font-medium leading-[3.6dvw] text-[#FCFCFC] md:w-[60%] md:text-start md:text-[18px] md:font-normal md:leading-4 2xl:text-[22px]'>
+          Empoderamos a líderes de equipos en organizaciones, promoviendo el
+          crecimiento profesional y la adaptación a diversos proyectos en el
+          mundo de la Agilidad.
+        </p>
       </div>
-    </>
+    </div>
   )
 }
