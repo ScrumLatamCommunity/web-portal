@@ -1,6 +1,4 @@
 import { useAuth } from '@/app/context/AuthContext'
-import FacebookIcon from '@/assets/FacebookIcon'
-import LinkedInIcon from '@/assets/LinkedinIcon'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -15,7 +13,6 @@ interface SponsorData {
 export default function SponsorCard({
   companyName,
   logo,
-  specialization,
   sponsorId
 }: SponsorData) {
   const { setSelectedSponsorId } = useAuth()
@@ -28,46 +25,24 @@ export default function SponsorCard({
     }
   }
   return (
-    <div className='group z-10 my-3 flex min-h-[200px] w-[85%] flex-col justify-between rounded-3xl bg-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 group-hover:shadow-xl'>
-      <div className='flex flex-col items-center justify-center py-5'>
-        <div className='mb-2 flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full p-2 shadow-[4px_4px_10px_rgba(0,0,0,0.1)]'>
+    <div className='mx-auto mt-5 flex min-h-[250px] w-[90%] flex-col items-center justify-between rounded-2xl border-2 bg-white p-6'>
+      <div className='flex flex-col items-center'>
+        <div className='my-10 flex h-[90px] w-[160px] items-center justify-center'>
           <Image
             alt={`${companyName} logo`}
-            height={80}
-            width={80}
+            height={90}
+            width={180}
             src={logo}
-            className='h-[120px] w-[120px] object-contain'
+            className='object-fill'
           />
         </div>
-        <h1 className='font-darker-grotesque text-[28px] font-bold text-[#082965]'>
-          {companyName}
-        </h1>
       </div>
-
-      <div className='flex max-h-0 flex-col items-start gap-1 overflow-hidden px-4 opacity-0 transition-all duration-500 ease-in-out group-hover:max-h-[500px] group-hover:opacity-100'>
-        {specialization.map((item, index) => (
-          <p
-            key={index}
-            className='text-[#082965] before:mr-2 before:content-["●"]'
-          >
-            {item}
-          </p>
-        ))}
-
-        <div className='mb-5 mt-5 flex flex-row gap-2 self-center'>
-          <LinkedInIcon className='fill-[#082965] text-[#082965]' />
-          <FacebookIcon className='fill-[#082965] text-[#082965]' />
-        </div>
-
-        <div className='w-full border-[1px] border-[#082965]'></div>
-
-        <button
-          className='mb-6 mt-4 self-center rounded-3xl bg-[#082965] px-4 py-1 font-darker-grotesque text-[16px] text-white'
-          onClick={handleClick}
-        >
-          Conóceme
-        </button>
-      </div>
+      <button
+        className='my-3 w-[60%] rounded-3xl bg-[#082965] px-6 py-2 font-darker-grotesque text-[15px] text-white shadow-md transition-colors duration-200 hover:bg-[#0a3871]'
+        onClick={handleClick}
+      >
+        Saber más
+      </button>
     </div>
   )
 }
