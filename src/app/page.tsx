@@ -19,14 +19,14 @@ export default function Home() {
     >
       <WelcomeToCommunity />
       <FlagsCommunity />
+      <DataComunity />
       <CounterToCommunity />
       <CommunityActivities />
       <ActivitiesHome />
       <CommunityMembers />
       <Sponsors />
-      <JoinOurCommunity />
       <Reviews />
-      <DataComunity />
+      <JoinOurCommunity />
     </main>
   )
 }
