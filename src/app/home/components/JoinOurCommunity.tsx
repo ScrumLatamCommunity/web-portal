@@ -42,12 +42,12 @@ export const JoinOurCommunity = () => {
             transformación ágil!
           </p>
         </div>
-        <div className='overflow-hidden bg-white shadow-lg'>
+        <div className='overflow-hidden bg-white shadow-lg lg:pr-2'>
           <div className='bg-black relative aspect-video'>
             {!showVideo ? (
               <div className='absolute inset-0 flex items-center justify-center'>
                 <img
-                  src='https://appwiseinnovations.dev/scrumlatam/Captura%20de%20pantalla%202025-07-06%20192049.png'
+                  src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Home%2Funete_scrumlatam.png?alt=media&token=8ade5c9e-9d50-498c-90c0-c985f245710c'
                   alt='Video thumbnail'
                   className='h-full w-full object-cover'
                 />
