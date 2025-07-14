@@ -48,9 +48,9 @@ export default function SearchBar({
     <div
       className={`relative flex w-full flex-col items-center ${darkerGrotesque.variable}`}
     >
-      <div className='relative z-20 w-[320px] rounded-[35px] bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.1)] md:w-[1000px] md:max-w-[1800px]'>
+      <div className='relative z-20 w-[320px] rounded-[15px] border-2 border-[#C4CCDA] bg-white md:w-[740px] md:max-w-[1200px]'>
         <input
-          className='w-full rounded-[35px] border border-white p-4 py-2 font-darker-grotesque-600 text-[#63789E] placeholder:text-[#C4CCDA] focus:outline-none focus:ring-2 focus:ring-[#C4CCDA] md:text-[22px]'
+          className='w-full rounded-[15px] border border-white p-4 py-3 font-darker-grotesque-400 text-[#63789E] placeholder:text-[#C4CCDA] focus:outline-none focus:ring-2 focus:ring-[#C4CCDA] md:text-[22px]'
           onChange={(e) => {
             const query = e.target.value
             setLocalQuery(query)
@@ -62,7 +62,7 @@ export default function SearchBar({
           type='text'
           value={localQuery}
         />
-        <button className='absolute right-3 top-1/2 -translate-y-1/2 text-[#C4CCDA] hover:text-blue-500 md:scale-150 md:pr-1'>
+        <button className='absolute right-3 top-1/2 -translate-y-1/2 text-[#072356] hover:text-blue-500 md:scale-150 md:pr-3'>
           <FiSearch size={20} />
         </button>
         {isDropdownVisible && (
