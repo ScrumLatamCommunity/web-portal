@@ -1,6 +1,8 @@
 import React from 'react'
 import { Activity } from '../page'
 import EditIcon from '@/assets/EditIcon'
+import { Eye } from 'react-feather'
+import EyeIcon from '@/assets/eyeIcon'
 
 function formatDate(dateString: string) {
   try {
@@ -72,10 +74,10 @@ export default function ActivityList({
             </p>
             {activity.status === 'ACTIVE' ? (
               <button
-                className='mx-auto flex w-[100px] items-center justify-center gap-2 rounded-2xl border-[2px] border-[#072356] bg-[#072356] px-2 py-1 text-center font-karla text-white'
+                className='mx-auto flex w-[100px] items-center justify-center gap-2 rounded-2xl border-[2px] border-[#FFBEB0] bg-[#FFEAE6] px-2 py-1 text-center font-karla'
                 onClick={() => onView && onView(activity)}
               >
-                Ver
+                <EyeIcon /> Ver
               </button>
             ) : (
               <button
