@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { TermsAndConditions } from '@/app/history/components/TermsAndConditions'
 import { Modal } from '@/core/Modal'
 import { usePathname } from 'next/navigation'
-import scrumFooterLogo from '@/assets/ScrumLatamFooterLogo.png'
+import scrumFooterLogo from '@/assets/logo blanco (footer).png'
 import Image from 'next/image'
 
 export const Footer = () => {
@@ -45,7 +45,7 @@ export const Footer = () => {
               alt='logo'
               height={800}
               width={800}
-              className='h-15 w-60 pb-6 sm:h-16 sm:w-80 sm:pb-0'
+              className='h-18 w-72 pb-6 sm:h-20 sm:w-80 sm:pb-0'
             />
             <div className='mt-6 flex flex-row justify-center gap-3 md:justify-start'>
               <span className='text-black font-normal sm:text-lg'>
@@ -104,16 +104,10 @@ export const Footer = () => {
         <span>© 2025 Scrumlatam. Todos los derechos reservados</span>
       </div>
 
-      {openModal && (
-        <Modal
-          isOpen={openModal}
-          onClose={() => setOpenModal(false)}
-          title='Términos y Condiciones'
-          contentClassName='justify-start gap-[10px]'
-        >
-          <TermsAndConditions />
-        </Modal>
-      )}
+      <TermsAndConditions
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
     </div>
   )
 }

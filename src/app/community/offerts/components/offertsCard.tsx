@@ -1,7 +1,7 @@
 import ArrowUpRight from '@/assets/arrowUpright'
 import { darkerGrotesque, karla } from '@/fonts'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 interface Offert {
@@ -32,7 +32,7 @@ export default function OffertCard({
   link,
   image
 }: Offert) {
-  // Formato de fechas
+  const [expanded, setExpanded] = useState(false)
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('es-ES', {
@@ -47,13 +47,14 @@ export default function OffertCard({
     return url.startsWith('http') ? url : `https://${url}`
   }
 
-  // Fechas formateadas
   const fromDate = formatDate(validFrom)
   const untilDate = formatDate(validUntil)
+  const shortDescription =
+    description.length > 200 ? description.slice(0, 200) + '...' : description
 
   return (
     <div
-      className={`${darkerGrotesque.variable} ${karla.variable} flex h-full w-[85%] flex-col rounded-lg bg-white pb-3 shadow-md md:w-[80%]`}
+      className={`${darkerGrotesque.variable} ${karla.variable} flex w-full flex-col rounded-lg border border-[#E6EAF0] bg-white pb-3 shadow-[6px_8px_24px_0px_rgba(8,41,101,0.10)] transition-all duration-300`}
     >
       <div className='h-[200px] w-full overflow-hidden rounded-t-lg'>
         <Image
@@ -66,42 +67,93 @@ export default function OffertCard({
         />
       </div>
       <div className='flex flex-grow flex-col p-5'>
-        <h1 className='pb-2 font-darker-grotesque text-[26px] font-darker-grotesque-700 leading-[30px] text-[#082965]'>
+        <h1 className='pb-2 font-darker-grotesque text-[26px] font-darker-grotesque-600 leading-[30px] text-[#FE2E00]'>
           {title}
         </h1>
-        <h2 className='pb-3 font-darker-grotesque text-[20px] font-darker-grotesque-700 leading-[24px] text-[#082965]'>
+        <h2 className='pb-3 font-darker-grotesque text-[20px] font-darker-grotesque-600 leading-[24px] text-[#082965]'>
           {discount}
         </h2>
         <div
-          className='mb-4 font-karla text-[16px] font-karla-400 text-[#082965]'
-          dangerouslySetInnerHTML={{ __html: description }}
+          className='mb-4 font-karla text-[16px] font-karla-300 text-[#082965]'
+          dangerouslySetInnerHTML={{
+            __html: expanded ? description : shortDescription
+          }}
         />
-        <div className='mt-auto'>
-          <p className='py-1 text-[#082965]'>
-            <strong>Fechas:</strong> {fromDate} - {untilDate}
-          </p>
-          <p className='py-1 text-[#082965]'>
-            <strong>Hora:</strong> {time}
-          </p>
-          <p className='py-1 text-[#082965]'>
-            <strong>Lugar:</strong> {place}
-          </p>
-          <p className='py-1 text-[#082965]'>
-            <strong>Dirigido a:</strong> {intendedFor}
-          </p>
-          <Link
-            href={formatUrl(link)}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <div className='mt-4 flex flex-row items-center'>
-              <ArrowUpRight className='text-[#082965]' />
-              <button className='pb-2 font-darker-grotesque text-[24px] font-darker-grotesque-600 text-[#082965] hover:underline'>
+        {!expanded && (
+          <div className='flex justify-end'>
+            <button
+              className='flex items-center gap-1 font-semibold text-[#082965] hover:underline focus:outline-none'
+              onClick={() => setExpanded(true)}
+            >
+              <ArrowUpRight className='h-4 w-4' />
+              Saber más...
+            </button>
+          </div>
+        )}
+        {expanded && (
+          <div className='animate-fadeInDown'>
+            <div className='mt-2'>
+              <div className='flex flex-row items-center'>
+                <p className='py-1 font-darker-grotesque-600 text-[#082965] md:text-base'>
+                  Fechas:
+                </p>
+                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                  {fromDate} - {untilDate}
+                </p>
+              </div>
+              <div className='flex flex-row items-center'>
+                <p className='py-1 font-darker-grotesque-600 text-[#082965]'>
+                  Hora:
+                </p>
+                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                  {time}
+                </p>
+              </div>
+              <div className='flex flex-row items-center'>
+                <p className='py-1 font-darker-grotesque-600 text-[#082965]'>
+                  Lugar:
+                </p>
+                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                  {place}
+                </p>
+              </div>
+              <div className='flex flex-row items-center'>
+                <p className='py-1 font-darker-grotesque-600 text-[#082965]'>
+                  Dirigido a:
+                </p>
+                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                  {intendedFor}
+                </p>
+              </div>
+            </div>
+            <div className='mt-4 flex flex-row items-center justify-between gap-4'>
+              <a
+                href={formatUrl(link)}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center gap-2 text-lg font-bold text-[#082965] hover:underline'
+              >
                 Inscribirse ahora
+                <ArrowUpRight className='text-[#082965]' />
+              </a>
+              <button
+                className='flex items-center gap-1 font-semibold text-[#082965] hover:underline focus:outline-none'
+                onClick={() => setExpanded(false)}
+              >
+                <svg width='20' height='20' fill='none' viewBox='0 0 24 24'>
+                  <path
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M18 15l-6-6-6 6'
+                  />
+                </svg>
+                Ocultar
               </button>
             </div>
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )
