@@ -24,7 +24,7 @@ export default function Activities() {
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}activities/all?${query.toString()}`,
+        `${process.env.NEXT_PUBLIC_API_URL}activities/all?status=ACTIVE&${query.toString()}`,
         {
           method: 'GET',
           headers: {

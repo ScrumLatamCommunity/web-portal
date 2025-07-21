@@ -35,7 +35,8 @@ export const Navbar: React.FC = () => {
   const mapRoutes: Record<string, string> = {
     ADMIN: '/super-admin-dashboard',
     SPONSOR: '/sponsors',
-    USER: '/users'
+    USER: '/users',
+    EDITOR: '/editor'
   }
 
   const toggleNav = (): void => {
