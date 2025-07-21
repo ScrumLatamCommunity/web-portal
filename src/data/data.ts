@@ -765,16 +765,6 @@ export const profilesTecnologia = [
     linkedinUrl: 'https://www.linkedin.com/in/melany-ventura/'
   },
   {
-    name: 'Majiruz Vargas',
-    title: 'UX/UI Designer',
-    description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    countryFlagUrl: 'https://flagcdn.com/ve.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FMajiruz_Vargas.jpg?alt=media&token=343f4f7b-f8c9-4165-85da-08647a7046a2',
-    linkedinUrl: 'https://www.linkedin.com/in/majiruz-vargas-majilustra/'
-  },
-  {
     name: 'Fernando Campellone',
     title: 'Fullstack Developer',
     description:
@@ -808,15 +798,6 @@ export const profilesCOE = [
     linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
   },
   {
-    name: 'Karen Lara Ferrufino',
-    title: 'Scrum Master',
-    description: 'Facilitador del equipo y guardián de los principios ágiles',
-    countryFlagUrl: 'https://flagcdn.com/bo.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FKaren_Lara.png?alt=media&token=db24f658-5e6e-46ac-bbff-e275b64e44a6',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
     name: 'Vanesa Dominguez',
     title: 'Scrum Master',
     description:
@@ -836,15 +817,6 @@ export const profilesCatalizador = [
     countryFlagUrl: 'https://flagcdn.com/bo.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FKaren_Lara.png?alt=media&token=db24f658-5e6e-46ac-bbff-e275b64e44a6',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
-    name: 'David Oña',
-    title: 'Product Owner',
-    description: 'Visionario del impacto del Squad en la comunidad ágil.',
-    countryFlagUrl: 'https://flagcdn.com/ec.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FDavid%20.jpg?alt=media&token=d894b9e0-f813-4a88-a730-8c86da79c56d',
     linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
   },
   {
@@ -868,7 +840,7 @@ export const profilesCatalizador = [
 ]
 
 export const headerCOE = {
-  title: 'Squad COE',
+  title: 'Centro de Excelencia',
   description:
     'Facilitamos la innovación y la colaboración, brindando soporte constante para alinear proyectos con principios ágiles'
 }
