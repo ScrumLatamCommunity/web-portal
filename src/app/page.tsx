@@ -25,8 +25,8 @@ export default function Home() {
       <ActivitiesHome />
       <CommunityMembers />
       <Sponsors />
-      <Reviews />
       <JoinOurCommunity />
+      <Reviews />
     </main>
   )
 }

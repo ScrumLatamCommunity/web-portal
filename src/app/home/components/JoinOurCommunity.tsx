@@ -42,7 +42,7 @@ export const JoinOurCommunity = () => {
             transformación ágil!
           </p>
         </div>
-        <div className='overflow-hidden bg-white shadow-lg lg:pr-2'>
+        <div className='overflow-hidden bg-white lg:pr-2'>
           <div className='bg-black relative aspect-video'>
             {!showVideo ? (
               <div className='absolute inset-0 flex items-center justify-center'>
