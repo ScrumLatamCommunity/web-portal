@@ -1,12 +1,11 @@
 'use client'
-
-import { DesktopNavbar } from '../super-admin-dashboard/allies/components/DesktopNavbar'
-import { DesktopSidebar } from '../super-admin-dashboard/allies/components/DesktopSidebar'
 import { LoadingScreen } from '../super-admin-dashboard/components/LoadingScreen'
 import { ReactNode, useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/navigation'
 import { sponsorDashboard } from '@/data/data'
+import { MobileTabBar } from './components/mobileTabBar'
+import { DesktopSidebar } from './components/desktopTabBar'
 
 interface SponsorLayoutProps {
   children: ReactNode
@@ -31,10 +30,10 @@ export default function SponsorLayout({ children }: SponsorLayoutProps) {
 
   return (
     <div className='flex min-h-screen w-full flex-col'>
-      <DesktopNavbar />
-      <div className='flex flex-1'>
+      <div className='container mx-auto flex flex-1'>
         <DesktopSidebar routes={sponsorDashboard} />
-        <main className='flex-1 p-6'>{children}</main>
+        <MobileTabBar routes={sponsorDashboard} />
+        <main className='flex-1'>{children}</main>
       </div>
     </div>
   )

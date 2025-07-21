@@ -31,7 +31,7 @@ export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ routes }) => {
         >
           <div
             className={`flex w-full items-center justify-between rounded-2xl border border-[#000000] px-3 py-2 transition-colors duration-200 hover:bg-gray-50 hover:text-[#FD3600] ${
-              pathname === item.link ? 'bg-[#FD3600] text-white' : ''
+              pathname === item.link ? 'bg-[#345081] text-white' : ''
             }`}
           >
             <div className='flex items-center gap-3'>

@@ -1,4 +1,5 @@
 'use client'
+
 import { darkerGrotesque, inter, karla } from '@/fonts'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
@@ -14,6 +15,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import Skeleton from '../components/Skeleton'
 import { getCountryFlag } from '@/utils/getFlags'
 import { SponsorData } from '@/interfaces'
+import { Calendar, ChevronDown, Edit2, X } from 'react-feather'
 
 export default function SponsorProfile() {
   const { user, token } = useAuth()
@@ -24,23 +26,17 @@ export default function SponsorProfile() {
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'No hay fecha de ingreso'
-
     const date = new Date(dateString)
     const day = date.getDate().toString().padStart(2, '0')
     const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const year = date.getFullYear()
-
     return `${day}/${month}/${year}`
   }
 
   const cleanHtml = (html?: string) => {
     if (!html) return ''
-
-    // Crear un elemento temporal
     const doc = new DOMParser().parseFromString(html, 'text/html')
-    // Obtener el texto sin HTML
     const cleanText = doc.body.textContent || ''
-    // Decodificar caracteres especiales
     return cleanText
       .replace(/&nbsp;/g, ' ')
       .replace(/&amp;/g, '&')
@@ -48,9 +44,10 @@ export default function SponsorProfile() {
       .replace(/&gt;/g, '>')
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, "'")
-      .replace(/[)(/)]/g, '') // Remover caracteres especiales como )(/))
+      .replace(/[)(/)]/g, '')
       .trim()
   }
+
   const fetchSponsorData = async () => {
     setIsLoading(true)
     try {
@@ -58,7 +55,6 @@ export default function SponsorProfile() {
         setError('No hay información de usuario disponible')
         return
       }
-
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user.sub}`,
         {
@@ -68,11 +64,9 @@ export default function SponsorProfile() {
           }
         }
       )
-
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`)
       }
-
       const data = await response.json()
       setSponsorData(data)
     } catch (err) {
@@ -90,20 +84,6 @@ export default function SponsorProfile() {
     setIsEditing(false)
   }
 
-  if (error) {
-    return <div className='p-4 text-red-500'>Error: {error}</div>
-  }
-
-  if (isEditing && sponsorData) {
-    return (
-      <EditSponsorProfile
-        onEditComplete={handleEditComplete}
-        sponsorData={sponsorData}
-        onUpdate={fetchSponsorData}
-      />
-    )
-  }
-
   const ImageWithFallback = ({
     src,
     alt,
@@ -113,11 +93,8 @@ export default function SponsorProfile() {
     alt: string
     className: string
   }) => {
-    if (isLoading) {
-      return <Skeleton className={className} />
-    }
-
-    if (!src) {
+    if (isLoading) return <Skeleton className={className} />
+    if (!src)
       return (
         <div
           className={`${className} flex items-center justify-center bg-gray-100`}
@@ -125,8 +102,6 @@ export default function SponsorProfile() {
           <span className='text-gray-400'>Sin imagen</span>
         </div>
       )
-    }
-
     return (
       <Image
         src={src}
@@ -139,370 +114,310 @@ export default function SponsorProfile() {
     )
   }
 
+  const getSocialIcon = (url: string) => {
+    if (url.includes('linkedin'))
+      return <LinkedInIcon className='text-[#082965]' width={24} height={24} />
+    if (url.includes('instagram'))
+      return (
+        <InstagramIconSponsors
+          className='text-[#082965]'
+          width={24}
+          height={24}
+        />
+      )
+    if (url.includes('facebook'))
+      return <FacebookIcon className='text-[#082965]' width={24} height={24} />
+    if (url.includes('x.com'))
+      return <XIcon className='text-[#082965]' width={24} height={24} />
+    if (url.includes('youtube'))
+      return <YoutubeIcon className='stroke-[#082965]' width={24} height={24} />
+    return <span className='h-[24px] w-[24px] rounded-full bg-[#ccc]' />
+  }
+
+  if (error) return <div className='p-4 text-red-500'>Error: {error}</div>
+  if (isEditing && sponsorData) {
+    return (
+      <EditSponsorProfile
+        onEditComplete={handleEditComplete}
+        sponsorData={sponsorData}
+        onUpdate={fetchSponsorData}
+      />
+    )
+  }
+
   return (
-    <section className={`${darkerGrotesque.variable} ${karla.variable} mb-8`}>
-      <h1
-        className={`items-left mb-6 ml-4 max-w-[1980px] font-darker-grotesque text-[30px] font-darker-grotesque-700 text-[#082965]`}
-      >
-        Perfil del Sponsor
+    <section
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto max-w-md px-4 pb-16 pt-6 lg:max-w-5xl`}
+    >
+      <h1 className='text-center text-3xl font-bold text-[#FE2E00]'>
+        Mi Perfil Sponsor
       </h1>
-      <div
-        className={`w-screen rounded-[20px] border-[0.5px] border-black-13 py-4 md:max-w-[1025px] 2xl:max-w-[1250px]`}
+      <button
+        onClick={() => setIsEditing(true)}
+        className='mx-auto my-2 flex flex-row items-center text-lg text-[#FE2E00] underline'
       >
-        <div className={`flex flex-row`}>
-          <div className='mx-[33px] mb-6 flex w-[28%] flex-col gap-2'>
+        <Edit2 className='mx-2' /> Editar perfil
+      </button>
+
+      <div className='my-4 flex justify-center'>
+        <ImageWithFallback
+          src={sponsorData?.logo}
+          alt='logo'
+          className='h-56 w-96 object-contain'
+        />
+      </div>
+      <div className='flex flex-col items-start gap-3 lg:pl-10'>
+        <label className='text-xl font-bold text-[#FE2E00]' htmlFor='title'>
+          Información general
+        </label>
+        <div className='flex flex-col gap-3 lg:flex-row lg:flex-wrap'>
+          <div className='flex flex-col'>
             <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-name'
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
             >
               Nombre de la empresa
             </label>
-            {isLoading ? (
-              <Skeleton className='h-[39px] w-full' />
-            ) : (
-              <p
-                className='h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                id='company-name'
-              >
-                {sponsorData?.companyName || 'No hay nombre de la empresa'}
-              </p>
-            )}
+            <input
+              type='text'
+              value={sponsorData?.companyName}
+              readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#8C8C8C] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+            />
           </div>
-          <div className='mx-[33px] flex w-[36%] flex-col gap-2'>
+          <div className='flex w-full flex-col lg:w-[300px]'>
             <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='specialization'
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
             >
-              Área de Especialización
+              País
             </label>
-            {isLoading ? (
-              <Skeleton className='h-[39px] w-full' />
-            ) : (
-              <p
-                className='min-h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                id='specialization'
-              >
-                {Array.isArray(sponsorData?.specialization)
-                  ? sponsorData.specialization.join(', ')
-                  : sponsorData?.specialization ||
-                    'No hay área de especialización'}
-              </p>
-            )}
-          </div>
-          <div className='mx-[33px] flex w-[20%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='sponsor-date'
-            >
-              Fecha de ingreso
-            </label>
-            {isLoading ? (
-              <Skeleton className='h-[39px] w-full' />
-            ) : (
-              <p
-                className='h-[39px] w-[80%] rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
-                id='sponsor-date'
-              >
-                {sponsorData?.createdAt
-                  ? formatDate(sponsorData?.createdAt)
-                  : 'No hay fecha de ingreso'}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div className={`flex flex-col`}>
-          <div className='flex flex-row'>
-            <div className='w-[100%]'>
-              <div className={`flex w-full flex-row`}>
-                <div className='mx-[33px] mb-6 flex w-[40%] flex-col gap-2'>
-                  <label
-                    className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                    htmlFor='company-mail'
-                  >
-                    Mail
-                  </label>
-                  {isLoading ? (
-                    <Skeleton className='h-[39px] w-full' />
-                  ) : (
-                    <p
-                      className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                      id='company-mail'
-                    >
-                      {sponsorData?.user?.email || 'No hay correo electrónico'}
-                    </p>
-                  )}
-                </div>
-                <div className='mx-[33px] flex w-[33%] flex-col gap-2'>
-                  <label
-                    className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                    htmlFor='company-country'
-                  >
-                    País
-                  </label>
-                  <div className={'flex flex-row items-center'}>
-                    <div className='flex gap-2'>
-                      {sponsorData?.user?.country?.map((country, index) => (
-                        <ImageWithFallback
-                          key={index}
-                          src={getCountryFlag(country)}
-                          alt={`flag-${country}`}
-                          className='my-2 h-[21px] w-[38px] bg-[#D9D9D940]'
-                        />
-                      ))}
-                    </div>
-                    {isLoading ? (
-                      <Skeleton className='h-[39px] w-full' />
-                    ) : (
-                      <p
-                        className='ml-2 h-[39px] w-[100%] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                        id='company-country'
-                      >
-                        {sponsorData?.user?.country &&
-                        sponsorData.user.country.length > 0
-                          ? sponsorData.user.country.join(', ')
-                          : 'No hay país'}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-                <label
-                  className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                  htmlFor='company-description'
-                >
-                  Descripción
-                </label>
-                {isLoading ? (
-                  <Skeleton className='h-auto w-[497px]' />
-                ) : (
-                  <p
-                    className='h-auto w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                    id='company-description'
-                  >
-                    {cleanHtml(sponsorData?.description) ||
-                      'No hay descripción'}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className='flex w-[30%] flex-col'>
-              <label
-                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                htmlFor='company-logo'
-              >
-                Logotipo
-              </label>
-              <ImageWithFallback
-                src={sponsorData?.logo}
-                alt='company-logo'
-                className='h-[200px] w-[200px] object-fill'
-              />
-            </div>
-          </div>
-          <div className='mx-[33px] flex flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-web'
-            >
-              Web
-            </label>
-            <div className='mb-6 flex flex-row'>
-              <GlobeIcon
-                className='my-1 mr-2 stroke-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              {isLoading ? (
-                <Skeleton className='h-[39px] w-[461px]' />
-              ) : (
-                <p
-                  className='h-[39px] w-[461px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                  id='company-web'
-                >
-                  {sponsorData?.web || 'No hay web'}
-                </p>
-              )}
-            </div>
-          </div>
-          <div className='flex flex-row'>
-            <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-              <label
-                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                htmlFor='company-wpp'
-              >
-                Whatsapp
-              </label>
-              <div className='flex flex-row'>
-                <PhoneIcon
-                  className='my-1 mr-2 stroke-[#FE2E00]'
-                  height={30}
-                  width={30}
-                />
-                {isLoading ? (
-                  <Skeleton className='h-[39px] w-[461px]' />
-                ) : (
-                  <p
-                    className='h-[39px] w-[461px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                    id='company-wpp'
-                  >
-                    {sponsorData?.phone || 'No hay whatsapp'}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-              <label
-                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                htmlFor='company-wpp'
-              >
-                Mensaje de Whatsapp
-              </label>
-              {isLoading ? (
-                <Skeleton className='h-[39px] w-[461px]' />
-              ) : (
-                <div className='flex flex-col'>
-                  <p
-                    className='min-h-[39px] w-[461px] whitespace-pre-wrap break-words rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                    id='company-wpp'
-                  >
-                    {sponsorData?.wppMessage || 'No hay mensaje de whatsapp'}
-                  </p>
-                  <span className='mt-1 text-sm text-gray-500'>
-                    {sponsorData?.wppMessage?.length || 0}/500 caracteres
+            <div className='relative mt-1 flex h-[44px] w-full items-center rounded-[10px] border border-[#C1CCF4] bg-transparent px-3 lg:mt-0 lg:w-[300px]'>
+              {sponsorData?.user?.country?.length ? (
+                <>
+                  <Image
+                    src={getCountryFlag(sponsorData.user.country[0])}
+                    alt='flag'
+                    width={28}
+                    height={20}
+                    className='mr-2 h-[20px] w-[28px] rounded-[3px] object-cover'
+                  />
+                  <span className='flex-1 text-[14px] font-medium text-[#8C8C8C]'>
+                    {sponsorData.user.country.join(', ')}
                   </span>
-                </div>
+                </>
+              ) : (
+                <span className='flex-1 text-[14px] font-medium text-[#8C8C8C]'>
+                  No hay país
+                </span>
               )}
+              <ChevronDown size={18} className='text-[#9CA3AF]' />
             </div>
           </div>
-          <div className='mx-[33px] mb-6 flex flex-col gap-2'>
+          <div>
             <label
-              className='mb-2 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-socials'
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
             >
-              Redes Sociales
+              Fecha de inicio
             </label>
-
-            {isLoading ? (
-              Array(3)
-                .fill(0)
-                .map((_, idx) => (
-                  <Skeleton key={idx} className='mb-2 h-[39px] w-[497px]' />
-                ))
-            ) : sponsorData?.socials?.length ? (
-              sponsorData.socials.map((social, index) => {
-                const icon = (() => {
-                  if (social.includes('linkedin'))
-                    return (
-                      <LinkedInIcon
-                        className='my-1 mr-2 text-[#FE2E00]'
-                        height={30}
-                        width={30}
-                      />
-                    )
-                  if (social.includes('instagram'))
-                    return (
-                      <InstagramIconSponsors
-                        className='my-1 mr-2 text-[#FE2E00]'
-                        height={30}
-                        width={30}
-                      />
-                    )
-                  if (social.includes('facebook'))
-                    return (
-                      <FacebookIcon
-                        className='my-1 mr-2 text-[#FE2E00]'
-                        height={30}
-                        width={30}
-                      />
-                    )
-                  if (social.includes('www.x.com'))
-                    return (
-                      <XIcon
-                        className='my-1 mr-2 text-[#FE2E00]'
-                        height={30}
-                        width={30}
-                      />
-                    )
-                  if (social.includes('youtube'))
-                    return (
-                      <YoutubeIcon
-                        className='my-1 mr-2 stroke-[#FE2E00] text-white'
-                        height={30}
-                        width={30}
-                      />
-                    )
-                  return (
-                    <span className='my-1 mr-2 h-[30px] w-[30px] rounded-full bg-[#ccc]' />
-                  )
-                })()
-
-                return (
-                  <div key={index} className='mb-2 flex flex-row items-center'>
-                    {icon}
-                    <p
-                      className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'
-                      id={`company-socials-${index}`}
-                    >
-                      {social}
-                    </p>
-                  </div>
-                )
-              })
-            ) : (
-              <p className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3'>
-                No hay redes sociales
-              </p>
-            )}
+            <div className='relative w-full lg:w-[300px]'>
+              <Calendar
+                className='absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]'
+                size={25}
+              />
+              <input
+                type='text'
+                value={formatDate(sponsorData?.createdAt)}
+                readOnly
+                className='h-[44px] w-full rounded-md border border-gray-300 bg-transparent pl-5 pr-3 text-sm text-[#8C8C8C] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FE2E00]'
+              />
+            </div>
           </div>
           <div className='flex flex-col'>
             <label
-              className='mb-3 pl-8 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-logo'
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
             >
-              Banner Promocional.
+              Correo electrónico
             </label>
-            <div className='flex flex-row'>
-              <div className='mr-12 flex flex-col'>
-                <label
-                  className='mb-8 pl-8 font-darker-grotesque text-[21px] text-[#000000]'
-                  htmlFor='company-logo'
+            <input
+              type='text'
+              value={sponsorData?.user?.email}
+              readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+            />
+          </div>
+          <div className='flex flex-col'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
+            >
+              Áreas de especialización
+            </label>
+            <div className='flex flex-wrap gap-2 rounded-[10px] border border-[#C1CCF4] bg-white px-6 py-2 lg:w-auto'>
+              {sponsorData?.specialization.map((area, idx) => (
+                <div
+                  key={idx}
+                  className='flex items-center gap-2 rounded-md bg-[#F0F0F0] px-3 py-1 text-[#8C8C8C]'
                 >
-                  <strong>Pantalla grande:</strong> 1440x440 px (ideal para
-                  computadoras).
-                </label>
-                <ImageWithFallback
-                  src={sponsorData?.bannerWeb}
-                  alt='company-banner'
-                  className='h-[210px] w-[530px] object-fill pl-8'
-                />
-              </div>
-              <div className='flex flex-col'>
-                <label
-                  className='mb-[10px] w-[286px] pl-8 font-darker-grotesque text-[21px] text-[#000000]'
-                  htmlFor='company-logo'
-                >
-                  <strong>Pantalla pequeña:</strong> 393x288 px (optimizado para
-                  celulares).
-                </label>
-                <ImageWithFallback
-                  src={sponsorData?.bannerMobile}
-                  alt='company-banner'
-                  className='h-[210px] w-[286px] object-fill pl-8'
-                />
-              </div>
-            </div>
+                  <span className='text-sm'>{area}</span>
+                  <X size={16} className='cursor-pointer' />
+                </div>
+              ))}
+            </div>{' '}
+          </div>
+          <div className='flex flex-col'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
+            >
+              Sitio web
+            </label>
+            <input
+              type='text'
+              value={sponsorData?.web}
+              readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+            />
+          </div>
+          <div className='flex flex-col'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
+            >
+              Contacto de Whatsapp
+            </label>
+            <input
+              type='text'
+              value={sponsorData?.phone}
+              readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+            />
+          </div>
+          <div className='flex flex-col'>
+            <label
+              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
+              htmlFor='company-country'
+            >
+              Mensaje de Whatsapp
+            </label>
+            <input
+              type='text'
+              value={sponsorData?.wppMessage}
+              readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#8C8C8C] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+            />
           </div>
         </div>
 
-        <div className={`${inter.variable} flex w-full flex-row justify-end`}>
-          <button
-            className='mx-16 mb-6 mt-12 h-[60px] w-[300px] rounded-[10px] bg-[#FD3600] px-3 font-inter font-inter-400 text-[#FFFFFF]'
-            onClick={() => setIsEditing(true)}
+        <div className='mt-6 w-full space-y-3'>
+          <label
+            className='text-xl font-bold text-[#FE2E00]'
+            htmlFor='company-country'
           >
-            Editar Perfil
-          </button>
+            Redes Sociales
+          </label>
+          {isLoading ? (
+            <Skeleton className='flex h-[39px] w-full flex-wrap lg:flex-col' />
+          ) : sponsorData?.socials?.length ? (
+            sponsorData.socials.map((url, index) => (
+              <div
+                key={index}
+                className='mb-2 flex items-center gap-2 lg:w-[300px]'
+              >
+                {getSocialIcon(url)}
+                <input
+                  type='text'
+                  value={url}
+                  readOnly
+                  className='flex-1 rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#8C8C8C] placeholder:text-[#9CA3AF] focus:outline-none'
+                />
+              </div>
+            ))
+          ) : (
+            <p>No hay redes sociales</p>
+          )}
+        </div>
+
+        <div className='mt-6 w-full space-y-4'>
+          <h2 className='text-xl font-bold text-[#FE2E00]'>Sobre nosotros</h2>
+
+          {isLoading ? (
+            <Skeleton className='h-[39px] w-full' />
+          ) : (sponsorData?.descriptions?.length ?? 0) > 0 ? (
+            <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
+              {sponsorData?.descriptions.map((desc, index) => (
+                <div key={desc.id} className='space-y-3 lg:w-[300px]'>
+                  <div>
+                    <label className='text-black block text-[18px] font-medium'>
+                      Título {index + 1}
+                    </label>
+                    <div className='mt-1 rounded-[10px] border border-[#C1CCF4] bg-transparent px-4 py-3 text-[#8C8C8C]'>
+                      {desc.title}
+                    </div>
+                  </div>
+                  <div>
+                    <label className='text-black block text-[18px] font-medium'>
+                      Párrafo {index + 1}
+                    </label>
+                    <div className='mt-1 rounded-[10px] border border-[#C1CCF4] bg-transparent px-4 py-3 text-[#8C8C8C]'>
+                      {desc.description}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className='text-gray-500'>No hay descripciones disponibles.</p>
+          )}
+        </div>
+
+        <div className='my-4 mb-8 mt-6'>
+          <h2 className='mb-4 text-[18px] font-bold text-[#FE2E00]'>
+            Nuestras certificaciones
+          </h2>
+
+          <div className='space-y-6'>
+            {isLoading ? (
+              <Skeleton className='h-[39px] w-full' />
+            ) : (sponsorData?.certificates?.length ?? 0) > 0 ? (
+              <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
+                {sponsorData?.certificates?.map((cert, idx) => (
+                  <div
+                    key={idx}
+                    className='flex flex-col items-center gap-3 lg:w-[300px]'
+                  >
+                    <Image
+                      src={cert.title}
+                      alt={`cert-${idx}`}
+                      width={120}
+                      height={120}
+                      className='aspect-square rounded-lg object-cover'
+                    />
+                    <label className='text-[14px] font-medium text-[#000]'>
+                      Link
+                    </label>
+                    <input
+                      type='text'
+                      value={cert.url}
+                      readOnly
+                      className='w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-center text-[14px] text-[#8C8C8C] focus:outline-none'
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className='text-gray-500'>
+                No hay certificaciones disponibles.
+              </p>
+            )}
+          </div>
+          <div className='flex flex-row items-center justify-center py-5 lg:justify-end lg:py-10'>
+            <button className='w-96 rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'>
+              Guardar cambios
+            </button>
+          </div>
         </div>
       </div>
     </section>
