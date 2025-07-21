@@ -5,7 +5,6 @@ import { useAuth } from '@/app/context/AuthContext'
 import { SponsorData } from '@/interfaces'
 import SponsorCard from './components/sponsorCard'
 import SearchBar from './components/search-bar'
-import SponsorServicesInfo from './components/SponsorServicesInfo'
 
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)

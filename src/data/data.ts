@@ -755,14 +755,14 @@ export const profilesTecnologia = [
     linkedinUrl: 'www.linkedin.com/in/geornith-melo-ortiz'
   },
   {
-    name: 'Rosita Jhaneth Chichipe Falen',
-    title: 'Product Owner',
+    name: 'Melany Ventura',
+    title: 'UX/UI Designer',
     description:
-      'Líder estratégica en productos digitales con foco en necesidades del usuario y visión de negocio',
-    countryFlagUrl: 'https://flagcdn.com/co.svg',
+      'Diseñadora dedicada a transformar ideas en experiencias de usuario claras y atractivas.',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRosita_Jhaneth_Chichipe_Falen.jpeg?alt=media&token=35f11502-fe26-4cb9-8ea7-8f24ab5b3b37',
-    linkedinUrl: 'https://www.linkedin.com/in/rosi-chichipe/'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2Fmelany-UX.jpeg?alt=media&token=8a4e39af-204e-4d15-85ad-019d206ad838',
+    linkedinUrl: 'https://www.linkedin.com/in/melany-ventura/'
   },
   {
     name: 'Majiruz Vargas',
@@ -788,7 +788,7 @@ export const profilesTecnologia = [
     name: 'David Morcillo Benavidez',
     title: 'Fullstack Developer',
     description:
-      'Desarrollador fullstack apasionado en crear soluciones robustas y ',
+      'Desarrollador fullstack apasionado en crear soluciones robustas y modernas',
     countryFlagUrl: 'https://flagcdn.com/co.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FAlejandro_Morcillo.jpg?alt=media&token=7c76c116-055f-49aa-938c-c7d577ac6044',
@@ -866,6 +866,22 @@ export const profilesCatalizador = [
     linkedinUrl: 'www.linkedin.com/in/joyamichelle'
   }
 ]
+
+export const headerCOE = {
+  title: 'Squad COE',
+  description:
+    'Facilitamos la innovación y la colaboración, brindando soporte constante para alinear proyectos con principios ágiles'
+}
+export const headerTecnología = {
+  title: 'Squad Tecnología',
+  description:
+    'Somos el motor de la transformación digital, creando plataformas  y automatizando procesos para la comunidad ágil'
+}
+export const headerCatalziador = {
+  title: 'Squad Catalizador',
+  description:
+    'Impulsamos el cambio cultural y la evolución ágil promoviendo prácticas Scrum que fortalecen la colaboración y el aprendizaje continuo'
+}
 
 export const activityCategoriesData = [
   {
