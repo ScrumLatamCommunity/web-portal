@@ -171,7 +171,7 @@ export default function Travel() {
     switch (currentStep) {
       case 0:
         return (
-          <div className='overflow-hidden rounded-lg bg-white shadow-lg'>
+          <div className='h-[350px] overflow-hidden rounded-lg bg-white shadow-lg md:h-[360px] 2xl:h-[485px]'>
             <div className='bg-black relative aspect-video'>
               {!showVideo ? (
                 <div className='absolute inset-0 flex items-center justify-center'>
@@ -211,7 +211,7 @@ export default function Travel() {
       case 1:
         return (
           <div
-            className={`${darkerGrotesque.variable} h-[350px] rounded-lg border-2 border-[#072356] bg-white p-6 md:h-[360px] 2xl:h-[485px]`}
+            className={`${darkerGrotesque.variable} h-[350px] rounded-lg border-[1px] border-[#072356] bg-white p-6 md:h-[360px] 2xl:h-[485px]`}
           >
             <div
               ref={termsContainerRef}
@@ -222,137 +222,78 @@ export default function Travel() {
                 TÉRMINOS Y CONDICIONES DE SCRUM LATAM
               </h1>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] text-[#072356]'>
-                <strong>Bienvenida a SCRUM LATAM</strong>
+                <strong>SCRUM LATAM te da la bienvenida</strong>
               </p>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque font-medium text-[#072356]'>
-                Estamos encantados de que te unas a nuestra comunidad. SCRUM
-                LATAM es un espacio digital dedicado a la difusión y el
-                aprendizaje en las buenas prácticas herramientas y técnicas en
-                Agile. Aquí podrás compartir experiencias, recursos y
-                conocimientos para fomentar el liderazgo ágil en las
-                organizaciones.
+                Al unirte a Scrum Latam Comunidad, aceptas participar
+                activamente bajo los principios de respeto, colaboración y
+                crecimiento continuo. Todo contenido compartido en nuestros
+                espacios —virtuales o presenciales— debe promover el
+                aprendizaje, el respeto mutuo y el espíritu ágil. El uso
+                indebido de los canales, la divulgación de información sin
+                consentimiento o cualquier comportamiento que atente contra la
+                integridad de la comunidad será motivo de suspensión inmediata.
               </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] text-[#072356]'>
-                <strong>Nuestra Misión y Visión</strong>
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] text-[#072356]'>
-                <strong>Misión:</strong> Compartir y fomentar el mindset agile a
-                través del intercambio de conocimiento y buenas prácticas en la
-                comunidad LATAM.
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] text-[#072356]'>
-                <strong>Visión:</strong> Convertirnos en el principal espacio de
-                aprendizaje y crecimiento en Latinoamérica, generando un impacto
-                positivo en las organizaciones a través de nuestros miembros.
+              <p className='mb-5 whitespace-pre-line font-darker-grotesque font-medium text-[#072356]'>
+                <strong>
+                  Esta es una comunidad para crecer, aportar y transformar. Tu
+                  participación es un privilegio que conlleva responsabilidad.
+                </strong>
               </p>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] text-[#072356]'>
                 <strong>Compromiso de Participación</strong>
               </p>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[17px] font-medium text-[#072356]'>
-                Al unirte a SCRUM LATAM, te comprometes a:
+                En Scrum Latam Comunidad, nos comprometemos a:
               </p>
               <p className='mb-5 whitespace-pre-line'>
                 <ul className='list-disc space-y-2 pl-6 font-darker-grotesque text-[18px] font-medium text-[#072356]'>
                   <li>
-                    Participar activamente y con respeto en todas las
-                    actividades, discusiones y eventos.
+                    Participar desde el respeto, la escucha activa y el aporte
+                    genuino.
                   </li>
                   <li>
-                    Mantener un comportamiento cortés y profesional en tus
-                    interacciones.
+                    Compartir conocimientos con humildad, sin imponer verdades
+                    absolutas.
                   </li>
                   <li>
-                    Compartir contenido relevante en Buenas prácticas en
-                    Agilidad.
+                    Fomentar un entorno seguro, libre de discriminación o
+                    juicio.
                   </li>
                   <li>
-                    Respetar los derechos de autor y la privacidad de los demás
-                    miembros.
+                    Ser ejemplo de liderazgo colaborativo, retador e inspirador.
                   </li>
                 </ul>
               </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
-                <strong>Registro y Creación de Cuenta</strong>
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                Para formar parte de SCRUM LATAM, te pedimos que proporciones
-                información verídica y actualizada. Tu compromiso nos ayuda a
-                mantener una comunidad segura y colaborativa. Protege la
-                privacidad de tu cuenta y recuerda que eres responsable de las
-                actividades realizadas en ella.
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
-                <strong>Reglas de Contenido y Comportamiento</strong>
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
-                Queremos que este sea un espacio inclusivo y respetuoso. Por
-                eso, te pedimos:
-              </p>
-              <p className='mb-5 whitespace-pre-line'>
-                <ul className='list-disc space-y-2 pl-6'>
-                  <li className='font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                    <strong>Respeto y Profesionalismo:</strong> Mantén un
-                    comportamiento cortés y profesional en todas tus
-                    interacciones.
-                  </li>
-                  <li className='font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                    <strong>Contenido Relevante:</strong> Publica contenido
-                    relacionado con metodologías ágiles y temas de desarrollo
-                    profesional en agilidad.
-                  </li>
-                  <li className='font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                    <strong>No Publicidad Sin Autorización:</strong> Evita
-                    promover productos o servicios pagos sin autorización. Los
-                    Sponsor son los únicos autorizados.
-                  </li>
-                  <li className='font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                    <strong>Contenido Apropiado:</strong> No compartas contenido
-                    que incite a la violencia, actividades ilegales o
-                    información falsa.
-                  </li>
-                  <li className='font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                    <strong>Derechos de Autor:</strong> Respeta los derechos de
-                    autor y no compartas contenido sin el permiso necesario.
-                  </li>
-                  <li className='font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                    <strong>Privacidad:</strong> No compartas información
-                    personal o confidencial de otros sin su consentimiento.
-                  </li>
-                </ul>
+              <p className='mb-5 whitespace-pre-line font-darker-grotesque font-medium text-[#072356]'>
+                <strong>
+                  Al participar, asumes el compromiso de construir con
+                  integridad y pasión.
+                </strong>
               </p>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
                 <strong>Privacidad y Protección de Datos</strong>
               </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                En SCRUM LATAM, valoramos tu privacidad. No compartiremos tus
-                datos personales con terceros sin tu consentimiento. Para más
-                información, consulta nuestra Política de Privacidad.
+              <p className='mb-2 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
+                Scrum Latam Comunidad valora tu confianza y protege tu
+                información personal. Todos los datos que compartas con nosotros
+                serán tratados con confidencialidad, exclusivamente para fines
+                de comunicación, formación y participación dentro de la
+                comunidad.
               </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
-                <strong>Propiedad Intelectual</strong>
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                El contenido original de SCRUM LATAM, como publicaciones y
-                materiales educativos, es propiedad de la comunidad. Puedes
-                compartir este contenido para fines personales y educativos,
-                siempre y cuando respetes los derechos de autor.
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
-                <strong>Modificación de los Términos y Condiciones</strong>
+              <p className='mb-2 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
+                No compartiremos tu información con terceros sin tu
+                consentimiento explícito.
               </p>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                Podemos actualizar estos términos para mejorar la comunidad. Te
-                notificaremos sobre cualquier cambio importante. Mantente
-                informado revisando estos términos periódicamente.
+                Cumplimos con las normativas locales e internacionales de
+                protección de datos.
               </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[20px] font-medium text-[#072356]'>
-                <strong>Terminación de la Cuenta</strong>
-              </p>
-              <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                Queremos que todos disfruten de una experiencia positiva en
-                SCRUM LATAM. Si alguien no sigue estas guías, podríamos
-                suspender o cancelar su cuenta. Si tienes preguntas sobre una
-                decisión, contáctanos en scrumlatam@gmail.com.
+              <p className='mb-5 whitespace-pre-line font-darker-grotesque font-medium text-[#072356]'>
+                <strong>
+                  Tu privacidad es nuestra prioridad. Tu confianza, nuestro
+                  compromiso.
+                </strong>
               </p>
               {currentStep === 1 && showTermsCheckbox && (
                 <div className='flex items-center gap-2 self-end'>
@@ -361,11 +302,11 @@ export default function Travel() {
                     id='accept-terms'
                     checked={termsAccepted}
                     onChange={(e) => setTermsAccepted(e.target.checked)}
-                    className='h-4 w-4 rounded border-gray-300 text-[#072356]'
+                    className='h-4 w-4 rounded border-gray-300 bg-[#072356] text-[#072356]'
                   />
                   <label
                     htmlFor='accept-terms'
-                    className='text-sm text-[#072356]'
+                    className='font-darker-grotesque text-[22px] font-medium text-[#072356]'
                   >
                     Acepto los términos y condiciones
                   </label>
@@ -377,7 +318,7 @@ export default function Travel() {
       case 2:
         return (
           <div
-            className={`${darkerGrotesque.variable} rounded-lg border-2 border-[#072356] bg-white p-6 md:h-[360px] 2xl:h-[485px]`}
+            className={`${darkerGrotesque.variable} rounded-lg border-[1px] border-[#072356] bg-white p-6 md:h-[360px] 2xl:h-[485px]`}
           >
             <h2 className='mb-4 text-2xl font-medium text-orange-500'>
               ¡Ya casi finalizamos!
@@ -443,10 +384,10 @@ export default function Travel() {
       {/* Two Columns Layout */}
       <div className='flex flex-col items-center justify-center gap-4 px-6 md:mx-auto md:max-w-[1920px] md:flex-row md:gap-8 md:px-12'>
         {/* Left Column - Dynamic Content */}
-        <div className='w-full'>{renderStepContent()}</div>
+        <div className='w-[130%]'>{renderStepContent()}</div>
 
         {/* Right Column - Onboarding Info */}
-        <div className='mb-8 flex w-full flex-col justify-between rounded-lg border-2 border-orange-500 bg-white p-6 md:mb-0 md:h-[360px] 2xl:h-[485px]'>
+        <div className='mb-8 flex w-full flex-col justify-between rounded-lg border-[1px] border-[#072356] bg-white p-6 md:mb-0 md:h-[360px] 2xl:h-[485px]'>
           <div className='mb-6'>
             <h2 className='mb-4 text-xl font-semibold text-orange-500'>
               Onboarding
