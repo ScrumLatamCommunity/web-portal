@@ -44,8 +44,8 @@ export const Sponsors: React.FC = () => {
   }, [token])
 
   return (
-    <div className='mx-auto flex w-full max-w-[1920px] flex-col bg-[#fbfbfb] px-4 py-8 md:py-20'>
-      <h2 className='pl-[10%] text-left font-darker-grotesque text-[26px] font-bold text-[#082965] md:mb-12 md:text-[50px] 2xl:text-[65px]'>
+    <div className='mx-auto flex w-full max-w-[1920px] flex-col bg-[#fbfbfb] py-8 md:px-4 md:py-20'>
+      <h2 className='pl-[8%] text-left font-darker-grotesque text-[24px] font-bold text-[#082965] md:mb-12 md:text-[50px] 2xl:text-[65px]'>
         Junto a nuestros sponsors
       </h2>
       <div className='relative overflow-hidden md:max-w-[1920px]'>

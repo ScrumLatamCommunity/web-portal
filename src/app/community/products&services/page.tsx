@@ -66,6 +66,7 @@ export default function Squads() {
               <SponsorCard
                 sponsorId={servicesData.id}
                 companyName={servicesData.companyName}
+                web={servicesData.web}
                 specialization={servicesData.specialization}
                 logo={servicesData.logo}
               />
