@@ -288,7 +288,8 @@ export const reviews: Review[] = [
     description:
       'Llevó 5 meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimiento cada día como Scrum Master y además de eso me permito interactuar y conocer  grandes personas y grandes coach día a día.',
     profile:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%209.%20Catalina%20Aguirre%20-%20%20-%20Scrum%20Master.jpg?alt=media&token=77b519b4-5222-4d39-99c1-c9fa353d4c14',
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%204.%20Ailicec%20Mill%C3%A1n%20Crecian%20-%20Colombia.png?alt=media&token=205b2a55-b1d5-4be9-9604-179343fb9f95',
+
     flag: 'https://flagcdn.com/co.svg'
   },
   {
@@ -331,7 +332,8 @@ export const reviews: Review[] = [
     rating: 5,
     description:
       'Hola, soy Merly Velásquez Marín, desde Bogotá, Colombia. Ser parte de Scrum Latam Comunidad ha sido una experiencia increíble y transformadora tanto en lo personal como en lo laboral. Esta comunidad me ha dado la oportunidad de aprender y crecer en mi carrera como Scrum Master, y he encontrado un grupo de personas apasionadas que comparten mi entusiasmo por la agilidad.',
-    profile: 'https://i.pravatar.cc/200',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%208.%20Merly%20Vel%C3%A1squez%20Mar%C3%ADn%20-%20Colombia%20-%20Scrum%20M%C3%A1ster.jpg?alt=media&token=9157693f-7f55-45ac-9033-d4a3ce15aa66',
     flag: 'https://flagcdn.com/co.svg'
   },
   {
@@ -342,7 +344,7 @@ export const reviews: Review[] = [
     description:
       'Valoro y agradezco muchisimo los espacios de conversaciones y transferencia de conocimiento que nos brinda la comunidad para el crecimiento individual y como equipo, sus aportes en conocimiento han transformado mi caja de herramientas laboralmente, espero que sean muchos años más de sabiduria compartida. Gracias Scrum LATAM.',
     profile:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%208.%20Merly%20Vel%C3%A1squez%20Mar%C3%ADn%20-%20Colombia%20-%20Scrum%20M%C3%A1ster.jpg?alt=media&token=9157693f-7f55-45ac-9033-d4a3ce15aa66',
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%209.%20Catalina%20Aguirre%20-%20%20-%20Scrum%20Master.jpg?alt=media&token=77b519b4-5222-4d39-99c1-c9fa353d4c14',
     flag: 'https://flagcdn.com/co.svg'
   }
 ]
