@@ -5,18 +5,14 @@ import { darkerGrotesque, karla, roboto } from '@/fonts'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import OffertCard from '../components/offertsCard'
-import { flags } from '@/data/data'
-import { Pagination } from '@/app/home//components/Pagination'
 import { useAuth } from '@/app/context/AuthContext'
 import { toast } from 'react-hot-toast'
-import AboutUs from '../components/svg/about-us'
-import Certificates from '../components/svg/certificates'
-import YouTubeIcon from '@/assets/YoutubeIcon'
-import XIcon from '@/assets/twitter-x'
 import WhatsappIcon from '@/assets/whatsapp'
 import { getCountryFlag } from '@/utils/getFlags'
 import MailIcon from '@/assets/MailIcon'
 import GlobeIcon from '@/assets/GlobeIcon'
+import ChevronLeftIcon from '@/assets/ChevronLeftIcon'
+import ChevronRightIcon from '@/assets/ChevronRightIcon'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -42,6 +38,12 @@ interface Sponsor {
   }
   offers: any[]
   posts: any[]
+  descriptions: { title: string; description: string }[]
+}
+
+interface Certificate {
+  title: string
+  url: string
 }
 
 export default function Offerts() {
@@ -49,9 +51,9 @@ export default function Offerts() {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [sponsor, setSponsor] = useState<Sponsor | null>(null)
-  const [activeSection, setActiveSection] = useState<'about' | 'certificates'>(
-    'about'
-  )
+  const [currentOfferIndex, setCurrentOfferIndex] = useState(0)
+  const [certificates, setCertificates] = useState<Certificate[]>([])
+  const [currentDescIndex, setCurrentDescIndex] = useState(0)
 
   const { selectedSponsorId } = useAuth()
 
@@ -81,10 +83,29 @@ export default function Offerts() {
     }
   }
 
+  async function getCertificates(sponsorId: string) {
+    try {
+      const response = await fetch(
+        `${API_URL}sponsors/${sponsorId}/certificates`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+      const data = await response.json()
+      setCertificates(data)
+    } catch (error) {
+      console.log('Error al obtener los certificados:', error)
+    }
+  }
+
   useEffect(() => {
     if (!selectedSponsorId) return
 
     getData(selectedSponsorId)
+    getCertificates(selectedSponsorId)
   }, [selectedSponsorId])
 
   useEffect(() => {
@@ -102,6 +123,11 @@ export default function Offerts() {
     setCurrentPage(page)
   }
 
+  const handlePrevDesc = () =>
+    setCurrentDescIndex((prev) => Math.max(prev - 1, 0))
+  const handleNextDesc = () =>
+    setCurrentDescIndex((prev) => Math.min(prev + 1, 2))
+
   if (!sponsor) {
     return (
       <div className='flex h-full w-full items-center justify-center'>
@@ -110,54 +136,80 @@ export default function Offerts() {
     )
   }
 
+  const activeOffers = sponsor.offers.filter(
+    (offert) => offert.status === 'ACTIVE'
+  )
+  const totalOffers = activeOffers.length
+  const CARDS_TO_SHOW = 3
+
+  const getVisibleOffers = () => {
+    if (totalOffers <= CARDS_TO_SHOW) return activeOffers
+    if (currentOfferIndex > totalOffers - CARDS_TO_SHOW) {
+      return activeOffers.slice(totalOffers - CARDS_TO_SHOW, totalOffers)
+    }
+    return activeOffers.slice(
+      currentOfferIndex,
+      currentOfferIndex + CARDS_TO_SHOW
+    )
+  }
+
+  const canGoPrev = currentOfferIndex > 0
+  const canGoNext = currentOfferIndex < totalOffers - CARDS_TO_SHOW
+
+  const handlePrev = () => {
+    if (canGoPrev) setCurrentOfferIndex((prev) => prev - 1)
+  }
+
+  const handleNext = () => {
+    if (canGoNext) setCurrentOfferIndex((prev) => prev + 1)
+  }
+
   return (
     <section
       className={`${darkerGrotesque.variable} ${roboto.variable} ${karla.variable} flex w-full max-w-[1980px] flex-col`}
     >
-      <div className='flex max-h-[540px]'>
+      <div className='mx-auto flex max-h-[200] max-w-[400px]'>
         <Image
           alt='Offerts'
-          className='w-full object-contain p-2 md:p-6'
-          height={540}
-          src={sponsor.bannerWeb}
+          className=''
+          height={450}
+          src={sponsor.logo}
           width={1200}
         />
       </div>
-      <div className='flex flex-col items-center md:pr-80 md:pt-10'>
+      <div className='flex flex-col items-center md:pr-80'>
         <div className='flex flex-row 2xl:ml-[280px]'>
-          <div className='md:mr-8'>
-            <Image
-              alt='Offerts'
-              className='m-4 rounded-full bg-white object-contain md:h-[300px] md:w-[300px]'
-              height={300}
-              width={300}
-              src={sponsor.logo}
-              priority
-              quality={75}
-              sizes='(max-width: 768px) 100vw, 300px'
-              placeholder='blur'
-              blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjg0PjU2ODU6Ojo8Pj4+QEZGRkZGRkZGRkZGRkZGRkb/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k='
-            />
-          </div>
-          <div className='mt-5 flex w-full flex-col pl-6'>
-            <div className='flex flex-row items-center'>
-              <h1 className='mr-2 font-darker-grotesque text-[26px] font-extrabold text-[#082965] md:mr-4 md:text-[80px]'>
+          <div className='flex w-full flex-col pl-6'>
+            <div className='mx-auto flex flex-row items-center'>
+              <h1 className='mr-2 font-darker-grotesque text-[32px] font-semibold text-[#082965] md:mr-4 md:text-[60px]'>
                 {sponsor.companyName}
               </h1>
               <div className='flex gap-2'>
                 {sponsor.user.country.map((country, index) => (
                   <Image
                     key={index}
-                    className='h-[20px] md:mt-3 md:h-[40px] md:w-[60px]'
+                    className='mt-2 h-[20px] rounded-md md:mt-3 md:h-[40px] md:w-[60px] md:rounded-lg'
                     src={getCountryFlag(country)}
                     alt={`flag-${country}`}
                     width={30}
-                    height={10}
+                    height={20}
                   />
                 ))}
               </div>
             </div>
-            <div className='mb-6 flex flex-row gap-2 md:gap-4'>
+            <div className='mb-2 mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2'>
+              {sponsor.specialization.map((item, idx) => (
+                <React.Fragment key={idx}>
+                  <span className='text-[14px] font-semibold text-[#082965] md:text-[18px]'>
+                    {item}
+                  </span>
+                  {idx < sponsor.specialization.length - 1 && (
+                    <span className='h-5 border-l border-gray-300 md:mx-2' />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+            <div className='mx-auto mb-6 mt-6 flex w-[60%] flex-row items-center justify-evenly gap-2 md:mt-12 md:gap-4'>
               <div
                 onClick={() => {
                   navigator.clipboard.writeText(sponsor.user.email)
@@ -165,12 +217,12 @@ export default function Offerts() {
                     `Mail copiado al portapapeles: ${sponsor.user.email}`
                   )
                 }}
-                className='flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                className='flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full md:h-[60px] md:w-[60px]'
               >
-                <MailIcon className='text-[#082965]' height={40} width={40} />
+                <MailIcon className='text-[#FE5833]' height={40} width={40} />
               </div>
               <a
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                className='flex h-[30px] w-[30px] items-center justify-center rounded-full md:h-[60px] md:w-[60px]'
                 href={
                   sponsor.web.startsWith('http')
                     ? sponsor.web
@@ -179,7 +231,7 @@ export default function Offerts() {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <GlobeIcon className='text-[#082965]' height={40} width={40} />
+                <GlobeIcon className='text-[#FE5833]' height={40} width={40} />
               </a>
               {sponsor.socials.map((social, index) => {
                 const url = social.startsWith('http')
@@ -189,13 +241,13 @@ export default function Offerts() {
                 return (
                   <a
                     key={index}
-                    className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                    className='flex h-[35px] w-[35px] items-center justify-center rounded-full md:h-[60px] md:w-[60px]'
                     href={url}
                     rel='noopener noreferrer'
                     target='_blank'
                   >
                     {getSocialIcon(social, {
-                      className: 'text-[#082965]',
+                      className: 'text-[#FE5833]',
                       height: 40,
                       width: 40
                     })}
@@ -206,129 +258,147 @@ export default function Offerts() {
                 href={`https://wa.me/${sponsor.phone}?text=${sponsor.wppMessage}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] md:h-[60px] md:w-[60px]'
+                className='flex h-[35px] w-[35px] items-center justify-center rounded-full md:h-[60px] md:w-[60px]'
               >
                 <WhatsappIcon
-                  className='text-[#082965]'
-                  height={40}
-                  width={40}
+                  className='text-[#FE5833]'
+                  height={37}
+                  width={37}
                 />
               </a>
             </div>
-            {sponsor.specialization.map((item, index) => (
-              <p
-                key={index}
-                className='text-[24px] text-[#082965] before:mr-2 before:content-["●"]'
+          </div>
+        </div>
+      </div>
+      <section className='my-8 flex w-full flex-col items-center md:my-20'>
+        <h2 className='mb-10 text-center font-darker-grotesque text-[32px] font-bold text-[#FE2E00] md:text-[40px]'>
+          Sobre nosotros
+        </h2>
+        <div className='flex w-full items-center justify-center md:hidden'>
+          <button
+            onClick={handlePrevDesc}
+            disabled={currentDescIndex === 0}
+            className='p-2'
+          >
+            <ChevronLeftIcon
+              width={28}
+              height={28}
+              className={currentDescIndex === 0 ? 'opacity-30' : ''}
+            />
+          </button>
+          <div className='flex min-w-[150px] max-w-[85%] flex-1 flex-col items-center justify-center rounded-xl border border-[#D6E0F0] bg-white p-6 shadow-md'>
+            <h3 className='mb-4 text-center text-[18px] font-bold text-[#082965] md:py-6 md:text-2xl'>
+              {sponsor.descriptions?.[currentDescIndex]?.title || ''}
+            </h3>
+            <p className='px-4 text-center text-[16px] text-[#082965] md:pb-6 md:text-lg'>
+              {sponsor.descriptions?.[currentDescIndex]?.description || ''}
+            </p>
+          </div>
+          <button
+            onClick={handleNextDesc}
+            disabled={currentDescIndex === 2}
+            className='p-2'
+          >
+            <ChevronRightIcon
+              width={28}
+              height={28}
+              className={currentDescIndex === 2 ? 'opacity-30' : ''}
+            />
+          </button>
+        </div>
+        <div className='hidden w-full flex-col justify-center gap-2 px-1 md:flex md:flex-row md:gap-x-10 md:px-0'>
+          {[0, 1, 2].map((idx) => {
+            const desc = sponsor.descriptions && sponsor.descriptions[idx]
+            return (
+              <div
+                key={idx}
+                className='flex min-w-[150px] max-w-[85%] flex-1 flex-col items-center justify-center rounded-xl border border-[#D6E0F0] bg-white p-6 shadow-md md:min-w-[300px] md:max-w-[400px]'
               >
-                {item}
-              </p>
+                <h3 className='mb-4 text-center text-lg font-bold text-[#082965] md:py-6 md:text-2xl'>
+                  {desc ? desc.title : ''}
+                </h3>
+                <p className='px-4 text-center text-lg text-[#082965] md:pb-6'>
+                  {desc ? desc.description : ''}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+      {activeOffers.length > 0 && (
+        <section>
+          <div className='mt-6 flex flex-col items-center md:mt-10'>
+            <h1 className='font-darker-grotesque text-[30px] font-bold text-[#FE2E00] md:text-[44px]'>
+              Cursos que ofrecemos
+            </h1>
+            <h2 className='px-10 text-center font-darker-grotesque text-[18px] font-semibold text-[#072356] md:text-[28px]'>
+              Ofrecemos cursos diseñados para potenciar tus habilidades y
+              conocimientos.
+            </h2>
+          </div>
+          <div className='animate-fadeIn flex w-full flex-col items-center transition-opacity duration-500 ease-in-out'>
+            <div className='relative flex w-full items-center justify-center py-8'>
+              <button
+                onClick={handlePrev}
+                className='absolute left-0 z-10 text-3xl text-[#082965] transition-colors hover:text-[#FE2E00] md:left-5 md:p-2'
+                aria-label='Anterior'
+                disabled={!canGoPrev}
+                style={{
+                  opacity: canGoPrev ? 1 : 0.3,
+                  cursor: canGoPrev ? 'pointer' : 'not-allowed'
+                }}
+              >
+                <ChevronLeftIcon width={32} height={32} />
+              </button>
+              <div className='grid w-[85%] grid-cols-1 justify-items-center md:grid-cols-3 md:gap-8 md:px-[10%]'>
+                {getVisibleOffers().map((offert, idx) => (
+                  <OffertCard key={idx} {...offert} />
+                ))}
+              </div>
+              <button
+                onClick={handleNext}
+                className='absolute right-2 z-10 text-3xl text-[#082965] transition-colors hover:text-[#FE2E00] md:right-5 md:p-2'
+                aria-label='Siguiente'
+                disabled={!canGoNext}
+                style={{
+                  opacity: canGoNext ? 1 : 0.3,
+                  cursor: canGoNext ? 'pointer' : 'not-allowed'
+                }}
+              >
+                <ChevronRightIcon width={32} height={32} />
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+      {certificates.length > 0 && (
+        <section className='flex w-full flex-col items-center bg-white md:mt-14'>
+          <h2 className='font-darker-grotesque text-[30px] font-bold text-[#FE2E00] md:text-[44px]'>
+            Nuestras Certificaciones
+          </h2>
+          <p className='mb-6 px-4 text-center font-darker-grotesque text-[18px] font-semibold text-[#082965] md:mb-16 md:px-0 md:text-2xl'>
+            Emitimos certificaciones que avalan tus conocimientos y habilidades
+            adquiridas.
+          </p>
+          <div className='mb-16 flex w-full flex-col items-center justify-center gap-8 md:mb-32 md:flex-row md:gap-48'>
+            {certificates.map((cert, idx) => (
+              <a
+                key={idx}
+                href={cert.title}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <Image
+                  src={cert.url}
+                  alt={cert.title}
+                  width={200}
+                  height={200}
+                  className='aspect-square rounded-lg object-cover'
+                />
+              </a>
             ))}
           </div>
-        </div>
-      </div>
-      <div className='mb-0 mt-24 flex flex-row items-center justify-center gap-x-48'>
-        <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
-          <div
-            className={`relative flex h-full w-full flex-col items-center rounded-[50px] border-2 px-5 transition-colors duration-300 ${
-              activeSection === 'about' ? 'border-gray-400' : 'border-[#082965]'
-            }`}
-          >
-            <div className='absolute -top-20 z-10 flex flex-col rounded-full bg-white'>
-              <AboutUs
-                className={`rounded-full transition-colors duration-300 ${
-                  activeSection === 'about' ? 'text-gray-400' : 'text-[#082965]'
-                }`}
-              />
-            </div>
-            <p
-              className={`mb-6 pt-24 text-[20px] transition-colors duration-300 ${
-                activeSection === 'about' ? 'text-gray-400' : 'text-[#082965]'
-              }`}
-            >
-              Descubre la esencia de nuestra empresa y nuestro compromiso
-              contigo.
-            </p>
-            <button
-              onClick={() => setActiveSection('about')}
-              className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
-                activeSection === 'about'
-                  ? 'border-gray-400 text-gray-400'
-                  : 'border-[#082965] text-[#082965]'
-              }`}
-            >
-              Sobre nosotros
-            </button>
-          </div>
-        </div>
-        <div className='flex w-[380px] items-center rounded-[50px] bg-white p-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.1)]'>
-          <div
-            className={`relative flex h-full w-full flex-col items-center rounded-[50px] border-2 px-5 transition-colors duration-300 ${
-              activeSection === 'certificates'
-                ? 'border-gray-400'
-                : 'border-[#082965]'
-            }`}
-          >
-            <div className='absolute -top-14 z-10 flex flex-col rounded-full bg-white'>
-              <Certificates
-                className={`p-5 transition-colors duration-300 ${
-                  activeSection === 'certificates'
-                    ? 'text-gray-400'
-                    : 'text-[#082965]'
-                }`}
-              />
-            </div>
-            <p
-              className={`mb-6 pt-24 text-[20px] transition-colors duration-300 ${
-                activeSection === 'certificates'
-                  ? 'text-gray-400'
-                  : 'text-[#082965]'
-              }`}
-            >
-              Emitimos certificaciones que avalan tus conocimientos y
-              habilidades adquiridas.
-            </p>
-            <button
-              onClick={() => setActiveSection('certificates')}
-              className={`mb-5 rounded-3xl border-[2px] px-3 py-1 text-[22px] transition-colors duration-300 ${
-                activeSection === 'certificates'
-                  ? 'border-gray-400 text-gray-400'
-                  : 'border-[#082965] text-[#082965]'
-              }`}
-            >
-              Certificados
-            </button>
-          </div>
-        </div>
-      </div>
-      {activeSection === 'about' && (
-        <div className='animate-fadeIn mt-16 flex items-center justify-center transition-opacity duration-500 ease-in-out'>
-          <div className='z-[-1] flex w-[100%] scale-100 transform animate-slideUp items-center justify-center rounded-t-3xl bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.7)] transition-all duration-1000 ease-in-out'>
-            <div
-              className='text-[20px] leading-relaxed'
-              dangerouslySetInnerHTML={{ __html: sponsor.description }}
-            />
-          </div>
-        </div>
-      )}
-      {activeSection === 'certificates' && (
-        <div className='animate-fadeIn flex w-full flex-col items-center transition-opacity duration-500 ease-in-out'>
-          <div className='animate-fadeIn grid grid-cols-1 justify-items-center gap-y-8 py-8 transition-opacity duration-1000 ease-in-out md:grid-cols-3'>
-            {sponsor.offers
-              .filter((offert) => offert.status === 'ACTIVE')
-              .map((offert, index) => (
-                <OffertCard key={index} {...offert} />
-              ))}
-          </div>
-
-          {isMobile && (
-            <Pagination
-              currentIndex={currentPage}
-              itemsPerPage={itemsPerPage}
-              onPageChange={handlePageChange}
-              totalItems={sponsor.offers.length}
-            />
-          )}
-        </div>
+        </section>
       )}
     </section>
   )

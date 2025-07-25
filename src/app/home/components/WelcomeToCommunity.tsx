@@ -4,6 +4,7 @@ import { PrimaryButton } from '../../../core/PrimaryButton'
 import Image from 'next/image'
 import { images } from '@/data/images_url'
 import { useRouter } from 'next/navigation'
+import useIsLargeScreen from '@/hooks'
 
 const NEW_IMAGE_URL = images.welcomeComunity
 

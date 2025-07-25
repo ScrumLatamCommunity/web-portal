@@ -1,14 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import HeroSection from './components/heroSection'
-import NewsBlogsUpdates from './components/NewsBlogsUpdates'
-import SearchBar from './components/search-bar'
 import { useAuth } from '@/app/context/AuthContext'
 import { SponsorData } from '@/interfaces'
 import SponsorCard from './components/sponsorCard'
-import Banner from '@/assets/SponsorBannerImage.png'
-import Image from 'next/image'
+import SearchBar from './components/search-bar'
 
 export default function Squads() {
   const [sponsorData, setSponsorData] = useState<SponsorData[] | null>(null)
@@ -45,30 +41,22 @@ export default function Squads() {
 
   return (
     <>
-      <HeroSection
-        image={
-          <Image
-            alt=''
-            src={Banner}
-            className='mt-12 h-[200px] w-[300px] md:h-[455px] md:w-[620px]'
-          />
-        }
-        title='Productos y servicios de nuestros Sponsor'
-      >
-        Descubre productos, servicios y ofertas de cursos exclusivos para la
-        comunidad de Scrum <span style={{ color: '#FE2E00' }}>Latam</span>.
-      </HeroSection>
-      {/* Search Bar */}
-      <section className='mb-4 flex w-full justify-center px-10 md:mb-12 md:mt-12'>
+      <div className='relative z-10 mb-4 flex w-full max-w-[700px] flex-col items-center pt-10 md:pt-10 2xl:pt-24'>
+        <h1 className='mb-4 px-12 text-center font-darker-grotesque text-[1.2rem] font-bold leading-tight text-[#082965] md:mb-6 md:px-0 md:text-[1.6rem] 2xl:text-[2rem]'>
+          Descubre servicios y ofertas de cursos exclusivos para la comunidad
+          <span className='text-[#FE2E00]'> Scrum Latam</span>
+        </h1>
+      </div>
+      <section className='mb-4 flex w-full justify-center px-10 md:mb-12 md:mt-6'>
         <div className='w-full max-w-[600px]'>
           <SearchBar
             data={sponsorData || []}
-            placeholder='Busca un sponsor'
+            placeholder='Ingresa el producto o servicio aquí...'
             setQuery={setQuery}
           />
         </div>
       </section>
-      <section className='mb-10 mt-6 flex w-full max-w-[1920px] flex-wrap items-center justify-center gap-1 xl:px-36'>
+      <section className='mb-20 mt-6 flex w-full max-w-[1920px] flex-wrap items-center justify-center gap-1 xl:px-36'>
         {filteredServices.length > 0 ? (
           filteredServices.map((servicesData: SponsorData) => (
             <div
@@ -89,7 +77,6 @@ export default function Squads() {
           </p>
         )}
       </section>
-      <NewsBlogsUpdates />
     </>
   )
 }

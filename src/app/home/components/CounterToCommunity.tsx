@@ -46,6 +46,7 @@ export const CounterToCommunity = () => {
   const [currentActivities, setCurrentActivities] = useState<any[] | undefined>(
     undefined
   )
+  const [loadingActivities, setLoadingActivities] = useState(true)
 
   const getMembers = async () => {
     try {
@@ -78,20 +79,20 @@ export const CounterToCommunity = () => {
         }
       })
 
-      const updatedCounters = initialCounters.map((counter) => {
-        if (counter.text === 'Miembros') {
-          return { ...counter, number: userCount }
-        }
-        if (counter.text === 'Sponsors') {
-          return { ...counter, number: sponsorCount }
-        }
-        if (counter.text === 'Países') {
-          return { ...counter, number: uniqueCountries.size }
-        }
-        return counter
-      })
-
-      setCurrentCounters(updatedCounters)
+      setCurrentCounters((prevCounters) =>
+        prevCounters.map((counter) => {
+          if (counter.text === 'Miembros') {
+            return { ...counter, number: userCount }
+          }
+          if (counter.text === 'Sponsors') {
+            return { ...counter, number: sponsorCount }
+          }
+          if (counter.text === 'Países') {
+            return { ...counter, number: uniqueCountries.size }
+          }
+          return counter
+        })
+      )
     } catch (error) {
       console.error('Error al obtener miembros:', error)
     }
@@ -99,6 +100,7 @@ export const CounterToCommunity = () => {
 
   const getActivities = async () => {
     try {
+      setLoadingActivities(true)
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}activities`,
         {
@@ -125,6 +127,8 @@ export const CounterToCommunity = () => {
       )
     } catch (error) {
       console.error('Error al obtener actividades:', error)
+    } finally {
+      setLoadingActivities(false)
     }
   }
 
@@ -153,7 +157,9 @@ export const CounterToCommunity = () => {
                 className='text-center text-10 font-black text-blue-8 md:text-5xl 2xl:text-7xl'
                 id='counter'
               >
-                {counter.number}
+                {counter.text === 'Actividades' && loadingActivities
+                  ? '0'
+                  : counter.number}
               </h4>
               <p className='font-black text-blue-8 md:text-7 xl:text-11'>
                 {counter.text}

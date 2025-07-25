@@ -627,24 +627,17 @@ export const superAdminDashboard: SuperAdminDashboard[] = [
   },
   {
     id: 3,
-    name: 'Eventos',
+    name: 'Actividades',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-    link: '/super-admin-dashboard/events'
+    link: '/super-admin-dashboard/activities'
   },
   {
     id: 4,
-    name: 'Aliados',
+    name: 'Sponsors',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633849.svg?alt=media&token=e577db73-eca6-441a-a7c5-bd898b305d19',
     link: '/super-admin-dashboard/allies'
-  },
-  {
-    id: 5,
-    name: 'Membresías',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633850.svg?alt=media&token=e0c1047f-2f37-4ccd-893f-502449783841',
-    link: '/super-admin-dashboard/memberships'
   }
 ]
 
@@ -762,24 +755,14 @@ export const profilesTecnologia = [
     linkedinUrl: 'www.linkedin.com/in/geornith-melo-ortiz'
   },
   {
-    name: 'Rosita Jhaneth Chichipe Falen',
-    title: 'Product Owner',
-    description:
-      'Líder estratégica en productos digitales con foco en necesidades del usuario y visión de negocio',
-    countryFlagUrl: 'https://flagcdn.com/co.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRosita_Jhaneth_Chichipe_Falen.jpeg?alt=media&token=35f11502-fe26-4cb9-8ea7-8f24ab5b3b37',
-    linkedinUrl: 'https://www.linkedin.com/in/rosi-chichipe/'
-  },
-  {
-    name: 'Majiruz Vargas',
+    name: 'Melany Ventura',
     title: 'UX/UI Designer',
     description:
-      'Diseñadora enfocada en experiencias de usuario atractivas y funcionales',
-    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+      'Diseñadora dedicada a transformar ideas en experiencias de usuario claras y atractivas.',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FMajiruz_Vargas.jpg?alt=media&token=343f4f7b-f8c9-4165-85da-08647a7046a2',
-    linkedinUrl: 'https://www.linkedin.com/in/majiruz-vargas-majilustra/'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2Fmelany-UX.jpeg?alt=media&token=8a4e39af-204e-4d15-85ad-019d206ad838',
+    linkedinUrl: 'https://www.linkedin.com/in/melany-ventura/'
   },
   {
     name: 'Fernando Campellone',
@@ -795,7 +778,7 @@ export const profilesTecnologia = [
     name: 'David Morcillo Benavidez',
     title: 'Fullstack Developer',
     description:
-      'Desarrollador fullstack apasionado en crear soluciones robustas y ',
+      'Desarrollador fullstack apasionado en crear soluciones robustas y modernas',
     countryFlagUrl: 'https://flagcdn.com/co.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FAlejandro_Morcillo.jpg?alt=media&token=7c76c116-055f-49aa-938c-c7d577ac6044',
@@ -813,15 +796,6 @@ export const profilesCOE = [
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
     linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
-  },
-  {
-    name: 'Karen Lara Ferrufino',
-    title: 'Scrum Master',
-    description: 'Facilitador del equipo y guardián de los principios ágiles',
-    countryFlagUrl: 'https://flagcdn.com/bo.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FKaren_Lara.png?alt=media&token=db24f658-5e6e-46ac-bbff-e275b64e44a6',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
   },
   {
     name: 'Vanesa Dominguez',
@@ -846,15 +820,6 @@ export const profilesCatalizador = [
     linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
   },
   {
-    name: 'David Oña',
-    title: 'Product Owner',
-    description: 'Visionario del impacto del Squad en la comunidad ágil.',
-    countryFlagUrl: 'https://flagcdn.com/ec.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FDavid%20.jpg?alt=media&token=d894b9e0-f813-4a88-a730-8c86da79c56d',
-    linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
     name: 'Yenny Viviana Campos Diaz',
     title: 'Team Member',
     description: 'Ejecutores y co-creadores de iniciativas de cambio.',
@@ -873,6 +838,22 @@ export const profilesCatalizador = [
     linkedinUrl: 'www.linkedin.com/in/joyamichelle'
   }
 ]
+
+export const headerCOE = {
+  title: 'Centro de Excelencia',
+  description:
+    'Facilitamos la innovación y la colaboración, brindando soporte constante para alinear proyectos con principios ágiles'
+}
+export const headerTecnología = {
+  title: 'Squad Tecnología',
+  description:
+    'Somos el motor de la transformación digital, creando plataformas  y automatizando procesos para la comunidad ágil'
+}
+export const headerCatalziador = {
+  title: 'Squad Catalizador',
+  description:
+    'Impulsamos el cambio cultural y la evolución ágil promoviendo prácticas Scrum que fortalecen la colaboración y el aprendizaje continuo'
+}
 
 export const activityCategoriesData = [
   {

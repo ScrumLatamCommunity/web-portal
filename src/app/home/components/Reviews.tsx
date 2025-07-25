@@ -2,9 +2,9 @@
 
 import 'tailwindcss/tailwind.css'
 import React, { useState, useEffect } from 'react'
-import { Pagination } from './Pagination'
-import { ChevronLeft, ChevronRight, Star } from 'react-feather'
+import { Star } from 'react-feather'
 import { reviews } from '@/data/data'
+import ArrowRightIcon from '@/assets/ArrowRightIcon'
 
 interface Review {
   id: number
@@ -17,154 +17,163 @@ interface Review {
 }
 
 export const Reviews: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const [expandedReviewId, setExpandedReviewId] = useState<number | null>(null)
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [centerIndex, setCenterIndex] = useState<number>(1)
   const [isMobile, setIsMobile] = useState<boolean>(false)
-  const [itemsPerPage, setItemsPerPage] = useState<number>(3)
 
   useEffect(() => {
-    const updateItemsPerPage = () => {
-      if (window.innerWidth <= 520) {
-        setItemsPerPage(1)
-        setIsMobile(true)
-      } else if (window.innerWidth <= 1440) {
-        setItemsPerPage(3)
-        setIsMobile(false)
-      } else {
-        setItemsPerPage(4)
-        setIsMobile(false)
-      }
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
 
-    updateItemsPerPage()
-    window.addEventListener('resize', updateItemsPerPage)
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
 
-    return () => {
-      window.removeEventListener('resize', updateItemsPerPage)
-    }
+    return () => window.removeEventListener('resize', checkIsMobile)
   }, [])
 
-  const nextReviews = () => {
-    if (currentIndex + itemsPerPage < reviews.length) {
-      setCurrentIndex(currentIndex + itemsPerPage)
-      setExpandedReviewId(null) // Cerrar el comentario extendido
+  const prevReview = () => {
+    centerIndex > 0
+      ? setCenterIndex(centerIndex - 1)
+      : setCenterIndex(reviews.length - 1)
+  }
+  const nextReview = () => {
+    centerIndex < reviews.length - 1
+      ? setCenterIndex(centerIndex + 1)
+      : setCenterIndex(0)
+  }
+
+  const getVisibleReviews = () => {
+    // En mobile solo mostrar 1 review, en desktop mostrar 3
+    if (isMobile) {
+      return [reviews[centerIndex]]
     }
+
+    const left = centerIndex - 1 >= 0 ? reviews[centerIndex - 1] : null
+    const center = reviews[centerIndex]
+    const right =
+      centerIndex + 1 < reviews.length ? reviews[centerIndex + 1] : null
+    return [left, center, right]
   }
 
-  const prevReviews = () => {
-    if (currentIndex - itemsPerPage >= 0) {
-      setCurrentIndex(currentIndex - itemsPerPage)
-      setExpandedReviewId(null) // Cerrar el comentario extendido
-    }
-  }
-
-  const handlePageChange = (index: number) => {
-    setCurrentIndex(index)
-    setExpandedReviewId(null) // Cerrar el comentario extendido al cambiar de página
-  }
-
-  const toggleReadMore = (reviewId: number) => {
-    setExpandedReviewId(expandedReviewId === reviewId ? null : reviewId)
-  }
+  const visibleReviews = getVisibleReviews()
 
   return (
-    <div
-      className={`flex w-screen flex-col gap-7 md:max-w-[1920px] ${expandedReviewId !== null ? 'bg-gray-200' : ''} ${expandedReviewId !== null && isMobile ? 'bg-black-1' : ''}`}
-    >
-      <span className='pb:5 pt-5 text-center font-darker-grotesque text-[24px] font-extrabold text-blue-6 sm:text-3xl md:pb-10 md:pt-10 md:text-5xl'>
+    <div className='mb-12 flex w-screen flex-col gap-7 md:max-w-[1920px]'>
+      <span className='pb:5 pl-[10%] pt-5 text-left font-darker-grotesque text-[24px] font-extrabold text-blue-6 sm:text-3xl md:pb-10 md:pt-10 md:text-5xl'>
         ¿Qué opina nuestra comunidad?
       </span>
       <div className='flex w-full items-center justify-center'>
-        <div className='flex items-center justify-center md:gap-6'>
-          <ChevronLeft
-            className='h-8 w-8 cursor-pointer text-red-400'
-            onClick={prevReviews}
-          />
-          <div className='flex w-full min-w-[300px] flex-wrap justify-center gap-8 md:min-w-[320px]'>
-            {reviews
-              .slice(currentIndex, currentIndex + itemsPerPage)
-              .map((review: Review) => (
+        <div className='flex items-center justify-center gap-4 md:gap-6'>
+          <button
+            className={`flex h-8 w-8 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === 0 ? '' : 'cursor-pointer'}`}
+            onClick={prevReview}
+            aria-label='Anterior'
+            type='button'
+          >
+            <ArrowRightIcon className='h-8 w-8 rotate-180 text-[#082965] md:h-24 md:w-24' />
+          </button>
+          <div className='flex w-full min-w-[280px] flex-nowrap justify-center gap-4 md:min-w-[320px] md:gap-8'>
+            {visibleReviews.map((review, idx) => {
+              if (!review)
+                return <div key={idx} className='w-[280px] md:w-[320px]'></div>
+              const isCenter = isMobile ? true : idx === 1
+              const isLeft = idx === 0
+              const isRight = idx === 2
+              const reviewIndex = centerIndex + (idx - 1)
+              let translateClass = ''
+              if (!isMobile) {
+                if (isLeft) translateClass = '-translate-x-10'
+                if (isRight) translateClass = 'translate-x-10'
+              }
+              return (
                 <div
-                  className={`flex flex-col gap-4 rounded-[5%] bg-black-2 px-4 py-8 text-blue-600 shadow-lg transition-all duration-300 md:px-6 ${
-                    expandedReviewId === review.id
-                      ? 'z-10 h-auto scale-105 gap-5 bg-black-1 text-blue-100 md:w-[350px]'
-                      : 'md:h-[320px] md:w-[320px]'
-                  } ${expandedReviewId !== null && expandedReviewId !== review.id ? 'opacity-50' : 'opacity-100'} ${isMobile ? 'w-full' : ''}`}
-                  key={review.id}
-                  onMouseEnter={() => setHoveredCard(review.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
+                  key={review.id + '-' + reviewIndex}
+                  className={`flex h-full flex-col gap-2 rounded-[5%] bg-black-2 px-4 py-6 text-blue-600 shadow-lg transition-all duration-300 md:px-6 md:py-8 ${translateClass} ${isCenter ? 'z-10 w-[280px] scale-100 bg-white text-blue-900 shadow-2xl md:w-[370px] md:scale-110' : 'w-[280px] scale-95 opacity-70 md:w-[300px]'}`}
+                  onClick={() => {
+                    if (!isCenter && !isMobile) {
+                      setCenterIndex(reviewIndex)
+                    }
+                  }}
                 >
-                  <div className='flex items-center gap-4'>
-                    <div className='flex overflow-hidden rounded-full border-2 border-red-300'>
+                  <div className='flex items-center gap-3 md:gap-4'>
+                    <div className='flex overflow-hidden rounded-full border-4 border-[#082965]'>
                       <img
                         alt={review.name}
-                        className='w-16'
+                        className='w-12 md:w-16'
                         src={review.profile}
                       />
                     </div>
-                    <div className='flex flex-col place-content-center gap-1'>
-                      <div className='font-darker-grotesque font-bold text-blue-6'>
+                    <div className='flex flex-col'>
+                      <div className='font-darker-grotesque text-[16px] font-bold text-blue-6 md:text-[20px]'>
                         {review.name}
                       </div>
-                      <div className='mt-[-8px] flex font-darker-grotesque text-2 font-medium text-blue-6'>
+                      <div className='mt-[-6px] flex font-darker-grotesque text-[14px] font-medium text-blue-6 md:mt-[-8px] md:text-[20px]'>
                         {review.position}
                       </div>
                       <img
                         alt='Nacionalidad'
-                        className='mt-1 flex h-4 w-5'
+                        className='mt-1 flex h-3 w-4 md:h-4 md:w-5'
                         src={review.flag}
                       />
                     </div>
-                    {hoveredCard === review.id &&
-                      expandedReviewId === review.id && (
-                        <button
-                          className='ml-auto flex self-start rounded-none bg-red-400 bg-transparent font-darker-grotesque text-7 font-extrabold'
-                          onClick={() => toggleReadMore(review.id)}
-                        >
-                          <img
-                            alt='Cerrar'
-                            className='w-6 gap-1'
-                            src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20icons%2Fx.svg?alt=media&token=3fca622b-ce3c-436b-9372-0208bf399ba4'
-                          />
-                        </button>
-                      )}
                   </div>
-                  <div className='flex justify-start gap-1 text-red-400'>
+                  <div className='flex justify-center gap-1 text-[#082965]'>
                     {[...Array(review.rating ?? 0)].map((_, index) => (
-                      <Star key={index} className='fill-current' />
+                      <Star
+                        key={index}
+                        className='h-8 w-8 fill-current md:h-5 md:w-5'
+                      />
                     ))}
                   </div>
-                  <div
-                    className={`font-karla font-normal text-blue-6 ${expandedReviewId === review.id ? 'h-auto' : 'h-[72px] overflow-hidden'}`}
-                  >
-                    {expandedReviewId === review.id
-                      ? review.description
-                      : `${review.description.slice(0, 85)}...`}
+                  <div className='h-auto font-karla text-[14px] font-normal text-blue-6 md:text-base'>
+                    {review.description.length > 120 && !isCenter
+                      ? review.description.slice(0, 70) + '...'
+                      : review.description}
                   </div>
-                  {expandedReviewId !== review.id && (
+                  <div className='relative mt-auto flex h-[32px] items-end md:h-[40px]'>
                     <button
-                      className='mt-auto self-end border-none pr-8 font-darker-grotesque text-sm font-semibold text-red-400'
-                      onClick={() => toggleReadMore(review.id)}
+                      className={`absolute right-0 border-none pr-2 font-darker-grotesque text-[14px] font-semibold text-[#082965] transition-opacity duration-300 md:text-[18px] ${isCenter ? 'pointer-events-none opacity-0' : 'opacity-70'}`}
+                      style={{ minWidth: isMobile ? 100 : 120 }}
                     >
                       Seguir leyendo
                     </button>
-                  )}
+                  </div>
                 </div>
-              ))}
+              )
+            })}
           </div>
-          <ChevronRight
-            className='h-8 w-8 cursor-pointer text-red-400'
-            onClick={nextReviews}
-          />
+          <button
+            className={`flex h-6 w-6 cursor-default items-center justify-center border-none bg-transparent text-[#082965] md:h-24 md:w-24 ${centerIndex === reviews.length - 1 ? '' : 'cursor-pointer'}`}
+            onClick={nextReview}
+            aria-label='Siguiente'
+            type='button'
+          >
+            <ArrowRightIcon className='h-6 w-6 text-[#082965] md:h-24 md:w-24' />
+          </button>
         </div>
       </div>
-      <Pagination
-        currentIndex={currentIndex}
-        itemsPerPage={itemsPerPage}
-        onPageChange={handlePageChange}
-        totalItems={reviews.length}
-      />
+      <div className='mb-6 mt-4 flex justify-center gap-2'>
+        {(() => {
+          const maxDots = isMobile ? 3 : 5
+          const total = reviews.length
+          let start = Math.max(0, centerIndex - Math.floor(maxDots / 2))
+          let end = start + maxDots
+          if (end > total) {
+            end = total
+            start = Math.max(0, end - maxDots)
+          }
+          return Array.from({ length: end - start }).map((_, i) => {
+            const idx = start + i
+            return (
+              <div
+                key={idx}
+                className={`h-2 w-2 cursor-pointer rounded-full transition-colors duration-200 md:h-3 md:w-3 ${idx === centerIndex ? 'bg-[#082965]' : 'bg-gray-300'}`}
+                onClick={() => setCenterIndex(idx)}
+              />
+            )
+          })
+        })()}
+      </div>
     </div>
   )
 }

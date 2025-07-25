@@ -1,62 +1,72 @@
 'use client'
 
-import HeroSection from '@/app/community/components/heroSection'
-import SquadsImage from '@/assets/squadsImg'
-import SquadFeature from '@/app/community/components/squadFeature'
-import PhoneImg from '@/assets/phoneImg'
-import BooknoteImg from '@/assets/booknoteImg'
-import MountainImg from '@/assets/mountainImg'
-import ProfileSection from '@/app/community/components/profileSection'
-import JoinCommunity from '@/app/community/components/joinSection'
-import Breadcrumbs from '@/app/community/components/breadcrumbs'
 import {
   profilesCatalizador,
   profilesCOE,
-  profilesTecnologia
+  profilesTecnologia,
+  headerCOE,
+  headerTecnología,
+  headerCatalziador
 } from '@/data/data'
+import SquadHeader from './components/SquadHeader'
+import SquadProfileCarousel from './components/SquadProfileCarousel'
+import StarIcon from './components/starIcon'
+import Link from 'next/link'
+import { darkerGrotesque } from '@/fonts'
 
 export default function Squads() {
   return (
     <>
-      <Breadcrumbs rootName='Comunidad' />
-      <HeroSection
-        description='Somos una organización sin fines de lucro de la agilidad. Nuestro equipo multidisciplinario conformado por principiantes profesionales y expertos ágiles, donde fortalecemos y potenciamos conocimientos, experiencias, proyectos e iniciativas en todos los campos, a través de un proceso de transformación organizacional.'
-        image={
-          <SquadsImage className='h-[268px] w-[393px] md:h-[456px] md:w-[580px]' />
-        }
-        linkTitle='Nuestros Squads'
-        title='¿Quienes somos?'
-      />
-      <SquadFeature
-        description='Nos encargaremos de brindar soporte y asesoría constante, asegurando que cada equipo y proyecto esté alineado con los principios y la visión de la comunidad.'
-        descriptionMiddle='Facilitar la innovación y la mejora continua. Queremos establecer un entorno organizado y estructurado que permita a todos los miembros colaborar de manera efectiva, compartir conocimientos y aplicar las mejores prácticas ágiles. '
-        image={<BooknoteImg className='h-[268px] w-[393px]' />}
-        linkTitle='COE'
-        title='¿Qué hacemos?'
-      />
-      <ProfileSection profiles={profilesCOE} />
-      <SquadFeature
-        description='Desarrollar e implementar plataformas tecnológicas, automatizar procesos, explorar e implementar tecnologías emergentes, promover la cultura DevOps y compartir conocimiento y experiencias.'
-        descriptionMiddle='Ser el impulsor de la innovación y la transformación digital de la comunidad, a través del desarrollo de soluciones tecnológicas que potencien la colaboración, el aprendizaje y la gestión de  proyectos ágiles. '
-        image={<PhoneImg className='h-[268px] w-[393px]' />}
-        linkTitle='Squad Tecnología'
-        title='¿Qué hacemos?'
-      />
-      <ProfileSection profiles={profilesTecnologia} />
-      <SquadFeature
-        description='Acompañamos y guiamos a los equipos en la adopción de Scrum, facilitamos espacios de reflexión y aprendizaje, diseñamos experiencias formativas, promovemos la experimentación ágil y compartimos conocimientos para construir una cultura organizacional centrada en la mejora continua y el valor.'
-        descriptionMiddle='Ser el motor del cambio cultural y de la evolución ágil dentro de la comunidad, a través de la promoción de prácticas Scrum efectivas que fortalezcan la colaboración, el aprendizaje continuo y la mejora de los equipos.'
-        image={<BooknoteImg className='h-[268px] w-[393px]' />}
-        linkTitle='Squad Catalizador'
-        title='¿Qué hacemos?'
-      />
-      <ProfileSection profiles={profilesCatalizador} />
-      <JoinCommunity
-        buttonText='Regístrate Ahora'
-        callToAction='¡Regístrate hoy y sé parte de nuestra transformación ágil!'
-        description='Conéctate con profesionales ágiles de toda Latinoamérica, accede a recursos exclusivos, y participa en eventos y webinars que impulsarán tu crecimiento.'
-        title='¡Únete a Nuestra Comunidad!'
-      />
+      <section className={`${darkerGrotesque.variable}`}>
+        <div>
+          <h1 className='mb-6 mt-8 text-center font-darker-grotesque text-[30px] font-bold text-[#FE2E00] md:mb-8 md:mt-16 md:text-4xl md:text-[40px]'>
+            Los Squads
+          </h1>
+          <h3 className='mb-8 px-12 text-center font-darker-grotesque text-[18px] font-medium text-[#3B4A6B] md:mb-12 md:max-w-2xl md:px-0 md:text-[26px]'>
+            Agilidad sin fines de lucro: Unimos principiantes y expertos para
+            impulsar la transformación organizacional
+          </h3>
+        </div>
+      </section>
+      <section className='flex w-full flex-col items-center bg-[#E6EAF0] px-2 md:px-0'>
+        <SquadHeader
+          title={headerCOE.title}
+          description={headerCOE.description}
+        />
+        <SquadProfileCarousel profiles={profilesCOE} />
+      </section>
+      <section className='flex w-full flex-col items-center bg-white px-2 md:px-0'>
+        <SquadHeader
+          title={headerTecnología.title}
+          description={headerTecnología.description}
+        />
+        <SquadProfileCarousel profiles={profilesTecnologia} />
+      </section>
+      <section className='flex w-full flex-col items-center bg-[#E6EAF0] px-2 md:px-0'>
+        <SquadHeader
+          title={headerCatalziador.title}
+          description={headerCatalziador.description}
+        />
+        <SquadProfileCarousel profiles={profilesCatalizador} />
+      </section>
+      <section className={`${darkerGrotesque.variable}`}>
+        <div className='flex flex-col items-center justify-center bg-white py-16 md:mt-16'>
+          <StarIcon />
+          <h2 className='mb-8 text-center font-darker-grotesque text-[28px] font-bold text-[#FE2E00] md:text-[40px]'>
+            ¡Únete a Nuestra Comunidad!
+          </h2>
+          <p className='mb-8 max-w-2xl text-center font-darker-grotesque text-[18px] font-medium text-[#3B4A6B] md:text-[24px]'>
+            Conéctate con profesionales ágiles de toda Latinoamérica, accede a
+            recursos exclusivos, y participa en eventos y webinars que
+            impulsarán tu crecimiento
+          </p>
+          <Link href='/register'>
+            <button className='rounded-2xl bg-[#3B4A6B] px-16 py-1 font-darker-grotesque text-lg font-medium text-white transition hover:bg-[#254075] md:mb-20 md:px-24 md:py-3 md:text-[22px]'>
+              Registrarme ahora
+            </button>
+          </Link>
+        </div>
+      </section>
     </>
   )
 }
