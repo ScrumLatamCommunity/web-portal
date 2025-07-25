@@ -16,8 +16,6 @@ export const Footer = () => {
   const hiddenLayoutRoutes = [
     '/sponsors',
     '/super-admin-dashboard',
-    '/users',
-    '/users/activities',
     '/register',
     '/login',
     '/onboarding/travel'

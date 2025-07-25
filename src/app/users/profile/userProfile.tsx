@@ -1,5 +1,5 @@
 'use client'
-import { darkerGrotesque, inter, karla } from '@/fonts'
+import { darkerGrotesque, karla } from '@/fonts'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import GlobeIcon from '@/assets/GlobeIcon'
@@ -205,19 +205,22 @@ export default function UserProfile() {
     icon?: React.ReactNode
     fullWidth?: boolean
   }) => (
-    <div className={`${fullWidth ? 'md:col-span-2' : ''} mb-4 md:mb-0`}>
-      <label className='text-md mb-1 block font-darker-grotesque-700 text-gray-600'>
+    <div className={`${fullWidth ? 'col-span-full' : ''}`}>
+      <label className='mb-2 block text-sm font-medium text-gray-700'>
         {label}
       </label>
-      <div className='flex items-center'>
+      <div className='relative'>
+        <input
+          type='text'
+          value={value || ''}
+          readOnly
+          className='w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 focus:border-gray-300 focus:outline-none focus:ring-0'
+        />
         {icon && (
-          <span className='mr-3 flex-shrink-0 text-[#FE2E00]'>{icon}</span>
+          <div className='absolute right-3 top-1/2 -translate-y-1/2'>
+            {icon}
+          </div>
         )}
-        <p
-          className={`text-black w-full break-words rounded-xl bg-[#D9D9D940] px-4 py-3 text-lg`}
-        >
-          {value || 'N/A'}
-        </p>
       </div>
     </div>
   )
@@ -225,108 +228,132 @@ export default function UserProfile() {
   return (
     <>
       <section
-        className={`${darkerGrotesque.variable} ${karla.variable} min-h-screen bg-gray-100`}
+        className={`${darkerGrotesque.variable} ${karla.variable} min-h-screen bg-gray-100 p-4 md:p-8`}
       >
-        <div className='bg-[#082965] text-white shadow-lg'>
-          <div className='mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-12 lg:px-8'>
-            <div className='flex flex-col items-center gap-6 sm:flex-row md:gap-10'>
-              <div className='group relative flex-shrink-0'>
-                <ImageWithFallback
-                  primarySrc={userData?.profilePictureUrl}
-                  alt='Foto de Perfil'
-                  className='h-36 w-36 rounded-full border-4 border-slate-300 object-cover shadow-lg md:h-44 md:w-44'
-                  imgWidth={176}
-                  imgHeight={176}
-                />
-                <button
-                  onClick={() => setIsImageModalOpen(true)}
-                  className='bg-black absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-opacity-0 text-sm font-semibold text-[#fefeff] opacity-0 transition-opacity duration-300 group-hover:bg-opacity-50 group-hover:opacity-100'
-                  aria-label='Cambiar foto de perfil'
-                >
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    className='mb-1 h-8 w-8'
+        <div className='mx-auto max-w-2xl'>
+          {/* Card principal centrado */}
+          <div className='rounded-xl border border-gray-200 bg-white p-4 shadow-xl md:p-8'>
+            {/* Título dentro del card */}
+            <h1 className='mb-6 text-2xl font-darker-grotesque-700 text-[#FE7354] md:mb-8 md:text-4xl'>
+              Mi perfil
+            </h1>
+
+            {/* Sección de perfil en dos columnas */}
+            <div className='mb-6 flex gap-2 md:mb-8 md:flex-row md:items-start md:gap-6'>
+              {/* Columna izquierda - Foto */}
+              <div className='flex justify-center md:justify-start'>
+                <div className='group relative flex-shrink-0'>
+                  <ImageWithFallback
+                    primarySrc={userData?.profilePictureUrl}
+                    alt='Foto de Perfil'
+                    className='h-20 w-20 rounded-full border-4 border-slate-300 object-cover shadow-lg md:h-36 md:w-36'
+                    imgWidth={144}
+                    imgHeight={144}
+                  />
+                  <button
+                    onClick={() => setIsImageModalOpen(true)}
+                    className='bg-black absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-opacity-0 text-sm font-semibold text-[#fefeff] opacity-0 transition-opacity duration-300 group-hover:bg-opacity-50 group-hover:opacity-100'
+                    aria-label='Cambiar foto de perfil'
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z'
-                    />
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z'
-                    />
-                  </svg>
-                  Cambiar Foto
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={1.5}
+                      stroke='currentColor'
+                      className='mb-1 h-6 w-6'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z'
+                      />
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z'
+                      />
+                    </svg>
+                    Cambiar foto de perfil
+                  </button>
+                </div>
+              </div>
+
+              {/* Columna derecha - Nombre y botones */}
+              <div className='flex-1 text-center'>
+                <h2 className='text-s mb-2 font-darker-grotesque-700 text-[#082965] md:mb-4 md:text-3xl'>
+                  {userData?.firstName || ''} {userData?.lastName || ''}
+                </h2>
+                <div className='flex flex-row justify-center gap-2 md:gap-4'>
+                  <button
+                    onClick={() => setIsImageModalOpen(true)}
+                    className='flex-7 rounded-md border border-gray-300 px-1 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50 md:flex-none md:px-4 md:text-sm lg:px-3 lg:py-3 lg:text-xl'
+                  >
+                    Cambiar foto de perfil
+                  </button>
+                  <button
+                    onClick={() => setShowEditProfile(true)}
+                    className='flex-2 rounded-md bg-[#082965] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90 md:flex-none md:px-4 md:text-sm lg:py-3 lg:text-xl'
+                  >
+                    Editar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Formulario/Información */}
+            <div className='space-y-4 md:space-y-6'>
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                <DetailItem
+                  label='Nombres*'
+                  value={userData?.firstName || ''}
+                />
+                <DetailItem
+                  label='Apellidos*'
+                  value={userData?.lastName || ''}
+                />
+              </div>
+
+              <DetailItem
+                label='Correo electrónico*'
+                value={userData?.email || ''}
+                fullWidth={true}
+              />
+
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                <DetailItem
+                  label='Nombre de usuario*'
+                  value={userData?.username || ''}
+                />
+                <DetailItem
+                  label='País*'
+                  value={displayCountry}
+                  icon={
+                    flagSrc ? (
+                      <ImageWithFallback
+                        primarySrc={flagSrc}
+                        fallbackSrc={null}
+                        alt='Bandera'
+                        className='h-4 w-6 object-contain'
+                        imgWidth={24}
+                        imgHeight={16}
+                      />
+                    ) : (
+                      <GlobeIcon className='h-4 w-4 text-gray-400' />
+                    )
+                  }
+                />
+              </div>
+
+              {/* Botón de guardar centrado */}
+              <div className='pt-4 text-center md:pt-6'>
+                <button
+                  onClick={() => setShowEditProfile(true)}
+                  className='w-full rounded-md bg-[#082965] px-4 py-2 font-inter text-base font-semibold text-white shadow-md transition-all hover:bg-opacity-90 hover:shadow-lg md:w-auto md:px-12 md:py-3 md:text-lg'
+                >
+                  Guardar cambios
                 </button>
               </div>
-
-              <div className='flex-grow text-center sm:text-left'>
-                <h1
-                  className={`break-words text-4xl font-darker-grotesque-700 text-white lg:text-5xl`}
-                >
-                  {userData?.firstName || ''} {userData?.lastName || ''}
-                </h1>
-                <p className='mt-1 text-xl text-slate-300 lg:text-2xl'>
-                  @{userData?.username || 'usuario'}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className='mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8'>
-          <div className='rounded-xl border border-gray-200 bg-white p-6 shadow-xl md:p-8'>
-            <h2 className='mb-6 border-b border-gray-200 pb-4 text-2xl font-darker-grotesque-700 text-[#082965] md:text-3xl'>
-              Información de Contacto y Cuenta
-            </h2>
-            <div className='grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2'>
-              <DetailItem
-                label='Email Principal'
-                value={userData?.email || ''}
-                icon={<GlobeIcon className='h-6 w-6' />}
-              />
-              <DetailItem
-                label='País de Residencia'
-                value={displayCountry}
-                icon={
-                  flagSrc ? (
-                    <ImageWithFallback
-                      primarySrc={flagSrc}
-                      fallbackSrc={null}
-                      alt='Bandera'
-                      className='h-6 w-9 object-contain'
-                      imgWidth={36}
-                      imgHeight={24}
-                    />
-                  ) : (
-                    <GlobeIcon className='h-6 w-6 text-gray-400' />
-                  )
-                }
-              />
-              <DetailItem
-                label='Tipo de Membresía'
-                value={userData?.membership || ''}
-                icon={<GlobeIcon className='h-6 w-6' />}
-              />
-              <DetailItem
-                label='Miembro desde'
-                value={formatDate(userData?.createdAt)}
-              />
-            </div>
-
-            <div className='mt-10 border-t border-gray-200 pt-6 text-center md:text-right'>
-              <button
-                onClick={() => setShowEditProfile(true)}
-                className='rounded-xl bg-[#FD3600] px-8 py-3 font-inter text-lg font-semibold text-white shadow-md transition-all hover:bg-opacity-85 hover:shadow-lg'
-              >
-                Editar Información
-              </button>
             </div>
           </div>
         </div>

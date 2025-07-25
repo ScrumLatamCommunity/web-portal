@@ -33,8 +33,10 @@ export const Navlist: React.FC = () => {
   }, [handleClickOutside])
 
   return (
-    <div className='flex flex-row items-center px-6 md:gap-12'>
-      <div className={`${darkerGrotesque.variable} font-darker-grotesque`}>
+    <div className='flex flex-col items-start px-6 md:gap-12 lg:flex-row lg:items-center'>
+      <div
+        className={`${darkerGrotesque.variable} w-full font-darker-grotesque lg:w-auto`}
+      >
         <Link
           href='/'
           className={`${darkerGrotesque.variable} md:item-start flex items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 text-[16px] font-darker-grotesque-600 md:text-[26px] ${
@@ -45,7 +47,7 @@ export const Navlist: React.FC = () => {
         </Link>
       </div>
       <div
-        className={`menu-container ${darkerGrotesque.variable} flex items-center border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} flex w-full items-center border-b-2 border-gray-200 font-darker-grotesque lg:w-auto lg:border-b-0`}
         onClick={() => router.push('/activities')}
       >
         <a
@@ -59,7 +61,7 @@ export const Navlist: React.FC = () => {
         </a>
       </div>
       <div
-        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full w-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:w-auto lg:border-b-0`}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
