@@ -348,7 +348,7 @@ export default function SponsorProfile() {
           ) : (sponsorData?.descriptions?.length ?? 0) > 0 ? (
             <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
               {sponsorData?.descriptions.map((desc, index) => (
-                <div key={desc.id} className='space-y-3 lg:w-[300px]'>
+                <div key={index} className='space-y-3 lg:w-[300px]'>
                   <div>
                     <label className='text-black block text-[18px] font-medium'>
                       Título {index + 1}
@@ -413,11 +413,11 @@ export default function SponsorProfile() {
               </p>
             )}
           </div>
-          <div className='flex flex-row items-center justify-center py-5 lg:justify-end lg:py-10'>
-            <button className='w-96 rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'>
-              Guardar cambios
-            </button>
-          </div>
+        </div>
+        <div className='flex justify-center py-5 lg:w-full lg:justify-end lg:py-10'>
+          <button className='w-96 rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'>
+            Guardar cambios
+          </button>
         </div>
       </div>
     </section>

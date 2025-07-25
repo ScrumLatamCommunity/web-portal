@@ -28,15 +28,28 @@ export interface SponsorData {
   }
 }
 
+export interface UpdateSponsorInput {
+  companyName: string
+  specialization: string[]
+  descriptions: SponsorDescription[]
+  web: string
+  phone: string
+  socials: string[]
+  logo: string
+  wppMessage: string
+  status: string
+  country: string[]
+  certificatesSponsor: SponsorCertificate[]
+  bannerWeb: string
+  bannerMobile: string
+}
+
 export interface SponsorDescription {
-  id: string
-  sponsorId: string
   title: string
   description: string
 }
 
-export interface Certificate {
-  id: string
+export interface SponsorCertificate {
   title: string
   url: string
 }

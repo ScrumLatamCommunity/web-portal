@@ -53,7 +53,7 @@ export default function CategoriesDropdown({
                     e.stopPropagation()
                     handleCountrySelect(country)
                   }}
-                  className='text-black ml-1 hover:text-red-300'
+                  className='ml-1 text-[#FE2E00] hover:text-red-300'
                 >
                   ×
                 </button>

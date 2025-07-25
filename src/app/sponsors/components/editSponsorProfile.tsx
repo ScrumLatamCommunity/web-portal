@@ -6,16 +6,19 @@ import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import CategoriesDropdown from './categories-dropdown'
 import TextEditor from './TextEditor'
-import ImageUpload from './imageUpload'
 import CountriesDropdown from './countries-dropdown'
 import { getCountryFlag } from '@/utils/getFlags'
 import { useAuth } from '@/app/context/AuthContext'
-import { SponsorData } from '@/interfaces'
+import { SponsorData, UpdateSponsorInput } from '@/interfaces'
+import ImageUpload from '@/app/editor/components/imgs/imageUpload'
 
 interface SponsorUpdateData {
   companyName: string
   specialization: string[]
-  description: string
+  descriptions: {
+    title: string
+    description: string
+  }[]
   web: string
   phone: string
   wppMessage: string
@@ -39,37 +42,40 @@ export default function EditSponsorProfile({
   const { token } = useAuth()
   const [formData, setFormData] = useState({
     ...sponsorData,
-    user: {
-      ...sponsorData.user
-    },
+    bannerWeb: sponsorData.bannerWeb,
+    bannerMobile: sponsorData.bannerMobile,
+    user: { ...sponsorData.user },
     logo: sponsorData.logo
   })
   const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const cleanSponsorData = (data: typeof formData): SponsorUpdateData => {
-    // Asegurarse de que los arrays no sean null
-    const socials = Array.isArray(data.socials) ? data.socials : []
-    const specialization = Array.isArray(data.specialization)
-      ? data.specialization
-      : []
-
-    // Limpiar strings vacíos
-    const cleanedData = {
+  const cleanSponsorData = (data: typeof formData): UpdateSponsorInput => {
+    return {
       companyName: data.companyName?.trim() || '',
-      specialization: specialization.filter(
-        (item) => item && item.trim() !== ''
-      ),
-      description: data.descriptions?.[0]?.description?.trim() || '',
+      specialization: Array.isArray(data.specialization)
+        ? data.specialization.filter((item) => item && item.trim() !== '')
+        : [],
+      descriptions: (data.descriptions || []).map((d) => ({
+        title: d.title?.trim() || '',
+        description: d.description?.trim() || ''
+      })),
       web: data.web?.trim() || '',
       phone: data.phone?.trim() || '',
-      socials: socials.map((s) => s?.trim() || '').filter((s) => s !== ''),
+      socials: (Array.isArray(data.socials) ? data.socials : [])
+        .map((s) => s?.trim() || '')
+        .filter(Boolean),
       logo: data.logo || '',
-      status: data.status || 'ACTIVE',
       wppMessage: data.wppMessage?.trim() || '',
-      country: data.user.country // Enviamos solo el array de países
+      status: data.status || 'ACTIVE',
+      country: data.user?.country || [],
+      certificatesSponsor: (data.certificates || []).map((c) => ({
+        title: c.title,
+        url: c.url
+      })),
+      bannerWeb: data.bannerWeb || '',
+      bannerMobile: data.bannerMobile || ''
     }
-    return cleanedData
   }
 
   const handleInputChange = (
@@ -133,6 +139,9 @@ export default function EditSponsorProfile({
       setIsSaving(true)
       setError(null)
       const cleanedData = cleanSponsorData(formData)
+
+      console.log('datos de envio')
+      console.log(cleanedData)
       // Validación básica de datos
       if (!cleanedData.companyName || cleanedData.companyName.trim() === '') {
         throw new Error('El nombre de la empresa es requerido')
@@ -251,8 +260,8 @@ export default function EditSponsorProfile({
               type='text'
               id='email'
               value={formData.user.email}
-              onChange={handleInputChange}
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
             />
           </div>
           <div className='flex flex-col'>
@@ -305,7 +314,7 @@ export default function EditSponsorProfile({
                     handleInputChange(e)
                   }
                 }}
-                className='h-[150px] w-full resize-none rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none'
+                className='h-[150px] w-full resize-none rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
                 style={{ resize: 'none' }}
                 placeholder='Mensaje de Whatsapp'
                 rows={1}
@@ -378,20 +387,20 @@ export default function EditSponsorProfile({
 
         <div className='mt-6 w-full space-y-4'>
           <h2 className='text-xl font-bold text-[#FE2E00]'>Sobre nosotros</h2>
-          <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
+          <div className='flex flex-col gap-3 lg:flex-row lg:flex-wrap'>
             {formData.descriptions && formData.descriptions.length > 0 ? (
               formData.descriptions.map((desc, index) => (
                 <div
-                  key={desc.id || index}
-                  className='mb-3 space-y-3 rounded-md p-3 lg:w-[300px]'
+                  key={index}
+                  className='mb-3 w-full space-y-3 rounded-md p-3 lg:w-[300px]'
                 >
                   <div>
                     <label className='text-black block text-[18px] font-medium'>
                       Título {index + 1}
                     </label>
-                    <input
-                      type='text'
+                    <textarea
                       value={desc.title}
+                      maxLength={100}
                       onChange={(e) => {
                         const newDescs = [...formData.descriptions]
                         newDescs[index] = {
@@ -405,7 +414,11 @@ export default function EditSponsorProfile({
                       }}
                       className='mt-1 w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
                       placeholder={`Título ${index + 1}`}
+                      rows={2}
                     />
+                    <span className='mt-1 text-sm text-gray-500'>
+                      {desc.title?.length || 0}/100 caracteres
+                    </span>
                   </div>
                   <div className='flex flex-col'>
                     <label className='text-black block text-[18px] font-medium'>
@@ -414,7 +427,7 @@ export default function EditSponsorProfile({
                     <div className='flex flex-col'>
                       <textarea
                         value={desc.description}
-                        maxLength={500}
+                        maxLength={300}
                         onChange={(e) => {
                           const newDescs = [...formData.descriptions]
                           newDescs[index] = {
@@ -432,40 +445,21 @@ export default function EditSponsorProfile({
                         rows={4}
                       />
                       <span className='mt-1 text-sm text-gray-500'>
-                        {desc.description?.length || 0}/500 caracteres
+                        {desc.description?.length || 0}/300 caracteres
                       </span>
                     </div>
-                  </div>
-                  <div className='flex justify-end'>
-                    {formData.descriptions.length > 1 && (
-                      <button
-                        type='button'
-                        className='mt-2 text-sm text-[#FE2E00] hover:text-[#FE5833]'
-                        onClick={() => {
-                          const newDescs = formData.descriptions.filter(
-                            (_, i) => i !== index
-                          )
-                          setFormData((prev) => ({
-                            ...prev,
-                            descriptions: newDescs
-                          }))
-                        }}
-                      >
-                        Eliminar
-                      </button>
-                    )}
                   </div>
                 </div>
               ))
             ) : (
-              <div className='mb-3 space-y-3 rounded-md border border-[#C1CCF4] p-3 lg:w-[300px]'>
+              <div className='mb-3 w-full space-y-3 rounded-md border border-[#C1CCF4] p-3 lg:w-[300px]'>
                 <div>
                   <label className='text-black block text-[18px] font-medium'>
                     Título 1
                   </label>
-                  <input
-                    type='text'
+                  <textarea
                     value={formData.descriptions?.[0]?.title || ''}
+                    maxLength={100}
                     onChange={(e) => {
                       setFormData((prev) => ({
                         ...prev,
@@ -476,7 +470,12 @@ export default function EditSponsorProfile({
                     }}
                     className='mt-1 w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
                     placeholder='Título 1'
+                    rows={2}
                   />
+                  <span className='mt-1 text-sm text-gray-500'>
+                    {formData.descriptions?.[0]?.title?.length || 0}/100
+                    caracteres
+                  </span>
                 </div>
                 <div className='flex flex-col'>
                   <label className='text-black block text-[18px] font-medium'>
@@ -485,7 +484,7 @@ export default function EditSponsorProfile({
                   <div className='flex flex-col'>
                     <textarea
                       value={formData.descriptions?.[0]?.description || ''}
-                      maxLength={500}
+                      maxLength={300}
                       onChange={(e) => {
                         setFormData((prev) => ({
                           ...prev,
@@ -503,7 +502,7 @@ export default function EditSponsorProfile({
                       rows={4}
                     />
                     <span className='mt-1 text-sm text-gray-500'>
-                      {formData.descriptions?.[0]?.description?.length || 0}/500
+                      {formData.descriptions?.[0]?.description?.length || 0}/300
                       caracteres
                     </span>
                   </div>
@@ -532,16 +531,104 @@ export default function EditSponsorProfile({
           )}
         </div>
 
-        <div className='flex flex-row items-center justify-center py-5 lg:justify-end lg:py-10'>
+        {/* Sección de Certificados */}
+        <div className='mt-8 w-full space-y-4'>
+          <h2 className='text-xl font-bold text-[#FE2E00]'>
+            Nuestras certificaciones
+          </h2>
+          <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
+            {formData.certificates && formData.certificates.length > 0 ? (
+              formData.certificates.map((cert, idx) => (
+                <div
+                  key={idx}
+                  className='relative mb-4 flex flex-col items-center gap-3 lg:w-[300px]'
+                >
+                  <button
+                    type='button'
+                    className='absolute right-2 z-20 text-lg text-[#FE2E00] hover:text-[#FE5833]'
+                    onClick={() => {
+                      const newCerts = formData.certificates.filter(
+                        (_, i) => i !== idx
+                      )
+                      setFormData((prev) => ({
+                        ...prev,
+                        certificates: newCerts
+                      }))
+                    }}
+                  >
+                    ×
+                  </button>
+                  <div className='flex aspect-square h-48 items-center justify-center overflow-hidden rounded-lg bg-gray-100'>
+                    <ImageUpload
+                      onChange={(imgUrl) => {
+                        const newCerts = [...formData.certificates]
+                        newCerts[idx] = { ...newCerts[idx], title: imgUrl }
+                        setFormData((prev) => ({
+                          ...prev,
+                          certificates: newCerts
+                        }))
+                      }}
+                      initialImage={cert.title}
+                      className='aspect-square rounded-lg object-cover'
+                    />
+                  </div>
+                  <label className='text-[14px] font-medium text-[#000]'>
+                    Link
+                  </label>
+                  <input
+                    type='text'
+                    value={cert.url}
+                    onChange={(e) => {
+                      const newCerts = [...formData.certificates]
+                      newCerts[idx] = {
+                        ...newCerts[idx],
+                        url: e.target.value
+                      }
+                      setFormData((prev) => ({
+                        ...prev,
+                        certificates: newCerts
+                      }))
+                    }}
+                    className='w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-center text-[14px] text-[#8C8C8C] focus:outline-none'
+                    placeholder='Enlace del certificado'
+                  />
+                </div>
+              ))
+            ) : (
+              <p className='text-gray-500'>No hay certificaciones agregadas.</p>
+            )}
+          </div>
+          {(formData.certificates?.length ?? 0) && (
+            <button
+              type='button'
+              className='mt-2 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
+              onClick={() => {
+                setFormData((prev) => ({
+                  ...prev,
+                  certificates: [
+                    ...(prev.certificates && prev.certificates.length > 0
+                      ? prev.certificates
+                      : []),
+                    { id: '', title: '', url: '' }
+                  ]
+                }))
+              }}
+            >
+              + Agregar certificado
+            </button>
+          )}
+        </div>
+
+        <div className='flex w-full flex-row items-center justify-end space-x-4 py-5 lg:py-10'>
           <button
-            className='rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-96 lg:w-[300px]'
+            className='rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'
             onClick={handleDiscard}
             disabled={isSaving}
           >
             Descartar
           </button>
           <button
-            className='rounded-md bg-[#072356] px-4 py-3 text-sm font-medium text-white lg:w-96 lg:w-[300px]'
+            className='rounded-md bg-[#072356] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'
             onClick={handleSave}
             disabled={isSaving}
           >
