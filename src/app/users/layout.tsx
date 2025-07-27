@@ -11,27 +11,40 @@ interface UserLayoutProps {
 }
 
 export default function UserLayout({ children }: UserLayoutProps) {
-  const { user } = useAuth()
+  const { user, token, isLoading: authLoading } = useAuth()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    // Esperar a que la autenticación termine de cargar
+    if (authLoading) {
+      return
+    }
+
+    // Si no hay token, redirigir al login
+    if (!token) {
+      router.push('/login')
+      return
+    }
+
+    // Si hay usuario autenticado pero no es USER, redirigir al home
     if (user && user.role !== 'USER') {
       router.push('/')
       return
     }
-    setIsLoading(false)
-  }, [user, router])
 
-  if (isLoading) {
+    // Si llegamos aquí, el usuario está autenticado y es USER
+    setIsLoading(false)
+  }, [user, token, authLoading, router])
+
+  // Mostrar loading mientras se verifica la autenticación
+  if (authLoading || isLoading) {
     return <LoadingScreen />
   }
 
   return (
     <div className='flex min-h-screen w-full flex-col'>
-      <div className='container mx-auto flex flex-1'>
-        <main className='flex-1'>{children}</main>
-      </div>
+      <main className='flex-1'>{children}</main>
     </div>
   )
 }

@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
     >
       <AuthWrapper showWhenAuth={false}>
         <div
-          className={`font-darker-grotesque ${isMobile ? 'flex flex-col space-y-4' : 'flex items-center'}`}
+          className={`font-darker-grotesque ${isMobile ? 'flex items-center' : 'flex items-center'}`}
         >
           <Link
             className='flex items-center whitespace-nowrap p-2 text-red-400 hover:text-red-200'

@@ -34,9 +34,9 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
-    <div className='mx-auto flex w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl'>
+    <div className='mx-auto flex h-[140px] w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl md:h-[280px]'>
       {/* Imagen */}
-      <div className='relative h-32 w-2/5 md:h-40'>
+      <div className='relative h-full w-2/5'>
         <img
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}

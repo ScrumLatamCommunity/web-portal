@@ -15,7 +15,7 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
   isMobile = false
 }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const { logout, user } = useAuth()
+  const { logout, user, isLoading } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -23,7 +23,8 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
   const mapRoutes: Record<string, string> = {
     ADMIN: '/super-admin-dashboard',
     SPONSOR: '/sponsors',
-    USER: '/users'
+    USER: '/users',
+    EDITOR: '/editor'
   }
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -47,14 +48,10 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
     }
   }, [isOpen])
 
-  const handleDashboard = () => {
-    router.push(user?.role ? mapRoutes[user?.role] : '/')
-    setIsOpen(false)
-  }
-
   const handleLogout = () => {
     logout()
     setIsOpen(false)
+    window.location.reload()
     router.push('/')
   }
 
@@ -73,21 +70,34 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
   const getNavLinkStyles = (href: string) => {
     const isActive =
       pathname === href || (href !== '/' && pathname.startsWith(href))
-    return `${darkerGrotesque.variable} flex w-full items-center space-x-3 px-4 py-1 text-left font-darker-grotesque-600 transition-colors duration-150 hover:bg-gray-50 ${
-      isActive ? 'text-[#FE7354] font-semibold' : 'text-gray-700'
+    return `flex w-full items-center space-x-3 px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+      isActive ? 'text-[#FE7354]' : 'text-[#072356]'
     }`
   }
 
   const getProfileLinkStyles = (href: string) => {
     const isActive = pathname === href || pathname.startsWith(href)
-    return `${darkerGrotesque.variable} w-full border-gray-200 px-4 py-1 text-left font-darker-grotesque-600 transition-colors duration-150 hover:bg-gray-50 ${
-      isActive
-        ? 'text-[#FE7354] font-semibold'
-        : href === '/users/activities'
-          ? 'text-red-400'
-          : 'text-gray-700'
+    return `w-full border-gray-200 px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+      isActive ? 'text-[#FE7354]' : 'text-[#072356]'
     }`
   }
+
+  // Mostrar loading mientras se carga la información del usuario
+  if (isLoading) {
+    return (
+      <div className='flex items-center space-x-2'>
+        <div className='h-8 w-8 animate-pulse rounded-full bg-gray-300'></div>
+        <div className='h-4 w-20 animate-pulse rounded bg-gray-300'></div>
+      </div>
+    )
+  }
+
+  // Si no hay usuario, no mostrar el dropdown
+  if (!user) {
+    return null
+  }
+
+  console.log('\n\n [USER]', user, '\n\n')
 
   // En móvil, renderizar con dropdown pero diferente estilo
   if (isMobile) {
@@ -99,67 +109,90 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
           className='flex items-center space-x-2 text-[#082965] transition-colors duration-200 hover:text-red-500'
         >
           <span
-            className={`${darkerGrotesque.variable} text-lg font-darker-grotesque-600 text-[#082965]`}
+            className={`${darkerGrotesque.variable} hidden font-darker-grotesque text-[32px] font-[700] text-[#082965] md:block`}
           >
             ¡Hola {user?.name?.split(' ')[0] || 'Usuario'}!
           </span>
-          <div className='flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
+          <div className='flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
             {getUserInitials()}
           </div>
         </button>
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className='absolute right-0 z-50 mt-2 w-56 rounded-bl-xl rounded-br-xl rounded-tl-xl border-2 border-[#082965] bg-white shadow-lg'>
+          <div className='absolute right-0 z-50 mt-2 w-[232px] shrink-0 border border-[rgba(8,41,101,0.5)] bg-white shadow-lg [border-radius:10px_0_10px_10px]'>
             <div className='flex flex-col py-2'>
-              {/* Rutas de navegación */}
-              <div className='border-gray-200 pb-2'>
-                <Link
-                  href='/'
-                  onClick={() => setIsOpen(false)}
-                  className={getNavLinkStyles('/')}
-                >
-                  <span>Inicio</span>
-                </Link>
+              {user?.role === 'EDITOR' ? (
+                // Menú específico para EDITOR
+                <>
+                  <Link
+                    href='/editor'
+                    onClick={() => setIsOpen(false)}
+                    className={getNavLinkStyles('/editor')}
+                  >
+                    <span>Dashboard</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className={`flex w-full items-center space-x-3 px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] text-[#072356] transition-colors duration-150 hover:bg-gray-50`}
+                  >
+                    <span>Cerrar sesión</span>
+                    <LogOut size={18} />
+                  </button>
+                </>
+              ) : (
+                // Menú normal para otros roles
+                <>
+                  {/* Rutas de navegación */}
+                  <div className='border-gray-200 pb-2'>
+                    <Link
+                      href='/'
+                      onClick={() => setIsOpen(false)}
+                      className={getNavLinkStyles('/')}
+                    >
+                      <span>Inicio</span>
+                    </Link>
 
-                <Link
-                  href='/activities'
-                  onClick={() => setIsOpen(false)}
-                  className={getNavLinkStyles('/activities')}
-                >
-                  <span>Actividades</span>
-                </Link>
+                    <Link
+                      href='/activities'
+                      onClick={() => setIsOpen(false)}
+                      className={getNavLinkStyles('/activities')}
+                    >
+                      <span>Actividades</span>
+                    </Link>
 
-                <Link
-                  href='/community'
-                  onClick={() => setIsOpen(false)}
-                  className={getNavLinkStyles('/community')}
-                >
-                  <span>Comunidad</span>
-                </Link>
-              </div>
+                    <Link
+                      href='/community'
+                      onClick={() => setIsOpen(false)}
+                      className={getNavLinkStyles('/community')}
+                    >
+                      <span>Comunidad</span>
+                    </Link>
+                  </div>
 
-              {/* Opciones de perfil */}
-              <Link
-                href='/users'
-                className={getProfileLinkStyles('/users/profile')}
-              >
-                Mi perfil
-              </Link>
+                  {/* Opciones de perfil */}
+                  <Link
+                    href='/users'
+                    className={getProfileLinkStyles('/users/profile')}
+                  >
+                    Mi perfil
+                  </Link>
 
-              <Link
-                href='/users/activities'
-                className={getProfileLinkStyles('/users/activities')}
-              >
-                Mis actividades
-              </Link>
+                  <Link
+                    href='/users/activities'
+                    className={getProfileLinkStyles('/users/activities')}
+                  >
+                    Mis actividades
+                  </Link>
 
-              <button
-                onClick={handleLogout}
-                className={`${darkerGrotesque.variable} flex w-full items-center space-x-3 px-4 py-1 text-left font-darker-grotesque-600 text-gray-700 transition-colors duration-150 hover:bg-gray-50`}
-              >
-                <span>Cerrar sesión</span>
-                <LogOut size={18} />
-              </button>
+                  <button
+                    onClick={handleLogout}
+                    className={`flex w-full items-center space-x-3 px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] text-[#072356] transition-colors duration-150 hover:bg-gray-50`}
+                  >
+                    <span>Cerrar sesión</span>
+                    <LogOut size={18} />
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -175,49 +208,131 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
         className='flex items-center space-x-2 text-blue-700 transition-colors duration-200 hover:text-red-500'
       >
         <span
-          className={`${darkerGrotesque.variable} hidden text-lg font-darker-grotesque-600 text-[#082965] md:block`}
+          className={`${darkerGrotesque.variable} hidden font-darker-grotesque text-[32px] font-bold text-[#082965] md:block`}
         >
           ¡Hola {user?.name?.split(' ')[0] || 'Usuario'}!
         </span>
-        <div className='flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
+        <div className='flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
           {getUserInitials()}
         </div>
       </button>
 
       {/* Desktop Dropdown Menu */}
       {isOpen && (
-        <div className='absolute right-0 z-50 mt-2 w-48 rounded-bl-xl rounded-br-xl rounded-tl-xl border-2 border-[#082965] bg-white shadow-lg'>
+        <div className='absolute right-0 z-50 mt-2 w-[232px] shrink-0 border border-[rgba(8,41,101,0.5)] bg-white shadow-lg [border-radius:10px_0_10px_10px]'>
           <div className='flex flex-col py-2'>
-            <Link
-              className={`${darkerGrotesque.variable} w-full px-4 py-1 text-left transition-colors duration-150 hover:bg-gray-50 ${
-                pathname === '/users' || pathname.startsWith('/users')
-                  ? 'font-semibold text-[#FE7354]'
-                  : 'text-[#082965]'
-              }`}
-              href='/users'
-            >
-              Mi perfil
-            </Link>
+            {user?.role === 'EDITOR' ? (
+              // Menú específico para EDITOR
+              <>
+                <Link
+                  className={`w-full px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                    pathname === '/editor' || pathname.startsWith('/editor')
+                      ? 'text-[#FE7354]'
+                      : 'text-[#072356]'
+                  }`}
+                  href='/editor'
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className={`flex w-full items-center space-x-3 px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] text-[#072356] transition-colors duration-150 hover:bg-gray-50`}
+                >
+                  <span>Cerrar sesión</span>
+                  <svg
+                    width='15'
+                    height='15'
+                    viewBox='0 0 15 15'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M7.5 12.5H12.5C12.8315 12.5 13.1495 12.3683 13.3839 12.1339C13.6183 11.8995 13.75 11.5815 13.75 11.25V3.75C13.75 3.41848 13.6183 3.10054 13.3839 2.86612C13.1495 2.6317 12.8315 2.5 12.5 2.5H7.5'
+                      stroke='#082965'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M3.75 5L1.25 7.5L3.75 10'
+                      stroke='#082965'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M1.25 7.5H9.375'
+                      stroke='#082965'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </button>
+              </>
+            ) : (
+              // Menú normal para otros roles
+              <>
+                <Link
+                  className={`w-full px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                    pathname === '/users' || pathname.startsWith('/users')
+                      ? 'text-[#FE7354]'
+                      : 'text-[#072356]'
+                  }`}
+                  href='/users'
+                >
+                  Mi perfil
+                </Link>
 
-            <Link
-              className={`${darkerGrotesque.variable} w-full px-4 py-1 text-left transition-colors duration-150 hover:bg-gray-50 ${
-                pathname === '/users/activities' ||
-                pathname.startsWith('/users/activities')
-                  ? 'font-semibold text-[#FE7354]'
-                  : 'text-[#082965]'
-              }`}
-              href='/users/activities'
-            >
-              Mis actividades
-            </Link>
+                <Link
+                  className={`w-full px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                    pathname === '/users/activities' ||
+                    pathname.startsWith('/users/activities')
+                      ? 'text-[#FE7354]'
+                      : 'text-[#072356]'
+                  }`}
+                  href='/users/activities'
+                >
+                  Mis actividades
+                </Link>
 
-            <button
-              onClick={handleLogout}
-              className={`${darkerGrotesque.variable} flex w-full items-center space-x-3 px-4 py-1 text-left text-[#082965] transition-colors duration-150 hover:bg-gray-50`}
-            >
-              <span>Cerrar sesión</span>
-              <LogOut size={18} fontWeight={600} />
-            </button>
+                <button
+                  onClick={handleLogout}
+                  className={`flex w-full items-center space-x-3 px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] text-[#072356] transition-colors duration-150 hover:bg-gray-50`}
+                >
+                  <span>Cerrar sesión</span>
+                  <svg
+                    width='15'
+                    height='15'
+                    viewBox='0 0 15 15'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M7.5 12.5H12.5C12.8315 12.5 13.1495 12.3683 13.3839 12.1339C13.6183 11.8995 13.75 11.5815 13.75 11.25V3.75C13.75 3.41848 13.6183 3.10054 13.3839 2.86612C13.1495 2.6317 12.8315 2.5 12.5 2.5H7.5'
+                      stroke='#082965'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M3.75 5L1.25 7.5L3.75 10'
+                      stroke='#082965'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M1.25 7.5H9.375'
+                      stroke='#082965'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
