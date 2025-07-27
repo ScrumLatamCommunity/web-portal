@@ -36,31 +36,33 @@ export const Navlist: React.FC = () => {
   }, [handleClickOutside])
 
   return (
-    <div className='flex flex-row items-center px-6 md:gap-12'>
-      <div className={`${darkerGrotesque.variable} font-darker-grotesque`}>
+    <div className='flex flex-col items-start px-6 md:gap-12 lg:flex-row lg:items-center'>
+      <div
+        className={`${darkerGrotesque.variable} w-full font-darker-grotesque lg:w-auto`}
+      >
         <Link
           href='/'
           className={`${darkerGrotesque.variable} md:item-start flex items-center gap-2 border-b-2 border-gray-200 py-2 pr-4 text-[16px] font-darker-grotesque-600 md:text-[26px] ${
             pathname === '/' ? 'text-orange-500' : 'text-blue-7'
-          } hover:text-orange-500 lg:justify-center lg:border-b-0`}
+          } nav-link__text hover:text-orange-500 lg:justify-center lg:border-b-0`}
         >
           Inicio
         </Link>
       </div>
       <div
-        className={`menu-container ${darkerGrotesque.variable} flex items-center border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} flex w-full items-center border-b-2 border-gray-200 font-darker-grotesque lg:w-auto lg:border-b-0`}
         onClick={() => router.push('/activities')}
       >
         <a
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[16px] font-darker-grotesque-600 text-blue-7 md:text-[26px] ${
             pathname === '/activities' ? 'text-red-400' : 'text-blue-7'
-          } hover:text-red-400`}
+          } nav-link__text hover:text-red-400`}
         >
           Actividades
         </a>
       </div>
       <div
-        className={`menu-container ${darkerGrotesque.variable} py-full h-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:border-b-0`}
+        className={`menu-container ${darkerGrotesque.variable} py-full h-full w-full flex-grow border-b-2 border-gray-200 font-darker-grotesque lg:w-auto lg:border-b-0`}
         onClick={() => toggleMenu('comunidad')}
       >
         <div
@@ -74,7 +76,7 @@ export const Navlist: React.FC = () => {
             screen === 'sm' || screen === 'md'
               ? 'justify-between'
               : 'justify-center'
-          } ${activeMenu === 'comunidad' ? 'text-red-400' : ''} hover:text-orange-500`}
+          } ${activeMenu === 'comunidad' ? 'text-red-400' : ''} nav-link__text hover:text-orange-500`}
         >
           Comunidad
           {screen === 'lg' || screen === 'xl' ? (
@@ -109,7 +111,7 @@ export const Navlist: React.FC = () => {
                     />
                     <div className='ml-3'>
                       <p
-                        className={`font-roboto md:text-[16px] ${pathname === '/history' ? 'text-[#FE2E00]' : 'text-[#082965]'}`}
+                        className={`font-roboto md:text-[16px] ${pathname === '/history' ? 'text-[#FE2E00]' : 'text-[#082965]'} nav-link__text`}
                       >
                         Nuestros inicios
                       </p>
@@ -125,7 +127,7 @@ export const Navlist: React.FC = () => {
                     />
                     <div className='ml-3'>
                       <p
-                        className={`font-roboto md:text-[16px] ${pathname === '/community/squads' ? 'text-[#FE2E00]' : 'text-[#082965]'}`}
+                        className={`font-roboto md:text-[16px] ${pathname === '/community/squads' ? 'text-[#FE2E00]' : 'text-[#082965]'} nav-link__text`}
                       >
                         Los Squads
                       </p>
@@ -141,7 +143,7 @@ export const Navlist: React.FC = () => {
                     />
                     <div className='md:ml-3'>
                       <p
-                        className={`font-roboto md:text-[16px] ${pathname === '/community/products&services' ? 'text-[#FE2E00]' : 'text-[#082965]'}`}
+                        className={`font-roboto md:text-[16px] ${pathname === '/community/products&services' ? 'text-[#FE2E00]' : 'text-[#082965]'} nav-link__text`}
                       >
                         Productos y Servicios de Sponsors
                       </p>

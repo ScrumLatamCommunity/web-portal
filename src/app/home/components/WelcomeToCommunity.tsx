@@ -9,7 +9,6 @@ import useIsLargeScreen from '@/hooks'
 const NEW_IMAGE_URL = images.welcomeComunity
 
 export const WelcomeToCommunity = () => {
-  const isLargeScreen = useIsLargeScreen()
   const router = useRouter()
 
   return (

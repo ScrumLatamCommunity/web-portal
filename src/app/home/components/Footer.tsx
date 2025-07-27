@@ -16,8 +16,6 @@ export const Footer = () => {
   const hiddenLayoutRoutes = [
     '/sponsors',
     '/super-admin-dashboard',
-    '/users',
-    '/users/activities',
     '/register',
     '/login',
     '/onboarding/travel'
@@ -104,10 +102,16 @@ export const Footer = () => {
         <span>© 2025 Scrumlatam. Todos los derechos reservados</span>
       </div>
 
-      <TermsAndConditions
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-      />
+      {/* {openModal && (
+        <Modal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+          title='Términos y Condiciones'
+          contentClassName='justify-start gap-[10px]'
+        >
+          <TermsAndConditions />
+        </Modal>
+      )} */}
     </div>
   )
 }

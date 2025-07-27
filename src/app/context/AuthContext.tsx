@@ -24,6 +24,7 @@ interface AuthContextType {
   setSelectedSponsorId: (id: string | null) => void
   setAuthToken: (token: string) => void
   logout: () => void
+  isLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -31,21 +32,49 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedSponsorId, setSelectedSponsorIdState] = useState<
     string | null
   >(null)
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('auth_token')
-    const savedSponsorId = localStorage.getItem('selectedSponsorId')
+    const initializeAuth = () => {
+      try {
+        const savedToken = localStorage.getItem('auth_token')
+        const savedSponsorId = localStorage.getItem('selectedSponsorId')
 
-    if (savedToken) {
-      setAuthToken(savedToken)
+        if (savedToken) {
+          // Decodificar y validar el token inmediatamente
+          const decoded = jwtDecode<User>(savedToken)
+          const currentTime = Math.floor(Date.now() / 1000)
+
+          if (decoded.exp && decoded.exp < currentTime) {
+            // Token expirado, limpiar
+            localStorage.removeItem('auth_token')
+            setToken(null)
+            setUser(null)
+          } else {
+            // Token válido, establecer inmediatamente
+            setToken(savedToken)
+            setUser(decoded)
+          }
+        }
+
+        if (savedSponsorId) {
+          setSelectedSponsorIdState(savedSponsorId)
+        }
+      } catch (error) {
+        console.error('Error al inicializar autenticación:', error)
+        // Si hay error al decodificar, limpiar token inválido
+        localStorage.removeItem('auth_token')
+        setToken(null)
+        setUser(null)
+      } finally {
+        setIsLoading(false)
+      }
     }
 
-    if (savedSponsorId) {
-      setSelectedSponsorIdState(savedSponsorId)
-    }
+    initializeAuth()
   }, [])
 
   const setSelectedSponsorId = (id: string | null) => {
@@ -91,7 +120,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         selectedSponsorId,
         setAuthToken,
         logout,
-        setSelectedSponsorId
+        setSelectedSponsorId,
+        isLoading
       }}
     >
       {children}

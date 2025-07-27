@@ -68,13 +68,14 @@ export const useTimeConverter = (activity: Activity, userCountry?: string) => {
     const destIso3 = countryNameToISO3[rawCountry] || DEFAULT_ISO3
     const destTimeZone = iso3ToTimeZone[destIso3] || DEFAULT_TIMEZONE
 
-    const fallback = `${startTimeOriginal} a ${endTimeOriginal} (${destIso3})`
+    const fallback = `${startTimeOriginal} a ${endTimeOriginal}`
 
     console.log(rawCountry)
     console.log(destIso3)
 
     const convertTime = (timeStr: string): string => {
-      if (!/^\d{2}:\d{2}$/.test(timeStr)) return fallback
+      if (!/^\d{2}:\d{2}$/.test(timeStr))
+        return `${startTimeOriginal} a ${endTimeOriginal}`
 
       const today = new Date()
       const [hour, minute] = timeStr.split(':').map(Number)
@@ -123,16 +124,16 @@ export const useTimeConverter = (activity: Activity, userCountry?: string) => {
       const s = convertTime(startTimeOriginal)
       const e = convertTime(endTimeOriginal)
 
-      console.log(`${s} a ${e} (${destIso3})`)
+      console.log(`${s} a ${e}`)
 
       if (s === fallback || e === fallback) {
-        setFormattedTime(fallback)
+        setFormattedTime(`${startTimeOriginal} a ${endTimeOriginal}`)
       } else {
-        setFormattedTime(`${s} a ${e} (${destIso3})`)
+        setFormattedTime(`${s} a ${e}`)
       }
     } catch (err) {
       console.error('Error en conversión de hora:', err)
-      setFormattedTime(fallback)
+      setFormattedTime(`${startTimeOriginal} a ${endTimeOriginal}`)
     } finally {
       setIsLoading(false)
     }

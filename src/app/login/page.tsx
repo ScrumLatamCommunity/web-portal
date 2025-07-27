@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { LoginHeader } from './components/LoginHeader'
 import { LoginForm } from './components/LoginForm'
 import { useAuth } from '@/app/context/AuthContext'
 import { useRouter } from 'next/navigation'
