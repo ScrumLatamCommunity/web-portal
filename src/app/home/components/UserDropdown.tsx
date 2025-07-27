@@ -121,13 +121,27 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
         {isOpen && (
           <div className='absolute right-0 z-50 mt-2 w-[232px] shrink-0 border border-[rgba(8,41,101,0.5)] bg-white shadow-lg [border-radius:10px_0_10px_10px]'>
             <div className='flex flex-col py-2'>
-              {user?.role === 'EDITOR' ? (
-                // Menú específico para EDITOR
+              {user?.role === 'EDITOR' ||
+              user?.role === 'ADMIN' ||
+              user?.role === 'SPONSOR' ? (
+                // Menú específico para EDITOR, ADMIN y SPONSOR
                 <>
                   <Link
-                    href='/editor'
+                    href={
+                      user?.role === 'EDITOR'
+                        ? '/editor'
+                        : user?.role === 'ADMIN'
+                          ? '/super-admin-dashboard'
+                          : '/sponsors'
+                    }
                     onClick={() => setIsOpen(false)}
-                    className={getNavLinkStyles('/editor')}
+                    className={getNavLinkStyles(
+                      user?.role === 'EDITOR'
+                        ? '/editor'
+                        : user?.role === 'ADMIN'
+                          ? '/super-admin-dashboard'
+                          : '/sponsors'
+                    )}
                   >
                     <span>Dashboard</span>
                   </Link>
@@ -221,16 +235,32 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
       {isOpen && (
         <div className='absolute right-0 z-50 mt-2 w-[232px] shrink-0 border border-[rgba(8,41,101,0.5)] bg-white shadow-lg [border-radius:10px_0_10px_10px]'>
           <div className='flex flex-col py-2'>
-            {user?.role === 'EDITOR' ? (
-              // Menú específico para EDITOR
+            {user?.role === 'EDITOR' ||
+            user?.role === 'ADMIN' ||
+            user?.role === 'SPONSOR' ? (
+              // Menú específico para EDITOR, ADMIN y SPONSOR
               <>
                 <Link
                   className={`w-full px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
-                    pathname === '/editor' || pathname.startsWith('/editor')
+                    (user?.role === 'EDITOR' &&
+                      (pathname === '/editor' ||
+                        pathname.startsWith('/editor'))) ||
+                    (user?.role === 'ADMIN' &&
+                      (pathname === '/super-admin-dashboard' ||
+                        pathname.startsWith('/super-admin-dashboard'))) ||
+                    (user?.role === 'SPONSOR' &&
+                      (pathname === '/sponsors' ||
+                        pathname.startsWith('/sponsors')))
                       ? 'text-[#FE7354]'
                       : 'text-[#072356]'
                   }`}
-                  href='/editor'
+                  href={
+                    user?.role === 'EDITOR'
+                      ? '/editor'
+                      : user?.role === 'ADMIN'
+                        ? '/super-admin-dashboard'
+                        : '/sponsors'
+                  }
                 >
                   Dashboard
                 </Link>
