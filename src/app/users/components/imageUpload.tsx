@@ -1,163 +1,222 @@
 // src/app/components/imageUpload.tsx
 'use client'
 
-import React, { useState, ChangeEvent, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { useAuth } from '@/app/context/AuthContext' // Para obtener el token
-import { UserData } from '@/interfaces' // Asumiendo que UserData es tu interfaz
+import UploadIcon from '@/assets/UploadIcon'
+import { darkerGrotesque } from '@/fonts'
+import { useAuth } from '@/app/context/AuthContext'
+import { UserData } from '@/interfaces'
 
 interface ImageUploadProps {
   currentImageUrl?: string | null
-  onUploadComplete: (updatedUserData: UserData) => void // Callback con los datos del usuario actualizado
+  onUploadComplete: (updatedUserData: UserData) => void
   className?: string
+  currentUserData?: UserData | null
 }
 
 export default function ImageUpload({
   currentImageUrl,
   onUploadComplete,
-  className = ''
+  className = '',
+  currentUserData
 }: ImageUploadProps) {
-  const { token, user } = useAuth() // Asumimos que 'user' del contexto tiene 'sub' (ID del usuario)
-  const [file, setFile] = useState<File | null>(null)
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [isUploading, setIsUploading] = useState(false)
+  const { token, user } = useAuth()
+  const [image, setImage] = useState<string | null>(currentImageUrl || null)
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [lastFile, setLastFile] = useState<File | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    // Establecer la URL de previsualización inicial si existe una imagen actual
     if (currentImageUrl) {
-      setPreviewUrl(currentImageUrl)
+      setImage(currentImageUrl)
     }
   }, [currentImageUrl])
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]
-    if (selectedFile) {
-      if (selectedFile.size > 5 * 1024 * 1024) {
-        // 5MB Límite (consistente con backend)
-        setError('El archivo es demasiado grande (máx. 5MB).')
-        setFile(null)
-        setPreviewUrl(currentImageUrl || null) // Revertir a la imagen actual o ninguna
-        return
-      }
-      if (
-        !['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(
-          selectedFile.type
-        )
-      ) {
-        setError('Tipo de archivo no válido (solo JPG, PNG, WebP, GIF).')
-        setFile(null)
-        setPreviewUrl(currentImageUrl || null)
-        return
-      }
-      setFile(selectedFile)
-      setPreviewUrl(URL.createObjectURL(selectedFile)) // Mostrar previsualización local
-      setError(null)
-    }
-  }
-
-  const handleUpload = async () => {
-    if (!file) {
-      setError('Por favor, selecciona un archivo primero.')
-      return
-    }
-    if (!token || !user?.sub) {
-      setError('No autenticado o ID de usuario no disponible.')
-      return
-    }
-
-    setIsUploading(true)
+  const uploadImage = async (file: File) => {
+    setIsLoading(true)
     setError(null)
-
-    const formData = new FormData()
-    formData.append('profilePicture', file) // 'profilePicture' debe coincidir con FileInterceptor en NestJS
+    setLastFile(file)
 
     try {
-      // El endpoint es para el usuario autenticado, el backend usa req.user.sub
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('folder', 'scrumlatam')
+
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}users/profile-picture/upload`,
+        `${process.env.NEXT_PUBLIC_API_URL}image/upload`,
         {
-          method: 'PATCH',
+          method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`
-            // 'Content-Type': 'multipart/form-data' es añadido automáticamente por fetch con FormData
           },
           body: formData
         }
       )
 
       if (!response.ok) {
-        let errorData
-        try {
-          errorData = await response.json()
-        } catch (e) {
-          errorData = { message: `Error al subir: ${response.statusText}` }
-        }
+        const errorText = await response.text()
         throw new Error(
-          errorData.message || `Error al subir la imagen: ${response.status}`
+          `Error al subir la imagen: ${response.status} - ${errorText}`
         )
       }
 
-      const updatedUserData: UserData = await response.json()
-      onUploadComplete(updatedUserData) // Notificar al componente padre con todos los datos del usuario actualizados
-      setPreviewUrl(updatedUserData.profilePictureUrl || null) // Actualizar previsualización con URL de Cloudinary
-      setFile(null) // Limpiar selección de archivo
-    } catch (err) {
-      console.error('Error en handleUpload:', err)
-      setError(
-        err instanceof Error
-          ? err.message
-          : 'Ocurrió un error desconocido al subir la imagen.'
+      const data = await response.json()
+      const imageUrl = data.url
+
+      setImage(imageUrl)
+
+      // Solo enviar profilePictureUrl ya que es lo único que necesitamos actualizar
+      const updatePayload = {
+        profilePictureUrl: imageUrl
+      }
+
+      const userResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}users/${user?.sub}`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatePayload)
+        }
       )
+
+      if (!userResponse.ok) {
+        const errorText = await userResponse.text()
+        throw new Error(
+          `Error al actualizar perfil: ${userResponse.status} - ${errorText}`
+        )
+      }
+
+      const updatedUserData: UserData = await userResponse.json()
+
+      onUploadComplete(updatedUserData)
+      setLastFile(null)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error al subir la imagen')
+      console.error('Error uploading image:', err)
     } finally {
-      setIsUploading(false)
+      setIsLoading(false)
     }
+  }
+
+  const handleRetry = async () => {
+    if (lastFile) {
+      await uploadImage(lastFile)
+    }
+  }
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && file.type.startsWith('image/')) {
+      // Mostrar preview inmediatamente
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImage(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+
+      // Subir la imagen
+      await uploadImage(file)
+    }
+  }
+
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    const file = e.dataTransfer.files[0]
+    if (file && file.type.startsWith('image/')) {
+      // Mostrar preview inmediatamente
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImage(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+
+      // Subir la imagen
+      await uploadImage(file)
+    }
+  }
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+  }
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click()
   }
 
   return (
     <div className={`space-y-3 ${className}`}>
-      {previewUrl ? (
-        <div className='relative mx-auto h-32 w-32 overflow-hidden rounded-full border-2 border-gray-300 shadow-sm md:h-40 md:w-40'>
+      {image ? (
+        <div className='relative mx-auto h-[150px] w-[150px] overflow-hidden rounded-full border-2 border-gray-300 shadow-sm'>
           <Image
-            src={previewUrl}
+            src={image}
             alt='Vista previa de perfil'
             layout='fill'
             objectFit='cover'
-            key={previewUrl} // Ayuda a React a recargar la imagen si la URL cambia
+            key={image}
             unoptimized
           />
         </div>
       ) : (
-        <div className='mx-auto flex h-32 w-32 items-center justify-center rounded-full border-2 border-gray-300 bg-gray-200 text-gray-400 md:h-40 md:w-40'>
+        <div className='mx-auto flex h-[100px] w-[100px] items-center justify-center rounded-full border-2 border-gray-300 bg-gray-200 text-gray-400'>
           <span>Sin foto</span>
         </div>
       )}
 
-      <div>
-        <label htmlFor='profilePictureInput' className='sr-only'>
-          {' '}
-          {/* Solo para accesibilidad */}
-          Seleccionar foto de perfil
-        </label>
+      <div
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onClick={triggerFileInput}
+        className='relative flex w-full cursor-pointer items-center justify-center rounded-[10px] border-[1px] border-[#BFBFBF] bg-white p-4'
+      >
         <input
-          id='profilePictureInput'
+          ref={fileInputRef}
           type='file'
-          accept='image/jpeg, image/png, image/webp, image/gif'
+          accept='image/*'
           onChange={handleFileChange}
-          className='block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-sky-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-sky-700 hover:file:bg-sky-100'
+          className='hidden'
+          id='profilePictureInput'
         />
-      </div>
 
-      {file && ( // Mostrar botón de subir solo si hay un archivo seleccionado para subir
-        <button
-          onClick={handleUpload}
-          disabled={isUploading || !file}
-          className='w-full rounded-md bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60'
+        {isLoading && (
+          <div className='bg-black absolute inset-0 z-10 flex items-center justify-center bg-opacity-50 text-white'>
+            Subiendo...
+          </div>
+        )}
+
+        {error && (
+          <div className='absolute bottom-0 z-10 flex w-full items-center justify-between bg-red-500 p-2 text-white'>
+            <span>{error}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                handleRetry()
+              }}
+              className='rounded bg-white px-3 py-1 text-red-500 hover:bg-red-100'
+            >
+              Reintentar
+            </button>
+          </div>
+        )}
+
+        <div
+          className={`${darkerGrotesque.variable} flex h-[60px] w-[160px] flex-col items-center justify-center rounded-[10px]`}
         >
-          {isUploading ? 'Subiendo...' : 'Subir Foto'}
-        </button>
-      )}
-      {error && <p className='mt-1 text-xs text-red-600'>{error}</p>}
+          <div className='flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white shadow-[0px_0px_10px_rgba(0,0,0,0.1)]'>
+            <UploadIcon />
+          </div>
+          <p className='mt-2 text-center text-[12px] font-darker-grotesque-700 text-[#63789E]'>
+            Subir imagen
+          </p>
+          <span className='cursor-pointer text-[10px]'>
+            Seleccionar archivo
+          </span>
+        </div>
+      </div>
     </div>
   )
 }

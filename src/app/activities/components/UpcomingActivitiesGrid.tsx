@@ -23,6 +23,10 @@ export default function UpcomingActivitiesGrid({
   const [userData, setUserData] = useState<UserData | null>(null)
   const [loadingUser, setLoadingUser] = useState(false)
 
+  console.log('UpcomingActivitiesGrid - activities prop:', activities)
+  console.log('UpcomingActivitiesGrid - activities length:', activities?.length)
+  console.log('UpcomingActivitiesGrid - loadingFromProps:', loadingFromProps)
+
   useEffect(() => {
     const fetchUserData = async () => {
       if (!user?.sub || !token) return
@@ -55,8 +59,9 @@ export default function UpcomingActivitiesGrid({
 
   const finalLoading = loadingFromProps || loadingUser
   const country = userData?.country?.[0] || DEFAULT_COUNTRY
-
-  console.log('activities', activities)
+  console.log('UpcomingActivitiesGrid - country:', country)
+  console.log('UpcomingActivitiesGrid - finalLoading:', finalLoading)
+  console.log('UpcomingActivitiesGrid - activities before render:', activities)
 
   return (
     <section className='py-12 md:py-16'>

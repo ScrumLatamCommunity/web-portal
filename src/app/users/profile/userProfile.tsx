@@ -438,37 +438,39 @@ export default function UserProfile() {
                   <ImageWithFallback
                     primarySrc={userData?.profilePictureUrl}
                     alt='Foto de Perfil'
-                    className='rounded-full border-4 border-slate-300 object-cover shadow-lg'
+                    className='h-full w-full rounded-full border-4 border-slate-300 object-cover shadow-lg'
                     imgWidth={150}
                     imgHeight={150}
                   />
-                  <button
-                    type='button'
-                    onClick={() => setIsImageModalOpen(true)}
-                    className='bg-black absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-opacity-0 text-sm font-semibold text-[#fefeff] opacity-0 transition-opacity duration-300 group-hover:bg-opacity-50 group-hover:opacity-100'
-                    aria-label='Cambiar foto de perfil'
-                  >
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='mb-1 h-6 w-6'
+                  {isEditing && (
+                    <button
+                      type='button'
+                      onClick={() => setIsImageModalOpen(true)}
+                      className='bg-black absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-opacity-0 text-sm font-semibold text-[#fefeff] opacity-0 transition-opacity duration-300 group-hover:bg-opacity-50 group-hover:opacity-100'
+                      aria-label='Cambiar foto de perfil'
                     >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z'
-                      />
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z'
-                      />
-                    </svg>
-                    Cambiar foto de perfil
-                  </button>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        strokeWidth={1.5}
+                        stroke='currentColor'
+                        className='mb-1 h-6 w-6'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z'
+                        />
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z'
+                        />
+                      </svg>
+                      Cambiar foto de perfil
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -479,14 +481,16 @@ export default function UserProfile() {
                     'Usuario'}
                 </h2>
                 <div className='flex w-full gap-4 sm:w-auto sm:flex-row'>
-                  <button
-                    type='button'
-                    onClick={() => setIsImageModalOpen(true)}
-                    className='flex h-[28px] w-[125px] shrink-0 items-center justify-center rounded-[8px] border border-[#072356] bg-white text-center font-darker-grotesque text-[12px] font-semibold leading-normal text-[#072356] hover:bg-gray-50 sm:h-[50px] sm:w-[223px] sm:text-[20px] md:rounded-[15px]'
-                    disabled={isSaving}
-                  >
-                    Cambiar foto de perfil
-                  </button>
+                  {isEditing && (
+                    <button
+                      type='button'
+                      onClick={() => setIsImageModalOpen(true)}
+                      className='flex h-[28px] w-[125px] shrink-0 items-center justify-center rounded-[8px] border border-[#072356] bg-white text-center font-darker-grotesque text-[12px] font-semibold leading-normal text-[#072356] hover:bg-gray-50 sm:h-[50px] sm:w-[223px] sm:text-[20px] md:rounded-[15px]'
+                      disabled={isSaving}
+                    >
+                      Cambiar foto de perfil
+                    </button>
+                  )}
                   {!isEditing && (
                     <button
                       type='button'
@@ -637,6 +641,7 @@ export default function UserProfile() {
           onClose={() => setIsImageModalOpen(false)}
           currentImageUrl={userData?.profilePictureUrl}
           onUploadComplete={handleImageUploadCompleted}
+          currentUserData={userData}
         />
       )}
     </>
