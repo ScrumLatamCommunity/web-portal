@@ -15,14 +15,7 @@ export default function Activities() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  console.log('Activities component rendered')
-  console.log('Activities component mounted - token:', token)
-  console.log('Activities page - activityData:', activityData)
-  console.log('Activities page - activityData length:', activityData?.length)
-  console.log('Activities page - isLoading:', isLoading)
-
   useEffect(() => {
-    console.log('useEffect triggered - calling fetchSponsorData')
     fetchSponsorData(selectedCategory ? { type: selectedCategory } : undefined)
   }, [selectedCategory]) // Only depend on selectedCategory
 
@@ -30,13 +23,11 @@ export default function Activities() {
     console.log('fetchSponsorData called with filters:', filters)
     try {
       const query = new URLSearchParams()
-      console.log('Fetching activities with filters:', filters)
       if (filters?.type) {
         query.append('type', filters.type)
       }
 
       const url = `${process.env.NEXT_PUBLIC_API_URL}activities/all?status=ACTIVE&${query.toString()}`
-      console.log('API URL:', url)
 
       const response = await fetch(url, {
         method: 'GET',
@@ -44,9 +35,6 @@ export default function Activities() {
           'Content-Type': 'application/json'
         }
       })
-
-      console.log('Response status:', response.status)
-      console.log('Response ok:', response.ok)
 
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`)

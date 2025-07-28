@@ -286,7 +286,7 @@ export const reviews: Review[] = [
     position: 'Scrum master',
     rating: 5,
     description:
-      'Llevó 5 meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimiento cada día como Scrum Master y además de eso me permito interactuar y conocer  grandes personas y grandes coach día a día.',
+      'Llevo 5 meses en el squad de educación; soy colombiana y estar en scrum Latam ha sido un aprendizaje constante, donde potencio mis habilidades, conocimientos cada día como Scrum Master y además me permito interactuar día a día para conocer a grandes personas y coaches profesionales.',
     profile:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%204.%20Ailicec%20Mill%C3%A1n%20Crecian%20-%20Colombia.png?alt=media&token=205b2a55-b1d5-4be9-9604-179343fb9f95',
 
@@ -309,7 +309,7 @@ export const reviews: Review[] = [
     position: 'Agile Coach',
     rating: 4,
     description:
-      'Mi nombre es Carlos Peña, soy de Venezuela y me desempeño como Agile Coach en Scrum LATAM desde abril de 2024, ya unos 4 meses. He acompañado hasta ahora a 2 equipos: Educación y Data y Analítica con el cual trabajo actualmente. La comunidad ha representado para mi una oportunidad para conocer nuevas personas en el mundo de la agilidad y un espacio para mantenerme activo aprendiendo nuevos conocimientos de todos los compañeros y compañeras que hacen vida acá.',
+      'Mi nombre es Carlos Peña, soy de Venezuela y me desempeñé como Agile Coach en Scrum LATAM durante el 2024. Acompañé a dos equipos: Educación y Data y Analítica. La comunidad ha representado para mí una oportunidad para conocer nuevas personas en el mundo de la agilidad y un espacio para mantenerme activo aprendiendo nuevos conocimientos de todos los compañeros y compañeras con los que interactuamos.',
     profile:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%206.%20Carlos%20Pe%C3%B1a%20-%20Venezuela%20Agile%20Coach.png?alt=media&token=fcf3410e-b310-4a40-a9c2-7b0a3612a04b',
     flag: 'https://flagcdn.com/ve.svg'
@@ -342,7 +342,7 @@ export const reviews: Review[] = [
     position: 'Scrum Master',
     rating: 4,
     description:
-      'Valoro y agradezco muchisimo los espacios de conversaciones y transferencia de conocimiento que nos brinda la comunidad para el crecimiento individual y como equipo, sus aportes en conocimiento han transformado mi caja de herramientas laboralmente, espero que sean muchos años más de sabiduria compartida. Gracias Scrum LATAM.',
+      'Valoro y agradezco muchísimo los espacios de conversaciones y transferencia de conocimiento que nos brinda la comunidad para el crecimiento individual y como equipo, sus aportes en conocimiento han transformado mi caja de herramientas laboralmente, espero que sean muchos años más de sabiduría compartida. Gracias Scrum LATAM.',
     profile:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%209.%20Catalina%20Aguirre%20-%20%20-%20Scrum%20Master.jpg?alt=media&token=77b519b4-5222-4d39-99c1-c9fa353d4c14',
     flag: 'https://flagcdn.com/co.svg'
