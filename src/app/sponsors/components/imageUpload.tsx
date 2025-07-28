@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState, useRef, useEffect } from 'react'
+import type React from 'react'
+import { useState, useRef, useEffect } from 'react'
 import UploadIcon from '@/assets/UploadIcon'
-import { darkerGrotesque } from '@/fonts'
 import { useAuth } from '@/app/context/AuthContext'
 
 interface ImageUploadProps {
@@ -46,13 +46,13 @@ const ImageUpload = ({
           body: formData
         }
       )
+
       if (!response.ok) {
         throw new Error('Error al subir la imagen')
       }
 
       const data = await response.json()
       const imageUrl = data.url
-
       setImage(imageUrl)
       onChange(imageUrl)
       setLastFile(null)
@@ -79,7 +79,6 @@ const ImageUpload = ({
         setImage(reader.result as string)
       }
       reader.readAsDataURL(file)
-
       // Subir la imagen
       await uploadImage(file)
     }
@@ -95,7 +94,6 @@ const ImageUpload = ({
         setImage(reader.result as string)
       }
       reader.readAsDataURL(file)
-
       // Subir la imagen
       await uploadImage(file)
     }
@@ -125,8 +123,7 @@ const ImageUpload = ({
     <div
       onDrop={handleDrop}
       onDragOver={handleDragOver}
-      onClick={triggerFileInput}
-      className={`relative flex h-full w-full cursor-pointer items-center justify-center rounded-[10px] border-[1px] border-[#BFBFBF] ${className}`}
+      className={`relative flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-gray-200 transition-colors hover:bg-gray-300 ${className}`}
     >
       <input
         ref={fileInputRef}
@@ -138,20 +135,23 @@ const ImageUpload = ({
       />
 
       {isLoading && (
-        <div className='bg-black absolute inset-0 z-10 flex items-center justify-center bg-opacity-50 text-white'>
-          Subiendo...
+        <div className='bg-black absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-opacity-50 text-white'>
+          <div className='flex flex-col items-center'>
+            <div className='mb-2 h-8 w-8 animate-spin rounded-full border-b-2 border-white'></div>
+            <span>Subiendo...</span>
+          </div>
         </div>
       )}
 
       {error && (
-        <div className='absolute bottom-0 z-10 flex w-full items-center justify-between bg-red-500 p-2 text-white'>
-          <span>{error}</span>
+        <div className='absolute bottom-0 left-0 right-0 z-10 flex items-center justify-between rounded-b-lg bg-red-500 p-2 text-white'>
+          <span className='text-sm'>{error}</span>
           <button
             onClick={(e) => {
-              e.stopPropagation() // Evitar que se abra el selector de archivos
+              e.stopPropagation()
               handleRetry()
             }}
-            className='rounded bg-white px-3 py-1 text-red-500 hover:bg-red-100'
+            className='rounded bg-white px-3 py-1 text-sm text-red-500 hover:bg-red-100'
           >
             Reintentar
           </button>
@@ -159,31 +159,34 @@ const ImageUpload = ({
       )}
 
       {image ? (
-        <div className='relative h-full w-full'>
+        <div
+          className='group relative h-full w-full'
+          onClick={triggerFileInput}
+        >
           <Image
             alt='Uploaded'
-            className='h-full w-full object-fill'
-            height={300}
-            src={image}
+            className='h-full w-full rounded-lg object-fill'
+            height={500}
+            src={image || '/placeholder.svg'}
             unoptimized
-            width={300}
+            width={500}
           />
-          <div className='bg-black absolute inset-0 flex items-center justify-center bg-opacity-0 transition-all hover:bg-opacity-50'>
-            <p className='hidden text-white hover:block'>Cambiar imagen</p>
+          <div className='bg-black absolute inset-0 flex items-center justify-center rounded-lg bg-opacity-0 transition-all group-hover:bg-opacity-50'>
+            <div className='hidden flex-col items-center text-white group-hover:flex'>
+              <UploadIcon className='mb-2 h-6 w-6' />
+              <p className='text-sm'>Cambiar imagen</p>
+            </div>
           </div>
         </div>
       ) : (
-        <div
-          className={`${darkerGrotesque.variable} flex h-[150px] w-[160px] flex-col items-center justify-center rounded-[10px] shadow-[0px_0px_30px_rgba(0,0,0,0.2)]`}
+        <button
+          type='button'
+          onClick={triggerFileInput}
+          className='flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 transition-colors hover:bg-gray-50'
         >
-          <div className='flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white shadow-[0px_0px_30px_rgba(0,0,0,0.2)]'>
-            <UploadIcon />
-          </div>
-          <p className='mt-4 text-center text-[16px] font-darker-grotesque-700 text-[#63789E]'>
-            Subir imagen
-          </p>
-          <span className='cursor-pointer'>Seleccionar archivo</span>
-        </div>
+          <UploadIcon className='h-4 w-4' />
+          <span className='text-sm text-gray-700'>Cargar imagen</span>
+        </button>
       )}
     </div>
   )

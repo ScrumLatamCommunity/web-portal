@@ -19,10 +19,7 @@ import InfoIcon from '@/assets/navbarInfoIcon'
 export const Navbar: React.FC = () => {
   const pathname = usePathname()
   const hiddenLayoutRoutes = [
-    '/sponsors',
     '/super-admin-dashboard',
-    '/users',
-    '/users/activities',
     '/register',
     '/login',
     '/onboarding/travel'
