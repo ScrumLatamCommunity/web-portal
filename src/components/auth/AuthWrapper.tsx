@@ -1,10 +1,10 @@
 'use client'
 
 import { useAuth } from '@/app/context/AuthContext'
-import { useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 
 interface AuthWrapperProps {
-  children: React.ReactNode
+  children: ReactNode
   showWhenAuth?: boolean
 }
 
@@ -12,34 +12,20 @@ export function AuthWrapper({
   children,
   showWhenAuth = true
 }: AuthWrapperProps) {
-  const { user } = useAuth()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const { user, isLoading } = useAuth()
 
-  useEffect(() => {
-    const checkAuth = () => {
-      const hasToken = user !== null
-      setIsAuthenticated(hasToken)
-      setIsLoading(false)
-    }
-
-    checkAuth()
-    window.addEventListener('storage', checkAuth)
-
-    return () => {
-      window.removeEventListener('storage', checkAuth)
-    }
-  }, [])
-
+  // Mostrar loading mientras se verifica la autenticación
   if (isLoading) {
     return null
   }
 
-  if (showWhenAuth && !isAuthenticated) {
+  // Si showWhenAuth es true, mostrar solo cuando hay usuario autenticado
+  if (showWhenAuth && !user) {
     return null
   }
 
-  if (!showWhenAuth && isAuthenticated) {
+  // Si showWhenAuth es false, mostrar solo cuando NO hay usuario autenticado
+  if (!showWhenAuth && user) {
     return null
   }
 

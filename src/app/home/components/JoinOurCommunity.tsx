@@ -22,10 +22,10 @@ export const JoinOurCommunity = () => {
 
   return (
     <>
-      <h2 className='mb-8 ml-28 mt-[100px] text-3xl font-bold text-[#082965] md:text-4xl'>
+      <h2 className='mb-6 mt-2 pl-[8%] font-darker-grotesque text-[24px] font-bold text-[#082965] md:mb-16 md:mt-12 md:text-[60px]'>
         ¿Por qué unirse a nosotros?
       </h2>
-      <div className='relative m-auto mb-[200px] grid grid-cols-1 grid-rows-2 flex-col justify-center font-darker-grotesque md:max-w-[1980px] md:grid-cols-[1fr_1.35fr] md:grid-rows-1'>
+      <div className='relative m-auto mb-12 grid grid-cols-1 grid-rows-2 flex-col justify-center font-darker-grotesque md:max-w-[1980px] md:grid-cols-[1fr_1.35fr] md:grid-rows-1'>
         <div
           className={
             'relative flex flex-col items-center justify-center bg-[#082965] md:items-start md:bg-blend-normal lg:pl-24'

@@ -28,65 +28,80 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
       window.open(activity.link, '_blank')
     }
   }
-  console.log(activity)
 
   const imageSrc = activity.image?.trim()
     ? activity.image
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
-    <div className='mx-auto flex h-auto min-h-[80px] w-full max-w-3xl flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl'>
+    <div className='mx-auto flex h-[140px] w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl md:h-[280px]'>
       {/* Imagen */}
       <div className='relative h-full w-2/5'>
         <img
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
-          className='h-full w-full rounded-t-2xl object-cover sm:rounded-l-2xl sm:rounded-tr-none'
+          className='h-full w-full rounded-l-2xl object-cover'
         />
       </div>
 
       {/* Contenido */}
-      <div className='flex w-3/5 flex-col justify-between p-2 text-xs sm:p-3 lg:text-base'>
-        <div className='flex flex-grow flex-col justify-center gap-1 lg:gap-y-3'>
-          <p className='text-xs font-semibold uppercase tracking-wider text-[#FE5833] lg:text-lg'>
+      <div className='flex w-3/5 flex-col justify-between p-2 md:p-4'>
+        <div className='flex flex-grow flex-col gap-1 md:gap-2'>
+          {/* Título */}
+          <h3 className='text-xs font-bold uppercase tracking-wider text-[#FE5833] md:text-lg'>
             {activity.title}
-          </p>
+          </h3>
+
+          {/* Facilitador */}
           {activity.facilitator && (
-            <p className='font-karla text-xs font-semibold text-[#000000] lg:text-base'>
+            <p className='text-xs font-semibold text-[#000000] md:text-base'>
               Facilitador/a:{' '}
               <span className='font-normal'>{activity.facilitator}</span>
             </p>
           )}
-          <p className='line-clamp-3 font-karla text-xs text-[#000000] lg:text-sm'>
+
+          {/* Descripción */}
+          <p className='line-clamp-1 text-xs text-[#666666] md:line-clamp-2 md:text-base'>
             {activity.description}
           </p>
-          <div className='flex flex-wrap items-center gap-1 pt-1 text-xs text-gray-800 lg:space-x-4 lg:text-base'>
-            <span className='rounded-lg bg-[#07235644] px-4 py-0.5 text-center font-normal'>
+
+          {/* Badges y metadatos - todo en una línea */}
+          <div className='flex items-center gap-2 text-[10px] md:gap-3 md:text-xs'>
+            {/* Tipo de actividad */}
+            <span className='inline-block w-fit rounded bg-[#07235644] px-1.5 py-0.5 text-[10px] font-medium text-[#072356] md:rounded-lg md:px-2 md:py-1 md:text-xs'>
               {activity.type.replaceAll('-', ' ')}
             </span>
-            <span className='flex items-center gap-0.5 font-semibold'>
-              <Calendar className='h-4 w-4 text-[#FE5833] lg:h-6 lg:w-6' />
+
+            {/* Fecha */}
+            <span className='flex items-center gap-0.5 font-medium text-[#FE5833]'>
+              <Calendar className='h-2.5 w-2.5 text-[#FE5833] md:h-3 md:w-3' />
               {new Date(activity.date).toLocaleDateString('es-ES')}
             </span>
-            <span className='flex items-center gap-0.5 font-semibold'>
-              <Clock className='h-4 w-4 text-[#FE5833] lg:h-6 lg:w-6' />
-              {isLoading ? 'Calculando hora...' : formattedTime}
+
+            {/* Hora */}
+            <span className='flex items-center gap-0.5 font-medium text-[#666666]'>
+              <Clock className='h-2.5 w-2.5 text-[#FE5833] md:h-3 md:w-3' />
+              {isLoading ? 'Calculando...' : formattedTime}
             </span>
-            {country && country !== 'No especificado' && (
-              <span className='flex items-center gap-0.5 font-semibold'>
-                <MapPin className='h-4 w-4 text-[#FE5833] lg:h-6 lg:w-6' />
-                {country}
-              </span>
-            )}
           </div>
         </div>
-        <Link
-          href={activity.link}
-          target='_blank'
-          className='font-md flex justify-end pt-2 font-semibold text-[#082965]'
-        >
-          Ir al evento
-        </Link>
+
+        {/* Botones de acción */}
+        <div className='mt-1 flex flex-col gap-1 md:mt-2 md:flex-row md:gap-2'>
+          <Link
+            href={activity.link}
+            target='_blank'
+            className='flex w-full items-center justify-center rounded border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50 md:rounded-md md:px-3 md:py-2 md:text-sm'
+          >
+            Ir al evento
+          </Link>
+          <button
+            onClick={handleEnrollClick}
+            className='flex w-full items-center justify-center rounded bg-[#082965] px-2 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#0a2f5f] md:rounded-md md:px-3 md:py-2 md:text-sm'
+          >
+            Agregar al calendario
+          </button>
+        </div>
       </div>
     </div>
   )

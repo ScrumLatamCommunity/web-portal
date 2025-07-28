@@ -171,3 +171,13 @@ body {
     display: none;
   }
 }
+
+.nav-link__text {
+  color: #072356;
+  text-align: center;
+  font-family: "Darker Grotesque";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+}

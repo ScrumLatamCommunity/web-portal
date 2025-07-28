@@ -56,8 +56,6 @@ export default function UpcomingActivitiesGrid({
   const finalLoading = loadingFromProps || loadingUser
   const country = userData?.country?.[0] || DEFAULT_COUNTRY
 
-  console.log('activities', activities)
-
   return (
     <section className='py-12 md:py-16'>
       <div className='max-w-12xl mx-auto px-2 sm:px-6 lg:px-12'>

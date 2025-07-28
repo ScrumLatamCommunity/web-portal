@@ -43,7 +43,6 @@ export const Reviews: React.FC = () => {
   }
 
   const getVisibleReviews = () => {
-    // En mobile solo mostrar 1 review, en desktop mostrar 3
     if (isMobile) {
       return [reviews[centerIndex]]
     }
@@ -58,8 +57,8 @@ export const Reviews: React.FC = () => {
   const visibleReviews = getVisibleReviews()
 
   return (
-    <div className='mb-12 flex w-screen flex-col gap-7 md:max-w-[1920px]'>
-      <span className='pb:5 pl-[10%] pt-5 text-left font-darker-grotesque text-[24px] font-extrabold text-blue-6 sm:text-3xl md:pb-10 md:pt-10 md:text-5xl'>
+    <div className='mb-10 flex w-screen flex-col gap-7 md:mb-24 md:max-w-[1920px]'>
+      <span className='pb:5 pl-[8%] text-left font-darker-grotesque text-[24px] font-extrabold text-[#082965] sm:text-3xl md:pb-10 md:pt-10 md:pt-5 md:text-[60px]'>
         ¿Qué opina nuestra comunidad?
       </span>
       <div className='flex w-full items-center justify-center'>
@@ -99,7 +98,7 @@ export const Reviews: React.FC = () => {
                     <div className='flex overflow-hidden rounded-full border-4 border-[#082965]'>
                       <img
                         alt={review.name}
-                        className='w-12 md:w-16'
+                        className='h-12 w-12 object-cover md:h-16 md:w-16'
                         src={review.profile}
                       />
                     </div>
@@ -154,7 +153,7 @@ export const Reviews: React.FC = () => {
       </div>
       <div className='mb-6 mt-4 flex justify-center gap-2'>
         {(() => {
-          const maxDots = isMobile ? 3 : 5
+          const maxDots = isMobile ? 3 : 10
           const total = reviews.length
           let start = Math.max(0, centerIndex - Math.floor(maxDots / 2))
           let end = start + maxDots

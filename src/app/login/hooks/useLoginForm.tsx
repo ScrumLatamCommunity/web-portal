@@ -36,6 +36,7 @@ export function useLoginForm() {
       const data: LoginResponse = await response.json()
 
       if (response.ok) {
+        // Solo usar setAuthToken del AuthContext, no duplicar el guardado
         setAuthToken(data.access_token)
         toast.success('Inicio de sesión exitoso')
         router.push('/')

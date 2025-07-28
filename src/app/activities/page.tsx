@@ -15,29 +15,33 @@ export default function Activities() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
+  useEffect(() => {
+    fetchSponsorData(selectedCategory ? { type: selectedCategory } : undefined)
+  }, [selectedCategory]) // Only depend on selectedCategory
+
   const fetchSponsorData = async (filters?: { type?: string }) => {
+    console.log('fetchSponsorData called with filters:', filters)
     try {
       const query = new URLSearchParams()
-      console.log()
       if (filters?.type) {
         query.append('type', filters.type)
       }
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}activities/all?status=ACTIVE&${query.toString()}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
+      const url = `${process.env.NEXT_PUBLIC_API_URL}activities/all?status=ACTIVE&${query.toString()}`
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
-      )
+      })
 
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`)
       }
 
       const data = await response.json()
+      console.log('Activities data received:', data)
       setActivityData(data ?? [])
     } catch (error) {
       console.error('Error al obtener actividades:', error)
@@ -45,10 +49,6 @@ export default function Activities() {
       setIsLoading(false)
     }
   }
-
-  useEffect(() => {
-    fetchSponsorData(selectedCategory ? { type: selectedCategory } : undefined)
-  }, [token, selectedCategory])
 
   const handleFilterChange = (category: string) => {
     setSelectedCategory((prev) => (prev === category ? null : category))

@@ -211,7 +211,7 @@ export default function ActivityForm({
           </h1>
         </div>
         <div className='flex flex-row'>
-          <div className='h-[550px] w-[550px]'>
+          <div className='h-[500px] w-[500px]'>
             {isEditing ? (
               <>
                 <ImageUpload
@@ -227,9 +227,9 @@ export default function ActivityForm({
               <Image
                 alt='ActivityImage'
                 className='rounded-2xl'
-                height={550}
+                height={500}
                 src={formData.image}
-                width={550}
+                width={500}
               />
             )}
           </div>

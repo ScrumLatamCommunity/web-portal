@@ -57,7 +57,7 @@ export default function History() {
           Nuestros Inicios
         </h1>
         <div className='flex flex-col gap-x-12 md:flex-row'>
-          <div className='items-baseline rounded-lg border-[1.5px] border-[#d5dbe4] md:w-[50%] md:px-12 md:py-10'>
+          <div className='items-baseline rounded-lg border-[1.5px] border-[#d5dbe4] p-6 md:w-[50%] md:px-12 md:py-10'>
             <h1 className='flex font-darker-grotesque text-[26px] font-bold text-red-500 md:text-[28px]'>
               El Origen de Scrum Latam: Conectando Mentes Ágiles
             </h1>
