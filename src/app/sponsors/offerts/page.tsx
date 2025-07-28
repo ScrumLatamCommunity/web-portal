@@ -1,8 +1,6 @@
 'use client'
 
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import GlobeIcon from '@/assets/GlobeIcon'
-import TextEditor from '../components/TextEditor'
 import ImageUpload from '../components/imageUpload'
 import { useCallback, useState } from 'react'
 import { Switch } from '@headlessui/react'
@@ -53,6 +51,7 @@ export default function Offerts() {
         !formData.description
       ) {
         toast.error('Por favor completa todos los campos requeridos')
+        return
       }
 
       const sponsorData = await fetch(
@@ -65,6 +64,7 @@ export default function Offerts() {
           }
         }
       ).then((res) => res.json())
+
       const sendData = {
         ...formData,
         sponsorId: sponsorData.id,
@@ -102,9 +102,7 @@ export default function Offerts() {
         intendedFor: '',
         status: 'INACTIVE'
       })
-
       setImageUploadKey((prev) => prev + 1)
-
       toast.success('Oferta creada exitosamente')
     } catch (error) {
       setError(
@@ -122,27 +120,17 @@ export default function Offerts() {
       status: prev.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     }))
   }
+
   return (
     <section
-      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 w-auto max-w-[1980px] items-center overflow-hidden`}
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto w-full p-6`}
     >
-      <h1
-        className={`items-left mb-0 max-w-[1980px] font-darker-grotesque text-[30px] font-darker-grotesque-700 text-[#082965]`}
-      >
-        Ofertas para la Comunidad
-      </h1>
-      <h2
-        className={`items-left mb-4 max-w-[1980px] font-karla text-[18px] font-karla-400 text-[#141414]`}
-      >
-        Llena este formulario para compartir tus beneficios u ofertas con
-        nuestra comunidad.
-      </h2>
-      <div
-        className={`mb-8 w-screen rounded-[20px] border-[0.5px] border-black-13 py-6 pr-8 md:max-w-[1025px] 2xl:max-w-[1250px]`}
-      >
-        <div className='mx-[33px] mb-4 flex items-center justify-end'>
+      <h1 className='mb-8 text-2xl font-bold text-[#FF4444]'>Agregar Curso</h1>
+
+      <div className='rounded-lg border border-gray-200 bg-white p-6'>
+        <div className='mb-6 flex justify-end'>
           <div className='flex items-center gap-2'>
-            <span className='font-darker-grotesque text-[16px] text-[#63789E]'>
+            <span className='text-sm text-gray-600'>
               {formData.status === 'ACTIVE' ? 'Público' : 'Privado'}
             </span>
             <Switch
@@ -162,208 +150,189 @@ export default function Offerts() {
             </Switch>
           </div>
         </div>
-        <div className={`mb-8 flex flex-row items-start`}>
-          <div className='mx-[33px] flex w-[45%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Título
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='offer-name'
-              placeholder='Título de la oferta'
-              type='text'
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='whitespace-nowrap font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-date'
-            >
-              Fecha de validez
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
-              id='offer-date'
-              type='date'
-              value={formData.validFrom}
-              onChange={(e) =>
-                setFormData({ ...formData, validFrom: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='whitespace-nowrap font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-date-end'
-            >
-              Fecha de caducidad
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
-              id='offer-date-end'
-              type='date'
-              value={formData.validUntil}
-              onChange={(e) =>
-                setFormData({ ...formData, validUntil: e.target.value })
+
+        <div className='mb-6'>
+          <div className='h-[250px] rounded-lg'>
+            <ImageUpload
+              key={imageUploadKey}
+              onChange={(value: any) =>
+                setFormData({ ...formData, image: value })
               }
             />
           </div>
         </div>
-        <div className={`mb-8 flex flex-row`}>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Horario
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='time'
-              placeholder='Ej: de 16hs a 21hs'
-              type='text'
-              value={formData.time}
-              onChange={(e) =>
-                setFormData({ ...formData, time: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Lugar
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='place'
-              placeholder='Ej: Vía Zoom // Meeting Room'
-              type='text'
-              value={formData.place}
-              onChange={(e) =>
-                setFormData({ ...formData, place: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[40%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Descuento
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='discount'
-              placeholder='Ej: ¡10% de descuento a miembros de la comunidad!'
-              type='text'
-              value={formData.discount}
-              onChange={(e) =>
-                setFormData({ ...formData, discount: e.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className={`flex flex-col`}>
-          <div className='mx-[33px] mb-4 flex w-[35%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Dirigido a
-            </label>
-            <textarea
-              className='h-[70px] w-full resize-none rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='intendedFor'
-              placeholder='Dirijido a personas con intereses en...'
-              value={formData.intendedFor}
-              onChange={(e) =>
-                setFormData({ ...formData, intendedFor: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] mb-10 flex flex-col gap-2'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-              Descripción
-            </label>
-            <TextEditor
-              value={formData.description}
-              onChange={handleDescriptionChange}
-            />
-          </div>
-          <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-            <p className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-              Ingresar link y/o web
-            </p>
-            <label htmlFor='post-web'>
-              Insertar link para redireccionar al usuario donde desee.
-            </label>
-            <div className='mt-3 flex flex-row'>
-              <GlobeIcon
-                className='my-1 mr-2 stroke-[#FE2E00]'
-                height={30}
-                width={30}
-              />
+
+        <div className='space-y-6'>
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Título del curso
+              </label>
               <input
-                className='ml-2 h-[39px] w-[555px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='post-web'
-                placeholder='www.ejemplo.com'
                 type='text'
-                value={formData.link}
+                placeholder='Ej: La transformación Agil 2.0 (máximo 100 caracteres)'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.title}
                 onChange={(e) =>
-                  setFormData({ ...formData, link: e.target.value })
+                  setFormData({ ...formData, title: e.target.value })
                 }
-              ></input>
+              />
+            </div>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Tipo de curso
+              </label>
+              <select
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.intendedFor}
+                onChange={(e) =>
+                  setFormData({ ...formData, intendedFor: e.target.value })
+                }
+              >
+                <option value=''>Online</option>
+                <option value='presencial'>Presencial</option>
+                <option value='hibrido'>Híbrido</option>
+              </select>
             </div>
           </div>
-          <div className='mx-[33px] flex flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='post-img'
-            >
-              Imagen destacada
-            </label>
-            <div className='mb-4 flex flex-row'>
-              <div className='flex flex-col'>
-                <label
-                  className='mb-[8px] w-[500px] font-darker-grotesque text-[21px] text-[#000000]'
-                  htmlFor='company-logo'
-                >
-                  <strong>Usa formatos PNG o JPG para mejor calidad: </strong>{' '}
-                  412x300 px
-                </label>
-                <div className='mt-3 h-[280px] w-[314px]'>
-                  <ImageUpload
-                    key={imageUploadKey}
-                    onChange={(value) =>
-                      setFormData({ ...formData, image: value })
-                    }
-                  />
-                </div>
-              </div>
+
+          {/* Row 2: Description and Schedule */}
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Breve descripción
+              </label>
+              <textarea
+                placeholder='Ingrese su descripción aquí'
+                className='h-20 w-full resize-none rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.description}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
+              />
             </div>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Horario (GMT-5)
+              </label>
+              <input
+                type='text'
+                placeholder='Ej: De 10:00 a 14:00'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.time}
+                onChange={(e) =>
+                  setFormData({ ...formData, time: e.target.value })
+                }
+              />
+            </div>
+          </div>
+
+          {/* New Row: Place and Intended For */}
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Lugar
+              </label>
+              <input
+                type='text'
+                placeholder='Ej: Aula virtual, Oficina central, etc.'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.place}
+                onChange={(e) =>
+                  setFormData({ ...formData, place: e.target.value })
+                }
+              />
+            </div>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Dirigido a
+              </label>
+              <input
+                type='text'
+                placeholder='Ej: Profesionales de TI, Estudiantes, Gerentes, etc.'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.intendedFor}
+                onChange={(e) =>
+                  setFormData({ ...formData, intendedFor: e.target.value })
+                }
+              />
+            </div>
+          </div>
+
+          {/* Row 3: Discount, Valid From, Valid Until */}
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                % de descuento
+              </label>
+              <input
+                type='text'
+                placeholder='Ej: 10 (Ingrese un número del 0-100)'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.discount}
+                onChange={(e) =>
+                  setFormData({ ...formData, discount: e.target.value })
+                }
+              />
+            </div>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Fecha de validez
+              </label>
+              <input
+                type='date'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.validFrom}
+                onChange={(e) =>
+                  setFormData({ ...formData, validFrom: e.target.value })
+                }
+              />
+            </div>
+            <div>
+              <label className='mb-2 block text-sm font-medium text-gray-700'>
+                Fecha de caducidad
+              </label>
+              <input
+                type='date'
+                className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+                value={formData.validUntil}
+                onChange={(e) =>
+                  setFormData({ ...formData, validUntil: e.target.value })
+                }
+              />
+            </div>
+          </div>
+
+          {/* Row 4: Registration Link */}
+          <div>
+            <label className='mb-2 block text-sm font-medium text-gray-700'>
+              Enlace de inscripción curso
+            </label>
+            <input
+              type='url'
+              placeholder='metagility.com/courses/la-transformacion-agil-2/inscribirse'
+              className='w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500'
+              value={formData.link}
+              onChange={(e) =>
+                setFormData({ ...formData, link: e.target.value })
+              }
+            />
           </div>
         </div>
-        {error && <div className='mx-[33px] mb-4 text-red-500'>{error}</div>}
-        <div className={`flex w-full flex-row justify-end gap-4`}>
-          {/* <button
-            className='h-[48px] w-[150px] rounded-[10px] bg-[#FFFFFF] px-3 font-inter text-[18px] font-inter-400 text-[#FD3600]'
-            type='button'
-          >
-            Vista previa
-          </button> */}
+
+        {/* Error Message */}
+        {error && (
+          <div className='mt-4 rounded border border-red-400 bg-red-100 p-3 text-red-700'>
+            {error}
+          </div>
+        )}
+
+        {/* Submit Button */}
+        <div className='mt-8 flex justify-end'>
           <button
-            className='h-[48px] w-[207px] rounded-[10px] bg-[#FD3600] px-3 font-inter font-inter-400 text-[#FFFFFF] disabled:opacity-50'
             onClick={handleSubmit}
             disabled={isSubmitting}
+            className='rounded-md bg-[#4A5568] px-8 py-2 font-medium text-white transition-colors hover:bg-[#2D3748] disabled:cursor-not-allowed disabled:opacity-50'
           >
             {isSubmitting ? 'Publicando...' : 'Publicar'}
           </button>

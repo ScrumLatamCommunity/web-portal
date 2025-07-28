@@ -58,7 +58,7 @@ export default function OffertCard({
     >
       <div className='h-[200px] w-full overflow-hidden rounded-t-lg'>
         <Image
-          className='w-full rounded-t-lg object-cover object-center shadow-[0px_25px_25px_rgba(0,0,0,0.10)]'
+          className='w-full rounded-t-lg object-fill object-center shadow-[0px_25px_25px_rgba(0,0,0,0.10)]'
           src={image}
           alt={title}
           width={1000}
