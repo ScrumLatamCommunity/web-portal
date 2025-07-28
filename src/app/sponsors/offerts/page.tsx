@@ -1,374 +1,460 @@
 'use client'
 
-import { darkerGrotesque, inter, karla } from '@/fonts'
-import GlobeIcon from '@/assets/GlobeIcon'
-import TextEditor from '../components/TextEditor'
-import ImageUpload from '../components/imageUpload'
-import { useCallback, useState } from 'react'
-import { Switch } from '@headlessui/react'
 import { useAuth } from '@/app/context/AuthContext'
-import { toast } from 'react-hot-toast'
+import Skeleton from '../components/Skeleton'
+import { useEffect, useState } from 'react'
+import { darkerGrotesque, inter, karla } from '@/fonts'
 
-export default function Offerts() {
+interface Post {
+  id: string
+  sponsorId: string
+  status: string
+  title: string
+  category: string
+  validFrom: string
+  validUntil: string
+  description: string
+  link: string
+  imageWeb: string
+  imageMobile: string
+  createdAt: string
+  updatedAt: string
+}
+
+interface Offer {
+  id: string
+  sponsorId: string
+  status: string
+  title: string
+  category: string
+  validFrom: string
+  validUntil: string
+  description: string
+  link: string
+  image: string
+  createdAt: string
+  updatedAt: string
+}
+
+interface SponsorData {
+  id: string
+  userId: string
+  status: string
+  companyName: string
+  specialization: string
+  description: string
+  web: string
+  phone: string
+  socials: string[]
+  logo: string
+  bannerWeb: string
+  bannerMobile: string
+  createdAt: string
+  user: {
+    id: string
+    firstName: string
+    lastName: string
+    username: string
+    email: string
+    country: string
+  }
+  posts: Post[]
+  offers: Offer[]
+}
+
+interface ModalProps {
+  isOpen: boolean
+  onClose: () => void
+  onConfirm: () => void
+  title: string
+  message: string
+}
+
+const ConfirmModal = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  message
+}: ModalProps) => {
+  if (!isOpen) return null
+
+  return (
+    <div className='bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50'>
+      <div className='mx-4 w-full max-w-md rounded-lg bg-white p-6'>
+        <h3 className='mb-4 text-xl font-bold'>{title}</h3>
+        <p className='mb-6 text-gray-600'>{message}</p>
+        <div className='flex justify-end space-x-4'>
+          <button
+            onClick={onClose}
+            className='rounded bg-gray-200 px-4 py-2 transition-colors hover:bg-gray-300'
+          >
+            Cancelar
+          </button>
+          <button
+            onClick={() => {
+              onConfirm()
+              onClose()
+            }}
+            className='rounded bg-[#FD3600] px-4 py-2 text-white transition-colors hover:bg-opacity-90'
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function MisPublish() {
   const { token, user } = useAuth()
-  const [formData, setFormData] = useState({
-    title: '',
-    validFrom: '',
-    validUntil: '',
-    discount: '',
-    time: '',
-    place: '',
-    intendedFor: '',
-    link: '',
-    description: '',
-    image: '',
-    status: 'INACTIVE' as 'ACTIVE' | 'INACTIVE'
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [imageUploadKey, setImageUploadKey] = useState(0)
+  const [sponsorData, setSponsorData] = useState<SponsorData | null>(null)
+  const [modalConfig, setModalConfig] = useState<{
+    isOpen: boolean
+    itemId: string
+    itemType: 'post' | 'offer'
+    newStatus: string
+  }>({
+    isOpen: false,
+    itemId: '',
+    itemType: 'post',
+    newStatus: ''
+  })
 
-  const handleDescriptionChange = useCallback((value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      description: value
-    }))
-  }, [])
-
-  async function handleSubmit() {
+  const fetchSponsorData = async () => {
+    setIsLoading(true)
     try {
-      setIsSubmitting(true)
-      setError('')
-
-      if (
-        !formData.title ||
-        !formData.validFrom ||
-        !formData.time ||
-        !formData.place ||
-        !formData.intendedFor ||
-        !formData.link ||
-        !formData.discount ||
-        !formData.image ||
-        !formData.validUntil ||
-        !formData.description
-      ) {
-        toast.error('Por favor completa todos los campos requeridos')
-      }
-
-      const sponsorData = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user?.sub}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          }
-        }
-      ).then((res) => res.json())
-      const sendData = {
-        ...formData,
-        sponsorId: sponsorData.id,
-        validFrom: new Date(formData.validFrom).toISOString(),
-        validUntil: new Date(formData.validUntil).toISOString()
+      if (!user?.sub || !token) {
+        setError('No hay información de usuario disponible')
+        return
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}sponsors/offerts`,
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user.sub}`,
         {
-          method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(sendData)
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         }
       )
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message || 'Error al crear la oferta')
+        throw new Error(`Error HTTP: ${response.status}`)
       }
 
-      setFormData({
-        title: '',
-        validFrom: '',
-        validUntil: '',
-        link: '',
-        description: '',
-        image: '',
-        discount: '',
-        place: '',
-        time: '',
-        intendedFor: '',
-        status: 'INACTIVE'
-      })
-
-      setImageUploadKey((prev) => prev + 1)
-
-      toast.success('Oferta creada exitosamente')
-    } catch (error) {
-      setError(
-        error instanceof Error ? error.message : 'Error al crear la oferta'
-      )
-      console.error('Error:', error)
+      const data = await response.json()
+      setSponsorData(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error al cargar los datos')
     } finally {
-      setIsSubmitting(false)
+      setIsLoading(false)
     }
   }
 
-  function toggleStatus() {
-    setFormData((prev) => ({
-      ...prev,
-      status: prev.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
-    }))
+  useEffect(() => {
+    fetchSponsorData()
+  }, [user, token])
+
+  const handleStatusChangeConfirm = (
+    id: string,
+    type: 'post' | 'offer',
+    newStatus: string
+  ) => {
+    setModalConfig({
+      isOpen: true,
+      itemId: id,
+      itemType: type,
+      newStatus
+    })
   }
-  return (
-    <section
-      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 w-auto max-w-[1980px] items-center overflow-hidden`}
-    >
-      <h1
-        className={`items-left mb-0 max-w-[1980px] font-darker-grotesque text-[30px] font-darker-grotesque-700 text-[#082965]`}
-      >
-        Ofertas para la Comunidad
-      </h1>
-      <h2
-        className={`items-left mb-4 max-w-[1980px] font-karla text-[18px] font-karla-400 text-[#141414]`}
-      >
-        Llena este formulario para compartir tus beneficios u ofertas con
-        nuestra comunidad.
-      </h2>
-      <div
-        className={`mb-8 w-screen rounded-[20px] border-[0.5px] border-black-13 py-6 pr-8 md:max-w-[1025px] 2xl:max-w-[1250px]`}
-      >
-        <div className='mx-[33px] mb-4 flex items-center justify-end'>
-          <div className='flex items-center gap-2'>
-            <span className='font-darker-grotesque text-[16px] text-[#63789E]'>
-              {formData.status === 'ACTIVE' ? 'Público' : 'Privado'}
-            </span>
-            <Switch
-              checked={formData.status === 'ACTIVE'}
-              onChange={toggleStatus}
-              className={`${
-                formData.status === 'ACTIVE' ? 'bg-[#FD3600]' : 'bg-gray-300'
-              } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none`}
-            >
-              <span
-                className={`${
-                  formData.status === 'ACTIVE'
-                    ? 'translate-x-6'
-                    : 'translate-x-1'
-                } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-              />
-            </Switch>
-          </div>
-        </div>
-        <div className={`mb-8 flex flex-row items-start`}>
-          <div className='mx-[33px] flex w-[45%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Título
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='offer-name'
-              placeholder='Título de la oferta'
-              type='text'
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='whitespace-nowrap font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-date'
-            >
-              Fecha de validez
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
-              id='offer-date'
-              type='date'
-              value={formData.validFrom}
-              onChange={(e) =>
-                setFormData({ ...formData, validFrom: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='whitespace-nowrap font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-date-end'
-            >
-              Fecha de caducidad
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
-              id='offer-date-end'
-              type='date'
-              value={formData.validUntil}
-              onChange={(e) =>
-                setFormData({ ...formData, validUntil: e.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className={`mb-8 flex flex-row`}>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Horario
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='time'
-              placeholder='Ej: de 16hs a 21hs'
-              type='text'
-              value={formData.time}
-              onChange={(e) =>
-                setFormData({ ...formData, time: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[25%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Lugar
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='place'
-              placeholder='Ej: Vía Zoom // Meeting Room'
-              type='text'
-              value={formData.place}
-              onChange={(e) =>
-                setFormData({ ...formData, place: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] flex w-[40%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Descuento
-            </label>
-            <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='discount'
-              placeholder='Ej: ¡10% de descuento a miembros de la comunidad!'
-              type='text'
-              value={formData.discount}
-              onChange={(e) =>
-                setFormData({ ...formData, discount: e.target.value })
-              }
-            />
-          </div>
-        </div>
-        <div className={`flex flex-col`}>
-          <div className='mx-[33px] mb-4 flex w-[35%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='offer-name'
-            >
-              Dirigido a
-            </label>
-            <textarea
-              className='h-[70px] w-full resize-none rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-              id='intendedFor'
-              placeholder='Dirijido a personas con intereses en...'
-              value={formData.intendedFor}
-              onChange={(e) =>
-                setFormData({ ...formData, intendedFor: e.target.value })
-              }
-            />
-          </div>
-          <div className='mx-[33px] mb-10 flex flex-col gap-2'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-              Descripción
-            </label>
-            <TextEditor
-              value={formData.description}
-              onChange={handleDescriptionChange}
-            />
-          </div>
-          <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-            <p className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-              Ingresar link y/o web
-            </p>
-            <label htmlFor='post-web'>
-              Insertar link para redireccionar al usuario donde desee.
-            </label>
-            <div className='mt-3 flex flex-row'>
-              <GlobeIcon
-                className='my-1 mr-2 stroke-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              <input
-                className='ml-2 h-[39px] w-[555px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='post-web'
-                placeholder='www.ejemplo.com'
-                type='text'
-                value={formData.link}
-                onChange={(e) =>
-                  setFormData({ ...formData, link: e.target.value })
-                }
-              ></input>
-            </div>
-          </div>
-          <div className='mx-[33px] flex flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='post-img'
-            >
-              Imagen destacada
-            </label>
-            <div className='mb-4 flex flex-row'>
-              <div className='flex flex-col'>
-                <label
-                  className='mb-[8px] w-[500px] font-darker-grotesque text-[21px] text-[#000000]'
-                  htmlFor='company-logo'
-                >
-                  <strong>Usa formatos PNG o JPG para mejor calidad: </strong>{' '}
-                  412x300 px
-                </label>
-                <div className='mt-3 h-[280px] w-[314px]'>
-                  <ImageUpload
-                    key={imageUploadKey}
-                    onChange={(value) =>
-                      setFormData({ ...formData, image: value })
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {error && <div className='mx-[33px] mb-4 text-red-500'>{error}</div>}
-        <div className={`flex w-full flex-row justify-end gap-4`}>
-          {/* <button
-            className='h-[48px] w-[150px] rounded-[10px] bg-[#FFFFFF] px-3 font-inter text-[18px] font-inter-400 text-[#FD3600]'
-            type='button'
-          >
-            Vista previa
-          </button> */}
+
+  const handleStatusChange = async () => {
+    const { itemId, itemType } = modalConfig
+    try {
+      const endpoint =
+        itemType === 'post'
+          ? `${process.env.NEXT_PUBLIC_API_URL}sponsors/switchPostStatus/${itemId}`
+          : `${process.env.NEXT_PUBLIC_API_URL}sponsors/switchOffertStatus/${itemId}`
+
+      const response = await fetch(endpoint, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`)
+      }
+
+      await fetchSponsorData()
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : 'Error al actualizar el estado'
+      )
+    }
+  }
+
+  const getStatusColor = (status: string) => {
+    if (status === 'ACTIVE') return 'bg-green-100 text-green-800'
+    if (status === 'INACTIVE') return 'bg-red-100 text-red-800'
+    return 'bg-gray-100 text-gray-800'
+  }
+
+  const getStatusText = (status: string) => {
+    if (status === 'ACTIVE') return 'Publicado'
+    if (status === 'INACTIVE') return 'Inactivo'
+    return status
+  }
+
+  const getButtonStyle = (status: string) => {
+    return status === 'ACTIVE'
+      ? 'bg-red-500 hover:bg-red-600'
+      : 'bg-[#FD3600] hover:bg-[#E62E00]'
+  }
+
+  const getButtonText = (status: string) => {
+    return status === 'ACTIVE' ? 'Desactivar' : 'Activar'
+  }
+
+  if (isLoading) {
+    return <Skeleton className='h-screen' />
+  }
+
+  if (error) {
+    return (
+      <div className='flex h-[50vh] flex-col items-center justify-center'>
+        <div className='text-center'>
+          <h2 className='mb-2 text-xl font-semibold text-gray-800'>
+            ¡Ups! Algo salió mal
+          </h2>
+          <p className='text-gray-600'>
+            No pudimos cargar tus publicaciones en este momento. Por favor,
+            intenta nuevamente más tarde.
+          </p>
           <button
-            className='h-[48px] w-[207px] rounded-[10px] bg-[#FD3600] px-3 font-inter font-inter-400 text-[#FFFFFF] disabled:opacity-50'
-            onClick={handleSubmit}
-            disabled={isSubmitting}
+            onClick={fetchSponsorData}
+            className='mt-4 rounded bg-[#FD3600] px-4 py-2 text-white hover:bg-opacity-90'
           >
-            {isSubmitting ? 'Publicando...' : 'Publicar'}
+            Intentar nuevamente
           </button>
         </div>
       </div>
+    )
+  }
+
+  return (
+    <section
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 max-w-[2180px]`}
+    >
+      <h1 className='font-darker-grotesque text-[30px] font-bold text-[#FE2E00]'>
+        Mis Publicaciones
+      </h1>
+
+      {/* Sección de Posts */}
+      <div className='mt-8'>
+        <h2 className='font-darker-grotesque text-2xl font-semibold'>Posts</h2>
+
+        <div className='mt-4 rounded-[10px] bg-[#FFEAE6] p-2 py-4'>
+          <div className='grid grid-cols-12 gap-4'>
+            <div className='col-span-5 text-center font-darker-grotesque text-[18px] font-bold'>
+              Título
+            </div>
+            <div className='col-span-2 text-center font-darker-grotesque text-[18px] font-bold'>
+              Categoría
+            </div>
+            <div className='col-span-2 text-center font-darker-grotesque text-[18px] font-bold'>
+              Fechas
+            </div>
+            <div className='col-span-1 text-center font-darker-grotesque text-[18px] font-bold'>
+              Estado
+            </div>
+            <div className='col-span-2 text-center font-darker-grotesque text-[18px] font-bold'>
+              Acciones
+            </div>
+          </div>
+        </div>
+
+        <div className='custom-scrollbar max-h-[500px] overflow-y-auto'>
+          {sponsorData?.posts && sponsorData.posts.length > 0 ? (
+            sponsorData.posts.map((post) => (
+              <div
+                key={post.id}
+                className='grid grid-cols-12 items-center gap-4 border-b border-gray-200 p-3 py-4 hover:bg-gray-50'
+              >
+                <div className='col-span-5'>
+                  <div className='flex items-center'>
+                    {post.imageWeb ? (
+                      <img
+                        src={post.imageWeb}
+                        alt={post.title}
+                        className='mr-3 h-16 w-16 rounded-md object-cover'
+                      />
+                    ) : (
+                      <div className='mr-3 h-16 w-16 rounded-md bg-gray-200' />
+                    )}
+                    <div>
+                      <h3 className='font-semibold'>{post.title}</h3>
+                      <p className='line-clamp-1 text-sm text-gray-600'>
+                        {post.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='col-span-2 text-center'>
+                  <span className='rounded-full bg-gray-100 px-3 py-1 text-sm'>
+                    {post.category}
+                  </span>
+                </div>
+
+                <div className='col-span-2 text-center text-sm'>
+                  <div>{new Date(post.validFrom).toLocaleDateString()}</div>
+                  <div className='text-gray-500'>a</div>
+                  <div>{new Date(post.validUntil).toLocaleDateString()}</div>
+                </div>
+
+                <div className='col-span-1 text-center'>
+                  <span
+                    className={`inline-block rounded-full px-3 py-1 text-sm font-medium ${getStatusColor(post.status)}`}
+                  >
+                    {getStatusText(post.status)}
+                  </span>
+                </div>
+
+                <div className='col-span-2 text-center'>
+                  <button
+                    onClick={() =>
+                      handleStatusChangeConfirm(
+                        post.id,
+                        'post',
+                        post.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
+                      )
+                    }
+                    className={`rounded px-4 py-2 text-white transition-colors ${getButtonStyle(post.status)}`}
+                  >
+                    {getButtonText(post.status)}
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className='p-6 text-center text-gray-500'>
+              No hay posts creados
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Sección de Ofertas */}
+      <div className='mt-12'>
+        <h2 className='font-darker-grotesque text-2xl font-semibold'>
+          Ofertas
+        </h2>
+
+        <div className='mt-4 rounded-[10px] bg-[#FFEAE6] p-2 py-4'>
+          <div className='grid grid-cols-12 gap-4'>
+            <div className='col-span-5 text-center font-darker-grotesque text-[18px] font-bold'>
+              Título
+            </div>
+            <div className='col-span-2 text-center font-darker-grotesque text-[18px] font-bold'>
+              Categoría
+            </div>
+            <div className='col-span-2 text-center font-darker-grotesque text-[18px] font-bold'>
+              Fechas
+            </div>
+            <div className='col-span-1 text-center font-darker-grotesque text-[18px] font-bold'>
+              Estado
+            </div>
+            <div className='col-span-2 text-center font-darker-grotesque text-[18px] font-bold'>
+              Acciones
+            </div>
+          </div>
+        </div>
+
+        <div className='custom-scrollbar max-h-[500px] overflow-y-auto'>
+          {sponsorData?.offers && sponsorData.offers.length > 0 ? (
+            sponsorData.offers.map((offer) => (
+              <div
+                key={offer.id}
+                className='grid grid-cols-12 items-center gap-4 border-b border-gray-200 p-3 py-4 hover:bg-gray-50'
+              >
+                <div className='col-span-5'>
+                  <div className='flex items-center'>
+                    {offer.image ? (
+                      <img
+                        src={offer.image}
+                        alt={offer.title}
+                        className='mr-3 h-16 w-16 rounded-md object-cover'
+                      />
+                    ) : (
+                      <div className='mr-3 h-16 w-16 rounded-md bg-gray-200' />
+                    )}
+                    <div>
+                      <h3 className='font-semibold'>{offer.title}</h3>
+                      <p className='line-clamp-1 text-sm text-gray-600'>
+                        {offer.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='col-span-2 text-center'>
+                  <span className='rounded-full bg-gray-100 px-3 py-1 text-sm'>
+                    {offer.category}
+                  </span>
+                </div>
+
+                <div className='col-span-2 text-center text-sm'>
+                  <div>{new Date(offer.validFrom).toLocaleDateString()}</div>
+                  <div className='text-gray-500'>a</div>
+                  <div>{new Date(offer.validUntil).toLocaleDateString()}</div>
+                </div>
+
+                <div className='col-span-1 text-center'>
+                  <span
+                    className={`inline-block rounded-full px-3 py-1 text-sm font-medium ${getStatusColor(offer.status)}`}
+                  >
+                    {getStatusText(offer.status)}
+                  </span>
+                </div>
+
+                <div className='col-span-2 text-center'>
+                  <button
+                    onClick={() =>
+                      handleStatusChangeConfirm(
+                        offer.id,
+                        'offer',
+                        offer.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
+                      )
+                    }
+                    className={`rounded px-4 py-2 text-white transition-colors ${getButtonStyle(offer.status)}`}
+                  >
+                    {getButtonText(offer.status)}
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className='p-6 text-center text-gray-500'>
+              No hay ofertas creadas
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ConfirmModal
+        isOpen={modalConfig.isOpen}
+        onClose={() => setModalConfig((prev) => ({ ...prev, isOpen: false }))}
+        onConfirm={handleStatusChange}
+        title='Confirmar cambio de estado'
+        message={`¿Estás seguro que deseas ${modalConfig.newStatus === 'ACTIVE' ? 'activar' : 'desactivar'} ${modalConfig.itemType === 'post' ? 'el post' : 'la oferta'}?`}
+      />
     </section>
   )
 }

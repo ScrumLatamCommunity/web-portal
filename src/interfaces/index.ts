@@ -16,7 +16,7 @@ export interface SponsorData {
   wppMessage: string
   socials: string[]
   logo: string
-  certificates: Certificate[]
+  certificates: SponsorCertificate[]
   bannerWeb: string
   bannerMobile: string
   createdAt: string

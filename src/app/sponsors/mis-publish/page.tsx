@@ -1,368 +1,227 @@
 'use client'
 
 import { useAuth } from '@/app/context/AuthContext'
-import Skeleton from '../components/Skeleton'
 import { useEffect, useState } from 'react'
-import { darkerGrotesque, inter, karla } from '@/fonts'
+import { EyeOff } from 'react-feather'
 
-interface Post {
+interface Course {
   id: string
-  sponsorId: string
-  status: string
   title: string
-  category: string
   validFrom: string
-  validUntil: string
-  description: string
-  link: string
-  imageWeb: string
-  imageMobile: string
-  createdAt: string
-  updatedAt: string
+  status: 'ACTIVE' | 'INACTIVE'
 }
 
-interface Offer {
-  id: string
-  sponsorId: string
-  status: string
-  title: string
-  category: string
-  validFrom: string
-  validUntil: string
-  description: string
-  link: string
-  image: string
-  createdAt: string
-  updatedAt: string
-}
-
-interface SponsorData {
-  id: string
-  userId: string
-  status: string
-  companyName: string
-  specialization: string
-  description: string
-  web: string
-  phone: string
-  socials: string[]
-  logo: string
-  bannerWeb: string
-  bannerMobile: string
-  createdAt: string
-  user: {
-    id: string
-    firstName: string
-    lastName: string
-    username: string
-    email: string
-    country: string
-  }
-  posts: Post[]
-  offers: Offer[]
-}
-
-interface ModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onConfirm: () => void
-  title: string
-  message: string
-}
-
-const ConfirmModal = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  message
-}: ModalProps) => {
-  if (!isOpen) return null
-
-  return (
-    <div className='bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50'>
-      <div className='mx-4 w-full max-w-md rounded-lg bg-white p-6'>
-        <h3 className='mb-4 text-xl font-bold'>{title}</h3>
-        <p className='mb-6 text-gray-600'>{message}</p>
-        <div className='flex justify-end space-x-4'>
-          <button
-            onClick={onClose}
-            className='rounded bg-gray-200 px-4 py-2 transition-colors hover:bg-gray-300'
-          >
-            Cancelar
-          </button>
-          <button
-            onClick={() => {
-              onConfirm()
-              onClose()
-            }}
-            className='rounded bg-[#FD3600] px-4 py-2 text-white transition-colors hover:bg-opacity-90'
-          >
-            Confirmar
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default function MisPublish() {
-  const { token, user } = useAuth()
-
-  const [isLoading, setIsLoading] = useState(false)
+export default function CoursePublications() {
+  const { user, token } = useAuth()
+  const [filterPublished, setFilterPublished] = useState(true)
+  const [filterNotPublished, setFilterNotPublished] = useState(true)
+  const [courses, setCourses] = useState<Course[]>([])
+  const [sponsorId, setSponsorId] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
-  const [sponsorData, setSponsorData] = useState<SponsorData | null>(null)
-  const [modalConfig, setModalConfig] = useState<{
-    isOpen: boolean
-    itemId: string
-    itemType: 'post' | 'offer'
-    newStatus: string
-  }>({
-    isOpen: false,
-    itemId: '',
-    itemType: 'post',
-    newStatus: ''
-  })
 
-  const fetchSponsorData = async () => {
-    setIsLoading(true)
-    try {
-      if (!user?.sub || !token) {
-        setError('No hay información de usuario disponible')
-        return
+  useEffect(() => {
+    const fetchSponsorId = async () => {
+      try {
+        if (!user?.sub || !token) return
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user.sub}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+        if (!res.ok) throw new Error('No se pudo obtener el sponsor')
+        const data = await res.json()
+        setSponsorId(data.id)
+      } catch (err) {
+        setError('Error al obtener el sponsor')
       }
+    }
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}sponsors/user/${user.sub}`,
+    fetchSponsorId()
+  }, [user, token])
+
+  useEffect(() => {
+    if (!sponsorId) return
+
+    const fetchCourses = async () => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorId}/posts`
+        )
+        const data = await res.json()
+        setCourses(data)
+      } catch (err) {
+        setError('Error al obtener los cursos')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchCourses()
+  }, [sponsorId])
+
+  const togglePublication = async (course: Course) => {
+    const newStatus = course.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}posts/${course.id}`,
         {
+          method: 'PATCH',
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
-          }
+          },
+          body: JSON.stringify({ status: newStatus })
         }
       )
 
-      if (!response.ok) {
-        throw new Error(`Error HTTP: ${response.status}`)
-      }
+      if (!res.ok) throw new Error('Error actualizando el estado del post')
 
-      const data = await response.json()
-      setSponsorData(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error al cargar los datos')
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchSponsorData()
-  }, [user, token])
-
-  const handleStatusChangeConfirm = (
-    id: string,
-    type: 'post' | 'offer',
-    newStatus: string
-  ) => {
-    setModalConfig({
-      isOpen: true,
-      itemId: id,
-      itemType: type,
-      newStatus
-    })
-  }
-
-  const handleStatusChange = async () => {
-    const { itemId, itemType } = modalConfig
-    try {
-      const endpoint =
-        itemType === 'post'
-          ? `${process.env.NEXT_PUBLIC_API_URL}sponsors/switchPostStatus/${itemId}`
-          : `${process.env.NEXT_PUBLIC_API_URL}sponsors/switchOffertStatus/${itemId}`
-
-      const response = await fetch(endpoint, {
-        method: 'PATCH',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      })
-
-      if (!response.ok) {
-        throw new Error(`Error HTTP: ${response.status}`)
-      }
-
-      await fetchSponsorData()
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : 'Error al actualizar el estado'
+      setCourses((prev) =>
+        prev.map((c) => (c.id === course.id ? { ...c, status: newStatus } : c))
       )
+    } catch (err) {
+      console.error(err)
     }
   }
 
-  const getStatusColor = (status: string) => {
-    return status === 'ACTIVE'
-      ? 'text-green-600 bg-green-100 px-2 py-1 rounded-full text-sm'
-      : 'text-red-600 bg-red-100 px-2 py-1 rounded-full text-sm'
-  }
-
-  const getButtonStyle = (status: string) => {
-    return status === 'ACTIVE'
-      ? 'rounded bg-red-500 px-4 py-2 text-white hover:bg-opacity-90'
-      : 'rounded bg-[#FD3600] px-4 py-2 text-white hover:bg-opacity-90'
-  }
-
-  if (isLoading) {
-    return <Skeleton className='h-screen' />
-  }
-
-  if (error) {
-    return (
-      <div className='flex h-[50vh] flex-col items-center justify-center'>
-        <div className='text-center'>
-          <h2 className='mb-2 text-xl font-semibold text-gray-800'>
-            ¡Ups! Algo salió mal
-          </h2>
-          <p className='text-gray-600'>
-            No pudimos cargar tus publicaciones en este momento. Por favor,
-            intenta nuevamente más tarde.
-          </p>
-          <button
-            onClick={fetchSponsorData}
-            className='mt-4 rounded bg-[#FD3600] px-4 py-2 text-white hover:bg-opacity-90'
-          >
-            Intentar nuevamente
-          </button>
-        </div>
-      </div>
-    )
-  }
+  const filteredCourses = courses.filter((course) => {
+    if (filterPublished && filterNotPublished) return true
+    if (!filterPublished && !filterNotPublished) return true
+    if (filterPublished && course.status === 'ACTIVE') return true
+    if (filterNotPublished && course.status === 'INACTIVE') return true
+    return false
+  })
 
   return (
-    <section
-      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8 w-auto max-w-[1980px] items-center overflow-hidden`}
-    >
-      <h1 className='mb-6 text-2xl font-bold'>Mis Publicaciones</h1>
+    <div className='mx-auto max-w-[1200px] rounded-lg p-4 pb-20 lg:p-12'>
+      <h1 className='mb-6 text-xl font-bold text-[#FE2E00] sm:text-2xl'>
+        Panel de publicaciones de cursos
+      </h1>
 
-      {/* Sección de Posts */}
-      <div className='space-y-4'>
-        <h2 className='text-xl font-semibold'>Posts</h2>
-        {sponsorData?.posts && sponsorData.posts.length > 0 ? (
-          <div className='overflow-x-auto'>
-            <table className='w-full rounded-lg border-2 border-[#FD3600]'>
-              <thead className='bg-[#FD3600] text-white'>
-                <tr>
-                  <th className='p-3 text-left'>Título</th>
-                  <th className='p-3 text-left'>Categoría</th>
-                  <th className='p-3 text-left'>Válido Desde</th>
-                  <th className='p-3 text-left'>Válido Hasta</th>
-                  <th className='p-3 text-left'>Estado</th>
-                  <th className='p-3 text-left'>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sponsorData.posts.map((post) => (
-                  <tr key={post.id} className='border-b border-gray-200'>
-                    <td className='p-3'>{post.title}</td>
-                    <td className='p-3'>{post.category}</td>
-                    <td className='p-3'>
-                      {new Date(post.validFrom).toLocaleDateString()}
-                    </td>
-                    <td className='p-3'>
-                      {new Date(post.validUntil).toLocaleDateString()}
-                    </td>
-                    <td className='p-3'>
-                      <span className={getStatusColor(post.status)}>
-                        {post.status === 'ACTIVE' ? 'Activo' : 'Inactivo'}
-                      </span>
-                    </td>
-                    <td className='p-3'>
-                      <button
-                        onClick={() =>
-                          handleStatusChangeConfirm(
-                            post.id,
-                            'post',
-                            post.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
-                          )
-                        }
-                        className={getButtonStyle(post.status)}
-                      >
-                        {post.status === 'ACTIVE' ? 'Desactivar' : 'Activar'}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className='text-gray-500'>No hay posts creados</p>
-        )}
+      {/* Filtros */}
+      <div className='mb-6 rounded-lg p-4'>
+        <h2 className='mb-2 font-medium text-[#000000]'>Aplicar filtros:</h2>
+        <div className='flex flex-row gap-2 sm:space-x-6'>
+          <label className='flex items-center'>
+            <input
+              type='checkbox'
+              className='form-checkbox h-4 w-4 rounded text-[#FD3600]'
+              checked={filterPublished}
+              onChange={() => setFilterPublished(!filterPublished)}
+            />
+            <span className='ml-1'>Publicado</span>
+          </label>
+          <label className='flex items-center'>
+            <input
+              type='checkbox'
+              className='form-checkbox h-4 w-4 rounded text-[#FD3600]'
+              checked={filterNotPublished}
+              onChange={() => setFilterNotPublished(!filterNotPublished)}
+            />
+            <span className='ml-1'>No Publicado</span>
+          </label>
+        </div>
       </div>
 
-      {/* Sección de Ofertas */}
-      <div className='mt-4 space-y-4'>
-        <h2 className='text-xl font-semibold'>Ofertas</h2>
-        {sponsorData?.offers && sponsorData.offers.length > 0 ? (
-          <div className='overflow-x-auto'>
-            <table className='w-full rounded-lg border-2 border-[#FD3600]'>
-              <thead className='bg-[#FD3600] text-white'>
-                <tr>
-                  <th className='p-3 text-left'>Título</th>
-                  <th className='p-3 text-left'>Categoría</th>
-                  <th className='p-3 text-left'>Válido Desde</th>
-                  <th className='p-3 text-left'>Válido Hasta</th>
-                  <th className='p-3 text-left'>Estado</th>
-                  <th className='p-3 text-left'>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sponsorData.offers.map((offer) => (
-                  <tr key={offer.id} className='border-b border-gray-200'>
-                    <td className='p-3'>{offer.title}</td>
-                    <td className='p-3'>{offer.category}</td>
-                    <td className='p-3'>
-                      {new Date(offer.validFrom).toLocaleDateString()}
-                    </td>
-                    <td className='p-3'>
-                      {new Date(offer.validUntil).toLocaleDateString()}
-                    </td>
-                    <td className='p-3'>
-                      <span className={getStatusColor(offer.status)}>
-                        {offer.status === 'ACTIVE' ? 'Activo' : 'Inactivo'}
-                      </span>
-                    </td>
-                    <td className='p-3'>
-                      <button
-                        onClick={() =>
-                          handleStatusChangeConfirm(
-                            offer.id,
-                            'offer',
-                            offer.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
-                          )
-                        }
-                        className={getButtonStyle(offer.status)}
-                      >
-                        {offer.status === 'ACTIVE' ? 'Desactivar' : 'Activar'}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className='text-gray-500'>No hay ofertas creadas</p>
-        )}
+      {/* Tabla */}
+      <div className='-mx-4 overflow-x-auto sm:mx-0'>
+        <table className='w-full table-auto divide-y divide-gray-200'>
+          <thead className='bg-[#FFEAE6]'>
+            <tr>
+              <th className='px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[#04122D]'>
+                Título del curso
+              </th>
+              <th className='hidden px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[#04122D] lg:table-cell'>
+                Fecha de inicio
+              </th>
+              <th className='px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[#04122D]'>
+                Estado
+              </th>
+              <th className='px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[#04122D]'>
+                Más
+              </th>
+            </tr>
+          </thead>
+          <tbody className='divide-y divide-gray-200 bg-white'>
+            {filteredCourses.map((course) => (
+              <tr key={course.id} className='hover:bg-gray-50'>
+                <td className='max-w-[300px] break-words px-4 py-4 text-sm font-medium text-gray-900'>
+                  {course.title}
+                </td>
+                <td className='hidden whitespace-nowrap px-4 py-4 text-center text-sm text-gray-500 lg:table-cell'>
+                  {new Date(course.validFrom).toLocaleDateString()}
+                </td>
+                <td className='px-4 py-4 text-center text-sm'>
+                  <span
+                    className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold leading-5 ${
+                      course.status === 'ACTIVE'
+                        ? 'bg-[#345081] text-white'
+                        : 'bg-[#FE2E00] text-white'
+                    }`}
+                  >
+                    {course.status === 'ACTIVE' ? 'Publicado' : 'No Publicado'}
+                  </span>
+                </td>
+                <td className='px-4 py-4 text-center text-sm font-medium'>
+                  <button
+                    onClick={() => togglePublication(course)}
+                    className={`flex w-full max-w-[100px] items-center justify-center rounded-[15px] border border-[#FFBEB0] bg-[#FFEAE6] px-4 py-[5px] text-xs text-[#000000] transition-colors hover:bg-[#E62E00] hover:text-white`}
+                  >
+                    {course.status === 'ACTIVE' ? (
+                      <div className='flex items-center'>
+                        <EyeOff className='w-4 pr-1' />
+                        Ocultar
+                      </div>
+                    ) : (
+                      'Activar'
+                    )}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <ConfirmModal
-        isOpen={modalConfig.isOpen}
-        onClose={() => setModalConfig((prev) => ({ ...prev, isOpen: false }))}
-        onConfirm={handleStatusChange}
-        title='Confirmar cambio de estado'
-        message={`¿Estás seguro que deseas ${modalConfig.newStatus === 'ACTIVE' ? 'activar' : 'desactivar'} ${modalConfig.itemType === 'post' ? 'el post' : 'la oferta'}?`}
-      />
-    </section>
+      {!isLoading && (
+        <>
+          {courses.length === 0 ? (
+            <div className='py-10 text-center'>
+              <div className='mb-2 text-gray-500'>
+                Aún no tienes publicaciones creadas.
+              </div>
+              <div className='text-sm text-gray-400'>
+                Puedes agregar nuevos publicaciones desde tu panel de
+                administración.
+              </div>
+            </div>
+          ) : (
+            filteredCourses.length === 0 && (
+              <div className='py-10 text-center'>
+                <div className='mb-2 text-gray-500'>
+                  No hay publicaciones que coincidan con los filtros
+                  seleccionados
+                </div>
+                <button
+                  className='font-medium text-[#FD3600] hover:text-[#E62E00]'
+                  onClick={() => {
+                    setFilterPublished(true)
+                    setFilterNotPublished(true)
+                  }}
+                >
+                  Mostrar todos los publicaciones
+                </button>
+              </div>
+            )
+          )}
+        </>
+      )}
+    </div>
   )
 }
