@@ -54,7 +54,7 @@ export default function ActivitiesHome() {
 
   return (
     <div className='flex flex-col pb-10 md:pb-14 2xl:pb-20'>
-      <h1 className='mt-4 px-4 pb-5 font-darker-grotesque text-[22px] font-bold leading-1 text-[#082965] md:mt-8 md:p-16 md:pb-2 md:pl-36 md:pt-8 md:text-[55px] 2xl:p-16 2xl:pb-2 2xl:pt-12 2xl:text-[65px]'>
+      <h1 className='mt-4 pb-5 pl-[8%] font-darker-grotesque text-[24px] font-bold leading-1 text-[#082965] md:mt-8 md:pb-2 md:pt-8 md:text-[55px] 2xl:pb-2 2xl:pt-12 2xl:text-[65px]'>
         Únete a nuestras actividades
       </h1>
       <div className='mx-auto flex w-full flex-col items-center justify-center gap-6 md:w-[75%] md:flex-row md:pt-10 2xl:w-[70%] 2xl:pt-16'>

@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 interface SponsorData {
   sponsorId: string
   companyName: string
+  web: string
   logo: string
   specialization: string[]
 }
@@ -14,6 +15,7 @@ interface SponsorData {
 export default function SponsorCard({
   companyName,
   logo,
+  web,
   sponsorId,
   specialization
 }: SponsorData) {
@@ -22,7 +24,9 @@ export default function SponsorCard({
   const [hovered, setHovered] = useState(false)
 
   const handleClick = () => {
-    if (sponsorId) {
+    if (sponsorId === 'd04c3e6d-26a2-4e22-ad71-1fac614b4122') {
+      window.open(web, '_blank')
+    } else {
       setSelectedSponsorId(sponsorId)
       router.push(`/community/offerts/${sponsorId}`)
     }

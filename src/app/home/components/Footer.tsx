@@ -10,6 +10,7 @@ import { Modal } from '@/core/Modal'
 import { usePathname } from 'next/navigation'
 import scrumFooterLogo from '@/assets/logo blanco (footer).png'
 import Image from 'next/image'
+import { darkerGrotesque } from '@/fonts'
 
 export const Footer = () => {
   const pathname = usePathname()
@@ -34,7 +35,7 @@ export const Footer = () => {
   }
 
   return (
-    <div className='flex flex-col align-top'>
+    <div className={`${darkerGrotesque.variable} flex flex-col align-top`}>
       <div className='flex flex-col items-center justify-evenly border-[#082965] bg-[#082965] px-4 pb-16 pt-10 text-white sm:items-center md:flex-row'>
         <div className='flex flex-col gap-4 border-[#082965] pb-5 md:pb-0'>
           <div className='flex w-full flex-col'>
@@ -45,8 +46,8 @@ export const Footer = () => {
               width={800}
               className='h-18 w-72 pb-6 sm:h-20 sm:w-80 sm:pb-0'
             />
-            <div className='mt-6 flex flex-row justify-center gap-3 md:justify-start'>
-              <span className='text-black font-normal sm:text-lg'>
+            <div className='mt-6 flex flex-row items-center justify-center gap-3 md:justify-start'>
+              <span className='text-black font-darker-grotesque text-[18px] font-normal md:text-[24px]'>
                 Síguenos
               </span>
               <div className='flex flex-row gap-4 md:pl-8'>
@@ -79,18 +80,21 @@ export const Footer = () => {
           <div className='grid grid-cols-2 gap-4'>
             <div className='flex flex-col items-center justify-center sm:items-start'>
               <Link href='/community/squads'>
-                <div className='flex cursor-pointer gap-2 font-normal text-black-1 sm:flex-row'>
+                <div className='mb-2 flex cursor-pointer gap-2 font-darker-grotesque text-[18px] font-normal text-black-1 sm:flex-row md:text-[24px]'>
                   Quiénes Somos
                 </div>
               </Link>
               <Link href='/activities'>
-                <div className='flex cursor-pointer gap-2 font-normal text-black-1 sm:flex-row'>
+                <div className='flex cursor-pointer gap-2 font-darker-grotesque text-[18px] font-normal text-black-1 sm:flex-row md:text-[24px]'>
                   Actividades
                 </div>
               </Link>
             </div>
             <div>
-              <button className='font-normal text-white' onClick={handleModal}>
+              <button
+                className='font-darker-grotesque text-[19px] font-normal text-white md:text-[24px]'
+                onClick={handleModal}
+              >
                 Términos y condiciones
               </button>
             </div>
@@ -98,7 +102,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className='flex flex-col place-content-end gap-8 border-[#082965] bg-[#082965] py-5 text-center text-[15px] font-normal text-white sm:flex-row sm:justify-evenly'>
+      <div className='flex flex-col place-content-end gap-8 border-[#082965] bg-[#082965] py-5 text-center font-darker-grotesque text-[16px] font-normal text-white sm:flex-row sm:justify-evenly md:text-[20px]'>
         <span>© 2025 Scrumlatam. Todos los derechos reservados</span>
       </div>
 

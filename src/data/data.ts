@@ -259,64 +259,93 @@ export const newsCommunity: NewsItem[] = [
 
 export const reviews: Review[] = [
   {
-    name: 'Penelope Flores',
+    name: 'Yovanny Moreno',
     id: 1,
     position: 'Agile consultant',
     rating: 4,
     description:
       'Tengo dos años en la comunidad Scrum Latam. Esta comunidad ha sido clave en mi desarrollo profesional, brindándome acceso a charlas, capacitaciones y apoyo para entrevistas en roles como Scrum Master. Gracias a esto, he mejorado mi carrera y la calidad de vida de mi familia, además de disfrutar sorteos de cursos y certificaciones.',
-    profile: 'https://i.pravatar.cc/200',
-    flag: 'https://flagcdn.com/ar.svg'
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%201.%20Yovanny%20Moreno-%20Colombia%20-%20Agile%20Consultant.png?alt=media&token=d43597fc-113f-4414-b76f-b0b0662b6f18',
+    flag: 'https://flagcdn.com/co.svg'
   },
   {
-    name: 'Kevin Añez',
-    id: 2,
-    position: 'Agile coach',
-    rating: 3,
-    description:
-      'Llevó cinco meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimientos cada día como Scrum Master y además de eso me permito interactuar y conocer grandes personas y grandes coaches día a día.',
-    profile: 'https://i.pravatar.cc/200',
-    flag: 'https://flagcdn.com/ar.svg'
-  },
-  {
-    name: 'Richard Tavarez',
+    name: 'Gaby Centurión',
     id: 3,
     position: 'Scrum master',
     rating: 4,
     description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, explicabo eveniet enim illum nisi quis ad assumenda. Deserunt, itaque. Necessitatibus amet sapiente',
-    profile: 'https://i.pravatar.cc/200',
-    flag: 'https://flagcdn.com/cl.svg'
+      'Estoy muy feliz de ser parte de la comunidad Scrum Latam. Colaborar en este espacio me permitió conocer a gente maravillosa y hacer networking con profesionales de diferentes países. Esta experiencia me enriquece mucho a nivel personal como profesional.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%203.Gaby%20Centurión%2C%20Buenos%20Aires%20Argentina%20%20AR.png?alt=media&token=c1ca58ae-c47d-43ad-b43c-ac4ffe278dd4',
+    flag: 'https://flagcdn.com/ar.svg'
   },
   {
-    name: 'Richard Tavarez',
-    id: 4,
-    position: 'Agile coach',
-    rating: 3,
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, explicabo eveniet enim illum nisi quis ad assumenda. Deserunt, itaque. Necessitatibus amet sapiente',
-    profile: 'https://i.pravatar.cc/200',
-    flag: 'https://flagcdn.com/cl.svg'
-  },
-  {
-    name: 'Richard Tavarez',
+    name: 'Ailicec Millán Crecian',
     id: 5,
     position: 'Scrum master',
     rating: 5,
     description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, explicabo eveniet enim illum nisi quis ad assumenda. Deserunt, itaque. Necessitatibus amet sapiente',
-    profile: 'https://i.pravatar.cc/200',
-    flag: 'https://flagcdn.com/ar.svg'
+      'Llevó 5 meses en el squad de educación, soy de Colombia. Estar en scrum Latam es un aprendizaje constante, donde alimento mis habilidades y conocimiento cada día como Scrum Master y además de eso me permito interactuar y conocer  grandes personas y grandes coach día a día.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%204.%20Ailicec%20Mill%C3%A1n%20Crecian%20-%20Colombia.png?alt=media&token=205b2a55-b1d5-4be9-9604-179343fb9f95',
+
+    flag: 'https://flagcdn.com/co.svg'
   },
   {
-    name: 'Richard Tavarez',
+    name: 'Jonathan Bustos',
     id: 6,
     position: 'Agile consultant',
-    rating: 1,
+    rating: 5,
     description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, explicabo eveniet enim illum nisi quis ad assumenda. Deserunt, itaque. Necessitatibus amet sapiente',
-    profile: 'https://i.pravatar.cc/200',
-    flag: 'https://flagcdn.com/cl.svg'
+      'Hola comunidad, soy Jonathan Bustos, actualmente soy emprendedor, mentor y consultor en agilidad organizacional, para diferentes compañías nacionales e internacionales,  les saludo cordialmente desde Bogotá, Colombia, es un gusto poder compartir valor dentro de Scrum Latam, llevo casi 3 años perteneciendo a la comunidad, como asistente y speaker en los eventos, la verdad enriquece mucho el conocimiento y valor que se comparte con cada uno de los participantes.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%205.%20Jonathan%20Bustos%20-%20Colombia%20-%20Emprendedor%2C%20mentor%20y%20consultor%20en%20agilidad%20organizacional.png?alt=media&token=06440c9c-e8d9-4251-840a-76183a0d158a',
+    flag: 'https://flagcdn.com/co.svg'
+  },
+  {
+    name: 'Carlos Peña',
+    id: 7,
+    position: 'Agile Coach',
+    rating: 4,
+    description:
+      'Mi nombre es Carlos Peña, soy de Venezuela y me desempeño como Agile Coach en Scrum LATAM desde abril de 2024, ya unos 4 meses. He acompañado hasta ahora a 2 equipos: Educación y Data y Analítica con el cual trabajo actualmente. La comunidad ha representado para mi una oportunidad para conocer nuevas personas en el mundo de la agilidad y un espacio para mantenerme activo aprendiendo nuevos conocimientos de todos los compañeros y compañeras que hacen vida acá.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%206.%20Carlos%20Pe%C3%B1a%20-%20Venezuela%20Agile%20Coach.png?alt=media&token=fcf3410e-b310-4a40-a9c2-7b0a3612a04b',
+    flag: 'https://flagcdn.com/ve.svg'
+  },
+  {
+    name: 'Andrés Rivera',
+    id: 8,
+    position: 'Scrum Master',
+    rating: 4,
+    description:
+      'Hola, soy Andrés Rivera, desde Colombia. En mi rol actual como Scrum Master Junior, he tenido el privilegio de formar parte de la comunidad Scrum Latam durante los últimos dos meses, y puedo decir con certeza que ha sido una experiencia enriquecedora. Desde mi incorporación a esta comunidad, he conocido a personas increíblemente colaboradoras y comprometidas.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%207.%20Andr%C3%A9s%20Rivera%20-%20Colombia%20-%20Scrum%20Master%20Junior.jpg?alt=media&token=c38da102-b821-4963-ac10-0799d14f3fb0',
+    flag: 'https://flagcdn.com/co.svg'
+  },
+  {
+    name: 'Merly Velásquez Marín',
+    id: 9,
+    position: 'Scrum Master',
+    rating: 5,
+    description:
+      'Hola, soy Merly Velásquez Marín, desde Bogotá, Colombia. Ser parte de Scrum Latam Comunidad ha sido una experiencia increíble y transformadora tanto en lo personal como en lo laboral. Esta comunidad me ha dado la oportunidad de aprender y crecer en mi carrera como Scrum Master, y he encontrado un grupo de personas apasionadas que comparten mi entusiasmo por la agilidad.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%208.%20Merly%20Vel%C3%A1squez%20Mar%C3%ADn%20-%20Colombia%20-%20Scrum%20M%C3%A1ster.jpg?alt=media&token=9157693f-7f55-45ac-9033-d4a3ce15aa66',
+    flag: 'https://flagcdn.com/co.svg'
+  },
+  {
+    name: 'Catalina Aguirre',
+    id: 10,
+    position: 'Scrum Master',
+    rating: 4,
+    description:
+      'Valoro y agradezco muchisimo los espacios de conversaciones y transferencia de conocimiento que nos brinda la comunidad para el crecimiento individual y como equipo, sus aportes en conocimiento han transformado mi caja de herramientas laboralmente, espero que sean muchos años más de sabiduria compartida. Gracias Scrum LATAM.',
+    profile:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Reviews%20Profile%20Pics%2FCopy%20of%209.%20Catalina%20Aguirre%20-%20%20-%20Scrum%20Master.jpg?alt=media&token=77b519b4-5222-4d39-99c1-c9fa353d4c14',
+    flag: 'https://flagcdn.com/co.svg'
   }
 ]
 
@@ -736,15 +765,6 @@ export const ProductsServices: ProductsServicesItem[] = [
 
 export const profilesTecnologia = [
   {
-    name: 'Ruben Dario Romero Chica',
-    title: 'Fundador',
-    description: 'Creador y fundador de la comunidad SCRUM Latam',
-    countryFlagUrl: 'https://flagcdn.com/ve.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
-    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
-  },
-  {
     name: 'Geornith Melo Ortiz',
     title: 'Scrum Master',
     description:
@@ -784,6 +804,15 @@ export const profilesTecnologia = [
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FAlejandro_Morcillo.jpg?alt=media&token=7c76c116-055f-49aa-938c-c7d577ac6044',
     linkedinUrl:
       'https://www.linkedin.com/in/david-morcillo-benavidez-aljo1996/'
+  },
+  {
+    name: 'Ruben Dario Romero Chica',
+    title: 'Fundador',
+    description: 'Creador y fundador de la comunidad SCRUM Latam',
+    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
+    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
   }
 ]
 
@@ -811,6 +840,15 @@ export const profilesCOE = [
 
 export const profilesCatalizador = [
   {
+    name: 'Ruben Dario Romero Chica',
+    title: 'Fundador',
+    description: 'Creador y fundador de la comunidad SCRUM Latam',
+    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
+    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
+  },
+  {
     name: 'Karen Lara Ferrufino',
     title: 'Scrum Master',
     description: 'Facilitador del equipo y guardián de los principios ágiles',
@@ -818,15 +856,6 @@ export const profilesCatalizador = [
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FKaren_Lara.png?alt=media&token=db24f658-5e6e-46ac-bbff-e275b64e44a6',
     linkedinUrl: 'https://www.linkedin.com/company/scrum-latam-comunidad/'
-  },
-  {
-    name: 'Yenny Viviana Campos Diaz',
-    title: 'Team Member',
-    description: 'Ejecutores y co-creadores de iniciativas de cambio.',
-    countryFlagUrl: 'https://flagcdn.com/co.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FViviana.jpg?alt=media&token=0904d4ff-4dcb-4e71-afd3-8d1d80242f2d',
-    linkedinUrl: 'www.linkedin.com/in/viviana-campos-031a25142/'
   },
   {
     name: 'Michelle Bonilla',
