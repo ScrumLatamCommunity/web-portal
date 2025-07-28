@@ -16,7 +16,6 @@ interface ActivityCardProps {
 export default function ActivityCard({ activity, country }: ActivityCardProps) {
   const { user } = useAuth()
   const router = useRouter()
-  console.log(activity.time)
 
   const { formattedTime, isLoading } = useTimeConverter(activity, country)
 
@@ -27,7 +26,6 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     } else {
       registerActivity(activity.id, user?.sub || '')
       window.open(activity.link, '_blank')
-      console.log(`Usuario ${user.sub} inscribiéndose al evento ${activity.id}`)
     }
   }
 
