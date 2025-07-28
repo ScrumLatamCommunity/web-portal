@@ -9,13 +9,15 @@ interface ProfileImageUploadModalProps {
   onClose: () => void
   currentImageUrl: string | null | undefined
   onUploadComplete: (updatedUserData: UserData) => void
+  currentUserData?: UserData | null
 }
 
 export default function ProfileImageUploadModal({
   isOpen,
   onClose,
   currentImageUrl,
-  onUploadComplete
+  onUploadComplete,
+  currentUserData
 }: ProfileImageUploadModalProps) {
   if (!isOpen) {
     return null
@@ -53,6 +55,7 @@ export default function ProfileImageUploadModal({
           currentImageUrl={currentImageUrl}
           onUploadComplete={handleInternalUploadComplete} // Pasa la función de callback
           className='w-full' // Ajusta el estilo de ImageUpload si es necesario
+          currentUserData={currentUserData}
         />
 
         {/* Botón de Cancelar adicional (opcional, ya que la 'X' y el backdrop cierran) */}

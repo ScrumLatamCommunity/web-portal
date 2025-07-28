@@ -52,30 +52,108 @@ const DEFAULT_COUNTRY = 'Colombia'
 
 export const useTimeConverter = (activity: Activity, userCountry?: string) => {
   const { date, time } = activity
+  console.log('userCountry:', userCountry)
+  console.log('activity.time:', time)
+  console.log('activity.time type:', typeof time)
+  console.log('activity.time isArray:', Array.isArray(time))
+  if (Array.isArray(time)) {
+    console.log('activity.time length:', time.length)
+    console.log('activity.time content:', time)
+  }
 
   const [formattedTime, setFormattedTime] = useState('Calculando...')
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (!Array.isArray(time) || time.length !== 2 || !date) {
+    // Función para extraer los horarios del string
+    const extractTimesFromString = (
+      timeString: string
+    ): { startTime: string; endTime: string } | null => {
+      if (typeof timeString !== 'string') {
+        console.log('Time no es string:', typeof timeString, timeString)
+        return null
+      }
+
+      console.log('Procesando timeString:', timeString)
+
+      // Remover llaves si existen
+      const cleanTimeString = timeString.replace(/[{}]/g, '').trim()
+      console.log('TimeString limpio:', cleanTimeString)
+
+      // Buscar el patrón "HH:MM a HH:MM" - más flexible
+      const timePattern = /(\d{1,2}:\d{2})\s*a\s*(\d{1,2}:\d{2})/
+      const match = cleanTimeString.match(timePattern)
+
+      console.log('Match encontrado:', match)
+
+      if (match) {
+        return {
+          startTime: match[1],
+          endTime: match[2]
+        }
+      }
+
+      // Si no funciona el patrón anterior, intentar con espacios más flexibles
+      const flexiblePattern = /(\d{1,2}:\d{2}).*?(\d{1,2}:\d{2})/
+      const flexibleMatch = cleanTimeString.match(flexiblePattern)
+
+      console.log('Flexible match:', flexibleMatch)
+
+      if (flexibleMatch) {
+        return {
+          startTime: flexibleMatch[1],
+          endTime: flexibleMatch[2]
+        }
+      }
+
+      console.log('No se pudo extraer horarios del string:', timeString)
+      return null
+    }
+
+    // Manejar tanto string como string[]
+    let times: { startTime: string; endTime: string } | null = null
+
+    if (Array.isArray(time) && time.length === 1) {
+      // Si es un array con un string como ['19:00 a 20:30']
+      console.log('Procesando como array con string:', time)
+      times = extractTimesFromString(time[0])
+    } else if (Array.isArray(time) && time.length === 2) {
+      // Si es un array como define la interfaz original
+      console.log('Procesando como array:', time)
+      times = {
+        startTime: time[0],
+        endTime: time[1]
+      }
+    } else if (typeof time === 'string') {
+      // Si es un string como viene de la base de datos
+      console.log('Procesando como string:', time)
+      times = extractTimesFromString(time)
+    } else {
+      console.log('Tipo de time no reconocido:', typeof time, time)
+    }
+
+    if (!times || !date) {
+      console.log('Times o date inválidos:', { times, date })
       setFormattedTime('Formato de tiempo inválido')
       setIsLoading(false)
       return
     }
 
-    const [startTimeOriginal, endTimeOriginal] = time
+    const { startTime: startTimeOriginal, endTime: endTimeOriginal } = times
     const rawCountry = userCountry?.trim() || DEFAULT_COUNTRY
     const destIso3 = countryNameToISO3[rawCountry] || DEFAULT_ISO3
     const destTimeZone = iso3ToTimeZone[destIso3] || DEFAULT_TIMEZONE
 
     const fallback = `${startTimeOriginal} a ${endTimeOriginal}`
 
-    console.log(rawCountry)
-    console.log(destIso3)
+    console.log('País:', rawCountry)
+    console.log('ISO3:', destIso3)
+    console.log('Horarios originales:', startTimeOriginal, 'a', endTimeOriginal)
 
     const convertTime = (timeStr: string): string => {
-      if (!/^\d{2}:\d{2}$/.test(timeStr))
-        return `${startTimeOriginal} a ${endTimeOriginal}`
+      if (!/^\d{1,2}:\d{2}$/.test(timeStr)) {
+        return timeStr
+      }
 
       const today = new Date()
       const [hour, minute] = timeStr.split(':').map(Number)
@@ -121,15 +199,23 @@ export const useTimeConverter = (activity: Activity, userCountry?: string) => {
 
     try {
       setIsLoading(true)
-      const s = convertTime(startTimeOriginal)
-      const e = convertTime(endTimeOriginal)
+      const startTimeConverted = convertTime(startTimeOriginal)
+      const endTimeConverted = convertTime(endTimeOriginal)
 
-      console.log(`${s} a ${e}`)
+      console.log(
+        'Horarios convertidos:',
+        startTimeConverted,
+        'a',
+        endTimeConverted
+      )
 
-      if (s === fallback || e === fallback) {
+      if (
+        startTimeConverted === startTimeOriginal &&
+        endTimeConverted === endTimeOriginal
+      ) {
         setFormattedTime(`${startTimeOriginal} a ${endTimeOriginal}`)
       } else {
-        setFormattedTime(`${s} a ${e}`)
+        setFormattedTime(`${startTimeConverted} a ${endTimeConverted}`)
       }
     } catch (err) {
       console.error('Error en conversión de hora:', err)
@@ -137,7 +223,7 @@ export const useTimeConverter = (activity: Activity, userCountry?: string) => {
     } finally {
       setIsLoading(false)
     }
-  }, [date, JSON.stringify(time), userCountry]) // ahora evita bucles
+  }, [date, time, userCountry])
 
   return { formattedTime, isLoading }
 }

@@ -74,7 +74,8 @@ export default function CreateActivity({
     }
 
     try {
-      const { title, description, date, time, image, link, type } = formData
+      const { title, description, date, time, image, link, type, facilitator } =
+        formData
 
       let formattedDate = date
       if (date && !date.includes('T')) {
@@ -95,7 +96,8 @@ export default function CreateActivity({
         time,
         image,
         link,
-        type
+        type,
+        facilitator
       }
 
       const response = await fetch(
@@ -150,7 +152,7 @@ export default function CreateActivity({
 
   const defaultTimes: Record<string, string> = {
     'Agile SOS': '19:00 a 20:30',
-    'Scrum Latam Live': '16:00 a 15:30',
+    'Scrum Latam Live': '16:00 a 17:30',
     'Agile Learning Lab': '9:00 a 10:30',
     'Track Formativo': '14:00 a 15:30',
     Evento: '13:00 a 15:30'
