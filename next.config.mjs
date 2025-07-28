@@ -22,6 +22,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'appwiseinnovations.dev',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.instagram.com',
+        pathname: '/**'
       }
     ]
   }

@@ -1,52 +1,29 @@
 'use client'
 import { darkerGrotesque, inter, karla } from '@/fonts'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import GlobeIcon from '@/assets/GlobeIcon'
 import PhoneIcon from '@/assets/PhoneIcon'
 import CategoriesDropdown from './categories-dropdown'
 import TextEditor from './TextEditor'
-import ImageUpload from './imageUpload'
 import CountriesDropdown from './countries-dropdown'
 import { getCountryFlag } from '@/utils/getFlags'
 import { useAuth } from '@/app/context/AuthContext'
-
-interface SponsorData {
-  id: string
-  userId: string
-  status: string
-  companyName: string
-  specialization: string[]
-  description: string
-  web: string
-  phone: string
-  wppMessage: string
-  socials: string[]
-  logo: string
-  bannerWeb: string
-  bannerMobile: string
-  createdAt: string
-  user: {
-    id: string
-    firstName: string
-    lastName: string
-    username: string
-    email: string
-    country: string[]
-  }
-}
+import { SponsorData, UpdateSponsorInput } from '@/interfaces'
+import ImageUpload from '@/app/editor/components/imgs/imageUpload'
 
 interface SponsorUpdateData {
   companyName: string
   specialization: string[]
-  description: string
+  descriptions: {
+    title: string
+    description: string
+  }[]
   web: string
   phone: string
   wppMessage: string
   socials: string[]
   logo: string
-  bannerWeb: string
-  bannerMobile: string
   status: string
   country: string[]
 }
@@ -65,52 +42,66 @@ export default function EditSponsorProfile({
   const { token } = useAuth()
   const [formData, setFormData] = useState({
     ...sponsorData,
-    user: {
-      ...sponsorData.user
-    },
-    logo: sponsorData.logo,
     bannerWeb: sponsorData.bannerWeb,
-    bannerMobile: sponsorData.bannerMobile
+    bannerMobile: sponsorData.bannerMobile,
+    user: { ...sponsorData.user },
+    logo: sponsorData.logo
   })
   const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const cleanSponsorData = (data: typeof formData): SponsorUpdateData => {
-    // Asegurarse de que los arrays no sean null
-    const socials = Array.isArray(data.socials) ? data.socials : []
-    const specialization = Array.isArray(data.specialization)
-      ? data.specialization
-      : []
-
-    // Limpiar strings vacíos
-    const cleanedData = {
+  const cleanSponsorData = (data: typeof formData): UpdateSponsorInput => {
+    return {
       companyName: data.companyName?.trim() || '',
-      specialization: specialization.filter(
-        (item) => item && item.trim() !== ''
-      ),
-      description: data.description?.trim() || '',
+      specialization: Array.isArray(data.specialization)
+        ? data.specialization.filter((item) => item && item.trim() !== '')
+        : [],
+      descriptions: (data.descriptions || []).map((d) => ({
+        title: d.title?.trim() || '',
+        description: d.description?.trim() || ''
+      })),
       web: data.web?.trim() || '',
       phone: data.phone?.trim() || '',
-      socials: socials.map((s) => s?.trim() || '').filter((s) => s !== ''),
+      socials: (Array.isArray(data.socials) ? data.socials : [])
+        .map((s) => s?.trim() || '')
+        .filter(Boolean),
       logo: data.logo || '',
-      bannerWeb: data.bannerWeb || '',
-      bannerMobile: data.bannerMobile || '',
-      status: data.status || 'ACTIVE',
       wppMessage: data.wppMessage?.trim() || '',
-      country: data.user.country // Enviamos solo el array de países
+      status: data.status || 'ACTIVE',
+      country: data.user?.country || [],
+      certificatesSponsor: (data.certificates || []).map((c) => ({
+        title: c.title,
+        url: c.url
+      })),
+      bannerWeb: data.bannerWeb || '',
+      bannerMobile: data.bannerMobile || ''
     }
-    return cleanedData
   }
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value
-    }))
+
+    if (id === 'email') {
+      setFormData((prev) => ({
+        ...prev,
+        user: {
+          ...prev.user,
+          email: value
+        }
+      }))
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [id]: value
+      }))
+    }
   }
+
+  useEffect(() => {
+    console.log('formData actualizado:', formData)
+  }, [formData])
 
   const handleSpecializationChange = (specialization: string[]) => {
     setFormData((prev) => ({
@@ -133,19 +124,6 @@ export default function EditSponsorProfile({
     }))
   }
 
-  const handleBannerWebChange = (imageUrl: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      bannerWeb: imageUrl
-    }))
-  }
-
-  const handleBannerMobileChange = (imageUrl: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      bannerMobile: imageUrl
-    }))
-  }
   const handleCountryChange = (countries: string[]) => {
     setFormData((prev) => ({
       ...prev,
@@ -161,6 +139,9 @@ export default function EditSponsorProfile({
       setIsSaving(true)
       setError(null)
       const cleanedData = cleanSponsorData(formData)
+
+      console.log('datos de envio')
+      console.log(cleanedData)
       // Validación básica de datos
       if (!cleanedData.companyName || cleanedData.companyName.trim() === '') {
         throw new Error('El nombre de la empresa es requerido')
@@ -209,242 +190,184 @@ export default function EditSponsorProfile({
   }
   return (
     <section
-      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mb-8`}
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto max-w-md px-4 pb-16 pt-6 lg:max-w-5xl`}
     >
-      <h1
-        className={`items-left mb-5 max-w-[1980px] font-darker-grotesque text-[30px] font-darker-grotesque-700 text-[#082965]`}
-      >
-        Perfil del Sponsor
+      <h1 className='text-center text-3xl font-bold text-[#FE2E00]'>
+        Editar Perfil Sponsor
       </h1>
-      <div
-        className={`w-screen rounded-[20px] border-[0.5px] border-black-13 py-4 md:max-w-[1025px] 2xl:max-w-[1250px]`}
-      >
-        <h1
-          className={`items-left mb-5 ml-8 max-w-[1980px] font-darker-grotesque text-[26px] font-darker-grotesque-700 text-[#082965]`}
-        >
-          Actualizar Información
-        </h1>
-        <div className={`flex flex-row`}>
-          <div className='mx-[33px] mb-6 flex w-[30%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-name'
-            >
+      <div className='my-4 flex justify-center'>
+        <div className='flex h-56 w-96 items-center justify-center rounded-md bg-gray-100'>
+          <ImageUpload
+            onChange={handleLogoChange}
+            initialImage={formData.logo}
+          />
+        </div>
+      </div>
+      <div className='flex flex-col items-start gap-3 lg:pl-10'>
+        <label className='text-xl font-bold text-[#FE2E00]' htmlFor='title'>
+          Información general
+        </label>
+        <div className='flex flex-col gap-3 lg:flex-row lg:flex-wrap'>
+          <div className='flex flex-col'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
               Nombre de la empresa
             </label>
             <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
+              type='text'
               id='companyName'
               value={formData.companyName}
               onChange={handleInputChange}
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
               placeholder='Nombre de la empresa'
             />
           </div>
-          <div className='mx-[33px] flex w-[30%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='specialization'
-            >
-              Área de Especialización
+          <div className='flex w-full flex-col lg:w-[300px]'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              País
             </label>
-            <CategoriesDropdown
-              value={formData.specialization}
-              onChange={handleSpecializationChange}
-            />
+            <div className='relative mt-1 flex w-full items-center rounded-[10px] border border-[#C1CCF4] bg-transparent px-3 lg:mt-0 lg:w-[300px]'>
+              <Image
+                src={getCountryFlag(formData.user.country[0])}
+                alt='flag'
+                width={28}
+                height={20}
+                className='mr-2 h-[20px] w-[28px] rounded-[3px] object-cover'
+              />
+              <CountriesDropdown
+                value={formData.user.country}
+                onChange={handleCountryChange}
+              />
+            </div>
           </div>
-          <div className='mx-[33px] flex w-[15%] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='sponsor-date'
-            >
-              Fecha de ingreso
+          <div>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              Fecha de inicio
+            </label>
+            <div className='relative w-full lg:w-[300px]'>
+              <input
+                type='date'
+                id='sponsor-date'
+                value={new Date(formData.createdAt).toISOString().split('T')[0]}
+                className='h-[44px] w-full rounded-md border border-gray-300 bg-transparent pl-5 pr-3 text-sm text-[#141414] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FE2E00]'
+              />
+            </div>
+          </div>
+          <div className='flex flex-col'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              Correo electrónico
             </label>
             <input
-              className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] p-[8px] text-center'
-              id='sponsor-date'
-              type='date'
-              value={
-                new Date(sponsorData.createdAt).toISOString().split('T')[0]
-              }
+              type='text'
+              id='email'
+              value={formData.user.email}
               readOnly
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
             />
+          </div>
+          <div className='flex flex-col'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              Áreas de especialización
+            </label>
+            <div className='relative mt-1 flex w-full items-center rounded-[10px] border border-[#C1CCF4] bg-transparent px-3 lg:mt-0'>
+              <CategoriesDropdown
+                value={formData.specialization}
+                onChange={handleSpecializationChange}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              Sitio web
+            </label>
+            <input
+              type='text'
+              id='web'
+              value={formData.web}
+              onChange={handleInputChange}
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              placeholder='www.ejemplo.com'
+            />
+          </div>
+          <div className='flex flex-col'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              Contacto de Whatsapp
+            </label>
+            <input
+              type='text'
+              id='phone'
+              value={formData.phone}
+              onChange={handleInputChange}
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              placeholder='+99 9999999999'
+            />
+          </div>
+          <div className='flex flex-col'>
+            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+              Mensaje de Whatsapp
+            </label>
+            <div className='flex flex-col'>
+              <textarea
+                id='wppMessage'
+                value={formData.wppMessage}
+                onChange={(e) => {
+                  if (e.target.value.length <= 500) {
+                    handleInputChange(e)
+                  }
+                }}
+                className='h-[150px] w-full resize-none rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+                style={{ resize: 'none' }}
+                placeholder='Mensaje de Whatsapp'
+                rows={1}
+              />
+              <span className='mt-1 text-sm text-gray-500'>
+                {formData.wppMessage?.length || 0}/500 caracteres
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className={`flex flex-col`}>
-          <div className='flex flex-row'>
-            <div className='flex w-[85%] flex-col'>
-              <div className={`flex flex-row`}>
-                <div className='mx-[33px] mb-6 flex w-[40%] flex-col gap-2'>
-                  <label
-                    className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                    htmlFor='company-mail'
-                  >
-                    Mail
-                  </label>
-                  <input
-                    className='h-[39px] w-full rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                    id='company-mail'
-                    placeholder='ejemplo@scrumlatam.com'
-                    value={sponsorData.user.email}
-                    readOnly
-                  />
-                </div>
-                <div className='mx-[33px] flex flex-col gap-2'>
-                  <label
-                    className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                    htmlFor='company-country'
-                  >
-                    País
-                  </label>
-                  <div className={'flex flex-row'}>
-                    <Image
-                      alt='flag'
-                      className='my-2 mr-2 h-[21px] w-[38px] bg-[#D9D9D940]'
-                      src={getCountryFlag(formData.user.country[0])}
-                      width={100}
-                      height={100}
-                    ></Image>
-                    <CountriesDropdown
-                      value={formData.user.country}
-                      onChange={handleCountryChange}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-                <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-                  Descripción
-                </label>
-                <TextEditor
-                  value={formData.description}
-                  onChange={handleDescriptionChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className='mx-[33px] flex w-[540px] flex-col gap-2'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-web'
-            >
-              Web
-            </label>
-            <div className='flex flex-row'>
-              <GlobeIcon
-                className='my-1 mr-2 text-[#FE2E00]'
-                height={30}
-                width={30}
-              />
-              <input
-                className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                id='web'
-                placeholder='www.ejemplo.com'
-                value={formData.web}
-                onChange={handleInputChange}
-              />
-            </div>
-            <button className='self-end pr-3 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833]'>
-              Actualizar link
-            </button>
-          </div>
-          <div className='flex flex-row'>
-            <div className='mx-[33px] my-6 flex w-[540px] flex-col gap-2'>
-              <label
-                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                htmlFor='company-wpp'
-              >
-                Whatsapp
-              </label>
-              <div className='flex flex-row'>
-                <PhoneIcon
-                  className='my-1 mr-2 text-[#FE2E00]'
-                  height={30}
-                  width={30}
-                />
-                <input
-                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                  id='phone'
-                  placeholder='+99 9999999999'
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-            <div className='mx-[33px] my-6 flex w-[540px] flex-col gap-2'>
-              <label
-                className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-                htmlFor='company-wpp'
-              >
-                Mensaje de Whatsapp
-              </label>
-              <div className='flex flex-col'>
-                <textarea
-                  className='ml-2 h-[150px] w-[497px] resize-none rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                  id='wppMessage'
-                  placeholder='Mensaje de Whatsapp'
-                  value={formData.wppMessage}
-                  onChange={(e) => {
-                    if (e.target.value.length <= 500) {
-                      handleInputChange(e)
-                    }
-                  }}
-                  rows={1}
-                />
-                <span className='mt-1 text-sm text-gray-500'>
-                  {formData.wppMessage?.length || 0}/500 caracteres
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className='mx-[33px] mb-6 flex w-[540px] flex-col gap-2'>
-            <label
-              className='mb-2 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-socials1'
-            >
-              Redes Sociales
-            </label>
-            {formData.socials.map((social, index) => (
-              <div key={index} className='flex flex-row items-center'>
-                <div className='my-1 mr-2 text-[#FE2E00]'>
-                  {index === 0 ? (
-                    <GlobeIcon height={30} width={30} />
-                  ) : index > 0 ? (
-                    <GlobeIcon height={30} width={30} />
-                  ) : (
-                    <GlobeIcon height={30} width={30} />
-                  )}
-                </div>
-                <input
-                  className='ml-2 h-[39px] w-[497px] rounded-[10px] bg-[#D9D9D940] py-[6px] pl-3 font-inter-400 text-[#04122D] placeholder:font-inter-400 placeholder:text-[#04122D]'
-                  placeholder={`https://www.redsocial.com/ejemplo`}
-                  value={social}
-                  onChange={(e) => {
-                    const newSocials = [...formData.socials]
-                    newSocials[index] = e.target.value
-                    setFormData((prev) => ({
-                      ...prev,
-                      socials: newSocials
-                    }))
-                  }}
-                />
-                <button
-                  onClick={() => {
-                    const newSocials = formData.socials.filter(
-                      (_, i) => i !== index
-                    )
-                    setFormData((prev) => ({
-                      ...prev,
-                      socials: newSocials
-                    }))
-                  }}
-                  className='ml-2 text-[#FE2E00] hover:text-[#FE5833]'
+        <div className='mt-6 w-full space-y-3'>
+          <label className='text-xl font-bold text-[#FE2E00]'>
+            Redes Sociales
+          </label>
+          {formData.socials.length ? (
+            <div className='flex flex-wrap lg:flex-row'>
+              {formData.socials.map((social, index) => (
+                <div
+                  key={index}
+                  className='mb-2 flex w-full items-center gap-2 px-3 lg:w-[300px]'
                 >
-                  ✕
-                </button>
-              </div>
-            ))}
-            <div className='flex justify-between'>
+                  <GlobeIcon height={30} width={30} />
+                  <input
+                    type='text'
+                    value={social}
+                    onChange={(e) => {
+                      const newSocials = [...formData.socials]
+                      newSocials[index] = e.target.value
+                      setFormData((prev) => ({
+                        ...prev,
+                        socials: newSocials
+                      }))
+                    }}
+                    className='flex-1 rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none'
+                    placeholder='https://www.redsocial.com/ejemplo'
+                  />
+                  <button
+                    onClick={() => {
+                      const newSocials = formData.socials.filter(
+                        (_, i) => i !== index
+                      )
+                      setFormData((prev) => ({
+                        ...prev,
+                        socials: newSocials
+                      }))
+                    }}
+                    className='ml-2 text-[#FE2E00] hover:text-[#FE5833]'
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
               <button
                 onClick={() => {
                   setFormData((prev) => ({
@@ -452,87 +375,266 @@ export default function EditSponsorProfile({
                     socials: [...prev.socials, '']
                   }))
                 }}
-                className='font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
+                className='w-full font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
               >
                 + Agregar red social
               </button>
             </div>
-          </div>
-          <div className='flex flex-col'>
-            <label
-              className='mb-2 pl-8 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-logo'
-            >
-              Cargar Logotipo
-            </label>
-            <p className='mb-6 ml-8 font-darker-grotesque text-[21px] text-[#000000]'>
-              <strong>Formato recomendado:</strong> PNG o JPG. Medida máxima:
-              200x200 px para una visualización óptima.
-            </p>
-            <div className='mb-6 ml-8 h-[230px] w-[230px]'>
-              <ImageUpload
-                onChange={handleLogoChange}
-                initialImage={formData.logo}
-              />
-            </div>
-            <label
-              className='mb-3 pl-8 font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'
-              htmlFor='company-logo'
-            >
-              Cargar Banner Promocional.
-            </label>
-            <div className='mb-4 flex flex-row'>
-              <div className='mr-6 flex flex-col'>
-                <label
-                  className='mb-8 pl-8 font-darker-grotesque text-[21px] text-[#000000]'
-                  htmlFor='company-logo'
-                >
-                  <strong>Pantalla grande:</strong> 1440x440 px (ideal para
-                  computadoras).
-                </label>
-                <div className='ml-8 mt-3 h-[280px] w-[560px]'>
-                  <ImageUpload
-                    onChange={handleBannerWebChange}
-                    initialImage={formData.bannerWeb}
-                  />
-                </div>
-              </div>
-              <div className='flex flex-col'>
-                <label
-                  className='w-[286px] pl-2 font-darker-grotesque text-[21px] text-[#000000]'
-                  htmlFor='company-logo'
-                >
-                  <strong>Pantalla pequeña:</strong> 393x288 px (optimizado para
-                  celulares).
-                </label>
-                <div className='mt-3 h-[280px] w-[314px]'>
-                  <ImageUpload
-                    onChange={handleBannerMobileChange}
-                    initialImage={formData.bannerMobile}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          ) : (
+            <p>No hay redes sociales</p>
+          )}
         </div>
 
-        <div className={`${inter.variable} flex w-full flex-row`}>
+        <div className='mt-6 w-full space-y-4'>
+          <h2 className='text-xl font-bold text-[#FE2E00]'>Sobre nosotros</h2>
+          <div className='flex flex-col gap-3 lg:flex-row lg:flex-wrap'>
+            {formData.descriptions && formData.descriptions.length > 0 ? (
+              formData.descriptions.map((desc, index) => (
+                <div
+                  key={index}
+                  className='mb-3 w-full space-y-3 rounded-md p-3 lg:w-[300px]'
+                >
+                  <div>
+                    <label className='text-black block text-[18px] font-medium'>
+                      Título {index + 1}
+                    </label>
+                    <textarea
+                      value={desc.title}
+                      maxLength={100}
+                      onChange={(e) => {
+                        const newDescs = [...formData.descriptions]
+                        newDescs[index] = {
+                          ...newDescs[index],
+                          title: e.target.value
+                        }
+                        setFormData((prev) => ({
+                          ...prev,
+                          descriptions: newDescs
+                        }))
+                      }}
+                      className='mt-1 w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+                      placeholder={`Título ${index + 1}`}
+                      rows={2}
+                    />
+                    <span className='mt-1 text-sm text-gray-500'>
+                      {desc.title?.length || 0}/100 caracteres
+                    </span>
+                  </div>
+                  <div className='flex flex-col'>
+                    <label className='text-black block text-[18px] font-medium'>
+                      Párrafo {index + 1}
+                    </label>
+                    <div className='flex flex-col'>
+                      <textarea
+                        value={desc.description}
+                        maxLength={300}
+                        onChange={(e) => {
+                          const newDescs = [...formData.descriptions]
+                          newDescs[index] = {
+                            ...newDescs[index],
+                            description: e.target.value
+                          }
+                          setFormData((prev) => ({
+                            ...prev,
+                            descriptions: newDescs
+                          }))
+                        }}
+                        className='w-full resize-none rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+                        style={{ resize: 'none' }}
+                        placeholder={`Párrafo ${index + 1}`}
+                        rows={4}
+                      />
+                      <span className='mt-1 text-sm text-gray-500'>
+                        {desc.description?.length || 0}/300 caracteres
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className='mb-3 w-full space-y-3 rounded-md border border-[#C1CCF4] p-3 lg:w-[300px]'>
+                <div>
+                  <label className='text-black block text-[18px] font-medium'>
+                    Título 1
+                  </label>
+                  <textarea
+                    value={formData.descriptions?.[0]?.title || ''}
+                    maxLength={100}
+                    onChange={(e) => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        descriptions: [
+                          { ...prev.descriptions?.[0], title: e.target.value }
+                        ]
+                      }))
+                    }}
+                    className='mt-1 w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+                    placeholder='Título 1'
+                    rows={2}
+                  />
+                  <span className='mt-1 text-sm text-gray-500'>
+                    {formData.descriptions?.[0]?.title?.length || 0}/100
+                    caracteres
+                  </span>
+                </div>
+                <div className='flex flex-col'>
+                  <label className='text-black block text-[18px] font-medium'>
+                    Párrafo 1
+                  </label>
+                  <div className='flex flex-col'>
+                    <textarea
+                      value={formData.descriptions?.[0]?.description || ''}
+                      maxLength={300}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          descriptions: [
+                            {
+                              ...prev.descriptions?.[0],
+                              description: e.target.value
+                            }
+                          ]
+                        }))
+                      }}
+                      className='w-full resize-none rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+                      style={{ resize: 'none' }}
+                      placeholder='Párrafo 1'
+                      rows={4}
+                    />
+                    <span className='mt-1 text-sm text-gray-500'>
+                      {formData.descriptions?.[0]?.description?.length || 0}/300
+                      caracteres
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          {formData.descriptions && formData.descriptions.length < 3 && (
+            <button
+              type='button'
+              className='mt-2 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
+              onClick={() => {
+                setFormData((prev) => ({
+                  ...prev,
+                  descriptions: [
+                    ...(prev.descriptions && prev.descriptions.length > 0
+                      ? prev.descriptions
+                      : []),
+                    { id: '', sponsorId: prev.id, title: '', description: '' }
+                  ]
+                }))
+              }}
+            >
+              + Agregar descripción
+            </button>
+          )}
+        </div>
+
+        {/* Sección de Certificados */}
+        <div className='mt-8 w-full space-y-4'>
+          <h2 className='text-xl font-bold text-[#FE2E00]'>
+            Nuestras certificaciones
+          </h2>
+          <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
+            {formData.certificates && formData.certificates.length > 0 ? (
+              formData.certificates.map((cert, idx) => (
+                <div
+                  key={idx}
+                  className='relative mb-4 flex flex-col items-center gap-3 lg:w-[300px]'
+                >
+                  <button
+                    type='button'
+                    className='absolute right-2 z-20 text-lg text-[#FE2E00] hover:text-[#FE5833]'
+                    onClick={() => {
+                      const newCerts = formData.certificates.filter(
+                        (_, i) => i !== idx
+                      )
+                      setFormData((prev) => ({
+                        ...prev,
+                        certificates: newCerts
+                      }))
+                    }}
+                  >
+                    ×
+                  </button>
+                  <div className='flex aspect-square h-48 items-center justify-center overflow-hidden rounded-lg bg-gray-100'>
+                    <ImageUpload
+                      onChange={(imgUrl) => {
+                        const newCerts = [...formData.certificates]
+                        newCerts[idx] = { ...newCerts[idx], title: imgUrl }
+                        setFormData((prev) => ({
+                          ...prev,
+                          certificates: newCerts
+                        }))
+                      }}
+                      initialImage={cert.title}
+                      className='aspect-square rounded-lg object-cover'
+                    />
+                  </div>
+                  <label className='text-[14px] font-medium text-[#000]'>
+                    Link
+                  </label>
+                  <input
+                    type='text'
+                    value={cert.url}
+                    onChange={(e) => {
+                      const newCerts = [...formData.certificates]
+                      newCerts[idx] = {
+                        ...newCerts[idx],
+                        url: e.target.value
+                      }
+                      setFormData((prev) => ({
+                        ...prev,
+                        certificates: newCerts
+                      }))
+                    }}
+                    className='w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-center text-[14px] text-[#8C8C8C] focus:outline-none'
+                    placeholder='Enlace del certificado'
+                  />
+                </div>
+              ))
+            ) : (
+              <p className='text-gray-500'>No hay certificaciones agregadas.</p>
+            )}
+          </div>
+          {(formData.certificates?.length ?? 0) && (
+            <button
+              type='button'
+              className='mt-2 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
+              onClick={() => {
+                setFormData((prev) => ({
+                  ...prev,
+                  certificates: [
+                    ...(prev.certificates && prev.certificates.length > 0
+                      ? prev.certificates
+                      : []),
+                    { id: '', title: '', url: '' }
+                  ]
+                }))
+              }}
+            >
+              + Agregar certificado
+            </button>
+          )}
+        </div>
+
+        <div className='flex w-full flex-row items-center justify-end space-x-4 py-5 lg:py-10'>
           <button
-            className='my-6 ml-12 h-[60px] w-[66%] rounded-[10px] bg-[#FD3600] px-3 font-inter font-inter-400 text-[#FFFFFF] disabled:opacity-50'
-            onClick={handleSave}
-            disabled={isSaving}
-          >
-            {isSaving ? 'Guardando...' : 'Guardar Perfil'}
-          </button>
-          <button
-            className='mx-12 my-6 h-[60px] w-[33%] rounded-[10px] border-2 border-[#FD3600] bg-[#FFFFFF] px-3 font-inter font-inter-400 text-[#FD3600]'
+            className='rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'
             onClick={handleDiscard}
             disabled={isSaving}
           >
             Descartar
           </button>
+          <button
+            className='rounded-md bg-[#072356] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'
+            onClick={handleSave}
+            disabled={isSaving}
+          >
+            {isSaving ? 'Guardando...' : 'Guardar Perfil'}
+          </button>
         </div>
-
         {error && (
           <div className='mx-12 mb-4 rounded bg-red-100 p-3 text-red-600'>
             {error}

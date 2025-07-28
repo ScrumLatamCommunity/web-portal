@@ -697,31 +697,27 @@ export const userDashboard = [
 export const sponsorDashboard = [
   {
     id: 1,
-    name: 'Perfil',
+    name: 'Mi Perfil',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633847.svg?alt=media&token=2f5c5931-b3f2-4386-8ba1-402e9b34ed33',
-    link: '/sponsors'
+    link: '/sponsors',
+    type: 'user'
   },
   {
     id: 2,
-    name: 'Mis publicaciones',
+    name: 'Publicaciones',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-    link: '/sponsors/mis-publish'
+    link: '/sponsors/mis-publish',
+    type: 'calendar'
   },
-  // {
-  //   id: 3,
-  //   name: 'Publicar contenido',
-  //   image:
-  //     'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-  //   link: '/sponsors/posts'
-  // },
   {
     id: 4,
-    name: 'Ofertas',
+    name: 'Cursos',
     image:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Super%20Admin%20Dashboard%2FGroup%20633848.svg?alt=media&token=86acaf56-8d28-4a41-9d56-77837e7bc75d',
-    link: '/sponsors/offerts'
+    link: '/sponsors/offerts',
+    type: 'monitor'
   }
 ]
 
