@@ -16,6 +16,7 @@ interface ActivityCardProps {
 export default function ActivityCard({ activity, country }: ActivityCardProps) {
   const { user } = useAuth()
   const router = useRouter()
+  console.log(activity.time)
 
   const { formattedTime, isLoading } = useTimeConverter(activity, country)
 

@@ -20,6 +20,7 @@ export default function Activities() {
   }, [selectedCategory]) // Only depend on selectedCategory
 
   const fetchSponsorData = async (filters?: { type?: string }) => {
+    console.log('fetchSponsorData called with filters:', filters)
     try {
       const query = new URLSearchParams()
       if (filters?.type) {
@@ -40,6 +41,7 @@ export default function Activities() {
       }
 
       const data = await response.json()
+      console.log('Activities data received:', data)
       setActivityData(data ?? [])
     } catch (error) {
       console.error('Error al obtener actividades:', error)
