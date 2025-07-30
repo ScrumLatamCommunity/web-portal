@@ -13,6 +13,7 @@ import MailIcon from '@/assets/MailIcon'
 import GlobeIcon from '@/assets/GlobeIcon'
 import ChevronLeftIcon from '@/assets/ChevronLeftIcon'
 import ChevronRightIcon from '@/assets/ChevronRightIcon'
+import { SponsorCertificate } from '@/interfaces'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -41,18 +42,13 @@ interface Sponsor {
   descriptions: { title: string; description: string }[]
 }
 
-interface Certificate {
-  title: string
-  url: string
-}
-
 export default function Offerts() {
   const itemsPerPage = 1
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [sponsor, setSponsor] = useState<Sponsor | null>(null)
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0)
-  const [certificates, setCertificates] = useState<Certificate[]>([])
+  const [certificates, setCertificates] = useState<SponsorCertificate[]>([])
   const [currentDescIndex, setCurrentDescIndex] = useState(0)
 
   const { selectedSponsorId } = useAuth()
