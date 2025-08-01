@@ -50,7 +50,7 @@ export default function History() {
 
   return (
     <div
-      className={`${darkerGrotesque.variable} relative flex w-full max-w-[1980px] flex-col px-10 py-16 md:px-14`}
+      className={`${darkerGrotesque.variable} relative flex w-full max-w-[1980px] flex-col px-10 py-7 md:px-14 md:py-16`}
     >
       <section className='flex w-full flex-col items-center justify-center gap-8 md:px-10 2xl:px-20'>
         <h1 className='font-darker-grotesque text-[34px] font-bold text-[#FE2E00] md:mb-8 md:text-[42px]'>

@@ -26,7 +26,7 @@ export default function MainActivity({ activity }: ActivityProps) {
     >
       <Image
         alt='homeActivity'
-        className='h-full w-full rounded-[30px] object-cover'
+        className='h-full w-full rounded-[30px] object-fill'
         height={1200}
         src={activity.image}
         width={1000}
@@ -38,7 +38,7 @@ export default function MainActivity({ activity }: ActivityProps) {
         <h2 className='pb-1 font-darker-grotesque text-[16px] font-bold text-white md:pb-4 md:text-[24px]'>
           {activity.title}
         </h2>
-        <p className='pb-2 font-darker-grotesque text-[14px] leading-[20px] text-white md:pb-6 md:text-[20px]'>
+        <p className='hidden pb-2 font-darker-grotesque text-[14px] leading-[20px] text-white md:block md:pb-6 md:text-[20px]'>
           {activity.description}
         </p>
       </div>

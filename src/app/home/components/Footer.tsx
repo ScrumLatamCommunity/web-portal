@@ -106,16 +106,19 @@ export const Footer = () => {
         <span>© 2025 Scrumlatam. Todos los derechos reservados</span>
       </div>
 
-      {/* {openModal && (
+      {openModal && (
         <Modal
           isOpen={openModal}
           onClose={() => setOpenModal(false)}
           title='Términos y Condiciones'
           contentClassName='justify-start gap-[10px]'
         >
-          <TermsAndConditions />
+          <TermsAndConditions
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+          />
         </Modal>
-      )} */}
+      )}
     </div>
   )
 }

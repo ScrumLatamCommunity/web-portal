@@ -216,10 +216,10 @@ export default function Travel() {
             <div
               ref={termsContainerRef}
               onScroll={handleTermsScroll}
-              className='h-full overflow-y-auto pr-4'
+              className='h-full overflow-y-auto pr-4 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-gray-100 [&::-webkit-scrollbar-thumb]:bg-[#072356] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar]:w-2'
             >
-              <h1 className='mb-5 font-darker-grotesque text-3xl font-medium text-[#072356]'>
-                TÉRMINOS Y CONDICIONES DE SCRUM LATAM
+              <h1 className='mb-5 font-darker-grotesque text-3xl font-bold text-[#FE7354]'>
+                Términos y Condiciones de Scrum Latam
               </h1>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[18px] text-[#072356]'>
                 <strong>SCRUM LATAM te da la bienvenida</strong>
@@ -246,25 +246,22 @@ export default function Travel() {
               <p className='mb-5 whitespace-pre-line font-darker-grotesque text-[17px] font-medium text-[#072356]'>
                 En Scrum Latam Comunidad, nos comprometemos a:
               </p>
-              <p className='mb-5 whitespace-pre-line'>
-                <ul className='list-disc space-y-2 pl-6 font-darker-grotesque text-[18px] font-medium text-[#072356]'>
-                  <li>
-                    Participar desde el respeto, la escucha activa y el aporte
-                    genuino.
-                  </li>
-                  <li>
-                    Compartir conocimientos con humildad, sin imponer verdades
-                    absolutas.
-                  </li>
-                  <li>
-                    Fomentar un entorno seguro, libre de discriminación o
-                    juicio.
-                  </li>
-                  <li>
-                    Ser ejemplo de liderazgo colaborativo, retador e inspirador.
-                  </li>
-                </ul>
-              </p>
+              <ul className='mb-5 list-disc space-y-2 pl-6 font-darker-grotesque text-[18px] font-medium text-[#072356]'>
+                <li>
+                  Participar desde el respeto, la escucha activa y el aporte
+                  genuino.
+                </li>
+                <li>
+                  Compartir conocimientos con humildad, sin imponer verdades
+                  absolutas.
+                </li>
+                <li>
+                  Fomentar un entorno seguro, libre de discriminación o juicio.
+                </li>
+                <li>
+                  Ser ejemplo de liderazgo colaborativo, retador e inspirador.
+                </li>
+              </ul>
               <p className='mb-5 whitespace-pre-line font-darker-grotesque font-medium text-[#072356]'>
                 <strong>
                   Al participar, asumes el compromiso de construir con
@@ -389,7 +386,7 @@ export default function Travel() {
         {/* Right Column - Onboarding Info */}
         <div className='mb-8 flex w-full flex-col justify-between rounded-lg border-[1px] border-[#072356] bg-white p-6 md:mb-0 md:h-[360px] 2xl:h-[485px]'>
           <div className='mb-6'>
-            <h2 className='mb-4 text-xl font-semibold text-orange-500'>
+            <h2 className='mb-4 font-darker-grotesque text-3xl font-semibold text-[#FE7354]'>
               Onboarding
             </h2>
           </div>

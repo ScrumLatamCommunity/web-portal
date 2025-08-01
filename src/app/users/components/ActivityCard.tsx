@@ -34,13 +34,13 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
-    <div className='mx-auto flex h-[140px] w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl md:h-[280px]'>
+    <div className='mx-auto mb-10 flex h-[140px] w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl md:h-[280px]'>
       {/* Imagen */}
       <div className='relative h-full w-2/5'>
         <img
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
-          className='h-full w-full rounded-l-2xl object-cover'
+          className='h-full w-full rounded-l-2xl object-fill'
         />
       </div>
 
@@ -61,15 +61,22 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
           )}
 
           {/* Descripción */}
-          <p className='line-clamp-1 text-xs text-[#666666] md:line-clamp-2 md:text-base'>
+          <p className='line-clamp-1 hidden text-xs text-[#666666] md:line-clamp-2 md:block md:text-base'>
             {activity.description}
           </p>
 
           {/* Badges y metadatos - todo en una línea */}
           <div className='flex items-center gap-2 text-[10px] md:gap-3 md:text-xs'>
             {/* Tipo de actividad */}
-            <span className='inline-block w-fit rounded bg-[#07235644] px-1.5 py-0.5 text-[10px] font-medium text-[#072356] md:rounded-lg md:px-2 md:py-1 md:text-xs'>
-              {activity.type.replaceAll('-', ' ')}
+            <span className='inline-block rounded bg-[#07235644] px-1 py-0.5 text-[8px] font-medium text-[#072356] md:rounded-lg md:px-2 md:py-1 md:text-xs'>
+              <span className='md:hidden'>
+                {activity.type === 'Agile Learning Lab'
+                  ? 'A.L.L.'
+                  : activity.type.replaceAll('-', ' ')}
+              </span>
+              <span className='hidden md:inline'>
+                {activity.type.replaceAll('-', ' ')}
+              </span>
             </span>
 
             {/* Fecha */}
