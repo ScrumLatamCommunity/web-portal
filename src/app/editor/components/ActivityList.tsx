@@ -39,16 +39,16 @@ export default function ActivityList({
       <table className='w-full table-auto divide-y divide-gray-200'>
         <thead className='bg-[#FFEAE6]'>
           <tr>
-            <th className='px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[#04122D]'>
+            <th className='py-5 pl-5 text-left text-lg font-semibold tracking-wider text-[#04122D]'>
               Actividad
             </th>
-            <th className='hidden px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[#04122D] md:table-cell'>
+            <th className='hidden px-4 py-5 text-center text-lg font-semibold tracking-wider text-[#04122D] md:table-cell'>
               Fecha de realización
             </th>
-            <th className='px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[#04122D]'>
+            <th className='px-4 py-5 text-center text-lg font-semibold tracking-wider text-[#04122D]'>
               Estado
             </th>
-            <th className='px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[#04122D]'>
+            <th className='px-4 py-5 text-center text-lg font-semibold tracking-wider text-[#04122D]'>
               Más
             </th>
           </tr>
@@ -62,20 +62,20 @@ export default function ActivityList({
 
             return (
               <tr key={activity.id} className='hover:bg-gray-50'>
-                <td className='max-w-[300px] break-words px-4 py-4 text-sm font-medium text-gray-900'>
+                <td className='max-w-[300px] break-words px-4 py-7 text-lg font-medium text-gray-900'>
                   {activity.title}
                 </td>
-                <td className='hidden whitespace-nowrap px-4 py-4 text-center text-sm text-gray-500 md:table-cell'>
+                <td className='hidden whitespace-nowrap px-4 py-7 text-center text-lg text-gray-500 md:table-cell'>
                   {formatDate(activity.date)}
                 </td>
-                <td className='px-4 py-4 text-center text-sm'>
+                <td className='px-4 py-7 text-center text-sm'>
                   <span
-                    className={`inline-flex justify-center rounded-full px-3 py-1 text-xs font-semibold leading-5 text-white lg:w-36 ${bg}`}
+                    className={`inline-flex justify-center rounded-full px-3 py-1 text-lg font-semibold leading-5 text-white lg:w-36 ${bg}`}
                   >
                     {label}
                   </span>
                 </td>
-                <td className='items-center justify-center px-4 py-4 text-center text-sm font-medium'>
+                <td className='items-center justify-center px-4 py-7 text-center text-sm font-medium'>
                   {activity.status === 'ACTIVE' ? (
                     <button
                       onClick={() => onView?.(activity)}
