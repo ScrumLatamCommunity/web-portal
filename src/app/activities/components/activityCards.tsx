@@ -16,7 +16,6 @@ interface ActivityCardProps {
 export default function ActivityCard({ activity, country }: ActivityCardProps) {
   const { user } = useAuth()
   const router = useRouter()
-  console.log(activity.time)
 
   const { formattedTime, isLoading } = useTimeConverter(activity, country)
 
@@ -41,7 +40,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
         <Image
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
-          className='object-cover'
+          className='object-fill'
           fill
         />
       </div>
@@ -65,7 +64,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
           </p>
 
           <div className='flex flex-wrap items-center gap-1 pt-1 text-xs text-gray-800 lg:space-x-10 lg:text-3xl'>
-            <span className='rounded-lg bg-[#07235644] px-8 py-0.5 text-center font-normal'>
+            <span className='rounded-lg bg-[#07235644] px-4 py-0.5 text-center font-normal'>
               {activity.type.replaceAll('-', ' ')}
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>

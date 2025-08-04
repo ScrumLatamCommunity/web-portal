@@ -481,16 +481,6 @@ export default function UserProfile() {
                     'Usuario'}
                 </h2>
                 <div className='flex w-full gap-4 sm:w-auto sm:flex-row'>
-                  {isEditing && (
-                    <button
-                      type='button'
-                      onClick={() => setIsImageModalOpen(true)}
-                      className='flex h-[28px] w-[125px] shrink-0 items-center justify-center rounded-[8px] border border-[#072356] bg-white text-center font-darker-grotesque text-[12px] font-semibold leading-normal text-[#072356] hover:bg-gray-50 sm:h-[50px] sm:w-[223px] sm:text-[20px] md:rounded-[15px]'
-                      disabled={isSaving}
-                    >
-                      Cambiar foto de perfil
-                    </button>
-                  )}
                   {!isEditing && (
                     <button
                       type='button'
@@ -610,20 +600,20 @@ export default function UserProfile() {
 
               {/* Botones de acción - solo en modo edición */}
               {isEditing && (
-                <div className='pt-4 text-center md:pt-6'>
+                <div className='w-full pt-4 text-center md:pt-6'>
                   <div className='flex flex-col gap-4 sm:flex-row sm:justify-center'>
                     <button
                       type='button'
                       onClick={handleEditToggle}
                       disabled={isSaving}
-                      className='w-full rounded-md bg-gray-500 px-4 py-2 font-inter text-base font-semibold text-white shadow-md transition-all hover:bg-gray-600 disabled:bg-opacity-60 sm:w-auto sm:px-8 md:py-3 md:text-lg'
+                      className='w-[30%] rounded-md bg-gray-500 px-4 py-2 font-inter text-base font-semibold text-white shadow-md transition-all hover:bg-gray-600 disabled:bg-opacity-60 sm:px-8 md:py-3 md:text-lg'
                     >
                       Cancelar
                     </button>
                     <button
                       type='submit'
                       disabled={isSaving}
-                      className='w-full rounded-md bg-[#082965] px-4 py-2 font-inter text-base font-semibold text-white shadow-md transition-all hover:bg-opacity-90 hover:shadow-lg md:w-auto md:px-12 md:py-3 md:text-lg'
+                      className='w-full rounded-md bg-[#082965] px-4 py-2 font-inter text-base font-semibold text-white shadow-md transition-all hover:bg-opacity-90 hover:shadow-lg md:px-12 md:py-3 md:text-lg'
                     >
                       {isSaving ? 'Guardando...' : 'Guardar cambios'}
                     </button>

@@ -6,6 +6,10 @@ import { useAuth } from '@/app/context/AuthContext'
 import { useRouter, usePathname } from 'next/navigation'
 import { darkerGrotesque } from '@/fonts'
 import Link from 'next/link'
+import Image from 'next/image'
+import HistoryIcon from '@/assets/navbarHistoryIcon'
+import SquadIcon from '@/assets/navbarSquadIcon'
+import InfoIcon from '@/assets/navbarInfoIcon'
 
 interface UserDropdownProps {
   isMobile?: boolean
@@ -15,6 +19,7 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
   isMobile = false
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeMenu, setActiveMenu] = useState<string>('')
   const { logout, user, isLoading } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
@@ -25,6 +30,10 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
     SPONSOR: '/sponsors',
     USER: '/users',
     EDITOR: '/editor'
+  }
+
+  const toggleMenu = (menu: string) => {
+    setActiveMenu(activeMenu === menu ? '' : menu)
   }
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -56,15 +65,75 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
   }
 
   const getUserInitials = () => {
-    if (user?.name) {
-      return user.name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2)
+    if (user?.firstName && user?.lastName) {
+      return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
+    }
+    if (user?.firstName) {
+      return user.firstName[0].toUpperCase()
+    }
+    // Fallback to email initials
+    if (user?.email) {
+      return user.email[0].toUpperCase()
     }
     return 'U'
+  }
+
+  const getDisplayName = () => {
+    // Para usuarios SPONSOR, mostrar el nombre de la empresa
+    if (user?.role === 'SPONSOR' && (user as any)?.sponsorData?.companyName) {
+      return (user as any).sponsorData.companyName
+    }
+
+    // Para usuarios USER, ADMIN, EDITOR, mostrar el nombre personal
+    if (user?.firstName) {
+      return user.firstName
+    }
+
+    // Fallback to email username
+    if (user?.email) {
+      const emailUsername = user.email.split('@')[0]
+      return emailUsername.charAt(0).toUpperCase() + emailUsername.slice(1)
+    }
+    return 'Usuario'
+  }
+
+  const renderUserAvatar = () => {
+    // Para usuarios SPONSOR, mostrar el logo de la empresa
+    if (user?.role === 'SPONSOR' && (user as any)?.sponsorData?.logo) {
+      return (
+        <div className='flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-full'>
+          <Image
+            src={(user as any).sponsorData.logo}
+            alt={`Logo de ${(user as any).sponsorData.companyName}`}
+            width={40}
+            height={40}
+            className='object-cover'
+          />
+        </div>
+      )
+    }
+
+    // Para usuarios USER, mostrar la foto de perfil
+    if (user?.role === 'USER' && user?.profilePictureUrl) {
+      return (
+        <div className='flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-full'>
+          <Image
+            src={user.profilePictureUrl}
+            alt={`Foto de perfil de ${user.firstName}`}
+            width={40}
+            height={40}
+            className='object-cover'
+          />
+        </div>
+      )
+    }
+
+    // Fallback: mostrar iniciales en un círculo rojo
+    return (
+      <div className='flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
+        {getUserInitials()}
+      </div>
+    )
   }
 
   const getNavLinkStyles = (href: string) => {
@@ -97,8 +166,6 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
     return null
   }
 
-  console.log('\n\n [USER]', user, '\n\n')
-
   // En móvil, renderizar con dropdown pero diferente estilo
   if (isMobile) {
     return (
@@ -111,11 +178,9 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
           <span
             className={`${darkerGrotesque.variable} hidden font-darker-grotesque text-[32px] font-[700] text-[#082965] md:block`}
           >
-            ¡Hola {user?.name?.split(' ')[0] || 'Usuario'}!
+            ¡Hola {getDisplayName()}!
           </span>
-          <div className='flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
-            {getUserInitials()}
-          </div>
+          {renderUserAvatar()}
         </button>
         {/* Mobile Dropdown Menu */}
         {isOpen && (
@@ -174,13 +239,90 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
                       <span>Actividades</span>
                     </Link>
 
-                    <Link
-                      href='/community'
-                      onClick={() => setIsOpen(false)}
-                      className={getNavLinkStyles('/community')}
-                    >
-                      <span>Comunidad</span>
-                    </Link>
+                    <div className='border-gray-200 pb-2'>
+                      <div
+                        onClick={() => toggleMenu('comunidad')}
+                        className={`flex w-full cursor-pointer items-center justify-between px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                          pathname === '/history' ||
+                          pathname === '/community/squads' ||
+                          pathname === '/community/products&services'
+                            ? 'text-[#FE7354]'
+                            : 'text-[#072356]'
+                        }`}
+                      >
+                        <span>Comunidad</span>
+                        <svg
+                          className={`h-4 w-4 transition-transform ${
+                            activeMenu === 'comunidad' ? 'rotate-180' : ''
+                          }`}
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M19 9l-7 7-7-7'
+                          />
+                        </svg>
+                      </div>
+
+                      {activeMenu === 'comunidad' && (
+                        <div className='ml-4 border-l-2 border-gray-200'>
+                          <Link
+                            href='/history'
+                            onClick={() => setIsOpen(false)}
+                            className={`block px-4 py-1 text-left font-roboto text-sm font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                              pathname === '/history'
+                                ? 'text-[#FE7354]'
+                                : 'text-[#072356]'
+                            }`}
+                          >
+                            <div className='flex items-center'>
+                              <HistoryIcon
+                                className={`h-4 w-4 text-[#082965] ${pathname === '/history' ? 'text-[#FE2E00]' : ''}`}
+                              />
+                              <span className='ml-2'>Nuestros inicios</span>
+                            </div>
+                          </Link>
+                          <Link
+                            href='/community/squads'
+                            onClick={() => setIsOpen(false)}
+                            className={`block px-4 py-1 text-left font-roboto text-sm font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                              pathname === '/community/squads'
+                                ? 'text-[#FE7354]'
+                                : 'text-[#072356]'
+                            }`}
+                          >
+                            <div className='flex items-center'>
+                              <SquadIcon
+                                className={`h-4 w-4 text-[#082965] ${pathname === '/community/squads' ? 'text-[#FE2E00]' : ''}`}
+                              />
+                              <span className='ml-2'>Los Squads</span>
+                            </div>
+                          </Link>
+                          <Link
+                            href='/community/products&services'
+                            onClick={() => setIsOpen(false)}
+                            className={`block px-4 py-1 text-left font-roboto text-sm font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                              pathname === '/community/products&services'
+                                ? 'text-[#FE7354]'
+                                : 'text-[#072356]'
+                            }`}
+                          >
+                            <div className='flex items-start'>
+                              <InfoIcon
+                                className={`mt-0.5 h-4 w-4 text-[#082965] ${pathname === '/community/products&services' ? 'text-[#FE2E00]' : ''}`}
+                              />
+                              <span className='ml-2'>
+                                Productos y Servicios de Sponsors
+                              </span>
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Opciones de perfil */}
@@ -224,11 +366,9 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
         <span
           className={`${darkerGrotesque.variable} hidden font-darker-grotesque text-[32px] font-bold text-[#082965] md:block`}
         >
-          ¡Hola {user?.name?.split(' ')[0] || 'Usuario'}!
+          ¡Hola {getDisplayName()}!
         </span>
-        <div className='flex h-[40px] w-[40px] items-center justify-center rounded-full bg-red-500 text-sm font-semibold text-white'>
-          {getUserInitials()}
-        </div>
+        {renderUserAvatar()}
       </button>
 
       {/* Desktop Dropdown Menu */}

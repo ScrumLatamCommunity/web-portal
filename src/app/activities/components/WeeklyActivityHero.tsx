@@ -32,7 +32,7 @@ export default function WeeklyActivityHero({
 
   return (
     <section className='bg-white py-2 md:py-10'>
-      <div className='relative mx-auto px-1 sm:px-3 lg:px-8'>
+      <div className='relative mx-auto px-4 sm:px-3 lg:px-8'>
         <h2 className='mb-4 text-start font-darker-grotesque text-lg font-medium text-[#082965] sm:mb-6 sm:text-xl lg:text-5xl'>
           Actividades Semanales
         </h2>
@@ -79,16 +79,19 @@ export default function WeeklyActivityHero({
           className='weekly-activity-swiper'
           breakpoints={{
             0: {
-              slidesPerView: 1.2,
-              spaceBetween: 5
+              slidesPerView: 1.1,
+              spaceBetween: 12,
+              centeredSlides: true
             },
             480: {
-              slidesPerView: 1.75,
-              spaceBetween: 2
+              slidesPerView: 1.5,
+              spaceBetween: 16,
+              centeredSlides: false
             },
             640: {
-              slidesPerView: 3,
-              spaceBetween: 5
+              slidesPerView: 2.5,
+              spaceBetween: 16,
+              centeredSlides: false
             },
             1024: {
               slidesPerView: 4,

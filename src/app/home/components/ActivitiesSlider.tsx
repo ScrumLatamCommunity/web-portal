@@ -32,7 +32,7 @@ export default function ActivitiesSlider({
           <div className='flex flex-row items-center'>
             <Image
               alt={activity.title}
-              className='h-[4rem] w-[6.5rem] rounded-3xl object-cover pl-2 md:h-[6.5rem] md:w-[6.5rem] md:p-3 2xl:h-[7rem] 2xl:w-[7rem]'
+              className='h-[4rem] w-[6.5rem] rounded-3xl object-fill pl-2 md:h-[6.5rem] md:w-[6.5rem] md:p-3 2xl:h-[7rem] 2xl:w-[7rem]'
               height={500}
               src={activity.image}
               width={500}
