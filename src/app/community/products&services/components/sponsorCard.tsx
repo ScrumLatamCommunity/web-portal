@@ -24,7 +24,7 @@ export default function SponsorCard({
   const [hovered, setHovered] = useState(false)
 
   const handleClick = () => {
-    if (sponsorId === 'd04c3e6d-26a2-4e22-ad71-1fac614b4122') {
+    if (companyName === 'Andes WorkForce') {
       window.open(web, '_blank')
     } else {
       setSelectedSponsorId(sponsorId)
