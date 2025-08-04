@@ -1,29 +1,18 @@
 import React from 'react'
 import { Activity } from '../page'
 import EditIcon from '@/assets/EditIcon'
-import { Eye } from 'react-feather'
 import EyeIcon from '@/assets/eyeIcon'
 
 function formatDate(dateString: string) {
   try {
     if (!dateString) return 'Sin fecha'
-
     const date = new Date(dateString)
-
-    if (isNaN(date.getTime())) {
-      console.error('Fecha inválida:', dateString)
-      return 'Fecha inválida'
-    }
-
+    if (isNaN(date.getTime())) return 'Fecha inválida'
     const day = String(date.getDate()).padStart(2, '0')
     const month = String(date.getMonth() + 1).padStart(2, '0')
     const year = String(date.getFullYear()).slice(-2)
-
-    const formattedDate = `${day}/${month}/${year}`
-
-    return formattedDate
-  } catch (error) {
-    console.error('Error formateando fecha:', dateString, error)
+    return `${day}/${month}/${year}`
+  } catch {
     return 'Error fecha'
   }
 }
@@ -45,51 +34,77 @@ export default function ActivityList({
   onEdit?: (activity: Activity) => void
   onView?: (activity: Activity) => void
 }) {
-  console.log(
-    'ActivityList recibió actividades:',
-    activities.map((a) => ({ id: a.id, title: a.title, date: a.date }))
-  )
-
   return (
-    <div className='grid grid-rows-4 gap-4 rounded-[10px] py-3'>
-      {activities.map((activity) => {
-        const { label, bg } = STATUS_STYLES[activity.status] || {
-          label: 'Desconocido',
-          bg: 'bg-gray-400'
-        }
+    <div className='-mx-4 overflow-x-auto sm:mx-0'>
+      <table className='w-full table-auto divide-y divide-gray-200'>
+        <thead className='bg-[#FFEAE6]'>
+          <tr>
+            <th className='py-5 pl-5 text-left text-lg font-semibold tracking-wider text-[#04122D]'>
+              Actividad
+            </th>
+            <th className='hidden px-4 py-5 text-center text-lg font-semibold tracking-wider text-[#04122D] md:table-cell'>
+              Fecha de realización
+            </th>
+            <th className='px-4 py-5 text-center text-lg font-semibold tracking-wider text-[#04122D]'>
+              Estado
+            </th>
+            <th className='px-4 py-5 text-center text-lg font-semibold tracking-wider text-[#04122D]'>
+              Más
+            </th>
+          </tr>
+        </thead>
+        <tbody className='divide-y divide-gray-200 bg-white'>
+          {activities.map((activity) => {
+            const { label, bg } = STATUS_STYLES[activity.status] || {
+              label: 'Desconocido',
+              bg: 'bg-gray-400'
+            }
 
-        return (
-          <div
-            className='grid grid-cols-4 items-center gap-4 rounded-[10px] border-2 border-[#63789E40] py-5'
-            key={activity.id}
-          >
-            <p className='pl-24 text-left font-karla'>{activity.title}</p>
-            <p className='hidden text-center font-karla md:block'>
-              {formatDate(activity.date)}
-            </p>
-            <p
-              className={`mx-auto w-[150px] rounded-2xl px-2 py-1 text-center font-karla text-white ${bg}`}
-            >
-              {label}
-            </p>
-            {activity.status === 'ACTIVE' ? (
-              <button
-                className='mx-auto flex w-[100px] items-center justify-center gap-2 rounded-2xl border-[2px] border-[#FFBEB0] bg-[#FFEAE6] px-2 py-1 text-center font-karla'
-                onClick={() => onView && onView(activity)}
-              >
-                <EyeIcon /> Ver
-              </button>
-            ) : (
-              <button
-                className='mx-auto flex w-[100px] items-center justify-center gap-2 rounded-2xl border-[2px] border-[#FFBEB0] bg-[#FFEAE6] px-2 py-1 text-center font-karla'
-                onClick={() => onEdit && onEdit(activity)}
-              >
-                <EditIcon /> Editar
-              </button>
-            )}
-          </div>
-        )
-      })}
+            return (
+              <tr key={activity.id} className='hover:bg-gray-50'>
+                <td className='max-w-[300px] break-words px-4 py-7 text-lg font-medium text-gray-900'>
+                  {activity.title}
+                </td>
+                <td className='hidden whitespace-nowrap px-4 py-7 text-center text-lg text-gray-500 md:table-cell'>
+                  {formatDate(activity.date)}
+                </td>
+                <td className='px-4 py-7 text-center text-sm'>
+                  <span
+                    className={`inline-flex justify-center rounded-full px-3 py-1 text-lg font-semibold leading-5 text-white lg:w-36 ${bg}`}
+                  >
+                    {label}
+                  </span>
+                </td>
+                <td className='items-center justify-center px-4 py-7 text-center text-sm font-medium'>
+                  {activity.status === 'ACTIVE' ? (
+                    <button
+                      onClick={() => onView?.(activity)}
+                      className='text-black mx-auto flex w-full max-w-[100px] items-center justify-center gap-2 rounded-[15px] border border-[#FFBEB0] bg-[#FFEAE6] px-4 py-[5px] text-xs transition-colors hover:bg-[#E62E00] hover:text-white'
+                    >
+                      <EyeIcon />
+                      Ver
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => onEdit?.(activity)}
+                      className='text-black mx-auto flex w-full max-w-[100px] items-center justify-center gap-2 rounded-[15px] border border-[#FFBEB0] bg-[#FFEAE6] px-4 py-[5px] text-xs transition-colors hover:bg-[#E62E00] hover:text-white'
+                    >
+                      <EditIcon />
+                      Editar
+                    </button>
+                  )}
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+
+      {activities.length === 0 && (
+        <div className='py-10 text-center text-gray-500'>
+          Aún no hay actividades registradas.
+        </div>
+      )}
     </div>
   )
 }
