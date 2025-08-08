@@ -32,13 +32,13 @@ export default function WeeklyActivityHero({
 
   return (
     <section className='bg-white py-2 md:py-10'>
-      <div className='relative mx-auto px-1 sm:px-3 lg:px-8'>
-        <h2 className='mb-4 text-start font-darker-grotesque text-lg font-medium text-[#082965] sm:mb-6 sm:text-xl lg:text-5xl'>
+      <div className='relative mx-auto max-w-[1400px] px-2 sm:px-3 lg:px-8'>
+        <h2 className='mb-4 text-start font-darker-grotesque text-lg font-medium text-[#082965] sm:mb-6 sm:text-xl lg:text-4xl'>
           Actividades Semanales
         </h2>
 
         {/* Botones de navegación - solo en móviles */}
-        <div className='block'>
+        <div className='block md:hidden'>
           <button
             ref={prevRef}
             className='absolute left-[-20px] top-[120px] z-10 -translate-y-1/2 rounded-full p-2 text-[#FE5833]'
@@ -61,7 +61,6 @@ export default function WeeklyActivityHero({
             nextEl: nextRef.current
           }}
           onBeforeInit={(swiper) => {
-            // asignamos los refs manualmente
             if (
               typeof swiper.params.navigation !== 'boolean' &&
               swiper.params.navigation
@@ -75,28 +74,26 @@ export default function WeeklyActivityHero({
             delay: 4000,
             disableOnInteraction: false
           }}
-          spaceBetween={16}
-          className='weekly-activity-swiper'
           breakpoints={{
             0: {
-              slidesPerView: 1.2,
-              spaceBetween: 5
+              slidesPerView: 1.05, // Sin scroll lateral en mobile
+              spaceBetween: 6
             },
             480: {
-              slidesPerView: 1.75,
-              spaceBetween: 2
+              slidesPerView: 1.5,
+              spaceBetween: 8
             },
             640: {
-              slidesPerView: 3,
-              spaceBetween: 5
+              slidesPerView: 2.3,
+              spaceBetween: 10
             },
             1024: {
-              slidesPerView: 4,
-              spaceBetween: 20
+              slidesPerView: 3.2, // Más pequeñas en desktop
+              spaceBetween: 14
             },
-            1280: {
+            1440: {
               slidesPerView: 4,
-              spaceBetween: 10
+              spaceBetween: 16
             }
           }}
         >

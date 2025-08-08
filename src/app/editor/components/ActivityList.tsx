@@ -36,7 +36,7 @@ export default function ActivityList({
 }) {
   return (
     <div className='-mx-4 overflow-x-auto sm:mx-0'>
-      <table className='w-full table-auto divide-y divide-gray-200'>
+      <table className='min-w-full table-auto divide-y divide-gray-200'>
         <thead className='bg-[#FFEAE6]'>
           <tr>
             <th className='py-5 pl-5 text-left text-lg font-semibold tracking-wider text-[#04122D]'>
@@ -70,12 +70,12 @@ export default function ActivityList({
                 </td>
                 <td className='px-4 py-7 text-center text-sm'>
                   <span
-                    className={`inline-flex justify-center rounded-full px-3 py-1 text-lg font-semibold leading-5 text-white lg:w-36 ${bg}`}
+                    className={`inline-flex w-24 justify-center rounded-full py-1 text-lg font-semibold leading-5 text-white lg:w-36 ${bg}`}
                   >
                     {label}
                   </span>
                 </td>
-                <td className='items-center justify-center px-4 py-7 text-center text-sm font-medium'>
+                <td className='items-center justify-center px-3 py-7 text-center text-sm font-medium'>
                   {activity.status === 'ACTIVE' ? (
                     <button
                       onClick={() => onView?.(activity)}
