@@ -137,20 +137,6 @@ export default function EventsPage() {
               </label>
             </div>
           </div>
-          <div className='grid grid-cols-4 gap-4 rounded-[10px] bg-[#FFEAE6] p-2 py-6 text-[#04122D]'>
-            <span className='text-center font-darker-grotesque text-[21px] font-darker-grotesque-700'>
-              Actividad
-            </span>
-            <span className='hidden text-center font-darker-grotesque text-[21px] font-darker-grotesque-700 md:block'>
-              Fecha de realización
-            </span>
-            <span className='text-center font-darker-grotesque text-[21px] font-darker-grotesque-700'>
-              Estado
-            </span>
-            <span className='text-center font-darker-grotesque text-[21px] font-darker-grotesque-700'>
-              Más
-            </span>
-          </div>
           <ActivityList
             activities={activities}
             onEdit={setSelectedActivity}

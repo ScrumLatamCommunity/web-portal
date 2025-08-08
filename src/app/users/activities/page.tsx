@@ -157,10 +157,8 @@ export default function ActivitiesPage() {
         onFilterChange={handleFilterChange}
       />
       {activities.map((activity) => {
-        const userCountry =
-          activity.users && activity.users.length > 0
-            ? activity.users[0].country?.[0] || 'No especificado'
-            : 'No especificado'
+        const userInActivity = activity.users?.find((u) => u.id === user?.sub)
+        const userCountry = userInActivity?.country?.[0] || 'No especificado'
 
         return (
           <div key={activity.id} className='mb-0'>

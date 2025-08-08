@@ -65,7 +65,6 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             {activity.description}
           </p>
         </div>
-
         {/* Badges y metadatos - alineados al inferior */}
         <div className='mt-auto flex items-center gap-2 text-[10px] md:gap-3 md:text-xs'>
           {/* Tipo de actividad */}
@@ -79,6 +78,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             </span>
             <span className='hidden md:inline'>
               {activity.type.replaceAll('-', ' ')}
+
             </span>
           </span>
 
