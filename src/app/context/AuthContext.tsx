@@ -58,6 +58,7 @@ interface AuthContextType {
   selectedSponsorId: string | null
   setSelectedSponsorId: (id: string | null) => void
   setAuthToken: (token: string) => void
+  updateUser: (updatedUserData: Partial<User>) => void
   logout: () => void
   isLoading: boolean
   isSponsor: boolean
@@ -161,6 +162,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  const updateUser = (updatedUserData: Partial<User>) => {
+    setUser((prevUser) => {
+      if (prevUser) {
+        // Crear un nuevo objeto usuario con los datos actualizados
+        const updatedUser = { ...prevUser, ...updatedUserData } as User
+        return updatedUser
+      }
+      return null
+    })
+  }
+
   const logout = () => {
     localStorage.removeItem('auth_token')
     localStorage.removeItem('selectedSponsorId')
@@ -176,6 +188,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         token,
         selectedSponsorId,
         setAuthToken,
+        updateUser,
         logout,
         setSelectedSponsorId,
         isLoading,

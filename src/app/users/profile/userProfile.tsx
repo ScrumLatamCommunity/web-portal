@@ -30,7 +30,7 @@ type UserProfileFormData = z.infer<typeof userProfileSchema>
 
 export default function UserProfile() {
   const router = useRouter()
-  const { user, token, isLoading: authLoading } = useAuth()
+  const { user, token, isLoading: authLoading, updateUser } = useAuth()
   const [userData, setUserData] = useState<UserData | null>(null)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -201,6 +201,16 @@ export default function UserProfile() {
       setUserData(updatedData)
       setIsEditing(false)
 
+      // Actualizar el contexto de autenticación con los nuevos datos
+      updateUser({
+        firstName: updatedData.firstName,
+        lastName: updatedData.lastName,
+        username: updatedData.username,
+        email: updatedData.email,
+        country: updatedData.country,
+        profilePictureUrl: updatedData.profilePictureUrl
+      })
+
       // Actualizar el form con los nuevos datos
       reset({
         firstName: updatedData.firstName || '',
@@ -221,6 +231,11 @@ export default function UserProfile() {
   const handleImageUploadCompleted = (updatedUserData: UserData) => {
     setUserData(updatedUserData)
     setIsImageModalOpen(false)
+
+    // Actualizar el contexto de autenticación con la nueva imagen de perfil
+    updateUser({
+      profilePictureUrl: updatedUserData.profilePictureUrl
+    })
   }
 
   const ImageWithFallback = ({

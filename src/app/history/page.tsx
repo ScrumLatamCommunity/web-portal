@@ -88,17 +88,19 @@ export default function History() {
           <div className='mt-12 flex flex-col md:mt-0 md:w-[50%]'>
             <Image
               alt='history'
-              className='h-[160px] w-[400px] rounded-t-2xl md:h-[280px] md:w-[600px]'
+              className='h-[290px] w-[420px] rounded-t-2xl md:h-[270px] md:w-[700px]'
               width={1000}
               height={1000}
               src={ImageTop}
             />
             <Image
               alt='history'
-              className='h-[160px] w-[400px] rounded-b-2xl md:h-[280px] md:w-[600px]'
+              className='h-[290px] w-[420px] rounded-t-2xl md:h-[200px] md:w-[700px]'
               width={1000}
               height={1000}
-              src={ImageBot}
+              src={
+                'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2Fimagenscrumlatam.png?alt=media&token=8cf7a6d6-c2aa-477c-bdee-ed6c0e0b95c7'
+              }
             />
           </div>
         </div>
