@@ -82,11 +82,6 @@ export default function Travel() {
     }
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL
-
-    // Debugging: Ver qué datos tenemos
-    console.log('registerUser:', registerUser)
-    console.log('user:', user)
-
     let userEmail = registerUser?.email || user?.email
 
     // Si no tenemos email, intentamos obtenerlo del localStorage o del token
@@ -96,9 +91,8 @@ export default function Travel() {
         try {
           const decodedToken = JSON.parse(atob(token.split('.')[1]))
           userEmail = decodedToken.email
-          console.log('Email obtenido del token:', userEmail)
         } catch (error) {
-          console.error('Error decodificando token:', error)
+          // Error decodificando token
         }
       }
     }
@@ -106,11 +100,8 @@ export default function Travel() {
     // Validación final
     if (!userEmail) {
       toast.error('No se pudo obtener el email del usuario')
-      console.error('No se pudo obtener email del usuario')
       return
     }
-
-    console.log('Email final a usar:', userEmail)
 
     try {
       // Primero guardamos el comentario si existe
@@ -119,7 +110,6 @@ export default function Travel() {
           email: userEmail,
           comment: comment
         }
-        console.log('Enviando comentario:', commentData)
 
         const commentResponse = await fetch(`${API_URL}comments`, {
           method: 'POST',
@@ -131,8 +121,7 @@ export default function Travel() {
         })
 
         if (!commentResponse.ok) {
-          console.error('Error al guardar comentario:', commentResponse.status)
-          // Continuamos aunque falle el comentario
+          // Error al guardar comentario, continuamos aunque falle
         }
       }
 
@@ -141,7 +130,6 @@ export default function Travel() {
         email: userEmail,
         onboarding: true
       }
-      console.log('Enviando onboarding:', onboardingData)
 
       const response = await fetch(`${API_URL}auth/onboarding`, {
         method: 'PUT',
@@ -156,15 +144,9 @@ export default function Travel() {
         toast.success('¡Onboarding completado!')
         router.push('/')
       } else {
-        const errorData = await response.text()
-        console.error('Error response:', errorData)
-        console.error('Status:', response.status)
-        console.error('Headers:', response.headers)
-        console.error('Data enviada:', onboardingData)
         toast.error('Error al completar el onboarding')
       }
     } catch (error) {
-      console.error('Error completo:', error)
       toast.error('Error al completar el onboarding')
     }
   }
@@ -384,7 +366,6 @@ export default function Travel() {
         return null
     }
   }
-  console.log('user', user)
   return (
     <div className='mx-auto min-h-screen w-full bg-gray-50'>
       {/* Header */}
