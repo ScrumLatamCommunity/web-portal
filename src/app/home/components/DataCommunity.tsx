@@ -34,17 +34,13 @@ export const DataComunity = () => {
         <h3 className='mb-0 text-[5.5dvw] font-bold text-[#FCFCFC] md:pb-7 md:text-start md:text-[45px] 2xl:text-[65px]'>
           Conecta, Aprende y Lidera
         </h3>
-        <p className='mt-5 w-9/12 text-center text-[3.5dvw] font-medium leading-[3.6dvw] text-[#FCFCFC] md:w-[60%] md:text-start md:text-[18px] md:font-normal md:leading-4 2xl:text-[22px]'>
-          Somos una comunidad <b className='font-bold'>LATAM </b>
-          dedicada a la difusión y aprendizaje del marco de trabajo Scrum y
-          otras metodologías ágiles. Nuestro objetivo es compartir
-          conocimientos, experiencias y fomentar el desarrollo continuo de
-          nuestros miembros.
+        <p className='mt-5 w-9/12 text-center text-[3.5dvw] font-medium leading-[3.6dvw] text-[#FCFCFC] md:w-[60%] md:text-start md:text-[18px] md:font-normal md:leading-[35px] 2xl:text-[30px]'>
+          En Scrum Latam creemos en el poder de las personas para transformar el
+          mundo. Conecta con una comunidad vibrante, aprende de experiencias
+          reales y lidera el cambio desde donde estés.
         </p>
-        <p className='mt-5 w-9/12 text-center text-[3.5dvw] font-medium leading-[3.6dvw] text-[#FCFCFC] md:w-[60%] md:text-start md:text-[18px] md:font-normal md:leading-4 2xl:text-[22px]'>
-          Empoderamos a líderes de equipos en organizaciones, promoviendo el
-          crecimiento profesional y la adaptación a diversos proyectos en el
-          mundo de la Agilidad.
+        <p className='mt-5 w-9/12 text-center text-[3.5dvw] font-bold leading-[3.6dvw] text-[#FCFCFC] md:w-[60%] md:text-start md:text-[18px] md:font-normal md:leading-4 2xl:text-[28px]'>
+          <strong>No solo formes parte del cambio. Sé quien lo impulsa.</strong>
         </p>
       </div>
     </div>

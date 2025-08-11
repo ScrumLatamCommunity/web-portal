@@ -15,9 +15,12 @@ export default function History() {
       title: 'Misión',
       text: (
         <>
-          Impulsar la agilidad en Latam a través de{' '}
-          <b>conocimiento, colaboración y buenas prácticas</b> transformando la
-          cultura organizacional.
+          <b>
+            Impulsar el aprendizaje, la colaboración y la transformación ágil en
+            Latinoamérica
+          </b>
+          , conectando personas que lideran el cambio desde su propósito, equipo
+          u organización.
         </>
       )
     },
@@ -25,9 +28,11 @@ export default function History() {
       title: 'Visión',
       text: (
         <>
-          Ser la comunidad <b>líder en Agilidad en Latam</b> reconocida por{' '}
-          <b>transformar, generar valor y conectar</b> para impulsar la
-          innovación y el crecimiento regional.
+          <b>
+            Ser la comunidad ágil más influyente y colaborativa de habla hispana
+          </b>
+          , que inspira, forma y empodera a profesionales para construir un
+          futuro más humano, adaptativo y sostenible.
         </>
       )
     },

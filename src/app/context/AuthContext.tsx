@@ -90,13 +90,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           // Decodificar y validar el token inmediatamente
           const decoded = jwtDecode<User>(savedToken)
 
-          // Debug: Log the decoded token data during initialization
-          console.log('🔍 [AUTH] Token inicial decodificado:', decoded)
-          console.log('🔍 [AUTH] firstName:', decoded.firstName)
-          console.log('🔍 [AUTH] lastName:', decoded.lastName)
-          console.log('🔍 [AUTH] username:', decoded.username)
-          console.log('🔍 [AUTH] role:', decoded.role)
-
           const currentTime = Math.floor(Date.now() / 1000)
 
           if (decoded.exp && decoded.exp < currentTime) {
@@ -140,13 +133,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const setAuthToken = (newToken: string) => {
     try {
       const decoded = jwtDecode<User>(newToken)
-
-      // Debug: Log the decoded token data to verify structure
-      console.log('🔍 [AUTH] Token decodificado:', decoded)
-      console.log('🔍 [AUTH] firstName:', decoded.firstName)
-      console.log('🔍 [AUTH] lastName:', decoded.lastName)
-      console.log('🔍 [AUTH] username:', decoded.username)
-      console.log('🔍 [AUTH] role:', decoded.role)
 
       const currentTime = Math.floor(Date.now() / 1000)
       if (decoded.exp && decoded.exp < currentTime) {
