@@ -610,7 +610,7 @@ export default function EditSponsorProfile({
               <p className='text-gray-500'>No hay certificaciones agregadas.</p>
             )}
           </div>
-          {(formData.certificates?.length ?? 0) && (
+          {(formData.certificates?.length ?? 0) >= 0 && (
             <button
               type='button'
               className='mt-2 font-darker-grotesque text-[18px] font-darker-grotesque-600 text-[#FE5833] hover:text-[#FE2E00]'
