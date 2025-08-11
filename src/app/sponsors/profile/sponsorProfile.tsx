@@ -147,7 +147,7 @@ export default function SponsorProfile() {
 
   return (
     <section
-      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto max-w-5xl px-4 pb-16 pt-6`}
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto max-w-md pb-16 pt-6 lg:max-w-5xl`}
     >
       {/* Título */}
       <h1 className='text-center text-3xl font-bold text-[#FE2E00]'>

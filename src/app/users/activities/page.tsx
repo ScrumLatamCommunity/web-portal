@@ -161,11 +161,13 @@ export default function ActivitiesPage() {
         const userCountry = userInActivity?.country?.[0] || 'No especificado'
 
         return (
-          <ActivityCard
-            key={activity.id}
-            activity={activity}
-            country={userCountry}
-          />
+          <div key={activity.id} className='mb-0'>
+            <ActivityCard
+              key={activity.id}
+              activity={activity}
+              country={userCountry}
+            />
+          </div>
         )
       })}
     </div>

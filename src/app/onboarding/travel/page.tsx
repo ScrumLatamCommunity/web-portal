@@ -18,7 +18,7 @@ interface ListaItem {
 
 export default function Travel() {
   const { completeWelcome, isWelcomeCompleted } = useOnboarding()
-  const { user } = useAuth()
+  const { user, token } = useAuth() // Agregar token del AuthContext
   const [showVideo, setShowVideo] = useState(false)
   const [videoCompleted, setVideoCompleted] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
@@ -82,42 +82,80 @@ export default function Travel() {
     }
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL
+    let userEmail = registerUser?.email || user?.email
+
+    // Si no tenemos email, intentamos obtenerlo del localStorage o del token
+    if (!userEmail) {
+      const localToken = localStorage.getItem('token')
+      if (localToken) {
+        try {
+          const decodedToken = JSON.parse(atob(localToken.split('.')[1]))
+          userEmail = decodedToken.email
+        } catch (error) {
+          // Error decodificando token
+        }
+      }
+    }
+
+    // Validación final
+    if (!userEmail) {
+      toast.error('No se pudo obtener el email del usuario')
+      return
+    }
+
     try {
       // Primero guardamos el comentario si existe
       if (comment.trim()) {
-        await fetch(`${API_URL}comments`, {
+        const commentData = {
+          email: userEmail,
+          comment: comment
+        }
+
+        const commentResponse = await fetch(`${API_URL}comments`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           },
-          body: JSON.stringify({
-            email: registerUser?.email || user?.email,
-            comment: comment
-          })
+          body: JSON.stringify(commentData)
         })
+
+        if (!commentResponse.ok) {
+          // Error al guardar comentario, continuamos aunque falle
+        }
       }
 
       // Luego marcamos el onboarding como completado
+      const onboardingData = {
+        email: userEmail,
+        completed: true // Cambiar de 'onboarding' a 'completed'
+      }
+
       const response = await fetch(`${API_URL}auth/onboarding`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token || localStorage.getItem('auth_token')}`
         },
-        body: JSON.stringify({
-          email: registerUser?.email || user?.email,
-          completed: true
-        })
+        body: JSON.stringify(onboardingData)
       })
 
       if (response.ok) {
-        toast.success('¡Onboarding completado!')
-        router.push('/')
+        const responseData = await response.json()
+
+        // Verificar si la respuesta contiene el usuario actualizado
+        if (responseData && responseData.onboarding === true) {
+          toast.success('¡Onboarding completado!')
+          router.push('/')
+        } else {
+          toast.error('Error: El onboarding no se actualizó correctamente')
+        }
       } else {
+        const errorData = await response.text()
         toast.error('Error al completar el onboarding')
       }
     } catch (error) {
       toast.error('Error al completar el onboarding')
-      console.error('Error:', error)
     }
   }
 
@@ -336,7 +374,6 @@ export default function Travel() {
         return null
     }
   }
-  console.log('user', user)
   return (
     <div className='mx-auto min-h-screen w-full bg-gray-50'>
       {/* Header */}

@@ -64,7 +64,7 @@ export function RegisterForm() {
       if (response.ok) {
         setRegisterUser(data)
         toast.success('¡Registro exitoso! Bienvenido a la comunidad')
-        router.push('/onboarding/travel')
+        router.push('/')
       } else {
         toast.error(data.message || 'Error en el registro')
       }

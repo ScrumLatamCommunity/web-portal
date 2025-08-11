@@ -11,7 +11,11 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (user) {
-      router.push('/')
+      // Solo redirigir al home si el usuario ya completó el onboarding
+      if (user.onboarding === true) {
+        router.push('/')
+      }
+      // Si onboarding es false, dejar que el hook de login maneje la redirección
     }
   }, [user, router])
 

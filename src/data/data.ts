@@ -768,7 +768,7 @@ export const profilesTecnologia = [
     countryFlagUrl: 'https://flagcdn.com/co.svg',
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FGeornith_Melo_Ortiz.jpg?alt=media&token=31faefd8-2bcf-4a06-8172-07867e13324b',
-    linkedinUrl: 'www.linkedin.com/in/geornith-melo-ortiz'
+    linkedinUrl: 'https://www.linkedin.com/in/geornith-melo-ortiz'
   },
   {
     name: 'Pablo Neri Heredia',

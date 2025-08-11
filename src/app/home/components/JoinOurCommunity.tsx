@@ -23,7 +23,7 @@ export const JoinOurCommunity = () => {
   return (
     <>
       <h2 className='mb-6 mt-2 pl-[8%] font-darker-grotesque text-[24px] font-bold text-[#082965] md:mb-16 md:mt-12 md:text-[60px]'>
-        ¿Por qué unirse a nosotros?
+        Porque aquí no solo aprendes… <strong>te transformas.</strong>
       </h2>
       <div className='relative m-auto mb-12 grid grid-cols-1 grid-rows-2 flex-col justify-center font-darker-grotesque md:max-w-[1980px] md:grid-cols-[1fr_1.35fr] md:grid-rows-1'>
         <div
@@ -31,15 +31,24 @@ export const JoinOurCommunity = () => {
             'relative flex flex-col items-center justify-center bg-[#082965] md:items-start md:bg-blend-normal lg:pl-24'
           }
         >
-          <p className='text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:w-[70%] md:text-start md:text-5 lg:text-11 lg:leading-[1.4]'>
-            Conéctate con profesionales ágiles de toda Latinoamérica. Accede
-            recursos exclusivos y participa en eventos que impulsarán tu
-            crecimiento.
+          <p className='text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:w-[70%] md:text-start md:text-4 lg:text-9 lg:leading-[1.4] 2xl:text-11'>
+            🔹 Conecta con una red vibrante de profesionales que viven y
+            respiran agilidad.
           </p>
-          <p className='text-center text-4 font-semibold text-[#FFFFFF] md:w-[70%] md:text-start md:text-5 lg:mt-8 lg:text-11 lg:leading-[1.4]'>
-            ¡<a className='text-[#FE5833]'>Regístrate </a> hoy y{' '}
-            <label className='text-[#FE5833]'>sé parte</label> de nuestra
-            transformación ágil!
+          <p className='text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:w-[70%] md:text-start md:text-4 lg:text-9 lg:leading-[1.4] 2xl:text-11'>
+            🔹 Aprende con experiencias reales, herramientas prácticas y
+            espacios de crecimiento continuo.
+          </p>
+          <p className='mb-4 text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:mb-6 md:w-[70%] md:text-start md:text-4 lg:mb-8 lg:text-9 lg:leading-[1.4] 2xl:mb-10 2xl:text-11'>
+            🔹 Lidera el cambio desde tu rol, tu equipo, tu organización… o tu
+            propósito.
+          </p>
+
+          <p className='text-center text-4 font-semibold text-[#FFFFFF] md:w-[70%] md:text-start md:text-4 lg:mt-8 lg:text-9 lg:leading-[1.4] 2xl:text-11'>
+            <strong>
+              {' '}
+              No estás aquí por casualidad. Estás aquí porque estás listo.
+            </strong>
           </p>
         </div>
         <div className='overflow-hidden bg-white lg:pr-2'>

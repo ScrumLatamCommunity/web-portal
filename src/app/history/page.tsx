@@ -15,9 +15,12 @@ export default function History() {
       title: 'Misión',
       text: (
         <>
-          Impulsar la agilidad en Latam a través de{' '}
-          <b>conocimiento, colaboración y buenas prácticas</b> transformando la
-          cultura organizacional.
+          <b>
+            Impulsar el aprendizaje, la colaboración y la transformación ágil en
+            Latinoamérica
+          </b>
+          , conectando personas que lideran el cambio desde su propósito, equipo
+          u organización.
         </>
       )
     },
@@ -25,9 +28,11 @@ export default function History() {
       title: 'Visión',
       text: (
         <>
-          Ser la comunidad <b>líder en Agilidad en Latam</b> reconocida por{' '}
-          <b>transformar, generar valor y conectar</b> para impulsar la
-          innovación y el crecimiento regional.
+          <b>
+            Ser la comunidad ágil más influyente y colaborativa de habla hispana
+          </b>
+          , que inspira, forma y empodera a profesionales para construir un
+          futuro más humano, adaptativo y sostenible.
         </>
       )
     },
@@ -88,17 +93,19 @@ export default function History() {
           <div className='mt-12 flex flex-col md:mt-0 md:w-[50%]'>
             <Image
               alt='history'
-              className='h-[160px] w-[400px] rounded-t-2xl md:h-[280px] md:w-[600px]'
+              className='h-[290px] w-[420px] rounded-t-2xl md:h-[270px] md:w-[700px]'
               width={1000}
               height={1000}
               src={ImageTop}
             />
             <Image
               alt='history'
-              className='h-[160px] w-[400px] rounded-b-2xl md:h-[280px] md:w-[600px]'
+              className='h-[290px] w-[420px] rounded-t-2xl md:h-[200px] md:w-[700px]'
               width={1000}
               height={1000}
-              src={ImageBot}
+              src={
+                'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/History%2Fimagenscrumlatam.png?alt=media&token=8cf7a6d6-c2aa-477c-bdee-ed6c0e0b95c7'
+              }
             />
           </div>
         </div>

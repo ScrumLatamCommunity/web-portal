@@ -58,6 +58,7 @@ interface AuthContextType {
   selectedSponsorId: string | null
   setSelectedSponsorId: (id: string | null) => void
   setAuthToken: (token: string) => void
+  updateUser: (updatedUserData: Partial<User>) => void
   logout: () => void
   isLoading: boolean
   isSponsor: boolean
@@ -88,13 +89,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (savedToken) {
           // Decodificar y validar el token inmediatamente
           const decoded = jwtDecode<User>(savedToken)
-
-          // Debug: Log the decoded token data during initialization
-          console.log('🔍 [AUTH] Token inicial decodificado:', decoded)
-          console.log('🔍 [AUTH] firstName:', decoded.firstName)
-          console.log('🔍 [AUTH] lastName:', decoded.lastName)
-          console.log('🔍 [AUTH] username:', decoded.username)
-          console.log('🔍 [AUTH] role:', decoded.role)
 
           const currentTime = Math.floor(Date.now() / 1000)
 
@@ -140,13 +134,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const decoded = jwtDecode<User>(newToken)
 
-      // Debug: Log the decoded token data to verify structure
-      console.log('🔍 [AUTH] Token decodificado:', decoded)
-      console.log('🔍 [AUTH] firstName:', decoded.firstName)
-      console.log('🔍 [AUTH] lastName:', decoded.lastName)
-      console.log('🔍 [AUTH] username:', decoded.username)
-      console.log('🔍 [AUTH] role:', decoded.role)
-
       const currentTime = Math.floor(Date.now() / 1000)
       if (decoded.exp && decoded.exp < currentTime) {
         throw new Error('Token expirado')
@@ -159,6 +146,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.error('Error al procesar token:', error)
       logout()
     }
+  }
+
+  const updateUser = (updatedUserData: Partial<User>) => {
+    setUser((prevUser) => {
+      if (prevUser) {
+        // Crear un nuevo objeto usuario con los datos actualizados
+        const updatedUser = { ...prevUser, ...updatedUserData } as User
+        return updatedUser
+      }
+      return null
+    })
   }
 
   const logout = () => {
@@ -176,6 +174,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         token,
         selectedSponsorId,
         setAuthToken,
+        updateUser,
         logout,
         setSelectedSponsorId,
         isLoading,

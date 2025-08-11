@@ -136,7 +136,7 @@ export default function Offerts() {
     (offert) => offert.status === 'ACTIVE'
   )
   const totalOffers = activeOffers.length
-  const CARDS_TO_SHOW = 3
+  const CARDS_TO_SHOW = isMobile ? 1 : 3
 
   const getVisibleOffers = () => {
     if (totalOffers <= CARDS_TO_SHOW) return activeOffers
@@ -346,7 +346,7 @@ export default function Offerts() {
               >
                 <ChevronLeftIcon width={32} height={32} />
               </button>
-              <div className='grid w-[85%] grid-cols-1 justify-items-center md:grid-cols-3 md:gap-8 md:px-[10%]'>
+              <div className='grid w-[85%] grid-cols-1 justify-items-center gap-4 md:grid-cols-3 md:gap-8 md:px-[10%]'>
                 {getVisibleOffers().map((offert, idx) => (
                   <OffertCard key={idx} {...offert} />
                 ))}

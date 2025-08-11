@@ -22,11 +22,12 @@ export const WelcomeToCommunity = () => {
             <div className=''>
               <p className='mb-3 mt-8 font-darker-grotesque text-4xl font-bold leading-[30px] text-[#082965]'>
                 Scrum <span className='text-[#FE5833]'>Latam</span> te da la
-                bienvenida: Donde la comunidad y la agilidad convergen.
+                bienvenida a un espacio donde la agilidad cobra vida.
               </p>
-              <p className='mt-8 px-1 font-karla text-6 font-medium leading-[120%] tracking-wider text-[#082965]'>
-                Fomentamos el aprendizaje colaborativo y aplicamos metodologías
-                ágiles para crecer juntos con éxito.
+              <p className='mt-8 px-1 font-karla text-[19px] font-normal leading-[120%] tracking-wider text-[#082965]'>
+                Aquí comienzan nuevas ideas, conexiones y oportunidades para
+                transformar tu forma de trabajar, aprender y liderar. Estás en
+                el lugar correcto para crecer, compartir y evolucionar.
               </p>
             </div>
             <div className='mt-10'>

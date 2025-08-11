@@ -54,7 +54,11 @@ export default function OffertCard({
 
   return (
     <div
-      className={`${darkerGrotesque.variable} ${karla.variable} flex w-full flex-col rounded-lg border border-[#E6EAF0] bg-white pb-3 shadow-[6px_8px_24px_0px_rgba(8,41,101,0.10)] transition-all duration-300`}
+      className={`${darkerGrotesque.variable} ${karla.variable} flex w-full flex-col rounded-lg border border-[#E6EAF0] bg-white pb-3 shadow-[6px_8px_24px_0px_rgba(8,41,101,0.10)] transition-all duration-300 ${
+        expanded
+          ? 'h-auto'
+          : 'h-[400px] md:h-[450px] lg:h-[480px] 2xl:h-[500px]'
+      }`}
     >
       <div className='h-[200px] w-full overflow-hidden rounded-t-lg'>
         <Image
@@ -80,7 +84,7 @@ export default function OffertCard({
           }}
         />
         {!expanded && (
-          <div className='flex justify-end'>
+          <div className='mt-auto flex justify-end'>
             <button
               className='flex items-center gap-1 font-semibold text-[#082965] hover:underline focus:outline-none'
               onClick={() => setExpanded(true)}

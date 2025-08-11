@@ -107,17 +107,10 @@ export const Footer = () => {
       </div>
 
       {openModal && (
-        <Modal
-          isOpen={openModal}
+        <TermsAndConditions
+          open={openModal}
           onClose={() => setOpenModal(false)}
-          title='Términos y Condiciones'
-          contentClassName='justify-start gap-[10px]'
-        >
-          <TermsAndConditions
-            open={openModal}
-            onClose={() => setOpenModal(false)}
-          />
-        </Modal>
+        />
       )}
     </div>
   )
