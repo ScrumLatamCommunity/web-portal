@@ -51,7 +51,13 @@ export default function CoursePublications() {
       try {
         setIsLoading(true)
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorId}/posts`
+          `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorId}/offers`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          }
         )
         const data = await res.json()
         setCourses(data)
@@ -69,7 +75,7 @@ export default function CoursePublications() {
     const newStatus = course.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}posts/${course.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}offers/${course.id}`,
         {
           method: 'PATCH',
           headers: {
