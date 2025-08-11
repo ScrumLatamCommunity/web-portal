@@ -147,11 +147,16 @@ export default function SponsorProfile() {
 
   return (
     <section
+
       className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto max-w-md pb-16 pt-6 lg:max-w-5xl`}
+
     >
+      {/* Título */}
       <h1 className='text-center text-3xl font-bold text-[#FE2E00]'>
         Mi Perfil Sponsor
       </h1>
+
+      {/* Botón editar */}
       <button
         onClick={() => setIsEditing(true)}
         className='mx-auto my-2 flex flex-row items-center text-lg text-[#FE2E00] underline'
@@ -159,40 +164,41 @@ export default function SponsorProfile() {
         <Edit2 className='mx-2' /> Editar perfil
       </button>
 
+      {/* Logo */}
       <div className='my-4 flex justify-center'>
         <ImageWithFallback
           src={sponsorData?.logo}
           alt='logo'
-          className='h-56 w-96 object-contain'
+          className='h-auto max-w-full object-contain lg:h-56 lg:w-96'
         />
       </div>
-      <div className='flex flex-col items-start gap-3 lg:pl-10'>
-        <label className='text-xl font-bold text-[#FE2E00]' htmlFor='title'>
+
+      {/* Información general */}
+      <div className='flex flex-col items-start gap-6 lg:pl-10'>
+        <label className='text-xl font-bold text-[#FE2E00]'>
           Información general
         </label>
-        <div className='flex flex-col gap-3 lg:flex-row lg:flex-wrap'>
-          <div className='flex flex-col'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+        <div className='flex flex-col gap-4 sm:flex-row sm:flex-wrap'>
+          {/* Nombre empresa */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Nombre de la empresa
             </label>
             <input
               type='text'
               value={sponsorData?.companyName}
               readOnly
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#8C8C8C] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] px-4 text-[14px] text-[#8C8C8C] focus:outline-none'
             />
           </div>
-          <div className='flex w-full flex-col lg:w-[300px]'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* País */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               País
             </label>
-            <div className='relative mt-1 flex h-[44px] w-full items-center rounded-[10px] border border-[#C1CCF4] bg-transparent px-3 lg:mt-0 lg:w-[300px]'>
+            <div className='relative flex h-[44px] w-full items-center rounded-[10px] border border-[#C1CCF4] px-3'>
               {sponsorData?.user?.country?.length ? (
                 <>
                   <Image
@@ -202,26 +208,25 @@ export default function SponsorProfile() {
                     height={20}
                     className='mr-2 h-[20px] w-[28px] rounded-[3px] object-cover'
                   />
-                  <span className='flex-1 text-[14px] font-medium text-[#8C8C8C]'>
+                  <span className='flex-1 text-[14px] text-[#8C8C8C]'>
                     {sponsorData.user.country.join(', ')}
                   </span>
                 </>
               ) : (
-                <span className='flex-1 text-[14px] font-medium text-[#8C8C8C]'>
+                <span className='flex-1 text-[14px] text-[#8C8C8C]'>
                   No hay país
                 </span>
               )}
               <ChevronDown size={18} className='text-[#9CA3AF]' />
             </div>
           </div>
-          <div>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* Fecha inicio */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Fecha de inicio
             </label>
-            <div className='relative w-full lg:w-[300px]'>
+            <div className='relative w-full'>
               <Calendar
                 className='absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]'
                 size={25}
@@ -230,32 +235,30 @@ export default function SponsorProfile() {
                 type='text'
                 value={formatDate(sponsorData?.createdAt)}
                 readOnly
-                className='h-[44px] w-full rounded-md border border-gray-300 bg-transparent pl-5 pr-3 text-sm text-[#8C8C8C] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FE2E00]'
+                className='h-[44px] w-full rounded-md border border-gray-300 pl-5 pr-3 text-sm text-[#8C8C8C] focus:outline-none focus:ring-2 focus:ring-[#FE2E00]'
               />
             </div>
           </div>
-          <div className='flex flex-col'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* Correo */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Correo electrónico
             </label>
             <input
               type='text'
               value={sponsorData?.user?.email}
               readOnly
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] px-4 text-[14px] text-[#9CA3AF] focus:outline-none'
             />
           </div>
-          <div className='flex flex-col'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* Áreas */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Áreas de especialización
             </label>
-            <div className='flex flex-wrap gap-2 rounded-[10px] border border-[#C1CCF4] bg-white px-6 py-2 lg:w-auto'>
+            <div className='flex flex-wrap gap-2 rounded-[10px] border border-[#C1CCF4] bg-white px-4 py-2'>
               {sponsorData?.specialization.map((area, idx) => (
                 <div
                   key={idx}
@@ -265,73 +268,68 @@ export default function SponsorProfile() {
                   <X size={16} className='cursor-pointer' />
                 </div>
               ))}
-            </div>{' '}
+            </div>
           </div>
-          <div className='flex flex-col'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* Sitio web */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Sitio web
             </label>
             <input
               type='text'
               value={sponsorData?.web}
               readOnly
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] px-4 text-[14px] text-[#9CA3AF] focus:outline-none'
             />
           </div>
-          <div className='flex flex-col'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* Contacto */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Contacto de Whatsapp
             </label>
             <input
               type='text'
               value={sponsorData?.phone}
               readOnly
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] px-4 text-[14px] text-[#9CA3AF] focus:outline-none'
             />
           </div>
-          <div className='flex flex-col'>
-            <label
-              className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'
-              htmlFor='company-country'
-            >
+
+          {/* Mensaje */}
+          <div className='flex min-w-[250px] flex-1 flex-col'>
+            <label className='font-darker-grotesque text-[21px] text-[#141414]'>
               Mensaje de Whatsapp
             </label>
             <input
               type='text'
               value={sponsorData?.wppMessage}
               readOnly
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#8C8C8C] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] px-4 text-[14px] text-[#8C8C8C] focus:outline-none'
             />
           </div>
         </div>
 
+        {/* Redes sociales */}
         <div className='mt-6 w-full space-y-3'>
-          <label
-            className='text-xl font-bold text-[#FE2E00]'
-            htmlFor='company-country'
-          >
+          <label className='text-xl font-bold text-[#FE2E00]'>
             Redes Sociales
           </label>
           {isLoading ? (
-            <Skeleton className='flex h-[39px] w-full flex-wrap lg:flex-col' />
+            <Skeleton className='h-[39px] w-full' />
           ) : sponsorData?.socials?.length ? (
             sponsorData.socials.map((url, index) => (
               <div
                 key={index}
-                className='mb-2 flex items-center gap-2 lg:w-[300px]'
+                className='flex w-full items-center gap-2 sm:w-80'
               >
                 {getSocialIcon(url)}
                 <input
                   type='text'
                   value={url}
                   readOnly
-                  className='flex-1 rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#8C8C8C] placeholder:text-[#9CA3AF] focus:outline-none'
+                  className='flex-1 rounded-[8px] border border-[#C1CCF4] px-4 py-2 text-[14px] text-[#8C8C8C] focus:outline-none'
                 />
               </div>
             ))
@@ -340,20 +338,20 @@ export default function SponsorProfile() {
           )}
         </div>
 
+        {/* Descripciones */}
         <div className='mt-6 w-full space-y-4'>
           <h2 className='text-xl font-bold text-[#FE2E00]'>Sobre nosotros</h2>
-
           {isLoading ? (
             <Skeleton className='h-[39px] w-full' />
           ) : (sponsorData?.descriptions?.length ?? 0) > 0 ? (
-            <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
+            <div className='flex flex-wrap gap-4'>
               {sponsorData?.descriptions.map((desc, index) => (
-                <div key={index} className='space-y-3 lg:w-[300px]'>
+                <div key={index} className='min-w-[250px] flex-1 space-y-3'>
                   <div>
                     <label className='text-black block text-[18px] font-medium'>
                       Título {index + 1}
                     </label>
-                    <div className='mt-1 rounded-[10px] border border-[#C1CCF4] bg-transparent px-4 py-3 text-[#8C8C8C]'>
+                    <div className='mt-1 rounded-[10px] border border-[#C1CCF4] px-4 py-3 text-[#8C8C8C]'>
                       {desc.title}
                     </div>
                   </div>
@@ -361,7 +359,7 @@ export default function SponsorProfile() {
                     <label className='text-black block text-[18px] font-medium'>
                       Párrafo {index + 1}
                     </label>
-                    <div className='mt-1 rounded-[10px] border border-[#C1CCF4] bg-transparent px-4 py-3 text-[#8C8C8C]'>
+                    <div className='mt-1 rounded-[10px] border border-[#C1CCF4] px-4 py-3 text-[#8C8C8C]'>
                       {desc.description}
                     </div>
                   </div>
@@ -373,40 +371,38 @@ export default function SponsorProfile() {
           )}
         </div>
 
+        {/* Certificaciones */}
         <div className='my-4 mb-8 mt-6'>
           <h2 className='mb-4 text-[18px] font-bold text-[#FE2E00]'>
             Nuestras certificaciones
           </h2>
-
-          <div className='space-y-6'>
+          <div className='flex flex-wrap gap-6'>
             {isLoading ? (
               <Skeleton className='h-[39px] w-full' />
             ) : (sponsorData?.certificates?.length ?? 0) > 0 ? (
-              <div className='flex flex-wrap lg:flex-row lg:space-x-3'>
-                {sponsorData?.certificates?.map((cert, idx) => (
-                  <div
-                    key={idx}
-                    className='flex flex-col items-center gap-3 lg:w-[300px]'
-                  >
-                    <Image
-                      src={cert.title}
-                      alt={`cert-${idx}`}
-                      width={120}
-                      height={120}
-                      className='aspect-square rounded-lg object-cover'
-                    />
-                    <label className='text-[14px] font-medium text-[#000]'>
-                      Link
-                    </label>
-                    <input
-                      type='text'
-                      value={cert.url}
-                      readOnly
-                      className='w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-center text-[14px] text-[#8C8C8C] focus:outline-none'
-                    />
-                  </div>
-                ))}
-              </div>
+              sponsorData?.certificates?.map((cert, idx) => (
+                <div
+                  key={idx}
+                  className='flex min-w-[250px] flex-1 flex-col items-center gap-3 sm:max-w-[300px]'
+                >
+                  <Image
+                    src={cert.title}
+                    alt={`cert-${idx}`}
+                    width={120}
+                    height={120}
+                    className='aspect-square rounded-lg object-cover'
+                  />
+                  <label className='text-[14px] font-medium text-[#000]'>
+                    Link
+                  </label>
+                  <input
+                    type='text'
+                    value={cert.url}
+                    readOnly
+                    className='w-full rounded-[8px] border border-[#C1CCF4] px-4 py-2 text-center text-[14px] text-[#8C8C8C] focus:outline-none'
+                  />
+                </div>
+              ))
             ) : (
               <p className='text-gray-500'>
                 No hay certificaciones disponibles.
@@ -414,8 +410,10 @@ export default function SponsorProfile() {
             )}
           </div>
         </div>
-        <div className='flex justify-center py-5 lg:w-full lg:justify-end lg:py-10'>
-          <button className='w-96 rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white lg:w-[300px]'>
+
+        {/* Botón guardar */}
+        <div className='flex justify-center py-5 lg:justify-end'>
+          <button className='w-full rounded-md bg-[#A0A0A0] px-4 py-3 text-sm font-medium text-white sm:w-80'>
             Guardar cambios
           </button>
         </div>

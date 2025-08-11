@@ -168,8 +168,8 @@ export default function CreateActivity({
   }
 
   return (
-    <div className='flex justify-center'>
-      <div className='flex w-full flex-col'>
+    <div className='flex justify-center overflow-hidden px-4'>
+      <div className='flex w-full max-w-7xl flex-col'>
         <div className='flex items-center gap-4 pb-12'>
           <button onClick={onBack} className='focus:outline-none'>
             <svg
@@ -189,8 +189,8 @@ export default function CreateActivity({
             Crear nueva actividad
           </h1>
         </div>
-        <div className='flex flex-col lg:flex-row'>
-          <div className='h-[550px] w-[550px]'>
+        <div className='flex flex-col gap-y-10 lg:flex-row lg:gap-x-10'>
+          <div className='w-full max-w-[550px]'>
             <ImageUpload
               key={formData.image}
               onChange={handleImageChange}
@@ -198,7 +198,8 @@ export default function CreateActivity({
               className={`bg-[#D9D9D9] ${errors.image ? 'border-2 border-[#FE5833]' : ''}`}
             />
           </div>
-          <div className='flex w-full flex-col gap-4 pl-6 lg:w-[60%]'>
+
+          <div className='flex w-full flex-col gap-4 lg:w-[60%]'>
             <label className='font-darker-grotesque text-[20px] font-semibold'>
               Título de la actividad
               <input

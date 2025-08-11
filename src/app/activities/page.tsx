@@ -59,14 +59,14 @@ export default function Activities() {
   }
   return (
     <>
-      <div className='mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-6'>
         {/* 1. Componente para la nueva sección principal "Actividad Semanal" */}
         <WeeklyActivityHero
           categories={activityCategoriesData}
           onSelectCategory={handleHeroCategorySelect}
           selectedCategory={selectedCategory}
         />
-        <h2 className='my-7 pl-6 text-start font-darker-grotesque text-lg font-medium text-[#082965] lg:text-5xl'>
+        <h2 className='my-7 pl-6 text-start font-darker-grotesque text-lg font-medium text-[#082965] lg:text-4xl'>
           Próximas Actividades
         </h2>
         {/* 2. Componente para la barra de filtros con checkboxes */}
