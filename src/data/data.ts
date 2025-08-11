@@ -781,6 +781,16 @@ export const profilesTecnologia = [
     linkedinUrl: 'https://www.linkedin.com/in/neriheredia'
   },
   {
+    name: 'Pablo Neri Heredia',
+    title: 'Tech Lider',
+    description:
+      'Líder técnico orientado a la construcción de soluciones escalables, con foco en la colaboración y la entrega continua.',
+    countryFlagUrl: 'https://flagcdn.com/ar.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FWhatsApp%20Image%202025-08-01%20at%2018.42.14.jpeg?alt=media&token=ad18451f-89d7-4191-8d1e-954ae4523bf9',
+    linkedinUrl: 'https://www.linkedin.com/in/neriheredia'
+  },
+  {
     name: 'Melany Ventura',
     title: 'UX/UI Designer',
     description:
