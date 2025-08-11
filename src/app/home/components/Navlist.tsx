@@ -69,6 +69,7 @@ export const Navlist: React.FC = () => {
           className={`flex cursor-pointer items-center gap-2 py-2 pr-4 text-[16px] font-darker-grotesque-600 md:text-[26px] ${
             pathname === '/history' ||
             pathname === '/community/squads' ||
+            pathname === '/community/products&services' ||
             pathname === '/onboarding'
               ? 'text-red-400'
               : 'text-blue-7'
@@ -100,9 +101,9 @@ export const Navlist: React.FC = () => {
         </div>
         {activeMenu === 'comunidad' && (
           <div
-            className={`${roboto.variable} right-[40%] z-10 rounded-b-xl rounded-tl-xl border-2 border-[#08296580] md:bg-black-3 lg:absolute lg:mt-0 lg:w-[300px] lg:bg-black-2 lg:p-6 lg:shadow-lg`}
+            className={`${roboto.variable} z-10 rounded-b-xl rounded-tl-xl border-2 border-[#08296580] bg-black-3 md:bg-black-3 lg:absolute lg:right-[40%] lg:mt-0 lg:w-[300px] lg:bg-black-2 lg:p-6 lg:shadow-lg`}
           >
-            <ul className='space-y-4'>
+            <ul className='space-y-4 p-4 lg:p-0'>
               <li className='space-y-4 py-2'>
                 <Link href='/history'>
                   <div className='flex items-center'>
@@ -143,7 +144,7 @@ export const Navlist: React.FC = () => {
                     />
                     <div className='md:ml-3'>
                       <p
-                        className={`font-roboto md:text-[16px] ${pathname === '/community/products&services' ? 'text-[#FE2E00]' : 'text-[#082965]'} nav-link__text`}
+                        className={`text-left font-roboto md:text-[16px] ${pathname === '/community/products&services' ? 'text-[#FE2E00]' : 'text-[#082965]'} nav-link__text`}
                       >
                         Productos y Servicios de Sponsors
                       </p>

@@ -8,14 +8,49 @@ import {
 } from 'react'
 import { jwtDecode } from 'jwt-decode'
 
-interface User {
+// Base user interface
+interface BaseUser {
   sub: string
   email: string
-  name: string
-  exp?: number
-  onboarding: boolean
+  firstName: string
+  lastName: string
+  username: string
+  country: string[]
+  membership: string
   role: string
+  profilePictureUrl: string
+  onboarding: boolean
+  exp?: number
+  iat?: number
 }
+
+// Sponsor-specific data interface
+interface SponsorData {
+  companyName: string
+  specialization: string[]
+  description: any[] // SponsorDescriptionDto[]
+  web: string
+  phone: string
+  socials: string[]
+  logo: string
+  bannerWeb: string
+  bannerMobile: string
+  status: string
+}
+
+// Extended user interface for sponsors
+interface SponsorUser extends BaseUser {
+  role: 'SPONSOR'
+  sponsorData: SponsorData
+}
+
+// Regular user interface
+interface RegularUser extends BaseUser {
+  role: 'USER' | 'ADMIN' | 'EDITOR'
+}
+
+// Union type for all user types
+type User = RegularUser | SponsorUser
 
 interface AuthContextType {
   user: User | null
@@ -25,6 +60,8 @@ interface AuthContextType {
   setAuthToken: (token: string) => void
   logout: () => void
   isLoading: boolean
+  isSponsor: boolean
+  isRegularUser: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -37,6 +74,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     string | null
   >(null)
 
+  // Computed properties for user type checking
+  const isSponsor = user?.role === 'SPONSOR'
+  const isRegularUser =
+    user?.role === 'USER' || user?.role === 'ADMIN' || user?.role === 'EDITOR'
+
   useEffect(() => {
     const initializeAuth = () => {
       try {
@@ -46,6 +88,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (savedToken) {
           // Decodificar y validar el token inmediatamente
           const decoded = jwtDecode<User>(savedToken)
+
+          // Debug: Log the decoded token data during initialization
+          console.log('🔍 [AUTH] Token inicial decodificado:', decoded)
+          console.log('🔍 [AUTH] firstName:', decoded.firstName)
+          console.log('🔍 [AUTH] lastName:', decoded.lastName)
+          console.log('🔍 [AUTH] username:', decoded.username)
+          console.log('🔍 [AUTH] role:', decoded.role)
+
           const currentTime = Math.floor(Date.now() / 1000)
 
           if (decoded.exp && decoded.exp < currentTime) {
@@ -90,6 +140,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const decoded = jwtDecode<User>(newToken)
 
+      // Debug: Log the decoded token data to verify structure
+      console.log('🔍 [AUTH] Token decodificado:', decoded)
+      console.log('🔍 [AUTH] firstName:', decoded.firstName)
+      console.log('🔍 [AUTH] lastName:', decoded.lastName)
+      console.log('🔍 [AUTH] username:', decoded.username)
+      console.log('🔍 [AUTH] role:', decoded.role)
+
       const currentTime = Math.floor(Date.now() / 1000)
       if (decoded.exp && decoded.exp < currentTime) {
         throw new Error('Token expirado')
@@ -121,7 +178,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setAuthToken,
         logout,
         setSelectedSponsorId,
-        isLoading
+        isLoading,
+        isSponsor,
+        isRegularUser
       }}
     >
       {children}

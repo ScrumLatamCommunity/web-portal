@@ -16,7 +16,6 @@ interface ActivityCardProps {
 export default function ActivityCard({ activity, country }: ActivityCardProps) {
   const { user } = useAuth()
   const router = useRouter()
-  console.log(activity.time)
 
   const { formattedTime, isLoading } = useTimeConverter(activity, country)
 
@@ -41,7 +40,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
         <Image
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
-          className='object-cover'
+          className='object-fill'
           fill
           sizes='(max-width: 640px) 45vw, (max-width: 1024px) 33vw, 300px'
           priority

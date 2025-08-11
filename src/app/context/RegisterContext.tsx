@@ -7,21 +7,53 @@ import {
   useEffect
 } from 'react'
 
-interface RegisterUser {
-  id: string
+// Base user registration interface
+interface BaseRegisterUser {
   firstName: string
   lastName: string
   username: string
   email: string
   country: string[]
   membership: string
+  role: string
+  profilePictureUrl: string
   onboarding: boolean
 }
+
+// Sponsor-specific registration data
+interface SponsorRegisterData {
+  companyName: string
+  specialization: string[]
+  description: any[] // SponsorDescriptionDto[]
+  web: string
+  phone: string
+  socials: string[]
+  logo: string
+  bannerWeb: string
+  bannerMobile: string
+  status: string
+}
+
+// Regular user registration interface
+interface RegularRegisterUser extends BaseRegisterUser {
+  role: 'USER'
+}
+
+// Sponsor user registration interface
+interface SponsorRegisterUser extends BaseRegisterUser {
+  role: 'SPONSOR'
+  sponsorData: SponsorRegisterData
+}
+
+// Union type for all registration user types
+type RegisterUser = RegularRegisterUser | SponsorRegisterUser
 
 interface RegisterContextType {
   registerUser: RegisterUser | null
   setRegisterUser: (user: RegisterUser) => void
   clearRegisterUser: () => void
+  isSponsorRegistration: boolean
+  isRegularUserRegistration: boolean
 }
 
 const RegisterContext = createContext<RegisterContextType | undefined>(
@@ -37,6 +69,10 @@ export function RegisterProvider({ children }: { children: ReactNode }) {
     }
     return null
   })
+
+  // Computed properties for registration type checking
+  const isSponsorRegistration = registerUser?.role === 'SPONSOR'
+  const isRegularUserRegistration = registerUser?.role === 'USER'
 
   // Efecto para actualizar localStorage cuando cambie registerUser
   useEffect(() => {
@@ -55,7 +91,9 @@ export function RegisterProvider({ children }: { children: ReactNode }) {
       value={{
         registerUser,
         setRegisterUser,
-        clearRegisterUser
+        clearRegisterUser,
+        isSponsorRegistration,
+        isRegularUserRegistration
       }}
     >
       {children}
