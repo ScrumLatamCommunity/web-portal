@@ -23,15 +23,14 @@ export default function ActivityForm({
   const [confirmType, setConfirmType] = React.useState<
     'save' | 'delete' | null
   >(null)
-  const [successModal, setSuccessModal] = React.useState<{
-    open: boolean
-    message: string
-    type: 'save' | 'delete' | null
-  }>({ open: false, message: '', type: null })
+  const [successModal, setSuccessModal] = React.useState({
+    open: false,
+    message: '',
+    type: null as 'save' | 'delete' | null
+  })
 
   React.useEffect(() => {
     if (activity && (!formData || formData.id !== activity.id)) {
-      console.log('Actualizando formData con nueva actividad:', activity)
       setFormData(activity)
       setIsEditing(false)
     }
@@ -41,18 +40,14 @@ export default function ActivityForm({
     setFormData({ ...formData, image: imageUrl })
   }
 
-  const handleEditSave = async () => {
-    if (isViewMode) {
-      return // No permitir edición en modo visualización
-    }
+  const handleEditSave = () => {
+    if (isViewMode) return
     if (isEditing) {
-      console.log('Guardando cambios, formData actual:', formData)
       setConfirmType('save')
       setShowConfirm(true)
       return
     }
-    console.log('Entrando en modo edición')
-    setIsEditing((prev) => !prev)
+    setIsEditing(true)
   }
 
   const handleConfirm = async () => {
@@ -96,19 +91,17 @@ export default function ActivityForm({
             facilitator,
             observation
           }
+
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}activities/${activity.id}`,
             {
               method: 'PATCH',
-              headers: {
-                'Content-Type': 'application/json'
-              },
+              headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(dataToSend)
             }
           )
-          if (!response.ok) {
-            throw new Error('Error al actualizar la actividad')
-          }
+          if (!response.ok) throw new Error('Error al actualizar la actividad')
+
           setSuccessModal({
             open: true,
             message: 'Cambios guardados con éxito',
@@ -126,14 +119,11 @@ export default function ActivityForm({
           `${process.env.NEXT_PUBLIC_API_URL}activities/delete/${activity.id}`,
           {
             method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
           }
         )
-        if (!response.ok) {
-          throw new Error('Error al eliminar la actividad')
-        }
+        if (!response.ok) throw new Error('Error al eliminar la actividad')
+
         setSuccessModal({
           open: true,
           message: 'Actividad fue eliminada con éxito',
@@ -171,8 +161,9 @@ export default function ActivityForm({
   }
 
   return (
-    <div className='flex justify-center'>
-      <div className='flex w-full flex-col'>
+    <div className='flex justify-center px-4'>
+      <div className='flex w-full max-w-7xl flex-col'>
+        {/* Encabezado */}
         <div className='flex items-center gap-4 pb-12'>
           <button onClick={onBack} className='focus:outline-none'>
             <svg
@@ -192,27 +183,29 @@ export default function ActivityForm({
             {isViewMode ? 'Ver actividad' : 'Detalles de la actividad'}
           </h1>
         </div>
-        <div className='flex flex-row'>
-          <div className='h-[550px] w-[550px]'>
+
+        {/* Contenido principal */}
+        <div className='flex flex-col gap-6 lg:flex-row'>
+          {/* Imagen */}
+          <div className='w-full lg:w-[500px]'>
             {isEditing ? (
-              <>
-                <ImageUpload
-                  onChange={handleImageChange}
-                  initialImage={formData.image}
-                  className=''
-                />
-              </>
+              <ImageUpload
+                onChange={handleImageChange}
+                initialImage={formData.image}
+              />
             ) : (
               <Image
                 alt='ActivityImage'
-                className='rounded-2xl'
-                height={550}
+                className='h-auto max-h-[400px] w-full rounded-2xl object-cover'
                 src={formData.image}
                 width={550}
+                height={550}
               />
             )}
           </div>
-          <div className='flex w-[60%] flex-col gap-4 pl-6'>
+
+          {/* Formulario */}
+          <div className='flex w-full flex-col gap-4 lg:pl-6'>
             <label className='font-darker-grotesque text-[20px] font-semibold'>
               Título de la actividad
               <input
@@ -220,12 +213,12 @@ export default function ActivityForm({
                 className='mt-1 w-full rounded border px-3 py-2 font-inter text-[16px] font-normal text-[#8C8C8C]'
                 value={formData.title || ''}
                 readOnly={!isEditing}
-                onChange={(e) => {
-                  console.log('Cambiando título:', e.target.value)
+                onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })
-                }}
+                }
               />
             </label>
+
             <label className='font-darker-grotesque font-semibold'>
               Nombre del facilitador
               <input
@@ -238,6 +231,7 @@ export default function ActivityForm({
                 }
               />
             </label>
+
             <label className='font-darker-grotesque font-semibold'>
               Descripción
               <textarea
@@ -249,7 +243,8 @@ export default function ActivityForm({
                 }
               />
             </label>
-            <div className='flex flex-row gap-4'>
+
+            <div className='flex flex-col gap-4 md:flex-row'>
               <label className='flex-1 font-darker-grotesque font-semibold'>
                 Tipo de actividad
                 <select
@@ -268,7 +263,8 @@ export default function ActivityForm({
                 </select>
               </label>
             </div>
-            <div className='flex flex-row gap-4'>
+
+            <div className='flex flex-col gap-4 md:flex-row'>
               <label className='flex-1 font-darker-grotesque font-semibold'>
                 Fecha inicio
                 <div className='flex w-full flex-row items-center rounded border'>
@@ -283,6 +279,7 @@ export default function ActivityForm({
                   />
                 </div>
               </label>
+
               <label className='flex-1 font-darker-grotesque font-semibold'>
                 Horario (GMT-05)
                 <input
@@ -303,6 +300,7 @@ export default function ActivityForm({
                 />
               </label>
             </div>
+
             <label className='font-darker-grotesque font-semibold'>
               Enlace de la actividad
               <input
@@ -315,6 +313,7 @@ export default function ActivityForm({
                 }
               />
             </label>
+
             <label className='font-darker-grotesque font-semibold'>
               Observaciones de la publicación
               <textarea
@@ -326,8 +325,9 @@ export default function ActivityForm({
                 }
               />
             </label>
+
             {!isViewMode && (
-              <div className='mt-6 flex w-full flex-row gap-4'>
+              <div className='mt-6 flex flex-col gap-4 sm:flex-row'>
                 <button
                   className='text-black flex w-full flex-row items-center justify-center gap-2 rounded-xl border-[2px] border-[#FFBEB0] bg-[#FFEAE6] px-4 py-2 font-karla font-medium'
                   onClick={handleEditSave}
@@ -352,12 +352,14 @@ export default function ActivityForm({
           </div>
         </div>
       </div>
+
       <ConfirmModal
         isOpen={showConfirm}
         message={confirmMessage}
         onConfirm={handleConfirm}
         onCancel={handleCancelSave}
       />
+
       <SuccessModal
         isOpen={successModal.open}
         message={successModal.message}

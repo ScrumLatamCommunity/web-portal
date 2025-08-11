@@ -66,13 +66,15 @@ export default function UpcomingActivitiesGrid({
             ))}
           </div>
         ) : activities.length > 0 ? (
-          <div className='grid grid-cols-1 gap-6'>
+          <div className='grid grid-cols-1 place-items-center gap-5'>
             {activities.map((activity) => (
-              <ActivityCard
-                key={activity.id}
-                activity={activity}
-                country={country}
-              />
+              <div key={activity.id} className='w-full max-w-[800px]'>
+                <ActivityCard
+                  key={activity.id}
+                  activity={activity}
+                  country={country}
+                />
+              </div>
             ))}
           </div>
         ) : (

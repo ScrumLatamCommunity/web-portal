@@ -34,53 +34,56 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
-    <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md shadow-black-6 transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl lg:h-[620px]'>
+    <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl lg:h-[320px] lg:max-w-4xl'>
       {/* Imagen */}
-      <div className='lg:1/3 relative h-40 min-h-[10rem] w-2/5 sm:h-full'>
+      <div className='relative aspect-[4/3] w-[45%] sm:aspect-[3/4] lg:h-full lg:w-1/3'>
         <Image
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
           className='object-fill'
           fill
+          sizes='(max-width: 640px) 45vw, (max-width: 1024px) 33vw, 300px'
+          priority
         />
       </div>
 
       {/* Contenido */}
-      <div className='flex w-2/3 flex-col justify-between p-3 text-sm sm:p-6 lg:text-3xl'>
-        <div className='flex flex-grow flex-col justify-center gap-2 lg:gap-y-7'>
-          <p className='text-xs font-semibold tracking-wider text-[#FE5833] lg:text-3xl'>
+      <div className='flex w-full flex-col justify-between p-3 text-xs sm:p-6 sm:text-sm lg:text-base xl:text-lg'>
+        <div className='flex flex-grow flex-col justify-center gap-2 lg:gap-y-5'>
+          <p className='font-semibold tracking-wider text-[#FE5833]'>
             {activity.title}
           </p>
 
           {activity.facilitator && (
-            <p className='font-karla text-xs font-semibold text-[#000000] lg:text-3xl'>
+            <p className='font-karla font-semibold text-[#000000]'>
               Facilitador/a:{' '}
               <span className='font-normal'>{activity.facilitator}</span>
             </p>
           )}
 
-          <p className='line-clamp-3 font-karla text-xs text-[#000000] lg:text-2xl'>
+          <p className='line-clamp-3 font-karla text-[#000000]'>
             {activity.description}
           </p>
 
-          <div className='flex flex-wrap items-center gap-1 pt-1 text-xs text-gray-800 lg:space-x-10 lg:text-3xl'>
+          <div className='flex flex-wrap items-center gap-1 pt-1 text-gray-800 lg:gap-x-6'>
             <span className='rounded-lg bg-[#07235644] px-4 py-0.5 text-center font-normal'>
               {activity.type.replaceAll('-', ' ')}
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>
-              <Calendar className='h-4 w-4 text-[#FE5833] lg:h-8 lg:w-8' />
+              <Calendar className='h-4 w-4 text-[#FE5833]' />
               {new Date(activity.date).toLocaleDateString('es-ES')}
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>
-              <Clock className='h-4 w-4 text-[#FE5833] lg:h-8 lg:w-8' />
+              <Clock className='h-4 w-4 text-[#FE5833]' />
               {isLoading ? 'Calculando hora...' : formattedTime}
             </span>
           </div>
         </div>
-        <div className='flex justify-end pt-2 lg:px-10'>
+
+        <div className='flex justify-end pt-2 lg:px-6'>
           <button
             onClick={handleEnrollClick}
-            className='w-full self-end rounded-3xl bg-[#082965] px-6 py-2 text-sm font-normal text-white transition-colors duration-300 hover:bg-[#FE5833] lg:w-auto lg:px-44 lg:py-5 lg:text-3xl'
+            className='w-full self-end rounded-xl bg-[#082965] px-6 py-2 text-sm font-normal text-white transition-colors duration-300 hover:bg-[#FE5833] lg:w-auto lg:px-10 lg:py-3'
           >
             Inscribirme
           </button>

@@ -20,28 +20,28 @@ export default function ActivityFilters({
 }: ActivityFiltersProps) {
   return (
     <section className='container mx-auto py-6 md:py-8'>
-      <div className='flex justify-center px-6 sm:px-8'>
-        <div className='flex flex-col md:flex-row md:items-center md:gap-6'>
-          <h3 className='mb-4 flex-shrink-0 font-darker-grotesque text-[24px] font-normal text-gray-700 md:mb-0 lg:text-[24px]'>
+      <div className='flex justify-center px-4 sm:px-8'>
+        <div className='flex w-full flex-col md:flex-row md:items-center md:gap-6'>
+          <h3 className='mb-4 flex-shrink-0 font-darker-grotesque text-lg font-normal text-gray-700 md:mb-0 md:text-xl lg:text-[24px]'>
             Aplicar filtros:
           </h3>
 
-          {/* Contenedor con scroll horizontal en móvil */}
-          <div className='flex flex-wrap items-center gap-4 pb-2 md:gap-6 md:pb-0'>
+          {/* Contenedor flexible en mobile y horizontal en desktop */}
+          <div className='flex flex-wrap items-center gap-3 md:gap-6'>
             {categories.map((category) => (
               <label
                 key={category.id}
                 htmlFor={`filter-${category.id}`}
-                className='flex cursor-pointer items-center space-x-2 whitespace-nowrap'
+                className='flex cursor-pointer items-center space-x-2'
               >
                 <input
                   type='checkbox'
                   id={`filter-${category.id}`}
-                  checked={selectedCategory == category.title}
+                  checked={selectedCategory === category.title}
                   onChange={() => onFilterChange(category.title)}
-                  className='h-5 w-5 rounded border-gray-300 text-[#FE5833] focus:ring-transparent'
+                  className='h-4 w-4 rounded border-gray-300 text-[#FE5833] focus:ring-transparent'
                 />
-                <span className='select-none text-base font-normal text-gray-800 lg:text-[24px]'>
+                <span className='select-none text-sm font-normal text-gray-800 md:text-base lg:text-[20px]'>
                   {category.title}
                 </span>
               </label>
