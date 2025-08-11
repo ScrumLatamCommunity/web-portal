@@ -78,7 +78,6 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             </span>
             <span className='hidden md:inline'>
               {activity.type.replaceAll('-', ' ')}
-
             </span>
           </span>
 
