@@ -27,6 +27,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.instagram.com',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**'
       }
     ]
   }

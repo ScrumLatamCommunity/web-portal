@@ -23,7 +23,7 @@ export default function LoginPage() {
     <div className='grid h-screen w-full grid-cols-1 md:grid-cols-2'>
       <div className='col-span-1 hidden md:block'>
         <img
-          src='https://appwiseinnovations.dev/scrumlatam/photo.png'
+          src='https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/login%2FJLF%C3%91LFY8UO.png?alt=media&token=8547086e-8b0f-4461-902b-4cecab7526eb'
           alt='register'
           className='h-screen w-full object-cover'
         />

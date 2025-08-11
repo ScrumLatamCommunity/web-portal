@@ -190,26 +190,32 @@ export default function EditSponsorProfile({
   }
   return (
     <section
-      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto max-w-md px-4 pb-16 pt-6 lg:max-w-5xl`}
+      className={`${darkerGrotesque.variable} ${karla.variable} ${inter.variable} mx-auto w-full max-w-5xl px-4 pb-16 pt-6`}
     >
-      <h1 className='text-center text-3xl font-bold text-[#FE2E00]'>
+      <h1 className='text-center text-2xl font-bold text-[#FE2E00] sm:text-3xl'>
         Editar Perfil Sponsor
       </h1>
+
+      {/* Logo */}
       <div className='my-4 flex justify-center'>
-        <div className='flex h-56 w-96 items-center justify-center rounded-md bg-gray-100'>
+        <div className='flex h-40 w-full max-w-sm items-center justify-center rounded-md bg-gray-100 sm:h-56 sm:max-w-md'>
           <ImageUpload
             onChange={handleLogoChange}
             initialImage={formData.logo}
           />
         </div>
       </div>
+
+      {/* Información general */}
       <div className='flex flex-col items-start gap-3 lg:pl-10'>
-        <label className='text-xl font-bold text-[#FE2E00]' htmlFor='title'>
+        <label className='text-lg font-bold text-[#FE2E00] sm:text-xl'>
           Información general
         </label>
-        <div className='flex flex-col gap-3 lg:flex-row lg:flex-wrap'>
-          <div className='flex flex-col'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+        <div className='flex flex-col gap-3 sm:flex-row sm:flex-wrap'>
+          {/* Nombre de la empresa */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Nombre de la empresa
             </label>
             <input
@@ -217,15 +223,17 @@ export default function EditSponsorProfile({
               id='companyName'
               value={formData.companyName}
               onChange={handleInputChange}
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-lg border border-[#C1CCF4] bg-transparent px-4 text-sm font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none'
               placeholder='Nombre de la empresa'
             />
           </div>
-          <div className='flex w-full flex-col lg:w-[300px]'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* País */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               País
             </label>
-            <div className='relative mt-1 flex w-full items-center rounded-[10px] border border-[#C1CCF4] bg-transparent px-3 lg:mt-0 lg:w-[300px]'>
+            <div className='relative flex w-full items-center rounded-lg border border-[#C1CCF4] bg-transparent px-3'>
               <Image
                 src={getCountryFlag(formData.user.country[0])}
                 alt='flag'
@@ -239,21 +247,23 @@ export default function EditSponsorProfile({
               />
             </div>
           </div>
-          <div>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* Fecha de inicio */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Fecha de inicio
             </label>
-            <div className='relative w-full lg:w-[300px]'>
-              <input
-                type='date'
-                id='sponsor-date'
-                value={new Date(formData.createdAt).toISOString().split('T')[0]}
-                className='h-[44px] w-full rounded-md border border-gray-300 bg-transparent pl-5 pr-3 text-sm text-[#141414] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FE2E00]'
-              />
-            </div>
+            <input
+              type='date'
+              id='sponsor-date'
+              value={new Date(formData.createdAt).toISOString().split('T')[0]}
+              className='h-[44px] w-full rounded-lg border border-gray-300 bg-transparent pl-5 pr-3 text-sm text-[#141414] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FE2E00]'
+            />
           </div>
-          <div className='flex flex-col'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* Correo */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Correo electrónico
             </label>
             <input
@@ -261,22 +271,26 @@ export default function EditSponsorProfile({
               id='email'
               value={formData.user.email}
               readOnly
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-lg border border-[#C1CCF4] bg-transparent px-4 text-sm font-medium text-[#9CA3AF] placeholder:text-[#9CA3AF] focus:outline-none'
             />
           </div>
-          <div className='flex flex-col'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* Especialización */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Áreas de especialización
             </label>
-            <div className='relative mt-1 flex w-full items-center rounded-[10px] border border-[#C1CCF4] bg-transparent px-3 lg:mt-0'>
+            <div className='relative flex w-full items-center rounded-lg border border-[#C1CCF4] bg-transparent px-3'>
               <CategoriesDropdown
                 value={formData.specialization}
                 onChange={handleSpecializationChange}
               />
             </div>
           </div>
-          <div className='flex flex-col'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* Sitio web */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Sitio web
             </label>
             <input
@@ -284,12 +298,14 @@ export default function EditSponsorProfile({
               id='web'
               value={formData.web}
               onChange={handleInputChange}
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-lg border border-[#C1CCF4] bg-transparent px-4 text-sm font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none'
               placeholder='www.ejemplo.com'
             />
           </div>
-          <div className='flex flex-col'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* Teléfono */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Contacto de Whatsapp
             </label>
             <input
@@ -297,32 +313,28 @@ export default function EditSponsorProfile({
               id='phone'
               value={formData.phone}
               onChange={handleInputChange}
-              className='h-[44px] w-full rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
+              className='h-[44px] w-full rounded-lg border border-[#C1CCF4] bg-transparent px-4 text-sm font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none'
               placeholder='+99 9999999999'
             />
           </div>
-          <div className='flex flex-col'>
-            <label className='font-darker-grotesque text-[21px] font-darker-grotesque-500 text-[#141414]'>
+
+          {/* Mensaje de WhatsApp */}
+          <div className='flex min-w-[200px] flex-1 flex-col'>
+            <label className='text-base font-medium text-[#141414] sm:text-[21px]'>
               Mensaje de Whatsapp
             </label>
-            <div className='flex flex-col'>
-              <textarea
-                id='wppMessage'
-                value={formData.wppMessage}
-                onChange={(e) => {
-                  if (e.target.value.length <= 500) {
-                    handleInputChange(e)
-                  }
-                }}
-                className='h-[150px] w-full resize-none rounded-[8px] border border-[#C1CCF4] bg-transparent px-4 py-2 text-[14px] font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none lg:w-[300px]'
-                style={{ resize: 'none' }}
-                placeholder='Mensaje de Whatsapp'
-                rows={1}
-              />
-              <span className='mt-1 text-sm text-gray-500'>
-                {formData.wppMessage?.length || 0}/500 caracteres
-              </span>
-            </div>
+            <textarea
+              id='wppMessage'
+              value={formData.wppMessage}
+              onChange={(e) => {
+                if (e.target.value.length <= 500) handleInputChange(e)
+              }}
+              className='h-[150px] w-full resize-none rounded-lg border border-[#C1CCF4] bg-transparent px-4 py-2 text-sm font-medium text-[#141414] placeholder:text-[#9CA3AF] focus:outline-none'
+              placeholder='Mensaje de Whatsapp'
+            />
+            <span className='mt-1 text-sm text-gray-500'>
+              {formData.wppMessage?.length || 0}/500 caracteres
+            </span>
           </div>
         </div>
 
