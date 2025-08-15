@@ -55,11 +55,14 @@ export default function ActivityList({
               bg = 'bg-[#072356]'
               label = 'Publicado'
             } else if (activity.status === 'INACTIVE') {
-              bg = 'bg-[#FE2E00]'
-              label = 'Rechazado'
+              bg = 'bg-[#FAB81C]'
+              label = 'Inactiva'
             } else if (activity.status === 'DRAFT') {
               bg = 'bg-[#8C8C8C]'
               label = 'Pendiente'
+            } else if (activity.status === 'REJECTED') {
+              bg = 'bg-[#FE2E00]'
+              label = 'Rechazada'
             }
             return (
               <p

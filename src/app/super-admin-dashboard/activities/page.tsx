@@ -34,6 +34,8 @@ export default function EventsPage() {
       let url = `${process.env.NEXT_PUBLIC_API_URL}activities/all`
       if (statusFilter) {
         url += `?status=${statusFilter}`
+      } else {
+        url += `?statusOrder=DRAFT`
       }
       const response = await fetch(url)
       if (!response.ok) throw new Error('Error al obtener actividades')
@@ -92,10 +94,19 @@ export default function EventsPage() {
                 <input
                   type='checkbox'
                   className='form-checkbox text-[18px]'
+                  checked={statusFilter === 'REJECTED'}
+                  onChange={() => handleCheckboxChange('REJECTED')}
+                />
+                Rechazado
+              </label>
+              <label className='flex items-center gap-2'>
+                <input
+                  type='checkbox'
+                  className='form-checkbox text-[18px]'
                   checked={statusFilter === 'INACTIVE'}
                   onChange={() => handleCheckboxChange('INACTIVE')}
                 />
-                Rechazado
+                Inactiva
               </label>
             </div>
           </div>

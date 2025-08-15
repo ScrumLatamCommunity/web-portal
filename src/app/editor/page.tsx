@@ -38,7 +38,7 @@ export default function EventsPage() {
       if (statusFilter) query.append('status', statusFilter)
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}activities/all?${query.toString()}`,
+        `${process.env.NEXT_PUBLIC_API_URL}activities/all?statusOrder=REJECTED&${query.toString()}`,
         {
           method: 'GET',
           headers: {

@@ -464,7 +464,7 @@ export default function EditSponsorProfile({
                 </div>
               ))
             ) : (
-              <div className='mb-3 w-full space-y-3 rounded-md border border-[#C1CCF4] p-3 lg:w-[300px]'>
+              <div className='mb-3 w-full space-y-3 rounded-md p-3 lg:w-[300px]'>
                 <div>
                   <label className='text-black block text-[18px] font-medium'>
                     Título 1
