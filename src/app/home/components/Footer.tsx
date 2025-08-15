@@ -44,6 +44,7 @@ export const Footer = () => {
               alt='logo'
               height={800}
               width={800}
+              unoptimized={true}
               className='h-18 w-72 pb-6 sm:h-20 sm:w-80 sm:pb-0'
             />
             <div className='mt-6 flex flex-row items-center justify-center gap-3 md:justify-start'>

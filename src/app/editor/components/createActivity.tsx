@@ -151,10 +151,10 @@ export default function CreateActivity({
   }
 
   const defaultTimes: Record<string, string> = {
-    'Agile SOS': '19:00 a 20:30',
-    'Scrum Latam Live': '16:00 a 17:30',
-    'Agile Learning Lab': '9:00 a 10:30',
-    'Track Formativo': '14:00 a 15:30',
+    'Agile SOS': '19:00 a 20:00',
+    'Scrum Latam Live': '19:00 a 20:00',
+    'Agile Learning Lab': '19:00 a 20:30',
+    'Track Formativo': '19:00 - 21:00',
     Evento: '13:00 a 15:30'
   }
 

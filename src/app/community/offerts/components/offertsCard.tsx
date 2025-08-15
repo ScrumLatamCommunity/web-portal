@@ -54,7 +54,7 @@ export default function OffertCard({
 
   return (
     <div
-      className={`${darkerGrotesque.variable} ${karla.variable} flex w-full flex-col rounded-lg border border-[#E6EAF0] bg-white pb-3 shadow-[6px_8px_24px_0px_rgba(8,41,101,0.10)] transition-all duration-300 ${
+      className={`${darkerGrotesque.variable} ${karla.variable} flex w-full flex-col rounded-lg border border-[#E6EAF0] bg-white shadow-[6px_8px_24px_0px_rgba(8,41,101,0.10)] transition-all duration-300 ${
         expanded
           ? 'h-auto'
           : 'h-[400px] md:h-[450px] lg:h-[480px] 2xl:h-[500px]'
@@ -70,7 +70,7 @@ export default function OffertCard({
           style={{ height: '200px' }}
         />
       </div>
-      <div className='flex flex-grow flex-col p-5'>
+      <div className='flex flex-grow flex-col px-5 py-2'>
         <h1 className='pb-2 font-darker-grotesque text-[26px] font-darker-grotesque-600 leading-[30px] text-[#FE2E00]'>
           {title}
         </h1>
@@ -101,7 +101,7 @@ export default function OffertCard({
                 <p className='py-1 font-darker-grotesque-600 text-[#082965] md:text-base'>
                   Fechas:
                 </p>
-                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                <p className='ml-1 text-[13px] font-karla-300 text-[#082965] md:text-base'>
                   {fromDate} - {untilDate}
                 </p>
               </div>
@@ -109,7 +109,7 @@ export default function OffertCard({
                 <p className='py-1 font-darker-grotesque-600 text-[#082965]'>
                   Hora:
                 </p>
-                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                <p className='ml-1 text-[13px] font-karla-300 text-[#082965] md:text-base'>
                   {time}
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default function OffertCard({
                 <p className='py-1 font-darker-grotesque-600 text-[#082965]'>
                   Lugar:
                 </p>
-                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                <p className='ml-1 text-[13px] font-karla-300 text-[#082965] md:text-base'>
                   {place}
                 </p>
               </div>
@@ -125,7 +125,7 @@ export default function OffertCard({
                 <p className='py-1 font-darker-grotesque-600 text-[#082965]'>
                   Dirigido a:
                 </p>
-                <p className='ml-1 text-[14px] font-karla-300 text-[#082965] md:text-base'>
+                <p className='ml-1 text-[13px] font-karla-300 text-[#082965] md:text-base'>
                   {intendedFor}
                 </p>
               </div>

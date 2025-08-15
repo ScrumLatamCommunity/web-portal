@@ -25,7 +25,7 @@ export default function ActivityTypeCard({
   return (
     <div
       onClick={onClick}
-      className={`group relative h-44 w-full max-w-[250px] transform cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-300 lg:h-60 lg:max-w-[420px] ${
+      className={`group relative ml-2 h-44 w-[95%] transform cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-300 md:ml-0 md:w-full lg:h-60 lg:max-w-[420px] ${
         isSelected ? 'ring-4 ring-white/80 ring-offset-2' : ''
       }`}
     >

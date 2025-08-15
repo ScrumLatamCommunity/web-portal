@@ -164,7 +164,7 @@ export default function Offerts() {
     <section
       className={`${darkerGrotesque.variable} ${roboto.variable} ${karla.variable} flex w-full max-w-[1980px] flex-col`}
     >
-      <div className='mx-auto flex max-h-[200] max-w-[400px]'>
+      <div className='mx-auto flex max-h-[150px] max-w-[200px] md:max-h-[400px] md:max-w-[400px]'>
         <Image
           alt='Offerts'
           className=''
