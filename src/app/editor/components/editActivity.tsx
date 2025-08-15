@@ -89,6 +89,7 @@ export default function ActivityForm({
             link,
             type,
             facilitator,
+            status: 'DRAFT',
             observation
           }
 

@@ -29,6 +29,23 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     }
   }
 
+  const handleAddToGoogleCalendar = () => {
+    const start = new Date(activity.date) // fecha de inicio
+    const end = new Date(start.getTime() + 60 * 60 * 1000) // ejemplo: +1 hora
+
+    const formatDate = (date: Date) => {
+      return date.toISOString().replace(/-|:|\.\d\d\d/g, '') // formato YYYYMMDDTHHmmssZ
+    }
+
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      activity.title
+    )}&dates=${formatDate(start)}/${formatDate(end)}&details=${encodeURIComponent(
+      activity.description || ''
+    )}&location=${encodeURIComponent(activity.link || '')}`
+
+    window.open(googleCalendarUrl, '_blank')
+  }
+
   const imageSrc = activity.image?.trim()
     ? activity.image
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
@@ -104,7 +121,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             Ir al evento
           </Link>
           <button
-            onClick={handleEnrollClick}
+            onClick={handleAddToGoogleCalendar}
             className='flex w-full items-center justify-center rounded bg-[#082965] px-2 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#0a2f5f] md:rounded-md md:px-3 md:py-2 md:text-sm'
           >
             Agregar al calendario

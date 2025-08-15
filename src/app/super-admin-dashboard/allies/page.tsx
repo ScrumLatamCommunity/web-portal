@@ -39,7 +39,7 @@ export default function AlliesPage() {
   const [description, setDescription] = useState('')
   const [web, setWeb] = useState('')
   const [phone, setPhone] = useState('')
-  const [socials, setSocials] = useState<string[]>(['', '', ''])
+  const [socials, setSocials] = useState<string[]>([''])
   const [sponsors, setSponsors] = useState<Sponsor[]>([])
 
   const resetForm = () => {
@@ -106,7 +106,7 @@ export default function AlliesPage() {
       country: selectedCountry,
       membership: 'Premium',
       status: 'ACTIVE',
-      description,
+      description: 'a',
       web,
       phone,
       socials: socialsArray,
@@ -335,16 +335,6 @@ export default function AlliesPage() {
         </div>
 
         <div className={`flex flex-col`}>
-          <div className='flex flex-row'>
-            <div className='flex w-[85%] flex-col'>
-              <div className='mx-[33px] mb-6 flex flex-col gap-2'>
-                <label className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'>
-                  Descripción
-                </label>
-                <TextEditor value={description} onChange={setDescription} />
-              </div>
-            </div>
-          </div>
           <div className='mx-[33px] flex w-[540px] flex-col gap-2'>
             <label
               className='font-darker-grotesque text-[21px] font-darker-grotesque-700 text-[#000000]'

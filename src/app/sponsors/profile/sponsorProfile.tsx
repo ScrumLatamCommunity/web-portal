@@ -344,7 +344,10 @@ export default function SponsorProfile() {
           ) : (sponsorData?.descriptions?.length ?? 0) > 0 ? (
             <div className='flex flex-wrap gap-4'>
               {sponsorData?.descriptions.map((desc, index) => (
-                <div key={index} className='min-w-[250px] flex-1 space-y-3'>
+                <div
+                  key={index}
+                  className='min-w-[250px] max-w-80 flex-1 space-y-3'
+                >
                   <div>
                     <label className='text-black block text-[18px] font-medium'>
                       Título {index + 1}
