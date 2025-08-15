@@ -37,6 +37,7 @@ export default function CoursePublications() {
         const data = await res.json()
         setSponsorId(data.id)
       } catch (err) {
+        console.error(err)
         setError('Error al obtener el sponsor')
       }
     }
@@ -53,10 +54,21 @@ export default function CoursePublications() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorId}/posts`
         )
+        if (!res.ok) {
+          throw new Error(`Error HTTP ${res.status}`)
+        }
         const data = await res.json()
-        setCourses(data)
+
+        if (Array.isArray(data)) {
+          setCourses(data)
+        } else {
+          console.warn('Respuesta inesperada de la API (no es array):', data)
+          setCourses([])
+        }
       } catch (err) {
+        console.error(err)
         setError('Error al obtener los cursos')
+        setCourses([]) // Evita errores en el filter
       } finally {
         setIsLoading(false)
       }
@@ -90,13 +102,15 @@ export default function CoursePublications() {
     }
   }
 
-  const filteredCourses = courses.filter((course) => {
-    if (filterPublished && filterNotPublished) return true
-    if (!filterPublished && !filterNotPublished) return true
-    if (filterPublished && course.status === 'ACTIVE') return true
-    if (filterNotPublished && course.status === 'INACTIVE') return true
-    return false
-  })
+  const filteredCourses = Array.isArray(courses)
+    ? courses.filter((course) => {
+        if (filterPublished && filterNotPublished) return true
+        if (!filterPublished && !filterNotPublished) return true
+        if (filterPublished && course.status === 'ACTIVE') return true
+        if (filterNotPublished && course.status === 'INACTIVE') return true
+        return false
+      })
+    : []
 
   return (
     <div className='mx-auto max-w-[1200px] rounded-lg p-4 pb-20 lg:p-12'>
