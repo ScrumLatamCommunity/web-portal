@@ -386,9 +386,9 @@ export default function SponsorProfile() {
                   <Image
                     src={cert.title}
                     alt={`cert-${idx}`}
-                    width={120}
-                    height={120}
-                    className='aspect-square rounded-lg object-cover'
+                    width={200}
+                    height={200}
+                    className='aspect-square rounded-lg object-fill'
                   />
                   <label className='text-[14px] font-medium text-[#000]'>
                     Link

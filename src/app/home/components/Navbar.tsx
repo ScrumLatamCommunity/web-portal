@@ -1,17 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import { User } from 'react-feather'
+import { User, Menu, X } from 'react-feather'
 import { Navlist } from './Navlist'
+import { NavlistMobile } from './NavlistMobile'
 import { UserDropdown } from './UserDropdown'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { darkerGrotesque } from '@/fonts'
 import { usePathname } from 'next/navigation'
 import { LogoScrumlatam } from '@/components/Logo'
 import { MobileLogo } from '@/components/MobileLogo'
+import { useAuth } from '@/app/context/AuthContext'
+import { useDisplayName } from '@/hooks/useDisplayName'
+import Image from 'next/image'
+import { useState } from 'react'
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname()
+  const { user } = useAuth()
+  const { getDisplayName } = useDisplayName()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const hiddenLayoutRoutes = [
     '/super-admin-dashboard',
     '/register',
@@ -26,6 +34,14 @@ export const Navbar: React.FC = () => {
     return null
   }
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
   const AuthButtons = ({ isMobile = false }) => (
     <div
       className={`flex ${darkerGrotesque.variable} ${isMobile ? 'flex-col space-y-4' : 'items-center'}`}
@@ -37,6 +53,7 @@ export const Navbar: React.FC = () => {
           <Link
             className='flex items-center whitespace-nowrap p-2 text-red-400 hover:text-red-200'
             href='/login'
+            onClick={closeMobileMenu}
           >
             <User className='mr-2 h-4' />
             <h2 className='block text-[20px] font-darker-grotesque-600'>
@@ -46,6 +63,7 @@ export const Navbar: React.FC = () => {
           <Link
             className='rounded-full bg-red-500 px-4 py-1 pb-2 text-center text-[18px] font-darker-grotesque-600 text-white hover:bg-red-300'
             href='/register'
+            onClick={closeMobileMenu}
           >
             Registrarse
           </Link>
@@ -68,11 +86,46 @@ export const Navbar: React.FC = () => {
             <MobileLogo />
           </div>
 
-          {/* Usuario logueado + menú */}
+          {/* Usuario logueado o menú hamburguesa */}
           <div className='flex items-center space-x-4'>
-            <AuthButtons isMobile={true} />
+            <AuthWrapper showWhenAuth={true}>
+              <AuthButtons isMobile={true} />
+            </AuthWrapper>
+
+            <AuthWrapper showWhenAuth={false}>
+              <button
+                onClick={toggleMobileMenu}
+                className='flex items-center justify-center p-2 text-[#072356] transition-colors duration-200 hover:text-red-400'
+                aria-label='Abrir menú'
+              >
+                {isMobileMenuOpen ? (
+                  <X className='h-6 w-6' />
+                ) : (
+                  <Menu className='h-6 w-6' />
+                )}
+              </button>
+            </AuthWrapper>
           </div>
         </div>
+
+        {/* Menú desplegable móvil para usuarios no logueados */}
+        <AuthWrapper showWhenAuth={false}>
+          {isMobileMenuOpen && (
+            <div className='absolute left-0 right-0 top-full z-40 border-b-2 border-gray-200 bg-black-3 shadow-lg'>
+              <div className='container mx-auto px-4 py-6'>
+                {/* NavlistMobile - Navegación para usuarios no logueados */}
+                <div className='mb-6'>
+                  <NavlistMobile />
+                </div>
+
+                {/* AuthButtons */}
+                <div className='flex items-center justify-center border-t border-gray-200 pt-6'>
+                  <AuthButtons isMobile={true} />
+                </div>
+              </div>
+            </div>
+          )}
+        </AuthWrapper>
       </div>
     </header>
   )

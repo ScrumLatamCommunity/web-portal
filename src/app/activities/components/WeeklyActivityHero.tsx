@@ -76,24 +76,29 @@ export default function WeeklyActivityHero({
           }}
           breakpoints={{
             0: {
-              slidesPerView: 1.05, // Sin scroll lateral en mobile
-              spaceBetween: 6
+              slidesPerView: 1, // 1 slide completo en mobile
+              spaceBetween: 6,
+              centeredSlides: true // Centra el slide en mobile
             },
             480: {
-              slidesPerView: 1.5,
-              spaceBetween: 8
+              slidesPerView: 1, // 1 slide completo
+              spaceBetween: 8,
+              centeredSlides: true // Centra el slide en mobile
             },
             640: {
-              slidesPerView: 2.3,
-              spaceBetween: 10
+              slidesPerView: 2, // 2 slides completos
+              spaceBetween: 10,
+              centeredSlides: false // No centrar en tablet
             },
             1024: {
-              slidesPerView: 3.2, // Más pequeñas en desktop
-              spaceBetween: 14
+              slidesPerView: 3, // 3 slides completos
+              spaceBetween: 14,
+              centeredSlides: false // No centrar en desktop
             },
             1440: {
-              slidesPerView: 4,
-              spaceBetween: 16
+              slidesPerView: 4, // 4 slides completos
+              spaceBetween: 16,
+              centeredSlides: false // No centrar en desktop
             }
           }}
         >

@@ -32,15 +32,15 @@ export const JoinOurCommunity = () => {
           }
         >
           <p className='text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:w-[70%] md:text-start md:text-4 lg:text-9 lg:leading-[1.4] 2xl:text-11'>
-            🔹 Conecta con una red vibrante de profesionales que viven y
-            respiran agilidad.
+            Conecta con una red vibrante de profesionales que viven y respiran
+            agilidad.
           </p>
           <p className='text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:w-[70%] md:text-start md:text-4 lg:text-9 lg:leading-[1.4] 2xl:text-11'>
-            🔹 Aprende con experiencias reales, herramientas prácticas y
-            espacios de crecimiento continuo.
+            Aprende con experiencias reales, herramientas prácticas y espacios
+            de crecimiento continuo.
           </p>
           <p className='mb-4 text-center text-4 font-semibold leading-4 text-[#FCFCFC] md:mb-6 md:w-[70%] md:text-start md:text-4 lg:mb-8 lg:text-9 lg:leading-[1.4] 2xl:mb-10 2xl:text-11'>
-            🔹 Lidera el cambio desde tu rol, tu equipo, tu organización… o tu
+            Lidera el cambio desde tu rol, tu equipo, tu organización… o tu
             propósito.
           </p>
 

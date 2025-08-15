@@ -10,6 +10,7 @@ import Image from 'next/image'
 import HistoryIcon from '@/assets/navbarHistoryIcon'
 import SquadIcon from '@/assets/navbarSquadIcon'
 import InfoIcon from '@/assets/navbarInfoIcon'
+import { useDisplayName } from '@/hooks/useDisplayName'
 
 interface UserDropdownProps {
   isMobile?: boolean
@@ -21,6 +22,7 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
   const [isOpen, setIsOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string>('')
   const { logout, user, isLoading } = useAuth()
+  const { getDisplayName } = useDisplayName()
   const router = useRouter()
   const pathname = usePathname()
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -76,25 +78,6 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
       return user.email[0].toUpperCase()
     }
     return 'U'
-  }
-
-  const getDisplayName = () => {
-    // Para usuarios SPONSOR, mostrar el nombre de la empresa
-    if (user?.role === 'SPONSOR' && (user as any)?.sponsorData?.companyName) {
-      return (user as any).sponsorData.companyName
-    }
-
-    // Para usuarios USER, ADMIN, EDITOR, mostrar el nombre personal
-    if (user?.firstName) {
-      return user.firstName
-    }
-
-    // Fallback to email username
-    if (user?.email) {
-      const emailUsername = user.email.split('@')[0]
-      return emailUsername.charAt(0).toUpperCase() + emailUsername.slice(1)
-    }
-    return 'Usuario'
   }
 
   const renderUserAvatar = () => {
@@ -173,10 +156,10 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
         {/* Mobile Trigger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className='flex items-center space-x-2 text-[#082965] transition-colors duration-200 hover:text-red-500'
+          className='flex items-center space-x-2 transition-colors duration-200 hover:text-red-500'
         >
           <span
-            className={`${darkerGrotesque.variable} hidden font-darker-grotesque text-[32px] font-[700] text-[#082965] md:block`}
+            className={`${darkerGrotesque.variable} font-darker-grotesque text-[24px] font-[700] text-[#082965] md:text-[32px] md:text-[#082965]`}
           >
             ¡Hola {getDisplayName()}!
           </span>
