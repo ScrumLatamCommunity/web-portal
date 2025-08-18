@@ -39,6 +39,7 @@ interface Sponsor {
   }
   offers: any[]
   posts: any[]
+  certificates: any[]
   descriptions: { title: string; description: string }[]
 }
 
@@ -79,29 +80,10 @@ export default function Offerts() {
     }
   }
 
-  async function getCertificates(sponsorId: string) {
-    try {
-      const response = await fetch(
-        `${API_URL}sponsors/${sponsorId}/certificates`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      )
-      const data = await response.json()
-      setCertificates(data)
-    } catch (error) {
-      console.log('Error al obtener los certificados:', error)
-    }
-  }
-
   useEffect(() => {
     if (!selectedSponsorId) return
 
     getData(selectedSponsorId)
-    getCertificates(selectedSponsorId)
   }, [selectedSponsorId])
 
   useEffect(() => {
@@ -367,7 +349,7 @@ export default function Offerts() {
           </div>
         </section>
       )}
-      {certificates.length > 0 && (
+      {sponsor.certificates.length > 0 && (
         <section className='flex w-full flex-col items-center bg-white md:mt-14'>
           <h2 className='font-darker-grotesque text-[30px] font-bold text-[#FE2E00] md:text-[44px]'>
             Nuestras Certificaciones
@@ -377,19 +359,19 @@ export default function Offerts() {
             adquiridas.
           </p>
           <div className='mb-16 flex w-full flex-col items-center justify-center gap-8 md:mb-32 md:flex-row md:gap-48'>
-            {certificates.map((cert, idx) => (
+            {sponsor.certificates.map((cert, idx) => (
               <a
                 key={idx}
-                href={cert.title}
+                href={cert.url}
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 <Image
-                  src={cert.url}
-                  alt={cert.title}
+                  src={cert.title}
+                  alt={cert.url}
                   width={200}
                   height={200}
-                  className='aspect-square rounded-lg object-cover'
+                  className='aspect-square rounded-lg object-fill'
                 />
               </a>
             ))}
