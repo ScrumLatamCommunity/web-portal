@@ -52,7 +52,7 @@ export default function CoursePublications() {
       try {
         setIsLoading(true)
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorId}/posts`
+          `${process.env.NEXT_PUBLIC_API_URL}sponsors/${sponsorId}/offers`
         )
         if (!res.ok) {
           throw new Error(`Error HTTP ${res.status}`)
