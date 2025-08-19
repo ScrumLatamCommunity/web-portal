@@ -100,7 +100,7 @@ export default function History() {
             />
             <Image
               alt='history'
-              className='h-[290px] w-[420px] rounded-t-2xl md:h-[200px] md:w-[700px]'
+              className='h-[190px] w-[420px] md:h-[200px] md:w-[700px]'
               width={1000}
               height={1000}
               src={

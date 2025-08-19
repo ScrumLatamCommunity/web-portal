@@ -68,7 +68,7 @@ export default function UpcomingActivitiesGrid({
         ) : activities.length > 0 ? (
           <div className='grid grid-cols-1 place-items-center gap-5'>
             {activities.map((activity) => (
-              <div key={activity.id} className='w-full max-w-[800px]'>
+              <div key={activity.id} className='w-full md:max-w-[1200px]'>
                 <ActivityCard
                   key={activity.id}
                   activity={activity}

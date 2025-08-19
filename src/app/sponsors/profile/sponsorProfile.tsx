@@ -3,8 +3,6 @@
 import { darkerGrotesque, inter, karla } from '@/fonts'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import GlobeIcon from '@/assets/GlobeIcon'
-import PhoneIcon from '@/assets/PhoneIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
 import InstagramIconSponsors from '@/assets/InstagramIconSponsors'
 import FacebookIcon from '@/assets/FacebookIcon'
@@ -285,7 +283,7 @@ export default function SponsorProfile() {
           {/* Contacto */}
           <div className='flex min-w-[250px] flex-1 flex-col'>
             <label className='font-darker-grotesque text-[21px] text-[#141414]'>
-              Contacto de Whatsapp
+              Contacto de Whatsapp (Ejemplo: +573201234567)
             </label>
             <input
               type='text'

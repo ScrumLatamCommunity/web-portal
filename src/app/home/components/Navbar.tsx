@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { User, Menu, X } from 'react-feather'
 import { Navlist } from './Navlist'
-import { NavlistMobile } from './NavlistMobile'
+
 import { UserDropdown } from './UserDropdown'
 import { AuthWrapper } from '@/components/auth/AuthWrapper'
 import { darkerGrotesque } from '@/fonts'
@@ -111,18 +111,12 @@ export const Navbar: React.FC = () => {
         {/* Menú desplegable móvil para usuarios no logueados */}
         <AuthWrapper showWhenAuth={false}>
           {isMobileMenuOpen && (
-            <div className='absolute left-0 right-0 top-full z-40 border-b-2 border-gray-200 bg-black-3 shadow-lg'>
-              <div className='container mx-auto px-4 py-6'>
-                {/* NavlistMobile - Navegación para usuarios no logueados */}
-                <div className='mb-6'>
-                  <NavlistMobile />
-                </div>
-
-                {/* AuthButtons */}
-                <div className='flex items-center justify-center border-t border-gray-200 pt-6'>
-                  <AuthButtons isMobile={true} />
-                </div>
-              </div>
+            <div className='relative'>
+              <UserDropdown
+                isMobile={true}
+                isOpen={isMobileMenuOpen}
+                onToggle={toggleMobileMenu}
+              />
             </div>
           )}
         </AuthWrapper>

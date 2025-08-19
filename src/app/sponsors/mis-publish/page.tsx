@@ -81,7 +81,7 @@ export default function CoursePublications() {
     const newStatus = course.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}switchOffertStatus/${course.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}sponsors/switchOffertStatus/${course.id}`,
         {
           method: 'PATCH',
           headers: {

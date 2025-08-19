@@ -74,8 +74,20 @@ export const CounterToCommunity = () => {
         if (user.role === 'SPONSOR') {
           sponsorCount++
         }
+
+        // Manejar países - puede ser string o array
         if (user.country) {
-          uniqueCountries.add(user.country)
+          if (Array.isArray(user.country)) {
+            // Si es un array, agregar cada país único
+            user.country.forEach((country) => {
+              if (country && typeof country === 'string') {
+                uniqueCountries.add(country)
+              }
+            })
+          } else if (typeof user.country === 'string') {
+            // Si es un string, agregarlo directamente
+            uniqueCountries.add(user.country)
+          }
         }
       })
 
