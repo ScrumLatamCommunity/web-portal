@@ -34,15 +34,14 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
-    <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl lg:h-[320px] lg:max-w-4xl'>
+    <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl'>
       {/* Imagen */}
-      <div className='relative aspect-[4/3] w-[45%] sm:aspect-[3/4] lg:h-full lg:w-1/3'>
+      <div className='relative w-full md:w-[55%]'>
         <Image
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
           className='object-fill'
           fill
-          sizes='(max-width: 640px) 45vw, (max-width: 1024px) 33vw, 300px'
           priority
         />
       </div>
@@ -61,11 +60,11 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             </p>
           )}
 
-          <p className='line-clamp-3 font-karla text-[#000000]'>
+          <p className='line-clamp-3 hidden font-karla text-[#000000] md:block'>
             {activity.description}
           </p>
 
-          <div className='flex flex-wrap items-center gap-1 pt-1 text-gray-800 lg:gap-x-6'>
+          <div className='flex flex-col items-start gap-1 pt-1 text-gray-800 md:flex-row lg:gap-x-6'>
             <span className='rounded-lg bg-[#07235644] px-4 py-0.5 text-center font-normal'>
               {activity.type.replaceAll('-', ' ')}
             </span>

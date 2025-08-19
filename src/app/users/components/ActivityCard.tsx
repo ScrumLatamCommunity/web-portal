@@ -97,9 +97,9 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
     : 'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Comunidad%2Fimage_banner_sponsors.png?alt=media&token=6f18d393-5502-4b71-8f1c-f7adf65816fa'
 
   return (
-    <div className='mx-auto mb-10 flex h-[160px] w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl md:h-[310px]'>
+    <div className='mx-auto mb-10 flex h-[200px] w-full max-w-[900px] flex-row rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl md:h-[310px]'>
       {/* Imagen */}
-      <div className='relative w-2/5'>
+      <div className='relative w-[50%]'>
         <img
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
@@ -124,34 +124,25 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
           )}
 
           {/* Descripción */}
-          <p className='line-clamp-1 hidden text-xs text-[#666666] md:line-clamp-2 md:block md:text-base'>
+          <p className='hidden text-xs text-[#666666] md:line-clamp-2 md:block md:text-base'>
             {activity.description}
           </p>
         </div>
         {/* Badges y metadatos - alineados al inferior */}
-        <div className='mt-auto flex items-center gap-2 text-[10px] md:gap-3 md:text-xs'>
+        <div className='mt-auto flex flex-col items-start gap-2 text-[10px] md:flex-row md:items-center md:gap-3 md:text-xs'>
           {/* Tipo de actividad */}
-          <span className='inline-block rounded bg-[#07235644] px-1 py-0.5 text-[8px] font-medium text-[#072356] md:rounded-lg md:px-2 md:py-1 md:text-xs'>
-            <span className='md:hidden'>
-              {activity.type === 'Agile Learning Lab'
-                ? 'A.L.L.'
-                : activity.type === 'Scrum Latam Live'
-                  ? 'S.L.L.'
-                  : activity.type.replaceAll('-', ' ')}
-            </span>
-            <span className='hidden md:inline'>
-              {activity.type.replaceAll('-', ' ')}
-            </span>
+          <span className='inline-block rounded bg-[#07235644] px-1 py-0.5 text-[8px] text-xs font-medium text-[#072356] md:rounded-lg md:px-2 md:py-1 md:text-base'>
+            {activity.type.replaceAll('-', ' ')}
           </span>
 
           {/* Fecha */}
-          <span className='flex items-center gap-0.5 font-medium text-[#FE5833]'>
+          <span className='flex items-center gap-0.5 text-xs font-medium text-[#FE5833] md:text-base'>
             <Calendar className='h-2.5 w-2.5 text-[#FE5833] md:h-3 md:w-3' />
             {new Date(activity.date).toLocaleDateString('es-ES')}
           </span>
 
           {/* Hora */}
-          <span className='flex items-center gap-0.5 font-medium text-[#666666]'>
+          <span className='flex items-center gap-0.5 text-xs font-medium text-[#666666] md:text-base'>
             <Clock className='h-2.5 w-2.5 text-[#FE5833] md:h-3 md:w-3' />
             {isLoading ? 'Calculando...' : formattedTime}
           </span>

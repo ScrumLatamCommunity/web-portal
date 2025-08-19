@@ -3,8 +3,6 @@
 import { darkerGrotesque, inter, karla } from '@/fonts'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import GlobeIcon from '@/assets/GlobeIcon'
-import PhoneIcon from '@/assets/PhoneIcon'
 import LinkedInIcon from '@/assets/LinkedinIcon'
 import InstagramIconSponsors from '@/assets/InstagramIconSponsors'
 import FacebookIcon from '@/assets/FacebookIcon'
