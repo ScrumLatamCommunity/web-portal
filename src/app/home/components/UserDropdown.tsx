@@ -14,18 +14,25 @@ import { useDisplayName } from '@/hooks/useDisplayName'
 
 interface UserDropdownProps {
   isMobile?: boolean
+  isOpen?: boolean
+  onToggle?: () => void
 }
 
 export const UserDropdown: React.FC<UserDropdownProps> = ({
-  isMobile = false
+  isMobile = false,
+  isOpen: externalIsOpen,
+  onToggle
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [internalIsOpen, setIsOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string>('')
   const { logout, user, isLoading } = useAuth()
   const { getDisplayName } = useDisplayName()
   const router = useRouter()
   const pathname = usePathname()
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Usar el estado externo si se proporciona, sino usar el interno
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen
 
   const mapRoutes: Record<string, string> = {
     ADMIN: '/super-admin-dashboard',
@@ -144,8 +151,143 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
     )
   }
 
-  // Si no hay usuario, no mostrar el dropdown
+  // Si no hay usuario, mostrar solo navegación básica (sin botón de cerrar sesión)
   if (!user) {
+    // Si se está usando desde el menú hamburguesa (isOpen externo), mostrar el dropdown
+    if (externalIsOpen !== undefined) {
+      return (
+        <div className='relative' ref={dropdownRef}>
+          {/* Dropdown con los mismos estilos que el de la foto de perfil */}
+          <div className='absolute right-0 z-50 mt-2 w-[232px] shrink-0 border border-[rgba(8,41,101,0.5)] bg-white shadow-lg [border-radius:10px_0_10px_10px]'>
+            <div className='flex flex-col py-2'>
+              {/* Rutas de navegación básicas */}
+              <div className='border-gray-200 pb-2'>
+                <Link
+                  href='/'
+                  onClick={onToggle}
+                  className={getNavLinkStyles('/')}
+                >
+                  <span>Inicio</span>
+                </Link>
+
+                <Link
+                  href='/activities'
+                  onClick={onToggle}
+                  className={getNavLinkStyles('/activities')}
+                >
+                  <span>Actividades</span>
+                </Link>
+
+                <div className='border-gray-200 pb-2'>
+                  <div
+                    onClick={() => toggleMenu('comunidad')}
+                    className={`flex w-full cursor-pointer items-center justify-between px-4 py-1 text-left font-roboto text-base font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                      pathname === '/history' ||
+                      pathname === '/community/squads' ||
+                      pathname === '/community/products&services'
+                        ? 'text-[#FE7354]'
+                        : 'text-[#072356]'
+                    }`}
+                  >
+                    <span>Comunidad</span>
+                    <svg
+                      className={`h-4 w-4 transition-transform ${
+                        activeMenu === 'comunidad' ? 'rotate-180' : ''
+                      }`}
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M19 9l-7 7-7-7'
+                      />
+                    </svg>
+                  </div>
+
+                  {activeMenu === 'comunidad' && (
+                    <div className='ml-4 border-l-2 border-gray-200'>
+                      <Link
+                        href='/history'
+                        onClick={onToggle}
+                        className={`block px-4 py-1 text-left font-roboto text-sm font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                          pathname === '/history'
+                            ? 'text-[#FE7354]'
+                            : 'text-[#072356]'
+                        }`}
+                      >
+                        <div className='flex items-center'>
+                          <HistoryIcon
+                            className={`h-4 w-4 text-[#082965] ${pathname === '/history' ? 'text-[#FE2E00]' : ''}`}
+                          />
+                          <span className='ml-2'>Nuestros inicios</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href='/community/squads'
+                        onClick={onToggle}
+                        className={`block px-4 py-1 text-left font-roboto text-sm font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                          pathname === '/community/squads'
+                            ? 'text-[#FE7354]'
+                            : 'text-[#072356]'
+                        }`}
+                      >
+                        <div className='flex items-center'>
+                          <SquadIcon
+                            className={`h-4 w-4 text-[#082965] ${pathname === '/community/squads' ? 'text-[#FE2E00]' : ''}`}
+                          />
+                          <span className='ml-2'>Los Squads</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href='/community/products&services'
+                        onClick={onToggle}
+                        className={`block px-4 py-1 text-left font-roboto text-sm font-normal leading-[24.485px] transition-colors duration-150 hover:bg-gray-50 ${
+                          pathname === '/community/products&services'
+                            ? 'text-[#FE7354]'
+                            : 'text-[#072356]'
+                        }`}
+                      >
+                        <div className='flex items-start'>
+                          <InfoIcon
+                            className={`mt-0.5 h-4 w-4 text-[#082965] ${pathname === '/community/products&services' ? 'text-[#FE2E00]' : ''}`}
+                          />
+                          <span className='ml-2'>
+                            Productos y Servicios de Sponsors
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Botones de autenticación para usuarios no logueados */}
+              <div className='border-t border-gray-200 pt-2'>
+                <Link
+                  href='/login'
+                  onClick={onToggle}
+                  className='flex w-full items-center space-x-3 px-4 py-2 text-left font-roboto text-base font-normal leading-[24.485px] text-[#072356] transition-colors duration-150 hover:bg-gray-50'
+                >
+                  <span>Iniciar Sesión</span>
+                </Link>
+                <Link
+                  href='/register'
+                  onClick={onToggle}
+                  className='flex w-full items-center space-x-3 px-4 py-2 text-left font-roboto text-base font-normal leading-[24.485px] text-[#072356] transition-colors duration-150 hover:bg-gray-50'
+                >
+                  <span>Registrarse</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    // Si no se está usando desde el menú hamburguesa, no mostrar nada
     return null
   }
 
