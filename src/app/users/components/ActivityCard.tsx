@@ -31,7 +31,53 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
 
   const handleAddToGoogleCalendar = () => {
     const start = new Date(activity.date) // fecha de inicio
-    const end = new Date(start.getTime() + 60 * 60 * 1000) // ejemplo: +1 hora
+
+    // Declarar variables para las fechas finales
+    let startDateTime: Date
+    let endDateTime: Date
+
+    if (formattedTime && !isLoading) {
+      // ✅ SOLUCIÓN: Usar formattedTime que ya tiene la hora convertida por useTimeConverter
+      // formattedTime ya contiene la hora ajustada al país del usuario (ej: "16:00 a 17:30" para Argentina)
+
+      // Parsear formato "16:00 a 17:30" (hora ya convertida)
+      const timeMatch = formattedTime.match(
+        /(\d{1,2}):(\d{2})\s*a\s*(\d{1,2}):(\d{2})/
+      )
+
+      if (timeMatch) {
+        // Usar directamente la hora convertida por useTimeConverter
+        startDateTime = new Date(start)
+        startDateTime.setHours(
+          parseInt(timeMatch[1]), // Hora convertida (ej: 16 para Argentina)
+          parseInt(timeMatch[2]), // Minutos convertidos
+          0,
+          0
+        )
+
+        endDateTime = new Date(start)
+        endDateTime.setHours(
+          parseInt(timeMatch[3]), // Hora convertida (ej: 17 para Argentina)
+          parseInt(timeMatch[4]), // Minutos convertidos
+          0,
+          0
+        )
+      } else {
+        // Fallback si no se puede parsear la hora
+        startDateTime = new Date(start)
+        startDateTime.setHours(9, 0, 0, 0)
+
+        endDateTime = new Date(start)
+        endDateTime.setHours(10, 30, 0, 0)
+      }
+    } else {
+      // Crear fechas con hora por defecto
+      startDateTime = new Date(start)
+      startDateTime.setHours(9, 0, 0, 0)
+
+      endDateTime = new Date(start)
+      endDateTime.setHours(10, 30, 0, 0)
+    }
 
     const formatDate = (date: Date) => {
       return date.toISOString().replace(/-|:|\.\d\d\d/g, '') // formato YYYYMMDDTHHmmssZ
@@ -39,7 +85,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
 
     const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
       activity.title
-    )}&dates=${formatDate(start)}/${formatDate(end)}&details=${encodeURIComponent(
+    )}&dates=${formatDate(startDateTime)}/${formatDate(endDateTime)}&details=${encodeURIComponent(
       activity.description || ''
     )}&location=${encodeURIComponent(activity.link || '')}`
 

@@ -52,14 +52,6 @@ const DEFAULT_COUNTRY = 'Colombia'
 
 export const useTimeConverter = (activity: Activity, userCountry?: string) => {
   const { date, time } = activity
-  console.log('userCountry:', userCountry)
-  console.log('activity.time:', time)
-  console.log('activity.time type:', typeof time)
-  console.log('activity.time isArray:', Array.isArray(time))
-  if (Array.isArray(time)) {
-    console.log('activity.time length:', time.length)
-    console.log('activity.time content:', time)
-  }
 
   const [formattedTime, setFormattedTime] = useState('Calculando...')
   const [isLoading, setIsLoading] = useState(true)
