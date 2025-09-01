@@ -318,7 +318,7 @@ export default function ActivityForm({
             <label className='font-darker-grotesque font-semibold'>
               Observaciones de la publicación
               <textarea
-                className='mt-1 w-full rounded border px-3 py-2 font-inter text-[16px] font-normal text-[#8C8C8C]'
+                className='mt-1 w-full rounded border px-3 py-2 font-inter text-[16px] font-normal text-[#ff3131]'
                 value={formData.observation || ''}
                 readOnly={!isEditing}
                 onChange={(e) =>
