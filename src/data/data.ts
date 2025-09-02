@@ -897,7 +897,7 @@ export const activityCategoriesData = [
     description:
       'Espacio de acompañamiento donde los miembros pueden plantear dudas y desafios para recibir ayuda de la comunidad.',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2F1e74b39a1c935fa15298fc9f02ebbc13907954ef.jpg?alt=media&token=fab37897-f470-4202-b581-8635ce45f883'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2FASOS.jpeg?alt=media&token=a6a7c78b-03ee-4a7d-8c97-efcde16469b7'
   },
   {
     id: 'scrum-latam-live',
@@ -905,7 +905,7 @@ export const activityCategoriesData = [
     description:
       'Charlas en vivo con expertos en metodologías ágiles y liderazgo con espacio para preguntas y debate.',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2Ff68ad6c595fe49cee207cea7e0fc286d611f01ad.jpg?alt=media&token=e58d46d8-2228-4859-b96e-0a39b5e1bc88'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2FSLL.jpeg?alt=media&token=c42a9e31-f6d9-4ce9-9ada-5808169bc2d1'
   },
   {
     id: 'agile-learning-lab',
@@ -913,7 +913,7 @@ export const activityCategoriesData = [
     description:
       'Sesiones prácticas y colaborativas para aprender y aplicar conceptos ágiles mediante ejercicios y dinámicas.',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2Fa43260d3f862e9736aa046286aa92a1795051164.jpg?alt=media&token=85d27b4a-3544-44b6-8cc2-8fd7c5676dcf'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2FALL.jpeg?alt=media&token=41e2ac50-ec1b-4c08-af57-739baba172b0'
   },
   {
     id: 'track-formativo',
@@ -921,6 +921,6 @@ export const activityCategoriesData = [
     description:
       'Programa para casos de estudio y llevar contenido teórico a la práctica.',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2F2e8f549881db4bcd5748258ac626e1c377d80d53.jpg?alt=media&token=d52d5827-32d7-4438-ba20-e6573d36ae6c'
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/activities%2FTF.jpeg?alt=media&token=00b02530-762c-4ff0-a2d7-3cc2ac5828b1'
   }
 ]

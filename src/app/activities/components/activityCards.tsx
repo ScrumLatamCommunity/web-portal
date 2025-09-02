@@ -36,7 +36,7 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
   return (
     <div className='flex w-full max-w-full flex-row overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl'>
       {/* Imagen */}
-      <div className='relative w-full md:w-[55%]'>
+      <div className='relative w-full md:w-[40%]'>
         <Image
           src={imageSrc}
           alt={`Facilitador ${activity.facilitator || activity.title}`}
