@@ -146,10 +146,10 @@ export function LoginForm() {
               si tienes problemas para iniciar sesión, por favor contacta a
               soporte de la comunidad:{' '}
               <a
-                href='mailto: scrumlatam@gmail.com'
+                href='mailto: scrums.latam@gmail.com'
                 className='text-blue-600 hover:text-blue-500'
               >
-                scrumlatam@gmail.com
+                scrums.latam@gmail.com
               </a>
             </p>
             <button
