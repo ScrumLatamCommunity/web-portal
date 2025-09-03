@@ -142,6 +142,16 @@ export function LoginForm() {
                 Registrate
               </button>
             </p>
+            <p className='flex flex-col text-xs text-gray-600'>
+              si tienes problemas para iniciar sesión, por favor contacta a
+              soporte de la comunidad:{' '}
+              <a
+                href='mailto: scrumlatam@gmail.com'
+                className='text-blue-600 hover:text-blue-500'
+              >
+                scrumlatam@gmail.com
+              </a>
+            </p>
             <button
               type='button'
               onClick={() => router.push('/')}
