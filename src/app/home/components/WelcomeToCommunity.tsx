@@ -2,12 +2,7 @@
 
 import { PrimaryButton } from '../../../core/PrimaryButton'
 import Image from 'next/image'
-import { images } from '@/data/images_url'
 import { useRouter } from 'next/navigation'
-import useIsLargeScreen from '@/hooks'
-
-const NEW_IMAGE_URL = images.welcomeComunity
-
 export const WelcomeToCommunity = () => {
   const router = useRouter()
 
@@ -38,14 +33,16 @@ export const WelcomeToCommunity = () => {
               />
             </div>
           </div>
-          <div className='mt-12 flex justify-center md:justify-end'>
-            <div className='w-full max-w-[700px] overflow-hidden md:w-full'>
+          <div className='mt-12 flex items-center justify-center md:justify-end'>
+            <div className='w-full max-w-[700px] overflow-visible md:w-full'>
               <Image
-                src={NEW_IMAGE_URL}
+                src={
+                  'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/Home%2FSLHome.jpeg?alt=media&token=7ba18bcd-20bb-4c46-927c-89f93b262084'
+                }
                 alt='Comunidad Scrum Latam en una videollamada'
                 width={1000}
                 height={900}
-                className='h-auto w-full max-w-[100%] transition-transform duration-500 ease-in-out md:-translate-x-4 md:scale-105 lg:-translate-x-8'
+                className='h-auto w-full max-w-[100%] transition-transform duration-500 ease-in-out md:scale-105'
                 priority
               />
             </div>
