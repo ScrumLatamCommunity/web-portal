@@ -41,13 +41,12 @@ export default function ImageUpload({
 
     try {
       const formData = new FormData()
-      formData.append('file', file)
-      formData.append('folder', 'scrumlatam')
+      formData.append('profilePicture', file)
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}image/upload`,
+        `${process.env.NEXT_PUBLIC_API_URL}users/profile-picture/upload`,
         {
-          method: 'POST',
+          method: 'PATCH',
           headers: {
             Authorization: `Bearer ${token}`
           },
