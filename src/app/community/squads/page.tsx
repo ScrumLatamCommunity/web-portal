@@ -42,13 +42,6 @@ export default function Squads() {
         />
         <SquadProfileCarousel profiles={profilesTecnologia} />
       </section>
-      <section className='flex w-full flex-col items-center bg-[#E6EAF0] px-2 md:px-0'>
-        <SquadHeader
-          title={headerCatalziador.title}
-          description={headerCatalziador.description}
-        />
-        <SquadProfileCarousel profiles={profilesCatalizador} />
-      </section>
       <section className={`${darkerGrotesque.variable}`}>
         <div className='flex flex-col items-center justify-center bg-white py-16 md:mt-16'>
           <StarIcon />
