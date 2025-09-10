@@ -70,7 +70,9 @@ export default function ActivityCard({ activity, country }: ActivityCardProps) {
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>
               <Calendar className='h-4 w-4 text-[#FE5833]' />
-              {new Date(activity.date).toLocaleDateString('es-ES')}
+              {new Date(activity.date).toLocaleDateString('es-ES', {
+                timeZone: 'UTC'
+              })}
             </span>
             <span className='flex items-center gap-0.5 font-semibold'>
               <Clock className='h-4 w-4 text-[#FE5833]' />
