@@ -41,6 +41,7 @@ export default function ImageUpload({
 
     try {
       const formData = new FormData()
+
       formData.append('profilePicture', file)
 
       const response = await fetch(
