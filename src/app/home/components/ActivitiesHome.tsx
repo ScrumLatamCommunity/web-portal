@@ -44,13 +44,37 @@ export default function ActivitiesHome() {
   const [selectedActivity, setSelectedActivity] = useState<ActivitiesI | null>(
     null
   )
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getActivities().then((acts) => {
       setActivities(acts)
       if (acts.length > 0) setSelectedActivity(acts[0])
+      setLoading(false)
     })
   }, [])
+
+  if (loading) {
+    return (
+      <div className='flex h-64 items-center justify-center'>
+        <p className='text-lg text-gray-500'>Cargando actividades...</p>
+      </div>
+    )
+  }
+
+  if (activities.length === 0) {
+    return (
+      <div className='flex flex-col items-center justify-center py-20'>
+        <h2 className='mb-4 text-2xl font-bold text-[#082965]'>
+          No hay actividades disponibles
+        </h2>
+        <p className='max-w-md text-center text-gray-600'>
+          Actualmente no tenemos actividades programadas, pero pronto estaremos
+          compartiendo nuevas experiencias para ti.
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div className='flex flex-col pb-10 md:pb-14 2xl:pb-20'>

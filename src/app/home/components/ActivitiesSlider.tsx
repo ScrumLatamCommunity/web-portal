@@ -41,7 +41,7 @@ export default function ActivitiesSlider({
               <h1 className='mb-0 font-darker-grotesque text-[16px] font-bold leading-tight text-[#082965] md:text-[26px]'>
                 {activity.type}
               </h1>
-              <h2 className='font-darker-grotesque leading-tight text-[#082965] text-[14x] md:text-[24px]'>
+              <h2 className='line-clamp-2 max-w-[200px] font-darker-grotesque text-[14px] leading-tight text-[#082965] md:max-w-[280px] md:text-[20px]'>
                 {activity.title}
               </h2>
             </div>

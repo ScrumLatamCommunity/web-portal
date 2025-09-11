@@ -761,6 +761,15 @@ export const ProductsServices: ProductsServicesItem[] = [
 
 export const profilesTecnologia = [
   {
+    name: 'Ruben Dario Romero Chica',
+    title: 'Fundador',
+    description: 'Creador y fundador de la comunidad SCRUM Latam',
+    countryFlagUrl: 'https://flagcdn.com/ve.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
+    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
+  },
+  {
     name: 'Geornith Melo Ortiz',
     title: 'Scrum Master',
     description:
@@ -810,41 +819,10 @@ export const profilesTecnologia = [
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FAlejandro_Morcillo.jpg?alt=media&token=7c76c116-055f-49aa-938c-c7d577ac6044',
     linkedinUrl:
       'https://www.linkedin.com/in/david-morcillo-benavidez-aljo1996/'
-  },
-  {
-    name: 'Ruben Dario Romero Chica',
-    title: 'Fundador',
-    description: 'Creador y fundador de la comunidad SCRUM Latam',
-    countryFlagUrl: 'https://flagcdn.com/ve.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
-    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
   }
 ]
 
 export const profilesCOE = [
-  {
-    name: 'Ruben Dario Romero Chica',
-    title: 'Fundador',
-    description: 'Creador y fundador de la comunidad SCRUM Latam',
-    countryFlagUrl: 'https://flagcdn.com/ve.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2FRuben.jpg?alt=media&token=87648c10-26cf-4968-a2f3-65fa52fee715',
-    linkedinUrl: 'https://www.linkedin.com/in/ruben-dario-scrumlatam/'
-  },
-  {
-    name: 'Vanesa Dominguez',
-    title: 'Scrum Master',
-    description:
-      'Facilita el trabajo del equipo y promueve la mejora continua en la comunidad ágil',
-    countryFlagUrl: 'https://flagcdn.com/py.svg',
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FCoE%2FVanesa_Dominguez.jpeg?alt=media&token=fdde85c3-5b6f-4ece-9b22-8a9e8fd81e67',
-    linkedinUrl: 'https://www.linkedin.com/in/vane-dominguez/'
-  }
-]
-
-export const profilesCatalizador = [
   {
     name: 'Ruben Dario Romero Chica',
     title: 'Fundador',
@@ -871,6 +849,16 @@ export const profilesCatalizador = [
     imageUrl:
       'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Catalizador%2FMichelleBonilla.jpg?alt=media&token=b6d9b0c4-a2ca-4c96-baae-1f94e8bda72d',
     linkedinUrl: 'www.linkedin.com/in/joyamichelle'
+  },
+  {
+    name: 'Melany Ventura',
+    title: 'UX/UI Designer',
+    description:
+      'Diseñadora dedicada a transformar ideas en experiencias de usuario claras y atractivas.',
+    countryFlagUrl: 'https://flagcdn.com/bo.svg',
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/scrum-latam-imgs.appspot.com/o/profile_squads_photo%2FSquad_Tecnologia%2Fmelany-UX.jpeg?alt=media&token=8a4e39af-204e-4d15-85ad-019d206ad838',
+    linkedinUrl: 'https://www.linkedin.com/in/melany-ventura/'
   }
 ]
 
@@ -883,11 +871,6 @@ export const headerTecnología = {
   title: 'Squad Tecnología',
   description:
     'Somos el motor de la transformación digital, creando plataformas  y automatizando procesos para la comunidad ágil'
-}
-export const headerCatalziador = {
-  title: 'Squad Catalizador',
-  description:
-    'Impulsamos el cambio cultural y la evolución ágil promoviendo prácticas Scrum que fortalecen la colaboración y el aprendizaje continuo'
 }
 
 export const activityCategoriesData = [
