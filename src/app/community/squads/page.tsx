@@ -1,12 +1,10 @@
 'use client'
 
 import {
-  profilesCatalizador,
   profilesCOE,
   profilesTecnologia,
   headerCOE,
-  headerTecnología,
-  headerCatalziador
+  headerTecnología
 } from '@/data/data'
 import SquadHeader from './components/SquadHeader'
 import SquadProfileCarousel from './components/SquadProfileCarousel'
