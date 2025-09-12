@@ -182,16 +182,16 @@ export function RegisterForm() {
               disabled={isLoading}
             >
               <option value=''>Seleccionar país</option>
-              <option value='CO'>Colombia</option>
-              <option value='AR'>Argentina</option>
-              <option value='MX'>México</option>
-              <option value='PE'>Perú</option>
-              <option value='CL'>Chile</option>
-              <option value='EC'>Ecuador</option>
-              <option value='VE'>Venezuela</option>
-              <option value='UY'>Uruguay</option>
-              <option value='PY'>Paraguay</option>
-              <option value='BO'>Bolivia</option>
+              <option value='Colombia'>Colombia</option>
+              <option value='Argentina'>Argentina</option>
+              <option value='México'>México</option>
+              <option value='Perú'>Perú</option>
+              <option value='Chile'>Chile</option>
+              <option value='Ecuador'>Ecuador</option>
+              <option value='Venezuela'>Venezuela</option>
+              <option value='Uruguay'>Uruguay</option>
+              <option value='Paraguay'>Paraguay</option>
+              <option value='Bolivia'>Bolivia</option>
             </select>
           </div>
 
