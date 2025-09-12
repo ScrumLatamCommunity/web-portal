@@ -1,10 +1,6 @@
 {
   "name": "web-portal-sl",
-<<<<<<< HEAD
-  "version": "1.0.2",
-=======
   "version": "1.0.4",
->>>>>>> 464284d2cdd6be7deb10bfdcf78c9c58dd6de64c
   "private": true,
   "scripts": {
     "dev": "next dev",
