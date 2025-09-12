@@ -221,6 +221,136 @@ export const flags: Flag[] = [
     id: 19,
     name: 'Estados Unidos',
     flag: 'https://flagcdn.com/us.svg'
+  },
+  {
+    id: 20,
+    name: 'Belice',
+    flag: 'https://flagcdn.com/bz.svg'
+  },
+  {
+    id: 21,
+    name: 'República Dominicana',
+    flag: 'https://flagcdn.com/do.svg'
+  },
+  {
+    id: 22,
+    name: 'India',
+    flag: 'https://flagcdn.com/in.svg'
+  },
+  {
+    id: 23,
+    name: 'Alemania',
+    flag: 'https://flagcdn.com/de.svg'
+  },
+  {
+    id: 24,
+    name: 'Francia',
+    flag: 'https://flagcdn.com/fr.svg'
+  },
+  {
+    id: 25,
+    name: 'Italia',
+    flag: 'https://flagcdn.com/it.svg'
+  },
+  {
+    id: 26,
+    name: 'Portugal',
+    flag: 'https://flagcdn.com/pt.svg'
+  },
+  {
+    id: 27,
+    name: 'Reino Unido',
+    flag: 'https://flagcdn.com/gb.svg'
+  },
+  {
+    id: 28,
+    name: 'Países Bajos',
+    flag: 'https://flagcdn.com/nl.svg'
+  },
+  {
+    id: 29,
+    name: 'Suiza',
+    flag: 'https://flagcdn.com/ch.svg'
+  },
+  {
+    id: 30,
+    name: 'Suecia',
+    flag: 'https://flagcdn.com/se.svg'
+  },
+  {
+    id: 31,
+    name: 'Polonia',
+    flag: 'https://flagcdn.com/pl.svg'
+  },
+  {
+    id: 32,
+    name: 'Hungría',
+    flag: 'https://flagcdn.com/hu.svg'
+  },
+  {
+    id: 33,
+    name: 'Ucrania',
+    flag: 'https://flagcdn.com/ua.svg'
+  },
+  {
+    id: 34,
+    name: 'Rumania',
+    flag: 'https://flagcdn.com/ro.svg'
+  },
+  {
+    id: 35,
+    name: 'Grecia',
+    flag: 'https://flagcdn.com/gr.svg'
+  },
+  {
+    id: 36,
+    name: 'Noruega',
+    flag: 'https://flagcdn.com/no.svg'
+  },
+  {
+    id: 37,
+    name: 'Dinamarca',
+    flag: 'https://flagcdn.com/dk.svg'
+  },
+  {
+    id: 38,
+    name: 'Finlandia',
+    flag: 'https://flagcdn.com/fi.svg'
+  },
+  {
+    id: 39,
+    name: 'Irlanda',
+    flag: 'https://flagcdn.com/ie.svg'
+  },
+  {
+    id: 40,
+    name: 'Bélgica',
+    flag: 'https://flagcdn.com/be.svg'
+  },
+  {
+    id: 41,
+    name: 'Austria',
+    flag: 'https://flagcdn.com/at.svg'
+  },
+  {
+    id: 42,
+    name: 'Chequia',
+    flag: 'https://flagcdn.com/cz.svg'
+  },
+  {
+    id: 43,
+    name: 'Croacia',
+    flag: 'https://flagcdn.com/hr.svg'
+  },
+  {
+    id: 44,
+    name: 'Serbia',
+    flag: 'https://flagcdn.com/rs.svg'
+  },
+  {
+    id: 45,
+    name: 'Turquía',
+    flag: 'https://flagcdn.com/tr.svg'
   }
 ]
 
